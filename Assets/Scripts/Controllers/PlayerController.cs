@@ -21,3 +21,5 @@ namespace Shinjingi
         }
     }
 }
+
+//quiero decir que esto es muy avanzado para mí
