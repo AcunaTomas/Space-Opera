@@ -44,7 +44,7 @@ namespace Shinjingi
             _onGround = _ground.OnGround;
             _velocity = _body.velocity;
 
-            if (_onGround && _body.velocity.y == 0)
+            if (_onGround && _body.velocity.y <= 3 )
             {
                 _jumpPhase = 0;
                 _coyoteCounter = _coyoteTime;
