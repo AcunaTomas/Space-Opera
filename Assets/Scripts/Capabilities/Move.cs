@@ -19,18 +19,43 @@ namespace Shinjingi
         private float _maxSpeedChange, _acceleration, _wallStickCounter;
         private bool _onGround;
 
+        public Animator animator;
+
+        private SpriteRenderer spriteRenderer;
+        private bool isFacingRight = true;
+
+
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
             _collisionDataRetriever = GetComponent<CollisionDataRetriever>();
             _controller = GetComponent<Controller>();
             _wallInteractor = GetComponent<WallInteractor>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
         {
             _direction.x = _controller.input.RetrieveMoveInput();
             _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _collisionDataRetriever.Friction, 0f);
+            animator.SetFloat("Speed", Mathf.Abs(_direction.x));
+
+            if (_direction.x > 0 && !isFacingRight)
+            {
+            Flip();
+            }
+            else if (_direction.x < 0 && isFacingRight)
+            {
+            Flip();
+            }
+        }
+
+        private void Flip()
+        {
+
+            isFacingRight = !isFacingRight;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
+
         }
 
         private void FixedUpdate()
