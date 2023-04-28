@@ -6,9 +6,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     float HP = 193f;
+    [SerializeField]
     float vertspid = -4f;
+    [SerializeField]
     bool canIjump = true;
+    bool wallijumpy = false;
     private Rigidbody2D body;
+    [SerializeField]
+    private float jumpLimit = 0f;
 
     void Start()
     {
@@ -21,17 +26,28 @@ public class Player : MonoBehaviour
         _plaseJump();
         body.velocity = new Vector2(Input.GetAxis("Horizontal") * 5f, vertspid);
         vertspid += -0.03f;
-        vertspid = Clamp(vertspid, -4f, 8f);
+        vertspid = Clamp(vertspid, -7f, 8f);
     }
 
     private void _plaseJump()
     {
-        Debug.Log(Input.GetAxis("Jump"));
+        
         if (canIjump && Input.GetButton("Jump"))
         {
-            vertspid +=  8f;
+           
+            jumpLimit += 0.02f;
+            vertspid = 5f + (jumpLimit * 0.12f);
+            if(wallijumpy)
+            {
+                
+            }
+        }
+        if (jumpLimit >= 3f || Input.GetButton("Jump") == false)
+        {
+            jumpLimit = 0f;
             canIjump = false;
         }
+        Debug.Log(canIjump);
 
     }
 
@@ -48,18 +64,40 @@ public class Player : MonoBehaviour
         return HP.ToString();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(collision.contacts[0]);
-        if (collision.contacts[0].point.y < transform.position.y)
+        Debug.DrawRay(collision.GetContact(0).normal, collision.GetContact(0).normal, Color.red);
+        Debug.DrawRay(transform.position, transform.up, Color.green);
+        //Debug.Log(collision.GetContact(0).normal);
+        Vector3 normalcoll = collision.GetContact(0).normal;
+
+        Debug.Log(normalcoll.y);
+        Debug.Log(normalcoll.x);
+
+
+        if (Mathf.Abs(normalcoll.y) > Mathf.Abs(normalcoll.x) && normalcoll.y > 0)
         {
             canIjump = true;
+            wallijumpy = false;
+
         }
-        else
+
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector3 normalcoll = collision.GetContact(0).normal;
+        if (normalcoll.y < 0)
         {
             canIjump = false;
+            wallijumpy = false;
+            jumpLimit = 3.5f;
+            vertspid =  -0.3f;
         }
     }
+
     
+
 
 }
