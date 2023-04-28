@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         {
            
             jumpLimit += 0.02f;
-            vertspid = 5f + (jumpLimit * 0.12f);
+            vertspid = 6f + (jumpLimit * 0.12f);
             if(wallijumpy)
             {
                 
