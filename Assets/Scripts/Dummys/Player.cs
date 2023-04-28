@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             jumpLimit = 0f;
             canIjump = false;
         }
-        Debug.Log(canIjump);
+        Debug.Log(transform.position);
 
     }
 
