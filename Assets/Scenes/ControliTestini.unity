@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 334508670}
   m_Layer: 0
   m_Name: rodsuar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,6 +182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 193
+  vertspid: -4
+  canIjump: 1
+  jumpLimit: 0
+  extrajumpcount: 1
 --- !u!212 &334508668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -556,6 +560,7 @@ GameObject:
   - component: {fileID: 2143810697}
   - component: {fileID: 2143810696}
   - component: {fileID: 2143810695}
+  - component: {fileID: 2143810698}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -629,3 +634,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2143810698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143810694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7adf48a656a5c59498e9dd0351c5443a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
