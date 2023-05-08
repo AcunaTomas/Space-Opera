@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private Vector2 caps = new Vector2(4f, 7f);
     [SerializeField]
     private int extrajumpcount = 1;
+    [SerializeField]
+    private float _lastJumpPress = 0f;
 
     void Start()
     {
@@ -28,10 +30,15 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         _plaseJump();
-        body.AddRelativeForce(new Vector2(Xspeed, vertspid));
-        Xspeed = Input.GetAxis("Horizontal") * 5f;
-        vertspid += -0.03f;
-        body.velocity = new Vector2(Clamp(Xspeed, -caps.x, caps.x), Clamp(vertspid, -caps.y, caps.y));
+        FakeGravity();
+        if (Input.GetButton("Jump"))
+        {
+            _lastJumpPress += 0.17f;
+        }
+        else
+        {
+            _lastJumpPress = 0f;
+        }
     }
 
     private void _plaseJump()
@@ -40,8 +47,8 @@ public class Player : MonoBehaviour
         if (canIjump && Input.GetButton("Jump"))
         {
            
-            jumpLimit += 0.02f;
-            vertspid = 2f + (jumpLimit * 0.12f);
+            jumpLimit += 0.3f;
+            vertspid = 5f + (jumpLimit * 0.12f);
 
         }
         if (jumpLimit >= 3f || Input.GetButton("Jump") == false)
@@ -49,7 +56,7 @@ public class Player : MonoBehaviour
             jumpLimit = 0f;
             canIjump = false;
         }
-        if (Input.GetButton("Jump") && wallijumpy)
+        if (wallijumpy)
         {
             WallJump();
         }
@@ -58,10 +65,14 @@ public class Player : MonoBehaviour
     }
     private void WallJump()
     {
-        vertspid = 6f;
-        Xspeed = 4f;
-        wallijumpy = false;
-        Debug.Log("WallE");
+        if (Input.GetButton("Jump") && _lastJumpPress <= 0.9f)
+        {
+            vertspid = 18f;
+            Xspeed = Input.GetAxis("Horizontal") + 10f;
+            wallijumpy = false;
+            Debug.Log("WallE");
+        }
+
     }
 
     private float Clamp(float x, float y, float z)
@@ -118,6 +129,13 @@ public class Player : MonoBehaviour
     }
 
     
-
+    void FakeGravity()
+    {
+        body.AddRelativeForce(new Vector2(Xspeed, vertspid));
+        Xspeed = Input.GetAxis("Horizontal") * 5f;
+        vertspid += -0.3f;
+        body.velocity = new Vector2(Clamp(Xspeed, -caps.x, caps.x), vertspid);
+        vertspid = Clamp(vertspid, -caps.y, caps.y);
+    }
 
 }
