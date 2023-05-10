@@ -185,7 +185,10 @@ MonoBehaviour:
   vertspid: -4
   canIjump: 1
   jumpLimit: 0
+  Xspeed: 0
   extrajumpcount: 1
+  _lastJumpPress: 0
+  WallJumpXDirection: 0
 --- !u!212 &334508668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -266,7 +269,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: c4c2e8502b43ef64fa8dae0d6fed497c, type: 2}

@@ -14,12 +14,17 @@ public class Player : MonoBehaviour
     private Rigidbody2D body;
     [SerializeField]
     private float jumpLimit = 0f;
+    [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 caps = new Vector2(4f, 7f);
+    private Vector2 speedCaps = new Vector2(4f, 7f);
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
     private float _lastJumpPress = 0f;
+    private float wallJumpXboost = 0f;
+
+    [SerializeField]    
+    private float WallJumpXDirection = 0f;
 
     void Start()
     {
@@ -39,6 +44,8 @@ public class Player : MonoBehaviour
         {
             _lastJumpPress = 0f;
         }
+
+
     }
 
     private void _plaseJump()
@@ -48,10 +55,10 @@ public class Player : MonoBehaviour
         {
            
             jumpLimit += 0.3f;
-            vertspid = 5f + (jumpLimit * 0.12f);
+            vertspid = 1.2f + (jumpLimit * 0.12f);
 
         }
-        if (jumpLimit >= 3f || Input.GetButton("Jump") == false)
+        if (jumpLimit >= 2.5f || Input.GetButton("Jump") == false)
         {
             jumpLimit = 0f;
             canIjump = false;
@@ -67,9 +74,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.9f)
         {
-            vertspid = 18f;
-            Xspeed = Input.GetAxis("Horizontal") + 10f;
             wallijumpy = false;
+            body.AddForce( new Vector2(WallJumpXDirection  * 6f, 8f), ForceMode2D.Impulse);
             Debug.Log("WallE");
         }
 
@@ -92,25 +98,26 @@ public class Player : MonoBehaviour
         Debug.DrawRay(collision.GetContact(0).normal, collision.GetContact(0).normal, Color.red);
         Debug.DrawRay(transform.position, transform.up, Color.green);
         //Debug.Log(collision.GetContact(0).normal);
-        Vector3 normalcoll = collision.GetContact(0).normal;
+        Vector3 collisionNormal = collision.GetContact(0).normal;
 
         //Debug.Log(normalcoll.y);
         //Debug.Log(normalcoll.x);
 
 
-        if (Mathf.Abs(normalcoll.y) > Mathf.Abs(normalcoll.x) && normalcoll.y > 0)
+        if (Mathf.Abs(collisionNormal.y) > Mathf.Abs(collisionNormal.x) && collisionNormal.y > 0)
         {
             canIjump = true;
             wallijumpy = false;
             extrajumpcount = 1;
 
+
         }
-        if (Mathf.Abs(normalcoll.y) < Mathf.Abs(normalcoll.x) && extrajumpcount > 0)
+        if (Mathf.Abs(collisionNormal.y) < Mathf.Abs(collisionNormal.x) && extrajumpcount > 0)
         {
 
-          wallijumpy = true;
+           wallijumpy = true;
            extrajumpcount += -1;
-
+           WallJumpXDirection = collisionNormal.x;
         }
 
 
@@ -118,24 +125,33 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 normalcoll = collision.GetContact(0).normal;
-        if (normalcoll.y < 0)
+        Vector3 collisionNormal = collision.GetContact(0).normal;
+        if (collisionNormal.y < 0)
         {
             canIjump = false;
             wallijumpy = false;
             jumpLimit = 3.5f;
-            vertspid =  -0.3f;
+            vertspid = 0f;
         }
     }
 
     
     void FakeGravity()
     {
-        body.AddRelativeForce(new Vector2(Xspeed, vertspid));
+
         Xspeed = Input.GetAxis("Horizontal") * 5f;
-        vertspid += -0.3f;
-        body.velocity = new Vector2(Clamp(Xspeed, -caps.x, caps.x), vertspid);
-        vertspid = Clamp(vertspid, -caps.y, caps.y);
+        if (!canIjump)
+        {
+         vertspid = 0;
+        }
+        else
+        {
+        vertspid += -0.3f;  
+        }
+        //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
+        vertspid = Clamp(vertspid, -speedCaps.y, speedCaps.y);
+        body.AddForce(new Vector2(Xspeed, vertspid), ForceMode2D.Force);
+        body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
     }
 
 }
