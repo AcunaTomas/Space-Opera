@@ -49,12 +49,12 @@ namespace Shinjingi
                 _jumpPhase = 0;
                 _coyoteCounter = _coyoteTime;
                 _isJumping = false;
-                Debug.Log("Toca el piso y no se mueve en Y");
+                //Debug.Log("Toca el piso y no se mueve en Y");
             }
             else
             {
                 _coyoteCounter -= Time.deltaTime;
-                Debug.Log("En el aire");
+                //Debug.Log("En el aire");
             }
 
             if (_desiredJump)
