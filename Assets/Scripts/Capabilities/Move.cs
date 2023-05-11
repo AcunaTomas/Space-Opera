@@ -22,7 +22,6 @@ namespace Shinjingi
         public Animator animator;
 
         private SpriteRenderer spriteRenderer;
-        private bool isFacingRight = true;
 
 
         private void Awake()
@@ -40,21 +39,19 @@ namespace Shinjingi
             _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _collisionDataRetriever.Friction, 0f);
             animator.SetFloat("Speed", Mathf.Abs(_direction.x));
 
-            if (_direction.x > 0 && !isFacingRight)
-            {
             Flip();
-            }
-            else if (_direction.x < 0 && isFacingRight)
-            {
-            Flip();
-            }
         }
 
         private void Flip()
         {
-
-            isFacingRight = !isFacingRight;
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+            if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
 
         }
 

@@ -15,7 +15,13 @@ public class PlayerCombat : MonoBehaviour
 
     public float attackRate = 2f;
     float nextAttackTime = 0f;
+    private SpriteRenderer spriteRenderer;
 
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     void Update()
     {
         if (Time.time >= nextAttackTime)
@@ -30,6 +36,16 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
+
+        if (spriteRenderer.flipX)
+        {
+            attackPoint.localPosition = new Vector2(-0.15f, 0);
+        }
+        else
+        {
+            attackPoint.localPosition = new Vector2(0.15f, 0);
+        }
+
         animator.SetTrigger("Attack");
         Debug.Log("ataca");
 
