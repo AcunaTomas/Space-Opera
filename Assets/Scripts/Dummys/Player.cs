@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private GameObject orientation;
+    [SerializeField]
     float HP = 193f;
     [SerializeField]
     float vertspid = -4f;
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour
     private float jumpLimit = 0f;
     [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 speedCaps = new Vector2(4f, 7f);
+    private Vector2 speedCaps = new Vector2(5f, 12f);
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.9f)
         {
             wallijumpy = false;
-            body.AddForce( new Vector2(WallJumpXDirection  * 6f, 8f), ForceMode2D.Impulse);
+            body.AddForce( new Vector2(WallJumpXDirection  * 4f, 6f), ForceMode2D.Impulse);
             Debug.Log("WallE");
         }
 
@@ -152,6 +154,18 @@ public class Player : MonoBehaviour
         vertspid = Clamp(vertspid, -speedCaps.y, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, vertspid), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
+        if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+        {
+            orientation.transform.position = new Vector2(Clamp(Xspeed, -1,1), 0);
+            body.velocity = new Vector2(speedCaps.x * orientation.transform.position.x, body.velocity.y);
+        }
+            //just checking if I understood how to normalized a vector
+           /* float magnitude = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y);
+            Vector2 normal = new Vector2(transform.position.x / magnitude, transform.position.y / magnitude);
+            Debug.Log("Formula: " + normal.ToString());
+            Debug.Log("Built-In: " + transform.position.normalized.ToString());
+           */
+            //Debug.Log(transform.localPosition);
     }
 
 }
