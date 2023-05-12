@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
             jumpLimit = 0f;
             canIjump = false;
         }
-        if (wallijumpy)
+        if (wallijumpy && canIjump == false)
         {
             WallJump();
         }
@@ -97,8 +97,8 @@ public class Player : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.DrawRay(collision.GetContact(0).normal, collision.GetContact(0).normal, Color.red);
-        Debug.DrawRay(transform.position, transform.up, Color.green);
+        Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
+        Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
         //Debug.Log(collision.GetContact(0).normal);
         Vector3 collisionNormal = collision.GetContact(0).normal;
 
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
     
     void FakeGravity()
     {
-
+        orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1,1), 0);
         Xspeed = Input.GetAxis("Horizontal") * 5f;
         if (!canIjump)
         {
@@ -156,8 +156,8 @@ public class Player : MonoBehaviour
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
         {
-            orientation.transform.position = new Vector2(Clamp(Xspeed, -1,1), 0);
-            body.velocity = new Vector2(speedCaps.x * orientation.transform.position.x, body.velocity.y);
+
+            body.velocity = new Vector2(speedCaps.x * orientation.transform.localPosition.x, body.velocity.y);
         }
             //just checking if I understood how to normalized a vector
            /* float magnitude = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y);
@@ -168,4 +168,9 @@ public class Player : MonoBehaviour
             //Debug.Log(transform.localPosition);
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(orientation.transform.position, 1);
+    }
 }
