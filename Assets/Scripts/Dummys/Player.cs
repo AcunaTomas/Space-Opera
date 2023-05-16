@@ -100,27 +100,31 @@ public class Player : MonoBehaviour
         Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
         Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
         //Debug.Log(collision.GetContact(0).normal);
-        Vector3 collisionNormal = collision.GetContact(0).normal;
+        ContactPoint2D[] contacts= new ContactPoint2D[8];
+        collision.GetContacts(contacts);
 
         //Debug.Log(normalcoll.y);
         //Debug.Log(normalcoll.x);
 
-
-        if (Mathf.Abs(collisionNormal.y) > Mathf.Abs(collisionNormal.x) && collisionNormal.y > 0)
+        for (var i = 0; i < collision.contactCount; i++)
         {
-            canIjump = true;
-            wallijumpy = false;
-            extrajumpcount = 1;
+            if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0)
+            {
+                canIjump = true;
+                wallijumpy = false;
+                extrajumpcount = 1;
 
 
+            }
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0)
+            {
+
+            wallijumpy = true;
+            extrajumpcount += -1;
+            WallJumpXDirection = contacts[i].normal.x;
+            }
         }
-        if (Mathf.Abs(collisionNormal.y) < Mathf.Abs(collisionNormal.x) && extrajumpcount > 0)
-        {
 
-           wallijumpy = true;
-           extrajumpcount += -1;
-           WallJumpXDirection = collisionNormal.x;
-        }
 
 
     }
