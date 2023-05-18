@@ -74,10 +74,18 @@ public class Player : MonoBehaviour
     }
     private void WallJump()
     {
-        if (Input.GetButton("Jump") && _lastJumpPress <= 0.9f)
+        if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
             wallijumpy = false;
-            body.AddForce( new Vector2(WallJumpXDirection  * 4f, 6f), ForceMode2D.Impulse);
+            if (body.velocity.y < 0f)
+            {
+                body.AddForce(new Vector2(WallJumpXDirection * 4f, 15f), ForceMode2D.Impulse);
+            }
+            else
+            {
+               body.AddForce(new Vector2(WallJumpXDirection * 4f, 5f), ForceMode2D.Impulse);
+            }
+
             Debug.Log("WallE");
         }
 
@@ -120,8 +128,8 @@ public class Player : MonoBehaviour
             {
 
             wallijumpy = true;
-            extrajumpcount += -1;
-            WallJumpXDirection = contacts[i].normal.x;
+            //extrajumpcount += -1;
+            WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
             }
         }
 
@@ -129,7 +137,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+   /* void OnCollisionEnter2D(Collision2D collision)
     {
         Vector3 collisionNormal = collision.GetContact(0).normal;
         if (collisionNormal.y < 0)
@@ -139,8 +147,12 @@ public class Player : MonoBehaviour
             jumpLimit = 3.5f;
             vertspid = 0f;
         }
-    }
+    }*/
 
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        wallijumpy = false;
+    }
     
     void FakeGravity()
     {
@@ -148,12 +160,9 @@ public class Player : MonoBehaviour
         Xspeed = Input.GetAxis("Horizontal") * 5f;
         if (!canIjump)
         {
-         vertspid = 0;
+         vertspid = -0.3f;
         }
-        else
-        {
-        vertspid += -0.3f;  
-        }
+
         //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
         vertspid = Clamp(vertspid, -speedCaps.y, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, vertspid), ForceMode2D.Force);
@@ -163,9 +172,13 @@ public class Player : MonoBehaviour
 
             body.velocity = new Vector2(speedCaps.x * orientation.transform.localPosition.x, body.velocity.y);
         }
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
+        {
+            body.velocity = new Vector2(0f, body.velocity.y);
+        }
             //just checking if I understood how to normalized a vector
            /* float magnitude = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y);
-            Vector2 normal = new Vector2(transform.position.x / magnitude, transform.position.y / magnitude);
+            Vector2 normal = new Vector2(transform.position. x / magnitude, transform.position.y / magnitude);
             Debug.Log("Formula: " + normal.ToString());
             Debug.Log("Built-In: " + transform.position.normalized.ToString());
            */
