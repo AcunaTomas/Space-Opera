@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float HP = 193f;
     [SerializeField]
-    float vertspid = -4f;
+    float vertspid = -0.3f;
     [SerializeField]
     bool canIjump = true;
     bool wallijumpy = false;
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
             vertspid = 1.2f + (jumpLimit * 0.12f);
 
         }
-        if (jumpLimit >= 2.5f || Input.GetButton("Jump") == false)
+        if (jumpLimit >= 2.5f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.2f)) // TO-DO: Encontrar una forma de reformular este or
         {
             jumpLimit = 0f;
             canIjump = false;
@@ -157,8 +157,8 @@ public class Player : MonoBehaviour
     void FakeGravity()
     {
         orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1,1), 0);
-        Xspeed = Input.GetAxis("Horizontal") * 5f;
-        if (!canIjump)
+        Xspeed = Input.GetAxis("Horizontal") * 15f;
+        if (canIjump == false)
         {
          vertspid = -0.3f;
         }
@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
 
             body.velocity = new Vector2(speedCaps.x * orientation.transform.localPosition.x, body.velocity.y);
         }
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && canIjump == true)
         {
             body.velocity = new Vector2(0f, body.velocity.y);
         }
