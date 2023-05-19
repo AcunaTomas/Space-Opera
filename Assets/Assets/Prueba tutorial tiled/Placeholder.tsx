@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.10.0" name="Placeholder" tilewidth="32" tileheight="32" tilecount="64" columns="8">
- <image source="1 Tiles/Tileset.png" width="256" height="256"/>
+ <image source="Tileset.png" width="256" height="256"/>
  <tile id="0">
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0">
