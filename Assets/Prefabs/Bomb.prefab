@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8823566587461000747}
   - component: {fileID: 8575101613034309097}
   - component: {fileID: 1371156680632117489}
+  - component: {fileID: 2804871962921661786}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -32,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8967686928482049120}
+  - {fileID: 9141542601682995932}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,9 +86,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1b3b61897ec3b49b964585d58e03f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bombPoint: {fileID: 9141542601682995932}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  bombRange: 1.4
+  bombDamage: 80
   speed: 4
   launchOffset: {x: 0, y: 0.3, z: 0}
   thrown: 1
+--- !u!61 &2804871962921661786
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681821287026531398}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0043163896, y: 0.18992451}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0258988, y: 0.55108756}
+  m_EdgeRadius: 0
+--- !u!1 &7316787260392245159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9141542601682995932}
+  m_Layer: 0
+  m_Name: BombPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9141542601682995932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316787260392245159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2402366697410274000}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8070462336248364056
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,11 +47,6 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-    }
-
-    void Attack()
-    {
-
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
@@ -60,6 +55,11 @@ public class PlayerCombat : MonoBehaviour
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
         }
+
+    }
+
+    void Attack()
+    {
 
         animator.SetTrigger("Attack");
         Debug.Log("ataca");
