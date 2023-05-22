@@ -21,13 +21,13 @@ namespace Shinjingi
         private void OnCollisionEnter2D(Collision2D collision)
         {
             EvaluateCollision(collision);
-            RetrieveFriction(collision);
+            //RetrieveFriction(collision);
         }
 
         private void OnCollisionStay2D(Collision2D collision)
         {
             EvaluateCollision(collision);
-            RetrieveFriction(collision);
+            //RetrieveFriction(collision);
         }
 
         public void EvaluateCollision(Collision2D collision)
@@ -40,16 +40,16 @@ namespace Shinjingi
             }
         }
 
-        private void RetrieveFriction(Collision2D collision)
-        {
-            _material = collision.rigidbody.sharedMaterial;
+        // private void RetrieveFriction(Collision2D collision)
+        // {
+        //     _material = collision.rigidbody.sharedMaterial;
 
-            Friction = 0;
+        //     Friction = 0;
 
-            if(_material != null)
-            {
-                Friction = _material.friction;
-            }
-        }
+        //     if(_material != null)
+        //     {
+        //         Friction = _material.friction;
+        //     }
+        // }
     }
 }

@@ -22,6 +22,8 @@ namespace Shinjingi
         private bool _onWall, _onGround, _desiredJump;
         private float _wallDirectionX;
 
+        public Animator animator;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -49,10 +51,14 @@ namespace Shinjingi
             #region Wall Slide
             if(_onWall)
             {
+                //animation slide
+                animator.SetBool("wall", true);
                 if(_velocity.y < -_wallSlideMaxSpeed)
                 {
                     _velocity.y = -_wallSlideMaxSpeed;
                 }
+            } else {
+                animator.SetBool("wall", false);
             }
             #endregion
 

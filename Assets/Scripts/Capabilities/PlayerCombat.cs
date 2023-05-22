@@ -17,6 +17,11 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
     private SpriteRenderer spriteRenderer;
 
+    public float bombRate = 2f;
+    float nextBombTime = 0f;
+    public Transform launchOffset;
+    public ProjectileBehaviour projectilePrefab;
+
 
     void Start()
     {
@@ -32,10 +37,15 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-    }
 
-    void Attack()
-    {
+        if (Time.time >= nextBombTime)
+        {
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                Bomb();
+                nextBombTime = Time.time + 2f / bombRate;
+            }
+        }
 
         if (spriteRenderer.flipX)
         {
@@ -45,6 +55,11 @@ public class PlayerCombat : MonoBehaviour
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
         }
+
+    }
+
+    void Attack()
+    {
 
         animator.SetTrigger("Attack");
         Debug.Log("ataca");
@@ -56,6 +71,22 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
+    }
+
+    void Bomb()
+    {
+        if (spriteRenderer.flipX)
+        {
+            launchOffset.localPosition = new Vector2(-0.15f, 0);
+            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+        }
+        else
+        {
+            launchOffset.localPosition = new Vector2(0.15f, 0);
+            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+        }
+        
+        
     }
 
     void OnDrawGizmosSelected() 
