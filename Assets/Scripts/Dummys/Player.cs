@@ -28,16 +28,21 @@ public class Player : MonoBehaviour
     [SerializeField]    
     private float WallJumpXDirection = 0f;
 
+    private SpriteRenderer _spriteRenderer;
+
+    private Animator _animator;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
 
     void FixedUpdate()
     {
         _plaseJump();
-        FakeGravity();
+        Movement();
         if (Input.GetButton("Jump"))
         {
             _lastJumpPress += 0.17f;
@@ -47,6 +52,7 @@ public class Player : MonoBehaviour
             _lastJumpPress = 0f;
         }
 
+            Flip();
 
     }
 
@@ -60,7 +66,7 @@ public class Player : MonoBehaviour
             vertspid = 1.2f + (jumpLimit * 0.12f);
 
         }
-        if (jumpLimit >= 2.5f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.2f)) // TO-DO: Encontrar una forma de reformular este or
+        if (jumpLimit >= 2.5f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
             jumpLimit = 0f;
             canIjump = false;
@@ -154,15 +160,20 @@ public class Player : MonoBehaviour
         wallijumpy = false;
     }
     
-    void FakeGravity()
+    void Movement()
     {
+        //Horizontal
         orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1,1), 0);
         Xspeed = Input.GetAxis("Horizontal") * 15f;
         if (canIjump == false)
         {
          vertspid = -0.3f;
         }
-
+        _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
+        
+        
+        
+        
         //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
         vertspid = Clamp(vertspid, -speedCaps.y, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, vertspid), ForceMode2D.Force);
@@ -185,9 +196,23 @@ public class Player : MonoBehaviour
             //Debug.Log(transform.localPosition);
     }
 
-    void OnDrawGizmosSelected()
+    //Animaciones
+
+    private void Flip()
+        {
+            if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                _spriteRenderer.flipX = false;
+            }
+
+        }
+   /*  void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(orientation.transform.position, 1);
-    }
+    } */
 }

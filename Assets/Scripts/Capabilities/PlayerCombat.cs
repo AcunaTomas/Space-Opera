@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public Animator animator;
+    [SerializeField]
+    private Animator animator;
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
