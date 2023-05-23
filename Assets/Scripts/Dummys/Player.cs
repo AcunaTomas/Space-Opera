@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(5f, 12f);
     [SerializeField]
+    private float _maxVerticalSpeed = 15f;
+    [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
     private float _lastJumpPress = 0f;
@@ -64,7 +66,8 @@ public class Player : MonoBehaviour
            
             jumpLimit += 0.3f;
             vertspid = 1.2f + (jumpLimit * 0.12f);
-
+            _animator.SetBool("IsJumping", true);
+            _animator.SetFloat("Speed", 1f);
         }
         if (jumpLimit >= 2.5f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
@@ -80,21 +83,18 @@ public class Player : MonoBehaviour
     }
     private void WallJump()
     {
+
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
             wallijumpy = false;
-            if (body.velocity.y < 0f)
-            {
-                body.AddForce(new Vector2(WallJumpXDirection * 4f, 15f), ForceMode2D.Impulse);
-            }
-            else
-            {
-               body.AddForce(new Vector2(WallJumpXDirection * 4f, 5f), ForceMode2D.Impulse);
-            }
 
+            body.AddForce(new Vector2(WallJumpXDirection * 4f, 0f), ForceMode2D.Impulse);
+            vertspid = 3.5f;
+            
+            _animator.SetBool("wall", false);
             Debug.Log("WallE");
         }
-
+        
     }
 
     private float Clamp(float x, float y, float z)
@@ -127,15 +127,19 @@ public class Player : MonoBehaviour
                 canIjump = true;
                 wallijumpy = false;
                 extrajumpcount = 1;
-
+                _animator.SetBool("IsJumping", false);
+                _animator.SetBool("wall", false);
+                _maxVerticalSpeed = 15f;
 
             }
             if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0)
             {
-
-            wallijumpy = true;
-            //extrajumpcount += -1;
-            WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
+                wallijumpy = true;
+                //extrajumpcount += -1;
+                WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
+                _maxVerticalSpeed = 5f;
+                _animator.SetBool("wall", true);
+                _animator.SetBool("IsJumping", false);
             }
         }
 
@@ -158,25 +162,27 @@ public class Player : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         wallijumpy = false;
+
     }
-    
+
     void Movement()
     {
         //Horizontal
-        orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1,1), 0);
+        orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
         Xspeed = Input.GetAxis("Horizontal") * 15f;
         if (canIjump == false)
         {
-         vertspid = -0.3f;
+            vertspid += -0.3f;
+
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
-        
-        
-        
-        
+
+
+
+
         //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
-        vertspid = Clamp(vertspid, -speedCaps.y, speedCaps.y);
-        body.AddForce(new Vector2(Xspeed, vertspid), ForceMode2D.Force);
+        vertspid = Clamp(vertspid, -0.5f, speedCaps.y);
+        body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
         {
@@ -187,6 +193,17 @@ public class Player : MonoBehaviour
         {
             body.velocity = new Vector2(0f, body.velocity.y);
         }
+        if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
+        {
+            body.velocity = new Vector2(body.velocity.x, _maxVerticalSpeed * Clamp(body.velocity.y, -1, 1));  //Huge reach
+        }
+
+
+
+
+
+
+
             //just checking if I understood how to normalized a vector
            /* float magnitude = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y);
             Vector2 normal = new Vector2(transform.position. x / magnitude, transform.position.y / magnitude);
