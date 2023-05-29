@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             _animator.SetBool("IsJumping", true);
             _animator.SetFloat("Speed", 1f);
         }
-        if (jumpLimit >= 2.5f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
+        if (jumpLimit >= 2.0f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
             jumpLimit = 0f;
             canIjump = false;
@@ -86,10 +86,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
-            wallijumpy = false;
 
-            body.AddForce(new Vector2(WallJumpXDirection * 4f, 0f), ForceMode2D.Impulse);
-            vertspid = 3.5f;
+            body.AddForce(new Vector2(WallJumpXDirection * 4f, 2f), ForceMode2D.Impulse);
+            vertspid = 2.5f;
             
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
@@ -143,8 +142,6 @@ public class Player : MonoBehaviour
             }
         }
 
-
-
     }
 
    /* void OnCollisionEnter2D(Collision2D collision)
@@ -162,7 +159,7 @@ public class Player : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         wallijumpy = false;
-
+        _maxVerticalSpeed = 15f; 
     }
 
     void Movement()
@@ -186,7 +183,6 @@ public class Player : MonoBehaviour
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
         {
-
             body.velocity = new Vector2(speedCaps.x * orientation.transform.localPosition.x, body.velocity.y);
         }
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && canIjump == true)
@@ -197,12 +193,6 @@ public class Player : MonoBehaviour
         {
             body.velocity = new Vector2(body.velocity.x, _maxVerticalSpeed * Clamp(body.velocity.y, -1, 1));  //Huge reach
         }
-
-
-
-
-
-
 
             //just checking if I understood how to normalized a vector
            /* float magnitude = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y);
