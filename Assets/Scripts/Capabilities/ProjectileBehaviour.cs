@@ -14,7 +14,10 @@ public class ProjectileBehaviour : MonoBehaviour
     public bool thrown;
     private SpriteRenderer spriteRenderer;
     private Collider2D rango;
-    
+    [SerializeField]
+    private Rigidbody2D rb;
+
+    public Animator animator;
 
     private void Start()
     {
@@ -51,12 +54,13 @@ public class ProjectileBehaviour : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
-
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(bombDamage);
         }
-        Destroy(gameObject);
+        animator.SetTrigger("Explode");
+        Destroy(gameObject, 1.2f);
     }
 
     void OnDrawGizmosSelected() 

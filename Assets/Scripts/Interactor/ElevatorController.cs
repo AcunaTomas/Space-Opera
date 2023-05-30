@@ -6,9 +6,9 @@ public class ElevatorController : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
-    private bool sube = true;
+    private bool sube = true; 
 
-    public void Moverse()
+    void Moverse()
     {
         if (sube == true)
         {
@@ -22,7 +22,6 @@ public class ElevatorController : MonoBehaviour
             animator.SetBool("baja", false);
             sube = true;
         }
-        
     }
 
 }
