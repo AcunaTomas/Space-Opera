@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     private int extrajumpcount = 1;
     [SerializeField]
     private float _lastJumpPress = 0f;
-    private float wallJumpXboost = 0f;
+    [SerializeField]
+    private float _fallingTime = 0f;
 
     [SerializeField]    
     private float WallJumpXDirection = 0f;
@@ -56,6 +57,25 @@ public class Player : MonoBehaviour
 
             Flip();
 
+        if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
+        {
+            _fallingTime += 0.16f;
+            _animator.SetFloat("fallingTime", _fallingTime);
+        }
+        else
+        {
+            _fallingTime = 0;
+            _animator.SetFloat("fallingTime", _fallingTime);
+        }
+
+        if (body.velocity.y < 0 && canIjump == false) 
+        {
+            _animator.SetFloat("speedY", body.velocity.y);
+        }
+        else
+        {
+            _animator.SetFloat("speedY", 1);
+        }
     }
 
     private void _plaseJump()
@@ -133,33 +153,59 @@ public class Player : MonoBehaviour
             }
             if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0)
             {
-                wallijumpy = true;
-                //extrajumpcount += -1;
-                WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
-                _maxVerticalSpeed = 5f;
-                _animator.SetBool("wall", true);
-                _animator.SetBool("IsJumping", false);
+                if (canIjump == false) 
+                {
+                    wallijumpy = true;
+
+                    if ((contacts[i].normal.x) > 0) 
+                    {
+                        _spriteRenderer.flipX = true;
+                    } 
+                    else
+                    {
+                        _spriteRenderer.flipX = false;
+                    }
+
+                    //extrajumpcount += -1;
+                    WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
+                    _maxVerticalSpeed = 5f;
+                    _animator.SetBool("wall", true);
+                    _animator.SetBool("IsJumping", false);
+                }
             }
         }
 
     }
 
-   /* void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 collisionNormal = collision.GetContact(0).normal;
-        if (collisionNormal.y < 0)
+        if (_fallingTime > 6)
         {
-            canIjump = false;
-            wallijumpy = false;
-            jumpLimit = 3.5f;
-            vertspid = 0f;
+            _animator.SetTrigger("land");
         }
-    }*/
+        
+        // if (collision.gameObject.CompareTag("Ascensor"))
+        // {
+        //     transform.parent = collision.gameObject.transform;
+        // }
+
+    }
 
     void OnCollisionExit2D(Collision2D collision)
     {
+        if(jumpLimit == 0)
+        {
+            canIjump = false;
+        }
+
         wallijumpy = false;
-        _maxVerticalSpeed = 15f; 
+        _maxVerticalSpeed = 15f;
+
+        // if (collision.gameObject.CompareTag("Ascensor"))
+        // {
+        //     transform.parent = null;
+        // }
+        
     }
 
     void Movement()

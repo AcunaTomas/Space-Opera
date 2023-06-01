@@ -51,6 +51,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 Bomb();
                 nextBombTime = Time.time + 2f / bombRate;
+                animator.SetTrigger("Bomb");
             }
         }
 

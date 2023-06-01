@@ -15,7 +15,7 @@ public class ScenesManager : MonoBehaviour
     public enum Scene
     {
         SceneMainMenu,
-        ControliTestini
+        Tutorial
     }
     
     public void LoadScene(Scene scene)
@@ -25,7 +25,7 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene(Scene.ControliTestini.ToString());
+        SceneManager.LoadScene(Scene.Tutorial.ToString());
     }
 
     //esto por si hay 2 o más niveles o escenas, etc
