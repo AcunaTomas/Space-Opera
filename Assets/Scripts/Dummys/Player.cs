@@ -222,4 +222,20 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
+
+    // void OnCollisionEnter2D(Collision2D coll)
+    // {
+    //     if (coll.gameObject.CompareTag("Ascensor"))
+    //     {
+    //         transform.parent = coll.gameObject.transform;
+    //     }
+    // }
+
+    //     void OnCollisionExit2D(Collision2D coll)
+    // {
+    //     if (coll.gameObject.CompareTag("Ascensor"))
+    //     {
+    //         transform.parent = null;
+    //     }
+    // }
 }

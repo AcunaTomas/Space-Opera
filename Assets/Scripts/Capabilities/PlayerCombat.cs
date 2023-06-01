@@ -22,11 +22,17 @@ public class PlayerCombat : MonoBehaviour
     float nextBombTime = 0f;
     public Transform launchOffset;
     public ProjectileBehaviour projectilePrefab;
+    Animator attackAnimator;
+    SpriteRenderer attackSprite;
 
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        GameObject attackVisual = GameObject.FindWithTag("AttackVisual");
+        attackAnimator = attackVisual.GetComponent<Animator>();
+        attackSprite = attackVisual.GetComponent<SpriteRenderer>();
+
     }
     void Update()
     {
@@ -51,10 +57,12 @@ public class PlayerCombat : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
+            attackSprite.flipX = true;
         }
         else
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
+            attackSprite.flipX = false;
         }
 
     }
@@ -63,6 +71,7 @@ public class PlayerCombat : MonoBehaviour
     {
 
         animator.SetTrigger("Attack");
+        attackAnimator.SetTrigger("Golpe");
         Debug.Log("ataca");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
