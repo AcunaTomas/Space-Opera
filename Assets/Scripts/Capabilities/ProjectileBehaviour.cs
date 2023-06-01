@@ -60,7 +60,7 @@ public class ProjectileBehaviour : MonoBehaviour
             enemy.GetComponent<Enemy>().TakeDamage(bombDamage);
         }
         animator.SetTrigger("Explode");
-        Destroy(gameObject, 1.2f);
+        Destroy(gameObject, 0.7f);
     }
 
     void OnDrawGizmosSelected() 
