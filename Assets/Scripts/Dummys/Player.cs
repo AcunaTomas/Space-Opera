@@ -184,10 +184,10 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("land");
         }
         
-        // if (collision.gameObject.CompareTag("Ascensor"))
-        // {
-        //     transform.parent = collision.gameObject.transform;
-        // }
+        if (collision.gameObject.CompareTag("Ascensor"))
+        {
+            transform.parent = collision.gameObject.transform;
+        }
 
     }
 
@@ -201,10 +201,12 @@ public class Player : MonoBehaviour
         wallijumpy = false;
         _maxVerticalSpeed = 15f;
 
-        // if (collision.gameObject.CompareTag("Ascensor"))
-        // {
-        //     transform.parent = null;
-        // }
+        if (collision.gameObject.CompareTag("Ascensor"))
+        {
+            transform.parent = null;
+        }
+        
+        _animator.SetBool("wall", false);
         
     }
 
