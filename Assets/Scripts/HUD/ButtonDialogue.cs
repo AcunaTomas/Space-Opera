@@ -15,8 +15,6 @@ public class ButtonDialogue : MonoBehaviour
 
     private string _jsonName = "dialogues.json";
     private LevelData _levelData;
-    private TextData[] _zones;
-    private TextData _indexZone;
     private int _zoneLines;
     private string desiredLevel;
     private string desiredZone;
@@ -27,57 +25,24 @@ public class ButtonDialogue : MonoBehaviour
         string content = File.ReadAllText(locationJson);
         _levelData = JsonUtility.FromJson<LevelData>(content);
 
-        desiredLevel = "lvl_01";
-        desiredZone = "woods";
+        Debug.Log(_levelData.lvl_01.zone_01.lines[0]);
+        _zoneLines = _levelData.lvl_01.zone_01.lines.Length;
 
-        if (LevelExists(desiredLevel) && ZoneExists(desiredLevel, desiredZone))
-        {
-            _indexZone = GetZone(desiredLevel, desiredZone);
-        }
-
-        _zoneLines = _indexZone.lines.Length;
-
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _indexZone.lines[_cont];
-    }
-
-    private bool LevelExists(string levelName)
-    {
-        return _levelData != null && _levelData.levels.ContainsKey(levelName);
-    }
-
-    private bool ZoneExists(string levelName, string zoneName)
-    {
-        if (LevelExists(levelName))
-        {
-            ZoneData levelZones = _levelData.levels[levelName];
-            return levelZones.zones.ContainsKey(zoneName);
-        }
-        return false;
-    }
-
-    private TextData GetZone(string levelName, string zoneName)
-    {
-        if (LevelExists(levelName))
-        {
-            ZoneData levelZones = _levelData.levels[levelName];
-            if (ZoneExists(levelName, zoneName))
-            {
-                return levelZones.zones[zoneName];
-            }
-        }
-        return null;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _levelData.lvl_01.zone_01.lines[_cont];
     }
 
     [System.Serializable]
     public class LevelData
     {
-        public Dictionary<string, ZoneData> levels;
+        public ZoneData lvl_01;
+        public ZoneData lvl_02;
     }
 
     [System.Serializable]
     public class ZoneData
     {
-        public Dictionary<string, TextData> zones;
+        public TextData zone_01;
+        public TextData zone_02;
     }
 
     [System.Serializable]
@@ -90,7 +55,7 @@ public class ButtonDialogue : MonoBehaviour
     {
         _cont++;
 
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _indexZone.lines[_cont];
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _levelData.lvl_01.zone_01.lines[_cont];
         if (_zoneLines-1 == _cont)
         {
             transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
