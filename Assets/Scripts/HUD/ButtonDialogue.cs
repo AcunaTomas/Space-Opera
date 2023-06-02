@@ -13,42 +13,90 @@ public class ButtonDialogue : MonoBehaviour
     [SerializeField]
     private int _cont = 0;
 
-    private string jsonName = "dialogues.json";
-    private DataText _data;
+    private string _jsonName = "dialogues.json";
+    private LevelData _levelData;
+    private TextData[] _zones;
+    private TextData _indexZone;
+    private int _zoneLines;
+    private string desiredLevel;
+    private string desiredZone;
 
     void Start()
     {
-        string locationJson = "Assets/Text/" + jsonName;
+        string locationJson = "Assets/Text/" + _jsonName;
         string content = File.ReadAllText(locationJson);
-        _data = JsonUtility.FromJson<DataText>(content);
+        _levelData = JsonUtility.FromJson<LevelData>(content);
 
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _data.ID1;
+        desiredLevel = "lvl_01";
+        desiredZone = "woods";
+
+        if (LevelExists(desiredLevel) && ZoneExists(desiredLevel, desiredZone))
+        {
+            _indexZone = GetZone(desiredLevel, desiredZone);
+        }
+
+        _zoneLines = _indexZone.lines.Length;
+
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _indexZone.lines[_cont];
+    }
+
+    private bool LevelExists(string levelName)
+    {
+        return _levelData != null && _levelData.levels.ContainsKey(levelName);
+    }
+
+    private bool ZoneExists(string levelName, string zoneName)
+    {
+        if (LevelExists(levelName))
+        {
+            ZoneData levelZones = _levelData.levels[levelName];
+            return levelZones.zones.ContainsKey(zoneName);
+        }
+        return false;
+    }
+
+    private TextData GetZone(string levelName, string zoneName)
+    {
+        if (LevelExists(levelName))
+        {
+            ZoneData levelZones = _levelData.levels[levelName];
+            if (ZoneExists(levelName, zoneName))
+            {
+                return levelZones.zones[zoneName];
+            }
+        }
+        return null;
     }
 
     [System.Serializable]
-    public class DataText
+    public class LevelData
     {
-        public string ID1;
-        public string ID2;
-        public string ID3;
+        public Dictionary<string, ZoneData> levels;
+    }
+
+    [System.Serializable]
+    public class ZoneData
+    {
+        public Dictionary<string, TextData> zones;
+    }
+
+    [System.Serializable]
+    public class TextData
+    {
+        public string[] lines;
     }
 
     public void MoreDialoguePlz()
     {
         _cont++;
-        switch (_cont)
+
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _indexZone.lines[_cont];
+        if (_zoneLines-1 == _cont)
         {
-            case 1:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _data.ID2;
-                break;
-            case 2:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _data.ID3;
-                transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
-                break;
-            default:
-                break;
+            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
         }
-        if (_cont >= 3)
+
+        if (_cont >= _zoneLines)
         {
             _player.GetComponent<Player>().enabled = true;
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
