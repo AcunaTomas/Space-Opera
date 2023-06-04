@@ -16,6 +16,8 @@ public class ButtonDialogue : MonoBehaviour
     private string _jsonName = "dialogues.json";
     private ZoneData _zoneData;
     private int _zoneLines;
+    private string[] _zoneNames;
+    public string _zoneName;
 
     void Start()
     {
@@ -23,8 +25,15 @@ public class ButtonDialogue : MonoBehaviour
         string content = File.ReadAllText(locationJson);
         _zoneData = JsonUtility.FromJson<ZoneData>(content);
 
-        _zoneLines = _zoneData.zone_02.Length;
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneData.zone_02[_cont];
+        _zoneNames = GetZoneLines(_zoneName);
+
+        _zoneLines = _zoneNames.Length;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneNames[_cont];
+    }
+
+    private string[] GetZoneLines(string zoneName)
+    {
+        return (string[])typeof(ZoneData).GetField(zoneName).GetValue(_zoneData);
     }
 
     [System.Serializable]
@@ -47,7 +56,7 @@ public class ButtonDialogue : MonoBehaviour
             return;
         }
 
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneData.zone_02[_cont];
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneNames[_cont];
 
         if (_zoneLines-1 == _cont)
         {
