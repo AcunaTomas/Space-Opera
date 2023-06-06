@@ -14,16 +14,20 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private UnityEvent interactAction;
 
+    [SerializeField]
+    GameObject playerInstance;
     void Start()
     {
-        
+        playerInstance = GameObject.FindWithTag("Player");
     }
 
     
     void Update()
     {
-        if (isInRange)
+        if ( Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= 1f &&  Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x)  <=1f)
         {
+            //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x));
+            //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x));
             if (Input.GetKeyDown(interactKey))
             {
                 interactAction.Invoke();
@@ -31,7 +35,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision) 
+/*     void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -45,5 +49,5 @@ public class Interactable : MonoBehaviour
         {
             isInRange = false;
         }
-    }
+    } */
 }
