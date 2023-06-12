@@ -12,15 +12,16 @@ public class Player : MonoBehaviour
     float vertspid = -0.3f;
     [SerializeField]
     bool canIjump = true;
+    bool _firstImpulse = true;
     bool wallijumpy = false;
     private Rigidbody2D body;
     [SerializeField]
     private float jumpLimit = 0f;
     [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 speedCaps = new Vector2(5f, 12f);
+    private Vector2 speedCaps = new Vector2(2f, 5f);
     [SerializeField]
-    private float _maxVerticalSpeed = 15f;
+    private float _maxVerticalSpeed = 5f;
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         {
             _animator.SetFloat("speedY", 1);
         }
+        Debug.Log(vertspid);
     }
 
     private void _plaseJump()
@@ -83,14 +85,25 @@ public class Player : MonoBehaviour
         
         if (canIjump && Input.GetButton("Jump"))
         {
-           
-            jumpLimit += 0.3f;
-            vertspid = 1.2f + (jumpLimit * 0.12f);
+            
+           if (_lastJumpPress <= 0.30f && _firstImpulse == true)
+           {
+            vertspid = 2f + jumpLimit;
+            _firstImpulse = false;
+            
+           }
+           else
+           {
+               vertspid = jumpLimit;
+           }
+            jumpLimit += 0.02f;
+            
             _animator.SetBool("IsJumping", true);
             _animator.SetFloat("Speed", 1f);
         }
-        if (jumpLimit >= 2.0f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
+        if (jumpLimit >= 0.2f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
+            vertspid = 0f;
             jumpLimit = 0f;
             canIjump = false;
         }
@@ -107,8 +120,8 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
 
-            body.AddForce(new Vector2(WallJumpXDirection * 4f, 2f), ForceMode2D.Impulse);
-            vertspid = 2.5f;
+            body.AddForce(new Vector2(WallJumpXDirection * 2f, 1f), ForceMode2D.Impulse);
+            vertspid = 1f;
             
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
@@ -145,10 +158,11 @@ public class Player : MonoBehaviour
             {
                 canIjump = true;
                 wallijumpy = false;
+                _firstImpulse = true;
                 extrajumpcount = 1;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
-                _maxVerticalSpeed = 15f;
+                _maxVerticalSpeed = speedCaps.y;
 
             }
             if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0)
@@ -168,7 +182,7 @@ public class Player : MonoBehaviour
 
                     //extrajumpcount += -1;
                     WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
-                    _maxVerticalSpeed = 5f;
+                    _maxVerticalSpeed = speedCaps.x;
                     _animator.SetBool("wall", true);
                     _animator.SetBool("IsJumping", false);
                 }
@@ -199,7 +213,7 @@ public class Player : MonoBehaviour
         }
 
         wallijumpy = false;
-        _maxVerticalSpeed = 15f;
+        _maxVerticalSpeed = speedCaps.y;    
 
         if (collision.gameObject.CompareTag("Ascensor"))
         {
@@ -217,7 +231,7 @@ public class Player : MonoBehaviour
         Xspeed = Input.GetAxis("Horizontal") * 15f;
         if (canIjump == false)
         {
-            vertspid += -0.3f;
+            vertspid += -0.1f;
 
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
@@ -226,7 +240,7 @@ public class Player : MonoBehaviour
 
 
         //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
-        vertspid = Clamp(vertspid, -0.5f, speedCaps.y);
+        vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
