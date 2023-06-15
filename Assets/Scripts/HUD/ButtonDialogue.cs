@@ -13,48 +13,54 @@ public class ButtonDialogue : MonoBehaviour
     [SerializeField]
     private int _cont = 0;
 
-    private string jsonName = "dialogues.json";
-    private DataText _data;
+    private string _jsonName = "dialogues.json";
+    private ZoneData _zoneData;
+    private int _zoneLines;
+    private string[] _zoneNames;
+    public string _zoneName;
 
     void Start()
     {
-        string locationJson = "Assets/Text/" + jsonName;
+        string locationJson = "Assets/Text/" + _jsonName;
         string content = File.ReadAllText(locationJson);
-        _data = JsonUtility.FromJson<DataText>(content);
+        _zoneData = JsonUtility.FromJson<ZoneData>(content);
 
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _data.ID1;
+        _zoneNames = GetZoneLines(_zoneName);
+
+        _zoneLines = _zoneNames.Length;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneNames[_cont];
+    }
+
+    private string[] GetZoneLines(string zoneName)
+    {
+        return (string[])typeof(ZoneData).GetField(zoneName).GetValue(_zoneData);
     }
 
     [System.Serializable]
-    public class DataText
+    public class ZoneData
     {
-        public string ID1;
-        public string ID2;
-        public string ID3;
+        public string[] zone_01;
+        public string[] zone_02;
     }
 
     public void MoreDialoguePlz()
     {
         _cont++;
-        switch (_cont)
-        {
-            case 1:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _data.ID2;
-                break;
-            case 2:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _data.ID3;
-                transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
-                break;
-            default:
-                break;
-        }
-        if (_cont >= 3)
+
+        if (_cont >= _zoneLines)
         {
             _player.GetComponent<Player>().enabled = true;
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             gameObject.SetActive(false);
             _cont = 0;
+            return;
+        }
+
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneNames[_cont];
+
+        if (_zoneLines-1 == _cont)
+        {
+            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
         }
     }
-
 }
