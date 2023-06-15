@@ -16,15 +16,21 @@ public class Interactable : MonoBehaviour
 
     [SerializeField]
     GameObject playerInstance;
+    [SerializeField]
+    float _XDistance;
+    [SerializeField]
+    float _YDistance;
     void Start()
     {
         playerInstance = GameObject.FindWithTag("Player");
     }
 
-    
+
     void Update()
     {
-        if ( Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= 1f &&  Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x)  <=1f)
+        _XDistance = Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x);
+        _YDistance = Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y);
+        if ( Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= 0.5 &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= 0.5f)
         {
             //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x));
             //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x));

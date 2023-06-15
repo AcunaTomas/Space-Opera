@@ -19,9 +19,10 @@ public class Player : MonoBehaviour
     private float jumpLimit = 0f;
     [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 speedCaps = new Vector2(2f, 5f);
+    private Vector2 speedCaps = new Vector2(2f, 5f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
+                                                     //y: usado para el movimiento vertical.
     [SerializeField]
-    private float _maxVerticalSpeed = 5f;
+    private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
         {
             _animator.SetFloat("speedY", 1);
         }
-        Debug.Log(vertspid);
+        //Debug.Log(body.velocity.y);
     }
 
     private void _plaseJump()
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
             
            }
            else
-           {
+           {   
                vertspid = jumpLimit;
            }
             jumpLimit += 0.02f;
@@ -103,6 +104,7 @@ public class Player : MonoBehaviour
         }
         if (jumpLimit >= 0.2f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
+            //Debug.Log("Jump Peak");
             vertspid = 0f;
             jumpLimit = 0f;
             canIjump = false;
@@ -121,7 +123,7 @@ public class Player : MonoBehaviour
         {
 
             body.AddForce(new Vector2(WallJumpXDirection * 2f, 1f), ForceMode2D.Impulse);
-            vertspid = 1f;
+            vertspid = 0.9f;
             
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
