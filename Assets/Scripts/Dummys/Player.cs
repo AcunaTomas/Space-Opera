@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
             
            if (_lastJumpPress <= 0.30f && _firstImpulse == true)
            {
-            vertspid = 2f + jumpLimit;
+            vertspid = 1.7f + jumpLimit;
             _firstImpulse = false;
             
            }
