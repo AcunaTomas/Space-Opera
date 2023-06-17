@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.IO;
 
 public class ButtonDialogue : MonoBehaviour
 {
-    
+    [SerializeField]
+    private GameObject _characterImage;
+    [SerializeField]
+    private TextMeshProUGUI _dialogueText;
+    [SerializeField]
+    private GameObject _characterPanelName;
+    [SerializeField]
+    private TextMeshProUGUI _characterName;
     [SerializeField]
     private GameObject _player;
-
-    [SerializeField]
     private int _cont = 0;
 
     private string _jsonName = "dialogues.json";
     private ZoneData _zoneData;
     private int _zoneLines;
     private string[] _zoneNames;
-    public string _zoneName;
+    public string ZONENAME;
+    private string[] _textParts;
 
     void Start()
     {
@@ -25,10 +32,10 @@ public class ButtonDialogue : MonoBehaviour
         string content = File.ReadAllText(locationJson);
         _zoneData = JsonUtility.FromJson<ZoneData>(content);
 
-        _zoneNames = GetZoneLines(_zoneName);
-
+        _zoneNames = GetZoneLines(ZONENAME);
         _zoneLines = _zoneNames.Length;
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneNames[_cont];
+
+        DifferentDialogues();
     }
 
     private string[] GetZoneLines(string zoneName)
@@ -51,16 +58,34 @@ public class ButtonDialogue : MonoBehaviour
         {
             _player.GetComponent<Player>().enabled = true;
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
             _cont = 0;
             return;
         }
 
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _zoneNames[_cont];
+        DifferentDialogues();
 
         if (_zoneLines-1 == _cont)
         {
             transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
+        }
+    }
+
+    private void DifferentDialogues()
+    {
+        _textParts = _zoneNames[_cont].Split('*');
+
+        if (_textParts[0] == "Narrator")
+        {
+            _characterPanelName.SetActive(false);
+            _dialogueText.text = "<i>"+_textParts[2]+"</i>";
+        }
+        else
+        {
+            _characterPanelName.SetActive(true);
+            _dialogueText.text = _textParts[2];
+            _characterName.text = _textParts[0];
         }
     }
 }
