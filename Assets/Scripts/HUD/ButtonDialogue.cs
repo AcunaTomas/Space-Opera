@@ -46,8 +46,24 @@ public class ButtonDialogue : MonoBehaviour
     [System.Serializable]
     public class ZoneData
     {
-        public string[] zone_01;
-        public string[] zone_02;
+        public string[] intro_01;
+        public string[] intro_02;
+
+
+        public string[] lvl01_intro;
+        public string[] lvl01_bombmaker;
+        public string[] lvl01_door;
+        public string[] lvl01_alarm;
+
+
+        public string[] lvl02_portrait;
+        public string[] lvl02_tv;
+        public string[] lvl02_hammock;
+        public string[] lvl02_scrap_not_knowing;
+        public string[] lvl02_scrap_knowing;
+        public string[] lvl02_brody_intro;
+        public string[] lvl02_brody_01;
+        public string[] lvl02_brody_02;
     }
 
     public void MoreDialoguePlz()
