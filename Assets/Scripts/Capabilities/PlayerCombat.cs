@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
+    public LayerMask doorLayers;
 
     public float attackRange = 0.5f;
     public int attackDamage = 40;
@@ -76,10 +77,16 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("ataca");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
+
+        foreach (Collider2D door in hitDoor)
+        {
+            door.GetComponent<DoorController2>().TakeDamageDoor(attackDamage);
         }
 
     }

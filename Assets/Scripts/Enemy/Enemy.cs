@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //hola
+//hola :D
 public class Enemy : MonoBehaviour
 {
     public Animator animator;
@@ -37,6 +38,4 @@ public class Enemy : MonoBehaviour
         this.enabled = false;
 
     }
-
-
 }
