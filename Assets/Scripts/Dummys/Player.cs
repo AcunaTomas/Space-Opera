@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
     [SerializeField]    
     private float WallJumpXDirection = 0f;
 
+    [SerializeField]
+    private float _wallJumpFreezeTimer = 0.5f;
+
+    private float _xSpeedNullifier = 1;
+
     private SpriteRenderer _spriteRenderer;
 
     private Animator _animator;
@@ -48,6 +53,7 @@ public class Player : MonoBehaviour
     {
         _plaseJump();
         Movement();
+        WallJumpDelay();
         if (Input.GetButton("Jump"))
         {
             _lastJumpPress += 0.17f;
@@ -121,7 +127,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
-
+            _wallJumpFreezeTimer = 0f;
+            _xSpeedNullifier = 1;
             body.AddForce(new Vector2(WallJumpXDirection * 2f, 1f), ForceMode2D.Impulse);
             vertspid = 0.9f;
             
@@ -129,6 +136,19 @@ public class Player : MonoBehaviour
             Debug.Log("WallE");
         }
         
+    }
+
+    void WallJumpDelay()
+    {
+        if (_wallJumpFreezeTimer > 0 && wallijumpy)
+        {
+            body.velocity = new Vector2(body.velocity.x, 0);
+            vertspid = 0;
+            _wallJumpFreezeTimer += -0.016f;
+            _xSpeedNullifier = 0;
+            return;
+        }
+        _xSpeedNullifier = 1;
     }
 
     private float Clamp(float x, float y, float z)
@@ -156,7 +176,7 @@ public class Player : MonoBehaviour
 
         for (var i = 0; i < collision.contactCount; i++)
         {
-            if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0)
+            if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
                 canIjump = true;
                 wallijumpy = false;
@@ -165,9 +185,10 @@ public class Player : MonoBehaviour
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
                 _maxVerticalSpeed = speedCaps.y;
+                _xSpeedNullifier = 1;
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0)
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {
@@ -190,8 +211,8 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -215,7 +236,10 @@ public class Player : MonoBehaviour
         }
 
         wallijumpy = false;
-        _maxVerticalSpeed = speedCaps.y;    
+        _maxVerticalSpeed = speedCaps.y;
+        _wallJumpFreezeTimer = 0.5f;
+        _xSpeedNullifier = 1;
+
 
         if (collision.gameObject.CompareTag("Ascensor"))
         {
@@ -230,7 +254,7 @@ public class Player : MonoBehaviour
     {
         //Horizontal
         orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
-        Xspeed = Input.GetAxis("Horizontal") * 15f;
+        Xspeed = (Input.GetAxis("Horizontal") * 15f) * _xSpeedNullifier;
         if (canIjump == false)
         {
             vertspid += -0.1f;
