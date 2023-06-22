@@ -19,6 +19,12 @@ public class ButtonMenu : MonoBehaviour
         _activeImage = GetComponent<Image>();
         _parent = transform.parent;
         _lastSelected = gameObject;
+        if (ACTIVE)
+        {
+            _activeImage.enabled = true;
+            Vector3 newScale = _originalScale * 1.15f;
+            _buttonText.transform.localScale = newScale;
+        }
     }
 
     public void OnPointerEnter()
