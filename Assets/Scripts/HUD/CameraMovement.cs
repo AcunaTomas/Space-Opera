@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator;
-    [SerializeField]
-    private Transform _textMainTitle;
     [SerializeField]
     private Transform _textPressSpace;
     [SerializeField]
@@ -36,7 +37,6 @@ public class CameraMovement : MonoBehaviour
             if (!_goDown)
             {
                 _animator.SetBool("Camera", true);
-                _textMainTitle.gameObject.SetActive(false);
                 _textPressSpace.gameObject.SetActive(false);
                 StartCoroutine(Jump());
             }

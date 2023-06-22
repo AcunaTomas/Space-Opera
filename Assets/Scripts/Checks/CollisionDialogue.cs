@@ -17,7 +17,7 @@ public class CollisionDialogue : MonoBehaviour
         _player.GetComponent<Player>().enabled = false;
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         _panelDialogue.SetActive(true);
-        _panelDialogue.GetComponent<ButtonDialogue>()._zoneName = _id;
+        _panelDialogue.GetComponent<ButtonDialogue>().ZONENAME = _id;
         gameObject.SetActive(false);
     }
 
