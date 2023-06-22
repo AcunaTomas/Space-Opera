@@ -34,7 +34,7 @@ public class Interactable : MonoBehaviour
         {
             //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x));
             //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x));
-            if (Input.GetKeyDown(interactKey))
+            if (Input.GetKeyDown(interactKey) || Input.GetAxis("Submit") > 0)
             {
                 interactAction.Invoke();
             }

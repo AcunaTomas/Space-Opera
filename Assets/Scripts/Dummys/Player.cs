@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     private float _wallJumpFreezeTimer = 0.5f;
 
     private float _xSpeedNullifier = 1;
+   
+    private bool _wallJumpXHandicap = false;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -122,11 +124,13 @@ public class Player : MonoBehaviour
         //Debug.Log(canIjump);
 
     }
+
     private void WallJump()
     {
 
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
+            StartCoroutine(WallXHandicap());
             _wallJumpFreezeTimer = 0f;
             _xSpeedNullifier = 1;
             body.AddForce(new Vector2(WallJumpXDirection * 2f, 1f), ForceMode2D.Impulse);
@@ -134,6 +138,7 @@ public class Player : MonoBehaviour
             
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
+            //Wall-e
         }
         
     }
@@ -149,6 +154,13 @@ public class Player : MonoBehaviour
             return;
         }
         _xSpeedNullifier = 1;
+    }
+
+    IEnumerator WallXHandicap()
+    {
+        _wallJumpXHandicap = true;
+        yield return new WaitForSeconds(0.4f);
+        _wallJumpXHandicap = false;
     }
 
     private float Clamp(float x, float y, float z)
@@ -207,7 +219,7 @@ public class Player : MonoBehaviour
                     WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
                     _maxVerticalSpeed = speedCaps.x;
                     _animator.SetBool("wall", true);
-                    _animator.SetBool("IsJumping", false);
+                    _animator.SetBool("IsJumping", false);  
                 }
             }
         }
@@ -254,7 +266,10 @@ public class Player : MonoBehaviour
     {
         //Horizontal
         orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
-        Xspeed = (Input.GetAxis("Horizontal") * 15f) * _xSpeedNullifier;
+        if (_wallJumpXHandicap == false)
+        {
+            Xspeed = (Input.GetAxis("Horizontal") * 14.8f) * _xSpeedNullifier;
+        }
         if (canIjump == false)
         {
             vertspid += -0.1f;

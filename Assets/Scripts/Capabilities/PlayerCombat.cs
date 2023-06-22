@@ -39,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetAxis("Fire1") > 0)
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextBombTime)
         {
-            if(Input.GetKeyDown(KeyCode.K))
+            if(Input.GetAxis("Fire2") > 0)
             {
                 Bomb();
                 nextBombTime = Time.time + 2f / bombRate;
