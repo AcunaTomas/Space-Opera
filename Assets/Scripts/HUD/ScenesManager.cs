@@ -25,7 +25,7 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Cutscene    ");
     }
 
     //esto por si hay 2 o más niveles o escenas, etc
