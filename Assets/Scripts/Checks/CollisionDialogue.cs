@@ -14,8 +14,15 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        StartDialogue();
+    }
+
+    public void StartDialogue()
+    {
         _player.GetComponent<Player>().enabled = false;
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        _player.GetComponent<Animator>().SetFloat("Speed", 0f);
+
         _panelDialogue.SetActive(true);
         _panelDialogue.GetComponent<ButtonDialogue>().ZONENAME = _id;
         gameObject.SetActive(false);
