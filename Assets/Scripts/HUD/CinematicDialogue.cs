@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class CinematicDialogue : MonoBehaviour
 {
@@ -9,12 +10,19 @@ public class CinematicDialogue : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _dialogueText;
     private int _cont = 0;
+    private int _contCinematic = 2;
     private Zone _zone;
     private int _zoneLines;
     private string[] _zoneNames;
     public string ZONENAME;
     private string[] _textParts;
     private int index = 0;
+    [SerializeField]
+    private KeyCode _keyNextDialogue;
+    [SerializeField]
+    private Animator _animatorCinematic;
+   
+    private bool _ePressed = false;
 
     void Start()
     {
@@ -30,7 +38,6 @@ public class CinematicDialogue : MonoBehaviour
         }
 
         _zoneLines = _zone.DIALOGUES[index].STRINGS.Length;
-
         DifferentDialogues();
     }
 
@@ -49,8 +56,6 @@ public class CinematicDialogue : MonoBehaviour
 
     public void MoreDialoguePlz()
     {
-        _cont++;
-
         if (_cont >= _zoneLines)
         {
             transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
@@ -59,7 +64,7 @@ public class CinematicDialogue : MonoBehaviour
             _cont = 0;
             return;
         }
-
+        _animatorCinematic.SetTrigger(_cont.ToString());
         DifferentDialogues();
 
         if (_zoneLines-1 == _cont)
@@ -71,7 +76,34 @@ public class CinematicDialogue : MonoBehaviour
     private void DifferentDialogues()
     {
         _textParts = _zone.DIALOGUES[index].STRINGS[_cont].Split('*');
-        _dialogueText.text = _textParts[2];
+        if (_textParts.Length > 3)
+        {
+            _dialogueText.text = _textParts[_contCinematic];
+            _contCinematic++;
+            if (_contCinematic == _textParts.Length){
+                _cont++;
+                _contCinematic = 2;
+            }
+        }
+        else
+        {
+            _dialogueText.text = _textParts[_contCinematic];
+            _cont++;
+        }
+    }
+
+    void Update()
+    {
+        if ((Input.GetKeyDown(_keyNextDialogue) || Input.GetAxis("Submit") > 0) && !_ePressed)
+        {
+            _ePressed = true;
+            MoreDialoguePlz();
+        }
+
+        if (Input.GetKeyUp(_keyNextDialogue))
+        {
+            _ePressed = false;
+        }
     }
 
 }

@@ -15,9 +15,6 @@ public class FirstCutscene : MonoBehaviour
             Debug.Log("akfjasjf");
             SceneManager.LoadScene("Tutorial");
         }
-
-
-
     }
 
     IEnumerator Wait()
