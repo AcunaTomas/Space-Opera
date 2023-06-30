@@ -37,23 +37,24 @@ public class Interactable : MonoBehaviour
             if (Input.GetKeyDown(interactKey) || Input.GetAxis("Submit") > 0)
             {
                 interactAction.Invoke();
+                Debug.Log("Interact");
             }
         }
     }
 
-/*     void OnTriggerEnter2D(Collider2D collision) 
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isInRange = true;
-        }
-    }
+    //  void OnTriggerEnter2D(Collider2D collision) 
+    // {
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         isInRange = true;
+    //     }
+    // }
 
-    void OnTriggerExit2D(Collider2D collision) 
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isInRange = false;
-        }
-    } */
+    // void OnTriggerExit2D(Collider2D collision) 
+    // {
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         isInRange = false;
+    //     }
+    // } 
 }

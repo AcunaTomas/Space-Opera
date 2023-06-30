@@ -6,8 +6,6 @@ public class BombBoxController : MonoBehaviour
 {
     private GameObject player;
     private GameObject bombMaker;
-    [SerializeField]
-    private Transform _buttonJ;
 
     void Start()
     {
@@ -15,10 +13,10 @@ public class BombBoxController : MonoBehaviour
         bombMaker = GameObject.FindWithTag("BombMaker");
     }
 
-    void ActivateAttack()
+    public void ActivateAttack()
     {
+        Debug.Log("activa ataque");
         player.GetComponent<PlayerCombat>().enabled = true;
-        _buttonJ.gameObject.SetActive(true);
     }
 
 
