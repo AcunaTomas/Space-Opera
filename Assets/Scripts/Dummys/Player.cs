@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _wallJumpFreezeTimer = 0.5f;
 
-    private float _wallJumpXtimeFreeze = 0.5f;
+    private float _wallJumpXtimeFreeze = 0.3f;
 
     private float _xSpeedNullifier = 1;
 
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
             _wallJumpFreezeTimer = 0f;
-            _wallJumpXtimeFreeze = 0.5f;
+            _wallJumpXtimeFreeze = 0.3f;
             _wallJumpXHandicap = true;
             _xSpeedNullifier = 1;
             body.AddForce(new Vector2(WallJumpXDirection * 2f, 4f), ForceMode2D.Impulse);
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            print("MOVEFALSE");
+            Xspeed = body.velocity.x;
         }
         if (canIjump == false)
         {

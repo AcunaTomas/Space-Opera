@@ -185,8 +185,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
   playerInstance: {fileID: 1361875249}
-  _XDistance: 0
-  _YDistance: 0
+  _XDistance: 0.3
+  _YDistance: 0.3
 --- !u!1 &203419987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1424,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4595765454017689549, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: Ascensor
+      objectReference: {fileID: 0}
     - target: {fileID: 4896732785688505448, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -1435,6 +1439,10 @@ PrefabInstance:
     - target: {fileID: 4896732785688505448, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_SortingLayerID
       value: 631586457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926095563559354958, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: Ascensor
       objectReference: {fileID: 0}
     - target: {fileID: 4966425754935496960, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_TagString
@@ -1503,6 +1511,10 @@ PrefabInstance:
     - target: {fileID: 6320013121668795406, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658755962825788465, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: Ascensor
       objectReference: {fileID: 0}
     - target: {fileID: 6686726069303740113, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2086,6 +2098,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 259535131167236204, guid: 8be4de4544961764bbc4119bff232095, type: 3}
+      propertyPath: _XDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 259535131167236204, guid: 8be4de4544961764bbc4119bff232095, type: 3}
+      propertyPath: _YDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 259535131167236204, guid: 8be4de4544961764bbc4119bff232095, type: 3}
       propertyPath: interactKey
       value: 101
       objectReference: {fileID: 0}
@@ -2400,8 +2420,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
   playerInstance: {fileID: 1361875249}
-  _XDistance: 0
-  _YDistance: 0
+  _XDistance: 0.3
+  _YDistance: 0.3
 --- !u!1 &1041378174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,8 +3329,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
   playerInstance: {fileID: 1361875249}
-  _XDistance: 0
-  _YDistance: 0
+  _XDistance: 0.3
+  _YDistance: 0.3
 --- !u!1 &1361875249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3431,6 +3451,7 @@ MonoBehaviour:
   _fallingTime: 0
   WallJumpXDirection: 0
   _wallJumpFreezeTimer: 2
+  _wallJumpXHandicap: 0
 --- !u!212 &1361875254
 SpriteRenderer:
   m_ObjectHideFlags: 0

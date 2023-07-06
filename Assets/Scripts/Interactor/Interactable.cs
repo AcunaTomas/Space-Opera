@@ -17,9 +17,9 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     GameObject playerInstance;
     [SerializeField]
-    float _XDistance;
+    float _XDistance = 0.3f;
     [SerializeField]
-    float _YDistance;
+    float _YDistance = 0.3f;
     void Start()
     {
         playerInstance = GameObject.FindWithTag("Player");
@@ -28,9 +28,9 @@ public class Interactable : MonoBehaviour
 
     void Update()
     {
-        _XDistance = Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x);
-        _YDistance = Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y);
-        if ( Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= 0.5 &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= 0.5f)
+        //_XDistance = Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x);
+        //_YDistance = Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y);
+        if ( Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance)
         {
             //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x));
             //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x));
