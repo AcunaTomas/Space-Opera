@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private float jumpLimit = 0f;
     [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 speedCaps = new Vector2(2f, 5f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
+    private Vector2 speedCaps = new Vector2(1.2f, 5f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
@@ -36,8 +36,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _wallJumpFreezeTimer = 0.5f;
 
+    private float _wallJumpXtimeFreeze = 0.5f;
+
     private float _xSpeedNullifier = 1;
-   
+
+    [SerializeField]
     private bool _wallJumpXHandicap = false;
 
     private SpriteRenderer _spriteRenderer;
@@ -54,8 +57,9 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         _plaseJump();
-        Movement();
+        
         WallJumpDelay();
+        Movement();
         if (Input.GetButton("Jump"))
         {
             _lastJumpPress += 0.17f;
@@ -130,11 +134,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
-            StartCoroutine(WallXHandicap());
             _wallJumpFreezeTimer = 0f;
+            _wallJumpXtimeFreeze = 0.5f;
+            _wallJumpXHandicap = true;
             _xSpeedNullifier = 1;
-            body.AddForce(new Vector2(WallJumpXDirection * 2f, 1f), ForceMode2D.Impulse);
-            vertspid = 0.9f;
+            body.AddForce(new Vector2(WallJumpXDirection * 2f, 4f), ForceMode2D.Impulse);
+            vertspid = 1f;
             
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
@@ -161,7 +166,7 @@ public class Player : MonoBehaviour
         _wallJumpXHandicap = true;
         yield return new WaitForSeconds(0.4f);
         _wallJumpXHandicap = false;
-    }
+    } 
 
     private float Clamp(float x, float y, float z)
     {
@@ -266,9 +271,23 @@ public class Player : MonoBehaviour
     {
         //Horizontal
         orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
+        if(_wallJumpXtimeFreeze > 0f)
+        {
+            _wallJumpXtimeFreeze += -0.016f;
+        }
+        else
+        {
+            _wallJumpXHandicap = false;
+        }
+
         if (_wallJumpXHandicap == false)
         {
-            Xspeed = (Input.GetAxis("Horizontal") * 14.8f) * _xSpeedNullifier;
+            //print("MOVETRUE");
+            Xspeed = (Input.GetAxis("Horizontal") * 13.8f) * _xSpeedNullifier;
+        }
+        else
+        {
+            print("MOVEFALSE");
         }
         if (canIjump == false)
         {
