@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
+    public LayerMask doorLayers;
 
     public float attackRange = 0.5f;
     public int attackDamage = 40;
@@ -22,17 +23,23 @@ public class PlayerCombat : MonoBehaviour
     float nextBombTime = 0f;
     public Transform launchOffset;
     public ProjectileBehaviour projectilePrefab;
+    Animator attackAnimator;
+    SpriteRenderer attackSprite;
 
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        GameObject attackVisual = GameObject.FindWithTag("AttackVisual");
+        attackAnimator = attackVisual.GetComponent<Animator>();
+        attackSprite = attackVisual.GetComponent<SpriteRenderer>();
+
     }
     void Update()
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetAxis("Fire1") > 0)
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -41,20 +48,23 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextBombTime)
         {
-            if(Input.GetKeyDown(KeyCode.K))
+            if(Input.GetAxis("Fire2") > 0)
             {
                 Bomb();
                 nextBombTime = Time.time + 2f / bombRate;
+                animator.SetTrigger("Bomb");
             }
         }
 
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
+            attackSprite.flipX = true;
         }
         else
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
+            attackSprite.flipX = false;
         }
 
     }
@@ -63,13 +73,20 @@ public class PlayerCombat : MonoBehaviour
     {
 
         animator.SetTrigger("Attack");
+        attackAnimator.SetTrigger("Golpe");
         Debug.Log("ataca");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
+
+        foreach (Collider2D door in hitDoor)
+        {
+            door.GetComponent<DoorController2>().TakeDamageDoor(attackDamage);
         }
 
     }

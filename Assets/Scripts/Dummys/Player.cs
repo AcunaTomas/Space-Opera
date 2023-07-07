@@ -12,23 +12,36 @@ public class Player : MonoBehaviour
     float vertspid = -0.3f;
     [SerializeField]
     bool canIjump = true;
+    bool _firstImpulse = true;
     bool wallijumpy = false;
     private Rigidbody2D body;
     [SerializeField]
     private float jumpLimit = 0f;
     [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 speedCaps = new Vector2(5f, 12f);
+    private Vector2 speedCaps = new Vector2(1.2f, 5f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
+                                                     //y: usado para el movimiento vertical.
     [SerializeField]
-    private float _maxVerticalSpeed = 15f;
+    private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
     private float _lastJumpPress = 0f;
-    private float wallJumpXboost = 0f;
+    [SerializeField]
+    private float _fallingTime = 0f;
 
     [SerializeField]    
     private float WallJumpXDirection = 0f;
+
+    [SerializeField]
+    private float _wallJumpFreezeTimer = 0.5f;
+
+    private float _wallJumpXtimeFreeze = 0.3f;
+
+    private float _xSpeedNullifier = 1;
+
+    [SerializeField]
+    private bool _wallJumpXHandicap = false;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -44,6 +57,8 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         _plaseJump();
+        
+        WallJumpDelay();
         Movement();
         if (Input.GetButton("Jump"))
         {
@@ -56,6 +71,26 @@ public class Player : MonoBehaviour
 
             Flip();
 
+        if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
+        {
+            _fallingTime += 0.16f;
+            _animator.SetFloat("fallingTime", _fallingTime);
+        }
+        else
+        {
+            _fallingTime = 0;
+            _animator.SetFloat("fallingTime", _fallingTime);
+        }
+
+        if (body.velocity.y < 0 && canIjump == false) 
+        {
+            _animator.SetFloat("speedY", body.velocity.y);
+        }
+        else
+        {
+            _animator.SetFloat("speedY", 1);
+        }
+        //Debug.Log(body.velocity.y);
     }
 
     private void _plaseJump()
@@ -63,14 +98,26 @@ public class Player : MonoBehaviour
         
         if (canIjump && Input.GetButton("Jump"))
         {
-           
-            jumpLimit += 0.3f;
-            vertspid = 1.2f + (jumpLimit * 0.12f);
+            
+           if (_lastJumpPress <= 0.30f && _firstImpulse == true)
+           {
+            vertspid = 1.7f + jumpLimit;
+            _firstImpulse = false;
+            
+           }
+           else
+           {   
+               vertspid = jumpLimit;
+           }
+            jumpLimit += 0.02f;
+            
             _animator.SetBool("IsJumping", true);
             _animator.SetFloat("Speed", 1f);
         }
-        if (jumpLimit >= 2.0f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
+        if (jumpLimit >= 0.2f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
+            //Debug.Log("Jump Peak");
+            vertspid = 0f;
             jumpLimit = 0f;
             canIjump = false;
         }
@@ -81,20 +128,45 @@ public class Player : MonoBehaviour
         //Debug.Log(canIjump);
 
     }
+
     private void WallJump()
     {
 
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
         {
-
-            body.AddForce(new Vector2(WallJumpXDirection * 4f, 2f), ForceMode2D.Impulse);
-            vertspid = 2.5f;
+            _wallJumpFreezeTimer = 0f;
+            _wallJumpXtimeFreeze = 0.3f;
+            _wallJumpXHandicap = true;
+            _xSpeedNullifier = 1;
+            body.AddForce(new Vector2(WallJumpXDirection * 2f, 4f), ForceMode2D.Impulse);
+            vertspid = 1f;
             
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
+            //Wall-e
         }
         
     }
+
+    void WallJumpDelay()
+    {
+        if (_wallJumpFreezeTimer > 0 && wallijumpy)
+        {
+            body.velocity = new Vector2(body.velocity.x, 0);
+            vertspid = 0;
+            _wallJumpFreezeTimer += -0.016f;
+            _xSpeedNullifier = 0;
+            return;
+        }
+        _xSpeedNullifier = 1;
+    }
+
+    IEnumerator WallXHandicap()
+    {
+        _wallJumpXHandicap = true;
+        yield return new WaitForSeconds(0.4f);
+        _wallJumpXHandicap = false;
+    } 
 
     private float Clamp(float x, float y, float z)
     {
@@ -121,55 +193,105 @@ public class Player : MonoBehaviour
 
         for (var i = 0; i < collision.contactCount; i++)
         {
-            if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0)
+            if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
                 canIjump = true;
                 wallijumpy = false;
+                _firstImpulse = true;
                 extrajumpcount = 1;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
-                _maxVerticalSpeed = 15f;
+                _maxVerticalSpeed = speedCaps.y;
+                _xSpeedNullifier = 1;
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0)
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
             {
-                wallijumpy = true;
-                //extrajumpcount += -1;
-                WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
-                _maxVerticalSpeed = 5f;
-                _animator.SetBool("wall", true);
-                _animator.SetBool("IsJumping", false);
+                if (canIjump == false) 
+                {
+                    wallijumpy = true;
+
+                    if ((contacts[i].normal.x) > 0) 
+                    {
+                        _spriteRenderer.flipX = true;
+                    } 
+                    else
+                    {
+                        _spriteRenderer.flipX = false;
+                    }
+
+                    //extrajumpcount += -1;
+                    WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
+                    _maxVerticalSpeed = speedCaps.x;
+                    _animator.SetBool("wall", true);
+                    _animator.SetBool("IsJumping", false);  
+                }
             }
+        }
+    }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (_fallingTime > 6)
+        {
+            _animator.SetTrigger("land");
+        }
+        
+        if (collision.gameObject.CompareTag("Ascensor"))
+        {
+            transform.parent = collision.gameObject.transform;
         }
 
     }
 
-   /* void OnCollisionEnter2D(Collision2D collision)
-    {
-        Vector3 collisionNormal = collision.GetContact(0).normal;
-        if (collisionNormal.y < 0)
-        {
-            canIjump = false;
-            wallijumpy = false;
-            jumpLimit = 3.5f;
-            vertspid = 0f;
-        }
-    }*/
-
     void OnCollisionExit2D(Collision2D collision)
     {
+        if(jumpLimit == 0)
+        {
+            canIjump = false;
+        }
+
         wallijumpy = false;
-        _maxVerticalSpeed = 15f; 
+        _maxVerticalSpeed = speedCaps.y;
+        _wallJumpFreezeTimer = 0.5f;
+        _xSpeedNullifier = 1;
+
+
+        if (collision.gameObject.CompareTag("Ascensor"))
+        {
+            transform.parent = null;
+        }
+        
+        _animator.SetBool("wall", false);
+        
     }
 
     void Movement()
     {
         //Horizontal
         orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
-        Xspeed = Input.GetAxis("Horizontal") * 15f;
+        if(_wallJumpXtimeFreeze > 0f)
+        {
+            _wallJumpXtimeFreeze += -0.016f;
+        }
+        else
+        {
+            _wallJumpXHandicap = false;
+        }
+
+        if (_wallJumpXHandicap == false)
+        {
+            //print("MOVETRUE");
+            Xspeed = (Input.GetAxis("Horizontal") * 13.8f) * _xSpeedNullifier;
+        }
+        else
+        {
+            Xspeed = body.velocity.x;
+        }
         if (canIjump == false)
         {
-            vertspid += -0.3f;
+            vertspid += -0.1f;
 
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
@@ -178,7 +300,7 @@ public class Player : MonoBehaviour
 
 
         //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
-        vertspid = Clamp(vertspid, -0.5f, speedCaps.y);
+        vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
@@ -222,4 +344,5 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
+    
 }
