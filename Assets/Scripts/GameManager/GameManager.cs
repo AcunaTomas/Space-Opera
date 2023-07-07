@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     public GameObject PLAYER;
     public Vector3 CHECKPOINT;
 
+    //estos dos últimos se borran después, solo es para probar
+    public KeyCode MORIR;
+    private bool _ePressed = false;
+
     private void Awake()
     {
         INSTANCE = this;
@@ -22,6 +26,15 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        
+        if (Input.GetKeyDown(MORIR) && !_ePressed)
+        {
+            _ePressed = true;
+            PLAYER.transform.localPosition = new Vector3 (CHECKPOINT.x, CHECKPOINT.y, CHECKPOINT.z);
+        }
+
+        if (Input.GetKeyUp(MORIR))
+        {
+            _ePressed = false;
+        }
     }
 }
