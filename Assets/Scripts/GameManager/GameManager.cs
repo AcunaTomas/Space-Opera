@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject PLAYER;
     public Vector3 CHECKPOINT;
 
-    //estos dos últimos se borran después, solo es para probar
+    //estas últimas cosas se borran después, solo es para probar
     public KeyCode MORIR;
     private bool _ePressed = false;
 
