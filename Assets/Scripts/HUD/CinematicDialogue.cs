@@ -1,30 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.IO;
+using UnityEngine.Events;
 
-public class ButtonDialogue : MonoBehaviour
+public class CinematicDialogue : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _characterImage;
+    
     [SerializeField]
     private TextMeshProUGUI _dialogueText;
-    [SerializeField]
-    private GameObject _characterPanelName;
-    [SerializeField]
-    private TextMeshProUGUI _characterName;
-    [SerializeField]
-    private GameObject _player;
     private int _cont = 0;
-
+    private int _contCinematic = 2;
     private Zone _zone;
     private int _zoneLines;
     private string[] _zoneNames;
     public string ZONENAME;
     private string[] _textParts;
     private int index = 0;
+    [SerializeField]
+    private KeyCode _keyNextDialogue;
+    [SerializeField]
+    private Animator _animatorCinematic;
+   
+    private bool _ePressed = false;
 
     void Start()
     {
@@ -40,7 +38,6 @@ public class ButtonDialogue : MonoBehaviour
         }
 
         _zoneLines = _zone.DIALOGUES[index].STRINGS.Length;
-
         DifferentDialogues();
     }
 
@@ -59,42 +56,54 @@ public class ButtonDialogue : MonoBehaviour
 
     public void MoreDialoguePlz()
     {
-        _cont++;
-
         if (_cont >= _zoneLines)
         {
-            _player.GetComponent<Player>().enabled = true;
-            _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
+            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
 
             _cont = 0;
             return;
         }
-
+        _animatorCinematic.SetTrigger(_cont.ToString());
         DifferentDialogues();
 
         if (_zoneLines-1 == _cont)
         {
-            transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
+            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
         }
     }
 
     private void DifferentDialogues()
     {
         _textParts = _zone.DIALOGUES[index].STRINGS[_cont].Split('*');
-
-        if (_textParts[0] == "Narrator")
+        if (_textParts.Length > 3)
         {
-            _characterPanelName.SetActive(false);
-            _dialogueText.text = "<i>"+_textParts[2]+"</i>";
+            _dialogueText.text = _textParts[_contCinematic];
+            _contCinematic++;
+            if (_contCinematic == _textParts.Length){
+                _cont++;
+                _contCinematic = 2;
+            }
         }
         else
         {
-            _characterPanelName.SetActive(true);
-            _dialogueText.text = _textParts[2];
-            _characterName.text = _textParts[0];
+            _dialogueText.text = _textParts[_contCinematic];
+            _cont++;
         }
     }
+
+    void Update()
+    {
+        if ((Input.GetKeyDown(_keyNextDialogue) || Input.GetAxis("Submit") > 0) && !_ePressed)
+        {
+            _ePressed = true;
+            MoreDialoguePlz();
+        }
+
+        if (Input.GetKeyUp(_keyNextDialogue))
+        {
+            _ePressed = false;
+        }
+    }
+
 }
