@@ -17,14 +17,17 @@ public class ButtonDialogue : MonoBehaviour
     private TextMeshProUGUI _characterName;
     [SerializeField]
     private GameObject _player;
-    private int _cont = 0;
+    [SerializeField]
+    private KeyCode _keyNextDialogue;
 
+    private int _cont = 0;
     private Zone _zone;
     private int _zoneLines;
     private string[] _zoneNames;
     public string ZONENAME;
     private string[] _textParts;
-    private int index = 0;
+    private int _index = 0;
+    private bool _ePressed = false;
 
     void Start()
     {
@@ -34,12 +37,12 @@ public class ButtonDialogue : MonoBehaviour
         {
             if (_zone.DIALOGUES[i].ID == ZONENAME)
             {
-                index = i;
+                _index = i;
                 break;
             }
         }
 
-        _zoneLines = _zone.DIALOGUES[index].STRINGS.Length;
+        _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
 
         DifferentDialogues();
     }
@@ -65,8 +68,6 @@ public class ButtonDialogue : MonoBehaviour
         {
             _player.GetComponent<Player>().enabled = true;
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
 
             _cont = 0;
@@ -74,16 +75,11 @@ public class ButtonDialogue : MonoBehaviour
         }
 
         DifferentDialogues();
-
-        if (_zoneLines-1 == _cont)
-        {
-            transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
-        }
     }
 
     private void DifferentDialogues()
     {
-        _textParts = _zone.DIALOGUES[index].STRINGS[_cont].Split('*');
+        _textParts = _zone.DIALOGUES[_index].STRINGS[_cont].Split('*');
 
         if (_textParts[0] == "Narrator")
         {
@@ -95,6 +91,20 @@ public class ButtonDialogue : MonoBehaviour
             _characterPanelName.SetActive(true);
             _dialogueText.text = _textParts[2];
             _characterName.text = _textParts[0];
+        }
+    }
+
+    void Update()
+    {
+        if ((Input.GetKeyDown(_keyNextDialogue) || Input.GetAxis("Submit") > 0) && !_ePressed)
+        {
+            _ePressed = true;
+            MoreDialoguePlz();
+        }
+
+        if (Input.GetKeyUp(_keyNextDialogue))
+        {
+            _ePressed = false;
         }
     }
 }
