@@ -25,14 +25,19 @@ public class ButtonDialogue : MonoBehaviour
     public string ZONENAME;
     private string[] _textParts;
     private int index = 0;
-
+    
     void Start()
     {
         _zone = JsonUtility.FromJson<Zone>(LoadJson.CONTENT);
+        gameObject.SetActive(false);
+    }
 
+    public void LoadZoneText(string RequestedZoneName = "lvl1_intro")
+    {
+        
         for (int i = 0; i < _zone.DIALOGUES.Length; i++)
         {
-            if (_zone.DIALOGUES[i].ID == ZONENAME)
+            if (_zone.DIALOGUES[i].ID == RequestedZoneName)
             {
                 index = i;
                 break;
@@ -67,6 +72,7 @@ public class ButtonDialogue : MonoBehaviour
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
 
             transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
+            
             gameObject.SetActive(false);
 
             _cont = 0;
