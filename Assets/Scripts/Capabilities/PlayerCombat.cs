@@ -57,7 +57,7 @@ public class PlayerCombat : MonoBehaviour
                 AttackUp();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
-            else if (Input.GetAxis("Fire1") > 0 && Input.GetKey("s"))
+            else if (Input.GetAxis("Fire1") > 0 && Input.GetKey("s") && gameObject.GetComponent<Player>().canIjump == false)
             {
                 Debug.Log("Ataca abajo");
                 AttackDown();

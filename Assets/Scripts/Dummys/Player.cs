@@ -10,8 +10,7 @@ public class Player : MonoBehaviour
     float HP = 193f;
     [SerializeField]
     float vertspid = -0.3f;
-    [SerializeField]
-    bool canIjump = true;
+    public bool canIjump = true;
     bool _firstImpulse = true;
     bool wallijumpy = false;
     private Rigidbody2D body;
