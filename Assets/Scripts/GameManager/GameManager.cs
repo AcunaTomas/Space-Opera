@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
             }
             if (SLIDER.value == 0)
             {
+                PLAYER.transform.SetParent(null);
                 PLAYER.transform.localPosition = new Vector3 (CHECKPOINT.x, CHECKPOINT.y, CHECKPOINT.z);
                 SLIDER.value = 60;
             }

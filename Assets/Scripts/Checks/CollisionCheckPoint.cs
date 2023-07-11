@@ -14,18 +14,22 @@ public class CollisionCheckPoint : MonoBehaviour
         {
             gameObject.SetActive(false);
             GameManager.INSTANCE.CHECKPOINT = GameManager.INSTANCE.PLAYER.transform.localPosition;
-            if (_restoreCheckpoints)
-            {
-                Restore();
-            }
+            Restore();
         }
     }
 
     void Restore()
     {
+        if (!_restoreCheckpoints)
+        {
+            return;
+        }
         for (int i = 0; i < transform.parent.childCount - 1; i++)
         {
-            transform.parent.GetChild(i).gameObject.SetActive(true);
+            if (transform.parent.GetChild(i).name != transform.name)
+            {
+                transform.parent.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 }
