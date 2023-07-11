@@ -20,7 +20,8 @@ namespace Shinjingi
         private int _jumpPhase;
         private float _defaultGravityScale, _jumpSpeed, _coyoteCounter, _jumpBufferCounter;
 
-        private bool _desiredJump, _onGround, _isJumping;
+        private bool _desiredJump, _isJumping;
+        public bool _onGround;
 
 
         // Start is called before the first frame update
