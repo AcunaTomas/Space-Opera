@@ -28,11 +28,15 @@ public class ButtonDialogue : MonoBehaviour
     private string[] _textParts;
     private int _index = 0;
     private bool _ePressed = false;
+    private bool _notFirstDialogue = false;
 
-    void Start()
+    void Awake()
     {
         _zone = JsonUtility.FromJson<Zone>(LoadJson.CONTENT);
+    }
 
+    public void FirstDialogue()
+    {
         for (int i = 0; i < _zone.DIALOGUES.Length; i++)
         {
             if (_zone.DIALOGUES[i].ID == ZONENAME)
@@ -45,6 +49,7 @@ public class ButtonDialogue : MonoBehaviour
         _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
 
         DifferentDialogues();
+        _notFirstDialogue = true;
     }
 
     [System.Serializable]
@@ -71,6 +76,7 @@ public class ButtonDialogue : MonoBehaviour
             gameObject.SetActive(false);
 
             _cont = 0;
+            _notFirstDialogue = false;
             return;
         }
 
@@ -96,7 +102,12 @@ public class ButtonDialogue : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(_keyNextDialogue) || Input.GetAxis("Submit") > 0) && !_ePressed)
+        if (!_notFirstDialogue)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
         {
             _ePressed = true;
             MoreDialoguePlz();
