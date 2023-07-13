@@ -117,7 +117,7 @@ public class PlayerCombat : MonoBehaviour
         void AttackUp()
     {
 
-        animator.SetTrigger("Attack");
+        animator.SetTrigger("AttackUp");
         attackAnimatorUp.SetTrigger("GolpeUp");
         Debug.Log("Ataca arriba");
 
@@ -139,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
         void AttackDown()
     {
 
-        animator.SetTrigger("Attack");
+        animator.SetTrigger("AttackDown");
         attackAnimatorDown.SetTrigger("GolpeDown");
         Debug.Log("Ataca abajo");
 
