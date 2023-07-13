@@ -8,7 +8,7 @@ using System.IO;
 public class ButtonDialogue : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _characterImage;
+    private RawImage _characterImage;
     [SerializeField]
     private TextMeshProUGUI _dialogueText;
     [SerializeField]
@@ -19,6 +19,8 @@ public class ButtonDialogue : MonoBehaviour
     private GameObject _player;
     [SerializeField]
     private KeyCode _keyNextDialogue;
+    [SerializeField]
+    private DialogueImgPj _dip;
 
     private int _cont = 0;
     private Zone _zone;
@@ -95,6 +97,7 @@ public class ButtonDialogue : MonoBehaviour
         else
         {
             _characterPanelName.SetActive(true);
+            _characterImage.texture = _dip._icons[0];
             _dialogueText.text = _textParts[2];
             _characterName.text = _textParts[0];
         }
