@@ -2,27 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Event : MonoBehaviour
 {
-    private enum _eventType
+    
+    public enum eventType
     { 
         Spawn,
-        Move,
+        EndLevel,
         Teleport,
         Custom
     
     
     }
 
+    //Spawneo de una cosa
+    public Vector2 spawnLocation;
+    public GameObject _thingToSpawn;
 
-    [SerializeField]
-    private string event_name;
+    //teleport
+    public GameObject who;
+    public Vector2 where;
+    
 
-    [SerializeField]
-    private bool single_use = true;
+    public string event_name;
 
-    [SerializeField]
-    private _eventType options =  new _eventType();
+    public bool single_use = true;
+
+    
+    public eventType options =  new eventType();
     
 
     void OnTriggerEnter2D(Collider2D other)
@@ -35,30 +43,39 @@ public class Event : MonoBehaviour
     }
 
 
-    void doTheThing(_eventType thing)
+    void doTheThing(eventType thing)
     {
         switch (thing)
         {
-            case _eventType.Spawn:
+            case eventType.Spawn:
                 {
-                    print("Spawn");
+                    var a = Instantiate(_thingToSpawn);
+                    a.transform.position = spawnLocation;
                     break;
                 }
-            case _eventType.Move:
+            case eventType.EndLevel:
                 {
-                    print("Move");
+                    print("Level Ended");
                     break;
                 }
-            case _eventType.Teleport:
+            case eventType.Teleport:
                 {
                     print("Teleport");
+                    print(who);
+                    print(where);
+                    who.gameObject.transform.position = where;
                     break;
                 }
-            case _eventType.Custom:
+            case eventType.Custom:
                 {
                     print("Custom");
                     break;
                 }
+        }
+
+        if (single_use)
+        {
+            Destroy(gameObject);
         }
     }
 }

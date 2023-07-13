@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject orientation;
+
     [SerializeField]
     float HP = 193f;
     [SerializeField]
@@ -270,7 +269,7 @@ public class Player : MonoBehaviour
     void Movement()
     {
         //Horizontal
-        orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
+        //orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
         if(_wallJumpXtimeFreeze > 0f)
         {
             _wallJumpXtimeFreeze += -0.016f;
@@ -305,7 +304,7 @@ public class Player : MonoBehaviour
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
         {
-            body.velocity = new Vector2(speedCaps.x * orientation.transform.localPosition.x, body.velocity.y);
+            body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
         }
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && canIjump == true)
         {
