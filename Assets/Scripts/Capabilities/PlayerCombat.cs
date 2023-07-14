@@ -47,17 +47,17 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetAxis("Fire1") > 0 && (Input.GetKey("w") == false) && (Input.GetKey("s") == false))
+            if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") == 0) && (Input.GetAxis("Vertical") == 0))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
-            else if (Input.GetAxis("Fire1") > 0 && Input.GetKey("w"))
+            else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") > 0))
             {
                 AttackUp();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
-            else if (Input.GetAxis("Fire1") > 0 && Input.GetKey("s") && gameObject.GetComponent<Player>().canIjump == false)
+            else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") < 0) && gameObject.GetComponent<Player>().canIjump == false)
             {
                 Debug.Log("Ataca abajo");
                 AttackDown();
