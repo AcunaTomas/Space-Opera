@@ -118,6 +118,7 @@ public class PlayerCombat : MonoBehaviour
     {
 
         animator.SetTrigger("AttackUp");
+        animator.SetBool("IsJumping", false);
         attackAnimatorUp.SetTrigger("GolpeUp");
         Debug.Log("Ataca arriba");
 
@@ -140,6 +141,7 @@ public class PlayerCombat : MonoBehaviour
     {
 
         animator.SetTrigger("AttackDown");
+        animator.SetBool("IsJumping", false);
         attackAnimatorDown.SetTrigger("GolpeDown");
         Debug.Log("Ataca abajo");
 
