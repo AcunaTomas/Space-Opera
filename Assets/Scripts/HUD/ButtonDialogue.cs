@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using System.Linq;
 
 public class ButtonDialogue : MonoBehaviour
 {
@@ -97,7 +98,11 @@ public class ButtonDialogue : MonoBehaviour
         else
         {
             _characterPanelName.SetActive(true);
-            _characterImage.texture = _dip._icons[0];
+            
+            List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[0]];
+            Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[1]);
+            _characterImage.texture = emo.ICON;
+
             _dialogueText.text = _textParts[2];
             _characterName.text = _textParts[0];
         }
