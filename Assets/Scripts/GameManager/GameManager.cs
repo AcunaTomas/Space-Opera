@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CHECKPOINT = PLAYER.transform.localPosition;
+        SLIDER.maxValue = int.Parse(PLAYER.GetComponent<Player>().GetHP());
+        SLIDER.value = SLIDER.maxValue;
     }
 
     
@@ -35,11 +37,11 @@ public class GameManager : MonoBehaviour
             {
                 SLIDER.value-=20;
             }
-            if (SLIDER.value == 0)
+            if (SLIDER.value <= 0)
             {
                 PLAYER.transform.SetParent(null);
                 PLAYER.transform.localPosition = new Vector3 (CHECKPOINT.x, CHECKPOINT.y, CHECKPOINT.z);
-                SLIDER.value = 60;
+                SLIDER.value = SLIDER.maxValue;
             }
         }
 
