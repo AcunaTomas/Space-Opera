@@ -25,10 +25,10 @@ public class EnemyMovement : MonoBehaviour
         _velocity = _body.velocity;
 
         if(_leftMovement){
-            _velocity.x = Mathf.MoveTowards(-1f, -5f, 50f * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(-0.5f, -5f, 50f * Time.deltaTime);
         }
         else{
-            _velocity.x = Mathf.MoveTowards(1f, 5f, 50f * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(0.5f, 5f, 50f * Time.deltaTime);
         }
 
         _body.velocity = _velocity;
