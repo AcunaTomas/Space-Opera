@@ -28,6 +28,11 @@ public class Event_Custom_Editor : Editor
                     base.serializedObject.FindProperty("where").vector2Value = EditorGUILayout.Vector2Field("Where?", evento.where);
                     break;
                 }
+            case Event.eventType.EndLevel:
+                {
+                    base.serializedObject.FindProperty("sceneName").stringValue = EditorGUILayout.TextField("Scene Name", evento.sceneName);
+                    break;
+                }
         }
 
         evento.single_use = (bool)EditorGUILayout.Toggle("Single Use?", evento.single_use);
