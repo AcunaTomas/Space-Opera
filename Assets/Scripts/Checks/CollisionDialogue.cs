@@ -30,10 +30,10 @@ public class CollisionDialogue : MonoBehaviour
         _actualFlip = _originalFlip;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        gameObject.GetComponent<SpriteRenderer>().flipX = !_player.GetComponent<SpriteRenderer>().flipX;
-    }
+    // void OnTriggerEnter2D(Collider2D col)
+    // {
+    //     gameObject.GetComponent<SpriteRenderer>().flipX = !_player.GetComponent<SpriteRenderer>().flipX;
+    // }
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -44,35 +44,34 @@ public class CollisionDialogue : MonoBehaviour
 
         if (_player.tag == col.tag)
         {
-            if (_player.transform.localPosition.x > transform.localPosition.x && !_actualFlip)
-            {
-                _actualFlip = !_actualFlip;
-                gameObject.GetComponent<SpriteRenderer>().flipX = !_actualFlip;
-            }
-            else if (_player.transform.localPosition.x <= transform.localPosition.x && _actualFlip)
-            {
-                _actualFlip = !_actualFlip;
-                gameObject.GetComponent<SpriteRenderer>().flipX = !_actualFlip;
-            }
-            if (!_activeDialogue)
-            {
-                return;
-            }
-            _eAvailable = true;
+            // if (_player.transform.localPosition.x > transform.localPosition.x && !_actualFlip)
+            // {
+            //     _actualFlip = !_actualFlip;
+            //     gameObject.GetComponent<SpriteRenderer>().flipX = !_actualFlip;
+            // }
+            // else if (_player.transform.localPosition.x <= transform.localPosition.x && _actualFlip)
+            // {
+            //     _actualFlip = !_actualFlip;
+            //     gameObject.GetComponent<SpriteRenderer>().flipX = !_actualFlip;
+            // }
+            // if (!_activeDialogue)
+            // {
+            //     return;
+            // }
+            //_eAvailable = true;
             _interactable.SetActive(true);
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        _eAvailable = false;
+        //_eAvailable = false;
         _interactable.SetActive(false);
-        gameObject.GetComponent<SpriteRenderer>().flipX = _originalFlip;
+        //gameObject.GetComponent<SpriteRenderer>().flipX = _originalFlip;
     }
 
     public void StartDialogue()
-    {
-        _eAvailable = false;
+    {   
         _interactable.SetActive(false);
 
         _player.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
@@ -83,24 +82,34 @@ public class CollisionDialogue : MonoBehaviour
         _panelDialogue.SetActive(true);
         _panelDialogue.GetComponent<ButtonDialogue>().ZONENAME = _id;
         _panelDialogue.GetComponent<ButtonDialogue>().FirstDialogue();
+
     }
 
     void Update()
     {
-        if (!_eAvailable || !_activeDialogue)
-        {
-            return;
-        }
+        // if (!_eAvailable || !_activeDialogue)
+        // {
+        //     return;
+        // }
 
-        if (Input.GetKeyDown(_startDialogue) && !_ePressed)
-        {
-            _ePressed = true;
-            StartDialogue();
-        }
+        // if (Input.GetKeyDown(_startDialogue) && (!_ePressed))
+        // {
+        //     _ePressed = true;
+        //     StartDialogue();
+        // }
 
-        if (Input.GetKeyUp(_startDialogue))
+        // if (Input.GetKeyUp(_startDialogue))
+        // {
+        //     _ePressed = false;
+        // }
+
+        if ((Input.GetAxis("Submit") > 0))
         {
-            _ePressed = false;
+            _eAvailable = false;
+        }
+        else
+        {
+            _eAvailable = true;
         }
     }
 

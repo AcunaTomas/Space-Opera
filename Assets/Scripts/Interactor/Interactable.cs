@@ -20,41 +20,41 @@ public class Interactable : MonoBehaviour
     float _XDistance = 0.3f;
     [SerializeField]
     float _YDistance = 0.3f;
+
+    public float _timePressed = 0f; 
+
+    bool _keyHeld = false;
+    
     void Start()
     {
         playerInstance = GameObject.FindWithTag("Player");
     }
 
-
     void Update()
     {
-        //_XDistance = Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x);
-        //_YDistance = Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y);
-        if ( Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance)
+        if (_keyHeld == true)
         {
-            //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x));
-            //Debug.Log(Mathf.Abs(playerInstance.gameObject.transform.position.x - transform.position.x));
-            if (Input.GetKeyDown(interactKey) || Input.GetAxis("Submit") > 0)
+            _timePressed += Time.deltaTime;
+        }
+        else
+        {
+            _timePressed = 0;
+        }
+
+        if ((Input.GetAxis("Submit") > 0) && _keyHeld == true && _timePressed > 0.9f)
+        {
+            _keyHeld = false;
+        }
+
+
+        if (Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance)
+        {
+            if ((Input.GetKeyDown(interactKey) || Input.GetAxis("Submit") > 0) && _timePressed <= 0)
             {
                 interactAction.Invoke();
                 Debug.Log("Interact");
+                _keyHeld = true;
             }
         }
     }
-
-    //  void OnTriggerEnter2D(Collider2D collision) 
-    // {
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {
-    //         isInRange = true;
-    //     }
-    // }
-
-    // void OnTriggerExit2D(Collider2D collision) 
-    // {
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {
-    //         isInRange = false;
-    //     }
-    // } 
 }

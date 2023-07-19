@@ -40,19 +40,26 @@ public class ButtonDialogue : MonoBehaviour
 
     public void FirstDialogue()
     {
-        for (int i = 0; i < _zone.DIALOGUES.Length; i++)
+        if (_notFirstDialogue == false)
         {
-            if (_zone.DIALOGUES[i].ID == ZONENAME)
+            Debug.Log(_index);
+            for (int i = 0; i < _zone.DIALOGUES.Length; i++)
             {
-                _index = i;
-                break;
+                if (_zone.DIALOGUES[i].ID == ZONENAME)
+                {
+                    _index = i;
+                    break;
+                }
             }
+
+            _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
+
+            DifferentDialogues();
+            _notFirstDialogue = true;
+            return;
         }
+        MoreDialoguePlz();
 
-        _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
-
-        DifferentDialogues();
-        _notFirstDialogue = true;
     }
 
     [System.Serializable]
@@ -115,15 +122,25 @@ public class ButtonDialogue : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
-        {
-            _ePressed = true;
-            MoreDialoguePlz();
-        }
+        // if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
+        // {
+        //     _ePressed = true;
+        //     MoreDialoguePlz();
+        // }
 
-        if (Input.GetKeyUp(_keyNextDialogue))
-        {
-            _ePressed = false;
-        }
+        // if (Input.GetKeyUp(_keyNextDialogue))
+        // {
+        //     _ePressed = false;
+        // }
+
+        // if ((Input.GetAxis("Submit") > 0) && )
+        // {
+        //     _ePressed = false;
+        //     MoreDialoguePlz();
+        // }
+        // else
+        // {
+        //     _ePressed = true;
+        // }
     }
 }
