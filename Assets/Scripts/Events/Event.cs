@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Event : MonoBehaviour
@@ -24,6 +25,8 @@ public class Event : MonoBehaviour
     public GameObject who;
     public Vector2 where;
     
+    //End Level
+    public string sceneName;
 
     public string event_name;
 
@@ -56,6 +59,7 @@ public class Event : MonoBehaviour
             case eventType.EndLevel:
                 {
                     print("Level Ended");
+                    SceneManager.LoadScene(sceneName); //Replace with an actual scene loader/handler for transitions.
                     break;
                 }
             case eventType.Teleport:
