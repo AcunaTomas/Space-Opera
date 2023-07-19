@@ -87,6 +87,7 @@ public class ButtonDialogue : MonoBehaviour
 
             _cont = 0;
             _notFirstDialogue = false;
+            _ePressed = false;
             return;
         }
 
@@ -100,7 +101,8 @@ public class ButtonDialogue : MonoBehaviour
         if (_textParts[0] == "Narrator")
         {
             _characterPanelName.SetActive(false);
-            _dialogueText.text = "<i>"+_textParts[2]+"</i>";
+            _dialogueText.text = _textParts[2];
+            _characterImage.color = new Color (255, 255, 255, 0);
         }
         else
         {
@@ -108,6 +110,7 @@ public class ButtonDialogue : MonoBehaviour
             
             List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[0]];
             Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[1]);
+            _characterImage.color = new Color (255, 255, 255, 255);
             _characterImage.texture = emo.ICON;
 
             _dialogueText.text = _textParts[2];

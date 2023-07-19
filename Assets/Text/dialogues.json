@@ -5,25 +5,38 @@
             "ID": "intro_01",
             "STRINGS":
             [
-                "Narrator*normal*En algún lugar remoto del espacio...*Un soldado de un enorme ejército custodia la entrada de su base...*DIALOGUE01*DIALOGUE02",
-                "Narrator*normal*Hasta que...*DIALOGUE03*DIALOGUE04",
-                "Narrator*normal*",
-                "Narrator*normal*Pasan por sus ojos imágenes de una familia feliz...",
-                "Narrator*normal*Él comprende que estas imágenes son recuerdos, sus recuerdos..."
+                "Narrator*normal*En algún lugar lejano en el espacio*Un soldado de un gran ejército custodiaba la entrada de su base*Cuando de repente un destello ilumina el cielo...",
+                "Narrator*normal*Una estrella incandescente aparece frente a sus ojos*Parece como si el tiempo se hubiera congelado*El soldado siente que lo llama...",
+                "Narrator*normal*El destello cada vez era más llamativo*Como si quisiera decir algo*El soldado no puede evitar no mirar aunque lo cegue",
+                "Narrator*normal*Más allá de esa estrella había algo*Un mensaje... Una imagen... Su cabeza comenzaba a doler*Imágenes que no estaban en su cabeza comienzan a aparecer",
+                "Narrator*normal*Parece ser él... se siente conmovido por primera vez*Es como la familia que nunca pudo tener... La incertidumbre abunda en su cabeza*¿Dónde está mi familia?"
+            ]
+        },
+
+
+        {
+            "ID": "lvl01_intro",
+            "STRINGS":
+            [
+                "8170*normal*Necesito salir de aquí.",
+                "8170*normal*Una nave puede servir.",
+                "Narrator*normal*Presiona WASD para desplazarte por el lugar."
             ]
         },
         {
-            "ID": "intro_02",
+            "ID": "lvl01_base_entry",
             "STRINGS":
             [
-                "Narrator*normal*Pasan por sus ojos imágenes de una familia feliz...",
-                "Narrator*normal*Él comprende que estas imágenes son recuerdos, sus recuerdos...",
-                "Narrator*normal*Todo está borroso... Su cabeza está apunto de estallar.",
-                "Narrator*normal*Necesita irse de ahí, su supuesto hogar ya no se ve seguro."
+                "Narrator*normal*Presiona E para interactuar con objetos u otros personajes."
             ]
         },
-
-
+        {
+            "ID": "lvl01_sleep_soldier",
+            "STRINGS":
+            [
+                "Narrator*normal*Un soldado trabajando arduamente, será mejor no molestarlo."
+            ]
+        },
         {
             "ID": "lvl01_elevator",
             "STRINGS":
@@ -53,32 +66,139 @@
             ]
         },
         {
-            "ID": "lvl01_intro",
+            "ID": "lvl01_coach_without_bomb",
             "STRINGS":
             [
-                "Narrator*normal*Escapa del lugar, busca una nave y no dejes que te atrapen."
+                "Coach*normal*¡Por fin alguien llegó! Ahora podremos iniciar con el entrenamiento...",
+                "Coach*normal*Espera, no veo que traigas tus bombas...",
+                "Coach*normal*Busca en la armería, hay una máquina que genera de manera rápida las bombas. Búscala y reportate devuelta aquí para empezar."
+            ]
+        },
+        {
+            "ID": "lvl01_coach_with_bomb",
+            "STRINGS":
+            [
+                "Coach*normal*¡Por fin alguien llegó! Ahora podremos iniciar con el entrenamiento...",
+                "Coach*normal*Y veo que ya estás preparado para comenzar.",
+                "Coach*normal*Veamos cómo te mueves, ve hasta donde está el muñeco de práctica.",
+                "Narrator*normal*..."
+            ]
+        },
+        {
+            "ID": "lvl01_coach_tuto_01",
+            "STRINGS":
+            [
+                "Coach*normal*¡Muy bien! Comencemos.",
+                "Coach*normal*Veamos cómo te mueves, ve hasta donde está el muñeco de práctica.",
+                "Narrator*normal*Presiona SPACE para saltar y ayúdate de los botones de desplazamiento para saltar a la dirección que desees."
+            ]
+        },
+        {
+            "ID": "lvl01_coach_tuto_02",
+            "STRINGS":
+            [
+                "Coach*normal*¡Excelente! ¡Ahora enséñale a ese muñeco quién manda!",
+                "Narrator*normal*Presiona J para lanzar golpes a corto alcance."
+            ]
+        },
+        {
+            "ID": "lvl01_coach_tuto_03",
+            "STRINGS":
+            [
+                "Coach*normal*¡Así se hace! Es hora de practicar la precisión.",
+                "Coach*normal*Usa las bombas generadas para destruir los muñecos desde lejos.",
+                "Narrator*normal*Presiona K para lanzar una bomba generada, puedes arrojarlas también mientras saltas para lograr mayor alcance."
+            ]
+        },
+        {
+            "ID": "lvl01_coach_tuto_04",
+            "STRINGS":
+            [
+                "Coach*normal*Lo has hecho perfecto muchacho, ¡veo que tienes talento!",
+                "Coach*normal*¡Ahora desaparece de mi vista escoria!"
             ]
         },
         {
             "ID": "lvl01_bombmaker",
             "STRINGS":
             [
-                "Narrator*normal*Esto puede ser útil.",
-                "Narrator*normal*Presiona 'K' para lanzar bombas expansivas."
+                "Narrator*normal*Este parece ser el aparato que mencionó el Coach.",
+                "8170*normal*Necesito llevarme esto conmigo junto con la nave...",
+                "Narrator*normal*Ahora estás listo para el combate, solo falta un poco de entrenamiento."
             ]
         },
         {
-            "ID": "lvl01_door",
+            "ID": "lvl01_pilot",
             "STRINGS":
             [
-                "Narrator*normal*Sin acceso, aunque no parece ser muy resistente."
+                "Piloto*normal*Oye tú, ¿viste mis llaves?",
+                "Piloto*normal*Creo que las dejé en el cuarto de cámaras cruzando el taller ¿Podrías traerlas?",
+                "Narrator*normal*Este parece un muy conveniente momento el cual hay que aprovechar."
             ]
         },
         {
-            "ID": "lvl01_alarm",
+            "ID": "lvl01_workshop_4081",
             "STRINGS":
             [
-                "Narrator*normal*Llega hasta una nave sin ser atrapado."
+                "4081*normal*Ehhhhh...",
+                "Narrator*normal*No se ve como alguien muy avispado, parece que esas pantallas son la causa."
+            ]
+        },
+        {
+            "ID": "lvl01_workshop_mechanic1",
+            "STRINGS":
+            [
+                "Mecánico 1*normal*Hace media hora que le estoy pidiendo a tu amigo de ahí que me pase el martillo, estos soldados cada vez tienen el cerebro más cocinado...",
+                "Mecánico 1*normal*¿Me pasarías tú el mart...",
+                "Mecánico 1*normal*Mmmm ¿Sabes qué? Mejor lo busco yo."
+            ]
+        },
+        {
+            "ID": "lvl01_workshop_0715",
+            "STRINGS":
+            [
+                "0715*normal*Las cámaras no funcionan, espero que solucione el problema antes de que llegue el supervisor.",
+                "0715*normal*No quiero ser castigado por culpa de algo que estuviese pasando en el lugar sin que me esté enterando."
+            ]
+        },
+        {
+            "ID": "lvl01_workshop_mechanic2",
+            "STRINGS":
+            [
+                "Mecánico 2*normal*Es la cuarta vez que vengo a arreglar el lío que hace este idiota...",
+                "Mecánico 2*normal*No aprietes botones si no sabes que hacen.",
+                "Mecánico 2*normal*¿Me estás escuchando?"
+            ]
+        },
+        {
+            "ID": "lvl01_ship_key",
+            "STRINGS":
+            [
+                "8170*normal*La llave...",
+                "8170*normal*Ahora solo tengo que subir la nave hasta la pista de despegue..."
+            ]
+        },
+        {
+            "ID": "lvl01_pilot_with_key",
+            "STRINGS":
+            [
+                "Piloto*normal*¡Oh! ¡Volviste!",
+                "Piloto*normal*¿Encontraste la llave?",
+                "8170*normal*...",
+                "Piloto*normal*¿Qué te pasa? ¡Dame la maldita llave!",
+                "8170*normal*...",
+                "Piloto*normal*Oye, aléjate de ese maldito botón, no lo oprimas.",
+                "Narrator*normal*Oprimiste el maldito botón...",
+                "Piloto*normal*Genial, ahora tengo que subir caminando hasta allá...",
+                "Piloto*normal*Igualmente antes debo informar sobre esto al supervisor.",
+                "Narrator*normal*¡NO TITUBEES! ¡HAZLO MIERDA!"
+            ]
+        },
+        {
+            "ID": "lvl01_pilot_dead",
+            "STRINGS":
+            [
+                "Narrator*normal*ESCAPA"
             ]
         },
 
@@ -132,25 +252,25 @@
             "STRINGS":
             [
                 "Brody*normal*Ahora sí.",
-            "Brody*normal*¿Puedes entender lo que digo?",
-            "8170*normal*Si.",
-            "Brody*normal*¡Genial! Me llamo Brody, bienvenido a la Tierra.",
-            "Brody*normal*Te vi caer desde el cielo a gran velocidad y fui a ver...",
-            "Brody*normal*Cuando me acerqué, vi que la nave estaba inutilizable y te encontré adentro todavía respirando.",
-            "Brody*normal*Para tu suerte soy mecánico, y ya tengo experiencia con tecnología alienígena, tu nave ya funciona incluso mejor que antes.",
-            "Brody*normal*Y dime ¿Tienes nombre?",
-            "8170*normal*N-no lo sé... siempre me han llamado por mi código... 8170.",
-            "Brody*normal*¿Cómo que no tienes nombre? Seguro que tienes uno ¿No lo recuerdas?",
-            "8170*normal*Hasta hace nada... pensé que lo único importante en mi vida... es luchar.",
-            "8170*normal*Y antes de llegar aquí... una estrella me reveló imágenes de mi pasado...",
-            "8170*normal*Pero esos recuerdos... no estaban antes.",
-            "8170*normal*Vi... una familia... pero no sé nada de ellos... no puedo recordar nada.",
-            "Brody*normal*...",
-            "Brody*normal*Okey hermano... no puedes dejar esto así... ¡Necesitas encontrarlos!",
-            "Brody*normal*La verdad que no tengo nada mejor que hacer así que... ¿Qué dices si te acompaño?",
-            "Narrator*normal*8170 asiente con la cabeza.",
-            "Brody*normal*¡Genial!",
-            "Brody*normal*Pero antes que nada, no podemos viajar con la nave y tu armadura de ese color, vamos a hacer un cambio de look."
+                "Brody*normal*¿Puedes entender lo que digo?",
+                "8170*normal*Si.",
+                "Brody*normal*¡Genial! Me llamo Brody, bienvenido a la Tierra.",
+                "Brody*normal*Te vi caer desde el cielo a gran velocidad y fui a ver...",
+                "Brody*normal*Cuando me acerqué, vi que la nave estaba inutilizable y te encontré adentro todavía respirando.",
+                "Brody*normal*Para tu suerte soy mecánico, y ya tengo experiencia con tecnología alienígena, tu nave ya funciona incluso mejor que antes.",
+                "Brody*normal*Y dime ¿Tienes nombre?",
+                "8170*normal*N-no lo sé... siempre me han llamado por mi código... 8170.",
+                "Brody*normal*¿Cómo que no tienes nombre? Seguro que tienes uno ¿No lo recuerdas?",
+                "8170*normal*Hasta hace nada... pensé que lo único importante en mi vida... es luchar.",
+                "8170*normal*Y antes de llegar aquí... una estrella me reveló imágenes de mi pasado...",
+                "8170*normal*Pero esos recuerdos... no estaban antes.",
+                "8170*normal*Vi... una familia... pero no sé nada de ellos... no puedo recordar nada.",
+                "Brody*normal*...",
+                "Brody*normal*Okey hermano... no puedes dejar esto así... ¡Necesitas encontrarlos!",
+                "Brody*normal*La verdad que no tengo nada mejor que hacer así que... ¿Qué dices si te acompaño?",
+                "Narrator*normal*8170 asiente con la cabeza.",
+                "Brody*normal*¡Genial!",
+                "Brody*normal*Pero antes que nada, no podemos viajar con la nave y tu armadura de ese color, vamos a hacer un cambio de look."
             ]
         },
         {
