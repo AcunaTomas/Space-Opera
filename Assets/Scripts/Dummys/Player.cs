@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject orientation;
+
     [SerializeField]
     float HP = 193f;
     [SerializeField]
@@ -100,7 +99,7 @@ public class Player : MonoBehaviour
             
            if (_lastJumpPress <= 0.30f && _firstImpulse == true)
            {
-            vertspid = 1.7f + jumpLimit;
+            vertspid = 1.3f + jumpLimit;
             _firstImpulse = false;
             
            }
@@ -108,12 +107,12 @@ public class Player : MonoBehaviour
            {   
                vertspid = jumpLimit;
            }
-            jumpLimit += 0.02f;
+            jumpLimit += 0.04f;
             
             _animator.SetBool("IsJumping", true);
             _animator.SetFloat("Speed", 1f);
         }
-        if (jumpLimit >= 0.2f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
+        if (jumpLimit >= 0.4f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
             //Debug.Log("Jump Peak");
             vertspid = 0f;
@@ -269,7 +268,7 @@ public class Player : MonoBehaviour
     void Movement()
     {
         //Horizontal
-        orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
+        //orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
         if(_wallJumpXtimeFreeze > 0f)
         {
             _wallJumpXtimeFreeze += -0.016f;
@@ -304,11 +303,18 @@ public class Player : MonoBehaviour
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
         if (Mathf.Abs(body.velocity.x) > speedCaps.x)
         {
-            body.velocity = new Vector2(speedCaps.x * orientation.transform.localPosition.x, body.velocity.y);
+            body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
         }
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && canIjump == true)
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
         {
-            body.velocity = new Vector2(0f, body.velocity.y);
+            if (canIjump) //airborne checko
+            {
+                body.velocity = new Vector2(0f, body.velocity.y);
+            }
+            else
+            {
+                body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
+            }
         }
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
         {
