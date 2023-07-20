@@ -67,4 +67,9 @@ public class EnemyBehaviour : MonoBehaviour
         else
         transform.Translate(moveSpeed * Time.deltaTime * -1, 0, 0);
     }
+
+    void Patrol()
+    {
+        
+    }
 }

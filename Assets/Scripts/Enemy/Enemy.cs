@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<EnemyBehaviour>().enabled = false;
+        GetComponent<EnemyBehaviour2>().enabled = false;
         this.enabled = false;
 
 

@@ -241,6 +241,11 @@ public class Player : MonoBehaviour
             transform.parent = collision.gameObject.transform;
         }
 
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            LoseHP();
+        }
+
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -350,4 +355,8 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
     
+    public void LoseHP()
+    {
+        HP -= 20;
+    }
 }
