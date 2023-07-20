@@ -241,10 +241,10 @@ public class Player : MonoBehaviour
             transform.parent = collision.gameObject.transform;
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            LoseHP();
-        }
+        // if (collision.gameObject.CompareTag("Enemy"))
+        // {
+        //     LoseHP();
+        // }
 
     }
 
@@ -355,8 +355,8 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
     
-    public void LoseHP()
+    public void LoseHP(int damage)
     {
-        HP -= 20;
+        HP -= damage;
     }
 }

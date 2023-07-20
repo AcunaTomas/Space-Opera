@@ -102,9 +102,9 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
 
-        foreach (Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemyCollider in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
         foreach (Collider2D door in hitDoor)
@@ -125,9 +125,9 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, doorLayers);
 
-        foreach (Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemyCollider in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
         foreach (Collider2D door in hitDoor)
@@ -148,9 +148,9 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, doorLayers);
 
-        foreach (Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemyCollider in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
         foreach (Collider2D door in hitDoor)

@@ -11,24 +11,29 @@ public class EnemyBehaviour2 : MonoBehaviour
     [HideInInspector] public bool inRange;
     public GameObject hotZone;
     public GameObject triggerArea;
+    public Transform attackPoint;
+    public LayerMask playerLayers;
+    public float attackRange = 0.5f;
+    public int attackDamage = 40;
 
     private Animator animator;
     private float distance;
     private bool attackMode;
     private bool cooling;
     private float intTimer;
+    private GameObject player;
 
 void Awake()
 {
     intTimer = timer;
     animator = GetComponent<Animator>();
+    player = GameObject.FindWithTag("Player");
 }
 
 void Update() 
 {
     if (inRange)
     {
-       //animator.SetBool("Run", false);
        EnemyLogic();
     }
 }
@@ -73,6 +78,14 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
+
+    Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
+    foreach (Collider2D playerCollider in hitPlayer)
+    {
+        playerCollider.GetComponent<Player>().LoseHP(attackDamage);
+    }
+
+    Invoke("TriggerCooling", 0.00001f);
 }
 
 
@@ -95,7 +108,8 @@ void StopAttack()
 }
 
 public void TriggerCooling()
-{
+{   
+    Debug.Log("COOLING");
     cooling = true;
 }
 
@@ -119,7 +133,14 @@ public void Flip()
 }
 
 
+void OnDrawGizmosSelected() 
+{
+    if (attackPoint == null){
+        return;
+    }
 
+    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+}
 
 
 

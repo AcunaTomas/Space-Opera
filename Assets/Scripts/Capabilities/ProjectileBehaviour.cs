@@ -55,10 +55,12 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        foreach (Collider2D enemy in hitEnemies)
+        
+        foreach (Collider2D enemyCollider in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(bombDamage);
+            enemyCollider.GetComponent<Enemy>().TakeDamage(bombDamage);
         }
+
         animator.SetTrigger("Explode");
         Destroy(gameObject, 0.7f);
     }
