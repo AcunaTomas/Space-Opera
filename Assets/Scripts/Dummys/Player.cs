@@ -358,5 +358,6 @@ public class Player : MonoBehaviour
     public void LoseHP(float damage)
     {
         HP -= damage;
+        _animator.SetTrigger("Hurt");
     }
 }

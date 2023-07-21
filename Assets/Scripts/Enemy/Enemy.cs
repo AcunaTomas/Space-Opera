@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
     private GameObject player;
+    private bool isDead;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("Daño");
         animator.SetTrigger("Hurt");
+        GetComponent<EnemyBehaviour2>().enabled = false;
 
         if (currentHealth <= 0) 
         {   
@@ -32,16 +34,23 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        isDead = true;
         Debug.Log("Enemy Died");
-
-        //animator.SetBool("IsDead", true);
+        animator.SetTrigger("Die");
 
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<EnemyBehaviour2>().enabled = false;
         GetComponentInChildren<HotZoneCheck>().enabled = false;
+
         this.enabled = false;
+    }
 
-
+    public void ActivateBehaviour()
+    {
+        if(isDead == false)
+        {
+            GetComponent<EnemyBehaviour2>().enabled = true;
+        }   
     }
 }
