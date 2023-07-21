@@ -1942,7 +1942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4, y: 13.892, z: -10}
+  m_LocalPosition: {x: 2.11, y: 13.881, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4520,7 +4520,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4528,7 +4528,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 631586457
+  m_SortingLayerID: -1430987733
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &863404121
@@ -5490,7 +5490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129264505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4, y: 13.892, z: -10}
+  m_LocalPosition: {x: 2.11, y: 13.881, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5704,7 +5704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1213539528
 Animator:
   serializedVersion: 5
@@ -6483,7 +6483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361875249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4, y: 13.892, z: 0}
+  m_LocalPosition: {x: 2.11, y: 13.881, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7617,10 +7617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e27efbc730fc3544a3a902dd33f36e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLocation: {x: 3.2, y: 13.92}
-  _thingToSpawn: {fileID: 792083746}
+  spawnLocation: {x: 3.7, y: 14.04}
+  _thingToSpawn: {fileID: 1361875249}
   who: {fileID: 1361875249}
-  where: {x: 2, y: 15}
+  where: {x: 3.61, y: 15.55}
   sceneName: 
   event_name: 
   interactAction:
@@ -7628,7 +7628,7 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
-  options: 2
+  options: 0
 --- !u!61 &1778475353
 BoxCollider2D:
   m_ObjectHideFlags: 0
