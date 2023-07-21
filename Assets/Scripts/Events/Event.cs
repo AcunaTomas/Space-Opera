@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Event : MonoBehaviour
@@ -30,10 +31,16 @@ public class Event : MonoBehaviour
 
     public string event_name;
 
+    //Custom
+    public UnityEvent interactAction;
+    public bool external;
+
+    //Si se borra cuando se activa, por defecto es true
     public bool single_use = true;
 
     
     public eventType options =  new eventType();
+    
     
 
     void OnTriggerEnter2D(Collider2D other)
@@ -72,7 +79,13 @@ public class Event : MonoBehaviour
                 }
             case eventType.Custom:
                 {
-                    print("Custom");
+                    if (external)
+                    {
+                        Debug.LogWarning("You tried to trigger an external event with a BoxCollider2D");
+                        break;
+                    }
+                    interactAction.Invoke();
+
                     break;
                 }
         }
@@ -81,5 +94,30 @@ public class Event : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        switch (options)
+        {
+            case eventType.Spawn:
+            {
+                Gizmos.color = new Color(1, 0, 0, 0.5F);
+                Gizmos.DrawSphere(spawnLocation, 0.2f);
+                break;
+            }
+            case eventType.Teleport:
+            {
+                    Gizmos.color = new Color(0, 1, 0, 0.5F);
+                    Gizmos.DrawSphere(where, 0.2f);
+                    break;
+
+            }
+
+
+        
+        }
+
+
     }
 }

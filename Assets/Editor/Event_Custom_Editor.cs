@@ -36,11 +36,12 @@ public class Event_Custom_Editor : Editor
                 }
             case Event.eventType.Custom:
                 {
-                    EditorGUILayout.LabelField("TODO");
+                    EditorGUILayout.PropertyField(base.serializedObject.FindProperty("interactAction"), true);
+                    base.serializedObject.FindProperty("external").boolValue = EditorGUILayout.Toggle("External Trigger?", evento.external);
                     break;
                 }
         }
-
+        EditorGUILayout.Separator();
         evento.single_use = (bool)EditorGUILayout.Toggle("Single Use?", evento.single_use);
         EditorGUILayout.Separator();
 

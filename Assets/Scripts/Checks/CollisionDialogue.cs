@@ -21,7 +21,7 @@ public class CollisionDialogue : MonoBehaviour
     [SerializeField]
     private bool _interactableOnly;
    
-    private bool _ePressed = false;
+    //private bool _ePressed = false;
     private bool _eAvailable = false;
     private bool _originalFlip;
     private bool _actualFlip;
