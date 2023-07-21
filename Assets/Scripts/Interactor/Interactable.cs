@@ -41,8 +41,14 @@ public class Interactable : MonoBehaviour
             _timePressed = 0;
         }
 
-        if ((Input.GetAxis("Submit") > 0) && _keyHeld == true && _timePressed > 0.9f)
+        if ((Input.GetAxis("Submit") > 0) && _keyHeld == true)
         {
+            //Debug.Log("hold");
+
+        }
+        else
+        {
+           
             _keyHeld = false;
         }
 
