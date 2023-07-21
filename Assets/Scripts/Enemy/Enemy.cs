@@ -8,17 +8,20 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public int maxHealth = 100;
     int currentHealth;
+    private GameObject player;
 
     void Start()
     {
         currentHealth = maxHealth;
+        GameObject player = GameObject.FindWithTag("Player");
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log("Daño");
-        //animator.SetTrigger("Hurt");
+        animator.SetTrigger("Hurt");
 
         if (currentHealth <= 0) 
         {   

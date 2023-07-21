@@ -12,9 +12,6 @@ public class EnemyBehaviour2 : MonoBehaviour
     public GameObject hotZone;
     public GameObject triggerArea;
     public Transform attackPoint;
-    public LayerMask playerLayers;
-    public float attackRange = 0.5f;
-    public int attackDamage = 40;
 
     private Animator animator;
     private float distance;
@@ -36,18 +33,23 @@ void Update()
     {
        EnemyLogic();
     }
+
+    if (attackMode == false)
+    {
+        attackPoint.gameObject.SetActive(false);
+    }
 }
 
 void EnemyLogic() 
 {
     distance = Vector2.Distance(transform.position, target.position);
 
-    if (distance > attackDistance)
+    if (distance > attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
     {   
         Move();
         StopAttack();
     }
-    else if (attackDistance >= distance && cooling == false)
+    else if (attackDistance >= distance && cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
     {
         Attack();
     }
@@ -79,13 +81,7 @@ void Attack()
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
 
-    Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
-    foreach (Collider2D playerCollider in hitPlayer)
-    {
-        playerCollider.GetComponent<Player>().LoseHP(attackDamage);
-    }
-
-    Invoke("TriggerCooling", 0.00001f);
+    attackPoint.gameObject.SetActive(true);
 }
 
 
@@ -111,6 +107,7 @@ public void TriggerCooling()
 {   
     Debug.Log("COOLING");
     cooling = true;
+    attackPoint.gameObject.SetActive(false);
 }
 
 public void Flip()
@@ -119,33 +116,20 @@ public void Flip()
     if (transform.position.x > target.position.x) 
     {
         rotation.y = 180;
+        attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(-1);
     }
     else
     {
-        Debug.Log("Twist");
         rotation.y = 0;
+        attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(1);
     }
 
+    
     //Ternary Operator
     //rotation.y = (currentTarget.position.x < transform.position.x) ? rotation.y = 180f : rotation.y = 0f;
 
     transform.eulerAngles = rotation;
 }
-
-
-void OnDrawGizmosSelected() 
-{
-    if (attackPoint == null){
-        return;
-    }
-
-    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-}
-
-
-
-
-
 
 
     // [SerializeField]

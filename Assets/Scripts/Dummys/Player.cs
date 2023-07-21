@@ -355,7 +355,7 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
     
-    public void LoseHP(int damage)
+    public void LoseHP(float damage)
     {
         HP -= damage;
     }
