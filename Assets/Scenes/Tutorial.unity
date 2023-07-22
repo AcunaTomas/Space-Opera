@@ -1005,6 +1005,7 @@ GameObject:
   - component: {fileID: 336505897}
   - component: {fileID: 336505896}
   - component: {fileID: 336505895}
+  - component: {fileID: 336505900}
   m_Layer: 7
   m_Name: Dummy2
   m_TagString: Untagged
@@ -1140,6 +1141,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &336505900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336505894}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0124831f7a8d82e4e9d05fac786d6d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 0
+  moveSpeed: 0
+  timer: 0
+  target: {fileID: 0}
+  inRange: 0
+  hotZone: {fileID: 0}
+  triggerArea: {fileID: 0}
+  attackPoint: {fileID: 0}
 --- !u!1 &371596316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,7 +1963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.11, y: 13.881, z: -10}
+  m_LocalPosition: {x: 2.418, y: 13.886, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5490,7 +5511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129264505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.11, y: 13.881, z: -10}
+  m_LocalPosition: {x: 2.418, y: 13.886, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6483,7 +6504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361875249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.11, y: 13.881, z: 0}
+  m_LocalPosition: {x: 2.418, y: 13.886, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6867,6 +6888,7 @@ GameObject:
   - component: {fileID: 1655921236}
   - component: {fileID: 1655921235}
   - component: {fileID: 1655921237}
+  - component: {fileID: 1655921238}
   m_Layer: 7
   m_Name: Dummy1
   m_TagString: Untagged
@@ -7002,6 +7024,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1655921235}
   maxHealth: 1000
+--- !u!114 &1655921238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655921231}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0124831f7a8d82e4e9d05fac786d6d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 0
+  moveSpeed: 0
+  timer: 0
+  target: {fileID: 0}
+  inRange: 0
+  hotZone: {fileID: 0}
+  triggerArea: {fileID: 0}
+  attackPoint: {fileID: 0}
 --- !u!1 &1663425853
 GameObject:
   m_ObjectHideFlags: 0
