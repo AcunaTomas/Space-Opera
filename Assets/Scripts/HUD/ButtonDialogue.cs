@@ -42,7 +42,12 @@ public class ButtonDialogue : MonoBehaviour
     {
         if (_notFirstDialogue == false)
         {
-            Debug.Log(_index);
+            for (int i = 2; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 300f);
+
             for (int i = 0; i < _zone.DIALOGUES.Length; i++)
             {
                 if (_zone.DIALOGUES[i].ID == ZONENAME)
@@ -81,17 +86,45 @@ public class ButtonDialogue : MonoBehaviour
 
         if (_cont >= _zoneLines)
         {
-            _player.GetComponent<Player>().enabled = true;
-            _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            gameObject.SetActive(false);
-
-            _cont = 0;
-            _notFirstDialogue = false;
-            _ePressed = false;
+            StartCoroutine(Fold());
             return;
         }
 
         DifferentDialogues();
+    }
+
+    private IEnumerator Fold()
+    {
+        RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
+        float _time = 0f;
+        float _firstWidth = _elementUI.sizeDelta.x;
+
+        for (int i = 2; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        while (_time < 0.5f)
+        {
+            float _percentage = _time / 0.5f;
+            float _newWidth = Mathf.Lerp(_firstWidth, 100f, _percentage);
+            _elementUI.sizeDelta = new Vector2(_newWidth, _elementUI.sizeDelta.y);
+
+            _time += Time.deltaTime;
+            yield return null;
+        }
+
+        _elementUI.sizeDelta = new Vector2(100f, _elementUI.sizeDelta.y);
+
+        yield return new WaitForSeconds(0.1f);
+
+        _player.GetComponent<Player>().enabled = true;
+        _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        gameObject.SetActive(false);
+
+        _cont = 0;
+        _notFirstDialogue = false;
+        _ePressed = false;
     }
 
     private void DifferentDialogues()
@@ -125,16 +158,16 @@ public class ButtonDialogue : MonoBehaviour
             return;
         }
 
-        // if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
-        // {
-        //     _ePressed = true;
-        //     MoreDialoguePlz();
-        // }
+        if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
+        {
+            _ePressed = true;
+            MoreDialoguePlz();
+        }
 
-        // if (Input.GetKeyUp(_keyNextDialogue))
-        // {
-        //     _ePressed = false;
-        // }
+        if (Input.GetKeyUp(_keyNextDialogue))
+        {
+            _ePressed = false;
+        }
 
         // if ((Input.GetAxis("Submit") > 0) && )
         // {
