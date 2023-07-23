@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     public Vector3 CHECKPOINT;
 
     //estas últimas cosas se borran después, solo es para probar
-    public KeyCode MORIR;
+    /* public KeyCode MORIR;
     private bool _ePressed = false;
-    public Slider SLIDER;
+    public Slider SLIDER; */
 
     private void Awake()
     {
@@ -22,15 +22,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        CHECKPOINT = PLAYER.transform.localPosition;
+        /* CHECKPOINT = PLAYER.transform.localPosition;
         SLIDER.maxValue = int.Parse(PLAYER.GetComponent<Player>().GetHP());
-        SLIDER.value = SLIDER.maxValue;
+        SLIDER.value = SLIDER.maxValue */;
     }
-
     
     void Update()
     {
-        if (Input.GetKeyDown(MORIR) && !_ePressed)
+        /* if (Input.GetKeyDown(MORIR) && !_ePressed)
         {
             _ePressed = true;
             if (SLIDER.value != 0)
@@ -48,6 +47,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyUp(MORIR))
         {
             _ePressed = false;
-        }
+        } */
     }
 }

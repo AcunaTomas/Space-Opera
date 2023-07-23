@@ -123,6 +123,11 @@ public class CollisionDialogue : MonoBehaviour
 
     }
 
+    public void ChangeId(string id)
+    {
+        _id = id;
+    }
+
     void Update()
     {
         if (!_eAvailable || _checkpoint)
