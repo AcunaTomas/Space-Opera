@@ -3698,6 +3698,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 245817632429838811, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: NotClimbable
+      objectReference: {fileID: 0}
     - target: {fileID: 269135433885390625, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3765,6 +3769,10 @@ PrefabInstance:
     - target: {fileID: 638959396392726293, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057383881090968077, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: NotClimbable
       objectReference: {fileID: 0}
     - target: {fileID: 1063312507463717580, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4190,6 +4198,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NotClimbable
       objectReference: {fileID: 0}
+    - target: {fileID: 7503539348436560763, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: NotClimbable
+      objectReference: {fileID: 0}
     - target: {fileID: 7546879988665340347, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -4209,6 +4221,10 @@ PrefabInstance:
     - target: {fileID: 7771118908927987415, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780177818497821149, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_TagString
+      value: NotClimbable
       objectReference: {fileID: 0}
     - target: {fileID: 7986281027555467346, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_Layer
@@ -4434,7 +4450,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 631586457
+  m_SortingLayerID: 476057943
   m_SortingOrder: 101
   m_TargetDisplay: 0
 --- !u!224 &565827538
@@ -5483,9 +5499,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 745114730}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: disableAfter
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   playerInstance: {fileID: 0}
   _XDistance: 0.3
-  _YDistance: 2.05
+  _YDistance: 1
   _timePressed: 0
 --- !u!114 &745114731
 MonoBehaviour:
@@ -5633,7 +5661,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 7
+          m_FloatArgument: 3
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -8893,7 +8921,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 7
+          m_FloatArgument: 2
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

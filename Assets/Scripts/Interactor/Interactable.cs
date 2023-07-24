@@ -24,6 +24,8 @@ public class Interactable : MonoBehaviour
     public float _timePressed = 0f; 
 
     bool moved = false;
+    bool timedDisable = false;
+    float disableIn = 0;
     float moveAmount = 0;
     float _tempX;
     float _tempY;
@@ -36,12 +38,23 @@ public class Interactable : MonoBehaviour
 
     public void TemporaryMove(float x)
     {
-        _tempX = _XDistance;
-        _tempY = _YDistance;
+        /* _tempX = _XDistance;
+         _tempY = _YDistance;
 
-        _XDistance = x;
-        _YDistance = x;
+         _XDistance = x;
+         _YDistance = x; */
+        moveAmount = x;
         moved = true;
+    }
+
+    public void disableAfter(float x)
+    {
+        if (timedDisable == true)
+        {
+            return;
+        }
+        timedDisable = true;
+        disableIn = x;
     }
 
     public void restoreMove()
@@ -53,6 +66,7 @@ public class Interactable : MonoBehaviour
         }
         _XDistance = _tempX;
         _YDistance = _tempY;
+        moved = false;
     }
 
     void Update()
@@ -86,14 +100,39 @@ public class Interactable : MonoBehaviour
                 interactAction.Invoke();
                 Debug.Log("Interact");
                 _keyHeld = true;
-                if (moved)
+                disableCheck();
+            }
+        }
+        else
+        {
+            if (moved)
+            {
+                if ((Input.GetKeyDown(interactKey) || Input.GetAxis("Submit") > 0) && _timePressed <= 0)
                 {
+                    interactAction.Invoke();
+                    Debug.Log("Interact");
+                    _keyHeld = true;
+
                     restoreMove();
+                    disableCheck();
                 }
             }
         }
 
     }
 
-    
+    void disableCheck()
+    {
+        if (timedDisable == false)
+        {
+            return;
+        }
+        if (disableIn > 0)
+        {
+            disableIn -= 1;
+            return;
+        }
+        gameObject.GetComponent<Interactable>().enabled = false;
+    }
 }
+
