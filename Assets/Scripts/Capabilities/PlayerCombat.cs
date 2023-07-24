@@ -69,7 +69,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if(Input.GetAxis("Fire2") > 0)
             {
-                Bomb();
+                Invoke(nameof(Bomb), 0.15f);
                 nextBombTime = Time.time + 2f / bombRate;
                 animator.SetTrigger("Bomb");
             }
@@ -151,6 +151,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
         }
 
         foreach (Collider2D door in hitDoor)
