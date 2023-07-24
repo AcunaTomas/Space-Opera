@@ -1,15 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 //hola
 //hola :D
+//hi 0_0
 public class Enemy : MonoBehaviour
 {
     public Animator animator;
     public int maxHealth = 100;
     int currentHealth;
     private GameObject player;
+
+    [SerializeField]
+    private bool _Inmortal = false;
     private bool isDead;
+
+    [SerializeField]
+    private bool _MakeFunctionCallOnHit;
+    
+    [SerializeField]
+    private UnityEvent _callWhat;
 
     void Start()
     {
@@ -25,9 +36,13 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger("Hurt");
         GetComponent<EnemyBehaviour2>().enabled = false;
 
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0 && !_Inmortal) 
         {   
             Die();
+        }
+        if (_MakeFunctionCallOnHit)
+        {
+            _callWhat.Invoke();
         }
 
     }
@@ -53,4 +68,8 @@ public class Enemy : MonoBehaviour
             GetComponent<EnemyBehaviour2>().enabled = true;
         }   
     }
+
+
+    
+    
 }

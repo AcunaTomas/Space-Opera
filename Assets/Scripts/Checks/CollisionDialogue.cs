@@ -41,12 +41,14 @@ public class CollisionDialogue : MonoBehaviour
         if (_checkpoint)
         {
             StartDialogue();
+            
         }
         if (_interactableOnly || _checkpoint)
         {
             return;
         }
         gameObject.GetComponent<SpriteRenderer>().flipX = !_player.GetComponent<SpriteRenderer>().flipX;
+
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -110,7 +112,7 @@ public class CollisionDialogue : MonoBehaviour
         }
         else if (_checkpoint)
         {
-            gameObject.SetActive(false);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         _player.GetComponent<Player>().enabled = false;

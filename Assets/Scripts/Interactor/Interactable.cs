@@ -23,6 +23,10 @@ public class Interactable : MonoBehaviour
 
     public float _timePressed = 0f; 
 
+    bool moved = false;
+    float moveAmount = 0;
+    float _tempX;
+    float _tempY;
     bool _keyHeld = false;
     
     void Start()
@@ -30,8 +34,30 @@ public class Interactable : MonoBehaviour
         playerInstance = GameObject.FindWithTag("Player");
     }
 
+    public void TemporaryMove(float x)
+    {
+        _tempX = _XDistance;
+        _tempY = _YDistance;
+
+        _XDistance = x;
+        _YDistance = x;
+        moved = true;
+    }
+
+    public void restoreMove()
+    {
+        if (moveAmount > 0)
+        {
+            moveAmount -= 1;
+            return;
+        }
+        _XDistance = _tempX;
+        _YDistance = _tempY;
+    }
+
     void Update()
     {
+
         if (_keyHeld == true)
         {
             _timePressed += Time.deltaTime;
@@ -60,7 +86,14 @@ public class Interactable : MonoBehaviour
                 interactAction.Invoke();
                 Debug.Log("Interact");
                 _keyHeld = true;
+                if (moved)
+                {
+                    restoreMove();
+                }
             }
         }
+
     }
+
+    
 }

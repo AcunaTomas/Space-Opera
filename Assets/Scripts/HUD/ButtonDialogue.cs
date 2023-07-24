@@ -28,6 +28,7 @@ public class ButtonDialogue : MonoBehaviour
     private int _zoneLines;
     private string[] _zoneNames;
     public string ZONENAME;
+    [SerializeField]
     private string[] _textParts;
     private int _index = 0;
     private bool _ePressed = false;
@@ -82,6 +83,7 @@ public class ButtonDialogue : MonoBehaviour
 
     public void MoreDialoguePlz()
     {
+        print("mor");
         _cont++;
 
         if (_cont >= _zoneLines)
@@ -157,7 +159,7 @@ public class ButtonDialogue : MonoBehaviour
         {
             return;
         }
-
+/* 
         if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
         {
             _ePressed = true;
@@ -167,7 +169,7 @@ public class ButtonDialogue : MonoBehaviour
         if (Input.GetKeyUp(_keyNextDialogue))
         {
             _ePressed = false;
-        }
+        } */
 
         // if ((Input.GetAxis("Submit") > 0) && )
         // {

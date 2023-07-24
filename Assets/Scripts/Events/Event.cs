@@ -52,7 +52,11 @@ public class Event : MonoBehaviour
         }
     }
 
-
+    void manualDo()
+    {
+        doTheThing(options);
+    }
+    
     void doTheThing(eventType thing)
     {
         switch (thing)
