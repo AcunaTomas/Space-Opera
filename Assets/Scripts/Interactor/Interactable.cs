@@ -64,8 +64,8 @@ public class Interactable : MonoBehaviour
             moveAmount -= 1;
             return;
         }
-        _XDistance = _tempX;
-        _YDistance = _tempY;
+/*        _XDistance = _tempX;
+        _YDistance = _tempY;*/
         moved = false;
     }
 

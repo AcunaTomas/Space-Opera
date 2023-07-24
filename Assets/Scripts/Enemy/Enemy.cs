@@ -47,6 +47,11 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void changeCallback(UnityEvent a)
+    {
+        _callWhat = a;
+    }
+
     void Die()
     {
         isDead = true;
