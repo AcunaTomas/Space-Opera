@@ -59,6 +59,7 @@ public class Interactable : MonoBehaviour
 
     public void restoreMove()
     {
+        print(moveAmount);
         if (moveAmount > 0)
         {
             moveAmount -= 1;
