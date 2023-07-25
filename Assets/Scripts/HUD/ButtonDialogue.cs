@@ -121,6 +121,13 @@ public class ButtonDialogue : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         _player.GetComponent<Player>().enabled = true;
+        if (GameManager.INSTANCE.PLAYER_COMBAT)
+        {
+            _player.GetComponent<PlayerCombat>().enabled = true;
+        }
+        else{
+            _player.GetComponent<PlayerCombat>().enabled = false;
+        }
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         gameObject.SetActive(false);
 

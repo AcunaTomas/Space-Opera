@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager INSTANCE;
     public GameObject PLAYER;
     public Vector3 CHECKPOINT;
+    public bool PLAYER_COMBAT = false;
 
     //estas últimas cosas se borran después, solo es para probar
     /* public KeyCode MORIR;

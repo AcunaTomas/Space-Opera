@@ -17,13 +17,9 @@ public class CameraMovement : MonoBehaviour
     private bool _goDown = false;
     private bool _spacebarPressed = false;
 
-    void Start()
-    {
-        
-    }
-
     IEnumerator Jump()
     {
+        AudioManager.INSTANCE.PlayMusic();
         yield return new WaitForSeconds(5f);
         _allButtons.gameObject.SetActive(true);
     }

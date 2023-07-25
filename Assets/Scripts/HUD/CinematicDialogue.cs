@@ -60,6 +60,7 @@ public class CinematicDialogue : MonoBehaviour
         {
             transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
+            ScenesManager.Instance.LoadScene(ScenesManager.Scene.Tutorial);
 
             _cont = 0;
             return;
