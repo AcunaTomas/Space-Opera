@@ -31,7 +31,6 @@ public class ButtonDialogue : MonoBehaviour
     [SerializeField]
     private string[] _textParts;
     private int _index = 0;
-    private bool _ePressed = false;
     private bool _notFirstDialogue = false;
 
     void Awake()
@@ -113,17 +112,17 @@ public class ButtonDialogue : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        while (_time < 0.5f)
+        while (_time < 0.3f)
         {
-            float _percentage = _time / 0.5f;
-            float _newWidth = Mathf.Lerp(_firstWidth, 100f, _percentage);
+            float _percentage = _time / 0.3f;
+            float _newWidth = Mathf.Lerp(_firstWidth, 50f, _percentage);
             _elementUI.sizeDelta = new Vector2(_newWidth, _elementUI.sizeDelta.y);
 
             _time += Time.deltaTime;
             yield return null;
         }
 
-        _elementUI.sizeDelta = new Vector2(100f, _elementUI.sizeDelta.y);
+        _elementUI.sizeDelta = new Vector2(50f, _elementUI.sizeDelta.y);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -140,7 +139,6 @@ public class ButtonDialogue : MonoBehaviour
 
         _cont = 0;
         _notFirstDialogue = false;
-        _ePressed = false;
     }
 
     private void DifferentDialogues()
@@ -173,26 +171,5 @@ public class ButtonDialogue : MonoBehaviour
         {
             return;
         }
-/* 
-        if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
-        {
-            _ePressed = true;
-            MoreDialoguePlz();
-        }
-
-        if (Input.GetKeyUp(_keyNextDialogue))
-        {
-            _ePressed = false;
-        } */
-
-        // if ((Input.GetAxis("Submit") > 0) && )
-        // {
-        //     _ePressed = false;
-        //     MoreDialoguePlz();
-        // }
-        // else
-        // {
-        //     _ePressed = true;
-        // }
     }
 }
