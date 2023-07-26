@@ -36,7 +36,14 @@ public class ButtonDialogue : MonoBehaviour
 
     void Awake()
     {
-        _zone = JsonUtility.FromJson<Zone>(LoadJson.CONTENT);
+        switch (GameManager.INSTANCE.LEVEL)
+        {
+            case 1:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1);
+                break;            
+            default:
+                break;
+        }
     }
 
     public void FirstDialogue()

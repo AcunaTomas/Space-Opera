@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     
     public static GameManager INSTANCE;
+    public int LEVEL;
+    public bool CINEMATIC;
     public GameObject PLAYER;
     public Vector3 CHECKPOINT;
     public bool PLAYER_COMBAT = false;
