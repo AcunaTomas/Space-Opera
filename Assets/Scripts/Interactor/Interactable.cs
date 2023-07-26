@@ -94,7 +94,7 @@ public class Interactable : MonoBehaviour
         }
 
 
-        if (Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance)
+        if ((Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance) && !moved)
         {
             if ((Input.GetKeyDown(interactKey) || Input.GetAxis("Submit") > 0) && _timePressed <= 0)
             {
