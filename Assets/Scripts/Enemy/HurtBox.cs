@@ -26,7 +26,7 @@ public class HurtBox : MonoBehaviour
         {
             other.GetComponent<Player>().LoseHP(attackDamage);
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
-            other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+            other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;
             //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(orientation * 5, 0), ForceMode2D.Impulse);
             gameObject.SetActive(false);
