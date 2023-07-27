@@ -358,6 +358,7 @@ public class Player : MonoBehaviour
     public void LoseHP(float damage)
     {
         HP -= damage;
+        _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("Hurt");
     }
 }

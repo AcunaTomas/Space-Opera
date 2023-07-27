@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class HurtBox : MonoBehaviour
+public class HurtBoxPinchos : MonoBehaviour
 {
     float attackDamage = 10f;
     float orientation = 1f;
@@ -28,8 +28,6 @@ public class HurtBox : MonoBehaviour
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
             other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
             other.GetComponent<PlayerCombat>().enabled = false;
-            //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(orientation * 5, 0), ForceMode2D.Impulse);
-            gameObject.SetActive(false);
             Debug.Log(orientation);
             Invoke("MoveAgain", 0.2f);
             Debug.Log("hit");
@@ -41,6 +39,7 @@ public class HurtBox : MonoBehaviour
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<PlayerCombat>().enabled = true;
+        player.transform.position = new Vector2(6.4f, 9.1f);
     }
 
 }

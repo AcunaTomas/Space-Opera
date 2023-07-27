@@ -19,6 +19,9 @@ public class EnemyBehaviour2 : MonoBehaviour
     private bool cooling;
     private float intTimer;
     private GameObject player;
+    private float timerAttack;
+    private float attackDelay = 0.5f;
+
 
 void Awake()
 {
@@ -51,7 +54,12 @@ void EnemyLogic()
     }
     else if (attackDistance >= distance && cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
     {
-        Attack();
+        timerAttack += Time.deltaTime;
+        if (timerAttack > attackDelay)
+        {
+            Attack();
+        }
+        //Attack();
     }
 
     if (cooling)
@@ -82,6 +90,7 @@ void Attack()
     animator.SetBool("Attack", true);
 
     attackPoint.gameObject.SetActive(true);
+    timerAttack = 0;
 }
 
 

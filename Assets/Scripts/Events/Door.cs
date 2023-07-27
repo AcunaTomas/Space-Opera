@@ -9,7 +9,6 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
         animator.SetTrigger("OpenDoor");
     }
 
