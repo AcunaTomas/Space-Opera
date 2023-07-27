@@ -26,7 +26,7 @@ public class HurtBoxPinchos : MonoBehaviour
         {
             other.GetComponent<Player>().LoseHP(attackDamage);
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
-            other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+            other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;
             Debug.Log(orientation);
             Invoke("MoveAgain", 0.2f);
