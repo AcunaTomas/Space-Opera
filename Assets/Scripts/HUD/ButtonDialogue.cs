@@ -53,7 +53,7 @@ public class ButtonDialogue : MonoBehaviour
             {
                 transform.GetChild(i).gameObject.SetActive(true);
             }
-            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 300f);
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 250f);
 
             for (int i = 0; i < _zone.DIALOGUES.Length; i++)
             {
@@ -89,7 +89,6 @@ public class ButtonDialogue : MonoBehaviour
 
     public void MoreDialoguePlz()
     {
-        print("mor");
         _cont++;
 
         if (_cont >= _zoneLines)
@@ -115,14 +114,14 @@ public class ButtonDialogue : MonoBehaviour
         while (_time < 0.3f)
         {
             float _percentage = _time / 0.3f;
-            float _newWidth = Mathf.Lerp(_firstWidth, 50f, _percentage);
+            float _newWidth = Mathf.Lerp(_firstWidth, 0f, _percentage);
             _elementUI.sizeDelta = new Vector2(_newWidth, _elementUI.sizeDelta.y);
 
             _time += Time.deltaTime;
             yield return null;
         }
 
-        _elementUI.sizeDelta = new Vector2(50f, _elementUI.sizeDelta.y);
+        _elementUI.sizeDelta = new Vector2(0f, _elementUI.sizeDelta.y);
 
         yield return new WaitForSeconds(0.1f);
 
