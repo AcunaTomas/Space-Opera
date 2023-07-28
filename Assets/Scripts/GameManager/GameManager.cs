@@ -7,8 +7,11 @@ public class GameManager : MonoBehaviour
 {
     
     public static GameManager INSTANCE;
+    public int LEVEL;
     public GameObject PLAYER;
+    public GameObject BUTTON_INTERACT;
     public Vector3 CHECKPOINT;
+    public bool PLAYER_COMBAT = false;
 
     //estas últimas cosas se borran después, solo es para probar
     /* public KeyCode MORIR;
@@ -22,9 +25,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        /* CHECKPOINT = PLAYER.transform.localPosition;
-        SLIDER.maxValue = int.Parse(PLAYER.GetComponent<Player>().GetHP());
-        SLIDER.value = SLIDER.maxValue */;
+        if (LEVEL != 1)
+        {
+            Debug.Log("Poné los datos necesarios en el GameManager en el Canvas");
+        }
     }
     
     void Update()

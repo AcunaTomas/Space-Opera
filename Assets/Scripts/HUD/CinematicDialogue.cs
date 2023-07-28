@@ -26,7 +26,14 @@ public class CinematicDialogue : MonoBehaviour
 
     void Start()
     {
-        _zone = JsonUtility.FromJson<Zone>(LoadJson.CONTENT);
+        switch (GameManager.INSTANCE.LEVEL)
+        {
+            case 1:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_CINEMATIC);
+                break;            
+            default:
+                break;
+        }
 
         for (int i = 0; i < _zone.DIALOGUES.Length; i++)
         {
@@ -60,6 +67,7 @@ public class CinematicDialogue : MonoBehaviour
         {
             transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
+            ScenesManager.Instance.LoadScene(ScenesManager.Scene.Tutorial);
 
             _cont = 0;
             return;

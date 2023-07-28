@@ -13,18 +13,15 @@ public class CollisionDialogue : MonoBehaviour
     [SerializeField]
     private string _id;
     [SerializeField]
-    private GameObject _interactable;
-    [SerializeField]
     private KeyCode _startDialogue;
     [SerializeField]
     private bool _checkpoint;
     [SerializeField]
     private bool _interactableOnly;
-   
-    //private bool _ePressed = false;
     private bool _eAvailable = false;
     private bool _originalFlip;
     private bool _actualFlip;
+    private GameObject _interactable;
 
     void Start()
     {
@@ -41,9 +38,14 @@ public class CollisionDialogue : MonoBehaviour
         if (_checkpoint)
         {
             StartDialogue();
-            
+            return;
         }
-        if (_interactableOnly || _checkpoint)
+
+        _interactable = GameManager.INSTANCE.BUTTON_INTERACT;
+        _interactable.transform.parent = transform;
+        _interactable.transform.localPosition = new Vector3 (0f, 0.2f, 0f);
+        
+        if (_interactableOnly)
         {
             return;
         }
@@ -116,7 +118,8 @@ public class CollisionDialogue : MonoBehaviour
         }
 
         _player.GetComponent<Player>().enabled = false;
-        _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        _player.GetComponent<PlayerCombat>().enabled = false;
+        _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
 
         _panelDialogue.SetActive(true);

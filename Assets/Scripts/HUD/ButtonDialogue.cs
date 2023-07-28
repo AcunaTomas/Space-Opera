@@ -31,12 +31,18 @@ public class ButtonDialogue : MonoBehaviour
     [SerializeField]
     private string[] _textParts;
     private int _index = 0;
-    private bool _ePressed = false;
     private bool _notFirstDialogue = false;
 
     void Awake()
     {
-        _zone = JsonUtility.FromJson<Zone>(LoadJson.CONTENT);
+        switch (GameManager.INSTANCE.LEVEL)
+        {
+            case 1:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1);
+                break;            
+            default:
+                break;
+        }
     }
 
     public void FirstDialogue()
@@ -47,7 +53,7 @@ public class ButtonDialogue : MonoBehaviour
             {
                 transform.GetChild(i).gameObject.SetActive(true);
             }
-            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 300f);
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 250f);
 
             for (int i = 0; i < _zone.DIALOGUES.Length; i++)
             {
@@ -83,7 +89,6 @@ public class ButtonDialogue : MonoBehaviour
 
     public void MoreDialoguePlz()
     {
-        print("mor");
         _cont++;
 
         if (_cont >= _zoneLines)
@@ -106,27 +111,33 @@ public class ButtonDialogue : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        while (_time < 0.5f)
+        while (_time < 0.3f)
         {
-            float _percentage = _time / 0.5f;
-            float _newWidth = Mathf.Lerp(_firstWidth, 100f, _percentage);
+            float _percentage = _time / 0.3f;
+            float _newWidth = Mathf.Lerp(_firstWidth, 0f, _percentage);
             _elementUI.sizeDelta = new Vector2(_newWidth, _elementUI.sizeDelta.y);
 
             _time += Time.deltaTime;
             yield return null;
         }
 
-        _elementUI.sizeDelta = new Vector2(100f, _elementUI.sizeDelta.y);
+        _elementUI.sizeDelta = new Vector2(0f, _elementUI.sizeDelta.y);
 
         yield return new WaitForSeconds(0.1f);
 
         _player.GetComponent<Player>().enabled = true;
+        if (GameManager.INSTANCE.PLAYER_COMBAT)
+        {
+            _player.GetComponent<PlayerCombat>().enabled = true;
+        }
+        else{
+            _player.GetComponent<PlayerCombat>().enabled = false;
+        }
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         gameObject.SetActive(false);
 
         _cont = 0;
         _notFirstDialogue = false;
-        _ePressed = false;
     }
 
     private void DifferentDialogues()
@@ -159,27 +170,6 @@ public class ButtonDialogue : MonoBehaviour
         {
             return;
         }
-/* 
-        if (Input.GetKeyDown(_keyNextDialogue) && !_ePressed)
-        {
-            _ePressed = true;
-            MoreDialoguePlz();
-        }
-
-        if (Input.GetKeyUp(_keyNextDialogue))
-        {
-            _ePressed = false;
-        } */
-
-        // if ((Input.GetAxis("Submit") > 0) && )
-        // {
-        //     _ePressed = false;
-        //     MoreDialoguePlz();
-        // }
-        // else
-        // {
-        //     _ePressed = true;
-        // }
     }
     
 }
