@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="60" nextobjectid="328">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="61" nextobjectid="331">
  <tileset firstgid="1" source="../Tutorial tiled/paleta  background.tsx"/>
  <tileset firstgid="5" source="../Tutorial tiled/tile_lvl1_inside_01.tsx"/>
  <tileset firstgid="21" source="../Tutorial tiled/tile_black.tsx"/>
@@ -889,7 +889,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,819,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,819,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -972,6 +972,9 @@
   <object id="259" x="-544" y="672" width="864" height="32">
    <polygon points="288,96 320,96 448,96 448,32 -32,32 -32,-128 160,-128 160,-64 96,-64 96,-96 0,-96 0,0 863.011,0 863.491,0.498706 863.996,0.999645 864,160 768,160 768,64 512,64 512,160 416,160 416,128 320,128 320,224 1568,224 1568,64 1408,64 1408,-608 1600,-608 1600,256 288,256"/>
   </object>
+ </objectgroup>
+ <objectgroup id="60" name="ColliderNave">
+  <object id="330" x="650.5" y="64.25" width="199.75" height="6.25"/>
  </objectgroup>
  <objectgroup id="46" name="CollPlataformas">
   <object id="322" x="-32" y="480" width="96" height="32">

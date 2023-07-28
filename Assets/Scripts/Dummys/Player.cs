@@ -361,7 +361,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("Hurt");
         
-        if (HP >= 0)
+        if (HP <= 0)
         {
             Die();
         }

@@ -15,7 +15,8 @@ public class ScenesManager : MonoBehaviour
     public enum Scene
     {
         SceneMainMenu,
-        Tutorial
+        Tutorial,
+        THE_GANTLET
     }
     
     public void LoadScene(Scene scene)
