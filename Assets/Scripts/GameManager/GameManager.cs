@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject BUTTON_INTERACT;
     public Vector3 CHECKPOINT;
     public bool PLAYER_COMBAT = false;
+    public GameObject CANVAS;
 
     //estas últimas cosas se borran después, solo es para probar
     /* public KeyCode MORIR;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         INSTANCE = this;
+        CANVAS = this.gameObject;
     }
 
     void Start()

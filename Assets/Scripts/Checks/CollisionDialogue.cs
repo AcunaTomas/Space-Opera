@@ -23,6 +23,12 @@ public class CollisionDialogue : MonoBehaviour
     private bool _actualFlip;
     private GameObject _interactable;
 
+    void Awake()
+    {
+        _panelDialogue = GameManager.INSTANCE.CANVAS.transform.GetChild(0).gameObject;
+
+    }
+
     void Start()
     {
         if (_checkpoint || _interactableOnly)
