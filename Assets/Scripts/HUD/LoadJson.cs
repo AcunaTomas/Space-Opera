@@ -5,10 +5,10 @@ using System.IO;
 
 public static class LoadJson
 {
-    private static string JSON_NAME = "lvl1_cinematic.json";
-    private static string LOCATIONJSON = "Assets/Text/" + JSON_NAME;
-    public static string CONTENT = File.ReadAllText(LOCATIONJSON);
+    private static string JSON_NAME = "lvl1_cinematic";
+    private static string LOCATIONJSON = "Text/" + JSON_NAME;
+    public static string CONTENT = Resources.Load<TextAsset>(LOCATIONJSON).text;
 
-    public static string LVL1 = File.ReadAllText("Assets/Text/lvl1.json");
-    public static string LVL1_CINEMATIC = File.ReadAllText("Assets/Text/lvl1_cinematic.json");
+    public static string LVL1 = Resources.Load<TextAsset>("Text/lvl1").text;
+    public static string LVL1_CINEMATIC = Resources.Load<TextAsset>("Text/lvl1_cinematic").text;
 }
