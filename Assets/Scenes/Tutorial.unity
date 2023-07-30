@@ -171,15 +171,15 @@ GameObject:
   - component: {fileID: 87391227}
   - component: {fileID: 87391226}
   - component: {fileID: 87391225}
-  - component: {fileID: 87391224}
   - component: {fileID: 87391223}
+  - component: {fileID: 87391228}
   m_Layer: 0
   m_Name: lvl01_workshop_mechanic1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &87391222
 Transform:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   interactAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 87391224}
+      - m_Target: {fileID: 87391228}
         m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
         m_MethodName: StartDialogue
         m_Mode: 1
@@ -228,24 +228,6 @@ MonoBehaviour:
   _XDistance: 0.3
   _YDistance: 0.3
   _timePressed: 0
---- !u!114 &87391224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87391221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044b4d22a841f3548b8a9a0bcee313b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1361875249}
-  _panelDialogue: {fileID: 0}
-  _id: lvl01_workshop_mechanic1
-  _startDialogue: 101
-  _checkpoint: 0
-  _interactableOnly: 0
 --- !u!95 &87391225
 Animator:
   serializedVersion: 5
@@ -345,6 +327,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &87391228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87391221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044b4d22a841f3548b8a9a0bcee313b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 1361875249}
+  _panelDialogue: {fileID: 0}
+  _id: lvl01_workshop_mechanic1
+  _startDialogue: 101
+  _checkpoint: 0
+  _interactableOnly: 0
 --- !u!1 &88514515
 GameObject:
   m_ObjectHideFlags: 0

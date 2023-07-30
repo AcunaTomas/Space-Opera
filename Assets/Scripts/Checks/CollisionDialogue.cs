@@ -9,7 +9,7 @@ public class CollisionDialogue : MonoBehaviour
     [SerializeField]
     private GameObject _player;
     [SerializeField]
-    private GameObject _panelDialogue;
+    private ButtonDialogue _panelDialogue;
     [SerializeField]
     private string _id;
     [SerializeField]
@@ -25,12 +25,13 @@ public class CollisionDialogue : MonoBehaviour
 
     void Awake()
     {
-        _panelDialogue = GameManager.INSTANCE.CANVAS.transform.GetChild(0).gameObject;
+        
 
     }
 
     void Start()
     {
+        _panelDialogue = GameManager.INSTANCE.CANVAS;
         if (_checkpoint || _interactableOnly)
         {
             return;
@@ -61,7 +62,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (_panelDialogue.activeSelf || _checkpoint)
+        if (_panelDialogue.gameObject.activeSelf || _checkpoint)
         {
             return;
         }
@@ -128,9 +129,9 @@ public class CollisionDialogue : MonoBehaviour
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
 
-        _panelDialogue.SetActive(true);
-        _panelDialogue.GetComponent<ButtonDialogue>().ZONENAME = _id;
-        _panelDialogue.GetComponent<ButtonDialogue>().FirstDialogue();
+        _panelDialogue.gameObject.SetActive(true);
+        _panelDialogue.ZONENAME = _id;
+        _panelDialogue.FirstDialogue();
 
     }
 
