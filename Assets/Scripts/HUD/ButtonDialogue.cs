@@ -62,6 +62,7 @@ public class ButtonDialogue : MonoBehaviour
                     _index = i;
                     break;
                 }
+                
             }
 
             _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
@@ -70,6 +71,8 @@ public class ButtonDialogue : MonoBehaviour
             _notFirstDialogue = true;
             return;
         }
+        
+
         MoreDialoguePlz();
 
     }
@@ -95,6 +98,11 @@ public class ButtonDialogue : MonoBehaviour
         {
             StartCoroutine(Fold());
             return;
+        }
+        
+        if ((ZONENAME == "lvl01_pilot_with_key") && (_cont == 6))
+        {
+            GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
         }
 
         DifferentDialogues();
