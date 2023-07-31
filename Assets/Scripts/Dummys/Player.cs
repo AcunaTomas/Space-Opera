@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private Animator _animator;
+    [SerializeField]
+    private UpdateBars _healthBar;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -360,6 +362,7 @@ public class Player : MonoBehaviour
         HP -= damage;
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("Hurt");
+        _healthBar.UpdateHP();
         
         if (HP <= 0)
         {
@@ -372,5 +375,11 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("Die");
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
+    }
+
+    public void AddHP(int hp)
+    {
+        HP = HP + hp;
+        _healthBar.UpdateHP();
     }
 }

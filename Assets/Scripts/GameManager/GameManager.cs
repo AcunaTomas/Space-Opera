@@ -27,10 +27,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (LEVEL != 1)
-        {
-            Debug.Log("Poné los datos necesarios en el GameManager en el Canvas");
-        }
+        
     }
     
     void Update()

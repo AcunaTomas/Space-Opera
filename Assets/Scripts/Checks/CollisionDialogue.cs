@@ -25,7 +25,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void Awake()
     {
-        _panelDialogue = GameManager.INSTANCE.CANVAS.transform.GetChild(0).gameObject;
+        _panelDialogue = GameManager.INSTANCE.CANVAS.transform.GetChild(1).gameObject;
 
     }
 

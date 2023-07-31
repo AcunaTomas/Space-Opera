@@ -21,11 +21,13 @@ public class Enemy : MonoBehaviour
     
     [SerializeField]
     private UnityEvent _callWhat;
+    private UpdateBars _ub;
 
     void Start()
     {
         currentHealth = maxHealth;
         GameObject player = GameObject.FindWithTag("Player");
+        _ub = GameObject.FindWithTag("LifeBar").GetComponent<UpdateBars>();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
@@ -57,6 +59,7 @@ public class Enemy : MonoBehaviour
         isDead = true;
         Debug.Log("Enemy Died");
         animator.SetTrigger("Die");
+        _ub.EnergyPlusOne();
 
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<BoxCollider2D>().enabled = false;

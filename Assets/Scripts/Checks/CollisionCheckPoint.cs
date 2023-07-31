@@ -5,8 +5,8 @@ using UnityEngine;
 public class CollisionCheckPoint : MonoBehaviour
 {
 
-    [SerializeField]
-    private bool _restoreCheckpoints = false;
+    /* [SerializeField]
+    private bool _restoreCheckpoints = false; */
 
     void OnTriggerEnter2D(Collider2D col)
     {
