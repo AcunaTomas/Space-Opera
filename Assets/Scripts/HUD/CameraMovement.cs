@@ -16,16 +16,26 @@ public class CameraMovement : MonoBehaviour
 
     private bool _goDown = false;
     private bool _spacebarPressed = false;
+    private bool _stopDoingThis = false;
 
     IEnumerator Jump()
     {
         AudioManager.INSTANCE.PlayMusic();
         yield return new WaitForSeconds(5f);
-        _allButtons.gameObject.SetActive(true);
+        if (!_stopDoingThis)
+        {
+            _allButtons.gameObject.SetActive(true);
+            _stopDoingThis = true;
+        }
     }
 
     void Update()
     {
+        if (_stopDoingThis)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Jump") && !_spacebarPressed)
         {
             _spacebarPressed = true;
@@ -40,6 +50,7 @@ public class CameraMovement : MonoBehaviour
             {
                 _animator.CrossFade(_animator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0, 1f);
                 _allButtons.gameObject.SetActive(true);
+                _stopDoingThis = true;
             }
 
             _goDown = !_goDown;

@@ -18,6 +18,8 @@ public class CollisionDialogue : MonoBehaviour
     private bool _checkpoint;
     [SerializeField]
     private bool _interactableOnly;
+    [SerializeField]
+    private bool _panelDialogueDown;
     private bool _eAvailable = false;
     private bool _originalFlip;
     private bool _actualFlip;
@@ -129,6 +131,18 @@ public class CollisionDialogue : MonoBehaviour
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
 
         _panelDialogue.SetActive(true);
+        if (_panelDialogueDown)
+        {
+            _panelDialogue.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,0f);
+            _panelDialogue.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0f);
+            _panelDialogue.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,160f);
+        }
+        else
+        {
+            _panelDialogue.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,1f);
+            _panelDialogue.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,1f);
+            _panelDialogue.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,-160f);
+        }
         _panelDialogue.GetComponent<ButtonDialogue>().ZONENAME = _id;
         _panelDialogue.GetComponent<ButtonDialogue>().FirstDialogue();
 
