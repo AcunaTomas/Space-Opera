@@ -96,6 +96,10 @@ public class ButtonDialogue : MonoBehaviour
 
         if (_cont >= _zoneLines)
         {
+            if ((ZONENAME == "lvl01_pilot_with_key"))
+            {
+                GameObject.FindWithTag("Boton").SetActive(false);
+            }
             StartCoroutine(Fold());
             return;
         }
@@ -104,7 +108,7 @@ public class ButtonDialogue : MonoBehaviour
         {
             GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
         }
-
+        
         DifferentDialogues();
     }
 
