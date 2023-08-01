@@ -81,6 +81,8 @@ public class PlayerCombat : MonoBehaviour
             attackPointUp.localPosition = new Vector2(0, 0.2f);
             attackPointDown.localPosition = new Vector2(0, -0.2f);
             attackSprite.flipX = true;
+            
+
         }
         else
         {
@@ -88,6 +90,7 @@ public class PlayerCombat : MonoBehaviour
             attackPointUp.localPosition = new Vector2(0, 0.2f);
             attackPointDown.localPosition = new Vector2(0, -0.2f);
             attackSprite.flipX = false;
+            
         }   
 
     }
