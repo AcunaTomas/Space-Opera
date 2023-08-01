@@ -7,11 +7,15 @@ public class AudioManager : MonoBehaviour
     public static AudioManager INSTANCE;
 
     [SerializeField]
-    private AudioSource _audio;
+    private AudioSource _audioUI;
+    [SerializeField]
+    private AudioSource _audioPlayer;
+    [SerializeField]
+    private AudioSource _audioAlarm;
     [SerializeField]
     private AudioSource _musicSource;
     [SerializeField]
-    private AudioClip _sound;
+    private AudioClip _buttonConfirm;
     [SerializeField]
     private AudioClip _musicIntro;
 
@@ -20,16 +24,46 @@ public class AudioManager : MonoBehaviour
         INSTANCE = this;
     }
 
-    public void PlaySound()
+    //ALL_SOUNDS
+    public void PlayUI()
     {
-        _audio.clip = _sound;
-        _audio.Play();
+        _audioUI.clip = _buttonConfirm;
+        _audioUI.Play();
     }
 
+    public void PlayPlayer()
+    {
+        _audioPlayer.clip = _buttonConfirm;
+        _audioPlayer.Play();
+    }
+
+    public void PlayAlarm()
+    {
+        _audioAlarm.clip = _buttonConfirm;
+        _audioAlarm.Play();
+    }
+
+
+    //ALL_MUSIC
     public void PlayMusic()
     {
         _musicSource.clip = _musicIntro;
         _musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        _musicSource.Stop();
+    }
+
+    public void PauseMusic()
+    {
+        _musicSource.Pause();
+    }
+
+    public void UnPauseMusic()
+    {
+        _musicSource.UnPause();
     }
 
 }
