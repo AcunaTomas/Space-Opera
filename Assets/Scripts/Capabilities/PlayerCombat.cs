@@ -74,29 +74,34 @@ public class PlayerCombat : MonoBehaviour
                 animator.SetTrigger("Bomb");
             }
         }
-
+        
         if (spriteRenderer.flipX)
         {
-            attackPoint.localPosition = new Vector2(-0.15f, 0);
             attackPointUp.localPosition = new Vector2(0, 0.2f);
             attackPointDown.localPosition = new Vector2(0, -0.2f);
-            attackSprite.flipX = true;
-            
-
         }
         else
         {
-            attackPoint.localPosition = new Vector2(0.15f, 0);
             attackPointUp.localPosition = new Vector2(0, 0.2f);
             attackPointDown.localPosition = new Vector2(0, -0.2f);
-            attackSprite.flipX = false;
-            
         }   
 
     }
 
     void Attack()
     {
+
+        if (spriteRenderer.flipX)
+        {
+            attackPoint.localPosition = new Vector2(-0.15f, 0);
+            attackSprite.flipX = true;
+        }
+        else
+        {
+            attackPoint.localPosition = new Vector2(0.15f, 0);
+            attackSprite.flipX = false;
+
+        }   
 
         animator.SetTrigger("Attack");
         attackAnimator.SetTrigger("Golpe");
