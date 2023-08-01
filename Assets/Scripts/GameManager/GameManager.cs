@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (LEVEL != 1)
+        if (LEVEL < 1 || LEVEL > 4 )
         {
-            Debug.Log("Poné los datos necesarios en el GameManager en el Canvas");
+            Debug.Log("El nivel se encuentra fuera del rango permitido (1-4)");
         }
     }
     

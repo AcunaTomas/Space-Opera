@@ -39,7 +39,10 @@ public class ButtonDialogue : MonoBehaviour
         {
             case 1:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1);
-                break;            
+                break;
+            case 2:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2);
+                break;
             default:
                 break;
         }
