@@ -100,6 +100,11 @@ public class ButtonDialogue : MonoBehaviour
             {
                 GameObject.FindWithTag("Boton").SetActive(false);
             }
+            
+            if ((ZONENAME == "lvl01_ship_key"))
+            {
+                GameObject.FindWithTag("Key").SetActive(false);
+            }
             StartCoroutine(Fold());
             return;
         }

@@ -1406,6 +1406,7 @@ GameObject:
   - component: {fileID: 336505896}
   - component: {fileID: 336505895}
   - component: {fileID: 336505900}
+  - component: {fileID: 336505901}
   m_Layer: 7
   m_Name: Dummy2fast
   m_TagString: Untagged
@@ -1578,6 +1579,18 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+--- !u!114 &336505901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336505894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e903f61834d6ee44b381f7192cbfef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &376857241
 GameObject:
   m_ObjectHideFlags: 0
@@ -4092,7 +4105,7 @@ GameObject:
   - component: {fileID: 701899699}
   m_Layer: 0
   m_Name: lvl01_ship_key
-  m_TagString: Enemy
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4197,8 +4210,8 @@ MonoBehaviour:
   _panelDialogue: {fileID: 0}
   _id: lvl01_ship_key
   _startDialogue: 0
-  _checkpoint: 1
-  _interactableOnly: 0
+  _checkpoint: 0
+  _interactableOnly: 1
 --- !u!95 &701899701
 Animator:
   serializedVersion: 5
@@ -4227,13 +4240,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701899697}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.02050221, y: 0.029044822}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4244,7 +4257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47796822, y: 0.4748209}
+  m_Size: {x: 0.4369638, y: 0.41673127}
   m_EdgeRadius: 0
 --- !u!1 &715818261
 GameObject:
@@ -6144,7 +6157,8 @@ GameObject:
   - component: {fileID: 1037132462}
   - component: {fileID: 1037132459}
   - component: {fileID: 1037132466}
-  m_Layer: 7
+  - component: {fileID: 1037132467}
+  m_Layer: 0
   m_Name: lvl01_pilot2_quilombo_edition
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -6194,9 +6208,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1655921237}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 1861113709}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6206,10 +6220,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1861113709}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1655921239}
+        m_TargetAssemblyTypeName: ChangeLayers, Assembly-CSharp
+        m_MethodName: DefaultLayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1579205347}
+        m_TargetAssemblyTypeName: ChangeLayers, Assembly-CSharp
+        m_MethodName: DefaultLayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 336505901}
+        m_TargetAssemblyTypeName: ChangeLayers, Assembly-CSharp
+        m_MethodName: DefaultLayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6354,6 +6392,18 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+--- !u!114 &1037132467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037132458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e903f61834d6ee44b381f7192cbfef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1041378174
 GameObject:
   m_ObjectHideFlags: 0
@@ -8231,7 +8281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361875249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.21, y: 13.878, z: 0}
+  m_LocalPosition: {x: 1.181, y: 13.873, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8918,6 +8968,7 @@ GameObject:
   - component: {fileID: 1579205343}
   - component: {fileID: 1579205342}
   - component: {fileID: 1579205341}
+  - component: {fileID: 1579205347}
   m_Layer: 7
   m_Name: Dummy2
   m_TagString: Untagged
@@ -9126,6 +9177,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579205347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579205340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e903f61834d6ee44b381f7192cbfef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1582330677
 GameObject:
   m_ObjectHideFlags: 0
@@ -9220,7 +9283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603221266}
   - component: {fileID: 1603221267}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: nada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9268,6 +9331,7 @@ GameObject:
   - component: {fileID: 1655921235}
   - component: {fileID: 1655921237}
   - component: {fileID: 1655921238}
+  - component: {fileID: 1655921239}
   m_Layer: 7
   m_Name: Dummy1
   m_TagString: Untagged
@@ -9464,6 +9528,18 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+--- !u!114 &1655921239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655921231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e903f61834d6ee44b381f7192cbfef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1676767701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9576,7 +9652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676767701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.21, y: 13.878, z: -10}
+  m_LocalPosition: {x: 1.181, y: 13.873, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10185,7 +10261,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0146102905, y: -0.0140889585}
+  m_Offset: {x: 0.032901764, y: -0.0140889585}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10196,7 +10272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19150925, y: 0.32406932}
+  m_Size: {x: 0.1549263, y: 0.32406932}
   m_EdgeRadius: 0
 --- !u!114 &1861113712
 MonoBehaviour:
@@ -10231,6 +10307,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1037132467}
+        m_TargetAssemblyTypeName: ChangeLayers, Assembly-CSharp
+        m_MethodName: EnemyLayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10399,7 +10487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872195453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.21, y: 13.878, z: -10}
+  m_LocalPosition: {x: 1.181, y: 13.873, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
