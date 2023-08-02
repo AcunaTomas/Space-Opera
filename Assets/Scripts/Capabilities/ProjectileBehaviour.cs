@@ -27,6 +27,8 @@ public class ProjectileBehaviour : MonoBehaviour
         rango = GetComponent<BoxCollider2D>();
         Throw();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 
     public void Update()

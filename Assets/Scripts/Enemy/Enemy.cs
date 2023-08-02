@@ -22,24 +22,14 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private UnityEvent _callWhat;
 
-    // public string layer1;
-    // public string layer2;
-
     void Start()
     {
         currentHealth = maxHealth;
         GameObject player = GameObject.FindWithTag("Player");
         
-        // int layer1Index = LayerMask.NameToLayer(layer1);
-        // int layer2Index = LayerMask.NameToLayer(layer2);
-
-        // if (layer1Index >= 0 && layer2Index >= 0)
-        // {
-        //     Physics2D.IgnoreLayerCollision(layer1Index, layer2Index, true);
-        // }
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.GetComponentInChildren<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 
     public void TakeDamage(int damage)

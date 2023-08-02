@@ -49,6 +49,7 @@ public class Event : MonoBehaviour
         if (other.gameObject.tag  == "Player")
         {
             doTheThing(options);
+            
         }
     }
 
