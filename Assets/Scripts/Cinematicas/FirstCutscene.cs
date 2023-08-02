@@ -8,7 +8,7 @@ public class FirstCutscene : MonoBehaviour
 
     public Animator animator;
 
-    void Update()
+    /* void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
@@ -21,6 +21,6 @@ public class FirstCutscene : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         ScenesManager.Instance.LoadNewGame();
-    }
+    } */
 
 }

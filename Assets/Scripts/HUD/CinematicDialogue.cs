@@ -30,6 +30,9 @@ public class CinematicDialogue : MonoBehaviour
         {
             case 1:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_CINEMATIC);
+                break;
+            case 2:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2_CINEMATIC);
                 break;            
             default:
                 break;
@@ -102,15 +105,15 @@ public class CinematicDialogue : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(_keyNextDialogue) || Input.GetAxis("Submit") > 0) && !_ePressed)
+        if (Input.GetButtonDown("Jump") && !_ePressed)
         {
             _ePressed = true;
             MoreDialoguePlz();
         }
 
-        if (Input.GetKeyUp(_keyNextDialogue))
+        if (Input.GetButtonUp("Jump"))
         {
-            _ePressed = false;
+             _ePressed = false;
         }
     }
 

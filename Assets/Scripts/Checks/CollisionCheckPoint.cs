@@ -5,8 +5,8 @@ using UnityEngine;
 public class CollisionCheckPoint : MonoBehaviour
 {
 
-    [SerializeField]
-    private bool _restoreCheckpoints = false;
+    /* [SerializeField]
+    private bool _restoreCheckpoints = false; */
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -14,17 +14,18 @@ public class CollisionCheckPoint : MonoBehaviour
         {
             gameObject.SetActive(false);
             GameManager.INSTANCE.CHECKPOINT = GameManager.INSTANCE.PLAYER.transform.localPosition;
+            GameManager.INSTANCE.ACTUAL_CHECKPOINT = gameObject; 
             Restore();
         }
     }
 
     void Restore()
     {
-        if (!_restoreCheckpoints)
+        /* if (!_restoreCheckpoints)
         {
             return;
-        }
-        for (int i = 0; i < transform.parent.childCount - 1; i++)
+        } */
+        for (int i = 0; i < transform.parent.childCount; i++)
         {
             if (transform.parent.GetChild(i).name != transform.name)
             {

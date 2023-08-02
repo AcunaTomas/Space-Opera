@@ -18,6 +18,8 @@ public class CollisionDialogue : MonoBehaviour
     private bool _checkpoint;
     [SerializeField]
     private bool _interactableOnly;
+    [SerializeField]
+    private bool _panelDialogueDown;
     private bool _eAvailable = false;
     private bool _originalFlip;
     private bool _actualFlip;
@@ -25,10 +27,9 @@ public class CollisionDialogue : MonoBehaviour
 
     void Awake()
     {
-        
-
+        Physics2D.IgnoreCollision(_player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(_player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
-
     void Start()
     {
         _panelDialogue = GameManager.INSTANCE.CANVAS;
@@ -62,6 +63,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
+
         if (_panelDialogue.gameObject.activeSelf || _checkpoint)
         {
             return;
@@ -130,6 +132,18 @@ public class CollisionDialogue : MonoBehaviour
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
 
         _panelDialogue.gameObject.SetActive(true);
+        if (_panelDialogueDown)
+        {
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,0f);
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0f);
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,160f);
+        }
+        else
+        {
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,1f);
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,1f);
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,-160f);
+        }
         _panelDialogue.ZONENAME = _id;
         _panelDialogue.FirstDialogue();
 

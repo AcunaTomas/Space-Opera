@@ -96,16 +96,18 @@ public class ButtonDialogue : MonoBehaviour
 
         if (_cont >= _zoneLines)
         {
+            bool piloto = true;
             if ((ZONENAME == "lvl01_pilot_with_key"))
             {
                 GameObject.FindWithTag("Boton").SetActive(false);
+                piloto = false;
             }
             
             if ((ZONENAME == "lvl01_ship_key"))
             {
                 GameObject.FindWithTag("Key").SetActive(false);
-            }
-            StartCoroutine(Fold());
+            }   
+            StartCoroutine(Fold(piloto));
             return;
         }
         
@@ -117,7 +119,7 @@ public class ButtonDialogue : MonoBehaviour
         DifferentDialogues();
     }
 
-    private IEnumerator Fold()
+    private IEnumerator Fold(bool piloto)
     {
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;
@@ -142,7 +144,7 @@ public class ButtonDialogue : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        _player.GetComponent<Player>().enabled = true;
+        _player.GetComponent<Player>().enabled = piloto;
         if (GameManager.INSTANCE.PLAYER_COMBAT)
         {
             _player.GetComponent<PlayerCombat>().enabled = true;

@@ -67,6 +67,12 @@ void EnemyLogic()
         Cooldown();
         animator.SetBool("Attack", false);
     }
+
+    if (int.Parse(player.GetComponent<Player>().GetHP()) <= 0)
+    {
+        Move();
+        StopAttack();
+    }
 }
 
 void Move()

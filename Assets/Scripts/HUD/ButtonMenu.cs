@@ -11,6 +11,8 @@ public class ButtonMenu : MonoBehaviour
     private Transform _parent;
     private GameObject _lastSelected;
     public bool ACTIVE = false;
+    private bool _spacebarPressed = false;
+    private Button _button;
     
     void Start()
     {
@@ -19,6 +21,7 @@ public class ButtonMenu : MonoBehaviour
         _activeImage = GetComponent<Image>();
         _parent = transform.parent;
         _lastSelected = gameObject;
+        _button = GetComponent<Button>();
         if (ACTIVE)
         {
             _activeImage.enabled = true;
@@ -73,6 +76,17 @@ public class ButtonMenu : MonoBehaviour
         else
         {
             _lastSelected = EventSystem.current.currentSelectedGameObject;
+        }
+
+        if (Input.GetButtonDown("Jump") && !_spacebarPressed)
+        {
+            _spacebarPressed = true;
+            _button.onClick.Invoke();
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            _spacebarPressed = false;
         }
     }
 }

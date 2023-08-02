@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class Player : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private Animator _animator;
+    [SerializeField]
+    private UpdateBars _healthBar;
+
+
+    [SerializeField]
+    private UnityEvent _callWhat;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -360,6 +367,7 @@ public class Player : MonoBehaviour
         HP -= damage;
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("Hurt");
+        _healthBar.UpdateHP();
         
         if (HP <= 0)
         {
@@ -370,7 +378,37 @@ public class Player : MonoBehaviour
     void Die()
     {
         _animator.SetTrigger("Die");
+        _animator.SetBool("isDead", true);
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
+        Invoke("Respawn", 1.7f);
+        transform.parent = null;
+    }
+
+    public void AddHP(int hp)
+    {
+        HP = HP + hp;
+        _healthBar.UpdateHP();
+    }
+
+    void Respawn() 
+    {
+        transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
+        _animator.SetTrigger("Attack");
+        _animator.SetBool("isDead", false);
+        GetComponent<PlayerCombat>().enabled = true;
+        GetComponent<Player>().enabled = true;
+        HP = _healthBar.MaxHP();
+        _healthBar.UpdateHP();
+        if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2")
+        {
+            _callWhat.Invoke();
+        }
+        
+    }
+
+    public void changeCallback(UnityEvent a)
+    {
+        _callWhat = a;
     }
 }
