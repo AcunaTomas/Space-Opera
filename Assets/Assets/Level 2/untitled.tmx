@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="4" nextobjectid="12">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="48" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="4" nextobjectid="12">
  <tileset firstgid="1" source="Lvl2_PlacegHolder.tsx"/>
- <layer id="3" name="Mask" width="30" height="20">
+ <layer id="3" name="Mask" width="48" height="16">
   <data encoding="csv">
-   <chunk x="-16" y="0" width="16" height="16">
+   <chunk x="16" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -23,9 +23,9 @@
 </chunk>
   </data>
  </layer>
- <layer id="1" name="Tile Layer 1" width="30" height="20">
+ <layer id="1" name="Tile Layer 1" width="48" height="16">
   <data encoding="csv">
-   <chunk x="-32" y="0" width="16" height="16">
+   <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -43,7 +43,7 @@
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 </chunk>
-   <chunk x="-16" y="0" width="16" height="16">
+   <chunk x="16" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -61,7 +61,7 @@
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 </chunk>
-   <chunk x="0" y="0" width="16" height="16">
+   <chunk x="32" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -82,31 +82,31 @@
   </data>
  </layer>
  <objectgroup id="2" name="Colls">
-  <object id="1" x="-1024" y="416">
+  <object id="1" x="0" y="416">
    <polygon points="0,0 0,32 1536,32 1536,0"/>
   </object>
-  <object id="4" x="288" y="416">
+  <object id="4" x="1312" y="416">
    <polygon points="0,0 0,-32 192,-32 224,-32 224,0"/>
   </object>
-  <object id="5" x="-384" y="320">
+  <object id="5" x="640" y="320">
    <polygon points="0,0 0,32 32,32 32,0"/>
   </object>
-  <object id="6" x="-352" y="288">
+  <object id="6" x="672" y="288">
    <polygon points="0,0 0,32 32,32 32,0"/>
   </object>
-  <object id="7" x="-320" y="256">
+  <object id="7" x="704" y="256">
    <polygon points="0,0 0,32 256,32 256,0"/>
   </object>
-  <object id="8" x="-64" y="288">
+  <object id="8" x="960" y="288">
    <polygon points="0,0 0,32 32,32 32,0"/>
   </object>
-  <object id="9" x="-32" y="320">
+  <object id="9" x="992" y="320">
    <polygon points="0,0 0,32 32,32 32,0"/>
   </object>
-  <object id="10" x="512" y="384">
+  <object id="10" x="1536" y="384">
    <polygon points="0,0 0,-384 -17.375,-384 -17.375,-0.125"/>
   </object>
-  <object id="11" x="474" y="282">
+  <object id="11" x="1498" y="282">
    <properties>
     <property name="Tag" value="NotInteractable"/>
    </properties>
