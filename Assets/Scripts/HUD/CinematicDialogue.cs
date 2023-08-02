@@ -30,6 +30,9 @@ public class CinematicDialogue : MonoBehaviour
         {
             case 1:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_CINEMATIC);
+                break;
+            case 2:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2_CINEMATIC);
                 break;            
             default:
                 break;
