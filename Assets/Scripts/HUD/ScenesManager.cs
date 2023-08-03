@@ -7,6 +7,10 @@ public class ScenesManager : MonoBehaviour
 {
     public static ScenesManager Instance;
 
+    public Animator transition;
+
+    public float transitionTime = 1f;
+
     private void Awake()
     {
         Instance = this;
@@ -32,7 +36,16 @@ public class ScenesManager : MonoBehaviour
     //esto por si hay 2 o más niveles o escenas, etc
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("SceneStart");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelIndex);
     }
 
     public void LoadMainMenu()
