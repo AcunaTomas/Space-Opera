@@ -11,9 +11,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioPlayer;
     [SerializeField]
-    private AudioSource _audioAlarm;
-    [SerializeField]
     private AudioSource _musicSource;
+    [SerializeField]
+    private AudioSource _audioAlarm;
     [SerializeField]
     private AudioClip _buttonConfirm;
     [SerializeField]
@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
         INSTANCE = this;
     }
 
-    //ALL_SOUNDS
+    //ALL_SOUNDS_NOT_LOOPED
     public void PlayUI()
     {
         _audioUI.clip = _buttonConfirm;
@@ -37,18 +37,18 @@ public class AudioManager : MonoBehaviour
         _audioPlayer.Play();
     }
 
-    public void PlayAlarm()
-    {
-        _audioAlarm.clip = _buttonConfirm;
-        _audioAlarm.Play();
-    }
 
-
-    //ALL_MUSIC
+    //ALL_MUSIC OR LOOPED_SOUNDS
     public void PlayMusic()
     {
         _musicSource.clip = _musicIntro;
         _musicSource.Play();
+    }
+
+    public void PlayAlarm()
+    {
+        _audioAlarm.clip = _buttonConfirm;
+        _audioAlarm.Play();
     }
 
     public void StopMusic()
