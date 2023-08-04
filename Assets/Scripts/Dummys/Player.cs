@@ -428,4 +428,9 @@ public class Player : MonoBehaviour
     {
         _callWhat = a;
     }
+
+    public void PlaySound(string a)
+    {
+        AudioManager.INSTANCE.gameObject.SendMessage(a);
+    }
 }

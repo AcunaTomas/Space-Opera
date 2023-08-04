@@ -34,6 +34,7 @@ public class ButtonDialogue : MonoBehaviour
     private string[] _textParts;
     private int _index = 0;
     private bool _notFirstDialogue = false;
+    private GameObject _dialogueDeactivate;
 
     public Animator lifeBarAnim;
 
@@ -94,6 +95,11 @@ public class ButtonDialogue : MonoBehaviour
         public ZoneData[] DIALOGUES;
     }
 
+    public void DeactivateGO(GameObject go)
+    {
+        _dialogueDeactivate = go;
+    }
+
     public void MoreDialoguePlz()
     {
         _cont++;
@@ -112,6 +118,10 @@ public class ButtonDialogue : MonoBehaviour
                 GameObject.FindWithTag("Key").SetActive(false);
             }   
             StartCoroutine(Fold(piloto));
+            if (_dialogueDeactivate != null)
+            {
+                _dialogueDeactivate.SetActive(false);
+            }
             return;
         }
         

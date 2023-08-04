@@ -124,6 +124,7 @@ public class CollisionDialogue : MonoBehaviour
         else if (_checkpoint)
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            _panelDialogue.DeactivateGO(gameObject);
         }
 
         _player.GetComponent<Player>().enabled = false;
