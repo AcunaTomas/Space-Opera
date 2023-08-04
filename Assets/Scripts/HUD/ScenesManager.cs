@@ -30,8 +30,16 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene("CutsceneDialogue");
+        StartCoroutine(CutsceneTransition());
+
     }
+
+    IEnumerator CutsceneTransition()
+    {
+        transition.SetTrigger("SceneStart");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene("CutsceneDialogue");
+    } 
 
     //esto por si hay 2 o más niveles o escenas, etc
     public void LoadNextScene()

@@ -22,6 +22,8 @@ public class ButtonDialogue : MonoBehaviour
     private KeyCode _keyNextDialogue;
     [SerializeField]
     private DialogueImgPj _dip;
+    [SerializeField]
+    private bool _quilombo = false;
 
     private int _cont = 0;
     private Zone _zone;
@@ -32,6 +34,8 @@ public class ButtonDialogue : MonoBehaviour
     private string[] _textParts;
     private int _index = 0;
     private bool _notFirstDialogue = false;
+
+    public Animator lifeBarAnim;
 
     void Awake()
     {
@@ -183,6 +187,22 @@ public class ButtonDialogue : MonoBehaviour
         }
     }
 
+    public void setQuilombo()
+    {
+        _quilombo = true;
+    }
+    void OnEnable()
+    {
+        lifeBarAnim.SetTrigger("Disappear");
+    }
+    void OnDisable()
+    {
+        if (_quilombo)
+        {
+            lifeBarAnim.SetTrigger("Appear");
+        }
+
+    }
     void Update()
     {
         if (!_notFirstDialogue)

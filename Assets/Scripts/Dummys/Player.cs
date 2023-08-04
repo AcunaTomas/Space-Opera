@@ -236,6 +236,22 @@ public class Player : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ascensor"))
+        {
+            transform.parent = other.gameObject.transform;
+        }
+    }
+
+        private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ascensor"))
+        {
+            transform.parent = null;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (_fallingTime > 6)
@@ -393,6 +409,7 @@ public class Player : MonoBehaviour
 
     void Respawn() 
     {
+        transform.parent = null;
         transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
         _animator.SetTrigger("Attack");
         _animator.SetBool("isDead", false);
