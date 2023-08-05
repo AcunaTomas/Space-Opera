@@ -131,6 +131,7 @@ public class CollisionDialogue : MonoBehaviour
         _player.GetComponent<PlayerCombat>().enabled = false;
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         _player.GetComponent<Animator>().SetFloat("Speed", 0f);
+        _player.GetComponent<Animator>().SetFloat("speedY", 0.1f);
 
         _panelDialogue.gameObject.SetActive(true);
         if (_panelDialogueDown)

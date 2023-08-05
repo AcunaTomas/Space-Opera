@@ -411,7 +411,7 @@ public class Player : MonoBehaviour
     {
         transform.parent = null;
         transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger("idle");
         _animator.SetBool("isDead", false);
         GetComponent<PlayerCombat>().enabled = true;
         GetComponent<Player>().enabled = true;

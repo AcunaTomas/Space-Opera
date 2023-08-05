@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioPlayer;
     [SerializeField]
+    private AudioSource _meleePlayer;
+    [SerializeField]
     private AudioSource _musicSource;
     [SerializeField]
     private AudioSource _audioAlarm;
@@ -18,12 +20,27 @@ public class AudioManager : MonoBehaviour
     private AudioClip _buttonConfirm;
     [SerializeField]
     private AudioClip _musicIntro;
+    [SerializeField]
+    private AudioClip[] _pasoslvl1;
+    private int _lastSound;
+    private List<int> _numbers; 
+    [SerializeField]
+    private AudioClip[] _attackMelee;
+    private int _meleeNum = 0;
+
 
     private void Awake()
     {
         INSTANCE = this;
     }
-
+    private void Start()
+    {
+        _numbers = new List<int>();
+        for (int x = 0 ; x < _pasoslvl1.Length; x++)
+        {
+            _numbers.Add(x);
+        }
+    }
     //ALL_SOUNDS_NOT_LOOPED
     public void PlayUI()
     {
@@ -32,9 +49,27 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayPlayer()
-    {
-        _audioPlayer.clip = _buttonConfirm;
+    {   
+        if (_numbers.Count != _pasoslvl1.Length)
+        {
+            _numbers.Add(_lastSound);
+        }
+        int _random = Random.Range(0,4);
+        _numbers.Remove(_random);
+        _audioPlayer.clip = _pasoslvl1[_numbers[Random.Range(0, _numbers.Count)]];
         _audioPlayer.Play();
+        _lastSound = _random;
+    }
+
+    public void PlayPlayerMelee()
+    { 
+        _meleePlayer.clip = _attackMelee[_meleeNum];
+        _meleePlayer.Play();
+        _meleeNum++;
+        if (_meleeNum == _attackMelee.Length)
+        {
+            _meleeNum = 0;
+        }
     }
 
 

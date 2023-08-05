@@ -105,13 +105,13 @@ public class CinematicDialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && !_ePressed)
+        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_ePressed)
         {
             _ePressed = true;
             MoreDialoguePlz();
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump") || Input.GetButtonDown("Submit"))
         {
              _ePressed = false;
         }
