@@ -49,16 +49,19 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayPlayer()
-    {   
+    {
+        int _random = Random.Range(0,_numbers.Count);
+        int _number = _numbers[_random];
+
+        _audioPlayer.clip = _pasoslvl1[_number];
+        _audioPlayer.Play();
+        
         if (_numbers.Count != _pasoslvl1.Length)
         {
             _numbers.Add(_lastSound);
         }
-        int _random = Random.Range(0,4);
-        _numbers.Remove(_random);
-        _audioPlayer.clip = _pasoslvl1[_numbers[Random.Range(0, _numbers.Count)]];
-        _audioPlayer.Play();
-        _lastSound = _random;
+        _numbers.Remove(_number);
+        _lastSound = _number;
     }
 
     public void PlayPlayerMelee()
