@@ -13,10 +13,12 @@ public class ElevatorController : MonoBehaviour
     private bool iselevatorup;
 
     private bool isActive = false;
-    
-    void Start() 
+    public AudioCheck _audioCheck;
+    public enum AudioCheck
     {
-        
+        ascensor,
+        pinchos,
+        nave
     }
 
     void Update() 
@@ -29,15 +31,17 @@ public class ElevatorController : MonoBehaviour
                 iselevatorup = false;
                 transform.position = downpos.position;
                 isActive = !isActive;
+                StopAudio();
             }
             else if (transform.position.y >= upperpos.position.y)
             {
                 iselevatorup = true;
                 transform.position = upperpos.position;
                 isActive = !isActive;
+                StopAudio();
             }
             
-        } 
+        }
 
     }
 
@@ -57,10 +61,8 @@ public class ElevatorController : MonoBehaviour
 
     public void Interact_Action()
     {
-
         if (transform.position.y < upperpos.position.y && transform.position.y > downpos.position.y)
         {
-
             return;
         }
         isActive = !isActive;
@@ -69,11 +71,38 @@ public class ElevatorController : MonoBehaviour
         {
             iselevatorup = false;
             transform.position = downpos.position;
+            SwitchAudio();
         }
         else if (transform.position.y >= upperpos.position.y)
         {
             iselevatorup = true;
             transform.position = upperpos.position;
+            SwitchAudio();
+        }
+    }
+
+    void SwitchAudio()
+    {
+        switch (_audioCheck)
+        {
+            case AudioCheck.ascensor:
+                AudioManager.INSTANCE.PlayElevatorInteractor();
+                AudioManager.INSTANCE.PlayElevator();
+                break;            
+            default:
+                break;
+        }
+    }
+
+    void StopAudio()
+    {
+        switch (_audioCheck)
+        {
+            case AudioCheck.ascensor:
+                AudioManager.INSTANCE.StopElevator();
+                break;            
+            default:
+                break;
         }
     }
 

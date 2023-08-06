@@ -17,9 +17,23 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioAlarm;
     [SerializeField]
+    private AudioSource _audioInteractor;
+    [SerializeField]
+    private AudioSource _audioElevator;
+    [SerializeField]
     private AudioClip _buttonConfirm;
     [SerializeField]
     private AudioClip _musicIntro;
+    [SerializeField]
+    private AudioClip _elevatorInteractor;
+    [SerializeField]
+    private AudioClip _elevatorSound;
+    [SerializeField]
+    private AudioClip _elevatorStop;
+    [SerializeField]
+    private AudioClip _ambientOutside;
+    [SerializeField]
+    private AudioClip _ambientInside;
     [SerializeField]
     private AudioClip[] _pasoslvl1;
     private int _lastSound;
@@ -75,6 +89,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayElevatorInteractor()
+    {
+        _audioInteractor.clip = _elevatorInteractor;
+        _audioInteractor.Play();
+    }
 
     //ALL_MUSIC OR LOOPED_SOUNDS
     public void PlayMusic()
@@ -104,4 +123,30 @@ public class AudioManager : MonoBehaviour
         _musicSource.UnPause();
     }
 
+    public void PlayAmbientOutsideLVL1()
+    {
+        _musicSource.clip = _ambientOutside;
+        _musicSource.Play();
+    }
+    public void PlayAmbientInsideLVL1()
+    {
+        _musicSource.clip = _ambientInside;
+        _musicSource.Play();
+    }
+
+
+
+    public void PlayElevator()
+    {
+        _audioElevator.loop = true;
+        _audioElevator.clip = _elevatorSound;
+        _audioElevator.Play();
+    }
+    public void StopElevator()
+    {
+        _audioElevator.loop = false;
+        _audioElevator.Stop();
+        _audioElevator.clip = _elevatorStop;
+        _audioElevator.Play();
+    }
 }
