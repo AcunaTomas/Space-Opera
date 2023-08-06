@@ -10,11 +10,12 @@ public class Door : MonoBehaviour
     public void Open()
     {
         animator.SetTrigger("OpenDoor");
+        AudioManager.INSTANCE.PlayDoorOpen();
     }
-
     public void Close()
     {
         animator.SetTrigger("CloseDoor");
+        AudioManager.INSTANCE.PlayDoorClose();
     }
 
     public void BoxCollider2DNoMore()
