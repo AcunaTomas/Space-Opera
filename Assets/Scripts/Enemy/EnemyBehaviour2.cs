@@ -94,6 +94,7 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
+    AudioManager.INSTANCE.PlayEnemyAttack();
 
     attackPoint.gameObject.SetActive(true);
     timerAttack = 0;

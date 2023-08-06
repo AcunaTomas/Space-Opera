@@ -88,10 +88,14 @@ public class ElevatorController : MonoBehaviour
             case AudioCheck.ascensor:
                 AudioManager.INSTANCE.PlayElevatorInteractor();
                 AudioManager.INSTANCE.PlayElevator();
-                break;            
+                break;
+            case AudioCheck.pinchos:
+                AudioManager.INSTANCE.PlayPinchos();
+                break;             
             default:
                 break;
         }
+
     }
 
     void StopAudio()

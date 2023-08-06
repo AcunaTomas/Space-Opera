@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _meleePlayer;
     [SerializeField]
+    private AudioSource _bombPlayer;
+    [SerializeField]
     private AudioSource _musicSource;
     [SerializeField]
     private AudioSource _audioAlarm;
@@ -22,6 +24,10 @@ public class AudioManager : MonoBehaviour
     private AudioSource _audioElevator;
     [SerializeField]
     private AudioSource _audioDoor;
+    [SerializeField]
+    private AudioSource _audioEnemyAttack;
+    [SerializeField]
+    private AudioSource _audioEnemyHit;
     [SerializeField]
     private AudioClip _buttonConfirm;
     [SerializeField]
@@ -33,6 +39,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _elevatorStop;
     [SerializeField]
+    private AudioClip _pinchosSound;
+    [SerializeField]
     private AudioClip _ambientOutside;
     [SerializeField]
     private AudioClip _ambientInside;
@@ -43,12 +51,20 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _doorClose;
     [SerializeField]
+    private AudioClip _alarm;
+    [SerializeField]
+    private AudioClip _enemyAttack;
+    [SerializeField]
+    private AudioClip _enemyHit;
+    [SerializeField]
     private AudioClip[] _pasoslvl1;
     private int _lastSound;
     private List<int> _numbers; 
     [SerializeField]
     private AudioClip[] _attackMelee;
     private int _meleeNum = 0;
+    [SerializeField]
+    private AudioClip _attackBomb;
 
 
     private void Awake()
@@ -109,6 +125,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayPlayerBomb()
+    {
+        _bombPlayer.clip = _attackBomb;
+        _bombPlayer.Play();
+    }
+
     public void PlayElevatorInteractor()
     {
         _audioInteractor.clip = _elevatorInteractor;
@@ -127,6 +149,17 @@ public class AudioManager : MonoBehaviour
         _audioDoor.Play();
     }
 
+    public void PlayEnemyAttack()
+    {
+        _audioEnemyAttack.clip = _enemyAttack;
+        _audioEnemyAttack.Play();
+    }
+
+        public void PlayPinchos()
+    {
+        _audioElevator.clip = _pinchosSound;
+        _audioElevator.Play();
+    }
     //ALL_MUSIC OR LOOPED_SOUNDS
     public void PlayMusic()
     {
@@ -136,7 +169,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAlarm()
     {
-        _audioAlarm.clip = _buttonConfirm;
+        _audioAlarm.clip = _alarm;
         _audioAlarm.Play();
     }
 

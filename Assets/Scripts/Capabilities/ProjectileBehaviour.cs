@@ -55,6 +55,7 @@ public class ProjectileBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.INSTANCE.PlayPlayerBomb();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         
