@@ -4713,7 +4713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622087858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7653,6 +7653,7 @@ MonoBehaviour:
   _elevatorStop: {fileID: 8300000, guid: a53f5dbb3c23e7a44b858d554569337e, type: 3}
   _ambientOutside: {fileID: 8300000, guid: 65798ddaf7d7f8b4082f4dc184eb1b4c, type: 3}
   _ambientInside: {fileID: 8300000, guid: 1f28c8b28003bd34882a583f7c71db34, type: 3}
+  _fallPlayer: {fileID: 8300000, guid: 58a18890ffe6fae45af9aa59fefc0cfa, type: 3}
   _pasoslvl1:
   - {fileID: 8300000, guid: 1690064cf6a5067468e6323e89be0878, type: 3}
   - {fileID: 8300000, guid: 44872d3956ec61547b085026b8542afc, type: 3}
@@ -15381,7 +15382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: layer1

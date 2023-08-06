@@ -35,6 +35,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _ambientInside;
     [SerializeField]
+    private AudioClip _fallPlayer;
+    [SerializeField]
     private AudioClip[] _pasoslvl1;
     private int _lastSound;
     private List<int> _numbers; 
@@ -64,6 +66,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPlayer()
     {
+        _audioPlayer.volume = 0.03f;
         int _random = Random.Range(0,_numbers.Count);
         int _number = _numbers[_random];
 
@@ -76,6 +79,13 @@ public class AudioManager : MonoBehaviour
         }
         _numbers.Remove(_number);
         _lastSound = _number;
+    }
+
+    public void PlayPlayerFall()
+    {
+        _audioPlayer.volume = 0.1f;
+        _audioPlayer.clip = _fallPlayer;
+        _audioPlayer.Play();
     }
 
     public void PlayPlayerMelee()
