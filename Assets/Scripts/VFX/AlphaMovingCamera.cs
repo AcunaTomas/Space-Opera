@@ -6,7 +6,13 @@ public class AlphaMovingCamera : MonoBehaviour
 {
     float i = 4f;
     float iIncrement = 0.0007f;
+    public GameObject nave;
 
+
+    void Start()
+    {
+        AudioManager.INSTANCE.PlayMusic();
+    }
     void Update()
     {
         i += iIncrement;
@@ -16,6 +22,7 @@ public class AlphaMovingCamera : MonoBehaviour
         if (transform.position.x >= 28 || transform.position.x <= 3)
         {
             iIncrement = iIncrement * -1;
+            nave.GetComponent<SpriteRenderer>().flipX = !nave.GetComponent<SpriteRenderer>().flipX;
         }
 
         if (Input.GetAxis("Submit") > 0 || Input.GetAxis("Jump") > 0)

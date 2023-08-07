@@ -64,7 +64,7 @@ public class ButtonDialogue : MonoBehaviour
                     Debug.Log(_changeAudio);
                     break;
                 case CollisionDialogue.ChangeAudio.especial:
-                    AudioManager.INSTANCE.PlayPlayerFall();
+                    AudioManager.INSTANCE.PlayDialogueInteractor();
                     Debug.Log(_changeAudio);
                     break;
                 default:

@@ -8,11 +8,15 @@ public class Promp : MonoBehaviour
     private Vector3 _position;
     private GameObject _interactable;
 
+    void Start()
+    {
+        _interactable = GameManager.INSTANCE.BUTTON_INTERACT;
+    }
+    
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            _interactable = GameManager.INSTANCE.BUTTON_INTERACT;
             _interactable.transform.parent = transform;
             _interactable.transform.localPosition = _position;
             _interactable.SetActive(true);

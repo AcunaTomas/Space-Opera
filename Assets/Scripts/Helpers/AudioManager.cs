@@ -98,12 +98,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPlayer()
     {
-        if (_audioPlayer.isPlaying && _audioPlayer.clip == _fallPlayer)
-        {
-            return;
-        }
-
-        _audioPlayer.volume = 0.03f;
         int _random = Random.Range(0,_numbers.Count);
         int _number = _numbers[_random];
 
@@ -134,9 +128,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPlayerFall()
     {
-        _audioPlayer.volume = 0.1f;
-        _audioPlayer.clip = _fallPlayer;
-        _audioPlayer.Play();
+        _audioPlayerFall.volume = 0.1f;
+        _audioPlayerFall.clip = _fallPlayer;
+        _audioPlayerFall.Play();
     }
 
     public void PlayPlayerMelee()
