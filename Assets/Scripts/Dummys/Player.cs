@@ -223,7 +223,7 @@ public class Player : MonoBehaviour
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
                 {
-                    AudioManager.INSTANCE.PlayUI();
+                    AudioManager.INSTANCE.PlayPlayerJump();
                     _playerFall = false;
                 }
 

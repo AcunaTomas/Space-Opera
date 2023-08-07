@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioPlayer;
     [SerializeField]
+    private AudioSource _audioPlayerFall;
+    [SerializeField]
     private AudioSource _meleePlayer;
     [SerializeField]
     private AudioSource _bombPlayer;
@@ -45,6 +47,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _ambientInside;
     [SerializeField]
+    private AudioClip _quilomboMusic;
+    [SerializeField]
     private AudioClip _fallPlayer;
     [SerializeField]
     private AudioClip _doorOpen;
@@ -58,6 +62,10 @@ public class AudioManager : MonoBehaviour
     private AudioClip _enemyHit;
     [SerializeField]
     private AudioClip _interactDialogue;
+    [SerializeField]
+    private AudioClip _playerJump;
+    [SerializeField]
+    private AudioClip _playerHit;
     [SerializeField]
     private AudioClip[] _pasoslvl1;
     private int _lastSound;
@@ -94,6 +102,7 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
+
         _audioPlayer.volume = 0.03f;
         int _random = Random.Range(0,_numbers.Count);
         int _number = _numbers[_random];
@@ -107,6 +116,20 @@ public class AudioManager : MonoBehaviour
         }
         _numbers.Remove(_number);
         _lastSound = _number;
+    }
+
+    public void PlayPlayerHit()
+    {
+        _audioPlayerFall.volume = 0.3f;
+        _audioPlayerFall.clip = _playerHit;
+        _audioPlayerFall.Play();
+    }
+
+    public void PlayPlayerJump()
+    {
+        _audioPlayerFall.volume = 0.15f;
+        _audioPlayerFall.clip = _playerJump;
+        _audioPlayerFall.Play();
     }
 
     public void PlayPlayerFall()
@@ -157,6 +180,12 @@ public class AudioManager : MonoBehaviour
         _audioDoor.Play();
     }
 
+    public void PlayEnemyHit()
+    {
+        _audioEnemyHit.clip = _enemyHit;
+        _audioEnemyHit.Play();
+    }
+
     public void PlayEnemyAttack()
     {
         _audioEnemyAttack.clip = _enemyAttack;
@@ -179,6 +208,13 @@ public class AudioManager : MonoBehaviour
     {
         _audioAlarm.clip = _alarm;
         _audioAlarm.Play();
+    }
+
+    public void PlayQuilombo()
+    {
+
+        _musicSource.clip = _quilomboMusic;
+        _musicSource.Play();
     }
 
     public void StopMusic()

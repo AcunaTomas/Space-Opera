@@ -113,6 +113,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+            AudioManager.INSTANCE.PlayEnemyHit();
         }
 
         foreach (Collider2D door in hitDoor)
@@ -136,6 +137,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+            AudioManager.INSTANCE.PlayEnemyHit();
         }
 
         foreach (Collider2D door in hitDoor)
@@ -160,6 +162,7 @@ public class PlayerCombat : MonoBehaviour
         {
             enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
+            AudioManager.INSTANCE.PlayEnemyHit();
         }
 
         foreach (Collider2D door in hitDoor)

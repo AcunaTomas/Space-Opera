@@ -18,10 +18,14 @@ public class CameraMovement : MonoBehaviour
     private bool _spacebarPressed = false;
     private bool _stopDoingThis = false;
 
-    IEnumerator Jump()
+    void Start()
     {
         AudioManager.INSTANCE.PlayMusic();
-        yield return new WaitForSeconds(5f);
+    }
+    
+    IEnumerator Jump()
+    {
+        yield return new WaitForSeconds(6f);
         if (!_stopDoingThis)
         {
             _allButtons.gameObject.SetActive(true);

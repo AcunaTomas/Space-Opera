@@ -6,21 +6,9 @@ using UnityEngine.SceneManagement;
 public class FirstCutscene : MonoBehaviour
 {
 
-    public Animator animator;
-
-    /* void Update()
+    void Start()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            Debug.Log("akfjasjf");
-            SceneManager.LoadScene("Tutorial");
-        }
+        AudioManager.INSTANCE.PlayMusic();
     }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1f);
-        ScenesManager.Instance.LoadNewGame();
-    } */
 
 }
