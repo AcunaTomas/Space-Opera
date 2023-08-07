@@ -47,10 +47,11 @@ public class Player : MonoBehaviour
     private Animator _animator;
     [SerializeField]
     private UpdateBars _healthBar;
-
-
     [SerializeField]
     private UnityEvent _callWhat;
+    private bool _playerFall = false;
+
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -208,6 +209,11 @@ public class Player : MonoBehaviour
                 _animator.SetBool("wall", false);
                 _maxVerticalSpeed = speedCaps.y;
                 _xSpeedNullifier = 1;
+                // if (_playerFall)
+                // {
+                //     AudioManager.INSTANCE.PlayPlayerFall();
+                //     _playerFall = false;
+                // }
 
             }
             if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
@@ -276,6 +282,7 @@ public class Player : MonoBehaviour
         if(jumpLimit == 0)
         {
             canIjump = false;
+            // _playerFall = true;
         }
 
         wallijumpy = false;

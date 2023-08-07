@@ -57,6 +57,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _enemyHit;
     [SerializeField]
+    private AudioClip _interactDialogue;
+    [SerializeField]
     private AudioClip[] _pasoslvl1;
     private int _lastSound;
     private List<int> _numbers; 
@@ -134,6 +136,12 @@ public class AudioManager : MonoBehaviour
     public void PlayElevatorInteractor()
     {
         _audioInteractor.clip = _elevatorInteractor;
+        _audioInteractor.Play();
+    }
+
+    public void PlayDialogueInteractor()
+    {
+        _audioInteractor.clip = _interactDialogue;
         _audioInteractor.Play();
     }
 

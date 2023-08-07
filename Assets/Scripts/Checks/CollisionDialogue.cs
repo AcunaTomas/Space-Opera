@@ -25,6 +25,13 @@ public class CollisionDialogue : MonoBehaviour
     private bool _actualFlip;
     private GameObject _interactable;
 
+    public ChangeAudio _changeAudio;
+    public enum ChangeAudio
+    {
+        dialogo,
+        especial
+    }
+
     void Awake()
     {
         Physics2D.IgnoreCollision(_player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
@@ -147,7 +154,7 @@ public class CollisionDialogue : MonoBehaviour
             _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,-160f);
         }
         _panelDialogue.ZONENAME = _id;
-        _panelDialogue.FirstDialogue();
+        _panelDialogue.FirstDialogue(_changeAudio);
 
     }
 
