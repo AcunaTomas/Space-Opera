@@ -10,10 +10,21 @@ public class CameraController : MonoBehaviour
     {
         GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.8f;
     }
-
+    public void LookRight()
+    {
+        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.3f;
+    }
     public void BackToNormal()
     {
         GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.5f;
+    }
+    public void LookAtTarget(Transform target)
+    {
+        GetComponent<CinemachineVirtualCamera>().Follow = target;
+    }
+    public void LookAtPlayer()
+    {
+        GetComponent<CinemachineVirtualCamera>().Follow = GameObject.FindWithTag("Player").transform;
     }
 
 }

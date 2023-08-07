@@ -44,7 +44,10 @@ public class ButtonDialogue : MonoBehaviour
         {
             case 1:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1);
-                break;            
+                break;
+            case 2:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2);
+                break;
             default:
                 break;
         }
@@ -130,6 +133,12 @@ public class ButtonDialogue : MonoBehaviour
             {
                 GameObject.FindWithTag("Key").SetActive(false);
             }   
+
+            if ((ZONENAME == "lvl02_brody_03"))
+            {
+                GameObject.FindWithTag("GenericEvent").SendMessage("manualDo");
+            }
+
             StartCoroutine(Fold(piloto));
             if (_dialogueDeactivate != null)
             {
@@ -142,7 +151,12 @@ public class ButtonDialogue : MonoBehaviour
         {
             GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
         }
-        
+
+        if ((ZONENAME == "lvl02_brody_03") && (_cont == 33))
+        {
+            _player.GetComponent<Animator>().SetBool("BitoMode", true);
+        }
+
         DifferentDialogues();
     }
 
@@ -190,6 +204,7 @@ public class ButtonDialogue : MonoBehaviour
     {
         _textParts = _zone.DIALOGUES[_index].STRINGS[_cont].Split('*');
 
+
         if (_textParts[0] == "Narrator")
         {
             _characterPanelName.SetActive(false);
@@ -207,6 +222,11 @@ public class ButtonDialogue : MonoBehaviour
 
             _dialogueText.text = _textParts[2];
             _characterName.text = _textParts[0];
+        }
+
+        if (_textParts[0] == "NarratorBrody")
+        {
+            _characterPanelName.SetActive(false);
         }
     }
 

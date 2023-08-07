@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private float jumpLimit = 0f;
     [SerializeField]
     private float Xspeed = 0f;
-    private Vector2 speedCaps = new Vector2(1.2f, 5f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
+    private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual

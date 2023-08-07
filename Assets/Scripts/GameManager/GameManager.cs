@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        if (LEVEL < 1 || LEVEL > 4 )
+        {
+            Debug.Log("El nivel se encuentra fuera del rango permitido (1-4)");
+        }
     }
     
     void Update()
