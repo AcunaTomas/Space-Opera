@@ -12,7 +12,14 @@ public class PulsatingFilter : MonoBehaviour
     void Awake()
     {
         b = GetComponent<Graphic>();
+        gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(1f,1f);
+        gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0f,0f);
+    }
 
+    void Start()
+    {
+        gameObject.GetComponent<RectTransform>().offsetMin = new Vector2(0f,0f);
+        gameObject.GetComponent<RectTransform>().offsetMax = new Vector2(0f,0f);
     }
 
     void Update()
