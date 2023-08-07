@@ -45,7 +45,7 @@ public class Event : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("trig");
+        //Debug.Log("trig");
         if (other.gameObject.tag  == "Player")
         {
             doTheThing(options);

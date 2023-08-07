@@ -93,7 +93,7 @@ public class ButtonDialogue : MonoBehaviour
         public ZoneData[] DIALOGUES;
     }
 
-    public void MoreDialoguePlz()
+    public void MoreDialoguePlz() //This has events hardcoded into it, rewrite it before it becomes too powerful.
     {
         _cont++;
 
@@ -108,6 +108,12 @@ public class ButtonDialogue : MonoBehaviour
             {
                 GameObject.FindWithTag("Key").SetActive(false);
             }
+
+            if ((ZONENAME == "lvl02_brody_03"))
+            {
+                GameObject.FindWithTag("GenericEvent").SendMessage("manualDo");
+            }
+
             StartCoroutine(Fold());
             return;
         }
@@ -116,7 +122,12 @@ public class ButtonDialogue : MonoBehaviour
         {
             GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
         }
-        
+
+        if ((ZONENAME == "lvl02_brody_03") && (_cont == 33))
+        {
+            _player.GetComponent<Animator>().SetBool("BitoMode", true);
+        }
+
         DifferentDialogues();
     }
 
@@ -164,6 +175,7 @@ public class ButtonDialogue : MonoBehaviour
     {
         _textParts = _zone.DIALOGUES[_index].STRINGS[_cont].Split('*');
 
+
         if (_textParts[0] == "Narrator")
         {
             _characterPanelName.SetActive(false);
@@ -181,6 +193,11 @@ public class ButtonDialogue : MonoBehaviour
 
             _dialogueText.text = _textParts[2];
             _characterName.text = _textParts[0];
+        }
+
+        if (_textParts[0] == "NarratorBrody")
+        {
+            _characterPanelName.SetActive(false);
         }
     }
 

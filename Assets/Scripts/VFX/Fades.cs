@@ -48,21 +48,21 @@ public class Fades : MonoBehaviour
 
     private void TilemapFader()
     {
-        print("FadeIN");
-        print( _tilemap.color.a < 1);
-        print("FadeOUT");
-        print(_tilemap.color.a > 1);
+        //print("FadeIN");
+        //print( _tilemap.color.a < 1);
+        //print("FadeOUT");
+        //print(_tilemap.color.a > 1);
 
 
         if (_visible == true && _tilemap.color.a < 1)
         {
             _tilemap.color += new Color(0, 0, 0,  _fadeTime);
-            print("FadeIN");
+            //print("FadeIN");
         }
         if (_visible == false && _tilemap.color.a > 0)
         {
             _tilemap.color -= new Color(0, 0, 0, _fadeTime);
-            print("FadeOUT");
+            //print("FadeOUT");
         }
     }
 
@@ -71,12 +71,12 @@ public class Fades : MonoBehaviour
         if (_visible == true && img.color.a < 1)
         {
             img.color += new Color(0, 0, 0,  _fadeTime);
-            print("FadeIN");
+            //print("FadeIN");
         }
         if (_visible == false && img.color.a > 0)
         {
             img.color -= new Color(0, 0, 0, _fadeTime);
-            print("FadeOUT");
+            //print("FadeOUT");
         }
     }
 }
