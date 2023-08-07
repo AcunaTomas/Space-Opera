@@ -57,11 +57,11 @@ public class ButtonDialogue : MonoBehaviour
             switch (_changeAudio)
             {
                 case CollisionDialogue.ChangeAudio.dialogo:
-                    //AudioManager.INSTANCE.PlayDialogueInteractor();
+                    AudioManager.INSTANCE.PlayDialogueInteractor();
                     Debug.Log(_changeAudio);
                     break;
                 case CollisionDialogue.ChangeAudio.especial:
-                    //AudioManager.INSTANCE.PlayPlayerFall();
+                    AudioManager.INSTANCE.PlayPlayerFall();
                     Debug.Log(_changeAudio);
                     break;
                 default:
@@ -86,7 +86,6 @@ public class ButtonDialogue : MonoBehaviour
             _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
 
             DifferentDialogues();
-            AudioManager.INSTANCE.PlayDialogueInteractor();
             _notFirstDialogue = true;
             return;
         }
