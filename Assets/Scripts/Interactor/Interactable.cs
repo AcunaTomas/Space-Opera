@@ -82,7 +82,7 @@ public class Interactable : MonoBehaviour
             _timePressed = 0;
         }
 
-        if (((Input.GetAxis("Submit") > 0) || (Input.GetAxis("Jump") > 0)) && _keyHeld == true)
+        if ((Input.GetAxis("Submit") > 0) && _keyHeld == true)
         {
             //Debug.Log("hold");
 
@@ -96,7 +96,7 @@ public class Interactable : MonoBehaviour
 
         if ((Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance) && !moved)
         {
-            if ((Input.GetAxis("Jump") > 0 || Input.GetAxis("Submit") > 0) && _timePressed <= 0)
+            if ((Input.GetAxis("Submit") > 0) && _timePressed <= 0)
             {
                 interactAction.Invoke();
                 Debug.Log("Interact");
@@ -108,7 +108,7 @@ public class Interactable : MonoBehaviour
         {
             if (moved)
             {
-                if ((Input.GetAxis("Jump") > 0 || Input.GetAxis("Submit") > 0) && _timePressed <= 0)
+                if ((Input.GetAxis("Submit") > 0) && _timePressed <= 0)
                 {
                     interactAction.Invoke();
                     Debug.Log("Interact");
