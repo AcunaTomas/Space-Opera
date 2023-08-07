@@ -71,7 +71,7 @@ public class Event : MonoBehaviour
             case eventType.EndLevel:
                 {
                     print("Level Ended");
-                    SceneManager.LoadScene(sceneName); //Replace with an actual scene loader/handler for transitions.
+                    ScenesManager.Instance.LoadNextScene(sceneName); //Replace with an actual scene loader/handler for transitions.
                     break;
                 }
             case eventType.Teleport:

@@ -136,7 +136,7 @@ public class ButtonDialogue : MonoBehaviour
 
             if ((ZONENAME == "lvl02_brody_03"))
             {
-                GameObject.FindWithTag("GenericEvent").SendMessage("manualDo");
+                ScenesManager.Instance.LoadNextScene("EndDemo");
             }
 
             StartCoroutine(Fold(piloto));

@@ -21,7 +21,8 @@ public class CinematicDialogue : MonoBehaviour
     private KeyCode _keyNextDialogue;
     [SerializeField]
     private Animator _animatorCinematic;
-   
+    [SerializeField]
+    private string _sceneName;
     private bool _ePressed = false;
 
     void Start()
@@ -70,7 +71,7 @@ public class CinematicDialogue : MonoBehaviour
         {
             transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
-            ScenesManager.Instance.LoadNextScene();//(ScenesManager.Scene.Tutorial);
+            ScenesManager.Instance.LoadNextScene(_sceneName);//(ScenesManager.Scene.Tutorial);
 
             _cont = 0;
             return;

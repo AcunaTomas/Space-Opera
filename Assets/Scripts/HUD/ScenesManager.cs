@@ -42,18 +42,20 @@ public class ScenesManager : MonoBehaviour
     } 
 
     //esto por si hay 2 o más niveles o escenas, etc
-    public void LoadNextScene()
+    public void LoadNextScene(string SceneName)
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        Debug.Log(SceneManager.GetSceneByName(SceneName).IsValid());
+        Debug.Log(SceneName);
+        StartCoroutine(LoadLevel(SceneName));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator LoadLevel(string SceneName)
     {
         transition.SetTrigger("SceneStart");
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(SceneName);
     }
 
     public void LoadMainMenu()

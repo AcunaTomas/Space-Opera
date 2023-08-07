@@ -34,11 +34,13 @@ public class CollisionDialogue : MonoBehaviour
 
     void Awake()
     {
+           _player = GameObject.FindWithTag("Player");
         Physics2D.IgnoreCollision(_player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(_player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
     void Start()
     {
+        _player = GameObject.FindWithTag("Player");
         _panelDialogue = GameManager.INSTANCE.CANVAS;
         if (_checkpoint || _interactableOnly)
         {
@@ -46,6 +48,7 @@ public class CollisionDialogue : MonoBehaviour
         }
         _originalFlip = gameObject.GetComponent<SpriteRenderer>().flipX;
         _actualFlip = _originalFlip;
+        
     }
 
     void OnTriggerEnter2D(Collider2D col)
