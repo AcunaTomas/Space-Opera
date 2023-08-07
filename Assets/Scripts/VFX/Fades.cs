@@ -2,21 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Fades : MonoBehaviour
 {
     private Tilemap _tilemap;
 
+    private SpriteRenderer img;
+
     private float _fadeTime = 0.05f;
 
     private bool _visible = false;
 
+    [SerializeField]
+    private bool _mode;
+
     void Start()
     {
-        _tilemap = GetComponent<Tilemap>();
+        if (_mode == true)
+        {
+            _tilemap = GetComponent<Tilemap>();
+        }
+        else
+        {
+            img = GetComponent<SpriteRenderer>();
+        }
     }
 
     void FixedUpdate()
+    {
+        if (_mode == true)
+        {
+            TilemapFader();
+        }
+        else
+        {
+            SpriteFade();
+        }
+    }
+
+    public void ToggleVisible(bool mode)
+    {
+        _visible = mode;
+    }
+
+    private void TilemapFader()
     {
         print("FadeIN");
         print( _tilemap.color.a < 1);
@@ -36,9 +66,17 @@ public class Fades : MonoBehaviour
         }
     }
 
-    public void ToggleVisible(bool mode)
+    private void SpriteFade()
     {
-        _visible = mode;
+        if (_visible == true && img.color.a < 1)
+        {
+            img.color += new Color(0, 0, 0,  _fadeTime);
+            print("FadeIN");
+        }
+        if (_visible == false && img.color.a > 0)
+        {
+            img.color -= new Color(0, 0, 0, _fadeTime);
+            print("FadeOUT");
+        }
     }
-
 }
