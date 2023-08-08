@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
     private GameObject player;
+    private int attackDamage;
 
     [SerializeField]
     private bool _Inmortal = false;
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        attackDamage = damage;
         Debug.Log("Daño");
         animator.SetTrigger("Hurt");
         GetComponent<EnemyBehaviour2>().enabled = false;
@@ -61,7 +63,15 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
         Debug.Log("Enemy Died");
-        animator.SetTrigger("Die");
+        if (attackDamage < 50)
+        {
+            animator.SetTrigger("Die");
+        }
+        else
+        {
+            animator.SetTrigger("DieBomb");
+        }
+        
         _ub.EnergyPlusOne();
 
         Destroy(GetComponent<Rigidbody2D>());
