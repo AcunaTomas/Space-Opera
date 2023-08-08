@@ -371,6 +371,101 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26163263}
   m_CullTransparentMesh: 1
+--- !u!1 &28748282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28748283}
+  - component: {fileID: 28748285}
+  - component: {fileID: 28748284}
+  m_Layer: 0
+  m_Name: SonidoNaveStop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &28748283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28748282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.45, y: -1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 81820185}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &28748284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28748282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e27efbc730fc3544a3a902dd33f36e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocation: {x: 0, y: 0}
+  _thingToSpawn: {fileID: 0}
+  who: {fileID: 0}
+  where: {x: 0, y: 0}
+  sceneName: 
+  event_name: 
+  interactAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1011243896}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: StopElevator
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  external: 0
+  single_use: 1
+  options: 3
+--- !u!61 &28748285
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28748282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.11204934, y: 0.1318233}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9253001, y: 0.69241476}
+  m_EdgeRadius: 0
 --- !u!1 &65104074
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +571,7 @@ Transform:
   - {fileID: 1100546945}
   - {fileID: 1337919241}
   - {fileID: 1374699480}
+  - {fileID: 28748283}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7926,6 +8022,7 @@ MonoBehaviour:
   _elevatorInteractor: {fileID: 8300000, guid: 703d349f0cd7a6042b446eea59f89b7f, type: 3}
   _elevatorSound: {fileID: 8300000, guid: 40194d393bab7914ea4bdf0ef8a15e42, type: 3}
   _elevatorStop: {fileID: 8300000, guid: a53f5dbb3c23e7a44b858d554569337e, type: 3}
+  _elevatorNaveSound: {fileID: 8300000, guid: 7c05affffd505d84aa4b45e793b54524, type: 3}
   _pinchosSound: {fileID: 8300000, guid: de76d0befa9bf694cbe4a70a7c4afd81, type: 3}
   _ambientOutside: {fileID: 8300000, guid: e3d4765303a840e42989422bbb6c2b5b, type: 3}
   _ambientInside: {fileID: 8300000, guid: 30410c674deb0104f8c1621811bcc18a, type: 3}
@@ -16269,7 +16366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: layer1

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class AlphaMovingCamera : MonoBehaviour
 {
     float i = 4f;
-    float iIncrement = 0.0007f;
+    float iIncrement = 0.007f;
     public GameObject nave;
 
 
@@ -13,7 +13,7 @@ public class AlphaMovingCamera : MonoBehaviour
     {
         AudioManager.INSTANCE.PlayMusic();
     }
-    void Update()
+    void FixedUpdate()
     {
         i += iIncrement;
 

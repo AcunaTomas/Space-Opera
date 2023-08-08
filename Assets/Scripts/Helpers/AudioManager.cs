@@ -41,6 +41,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _elevatorStop;
     [SerializeField]
+    private AudioClip _elevatorNaveSound;
+    [SerializeField]
     private AudioClip _pinchosSound;
     [SerializeField]
     private AudioClip _ambientOutside;
@@ -188,6 +190,7 @@ public class AudioManager : MonoBehaviour
 
         public void PlayPinchos()
     {
+        _audioElevator.volume = 0.448f;
         _audioElevator.clip = _pinchosSound;
         _audioElevator.Play();
     }
@@ -241,6 +244,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayElevator()
     {
+        _audioElevator.volume = 0.448f;
         _audioElevator.loop = true;
         _audioElevator.clip = _elevatorSound;
         _audioElevator.Play();
@@ -250,6 +254,14 @@ public class AudioManager : MonoBehaviour
         _audioElevator.loop = false;
         _audioElevator.Stop();
         _audioElevator.clip = _elevatorStop;
+        _audioElevator.Play();
+    }
+
+    public void PlayElevatorNave()
+    {
+        _audioElevator.volume = 0.2f;
+        _audioElevator.loop = false;
+        _audioElevator.clip = _elevatorNaveSound;
         _audioElevator.Play();
     }
 }

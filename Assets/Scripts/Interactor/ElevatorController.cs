@@ -91,7 +91,10 @@ public class ElevatorController : MonoBehaviour
                 break;
             case AudioCheck.pinchos:
                 AudioManager.INSTANCE.PlayPinchos();
-                break;             
+                break;  
+            case AudioCheck.nave:
+                AudioManager.INSTANCE.PlayElevatorNave();
+                break;            
             default:
                 break;
         }

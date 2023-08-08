@@ -139,6 +139,11 @@ public class ButtonDialogue : MonoBehaviour
                 ScenesManager.Instance.LoadNextScene("EndDemo");
             }
 
+            if ((ZONENAME == "lvl02_scrap_knowing"))
+            {
+                GameObject.FindWithTag("Translator").SetActive(false);
+            }
+
             StartCoroutine(Fold(piloto));
             if (_dialogueDeactivate != null)
             {
@@ -153,31 +158,33 @@ public class ButtonDialogue : MonoBehaviour
         }
 
 
+        if(GameManager.INSTANCE.LEVEL == 2)
+        {
+            if ((ZONENAME == "lvl02_brody_03") && (_cont == 7))
+            {
+                GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("ModoJajas", true);
+            }
+            else
+            {
+                GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("ModoJajas", false);
+            }
 
-        if ((ZONENAME == "lvl02_brody_03") && (_cont == 7))
-        {
-            GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("ModoJajas", true);
-        }
-        else
-        {
-            GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("ModoJajas", false);
-        }
+            if ((ZONENAME == "lvl02_brody_03") && (_cont == 27 || _cont == 28 || _cont == 38))
+            {
+                GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("EdgyModo", true);
+            }
+            else
+            {
+                GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("EdgyModo", false);
+            }
 
-        if ((ZONENAME == "lvl02_brody_03") && (_cont == 27 || _cont == 28 || _cont == 38))
-        {
-            GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("EdgyModo", true);
-        }
-        else
-        {
-            GameObject.Find("HolyShitHereComeDatBOI").GetComponent<Animator>().SetBool("EdgyModo", false);
-        }
-
-
-        if ((ZONENAME == "lvl02_brody_03") && (_cont == 33))
-        {
-            _player.GetComponent<Animator>().SetBool("BitoMode", true);
-        }
+            if ((ZONENAME == "lvl02_brody_03") && (_cont == 33))
+            {
+                _player.GetComponent<Animator>().SetBool("BitoMode", true);
+            }
         
+        }
+
 
         DifferentDialogues();
     }

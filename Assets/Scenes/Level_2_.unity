@@ -260,7 +260,7 @@ MonoBehaviour:
   _id: lvl02_scrap_not_knowing
   _startDialogue: 101
   _checkpoint: 0
-  _interactableOnly: 0
+  _interactableOnly: 1
   _panelDialogueDown: 0
   _changeAudio: 0
 --- !u!61 &29964450
@@ -2601,6 +2601,7 @@ MonoBehaviour:
   _elevatorInteractor: {fileID: 8300000, guid: 703d349f0cd7a6042b446eea59f89b7f, type: 3}
   _elevatorSound: {fileID: 8300000, guid: 40194d393bab7914ea4bdf0ef8a15e42, type: 3}
   _elevatorStop: {fileID: 8300000, guid: a53f5dbb3c23e7a44b858d554569337e, type: 3}
+  _elevatorNaveSound: {fileID: 0}
   _pinchosSound: {fileID: 8300000, guid: de76d0befa9bf694cbe4a70a7c4afd81, type: 3}
   _ambientOutside: {fileID: 8300000, guid: e3d4765303a840e42989422bbb6c2b5b, type: 3}
   _ambientInside: {fileID: 8300000, guid: 30410c674deb0104f8c1621811bcc18a, type: 3}
@@ -3034,7 +3035,7 @@ GameObject:
   - component: {fileID: 564134293}
   m_Layer: 0
   m_Name: TrashTranslator
-  m_TagString: Untagged
+  m_TagString: Translator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3165,7 +3166,7 @@ MonoBehaviour:
   _id: lvl02_scrap_knowing
   _startDialogue: 101
   _checkpoint: 0
-  _interactableOnly: 0
+  _interactableOnly: 1
   _panelDialogueDown: 0
   _changeAudio: 0
 --- !u!61 &564134296
@@ -7508,7 +7509,7 @@ MonoBehaviour:
   - NAME: 8170
     EMOTIONS:
     - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 95482dbea4b7ed747a4342ffcc24dcad, type: 3}
+      ICON: {fileID: 2800000, guid: 3d04ec42947521942a31bba959ca91e9, type: 3}
   - NAME: 6161
     EMOTIONS:
     - EMOTION: normal
