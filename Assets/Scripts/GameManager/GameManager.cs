@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistance
 {
     
     public static GameManager INSTANCE;
@@ -15,11 +15,6 @@ public class GameManager : MonoBehaviour
     public bool PLAYER_COMBAT = false;
     public ButtonDialogue CANVAS;
 
-    //estas últimas cosas se borran después, solo es para probar
-    /* public KeyCode MORIR;
-    private bool _ePressed = false;
-    public Slider SLIDER; */
-
     private void Awake()
     {
         INSTANCE = this;
@@ -30,30 +25,22 @@ public class GameManager : MonoBehaviour
     {
         if (LEVEL < 1 || LEVEL > 4 )
         {
-            Debug.Log("El nivel se encuentra fuera del rango permitido (1-4)");
+            Debug.LogError("El nivel se encuentra fuera del rango permitido (1-4)");
         }
     }
     
     void Update()
     {
-        /* if (Input.GetKeyDown(MORIR) && !_ePressed)
-        {
-            _ePressed = true;
-            if (SLIDER.value != 0)
-            {
-                SLIDER.value-=20;
-            }
-            if (SLIDER.value <= 0)
-            {
-                PLAYER.transform.SetParent(null);
-                PLAYER.transform.localPosition = new Vector3 (CHECKPOINT.x, CHECKPOINT.y, CHECKPOINT.z);
-                SLIDER.value = SLIDER.maxValue;
-            }
-        }
+        
+    }
 
-        if (Input.GetKeyUp(MORIR))
-        {
-            _ePressed = false;
-        } */
+    void IDataPersistance.LoadData(GameData data)
+    {
+        INSTANCE = data.GM;
+    }
+
+    void IDataPersistance.SaveData(ref GameData data)
+    {
+        data.GM = INSTANCE;
     }
 }
