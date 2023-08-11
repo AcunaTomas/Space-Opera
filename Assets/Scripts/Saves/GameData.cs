@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public GameManager GM;
+    public int LEVEL;
 
     public GameData()
     {
-        GM = GameManager.INSTANCE;
+        LEVEL = 1;
     }
 }
