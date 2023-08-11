@@ -19,6 +19,12 @@ public class ProjectileBehaviour : MonoBehaviour
 
     public Animator animator;
 
+    private bool _coolingCollision = false;
+
+    public float bombDuration = 0.5f;
+    private bool isBombActive = false;
+    private float queryStartTime;
+
     private void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
@@ -27,16 +33,37 @@ public class ProjectileBehaviour : MonoBehaviour
         rango = GetComponent<BoxCollider2D>();
         Throw();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         if(!thrown)
         {
             transform.position += transform.right * speed * Time.deltaTime;
         }
+
+        if (isBombActive)
+        {
+            if (Time.time - queryStartTime >= bombDuration)
+            {
+                isBombActive = false;
+            }
+            else
+            {
+                Debug.Log("Explota");
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
+                //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            
+                foreach (Collider2D enemyCollider in hitEnemies)
+                {
+                    enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
+                }
+            }
+        }
+
     }
 
     void Throw()
@@ -55,17 +82,34 @@ public class ProjectileBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        AudioManager.INSTANCE.PlayPlayerBomb();
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        
-        foreach (Collider2D enemyCollider in hitEnemies)
+        if (!_coolingCollision)
         {
-            enemyCollider.GetComponent<Enemy>().TakeDamage(bombDamage);
-        }
+            isBombActive = true;
+            queryStartTime = Time.time;
 
-        animator.SetTrigger("Explode");
-        Destroy(gameObject, 0.7f);
+            AudioManager.INSTANCE.PlayPlayerBomb();
+            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            
+            //foreach (Collider2D enemyCollider in hitEnemies)
+            //{
+                //enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
+            //}
+
+            animator.SetTrigger("Explode");
+            Destroy(gameObject, 0.7f);
+
+            _coolingCollision = true;
+            StartCoroutine(StartCooldown());
+        }
+        
+    }
+
+    private IEnumerator StartCooldown()
+    {
+        yield return new WaitForSeconds(0.7f);
+
+        _coolingCollision = false;
     }
 
     void OnDrawGizmosSelected() 

@@ -40,8 +40,16 @@ public class Event : MonoBehaviour
 
     
     public eventType options =  new eventType();
+
+    private GameObject _player;
     
     
+
+    void Start()
+    {
+        _player = GameObject.FindWithTag("Player");
+        Physics2D.IgnoreCollision(_player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -49,7 +57,6 @@ public class Event : MonoBehaviour
         if (other.gameObject.tag  == "Player")
         {
             doTheThing(options);
-            
         }
     }
 

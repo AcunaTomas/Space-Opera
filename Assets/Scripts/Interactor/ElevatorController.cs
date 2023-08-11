@@ -12,6 +12,10 @@ public class ElevatorController : MonoBehaviour
     public float speed;
     private bool iselevatorup;
 
+    public GameObject pisomundo;
+    public GameObject pisoascensor;
+    private PolygonCollider2D pisoreal;
+
     private bool isActive = false;
     public AudioCheck _audioCheck;
     public enum AudioCheck
@@ -21,16 +25,42 @@ public class ElevatorController : MonoBehaviour
         nave
     }
 
+    void Start()
+    {
+        switch (_audioCheck)
+        {
+            case AudioCheck.ascensor:
+
+                pisoreal = transform.GetChild(0).GetChild(0).GetComponent<PolygonCollider2D>();
+                break;
+
+            default:
+
+                break;
+
+        }
+        
+    }
+
     void Update() 
     {
         if (isActive)
         {
+            if (_audioCheck == AudioCheck.ascensor)
+            {
+                pisoreal.enabled = true;
+            }
+            
             Moverse();
             if (transform.position.y <= downpos.position.y)
             {
                 iselevatorup = false;
                 transform.position = downpos.position;
                 isActive = !isActive;
+                if (_audioCheck == AudioCheck.ascensor)
+                {
+                    pisoreal.enabled = false;
+                }
                 StopAudio();
             }
             else if (transform.position.y >= upperpos.position.y)
@@ -38,9 +68,12 @@ public class ElevatorController : MonoBehaviour
                 iselevatorup = true;
                 transform.position = upperpos.position;
                 isActive = !isActive;
+                if (_audioCheck == AudioCheck.ascensor)
+                {
+                    pisoreal.enabled = false;
+                }
                 StopAudio();
             }
-            
         }
 
     }
@@ -88,6 +121,8 @@ public class ElevatorController : MonoBehaviour
             case AudioCheck.ascensor:
                 AudioManager.INSTANCE.PlayElevatorInteractor();
                 AudioManager.INSTANCE.PlayElevator();
+                pisomundo.SetActive(false);
+                pisoascensor.SetActive(true);
                 break;
             case AudioCheck.pinchos:
                 AudioManager.INSTANCE.PlayPinchos();
@@ -107,6 +142,8 @@ public class ElevatorController : MonoBehaviour
         {
             case AudioCheck.ascensor:
                 AudioManager.INSTANCE.StopElevator();
+                pisomundo.SetActive(true);
+                pisoascensor.SetActive(false);
                 break;            
             default:
                 break;

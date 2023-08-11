@@ -30,6 +30,14 @@ public class PlayerCombat : MonoBehaviour
     Animator attackAnimatorDown;
     SpriteRenderer attackSprite;
 
+    public float attackDuration = 0.3f;
+
+    private bool isAttackActive = false;
+    private bool isAttackUpActive = false;
+    private bool isAttackDownActive = false;
+
+    private float queryStartTime;
+
 
     void Start()
     {
@@ -43,7 +51,7 @@ public class PlayerCombat : MonoBehaviour
         attackSprite = attackVisual.GetComponent<SpriteRenderer>();
 
     }
-    void Update()
+    void FixedUpdate()
     {
         if (Time.time >= nextAttackTime)
         {
@@ -51,19 +59,25 @@ public class PlayerCombat : MonoBehaviour
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
+                isAttackActive = true;
+                queryStartTime = Time.time;
             }
             else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") > 0))
             {
                 AttackUp();
                 nextAttackTime = Time.time + 1f / attackRate;
+                isAttackUpActive = true;
+                queryStartTime = Time.time;
             }
             else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") < 0) && gameObject.GetComponent<Player>().canIjump == false)
             {
-                Debug.Log("Ataca abajo");
                 AttackDown();
                 nextAttackTime = Time.time + 1f / attackRate;
+                isAttackDownActive = true;
+                queryStartTime = Time.time;
             }
         }
+
 
         if (Time.time >= nextBombTime)
         {
@@ -84,10 +98,59 @@ public class PlayerCombat : MonoBehaviour
         {
             attackPointUp.localPosition = new Vector2(0, 0.2f);
             attackPointDown.localPosition = new Vector2(0, -0.2f);
-        }   
+        }
+
+        if (isAttackActive)
+        {
+            if (Time.time - queryStartTime >= attackDuration)
+            {
+                isAttackActive = false;
+            }
+            else
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+                foreach (Collider2D enemyCollider in hitEnemies)
+                {
+                    enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+                }
+            }
+        }
+
+        if (isAttackUpActive)
+        {
+            if (Time.time - queryStartTime >= attackDuration)
+            {
+                isAttackUpActive = false;
+            }
+            else
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
+                foreach (Collider2D enemyCollider in hitEnemies)
+                {
+                    enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+                }
+            }
+        }
+
+        if (isAttackDownActive)
+        {
+            if (Time.time - queryStartTime >= attackDuration)
+            {
+                isAttackDownActive = false;
+            }
+            else
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayers);
+                foreach (Collider2D enemyCollider in hitEnemies)
+                {
+                    enemyCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                }
+            }
+        }
 
     }
 
+    
     void Attack()
     {
 
@@ -100,21 +163,19 @@ public class PlayerCombat : MonoBehaviour
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
             attackSprite.flipX = false;
-
         }   
 
         animator.SetTrigger("Attack");
         attackAnimator.SetTrigger("Golpe");
-        Debug.Log("Ataca");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
 
-        foreach (Collider2D enemyCollider in hitEnemies)
-        {
-            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
-            AudioManager.INSTANCE.PlayEnemyHit();
-        }
+        // foreach (Collider2D enemyCollider in hitEnemies)
+        // {
+        //     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+        //     AudioManager.INSTANCE.PlayEnemyHit();
+        // }
 
         foreach (Collider2D door in hitDoor)
         {
@@ -123,7 +184,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-        void AttackUp()
+    void AttackUp()
     {
 
         animator.SetTrigger("AttackUp");
@@ -131,14 +192,14 @@ public class PlayerCombat : MonoBehaviour
         attackAnimatorUp.SetTrigger("GolpeUp");
         Debug.Log("Ataca arriba");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, doorLayers);
 
-        foreach (Collider2D enemyCollider in hitEnemies)
-        {
-            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
-            AudioManager.INSTANCE.PlayEnemyHit();
-        }
+        // foreach (Collider2D enemyCollider in hitEnemies)
+        // {
+        //     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+        //     AudioManager.INSTANCE.PlayEnemyHit();
+        // }
 
         foreach (Collider2D door in hitDoor)
         {
@@ -147,7 +208,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-        void AttackDown()
+    void AttackDown()
     {
 
         animator.SetTrigger("AttackDown");
@@ -155,15 +216,15 @@ public class PlayerCombat : MonoBehaviour
         attackAnimatorDown.SetTrigger("GolpeDown");
         Debug.Log("Ataca abajo");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, doorLayers);
 
-        foreach (Collider2D enemyCollider in hitEnemies)
-        {
-            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
-            AudioManager.INSTANCE.PlayEnemyHit();
-        }
+        // foreach (Collider2D enemyCollider in hitEnemies)
+        // {
+        //     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+        //     GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
+        //     AudioManager.INSTANCE.PlayEnemyHit();
+        // }
 
         foreach (Collider2D door in hitDoor)
         {
