@@ -131,12 +131,12 @@ public void Flip()
     Vector3 rotation = transform.eulerAngles;
     if (transform.position.x > target.position.x) 
     {
-        rotation.y = 180;
+        GetComponent<SpriteRenderer>().flipX = true;
         attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(-1);
     }
     else
     {
-        rotation.y = 0;
+        GetComponent<SpriteRenderer>().flipX = false;
         attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(1);
     }
 

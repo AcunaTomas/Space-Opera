@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     public bool _coolingHit = false;
     public bool _coolingHit2 = false;
 
+    private SpriteRenderer _spriteRenderer;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -37,6 +39,8 @@ public class Enemy : MonoBehaviour
         Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -61,7 +65,15 @@ public class Enemy : MonoBehaviour
             }
             _coolingHit = true;
             StartCoroutine(StartCooldown());
-            
+
+            if (_spriteRenderer.flipX == true)
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
+            }
         }
     }
 
