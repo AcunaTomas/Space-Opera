@@ -10,7 +10,7 @@ public class ElevatorController : MonoBehaviour
     public Transform upperpos;
 
     public float speed;
-    private bool iselevatorup;
+    public bool iselevatorup;
 
     public GameObject pisomundo;
     public GameObject pisoascensor;
@@ -54,7 +54,6 @@ public class ElevatorController : MonoBehaviour
             Moverse();
             if (transform.position.y <= downpos.position.y)
             {
-                iselevatorup = false;
                 transform.position = downpos.position;
                 isActive = !isActive;
                 if (_audioCheck == AudioCheck.ascensor)
@@ -65,7 +64,6 @@ public class ElevatorController : MonoBehaviour
             }
             else if (transform.position.y >= upperpos.position.y)
             {
-                iselevatorup = true;
                 transform.position = upperpos.position;
                 isActive = !isActive;
                 if (_audioCheck == AudioCheck.ascensor)
