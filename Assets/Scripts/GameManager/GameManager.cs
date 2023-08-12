@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
-        INSTANCE.LEVEL = data.LEVEL;
+        //INSTANCE.LEVEL = data.LEVEL;
     }
 
     void IDataPersistance.SaveData(ref GameData data)
     {
-        data.LEVEL = INSTANCE.LEVEL;
+        //data.LEVEL = INSTANCE.LEVEL;
     }
 }

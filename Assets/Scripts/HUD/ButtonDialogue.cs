@@ -43,7 +43,7 @@ public class ButtonDialogue : MonoBehaviour
         switch (GameManager.INSTANCE.LEVEL)
         {
             case 1:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1);
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_DIALOGUES);
                 break;
             case 2:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2);
@@ -277,10 +277,7 @@ public class ButtonDialogue : MonoBehaviour
     }
     void Update()
     {
-        if (!_notFirstDialogue)
-        {
-            return;
-        }
+
     }
     
 }
