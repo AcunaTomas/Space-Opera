@@ -123,23 +123,23 @@ public class ButtonDialogue : MonoBehaviour
         if (_cont >= _zoneLines)
         {
             bool piloto = true;
-            if ((ZONENAME == "lvl01_pilot_with_key"))
+            if (ZONENAME == "lvl01_pilot_with_key")
             {
                 GameObject.FindWithTag("Boton").SetActive(false);
                 piloto = false;
             }
             
-            if ((ZONENAME == "lvl01_ship_key"))
+            if (ZONENAME == "lvl01_ship_key")
             {
                 GameObject.FindWithTag("Key").SetActive(false);
             }   
 
-            if ((ZONENAME == "lvl02_brody_03"))
+            if (ZONENAME == "lvl02_brody_03")
             {
                 ScenesManager.Instance.LoadNextScene("EndDemo");
             }
 
-            if ((ZONENAME == "lvl02_scrap_knowing"))
+            if (ZONENAME == "lvl02_scrap_knowing")
             {
                 GameObject.FindWithTag("Translator").SetActive(false);
             }
@@ -237,19 +237,19 @@ public class ButtonDialogue : MonoBehaviour
         if (_textParts[0] == "Narrator")
         {
             _characterPanelName.SetActive(false);
-            _dialogueText.text = _textParts[2];
+            _dialogueText.text = _textParts[3];
             _characterImage.color = new Color (255, 255, 255, 0);
         }
         else
         {
             _characterPanelName.SetActive(true);
             
-            List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[0]];
-            Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[1]);
+            List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[1]];
+            Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[2]);
             _characterImage.color = new Color (255, 255, 255, 255);
             _characterImage.texture = emo.ICON;
 
-            _dialogueText.text = _textParts[2];
+            _dialogueText.text = _textParts[3];
             _characterName.text = _textParts[0];
         }
 

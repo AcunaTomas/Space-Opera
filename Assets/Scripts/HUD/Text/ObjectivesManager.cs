@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectivesManager : MonoBehaviour
 {
+    [SerializeField]
+    private RectTransform _pressButton;
+
     private bool _canInteract = true;
     private bool _buttonPressed = false;
     private bool _fold = true;
     private float _timeAfk = 0f;
+    private float _movementX;
+
+    void Start()
+    {
+        _movementX = GetComponent<RectTransform>().sizeDelta.x - _pressButton.sizeDelta.x;
+    }
 
     private IEnumerator FoldUnfold(bool var)
     {
@@ -19,12 +29,12 @@ public class ObjectivesManager : MonoBehaviour
         if (var)
         {
             _initialX = transform.localPosition.x;
-            _finalX = -1260f;
+            _finalX = _initialX - _movementX;
         }
         else
         {
             _initialX = transform.localPosition.x;
-            _finalX = -560f;
+            _finalX = _initialX + _movementX;
         }
 
         while (_time < 0.2f)
