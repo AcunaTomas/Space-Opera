@@ -68,7 +68,7 @@ void EnemyLogic()
         animator.SetBool("Attack", false);
     }
 
-    if (int.Parse(player.GetComponent<Player>().GetHP()) <= 0)
+    if (player.GetComponent<Player>().GetHP() <= 0)
     {
         Move();
         StopAttack();

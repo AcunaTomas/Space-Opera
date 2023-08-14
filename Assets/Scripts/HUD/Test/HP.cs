@@ -25,7 +25,7 @@ public class HP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayText = P1.GetComponent<Player>().GetHP();
-        TMProDisplay.text = "HP: " + DisplayText;
+        //DisplayText = P1.GetComponent<Player>().GetHP();
+        //TMProDisplay.text = "HP: " + DisplayText;
     }
 }

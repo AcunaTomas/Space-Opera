@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public bool PLAYER_COMBAT = false;
     public ButtonDialogue CANVAS;
 
+    private Player _playerScript;
+
     private void Awake()
     {
         INSTANCE = this;
         CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
+        _playerScript = PLAYER.GetComponent<Player>();
     }
 
     void Start()
@@ -36,11 +39,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
-        //INSTANCE.LEVEL = data.LEVEL;
+        _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
+        _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
+        PLAYER.transform.localPosition = data.PLAYER_POSITION;
     }
 
     void IDataPersistance.SaveData(ref GameData data)
     {
-        //data.LEVEL = INSTANCE.LEVEL;
+        data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
+        data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
+        data.PLAYER_POSITION = CHECKPOINT;
     }
 }

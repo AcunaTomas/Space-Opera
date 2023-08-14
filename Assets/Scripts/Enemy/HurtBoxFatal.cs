@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HurtBoxFatal : MonoBehaviour
 {
-    float attackDamage = 100f;
+    int attackDamage = 100;
     float orientation = 1f;
     private GameObject player;
 

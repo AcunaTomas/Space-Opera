@@ -17,6 +17,7 @@ public class UpdateBars : MonoBehaviour
     
     void Start()
     {
+        _playerHP = _player.GetMaxHP();
         SetHP();
     }
 
@@ -32,7 +33,7 @@ public class UpdateBars : MonoBehaviour
         if (_energy == _energyBar.transform.childCount)
         {
             _energy = 0;
-            if (int.Parse(_player.GetHP()) < MaxHP())
+            if (_player.GetHP() < _playerHP)
             {
                 _player.AddHP(1);
             }
@@ -40,14 +41,9 @@ public class UpdateBars : MonoBehaviour
         UpdateEnergy();
     }
 
-    public int MaxHP()
-    {
-        return _playerHP;
-    }
-
     public void SetHP()
     {
-        _playerHP = int.Parse(_player.GetHP());
+        _playerHP = _player.GetHP();
         for (int i = 0; i < _playerHP; i++)
         {
             GameObject go;
@@ -64,7 +60,7 @@ public class UpdateBars : MonoBehaviour
 
     public void UpdateHP()
     {
-        int _actualHP = int.Parse(_player.GetHP());
+        int _actualHP = _player.GetHP();
         for (int i = 0; i < _playerHP; i++)
         {
             HealthBar hb = transform.GetChild(i).GetComponent<HealthBar>();

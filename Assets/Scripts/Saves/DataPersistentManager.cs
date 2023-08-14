@@ -31,7 +31,7 @@ public class DataPersistentManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveGame();
+        //SaveGame();
     }
 
     public void NewGame()
