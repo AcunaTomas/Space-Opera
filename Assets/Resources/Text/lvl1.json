@@ -6,28 +6,35 @@
             "STRINGS":
             [
                 "8170*8170_img*normal*Necesito salir de aquí.*",
-                "8170*8170_img*normal*Una <color=#CE490E>nave</color> puede servir.*tuto_movement"
+                "8170*8170_img*normal*Una <color=#FFFF00>nave</color> puede servir.*tuto_movement"
             ]
         },
         {
-            "ID": "objective01_ship",
+            "ID": "objective01_explore",
             "STRINGS":
             [
-                "Busca a tu <color=#CE490E>abuela</color>"
+                "Explora el lugar"
             ]
         },
         {
-            "ID": "tuto_movement",
+            "ID": "tuto_movement_pc",
             "STRINGS":
             [
-                "Usa lo siguiente para moverte:\n#BUTTON_MOVEMENT"
+                "Para desplazarte por el lugar, presiona:\n#BUTTON_MOVEMENT"
+            ]
+        },
+        {
+            "ID": "tuto_movement_notpc",
+            "STRINGS":
+            [
+                "Para desplazarte por el lugar, utilice:\n#BUTTON_MOVEMENT"
             ]
         },
         {
             "ID": "tuto_interact",
             "STRINGS":
             [
-                "Usa lo siguiente para interactuar con otro personajes u objetos:\n#BUTTON_INTERACT"
+                "Para interactuar con otros personajes u objetos, presiona:\n#BUTTON_INTERACT"
             ]
         },
         {
@@ -55,7 +62,7 @@
             "ID": "lvl01_saloon_7070",
             "STRINGS":
             [
-                "7070*7070_img*normal*¿Tú que miras?"
+                "7070*7070_img*normal*¿Y tú que miras?"
             ]
         },
         {
@@ -71,7 +78,14 @@
             [
                 "Coach*coach_img*normal*¡Por fin alguien llegó! Ahora podremos iniciar con el entrenamiento...",
                 "Coach*coach_img*normal*Espera, no veo que traigas tus bombas...",
-                "Coach*coach_img*normal*Busca en la armería, hay una máquina que genera de manera rápida las bombas. Búscala y reportate devuelta aquí para empezar."
+                "Coach*coach_img*normal*Busca en la <color=#FFFF00>armería</color>, hay una máquina que genera de manera rápida las bombas. Búscala y repórtate de vuelta aquí para empezar."
+            ]
+        },
+        {
+            "ID": "objective02_bombs",
+            "STRINGS":
+            [
+                "Busca el generador de bombas"
             ]
         },
         {
@@ -80,8 +94,15 @@
             [
                 "Coach*coach_img*normal*¡Por fin alguien llegó! Ahora podremos iniciar con el entrenamiento...",
                 "Coach*coach_img*normal*Y veo que ya estás preparado para comenzar.",
-                "Coach*coach_img*normal*Veamos cómo te mueves, ve hasta donde está el muñeco de práctica.",
+                "Coach*coach_img*normal*Veamos cómo te mueves, ve hasta donde está el <color=#FFFF00>muñeco de práctica</color>.",
                 "Narrator*narrator_img*normal*..."
+            ]
+        },
+        {
+            "ID": "objective03_training",
+            "STRINGS":
+            [
+                "Completa el entrenamiento"
             ]
         },
         {
@@ -90,16 +111,28 @@
             [
                 "Coach*coach_img*normal*¡Por fin alguien llegó! Ahora podremos iniciar con el entrenamiento...",
                 "Coach*coach_img*normal*¡Muy bien! Comencemos.",
-                "Coach*coach_img*normal*Veamos cómo te mueves, ve hasta donde está el muñeco de práctica.",
-                "Narrator*narrator_img*normal*Presiona SPACE para saltar y ayúdate de los botones de desplazamiento para saltar a la dirección que desees."
+                "Coach*coach_img*normal*Veamos cómo te mueves, ve hasta donde está el <color=#FFFF00>muñeco de práctica</color>."
+            ]
+        },
+        {
+            "ID": "tuto_jump",
+            "STRINGS":
+            [
+                "Para saltar (ayudándote con los botones de desplazamiento para saltar a la dirección que desees), presiona:\n#BUTTON_JUMP"
             ]
         },
         {
             "ID": "lvl01_coach_tuto_02",
             "STRINGS":
             [
-                "Coach*coach_img*normal*¡Excelente! ¡Ahora enséñale a ese muñeco quién manda!",
-                "Narrator*narrator_img*normal*Presiona J para lanzar golpes a corto alcance."
+                "Coach*coach_img*normal*¡Excelente! ¡Ahora enséñale a ese muñeco quién manda!"
+            ]
+        },
+        {
+            "ID": "tuto_attack_melee",
+            "STRINGS":
+            [
+                "Para lanzar golpes a corto alcance, presiona:\n#BUTTON_ATTACK_MELEE"
             ]
         },
         {
@@ -107,8 +140,14 @@
             "STRINGS":
             [
                 "Coach*coach_img*normal*¡Así se hace! Es hora de practicar la precisión.",
-                "Coach*coach_img*normal*Usa las bombas generadas para destruir los muñecos desde lejos.",
-                "Narrator*narrator_img*normal*Presiona K para lanzar una bomba generada, puedes arrojarlas también mientras saltas para lograr mayor alcance."
+                "Coach*coach_img*normal*Usa las <color=#FFFF00>bombas</color> generadas para destruir los muñecos desde lejos."
+            ]
+        },
+        {
+            "ID": "tuto_attack_bomb",
+            "STRINGS":
+            [
+                "Para lanzar una bomba generada (puedes arrojarlas también mientras saltas para lograr mayor alcance), presiona:\n#BUTTON_ATTACK_MELEE"
             ]
         },
         {
@@ -140,7 +179,7 @@
             "ID": "lvl01_bombmaker_coachless",
             "STRINGS":
             [
-                "Narrator*narrator_img*normal*Un generador de arenal..., o era arsenal? Nunca viste esa palabra escrita.",
+                "Narrator*narrator_img*normal*Un generador de arenal..., ¿o era arsenal? Nunca viste esa palabra escrita.",
                 "8170*8170_img*normal*Necesito llevarme esto conmigo junto con la nave...",
                 "Narrator*narrator_img*normal*Ahora estás listo para el combate, solo falta un poco de entrenamiento."
             ]
@@ -149,11 +188,17 @@
             "ID": "lvl01_pilot",
             "STRINGS":
             [
-                "Piloto*pilot_img*normal*Oye tú, ¿viste mis llaves?",
-                "Piloto*pilot_img*normal*Creo que las dejé en el cuarto de cámaras cruzando el taller ¿Podrías traerlas?",
-                "Piloto*pilot_img*normal*Usualmente los soldados rasos no tienen acceso, pero debería estar abierto.",
-                "Narrator*narrator_img*normal*Este parece un muy conveniente momento el cual hay que aprovechar.",
-                "Narrator*narrator_img*normal*Ve por las llaves."
+                "Piloto*pilot_img*normal*Oye tú, ¿viste mis <color=#FFFF00>llaves</color>?",
+                "Piloto*pilot_img*normal*Creo que las dejé en el <color=#FFFF00>cuarto de cámaras</color> cruzando el <color=#FFFF00>taller</color> ¿Podrías traerlas?",
+                "Piloto*pilot_img*normal*Usualmente los soldados rasos no tienen acceso.",
+                "Narrator*narrator_img*normal*Este parece un muy conveniente momento el cual hay que aprovechar."
+            ]
+        },
+        {
+            "ID": "objective04_keys",
+            "STRINGS":
+            [
+                "Ve por las llaves"
             ]
         },
         {
@@ -187,7 +232,7 @@
             "STRINGS":
             [
                 "Mecánico 2*mechanic2_img*normal*Es la cuarta vez que vengo a arreglar el lío que hace este idiota...",
-                "Mecánico 2*mechanic2_img*normal*No aprietes botones si no sabes que hacen.",
+                "Mecánico 2*mechanic2_img*normal*No aprietes <color=#FFFF00>botones</color> si no sabes que hacen.",
                 "Mecánico 2*mechanic2_img*normal*¿Me estás escuchando?"
             ]
         },
@@ -196,7 +241,7 @@
             "STRINGS":
             [
                 "8170*8170_img*normal*La llave...",
-                "8170*8170_img*normal*Ahora solo tengo que subir la nave hasta la pista de despegue..."
+                "8170*8170_img*normal*Ahora solo tengo que subir la <color=#FFFF00>nave</color> hasta la <color=#FFFF00>pista de despegue</color>..."
             ]
         },
         {
@@ -210,16 +255,23 @@
                 "8170*8170_img*normal*...",
                 "Piloto*pilot_img*normal*Oye, aléjate de ese maldito botón, no lo oprimas.",
                 "Narrator*narrator_img*normal*Oprimiste el maldito botón...*event_elevator_ship",
-                "Piloto*pilot_img*normal*Genial, ahora tengo que subir caminando hasta allá...",
+                "Piloto*pilot_img*normal*Genial, ahora tengo que <color=#FFFF00>subir</color> caminando hasta allá...",
                 "Piloto*pilot_img*normal*Igualmente antes debo informar sobre esto al supervisor.",
                 "Narrator*narrator_img*normal*¡NO TITUBEES! ¡ESTA ES LA OPORTUNIDAD!"
             ]
         },
         {
-            "ID": "objective_final",
+            "ID": "objective05_final",
             "STRINGS":
             [
-                "ESCAPA"
+                "¡Destruye al piloto!"
+            ]
+        },
+        {
+            "ID": "objective06_final",
+            "STRINGS":
+            [
+                "Escapa"
             ]
         }
     ]
