@@ -36,7 +36,7 @@ public class EnemyShooting : MonoBehaviour
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                     bullet.SetActive(true);
                     bullet.transform.localScale = new Vector3(0.1f, 0.05f, 0f);
-                    bullet.AddComponent<BulletCollision>();
+                    bullet.AddComponent<BulletController>();
                     bullet.GetComponent<Rigidbody2D>().velocity = Vector2.left * bulletSpeed;
                     stopped = true;
                 }
