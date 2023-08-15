@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public string ALTSKIPENABLED = "Disabled";
     public static GameManager INSTANCE;
     public int LEVEL;
     public GameObject PLAYER;

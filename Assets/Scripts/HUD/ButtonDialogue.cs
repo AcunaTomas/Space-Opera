@@ -57,6 +57,7 @@ public class ButtonDialogue : MonoBehaviour
     {
         if (_notFirstDialogue == false)
         {
+            GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
             switch (_changeAudio)
             {
                 case CollisionDialogue.ChangeAudio.dialogo:
@@ -143,6 +144,8 @@ public class ButtonDialogue : MonoBehaviour
             {
                 GameObject.FindWithTag("Translator").SetActive(false);
             }
+
+            GameManager.INSTANCE.ALTSKIPENABLED = "Disabled";
 
             StartCoroutine(Fold(piloto));
             if (_dialogueDeactivate != null)

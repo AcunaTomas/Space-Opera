@@ -30,6 +30,7 @@ public class Interactable : MonoBehaviour
     float _tempX;
     float _tempY;
     bool _keyHeld = false;
+
     
     void Start()
     {
@@ -70,6 +71,7 @@ public class Interactable : MonoBehaviour
         moved = false;
     }
 
+
     void Update()
     {
 
@@ -82,7 +84,7 @@ public class Interactable : MonoBehaviour
             _timePressed = 0;
         }
 
-        if ((Input.GetAxis("Submit") > 0) && _keyHeld == true)
+        if ((Input.GetAxis("Submit") > 0 || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _keyHeld == true)
         {
             //Debug.Log("hold");
 
@@ -96,7 +98,7 @@ public class Interactable : MonoBehaviour
 
         if ((Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance) && !moved)
         {
-            if ((Input.GetAxis("Submit") > 0) && _timePressed <= 0)
+            if ((Input.GetAxis("Submit") > 0  || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0)
             {
                 interactAction.Invoke();
                 Debug.Log("Interact");
@@ -108,7 +110,7 @@ public class Interactable : MonoBehaviour
         {
             if (moved)
             {
-                if ((Input.GetAxis("Submit") > 0) && _timePressed <= 0)
+                if ((Input.GetAxis("Submit") > 0 || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0)
                 {
                     interactAction.Invoke();
                     Debug.Log("Interact");
@@ -134,6 +136,15 @@ public class Interactable : MonoBehaviour
             return;
         }
         gameObject.GetComponent<Interactable>().enabled = false;
+    }
+
+    public void SetXRange(float x)
+    {
+        _XDistance = x;
+    }
+    public void SetYRange(float y)
+    {
+        _YDistance = y;
     }
 }
 
