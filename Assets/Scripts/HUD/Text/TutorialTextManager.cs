@@ -2,58 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class TutorialTextManager : MonoBehaviour
 {
-    
     [SerializeField]
-    private KeyCode[] _keys;
-    private List<bool> _usedKeys = new List<bool>();
-
-    private bool _noMoreFors = false;
+    private string _zoneName;
+    private string[] _text;
 
     void Start()
     {
-        for (int i = 0; i < _keys.Length; i++)
-        {
-            _usedKeys.Add(false);
-        }
-    }
-
-    private IEnumerator TutoGoneForever()
-    {
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
+        _text = GameManager.INSTANCE.CANVAS.AddText(_zoneName);
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _text[0];
     }
 
     void Update()
     {
-        if (_noMoreFors)
-        {
-            return;
-        }
-
-        for (int i = 0; i < _keys.Length; i++)
-        {
-            if (Input.GetKeyDown(_keys[i]))
-            {
-                _usedKeys[i] = true;
-            }
-        }
-
-        int x = 0;
-        for (int i = 0; i < _usedKeys.Count; i++)
-        {
-            if (_usedKeys[i])
-            {
-                x++;
-            }
-
-            if (x == _usedKeys.Count)
-            {
-                _noMoreFors = true;
-                StartCoroutine(TutoGoneForever());
-            }
-        }
+        
     }
 }

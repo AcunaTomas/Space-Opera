@@ -5651,6 +5651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 5
+  MaxHP: 5
   vertspid: -0.3
   canIjump: 1
   jumpLimit: 0
@@ -6524,6 +6525,7 @@ Transform:
   - {fileID: 1198163135}
   - {fileID: 1473904202}
   - {fileID: 109084963}
+  - {fileID: 1492942282}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7240,6 +7242,101 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1492942281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492942282}
+  - component: {fileID: 1492942284}
+  - component: {fileID: 1492942283}
+  m_Layer: 0
+  m_Name: cualquiercosa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1492942282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492942281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1374885221}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1492942283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492942281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e27efbc730fc3544a3a902dd33f36e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocation: {x: 0, y: 0}
+  _thingToSpawn: {fileID: 0}
+  who: {fileID: 0}
+  where: {x: 0, y: 0}
+  sceneName: 
+  event_name: 
+  interactAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1373248239}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Brody_Modo_jajas
+          m_BoolArgument: 0
+        m_CallState: 2
+  external: 0
+  single_use: 0
+  options: 3
+--- !u!61 &1492942284
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492942281}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1504328845
 GameObject:
   m_ObjectHideFlags: 0
@@ -7506,59 +7603,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CHARACTERS:
-  - NAME: 8170
+  - NAME: 8170_img
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: 3d04ec42947521942a31bba959ca91e9, type: 3}
-  - NAME: 6161
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 14d8cb8af8ebbde488870816da9918ff, type: 3}
-  - NAME: 7070
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 14d8cb8af8ebbde488870816da9918ff, type: 3}
-  - NAME: 7081
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 14d8cb8af8ebbde488870816da9918ff, type: 3}
-  - NAME: 5384
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 14d8cb8af8ebbde488870816da9918ff, type: 3}
-  - NAME: Coach
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: c79d0e01e009e3e4dbd90ae9bf73dd8e, type: 3}
-  - NAME: Piloto
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 1dd06ff65cc619a46aad1fa6d2be4450, type: 3}
-  - NAME: 4081
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 14d8cb8af8ebbde488870816da9918ff, type: 3}
-  - NAME: 0715
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: 14d8cb8af8ebbde488870816da9918ff, type: 3}
-  - NAME: "Mec\xE1nico 1"
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: ba2f86503ee865a4c8c419c02f6b4781, type: 3}
-  - NAME: "Mec\xE1nico 2"
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: ba2f86503ee865a4c8c419c02f6b4781, type: 3}
-  - NAME: Bito
+  - NAME: bito_img
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: 523060d048a4a2e40afb171565fe1680, type: 3}
-  - NAME: ???
-    EMOTIONS:
-    - EMOTION: normal
-      ICON: {fileID: 2800000, guid: b3c8482f7c3088c4492fb0a82b2815c9, type: 3}
-  - NAME: Brody
+  - NAME: brody_img
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: fa8c6f9bd684ba943a72518643a1a678, type: 3}
@@ -7568,7 +7621,7 @@ MonoBehaviour:
       ICON: {fileID: 2800000, guid: 7b9eb8aa2db30ba4780176a16dfb7e3b, type: 3}
     - EMOTION: modocheeky
       ICON: {fileID: 2800000, guid: fc619e6dfef97eb4a917926d3cc386e3, type: 3}
-  - NAME: NarratorBrody
+  - NAME: narratorbrody_img
     EMOTIONS:
     - EMOTION: modoemo
       ICON: {fileID: 2800000, guid: 7b9eb8aa2db30ba4780176a16dfb7e3b, type: 3}

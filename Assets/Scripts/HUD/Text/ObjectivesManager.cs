@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class ObjectivesManager : MonoBehaviour
 {
     [SerializeField]
     private RectTransform _pressButton;
+    [SerializeField]
+    private string _zoneName;
 
+    private string[] _text;
     private bool _canInteract = true;
     private bool _buttonPressed = false;
     private bool _fold = true;
@@ -16,7 +20,14 @@ public class ObjectivesManager : MonoBehaviour
 
     void Start()
     {
+        ChangeObjective(_zoneName);
         _movementX = GetComponent<RectTransform>().sizeDelta.x - _pressButton.sizeDelta.x;
+    }
+
+    public void ChangeObjective(string _zN)
+    {
+        _text = GameManager.INSTANCE.CANVAS.AddText(_zN);
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _text[0];
     }
 
     private IEnumerator FoldUnfold(bool var)

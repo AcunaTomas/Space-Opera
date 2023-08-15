@@ -53,6 +53,21 @@ public class ButtonDialogue : MonoBehaviour
         }
     }
 
+    public string[] AddText(string _zoneName)
+    {
+        int _ix = 0;
+        for (int i = 0; i < _zone.DIALOGUES.Length; i++)
+        {
+            if (_zone.DIALOGUES[i].ID == _zoneName)
+            {
+                _ix = i;
+                break;
+            }
+        }
+
+        return _zone.DIALOGUES[_ix].STRINGS[0].Split('#');
+    }
+
     public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio)
     {
         if (_notFirstDialogue == false)
@@ -83,7 +98,6 @@ public class ButtonDialogue : MonoBehaviour
                     _index = i;
                     break;
                 }
-                
             }
 
             _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
@@ -93,7 +107,6 @@ public class ButtonDialogue : MonoBehaviour
             return;
         }
         
-
         MoreDialoguePlz();
 
     }
@@ -120,10 +133,24 @@ public class ButtonDialogue : MonoBehaviour
     {
         _cont++;
 
+        try
+        {
+            if (_textParts[5] != null)
+            {
+                GameObject _go = GameObject.Find(_textParts[5]);
+                _go.BroadcastMessage(_textParts[4], SendMessageOptions.DontRequireReceiver);
+            }
+        }
+        catch (System.Exception)
+        {
+
+        }
+
         if (_cont >= _zoneLines)
         {
             bool piloto = true;
-            if (ZONENAME == "lvl01_pilot_with_key")
+
+            /* if (ZONENAME == "lvl01_pilot_with_key")
             {
                 GameObject.FindWithTag("Boton").SetActive(false);
                 piloto = false;
@@ -142,7 +169,7 @@ public class ButtonDialogue : MonoBehaviour
             if (ZONENAME == "lvl02_scrap_knowing")
             {
                 GameObject.FindWithTag("Translator").SetActive(false);
-            }
+            } */
 
             StartCoroutine(Fold(piloto));
             if (_dialogueDeactivate != null)
@@ -152,7 +179,7 @@ public class ButtonDialogue : MonoBehaviour
             return;
         }
         
-        if ((ZONENAME == "lvl01_pilot_with_key") && (_cont == 6))
+        /* if ((ZONENAME == "lvl01_pilot_with_key") && (_cont == 6))
         {
             GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
         }
@@ -183,7 +210,7 @@ public class ButtonDialogue : MonoBehaviour
                 _player.GetComponent<Animator>().SetBool("BitoMode", true);
             }
         
-        }
+        } */
 
 
         DifferentDialogues();
@@ -232,7 +259,6 @@ public class ButtonDialogue : MonoBehaviour
     private void DifferentDialogues()
     {
         _textParts = _zone.DIALOGUES[_index].STRINGS[_cont].Split('*');
-
 
         if (_textParts[0] == "Narrator")
         {
