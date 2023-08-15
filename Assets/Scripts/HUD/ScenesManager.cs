@@ -63,4 +63,9 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(Scene.SceneMainMenu.ToString());
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
 }

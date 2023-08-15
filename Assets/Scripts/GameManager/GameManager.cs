@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     public string ALTSKIPENABLED = "Disabled";
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject ACTUAL_CHECKPOINT;
     public bool PLAYER_COMBAT = false;
     public ButtonDialogue CANVAS;
+    private float restartTime;
 
     //estas últimas cosas se borran después, solo es para probar
     /* public KeyCode MORIR;
@@ -34,26 +36,20 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void Update()
+    void FixedUpdate()//Reset Button Hack, Binds to R key
     {
-        /* if (Input.GetKeyDown(MORIR) && !_ePressed)
+        if (Input.GetAxis("Debug Reset") > 0)
         {
-            _ePressed = true;
-            if (SLIDER.value != 0)
+            restartTime += 0.01f;
+            print(restartTime);
+            if (restartTime >= 1.6f)
             {
-                SLIDER.value-=20;
-            }
-            if (SLIDER.value <= 0)
-            {
-                PLAYER.transform.SetParent(null);
-                PLAYER.transform.localPosition = new Vector3 (CHECKPOINT.x, CHECKPOINT.y, CHECKPOINT.z);
-                SLIDER.value = SLIDER.maxValue;
+                ScenesManager.Instance.ReloadScene();
             }
         }
-
-        if (Input.GetKeyUp(MORIR))
+        else
         {
-            _ePressed = false;
-        } */
+            restartTime = 0f;
+        }
     }
 }
