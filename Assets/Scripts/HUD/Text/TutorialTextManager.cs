@@ -15,9 +15,4 @@ public class TutorialTextManager : MonoBehaviour
         _text = GameManager.INSTANCE.CANVAS.AddText(_zoneName);
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _text[0];
     }
-
-    void Update()
-    {
-        
-    }
 }
