@@ -2,10 +2,10 @@
     "DIALOGUES":  
     [
         {
-            "ID": "lvl02_intro",
+            "ID": "objective01_explore",
             "STRINGS":
             [
-                "Narrator*narrator_img*normal*Explora el extraño lugar."
+                "Explora el extraño lugar"
             ]
         },
         {
@@ -30,7 +30,7 @@
             "ID": "lvl02_tv",
             "STRINGS":
             [
-                "Narrator*narrator_img*normal*Es un cartel de “se busca”...",
+                "Narrator*narrator_img*normal*Es un cartel de <color=#FFFF00>“se busca”</color>...",
                 "Narrator*narrator_img*normal*Aunque no puede entender el lenguaje."
             ]
         },
@@ -46,7 +46,7 @@
             "ID": "lvl02_scrap_not_knowing",
             "STRINGS":
             [
-                "Narrator*narrator_img*normal*Un objeto extraño y brillante, parece tecnología de este planeta."
+                "Narrator*narrator_img*normal*Un <color=#FFFF00>objeto</color> extraño y brillante, parece tecnología de este planeta."
             ]
         },
         {
@@ -57,8 +57,15 @@
                 "8170*8170_img*normal*...",
                 "8170*8170_img*normal*...",
                 "8170*8170_img*normal*...",
-                "8170*8170_img*normal*Mmm... Sí, debe ser esto lo que quiere.",
+                "8170*8170_img*normal*Mmm... Sí, debe ser <color=#FFFF00>esto</color> lo que quiere.",
                 "Narrator*narrator_img*normal*Le costó muchísimo."
+            ]
+        },
+        {
+            "ID": "objective03_object_found",
+            "STRINGS":
+            [
+                "Vuelve con el sujeto"
             ]
         },
         {
@@ -84,6 +91,13 @@
             ]
         },
         {
+            "ID": "objective02_object_not_found",
+            "STRINGS":
+            [
+                "Busca algo que te ayude a comprender al sujeto"
+            ]
+        },
+        {
             "ID": "lvl02_brody_03",
             "STRINGS":
             [
@@ -91,7 +105,7 @@
                 "Narrator*narrator_img*normal*Y el sujeto de larga cabellera rubia le coloca el aparato en su armadura.",
                 "Narrator*narrator_img*normal*¡Ahora sí! ¿Puedes entenderme?",
                 "8170*8170_img*normal*¡Oh! ¡Sí, te entiendo!",
-                "Narrator*narrator_img*normal*¡Genial! Mi nombre es Brody.",
+                "Narrator*narrator_img*normal*¡Genial! Mi nombre es <color=#FFFF00>Brody</color>.",
                 "Brody*brody_img*normal*Te vi caer del cielo el otro día y no pude evitar ir a ver.",
                 "Brody*brody_img*modocheeky*Fue enorme mi sorpresa al verte... y más aún viendo tu rostro, ¡jamás había visto a un alienígena de tu especie!",
                 "Brody*brody_img*modorisa*Y hace como una semana que estabas durmiendo... Tenía miedo de terminar con un alienígena muerto en mi cama.*modo_jajas",
@@ -103,27 +117,27 @@
                 "Brody*brody_img*normal*Aaaah, creo que ya sé por dónde van los tiros...",
                 "Brody*brody_img*modocheeky*Vienes de algún ejército loco que planea destruir el mundo o algo así, ¿no?",
                 "8170*8170_img*normal*...",
-                "Brody*brody_img*normal*Igual estás solo... ¿Al menos me dirías por qué terminaste en la Tierra?",
+                "Brody*brody_img*normal*Igual estás solo... ¿Al menos me dirías por qué terminaste en la <color=#FFFF00>Tierra</color?",
                 "8170*8170_img*normal*...",
                 "Narrator*narrator_img*normal*El soldado analiza la situación, no sabe en quién confiar, pero sabe que este sujeto lo cuidó mientras estaba inconsciente.",
                 "8170*8170_img*normal*Okey...",
                 "8170*8170_img*normal*Vengo de escapar del ejército al que pertenecía.",
-                "Brody*brody_img*normal*¿En serio? ¡Eres un desertor! Me agrada...",
+                "Brody*brody_img*normal*¿En serio? ¡Eres un <color=#FFFF00>desertor</color! Me agrada...",
                 "Brody*brody_img*normal*¿Pero por qué tomaste esa decisión?",
-                "8170*8170_img*normal*Una estrella...",
+                "8170*8170_img*normal*Una <color=#FFFF00>estrella</color...",
                 "8170*8170_img*normal*Una estrella me reveló un recuerdo que no estaba en mi cabeza...",
-                "8170*8170_img*normal*La imágen es borrosa, pero pude reconocerme incluso sabiendo que todos los soldados nos vemos iguales.",
-                "8170*8170_img*normal*Me vi a mi mismo... rodeado de personas... personas que me querían a su lado... lo podía sentir... ¡Era una familia! ¡Mi familia!",
+                "8170*8170_img*normal*La imagen es borrosa, pero pude reconocerme incluso sabiendo que todos los soldados nos vemos iguales.",
+                "8170*8170_img*normal*Me vi a mi mismo... rodeado de personas... personas que me querían a su lado... lo podía sentir... ¡Era una familia! ¡<color=#FFFF00>Mi familia</color!",
                 "NarratorBrody*narratorbrody_img*modoemo*Brody quedó perplejo, el soldadito se abrió completamente a él y algo dentro suyo se enterneció.*modo_edgy",
                 "NarratorBrody*narratorbrody_img*modoemo*Una pequeña mueca de tristeza aparece en rostro, pero luego de un momento de silencio...*modo_edgy",
                 "Brody*brody_img*modocheeky*¡Te ayudaré! ¡Te ayudaré a buscar a tu familia! ¡La familia es lo más importante que hay! ¡Y tú amigo, tienes que reunirte con ellos!*modo_not_edgy",
                 "Narrator*narrator_img*normal*Brody luego de eso le sonríe con iniciativa.",
-                "Brody*brody_img*normal*Tu nave está completamente reparada, tienes suerte de que aterrizaste cerca de un mecánico .",
+                "Brody*brody_img*normal*Tu nave está completamente reparada, tienes suerte de que aterrizaste cerca de un mecánico.",
                 "Brody*brody_img*normal*Pero antes que nada no podemos adentrarnos al espacio viéndote de esa manera, pintemos tu armadura.",
                 "Narrator*narrator_img*normal*El amable mecánico procede a pintarlo de verde.*modo_bito",
                 "Brody*brody_img*normal*¡El verde resalta tus ojos!",
                 "Brody*brody_img*normal*Ah y una cosa más... No pienso llamarte 8170 cada vez que necesito hablar contigo...",
-                "Brody*brody_img*modocheeky*¿Qué te parece si te llamo Bito?",
+                "Brody*brody_img*modocheeky*¿Qué te parece si te llamo <color=#FFFF00>Bito</color?",
                 "Bito*bito_img*normal*Wow... Nunca antes tuve nombre...",
                 "Brody*brody_img*modoemo*Eso o no lo recuerdas... Puede que ese ejército al que pertenecías te lavó el cerebro.*modo_edgy",
                 "Bito*bito_img*normal*Tienes razón... ¡Busquemos a mi familia!*modo_not_edgy",
