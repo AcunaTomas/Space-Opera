@@ -14,20 +14,31 @@ public class ObjectivesManager : MonoBehaviour
     private string[] _text;
     private bool _canInteract = true;
     private bool _buttonPressed = false;
-    private bool _fold = true;
+    private bool _fold = false;
+    private bool _objectiveChanged = true;
     private float _timeAfk = 0f;
     private float _movementX;
 
     void Start()
     {
-        ChangeObjective(_zoneName);
+        ChangeObjective();
         _movementX = GetComponent<RectTransform>().sizeDelta.x - _pressButton.sizeDelta.x;
     }
 
-    public void ChangeObjective(string _zN)
+    private void ChangeObjective()
     {
-        _text = GameManager.INSTANCE.CANVAS.AddText(_zN);
+        _text = GameManager.INSTANCE.CANVAS.AddText(_zoneName);
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _text[0];
+    }
+
+    public void ChangeZoneName(string _zn)
+    {
+        _zoneName = _zn;
+    }
+
+    public void ChangeObjectiveBool()
+    {
+        _objectiveChanged = true;
     }
 
     private IEnumerator FoldUnfold(bool var)
@@ -37,6 +48,12 @@ public class ObjectivesManager : MonoBehaviour
         float _initialX;
         float _finalX;
         
+        if (_objectiveChanged)
+        {
+            _objectiveChanged = false;
+            ChangeObjective();
+        }
+
         if (var)
         {
             _initialX = transform.localPosition.x;
@@ -74,10 +91,26 @@ public class ObjectivesManager : MonoBehaviour
             return;
         }
 
-        if(_fold)
+        if (_objectiveChanged)
+        {
+            _timeAfk = 0f;
+            if (_fold)
+            {
+                _objectiveChanged = false;
+                ChangeObjective();
+            }
+            else
+            {
+                _canInteract = false;
+                StartCoroutine(FoldUnfold(_fold));
+            }
+            return;
+        }
+
+        if (_fold)
         {
             _timeAfk += Time.deltaTime;
-            if (_timeAfk > 3f)
+            if (_timeAfk > 2.5f)
             {
                 _canInteract = false;
                 _timeAfk = 0f;

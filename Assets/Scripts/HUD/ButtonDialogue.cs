@@ -35,6 +35,7 @@ public class ButtonDialogue : MonoBehaviour
     private int _index = 0;
     private bool _notFirstDialogue = false;
     private GameObject _dialogueDeactivate;
+    private bool _playerMovesAfterDialogue = true;
 
     public Animator lifeBarAnim;
 
@@ -129,6 +130,11 @@ public class ButtonDialogue : MonoBehaviour
         _dialogueDeactivate = go;
     }
 
+    public void PlayerMovesAfterDialogue(bool bl)
+    {
+        _playerMovesAfterDialogue = bl;
+    }
+
     public void MoreDialoguePlz()
     {
         _cont++;
@@ -148,18 +154,11 @@ public class ButtonDialogue : MonoBehaviour
 
         if (_cont >= _zoneLines)
         {
-            bool piloto = true;
-
             /* if (ZONENAME == "lvl01_pilot_with_key")
             {
                 GameObject.FindWithTag("Boton").SetActive(false);
                 piloto = false;
             }
-            
-            if (ZONENAME == "lvl01_ship_key")
-            {
-                GameObject.FindWithTag("Key").SetActive(false);
-            }   
 
             if (ZONENAME == "lvl02_brody_03")
             {
@@ -171,21 +170,16 @@ public class ButtonDialogue : MonoBehaviour
                 GameObject.FindWithTag("Translator").SetActive(false);
             } */
 
-            StartCoroutine(Fold(piloto));
+            StartCoroutine(Fold());
             if (_dialogueDeactivate != null)
             {
                 _dialogueDeactivate.SetActive(false);
             }
             return;
         }
-        
-        /* if ((ZONENAME == "lvl01_pilot_with_key") && (_cont == 6))
-        {
-            GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
-        }
 
 
-        if(GameManager.INSTANCE.LEVEL == 2)
+        /* if(GameManager.INSTANCE.LEVEL == 2)
         {
             if ((ZONENAME == "lvl02_brody_03") && (_cont == 7))
             {
@@ -212,11 +206,10 @@ public class ButtonDialogue : MonoBehaviour
         
         } */
 
-
         DifferentDialogues();
     }
 
-    private IEnumerator Fold(bool piloto)
+    private IEnumerator Fold()
     {
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;
@@ -241,12 +234,13 @@ public class ButtonDialogue : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        _player.GetComponent<Player>().enabled = piloto;
+        _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
         if (GameManager.INSTANCE.PLAYER_COMBAT)
         {
             _player.GetComponent<PlayerCombat>().enabled = true;
         }
-        else{
+        else
+        {
             _player.GetComponent<PlayerCombat>().enabled = false;
         }
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
