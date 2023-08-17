@@ -50,4 +50,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
         data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
         data.PLAYER_POSITION = CHECKPOINT;
     }
+
+    public void StartGameObject(GameObject obj)
+    {
+        StartCoroutine(StartTime(obj));   
+    }
+
+    private IEnumerator StartTime(GameObject obj)
+    {
+        yield return new WaitForSeconds(1f);
+        obj.SetActive(true);
+    }
 }

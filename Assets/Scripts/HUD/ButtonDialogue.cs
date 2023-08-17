@@ -56,6 +56,7 @@ public class ButtonDialogue : MonoBehaviour
 
     public string[] AddText(string _zoneName)
     {
+        Awake();
         int _ix = 0;
         for (int i = 0; i < _zone.DIALOGUES.Length; i++)
         {
@@ -154,22 +155,6 @@ public class ButtonDialogue : MonoBehaviour
 
         if (_cont >= _zoneLines)
         {
-            /* if (ZONENAME == "lvl01_pilot_with_key")
-            {
-                GameObject.FindWithTag("Boton").SetActive(false);
-                piloto = false;
-            }
-
-            if (ZONENAME == "lvl02_brody_03")
-            {
-                ScenesManager.Instance.LoadNextScene("EndDemo");
-            }
-
-            if (ZONENAME == "lvl02_scrap_knowing")
-            {
-                GameObject.FindWithTag("Translator").SetActive(false);
-            } */
-
             StartCoroutine(Fold());
             if (_dialogueDeactivate != null)
             {
