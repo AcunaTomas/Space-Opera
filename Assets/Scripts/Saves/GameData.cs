@@ -9,10 +9,16 @@ public class GameData
     public int PLAYER_MAX_HP;
     public int PLAYER_ACTUAL_HP;
 
+    //LEVEL 1
+    public bool[] CANVAS_WS_LVL1_GENERAL = {true, true, true, true, true};
+    public bool[] CANVAS_WS_LVL1_ACTIVATE_EVENTS = {false, false, false, false, false};
+
     public GameData()
     {
         PLAYER_POSITION = new Vector3(1.21f, 13.87508f, 0f);
         PLAYER_MAX_HP = 5;
         PLAYER_ACTUAL_HP = 5;
+
+        //LEVEL 1
     }
 }

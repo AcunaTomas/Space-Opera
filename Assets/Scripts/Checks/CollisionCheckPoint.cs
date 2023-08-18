@@ -18,7 +18,7 @@ public class CollisionCheckPoint : MonoBehaviour
 
     void Restore()
     {
-        //DataPersistentManager.INSTANCE.SaveGame();
+        DataPersistentManager.INSTANCE.SaveGame();
         for (int i = 0; i < transform.parent.childCount; i++)
         {
             if (transform.parent.GetChild(i).name != transform.name)

@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     private Player _playerScript;
 
+    //LEVEL 1
+    [Header("LEVEL 1\n")]
+    public GameObject CANVAS_WS_LVL1; 
+
     private void Awake()
     {
         INSTANCE = this;
@@ -34,7 +38,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
     
     void Update()
     {
-        
+        if (Input.GetKeyDown("1"))
+        {
+            DataPersistentManager.INSTANCE.DeleteSave();
+        }
     }
 
     void IDataPersistance.LoadData(GameData data)
@@ -42,6 +49,37 @@ public class GameManager : MonoBehaviour, IDataPersistance
         _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
         _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
         PLAYER.transform.localPosition = data.PLAYER_POSITION;
+
+        switch (LEVEL)
+        {
+            //LEVEL 1
+            case 1: //LEVEL 1
+            //LEVEL 1
+
+                for (int i = 0; i < data.CANVAS_WS_LVL1_GENERAL.Length; i++)
+                {
+                    if (data.CANVAS_WS_LVL1_GENERAL[i])
+                    {
+                        CANVAS_WS_LVL1.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        CANVAS_WS_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                }
+
+                for (int i = 0; i < data.CANVAS_WS_LVL1_ACTIVATE_EVENTS.Length; i++)
+                {
+                    if (data.CANVAS_WS_LVL1_ACTIVATE_EVENTS[i])
+                    {
+                        CANVAS_WS_LVL1.transform.GetChild(i).BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+
+                break;
+            default:
+                break;
+        }
     }
 
     void IDataPersistance.SaveData(ref GameData data)
@@ -49,6 +87,38 @@ public class GameManager : MonoBehaviour, IDataPersistance
         data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
         data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
         data.PLAYER_POSITION = CHECKPOINT;
+
+        switch (LEVEL)
+        {
+            case 1:
+                for (int i = 0; i < CANVAS_WS_LVL1.transform.childCount; i++)
+                {
+                    if (CANVAS_WS_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        data.CANVAS_WS_LVL1_GENERAL[i] = true;
+                    }
+                    else
+                    {
+                        data.CANVAS_WS_LVL1_GENERAL[i] = false;
+                    }
+                }
+
+                for (int i = 0; i < CANVAS_WS_LVL1.transform.childCount; i++)
+                {
+                    if (CANVAS_WS_LVL1.transform.GetChild(i).GetComponent<Image>().enabled && CANVAS_WS_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        data.CANVAS_WS_LVL1_ACTIVATE_EVENTS[i] = true;
+                    }
+                    else
+                    {
+                        data.CANVAS_WS_LVL1_ACTIVATE_EVENTS[i] = false;
+                    }
+                }
+
+                break;
+            default:
+                break;
+        }
     }
 
     public void StartGameObject(GameObject obj)

@@ -64,4 +64,10 @@ public class FileDataHandler
             Debug.LogError("error al guardar " + fullPath + "\n" + e);
         }
     }
+
+    public void Delete()
+    {
+        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        File.Delete(fullPath);
+    }
 }

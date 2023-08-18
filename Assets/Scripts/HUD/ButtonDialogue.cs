@@ -279,10 +279,5 @@ public class ButtonDialogue : MonoBehaviour
             lifeBarAnim.SetTrigger("Appear");
         }
 
-    }
-    void Update()
-    {
-
-    }
-    
+    }    
 }

@@ -70,4 +70,10 @@ public class DataPersistentManager : MonoBehaviour
         IEnumerable<IDataPersistance> _dpo = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
         return new List<IDataPersistance> (_dpo);
     }
+
+    public void DeleteSave()
+    {
+        Debug.LogWarning("Por las dudas, borraste la partida guardada porque apretaste el 1.");
+        _dataHandler.Delete();
+    }
 }
