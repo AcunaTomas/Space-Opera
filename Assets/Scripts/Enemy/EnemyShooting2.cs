@@ -11,10 +11,12 @@ public class EnemyShooting2 : MonoBehaviour
 
     public Transform _bulletSource;
     public GameObject _bullet;
-    public float _bulletSpeed;
     private float _tiempo;
 
     private SpriteRenderer _spriteRenderer;
+
+    private bool inRange = true;
+
 
     void Start()
     {
@@ -23,6 +25,24 @@ public class EnemyShooting2 : MonoBehaviour
     }
 
     void FixedUpdate()
+    {
+        _tiempo += Time.deltaTime;
+        if (_tiempo >= 2)
+        {
+            Instantiate(_bullet, _bulletSource.position, Quaternion.identity);
+            _bullet.SetActive(true);
+            
+            _tiempo = 0;
+        }
+
+        if (inRange)
+        {
+            EnemyShootingLogic();
+        }
+
+    }
+
+    private void EnemyShootingLogic()
     {
         //Movement
         if (Vector2.Distance(transform.position, _playerPos.position) > _distanciaFrenado)
@@ -51,26 +71,6 @@ public class EnemyShooting2 : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
             _bulletSource.localPosition = new Vector2(-0.2f,0);
         }
-
-        _tiempo += Time.deltaTime;
-        if (_tiempo >= 2)
-        {
-            Instantiate(_bullet, _bulletSource.position, Quaternion.identity);
-            _bullet.SetActive(true);
-
-            if (_spriteRenderer.flipX == true)
-            {
-                //_bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.left * _bulletSpeed, ForceMode2D.Impulse);
-            }
-            else
-            {
-                //_bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * _bulletSpeed, ForceMode2D.Impulse);
-            }
-            
-            _tiempo = 0;
-        }
-
-
     }
 
 }
