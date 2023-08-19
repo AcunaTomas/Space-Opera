@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
-    public GameObject CANVAS_WS_LVL1; 
+    public GameObject CANVAS_WS_LVL1;
+    public GameObject TUTO_TRIG_LVL1;
+    public GameObject CHECKPOINTS_LVL1;
 
     private void Awake()
     {
@@ -58,11 +60,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
                 for (int i = 0; i < data.CANVAS_WS_LVL1_GENERAL.Length; i++)
                 {
-                    if (data.CANVAS_WS_LVL1_GENERAL[i])
-                    {
-                        CANVAS_WS_LVL1.transform.GetChild(i).gameObject.SetActive(true);
-                    }
-                    else
+                    if (!data.CANVAS_WS_LVL1_GENERAL[i])
                     {
                         CANVAS_WS_LVL1.transform.GetChild(i).gameObject.SetActive(false);
                     }
@@ -76,7 +74,28 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     }
                 }
 
+                for (int i = 0; i < data.TUTO_TRIG_LVL1.Length; i++)
+                {
+                    if (!data.TUTO_TRIG_LVL1[i])
+                    {
+                        TUTO_TRIG_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                }
+
+                for (int i = 0; i < data.CHECKPOINTS_LVL1.Length; i++)
+                {
+                    if (!data.CHECKPOINTS_LVL1[i])
+                    {
+                        CHECKPOINTS_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        CHECKPOINTS_LVL1.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+
                 break;
+
             default:
                 break;
         }
@@ -90,14 +109,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         switch (LEVEL)
         {
-            case 1:
+            //LEVEL 1
+            case 1: //LEVEL 1
+            //LEVEL 1
+
                 for (int i = 0; i < CANVAS_WS_LVL1.transform.childCount; i++)
                 {
-                    if (CANVAS_WS_LVL1.transform.GetChild(i).gameObject.activeSelf)
-                    {
-                        data.CANVAS_WS_LVL1_GENERAL[i] = true;
-                    }
-                    else
+                    if (!CANVAS_WS_LVL1.transform.GetChild(i).gameObject.activeSelf)
                     {
                         data.CANVAS_WS_LVL1_GENERAL[i] = false;
                     }
@@ -115,7 +133,24 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     }
                 }
 
+                for (int i = 0; i < TUTO_TRIG_LVL1.transform.childCount; i++)
+                {
+                    if (!TUTO_TRIG_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        data.TUTO_TRIG_LVL1[i] = false;
+                    }
+                }
+
+                for (int i = 0; i < CHECKPOINTS_LVL1.transform.childCount; i++)
+                {
+                    if (!CHECKPOINTS_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        data.CHECKPOINTS_LVL1[i] = false;
+                    }
+                }
+
                 break;
+
             default:
                 break;
         }
