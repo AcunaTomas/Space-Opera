@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject CANVAS_WS_LVL1;
     public GameObject TUTO_TRIG_LVL1;
     public GameObject CHECKPOINTS_LVL1;
+    public GameObject DIALOGUES_LVL1;
 
     private void Awake()
     {
@@ -94,6 +95,33 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     }
                 }
 
+                for (int i = 0; i < data.DIALOGUES_LVL1.Length; i++)
+                {
+
+                    if (!data.DIALOGUES_LVL1[i])
+                    {
+                        if (i == data.DIALOGUES_LVL1.Length-1)
+                        {
+                            DIALOGUES_LVL1.transform.GetChild(i).GetChild(0).gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            DIALOGUES_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        if (i == data.DIALOGUES_LVL1.Length-1)
+                        {
+                            DIALOGUES_LVL1.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            DIALOGUES_LVL1.transform.GetChild(i).gameObject.SetActive(true);
+                        }
+                    }
+                }
+
                 break;
 
             default:
@@ -146,6 +174,32 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     if (!CHECKPOINTS_LVL1.transform.GetChild(i).gameObject.activeSelf)
                     {
                         data.CHECKPOINTS_LVL1[i] = false;
+                    }
+                }
+
+                for (int i = 0; i < DIALOGUES_LVL1.transform.childCount; i++)
+                {
+                    if (i == data.DIALOGUES_LVL1.Length-1)
+                    {
+                        if (!DIALOGUES_LVL1.transform.GetChild(i).GetChild(0).gameObject.activeSelf)
+                        {
+                            data.DIALOGUES_LVL1[i] = false;
+                        }
+                        else
+                        {
+                            data.DIALOGUES_LVL1[i] = true;
+                        }
+                    }
+                    else
+                    {
+                        if (!DIALOGUES_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                        {
+                            data.DIALOGUES_LVL1[i] = false;
+                        }
+                        else
+                        {
+                            data.DIALOGUES_LVL1[i] = true;
+                        }
                     }
                 }
 

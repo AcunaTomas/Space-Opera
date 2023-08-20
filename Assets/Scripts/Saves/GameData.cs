@@ -14,6 +14,7 @@ public class GameData
     public bool[] CANVAS_WS_LVL1_ACTIVATE_EVENTS = {false, false, false, false, false};
     public bool[] TUTO_TRIG_LVL1 = {true, true};
     public bool[] CHECKPOINTS_LVL1 = {true, true, true, true, true, true, true};
+    public bool[] DIALOGUES_LVL1 = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, false};
 
     public GameData()
     {
