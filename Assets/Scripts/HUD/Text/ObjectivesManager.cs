@@ -36,6 +36,11 @@ public class ObjectivesManager : MonoBehaviour
         _zoneName = _zn;
     }
 
+    public string GetZoneName()
+    {
+        return _zoneName;
+    }
+
     public void ChangeObjectiveBool()
     {
         _objectiveChanged = true;

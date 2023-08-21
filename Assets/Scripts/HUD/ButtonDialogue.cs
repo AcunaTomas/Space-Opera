@@ -41,6 +41,11 @@ public class ButtonDialogue : MonoBehaviour
 
     void Awake()
     {
+        if (_zone != null)
+        {
+            return;
+        }
+
         switch (GameManager.INSTANCE.LEVEL)
         {
             case 1:

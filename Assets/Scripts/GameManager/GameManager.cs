@@ -14,8 +14,12 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject ACTUAL_CHECKPOINT;
     public bool PLAYER_COMBAT = false;
     public ButtonDialogue CANVAS;
+    public GameObject PAUSE_MENU;
+    public GameObject PANEL_OBJECTIVE;
 
     private Player _playerScript;
+    private bool _escapePressed = false;
+    private bool _paused = true;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
@@ -41,10 +45,40 @@ public class GameManager : MonoBehaviour, IDataPersistance
     
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown("5"))
         {
             DataPersistentManager.INSTANCE.DeleteSave();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
+        {
+            PauseUnPause(_paused);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            _escapePressed = false;
+        }
+    }
+
+    public void PauseUnPause(bool bl)
+    {
+        if (bl)
+        {
+            PAUSE_MENU.SetActive(true);
+            ChangeTimeScale(0f);
+        }
+        else
+        {
+            PAUSE_MENU.SetActive(false);
+            ChangeTimeScale(1f);
+        }
+        _paused = !bl;
+    }
+
+    public void ChangeTimeScale(float n)
+    {
+        Time.timeScale = n;
     }
 
     void IDataPersistance.LoadData(GameData data)
@@ -52,6 +86,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
         _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
         _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
         PLAYER.transform.localPosition = data.PLAYER_POSITION;
+        PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
+        PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
 
         switch (LEVEL)
         {
@@ -122,6 +158,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     }
                 }
 
+                if (!data.DIALOGUES_LVL1[0])
+                {
+                    PANEL_OBJECTIVE.SetActive(true);
+                }
+
                 break;
 
             default:
@@ -129,11 +170,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
         }
     }
 
-    void IDataPersistance.SaveData(ref GameData data)
+    void IDataPersistance.SaveData(GameData data)
     {
         data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
         data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
         data.PLAYER_POSITION = CHECKPOINT;
+        data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
+        data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
 
         switch (LEVEL)
         {
@@ -174,6 +217,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     if (!CHECKPOINTS_LVL1.transform.GetChild(i).gameObject.activeSelf)
                     {
                         data.CHECKPOINTS_LVL1[i] = false;
+                    }
+                    else
+                    {
+                        data.CHECKPOINTS_LVL1[i] = true;
                     }
                 }
 

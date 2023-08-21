@@ -59,7 +59,7 @@ public class DataPersistentManager : MonoBehaviour
     {
         foreach (IDataPersistance dpo in _dataPersistanceObjects)
         {
-            dpo.SaveData(ref _gameData);
+            dpo.SaveData(_gameData);
         }
 
         _dataHandler.Save(_gameData);
@@ -73,7 +73,7 @@ public class DataPersistentManager : MonoBehaviour
 
     public void DeleteSave()
     {
-        Debug.LogWarning("Por las dudas, borraste la partida guardada porque apretaste el 1.");
+        Debug.LogWarning("Por las dudas, borraste la partida guardada porque apretaste el 5.");
         _dataHandler.Delete();
     }
 }
