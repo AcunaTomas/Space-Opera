@@ -17,8 +17,7 @@ public class Enemy : MonoBehaviour
     private bool _Inmortal = false;
     private bool isDead;
 
-    [SerializeField]
-    private bool _MakeFunctionCallOnHit;
+    public bool _MakeFunctionCallOnHit;
     
     [SerializeField]
     private UnityEvent _callWhat;
