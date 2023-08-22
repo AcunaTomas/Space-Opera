@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
         }
         
 
-        //Debug.Log(body.velocity.y);
+        Debug.Log(canIjump);
     }
 
     private void _plaseJump()
@@ -143,7 +143,22 @@ public class Player : MonoBehaviour
         {
             WallJump();
         }
+        if (wallijumpy == false && canIjump == false && extrajumpcount >= 2)
+        {
+            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f) && _airborneTime > 0.3f)
+            {
+                SpecialJump();
+            }
+        }
         //Debug.Log(canIjump);
+
+    }
+
+    private void SpecialJump()
+    {
+        body.velocity = new Vector2(body.velocity.x, 0);
+        body.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+        extrajumpcount -= 1;
 
     }
 
@@ -216,7 +231,7 @@ public class Player : MonoBehaviour
                 canIjump = true;
                 wallijumpy = false;
                 _firstImpulse = true;
-                extrajumpcount = 1;
+                extrajumpcount = 2;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
                 _maxVerticalSpeed = speedCaps.y;
