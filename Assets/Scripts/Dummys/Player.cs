@@ -305,7 +305,7 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
-        extrajumpcount = 0;
+        extrajumpcount = 1;
 
         // if (collision.gameObject.CompareTag("Enemy"))
         // {

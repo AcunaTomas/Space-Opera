@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             print(restartTime);
             if (restartTime >= 1.6f)
             {
-                ScenesManager.Instance.ReloadScene();
+                ScenesManager.Instance.LoadMainMenu();
             }
         }
         else
