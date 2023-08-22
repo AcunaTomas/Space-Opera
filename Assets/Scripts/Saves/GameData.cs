@@ -18,6 +18,8 @@ public class GameData
     public bool[] CHECKPOINTS_LVL1 = {true, true, true, true, true, true, true};
     public bool[] DIALOGUES_LVL1 = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, false};
     public bool[] CHANGE_MUSIC_LVL1 = {false, true};
+    public bool[] EVENTS_GO_HERE_LVL1 = {false, true, true, false, false, false, true, true, true, false, false};
+    public bool INVISIBLE_TROLL_LVL1 = true;
 
     public GameData()
     {

@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject CHECKPOINTS_LVL1;
     public GameObject DIALOGUES_LVL1;
     public GameObject CHANGE_MUSIC_LVL1;
+    public GameObject EVENTS_GO_HERE_LVL1;
+    public GameObject DOORS_LVL1;
+    public GameObject INVISIBLE_TROLL_LVL1;
 
     private void Awake()
     {
@@ -173,6 +176,32 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     }
                 }
 
+                for (int i = 0; i < data.EVENTS_GO_HERE_LVL1.Length; i++)
+                {
+                    if (!data.EVENTS_GO_HERE_LVL1[i])
+                    {
+                        EVENTS_GO_HERE_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        EVENTS_GO_HERE_LVL1.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+
+                if (!data.EVENTS_GO_HERE_LVL1[2])
+                {
+                    DOORS_LVL1.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
+                    DOORS_LVL1.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+                }
+
+                if (!data.EVENTS_GO_HERE_LVL1[8])
+                {
+                    DOORS_LVL1.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = false;
+                    DOORS_LVL1.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
+                }
+
+                INVISIBLE_TROLL_LVL1.SetActive(data.INVISIBLE_TROLL_LVL1);
+
                 break;
 
             default:
@@ -271,6 +300,20 @@ public class GameManager : MonoBehaviour, IDataPersistance
                         data.CHANGE_MUSIC_LVL1[i] = true;
                     }
                 }
+
+                for (int i = 0; i < EVENTS_GO_HERE_LVL1.transform.childCount; i++)
+                {
+                    if (!EVENTS_GO_HERE_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        data.EVENTS_GO_HERE_LVL1[i] = false;
+                    }
+                    else
+                    {
+                        data.EVENTS_GO_HERE_LVL1[i] = true;
+                    }
+                }
+
+                data.INVISIBLE_TROLL_LVL1 = INVISIBLE_TROLL_LVL1.activeSelf;
 
                 break;
 

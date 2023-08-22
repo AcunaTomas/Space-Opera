@@ -263,8 +263,8 @@ MonoBehaviour:
 
     TEXT'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 761184334e93c68498253231889943b9, type: 2}
-  m_sharedMaterial: {fileID: 7007907145654669381, guid: 761184334e93c68498253231889943b9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40b95ef28546ef64a947e0cb8acf163c, type: 2}
+  m_sharedMaterial: {fileID: 2394825785785672819, guid: 40b95ef28546ef64a947e0cb8acf163c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -288,8 +288,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -482,6 +482,16 @@ MonoBehaviour:
   ACTUAL_CHECKPOINT: {fileID: 0}
   PLAYER_COMBAT: 0
   CANVAS: {fileID: 0}
+  PAUSE_MENU: {fileID: 0}
+  PANEL_OBJECTIVE: {fileID: 0}
+  CANVAS_WS_LVL1: {fileID: 0}
+  TUTO_TRIG_LVL1: {fileID: 0}
+  CHECKPOINTS_LVL1: {fileID: 0}
+  DIALOGUES_LVL1: {fileID: 0}
+  CHANGE_MUSIC_LVL1: {fileID: 0}
+  EVENTS_GO_HERE_LVL1: {fileID: 0}
+  DOORS_LVL1: {fileID: 0}
+  INVISIBLE_TROLL_LVL1: {fileID: 0}
 --- !u!95 &558290269
 Animator:
   serializedVersion: 5
@@ -653,6 +663,7 @@ MonoBehaviour:
   _elevatorInteractor: {fileID: 8300000, guid: 703d349f0cd7a6042b446eea59f89b7f, type: 3}
   _elevatorSound: {fileID: 8300000, guid: 40194d393bab7914ea4bdf0ef8a15e42, type: 3}
   _elevatorStop: {fileID: 8300000, guid: a53f5dbb3c23e7a44b858d554569337e, type: 3}
+  _elevatorNaveSound: {fileID: 0}
   _pinchosSound: {fileID: 8300000, guid: de76d0befa9bf694cbe4a70a7c4afd81, type: 3}
   _ambientOutside: {fileID: 8300000, guid: e3d4765303a840e42989422bbb6c2b5b, type: 3}
   _ambientInside: {fileID: 8300000, guid: 30410c674deb0104f8c1621811bcc18a, type: 3}
@@ -1178,7 +1189,7 @@ MonoBehaviour:
   ZONENAME: intro_02
   _keyNextDialogue: 101
   _animatorCinematic: {fileID: 1716347075}
-  _sceneName: Level_2_
+  _sceneName: SaveGame2
 --- !u!114 &1665518394
 MonoBehaviour:
   m_ObjectHideFlags: 0
