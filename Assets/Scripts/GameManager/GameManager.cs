@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject TUTO_TRIG_LVL1;
     public GameObject CHECKPOINTS_LVL1;
     public GameObject DIALOGUES_LVL1;
+    public GameObject CHANGE_MUSIC_LVL1;
 
     private void Awake()
     {
@@ -163,6 +164,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     PANEL_OBJECTIVE.SetActive(true);
                 }
 
+                for (int i = 0; i < data.CHANGE_MUSIC_LVL1.Length; i++)
+                {
+                    if (!data.CHANGE_MUSIC_LVL1[i])
+                    {
+                        CHANGE_MUSIC_LVL1.transform.GetChild(i).gameObject.SetActive(true);
+                        CHANGE_MUSIC_LVL1.transform.GetChild(i).gameObject.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+
                 break;
 
             default:
@@ -247,6 +257,18 @@ public class GameManager : MonoBehaviour, IDataPersistance
                         {
                             data.DIALOGUES_LVL1[i] = true;
                         }
+                    }
+                }
+
+                for (int i = 0; i < CHANGE_MUSIC_LVL1.transform.childCount; i++)
+                {
+                    if (!CHANGE_MUSIC_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        data.CHANGE_MUSIC_LVL1[i] = false;
+                    }
+                    else
+                    {
+                        data.CHANGE_MUSIC_LVL1[i] = true;
                     }
                 }
 

@@ -22,7 +22,7 @@ public class ObjectivesManager : MonoBehaviour
     void Start()
     {
         ChangeObjective();
-        _movementX = GetComponent<RectTransform>().sizeDelta.x - _pressButton.sizeDelta.x;
+        _movementX = GetComponent<RectTransform>().sizeDelta.x - (_pressButton.sizeDelta.x - 10f);
     }
 
     private void ChangeObjective()

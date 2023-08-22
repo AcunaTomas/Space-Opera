@@ -17,6 +17,7 @@ public class GameData
     public bool[] TUTO_TRIG_LVL1 = {true, true};
     public bool[] CHECKPOINTS_LVL1 = {true, true, true, true, true, true, true};
     public bool[] DIALOGUES_LVL1 = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, false};
+    public bool[] CHANGE_MUSIC_LVL1 = {false, true};
 
     public GameData()
     {
