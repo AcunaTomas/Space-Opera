@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
     public bool canIjump = true;
     bool _firstImpulse = true;
     bool wallijumpy = false;
-    private Rigidbody2D body;
+    public Rigidbody2D body;
     [SerializeField]
     private float jumpLimit = 0f;
     [SerializeField]
-    private float Xspeed = 0f;
+    public float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     [SerializeField]
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
         }
         if (wallijumpy == false && canIjump == false && extrajumpcount >= 2)
         {
-            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f) && _airborneTime > 0.3f)
+            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f))
             {
                 SpecialJump();
             }
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void SpecialJump()
+    public virtual void SpecialJump()
     {
         body.velocity = new Vector2(body.velocity.x, 0);
         body.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
@@ -180,6 +180,15 @@ public class Player : MonoBehaviour
         }
         
     }
+
+    public void setXStunVariables()
+    {
+        _wallJumpFreezeTimer = 0f;
+        _wallJumpXtimeFreeze = 0.2f;
+        _wallJumpXHandicap = true;
+        speedCaps = new Vector2(4, speedCaps.y);
+    }
+
 
     void WallJumpDelay()
     {
@@ -296,6 +305,7 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
+        extrajumpcount = 0;
 
         // if (collision.gameObject.CompareTag("Enemy"))
         // {
@@ -338,6 +348,7 @@ public class Player : MonoBehaviour
         else
         {
             _wallJumpXHandicap = false;
+            speedCaps = new Vector2(1.2f, speedCaps.y);
         }
 
         if (_wallJumpXHandicap == false)
@@ -439,6 +450,13 @@ public class Player : MonoBehaviour
     {
         HP = HP + hp;
         _healthBar.UpdateHP();
+    }
+
+    public virtual void TheTheSkill()
+    {
+        Debug.Log("aaaaaaaaaaaaaaaaaaa");
+        setXStunVariables();
+        body.AddForce(new Vector2(3 * Mathf.Clamp(Input.GetAxis("Horizontal"), -1, 1), 0), ForceMode2D.Impulse);
     }
 
     void Respawn() 
