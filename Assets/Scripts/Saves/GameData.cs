@@ -20,6 +20,8 @@ public class GameData
     public bool[] CHANGE_MUSIC_LVL1 = {false, true};
     public bool[] EVENTS_GO_HERE_LVL1 = {false, true, true, false, false, false, true, true, true, false, false};
     public bool INVISIBLE_TROLL_LVL1 = true;
+    public Vector3[] ELEVATORS_LVL1 = {new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f)};
+    public bool ELEVATOR_DOOR_LVL1 = true;
 
     public GameData()
     {

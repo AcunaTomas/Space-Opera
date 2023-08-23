@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject EVENTS_GO_HERE_LVL1;
     public GameObject DOORS_LVL1;
     public GameObject INVISIBLE_TROLL_LVL1;
+    public Transform[] ELEVATORS_LVL1;
+    public GameObject ELEVATOR_DOOR_LVL1;
 
     private void Awake()
     {
@@ -202,6 +204,20 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
                 INVISIBLE_TROLL_LVL1.SetActive(data.INVISIBLE_TROLL_LVL1);
 
+                for (int i = 0; i < data.ELEVATORS_LVL1.Length; i++)
+                {
+                    ELEVATORS_LVL1[i].localPosition = data.ELEVATORS_LVL1[i];
+                }
+
+                if (!data.ELEVATOR_DOOR_LVL1)
+                {
+                    ELEVATOR_DOOR_LVL1.SetActive(false);
+                }
+                else
+                {
+                    ELEVATOR_DOOR_LVL1.SetActive(true);
+                }
+
                 break;
 
             default:
@@ -314,6 +330,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 }
 
                 data.INVISIBLE_TROLL_LVL1 = INVISIBLE_TROLL_LVL1.activeSelf;
+
+                for (int i = 0; i < ELEVATORS_LVL1.Length; i++)
+                {
+                    data.ELEVATORS_LVL1[i] = ELEVATORS_LVL1[i].localPosition;
+                }
+
+                data.ELEVATOR_DOOR_LVL1 = ELEVATOR_DOOR_LVL1.activeSelf;
 
                 break;
 
