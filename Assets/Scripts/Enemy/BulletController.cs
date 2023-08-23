@@ -14,10 +14,17 @@ public class BulletController : MonoBehaviour
         _bulletRig = GetComponent<Rigidbody2D>();
         _target = GameObject.FindWithTag("Player");
         Vector2 moveDir = (_target.transform.position - transform.position).normalized * speed;
+        if (_target.transform.position.x > transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
         _bulletRig.velocity = new Vector2(moveDir.x, 0);
         Destroy(this.gameObject, 2);
 
-        //_bulletRig.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D col)

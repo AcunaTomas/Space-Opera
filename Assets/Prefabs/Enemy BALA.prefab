@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7823865446176008836}
   - component: {fileID: 7823865446176008839}
   - component: {fileID: 7823865446176008838}
-  - component: {fileID: 7823865446176008862}
+  - component: {fileID: 4396982601137334693}
   - component: {fileID: 8207393208269384168}
   m_Layer: 7
   m_Name: Enemy BALA
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: -340220743
   m_SortingLayer: 2
   m_SortingOrder: 45
-  m_Sprite: {fileID: 21300000, guid: f1274d9c7d39e484abb56a0060ac55c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e296adea6fa2d2840942bfef9373f612, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +107,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029523134, y: -0.012353331}
+  m_Offset: {x: -0.015712976, y: -0.012353331}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -118,7 +118,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13233519, y: 0.2743885}
+  m_Size: {x: 0.1599555, y: 0.2743885}
   m_EdgeRadius: 0
 --- !u!50 &7823865446176008863
 Rigidbody2D:
@@ -205,7 +205,7 @@ Animator:
   m_GameObject: {fileID: 7823865446176008843}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fa5d1072becb35d4287d53d40d20d8fd, type: 2}
+  m_Controller: {fileID: 22100000, guid: 4bc13a5ef9282b44d82769d74e6c8530, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -216,7 +216,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7823865446176008862
+--- !u!114 &4396982601137334693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,6 +237,7 @@ MonoBehaviour:
       m_Calls: []
   _coolingHit: 0
   _coolingHit2: 0
+  _enemyType: 1
 --- !u!114 &8207393208269384168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,8 +254,16 @@ MonoBehaviour:
   _speed: 0.5
   _distanciaFrenado: 0.8
   _distanciaRetroceso: 0.7
-  _bulletSource: {fileID: 8207393207281098362}
   _bullet: {fileID: 5577261586182523684, guid: 4c1268d8babf16f4c8c9574a3badd973, type: 3}
+  attackDistance: 1
+  moveSpeed: 1
+  timer: 0.1
+  target: {fileID: 0}
+  inRange: 0
+  hotZone: {fileID: 7823865447351134833}
+  triggerArea: {fileID: 7823865446617633943}
+  _bulletSource: {fileID: 8207393207281098362}
+  attackDelay: 0.5
 --- !u!1 &7823865446617633943
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,14 +274,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7823865446617633940}
   - component: {fileID: 7823865446617633941}
-  - component: {fileID: 7823865446617633938}
+  - component: {fileID: 908628700750742793}
   m_Layer: 0
   m_Name: TriggerArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7823865446617633940
 Transform:
   m_ObjectHideFlags: 0
@@ -314,7 +323,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9, y: 0.18073606}
   m_EdgeRadius: 0
---- !u!114 &7823865446617633938
+--- !u!114 &908628700750742793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,7 +332,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7823865446617633943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22554e639e31aed4bb0c4c900ae99eb0, type: 3}
+  m_Script: {fileID: 11500000, guid: d2491ab6b3cc4be4eaa4399dd29da344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7823865447351134833
@@ -336,14 +345,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7823865447351134734}
   - component: {fileID: 7823865447351134735}
-  - component: {fileID: 7823865447351134732}
+  - component: {fileID: 3914178579275490422}
   m_Layer: 0
   m_Name: HotZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7823865447351134734
 Transform:
   m_ObjectHideFlags: 0
@@ -385,7 +394,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.1416893, y: 1.2309532}
   m_EdgeRadius: 0
---- !u!114 &7823865447351134732
+--- !u!114 &3914178579275490422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,7 +403,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7823865447351134833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f736d2766ffa96740a14846a58400709, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f25fafb74292bd49909abf5adb97c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8207393207281098361

@@ -28,8 +28,24 @@ public class Enemy : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    public EnemyType _enemyType;
+    public enum EnemyType
+    {
+        melee,
+        gun
+    }
+
     void Start()
     {
+
+        switch (_enemyType)
+        {
+            default:
+
+                break;
+        }
+
+
         currentHealth = maxHealth;
         GameObject player = GameObject.FindWithTag("Player");
         
@@ -50,7 +66,16 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
             attackDamage = damage;
             animator.SetTrigger("Hurt");
-            GetComponent<EnemyBehaviour2>().enabled = false;
+
+            if (_enemyType == EnemyType.melee)
+            {
+                GetComponent<EnemyBehaviour2>().enabled = false;
+            }
+
+            if (_enemyType == EnemyType.gun)
+            {
+                GetComponent<EnemyShooting2>().enabled = false;
+            }
 
             AudioManager.INSTANCE.PlayEnemyHit();
 
@@ -83,7 +108,17 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
             attackDamage = damage;
             animator.SetTrigger("Hurt");
-            GetComponent<EnemyBehaviour2>().enabled = false;
+
+            if (_enemyType == EnemyType.melee)
+            {
+                GetComponent<EnemyBehaviour2>().enabled = false;
+            }
+
+            if (_enemyType == EnemyType.gun)
+            {
+                GetComponent<EnemyShooting2>().enabled = false;
+            }
+
 
             AudioManager.INSTANCE.PlayEnemyHit();
 
@@ -134,8 +169,18 @@ public class Enemy : MonoBehaviour
 
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<EnemyBehaviour2>().enabled = false;
-        GetComponentInChildren<HotZoneCheck>().enabled = false;
+
+        if (_enemyType == EnemyType.melee)
+        {
+            GetComponent<EnemyBehaviour2>().enabled = false;
+        }
+
+        if (_enemyType == EnemyType.gun)
+        {
+            GetComponent<EnemyShooting2>().enabled = false;
+        }
+
+        GetComponentInChildren<HotZoneCheckShooting>().enabled = false;
 
         this.enabled = false;
     }
@@ -144,7 +189,15 @@ public class Enemy : MonoBehaviour
     {
         if(isDead == false)
         {
-            GetComponent<EnemyBehaviour2>().enabled = true;
+            if (_enemyType == EnemyType.melee)
+            {
+                GetComponent<EnemyBehaviour2>().enabled = true;
+            }
+
+            if (_enemyType == EnemyType.gun)
+            {
+                GetComponent<EnemyShooting2>().enabled = true;
+            }
         }   
     }
 
