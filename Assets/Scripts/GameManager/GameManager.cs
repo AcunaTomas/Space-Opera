@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject INVISIBLE_TROLL_LVL1;
     public Transform[] ELEVATORS_LVL1;
     public GameObject ELEVATOR_DOOR_LVL1;
+    public GameObject[] DUMMIES_LVL1;
+    public GameObject PILOT_QUILOMB_LVL1;
+    public GameObject EVENTS_QUILOMB_LVL1;
+    public Transform ELEVATOR_SHIP_LVL1;
+    public Transform SPIKES_LVL1;
+    public GameObject BTTON_QUILOMB_LVL1;
 
     private void Awake()
     {
@@ -92,6 +98,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
         _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
         _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
         PLAYER.transform.localPosition = data.PLAYER_POSITION;
+        PLAYER_COMBAT = data.PLAYER_COMBAT;
+        PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
         PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
         PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
 
@@ -218,6 +226,53 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     ELEVATOR_DOOR_LVL1.SetActive(true);
                 }
 
+                for (int i = 0; i < data.DUMMIES_LVL1.Length; i++)
+                {
+                    if (!data.DUMMIES_LVL1[i])
+                    {
+                        DUMMIES_LVL1[i].SetActive(false);
+                    }
+                    else
+                    {
+                        DUMMIES_LVL1[i].SetActive(true);
+                        if (data.DUMMIES_LAYER_LVL1[i] == 7)
+                        {
+                            DUMMIES_LVL1[i].GetComponent<ChangeLayers>().EnemyLayer();
+                        }
+                        else
+                        {
+                            DUMMIES_LVL1[i].GetComponent<ChangeLayers>().DefaultLayer();
+                        }
+                    }
+                }
+
+                PILOT_QUILOMB_LVL1.SetActive(data.PILOT_QUILOMB_LVL1);
+                if (data.PILOT_QUILOMB_LVL1 && !data.BTTON_QUILOMB_LVL1)
+                {
+                    PILOT_QUILOMB_LVL1.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
+                    ELEVATOR_SHIP_LVL1.localPosition = data.ELEVATOR_SHIP_LVL1;
+                }
+
+                EVENTS_QUILOMB_LVL1.SetActive(data.EVENTS_QUILOMB_LVL1);
+                if (data.EVENTS_QUILOMB_LVL1)
+                {
+                    for (int i = 0; i < data.EVENTS_ALL_QUILOMB_LVL1.Length; i++)
+                    {
+                        if (!data.EVENTS_ALL_QUILOMB_LVL1[i])
+                        {
+                            if (i == 1)
+                            {
+                                SPIKES_LVL1.localPosition = data.SPIKES_LVL1;
+                            }
+                            EVENTS_QUILOMB_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            EVENTS_QUILOMB_LVL1.transform.GetChild(i).gameObject.SetActive(true);
+                        }
+                    }
+                }
+
                 break;
 
             default:
@@ -231,6 +286,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
         data.PLAYER_POSITION = CHECKPOINT;
         data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
+        data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
         data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
 
         switch (LEVEL)
@@ -337,6 +393,41 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 }
 
                 data.ELEVATOR_DOOR_LVL1 = ELEVATOR_DOOR_LVL1.activeSelf;
+
+                for (int i = 0; i < DUMMIES_LVL1.Length; i++)
+                {
+                    if (!DUMMIES_LVL1[i].activeSelf)
+                    {
+                        data.DUMMIES_LVL1[i] = false;
+                    }
+                    else
+                    {
+                        data.DUMMIES_LVL1[i] = true;
+                        data.DUMMIES_LAYER_LVL1[i] = DUMMIES_LVL1[i].layer;
+                    }
+                }
+
+                data.PILOT_QUILOMB_LVL1 = PILOT_QUILOMB_LVL1.activeSelf;
+                if (data.PILOT_QUILOMB_LVL1)
+                {
+                    data.BTTON_QUILOMB_LVL1 = BTTON_QUILOMB_LVL1.activeSelf;
+                }
+
+                data.EVENTS_QUILOMB_LVL1 = EVENTS_QUILOMB_LVL1.activeSelf;
+                if (EVENTS_QUILOMB_LVL1.activeSelf)
+                {
+                    for (int i = 0; i < EVENTS_QUILOMB_LVL1.transform.childCount; i++)
+                    {
+                        if (!EVENTS_QUILOMB_LVL1.transform.GetChild(i).gameObject.activeSelf)
+                        {
+                            data.EVENTS_ALL_QUILOMB_LVL1[i] = false;
+                        }
+                        else
+                        {
+                            data.EVENTS_ALL_QUILOMB_LVL1[i] = true;
+                        }
+                    }
+                }
 
                 break;
 

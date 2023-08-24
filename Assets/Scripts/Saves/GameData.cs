@@ -9,6 +9,7 @@ public class GameData
     public int PLAYER_MAX_HP;
     public int PLAYER_ACTUAL_HP;
     public bool PLAYER_FLIP_X = false;
+    public bool PLAYER_COMBAT = false;
     public string OBJECTIVE;
 
     //LEVEL 1
@@ -22,6 +23,14 @@ public class GameData
     public bool INVISIBLE_TROLL_LVL1 = true;
     public Vector3[] ELEVATORS_LVL1 = {new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f)};
     public bool ELEVATOR_DOOR_LVL1 = true;
+    public bool[] DUMMIES_LVL1 = {true, false, true};
+    public int[] DUMMIES_LAYER_LVL1 = {7, 7, 7};
+    public bool PILOT_QUILOMB_LVL1 = false;
+    public bool EVENTS_QUILOMB_LVL1 = false;
+    public bool[] EVENTS_ALL_QUILOMB_LVL1 = {true, true, true, true, true, true, true};
+    public Vector3 ELEVATOR_SHIP_LVL1 = new Vector3(0f, 0f, 0f);
+    public Vector3 SPIKES_LVL1 = new Vector3(0f, 0.32f, 0f);
+    public bool BTTON_QUILOMB_LVL1 = true;
 
     public GameData()
     {
