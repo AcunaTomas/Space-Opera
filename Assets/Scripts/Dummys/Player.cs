@@ -52,6 +52,26 @@ public class Player : MonoBehaviour
     private bool _playerFall = false;
     private float _airborneTime = 0f;
 
+    private bool _skillPermitted = true;
+    private float _skillHold;
+
+    public void ChangeSkillStatus(bool a)
+    {
+        _skillPermitted = a;
+    }
+
+    public float GetOrientation()
+    {
+        if (_spriteRenderer.flipX)
+        {
+            return -1;
+        }
+        if (_spriteRenderer.flipX == false)
+        {
+            return 1;
+        }
+        return 0;
+    }
 
     void Start()
     {
@@ -75,8 +95,16 @@ public class Player : MonoBehaviour
         {
             _lastJumpPress = 0f;
         }
+        if (Input.GetButton("Whoosh"))
+        {
+            _skillHold += 0.17f;
+        }
+        else
+        {
+            _skillHold = 0f;
+        }
 
-            Flip();
+        Flip();
 
         if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
         {
@@ -107,8 +135,12 @@ public class Player : MonoBehaviour
             _airborneTime = 0;
         }
         
+        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f)
+        {
+            TheTheSkill();
+            ChangeSkillStatus(false);
+        }
 
-        Debug.Log(canIjump);
     }
 
     private void _plaseJump()
@@ -184,11 +216,16 @@ public class Player : MonoBehaviour
     public void setXStunVariables()
     {
         _wallJumpFreezeTimer = 0f;
-        _wallJumpXtimeFreeze = 0.2f;
+        _wallJumpXtimeFreeze = 0.1f;
         _wallJumpXHandicap = true;
         speedCaps = new Vector2(4, speedCaps.y);
     }
 
+    private void unsetXStunVariables()
+    {
+
+        speedCaps = new Vector2(1.2f, speedCaps.y);
+    }
 
     void WallJumpDelay()
     {
@@ -237,6 +274,7 @@ public class Player : MonoBehaviour
         {
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
+                ChangeSkillStatus(true);
                 canIjump = true;
                 wallijumpy = false;
                 _firstImpulse = true;
@@ -266,7 +304,7 @@ public class Player : MonoBehaviour
                     {
                         _spriteRenderer.flipX = false;
                     }
-
+                    unsetXStunVariables();
                     //extrajumpcount += -1;
                     WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
                     _maxVerticalSpeed = speedCaps.x;
@@ -454,9 +492,6 @@ public class Player : MonoBehaviour
 
     public virtual void TheTheSkill()
     {
-        Debug.Log("aaaaaaaaaaaaaaaaaaa");
-        setXStunVariables();
-        body.AddForce(new Vector2(3 * Mathf.Clamp(Input.GetAxis("Horizontal"), -1, 1), 0), ForceMode2D.Impulse);
     }
 
     void Respawn() 
