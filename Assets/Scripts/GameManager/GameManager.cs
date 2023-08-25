@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public Transform ELEVATOR_SHIP_LVL1;
     public Transform SPIKES_LVL1;
     public GameObject BTTON_QUILOMB_LVL1;
+    public GameObject NPCS_LVL1;
 
     private void Awake()
     {
@@ -246,17 +247,19 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     }
                 }
 
+                NPCS_LVL1.SetActive(data.NPCS_LVL1);
+
                 PILOT_QUILOMB_LVL1.SetActive(data.PILOT_QUILOMB_LVL1);
                 if (data.PILOT_QUILOMB_LVL1 && !data.BTTON_QUILOMB_LVL1)
                 {
-                    PILOT_QUILOMB_LVL1.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
+                    PILOT_QUILOMB_LVL1.GetComponent<Enemy>().TakeDamage(40);
                     ELEVATOR_SHIP_LVL1.localPosition = data.ELEVATOR_SHIP_LVL1;
                 }
 
                 EVENTS_QUILOMB_LVL1.SetActive(data.EVENTS_QUILOMB_LVL1);
                 if (data.EVENTS_QUILOMB_LVL1)
                 {
-                    for (int i = 0; i < data.EVENTS_ALL_QUILOMB_LVL1.Length; i++)
+                    for (int i = 1; i < data.EVENTS_ALL_QUILOMB_LVL1.Length; i++)
                     {
                         if (!data.EVENTS_ALL_QUILOMB_LVL1[i])
                         {
@@ -406,6 +409,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
                         data.DUMMIES_LAYER_LVL1[i] = DUMMIES_LVL1[i].layer;
                     }
                 }
+                
+                data.NPCS_LVL1 = NPCS_LVL1.activeSelf;
 
                 data.PILOT_QUILOMB_LVL1 = PILOT_QUILOMB_LVL1.activeSelf;
                 if (data.PILOT_QUILOMB_LVL1)
@@ -416,7 +421,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 data.EVENTS_QUILOMB_LVL1 = EVENTS_QUILOMB_LVL1.activeSelf;
                 if (EVENTS_QUILOMB_LVL1.activeSelf)
                 {
-                    for (int i = 0; i < EVENTS_QUILOMB_LVL1.transform.childCount; i++)
+                    for (int i = 1; i < EVENTS_QUILOMB_LVL1.transform.childCount; i++)
                     {
                         if (!EVENTS_QUILOMB_LVL1.transform.GetChild(i).gameObject.activeSelf)
                         {

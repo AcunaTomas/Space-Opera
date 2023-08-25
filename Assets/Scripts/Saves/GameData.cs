@@ -31,6 +31,7 @@ public class GameData
     public Vector3 ELEVATOR_SHIP_LVL1 = new Vector3(0f, 0f, 0f);
     public Vector3 SPIKES_LVL1 = new Vector3(0f, 0.32f, 0f);
     public bool BTTON_QUILOMB_LVL1 = true;
+    public bool NPCS_LVL1 = true;
 
     public GameData()
     {

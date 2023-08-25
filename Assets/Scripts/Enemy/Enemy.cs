@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         {   
             Die();
         }
+        
         if (_MakeFunctionCallOnHit)
         {
             _callWhat.Invoke();
@@ -72,7 +73,14 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("DieBomb");
         }
         
-        _ub.EnergyPlusOne();
+        try
+        {
+            _ub.EnergyPlusOne();   
+        }
+        catch (System.Exception)
+        {
+            
+        }
 
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<BoxCollider2D>().enabled = false;
