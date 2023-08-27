@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyFireBehaviour : MonoBehaviour
+{
+    private float _fireRate = 1f;
+    private float _nextFireTime;
+    public float _shootingRange;
+    public GameObject _bullet;
+    public GameObject _bulletParent;
+    private Transform _player;
+
+    void Start()
+    {
+        _player = GameObject.FindWithTag("Player").transform;
+    }
+
+    void FixedUpdate()
+    {
+        float _distanceFromPlayer = Vector2.Distance(_player.position, transform.position);
+        if (_distanceFromPlayer <= _shootingRange && _nextFireTime < Time.time)
+        {
+            Instantiate(_bullet, _bulletParent.transform.position, Quaternion.identity);
+            _nextFireTime = Time.time + _fireRate;
+        }
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position,_shootingRange);
+    }
+}

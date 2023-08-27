@@ -9,6 +9,10 @@ public class HurtBoxFly : MonoBehaviour
     float orientation = 1f;
     private GameObject player;
 
+    private float _coolDown = 2f;
+
+    private float _timeStamp;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -33,6 +37,8 @@ public class HurtBoxFly : MonoBehaviour
             Debug.Log(orientation);
             Invoke("MoveAgain", 0.2f);
             Debug.Log("hit");
+            GetComponent<BoxCollider2D>().enabled = false;
+            Cooldown();
         }
     }
 
@@ -43,4 +49,17 @@ public class HurtBoxFly : MonoBehaviour
         player.GetComponent<PlayerCombat>().enabled = true;
     }
 
+    private void FixedUpdate()
+    {
+        if (_timeStamp <= Time.time)
+        {
+            GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+    }
+
+    private void Cooldown()
+    {
+      _timeStamp = Time.time + _coolDown;
+    }
 }
