@@ -19,7 +19,7 @@ public class EnemyFireBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         float _distanceFromPlayer = Vector2.Distance(_player.position, transform.position);
-        if (_distanceFromPlayer <= _shootingRange && _nextFireTime < Time.time)
+        if (_distanceFromPlayer <= _shootingRange && _nextFireTime < Time.time && _player.position.y <= transform.position.y)
         {
             Instantiate(_bullet, _bulletParent.transform.position, Quaternion.identity);
             _nextFireTime = Time.time + _fireRate;
