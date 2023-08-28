@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private Player _playerScript;
     private bool _escapePressed = false;
     private bool _paused = true;
+    private bool _flag = true;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
@@ -96,6 +98,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
+        if (_flag)
+        {
+            return;
+        }
+
         _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
         _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
         PLAYER.transform.localPosition = data.PLAYER_POSITION;
@@ -285,6 +292,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.SaveData(GameData data)
     {
+        if (_flag)
+        {
+            return;
+        }
+
         data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
         data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
         data.PLAYER_POSITION = CHECKPOINT;
