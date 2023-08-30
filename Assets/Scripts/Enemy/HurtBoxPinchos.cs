@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HurtBoxPinchos : MonoBehaviour
 {
-    float attackDamage = 1f;
+    int attackDamage = 1;
     float orientation = 1f;
     private GameObject player;
 

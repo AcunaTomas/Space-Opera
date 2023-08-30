@@ -6,27 +6,33 @@ using UnityEngine;
 public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
     [SerializeField]
-    private List<TKey> keys = new List<TKey>();
+    private List<TKey> _keys = new List<TKey>();
     [SerializeField]
-    private List<TValue> values = new List<TValue>();
+    private List<TValue> _values = new List<TValue>();
 
     public void OnAfterDeserialize()
     {
-        keys.Clear();
-        values.Clear();
+        _keys.Clear();
+        _values.Clear();
         foreach (KeyValuePair<TKey, TValue> pair in this)
         {
-            keys.Add(pair.Key);
-            values.Add(pair.Value);
+            _keys.Add(pair.Key);
+            _values.Add(pair.Value);
         }
     }
 
     public void OnBeforeSerialize()
     {
         this.Clear();
-        for (int i = 0; i < keys.Count; i++)
+
+        if (_keys.Count != _values.Count)
         {
-            this.Add(keys[i], values[i]);
+            Debug.LogError("hay más keys " + _keys.Count + " que values " + _values.Count + " en un diccionario");
+        }
+
+        for (int i = 0; i < _keys.Count; i++)
+        {
+            this.Add(_keys[i], _values[i]);
         }
     }
 }

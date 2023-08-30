@@ -165,7 +165,14 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("DieBomb");
         }
         
-        _ub.EnergyPlusOne();
+        try
+        {
+            _ub.EnergyPlusOne();   
+        }
+        catch (System.Exception)
+        {
+            
+        }
 
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<BoxCollider2D>().enabled = false;
@@ -180,7 +187,13 @@ public class Enemy : MonoBehaviour
             GetComponent<EnemyShooting2>().enabled = false;
         }
 
-        GetComponentInChildren<HotZoneCheckShooting>().enabled = false;
+        try
+        {
+            GetComponentInChildren<HotZoneCheckShooting>().enabled = false;
+        }
+        catch(System.Exception)
+        {
+        }
 
         this.enabled = false;
     }

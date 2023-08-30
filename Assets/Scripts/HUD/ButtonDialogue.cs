@@ -35,15 +35,21 @@ public class ButtonDialogue : MonoBehaviour
     private int _index = 0;
     private bool _notFirstDialogue = false;
     private GameObject _dialogueDeactivate;
+    private bool _playerMovesAfterDialogue = true;
 
     public Animator lifeBarAnim;
 
     void Awake()
     {
+        if (_zone != null)
+        {
+            return;
+        }
+
         switch (GameManager.INSTANCE.LEVEL)
         {
             case 1:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1);
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_DIALOGUES);
                 break;
             case 2:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2);
@@ -51,6 +57,22 @@ public class ButtonDialogue : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public string[] AddText(string _zoneName)
+    {
+        Awake();
+        int _ix = 0;
+        for (int i = 0; i < _zone.DIALOGUES.Length; i++)
+        {
+            if (_zone.DIALOGUES[i].ID == _zoneName)
+            {
+                _ix = i;
+                break;
+            }
+        }
+
+        return _zone.DIALOGUES[_ix].STRINGS[0].Split('#');
     }
 
     public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio)
@@ -84,7 +106,6 @@ public class ButtonDialogue : MonoBehaviour
                     _index = i;
                     break;
                 }
-                
             }
 
             _zoneLines = _zone.DIALOGUES[_index].STRINGS.Length;
@@ -94,7 +115,6 @@ public class ButtonDialogue : MonoBehaviour
             return;
         }
         
-
         MoreDialoguePlz();
 
     }
@@ -117,51 +137,41 @@ public class ButtonDialogue : MonoBehaviour
         _dialogueDeactivate = go;
     }
 
+    public void PlayerMovesAfterDialogue(bool bl)
+    {
+        _playerMovesAfterDialogue = bl;
+    }
+
     public void MoreDialoguePlz()
     {
         _cont++;
 
+        try
+        {
+            if (_textParts[5] != null)
+            {
+                GameObject _go = GameObject.Find(_textParts[5]);
+                _go.BroadcastMessage(_textParts[4], SendMessageOptions.DontRequireReceiver);
+            }
+        }
+        catch (System.Exception)
+        {
+
+        }
+
         if (_cont >= _zoneLines)
         {
-            bool piloto = true;
-            if ((ZONENAME == "lvl01_pilot_with_key"))
-            {
-                GameObject.FindWithTag("Boton").SetActive(false);
-                piloto = false;
-            }
-            
-            if ((ZONENAME == "lvl01_ship_key"))
-            {
-                GameObject.FindWithTag("Key").SetActive(false);
-            }   
-
-            if ((ZONENAME == "lvl02_brody_03"))
-            {
-                ScenesManager.Instance.LoadNextScene("EndDemo");
-            }
-
-            if ((ZONENAME == "lvl02_scrap_knowing"))
-            {
-                GameObject.FindWithTag("Translator").SetActive(false);
-            }
-
             GameManager.INSTANCE.ALTSKIPENABLED = "Disabled";
-
-            StartCoroutine(Fold(piloto));
+            StartCoroutine(Fold());
             if (_dialogueDeactivate != null)
             {
                 _dialogueDeactivate.SetActive(false);
             }
             return;
         }
-        
-        if ((ZONENAME == "lvl01_pilot_with_key") && (_cont == 6))
-        {
-            GameObject.FindWithTag("AscensorNave").GetComponent<ElevatorController>().Interact_Action();
-        }
 
 
-        if(GameManager.INSTANCE.LEVEL == 2)
+        /* if(GameManager.INSTANCE.LEVEL == 2)
         {
             if ((ZONENAME == "lvl02_brody_03") && (_cont == 7))
             {
@@ -186,13 +196,12 @@ public class ButtonDialogue : MonoBehaviour
                 _player.GetComponent<Animator>().SetBool("BitoMode", true);
             }
         
-        }
-
+        } */
 
         DifferentDialogues();
     }
 
-    private IEnumerator Fold(bool piloto)
+    private IEnumerator Fold()
     {
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;
@@ -217,12 +226,13 @@ public class ButtonDialogue : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        _player.GetComponent<Player>().enabled = piloto;
+        _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
         if (GameManager.INSTANCE.PLAYER_COMBAT)
         {
             _player.GetComponent<PlayerCombat>().enabled = true;
         }
-        else{
+        else
+        {
             _player.GetComponent<PlayerCombat>().enabled = false;
         }
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -236,23 +246,22 @@ public class ButtonDialogue : MonoBehaviour
     {
         _textParts = _zone.DIALOGUES[_index].STRINGS[_cont].Split('*');
 
-
         if (_textParts[0] == "Narrator")
         {
             _characterPanelName.SetActive(false);
-            _dialogueText.text = _textParts[2];
+            _dialogueText.text = _textParts[3];
             _characterImage.color = new Color (255, 255, 255, 0);
         }
         else
         {
             _characterPanelName.SetActive(true);
             
-            List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[0]];
-            Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[1]);
+            List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[1]];
+            Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[2]);
             _characterImage.color = new Color (255, 255, 255, 255);
             _characterImage.texture = emo.ICON;
 
-            _dialogueText.text = _textParts[2];
+            _dialogueText.text = _textParts[3];
             _characterName.text = _textParts[0];
         }
 
@@ -277,13 +286,5 @@ public class ButtonDialogue : MonoBehaviour
             lifeBarAnim.SetTrigger("Appear");
         }
 
-    }
-    void Update()
-    {
-        if (!_notFirstDialogue)
-        {
-            return;
-        }
-    }
-    
+    }    
 }

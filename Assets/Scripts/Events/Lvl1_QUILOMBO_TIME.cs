@@ -12,7 +12,13 @@ public class Lvl1_QUILOMBO_TIME : MonoBehaviour
         var s = Instantiate(scren);
         s.transform.SetParent(GameObject.Find("Canvas").transform);
         s.transform.position = new Vector2(0,0);
-        GameObject.Find("NPCs").SetActive(false);
-        
+        try
+        {
+            GameObject.Find("NPCs").SetActive(false);
+        }
+        catch (System.Exception)
+        {
+            
+        }
     }
 }

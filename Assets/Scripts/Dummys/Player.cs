@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField]
-    float HP = 193f;
+    int HP = 5;
+    [SerializeField]
+    int MaxHP = 5;
     [SerializeField]
     float vertspid = -0.3f;
     public bool canIjump = true;
@@ -193,9 +195,9 @@ public class Player : MonoBehaviour
         else return x;
     }
 
-    public string GetHP()
+    public int GetHP()
     {
-        return HP.ToString();
+        return HP;
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -397,7 +399,7 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
     
-    public void LoseHP(float damage)
+    public void LoseHP(int damage)
     {
         HP -= damage;
         _animator.SetBool("IsJumping", false);
@@ -434,7 +436,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("isDead", false);
         GetComponent<PlayerCombat>().enabled = true;
         GetComponent<Player>().enabled = true;
-        HP = _healthBar.MaxHP();
+        HP = MaxHP;
         _healthBar.UpdateHP();
         if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2")
         {
@@ -451,5 +453,23 @@ public class Player : MonoBehaviour
     public void PlaySound(string a)
     {
         AudioManager.INSTANCE.gameObject.SendMessage(a);
+    }
+
+    public void SetHP(int hp)
+    {
+        HP = hp;
+        _healthBar.UpdateHP();
+    }
+
+    public int GetMaxHP()
+    {
+        return MaxHP;
+    }
+
+    public void SetMaxHP(int hp)
+    {
+        MaxHP = hp;
+        //HP = MaxHP;
+        //_healthBar.UpdateHP();
     }
 }
