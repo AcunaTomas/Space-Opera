@@ -17,6 +17,14 @@ public class UIMainMenu : MonoBehaviour
         ScenesManager.Instance.LoadNewGame();
     }
 
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown("3"))
+        {
+            ScenesManager.Instance.LoadNextScene("Level3");
+        }
+    }
+
     public void ExitGame()
     {
         #if UNITY_STANDALONE

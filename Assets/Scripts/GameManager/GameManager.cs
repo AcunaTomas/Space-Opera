@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
             print(restartTime);
             if (restartTime >= 1.6f)
             {
-                ScenesManager.Instance.ReloadScene();
+                ScenesManager.Instance.LoadMainMenu();
             }
         }
         else

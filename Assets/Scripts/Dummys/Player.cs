@@ -15,11 +15,11 @@ public class Player : MonoBehaviour
     public bool canIjump = true;
     bool _firstImpulse = true;
     bool wallijumpy = false;
-    private Rigidbody2D body;
+    public Rigidbody2D body;
     [SerializeField]
     private float jumpLimit = 0f;
     [SerializeField]
-    private float Xspeed = 0f;
+    public float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     [SerializeField]
@@ -54,6 +54,26 @@ public class Player : MonoBehaviour
     private bool _playerFall = false;
     private float _airborneTime = 0f;
 
+    private bool _skillPermitted = true;
+    private float _skillHold;
+
+    public void ChangeSkillStatus(bool a)
+    {
+        _skillPermitted = a;
+    }
+
+    public float GetOrientation()
+    {
+        if (_spriteRenderer.flipX)
+        {
+            return -1;
+        }
+        if (_spriteRenderer.flipX == false)
+        {
+            return 1;
+        }
+        return 0;
+    }
 
     void Start()
     {
@@ -77,8 +97,16 @@ public class Player : MonoBehaviour
         {
             _lastJumpPress = 0f;
         }
+        if (Input.GetButton("Whoosh"))
+        {
+            _skillHold += 0.17f;
+        }
+        else
+        {
+            _skillHold = 0f;
+        }
 
-            Flip();
+        Flip();
 
         if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
         {
@@ -109,8 +137,12 @@ public class Player : MonoBehaviour
             _airborneTime = 0;
         }
         
+        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f)
+        {
+            TheTheSkill();
+            ChangeSkillStatus(false);
+        }
 
-        //Debug.Log(body.velocity.y);
     }
 
     private void _plaseJump()
@@ -145,7 +177,22 @@ public class Player : MonoBehaviour
         {
             WallJump();
         }
+        if (wallijumpy == false && canIjump == false && extrajumpcount >= 2)
+        {
+            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f))
+            {
+                SpecialJump();
+            }
+        }
         //Debug.Log(canIjump);
+
+    }
+
+    public virtual void SpecialJump()
+    {
+        body.velocity = new Vector2(body.velocity.x, 0);
+        body.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+        extrajumpcount -= 1;
 
     }
 
@@ -166,6 +213,20 @@ public class Player : MonoBehaviour
             //Wall-e
         }
         
+    }
+
+    public void setXStunVariables()
+    {
+        _wallJumpFreezeTimer = 0f;
+        _wallJumpXtimeFreeze = 0.1f;
+        _wallJumpXHandicap = true;
+        speedCaps = new Vector2(4, speedCaps.y);
+    }
+
+    private void unsetXStunVariables()
+    {
+
+        speedCaps = new Vector2(1.2f, speedCaps.y);
     }
 
     void WallJumpDelay()
@@ -215,10 +276,11 @@ public class Player : MonoBehaviour
         {
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
+                ChangeSkillStatus(true);
                 canIjump = true;
                 wallijumpy = false;
                 _firstImpulse = true;
-                extrajumpcount = 1;
+                extrajumpcount = 2;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
                 _maxVerticalSpeed = speedCaps.y;
@@ -244,7 +306,7 @@ public class Player : MonoBehaviour
                     {
                         _spriteRenderer.flipX = false;
                     }
-
+                    unsetXStunVariables();
                     //extrajumpcount += -1;
                     WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
                     _maxVerticalSpeed = speedCaps.x;
@@ -283,6 +345,7 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
+        extrajumpcount = 1;
 
         // if (collision.gameObject.CompareTag("Enemy"))
         // {
@@ -325,6 +388,7 @@ public class Player : MonoBehaviour
         else
         {
             _wallJumpXHandicap = false;
+            speedCaps = new Vector2(1.2f, speedCaps.y);
         }
 
         if (_wallJumpXHandicap == false)
@@ -426,6 +490,10 @@ public class Player : MonoBehaviour
     {
         HP = HP + hp;
         _healthBar.UpdateHP();
+    }
+
+    public virtual void TheTheSkill()
+    {
     }
 
     void Respawn() 
