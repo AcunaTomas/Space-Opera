@@ -57,6 +57,10 @@ public class Player : MonoBehaviour
     private bool _skillPermitted = true;
     private float _skillHold;
 
+
+    private float _coyoteTime = 1f;
+    private float _lastGroundedTime;
+
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;
@@ -85,6 +89,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        _lastGroundedTime -= Time.deltaTime;
+        Debug.Log(_lastGroundedTime);
         _plaseJump();
         
         WallJumpDelay();
@@ -147,8 +153,9 @@ public class Player : MonoBehaviour
 
     private void _plaseJump()
     {
-        
-        if (canIjump && Input.GetButton("Jump"))
+        if (_lastGroundedTime > 0)
+        {
+            if (canIjump && Input.GetButton("Jump"))
         {
             
            if (_lastJumpPress <= 0.30f && _firstImpulse == true)
@@ -173,6 +180,10 @@ public class Player : MonoBehaviour
             jumpLimit = 0f;
             canIjump = false;
         }
+        
+        //Debug.Log(canIjump);
+        }
+
         if (wallijumpy && canIjump == false)
         {
             WallJump();
@@ -184,7 +195,6 @@ public class Player : MonoBehaviour
                 SpecialJump();
             }
         }
-        //Debug.Log(canIjump);
 
     }
 
@@ -290,6 +300,7 @@ public class Player : MonoBehaviour
                     AudioManager.INSTANCE.PlayPlayerJump();
                     _playerFall = false;
                 }
+                _lastGroundedTime = _coyoteTime;
 
             }
             if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
@@ -358,7 +369,8 @@ public class Player : MonoBehaviour
     {
         if(jumpLimit == 0)
         {
-            canIjump = false;
+            //canIjump = false;
+            //StartCoroutine(CoyoteTimer());
             _playerFall = true;
         }
 
@@ -376,6 +388,12 @@ public class Player : MonoBehaviour
         _animator.SetBool("wall", false);
         
     }
+
+    // IEnumerator CoyoteTimer()
+    // {
+    //     yield return new WaitForSecondsRealtime(0.2f);
+    //     canIjump = false;
+    // }
 
     void Movement()
     {

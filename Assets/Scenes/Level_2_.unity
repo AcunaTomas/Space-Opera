@@ -3430,7 +3430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &588775009
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5751,6 +5751,7 @@ MonoBehaviour:
   MaxHP: 5
   vertspid: -0.3
   canIjump: 1
+  body: {fileID: 0}
   jumpLimit: 0
   Xspeed: 0
   _maxVerticalSpeed: 7
@@ -6126,7 +6127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.06, y: -4.031}
+  m_AnchoredPosition: {x: 7.212, y: -3.684}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1248000755
@@ -7680,6 +7681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fc63badaa3d3c4f9cd548dbbfdc8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ALTSKIPENABLED: Disabled
   LEVEL: 2
   PLAYER: {fileID: 1060093749}
   BUTTON_INTERACT: {fileID: 1504328845}
@@ -7687,6 +7689,25 @@ MonoBehaviour:
   ACTUAL_CHECKPOINT: {fileID: 0}
   PLAYER_COMBAT: 0
   CANVAS: {fileID: 0}
+  PAUSE_MENU: {fileID: 0}
+  PANEL_OBJECTIVE: {fileID: 0}
+  CANVAS_WS_LVL1: {fileID: 0}
+  TUTO_TRIG_LVL1: {fileID: 0}
+  CHECKPOINTS_LVL1: {fileID: 0}
+  DIALOGUES_LVL1: {fileID: 0}
+  CHANGE_MUSIC_LVL1: {fileID: 0}
+  EVENTS_GO_HERE_LVL1: {fileID: 0}
+  DOORS_LVL1: {fileID: 0}
+  INVISIBLE_TROLL_LVL1: {fileID: 0}
+  ELEVATORS_LVL1: []
+  ELEVATOR_DOOR_LVL1: {fileID: 0}
+  DUMMIES_LVL1: []
+  PILOT_QUILOMB_LVL1: {fileID: 0}
+  EVENTS_QUILOMB_LVL1: {fileID: 0}
+  ELEVATOR_SHIP_LVL1: {fileID: 0}
+  SPIKES_LVL1: {fileID: 0}
+  BTTON_QUILOMB_LVL1: {fileID: 0}
+  NPCS_LVL1: {fileID: 0}
 --- !u!114 &1533870247
 MonoBehaviour:
   m_ObjectHideFlags: 0
