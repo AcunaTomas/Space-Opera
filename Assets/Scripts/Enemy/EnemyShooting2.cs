@@ -106,7 +106,7 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
-    Instantiate(_bullet, _bulletSource.position, Quaternion.identity);
+    var _a = Instantiate(_bullet, _bulletSource.position, Quaternion.identity);
     _bullet.SetActive(true);
     //AudioManager.INSTANCE.PlayEnemyAttack();  SONIDO DE ATAQUE
 

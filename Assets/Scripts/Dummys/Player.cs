@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     float vertspid = -0.3f;
     public bool canIjump = true;
-    bool _firstImpulse = true;
     bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
@@ -58,7 +57,7 @@ public class Player : MonoBehaviour
     private float _skillHold;
 
 
-    private float _coyoteTime = 1f;
+    private float _coyoteTime = 0.5f;
     private float _lastGroundedTime;
 
     public void ChangeSkillStatus(bool a)
@@ -90,7 +89,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         _lastGroundedTime -= Time.deltaTime;
-        Debug.Log(_lastGroundedTime);
+
         _plaseJump();
         
         WallJumpDelay();
@@ -158,11 +157,9 @@ public class Player : MonoBehaviour
             if (canIjump && Input.GetButton("Jump"))
         {
             
-           if (_lastJumpPress <= 0.30f && _firstImpulse == true)
+           if (_lastJumpPress <= 0.30f)
            {
-            vertspid = 1.3f + jumpLimit;
-            _firstImpulse = false;
-            
+                vertspid = 1.3f + jumpLimit;
            }
            else
            {   
@@ -276,7 +273,7 @@ public class Player : MonoBehaviour
         Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
         Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
         //Debug.Log(collision.GetContact(0).normal);
-        ContactPoint2D[] contacts= new ContactPoint2D[8];
+        ContactPoint2D[] contacts= new ContactPoint2D[12];
         collision.GetContacts(contacts);
 
         //Debug.Log(normalcoll.y);
@@ -289,7 +286,6 @@ public class Player : MonoBehaviour
                 ChangeSkillStatus(true);
                 canIjump = true;
                 wallijumpy = false;
-                _firstImpulse = true;
                 extrajumpcount = 2;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
@@ -369,8 +365,6 @@ public class Player : MonoBehaviour
     {
         if(jumpLimit == 0)
         {
-            //canIjump = false;
-            //StartCoroutine(CoyoteTimer());
             _playerFall = true;
         }
 
@@ -388,12 +382,6 @@ public class Player : MonoBehaviour
         _animator.SetBool("wall", false);
         
     }
-
-    // IEnumerator CoyoteTimer()
-    // {
-    //     yield return new WaitForSecondsRealtime(0.2f);
-    //     canIjump = false;
-    // }
 
     void Movement()
     {
