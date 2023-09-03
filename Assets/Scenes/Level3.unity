@@ -14774,7 +14774,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676767701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.202318, y: 23.472834, z: -11}
+  m_LocalPosition: {x: 17.207851, y: 23.472834, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17996,10 +17996,10 @@ GameObject:
   - component: {fileID: 2041125182}
   - component: {fileID: 2041125181}
   - component: {fileID: 2041125180}
-  - component: {fileID: 2041125179}
   - component: {fileID: 2041125178}
   - component: {fileID: 2041125177}
   - component: {fileID: 2041125176}
+  - component: {fileID: 2041125185}
   m_Layer: 9
   m_Name: BrothyTest
   m_TagString: Player
@@ -18075,35 +18075,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2041125179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041125174}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 815e3e3c57bcf5b4488964dd98488aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2041125178}
-  attackPoint: {fileID: 2041931026}
-  attackPointUp: {fileID: 1619345541}
-  attackPointDown: {fileID: 1053816110}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  doorLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  attackRange: 0.17
-  attackDamage: 40
-  attackRate: 2
-  bombRate: 1.5
-  launchOffset: {fileID: 1158179806}
-  projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
-  attackDuration: 0.3
 --- !u!114 &2041125180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18249,6 +18220,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2041125185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041125174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed3ff124ebb41f429753b7a39679336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2041125178}
+  attackPoint: {fileID: 2041931026}
+  attackPointUp: {fileID: 1619345541}
+  attackPointDown: {fileID: 1053816110}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  doorLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  attackRange: 0.5
+  attackDamage: 40
+  attackRate: 4
+  bombRate: 8
+  launchOffset: {fileID: 1158179806}
+  projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
+  attackDuration: 0.3
+  balarda: {fileID: 2769664004574541119, guid: 889deba5ec2b1c145b46deb4a8e9fa7d, type: 3}
 --- !u!1 &2041931025
 GameObject:
   m_ObjectHideFlags: 0

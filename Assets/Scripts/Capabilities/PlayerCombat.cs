@@ -38,7 +38,10 @@ public class PlayerCombat : MonoBehaviour
 
     private float queryStartTime;
 
-
+    public bool GetSpriteRend()
+    {
+        return spriteRenderer.flipX;
+    }
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -151,7 +154,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     
-    void Attack()
+    public virtual void Attack()
     {
 
         if (spriteRenderer.flipX)
@@ -233,7 +236,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    void Bomb()
+    public virtual void Bomb()
     {
         if (spriteRenderer.flipX)
         {
