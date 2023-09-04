@@ -187,7 +187,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    void AttackUp()
+    public virtual void AttackUp()
     {
 
         animator.SetTrigger("AttackUp");
@@ -211,7 +211,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    void AttackDown()
+    public virtual void AttackDown()
     {
 
         animator.SetTrigger("AttackDown");

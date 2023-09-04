@@ -30,6 +30,26 @@ public class CombatBro : PlayerCombat
         }
     }
 
+    public override void AttackUp()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 10, discoverable);
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            Debug.Log("asdasdasdas");
+            enemyCollider.GetComponent<DetectableController>().Detectado();
+        }
+    }
+
+    public override void AttackDown()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 10, discoverable);
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            Debug.Log("asdasdasdas");
+            enemyCollider.GetComponent<DetectableController>().Detectado();
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
