@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class CombatBro : PlayerCombat
 {
-    [SerializeField ]
+    [SerializeField]
     private GameObject balarda;
+    [SerializeField]
+    private LayerMask discoverable;
+
+
     public override void Bomb()
     {
         var a = Instantiate(balarda, transform.position, Quaternion.identity);
@@ -18,6 +22,10 @@ public class CombatBro : PlayerCombat
     }
     public override void Attack()
     {
-
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 10, discoverable);
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            Debug.Log("asdasdasdas");
+        }
     }
 }
