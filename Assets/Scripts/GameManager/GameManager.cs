@@ -76,16 +76,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
         {
             _escapePressed = false;
         }
-    }
-    void FixedUpdate()//Reset Button Hack, Binds to R key
-    {
+
         if (Input.GetAxis("Debug Reset") > 0)
         {
-            restartTime += 0.01f;
-            print(restartTime);
-            if (restartTime >= 1.6f)
+            restartTime += Time.deltaTime;
+            if (restartTime >= 2f)
             {
-                ScenesManager.Instance.LoadMainMenu();
+                ScenesManager.Instance.ReloadScene();
             }
         }
         else

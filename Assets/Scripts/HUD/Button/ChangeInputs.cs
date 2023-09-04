@@ -5,15 +5,29 @@ using UnityEngine;
 public class ChangeInputs : MonoBehaviour
 {
 
-    private GameObject _keyboard;
-    private GameObject _controller;
+    [SerializeField]
+    private GameObject[] _keyboard;
+    [SerializeField]
+    private GameObject[] _controller;
     private int _previousControllerCount = 0;
     private int _connectedControllerCount = 0;
 
     void Start()
     {
-        _keyboard = transform.GetChild(1).gameObject;
-        _controller = transform.GetChild(2).gameObject;
+        foreach (string name in Input.GetJoystickNames())
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                _connectedControllerCount++;
+            }
+        }
+
+        _previousControllerCount = _connectedControllerCount;
+        for (int i = 0; i < _keyboard.Length; i++)
+        {
+            _keyboard[i].SetActive(_connectedControllerCount == 0);
+            _controller[i].SetActive(_connectedControllerCount > 0);
+        }
     }
 
     void Update()
@@ -30,8 +44,11 @@ public class ChangeInputs : MonoBehaviour
         if (_connectedControllerCount != _previousControllerCount)
         {
             _previousControllerCount = _connectedControllerCount;
-            _keyboard.SetActive(_connectedControllerCount == 0);
-            _controller.SetActive(_connectedControllerCount > 0);
+            for (int i = 0; i < _keyboard.Length; i++)
+            {
+                _keyboard[i].SetActive(_connectedControllerCount == 0);
+                _controller[i].SetActive(_connectedControllerCount > 0);
+            }
         }
     }
 }
