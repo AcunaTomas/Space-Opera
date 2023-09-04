@@ -151,10 +151,10 @@ public class Player : MonoBehaviour
         if (canIjump && Input.GetButton("Jump"))
         {
             
-           if (_lastJumpPress <= 0.30f && _firstImpulse == true)
+           if (_lastJumpPress <= 0.30f)
            {
             vertspid = 1.3f + jumpLimit;
-            _firstImpulse = false;
+            //_firstImpulse = false;
             
            }
            else
