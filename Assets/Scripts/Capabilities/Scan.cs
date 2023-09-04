@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController2 : MonoBehaviour
+public class Scan : MonoBehaviour
 {
     private GameObject _target;
     public float _speed;
@@ -14,11 +14,7 @@ public class BulletController2 : MonoBehaviour
         _target = GameObject.FindGameObjectWithTag("Player");
         Vector2 moveDir= (_target.transform.position - transform.position). normalized * _speed;
         _bulletRB.velocity = new Vector2(moveDir.x, moveDir.y);
-        Destroy(this.gameObject, 4);
+        Destroy(this.gameObject, 2);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Destroy(gameObject);
-    }
 }

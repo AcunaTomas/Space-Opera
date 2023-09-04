@@ -26,6 +26,12 @@ public class CombatBro : PlayerCombat
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             Debug.Log("asdasdasdas");
+            enemyCollider.GetComponent<DetectableController>().Detectado();
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
