@@ -12163,7 +12163,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1361875253}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -15878,7 +15878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361875258}
   - component: {fileID: 1361875254}
-  - component: {fileID: 1361875253}
+  - component: {fileID: 1361875261}
   - component: {fileID: 1361875252}
   - component: {fileID: 1361875260}
   - component: {fileID: 1361875251}
@@ -15969,48 +15969,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11764395, y: 0.26714712}
   m_EdgeRadius: 0
---- !u!114 &1361875253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361875249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ead70c9acda2d645ad2b16f86fa298a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 5
-  MaxHP: 5
-  vertspid: -0.3
-  canIjump: 1
-  body: {fileID: 0}
-  jumpLimit: 0
-  Xspeed: 0
-  _maxVerticalSpeed: 7
-  extrajumpcount: 1
-  _lastJumpPress: 0
-  _fallingTime: 0
-  WallJumpXDirection: 0
-  _wallJumpFreezeTimer: 2
-  _wallJumpXHandicap: 0
-  _healthBar: {fileID: 0}
-  _callWhat:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1454206434}
-        m_TargetAssemblyTypeName: ElevatorController, Assembly-CSharp
-        m_MethodName: Interact_Action
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!212 &1361875254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16147,6 +16105,48 @@ CircleCollider2D:
   m_Offset: {x: -0.0014674067, y: -0.1055339}
   serializedVersion: 2
   m_Radius: 0.052550614
+--- !u!114 &1361875261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361875249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193770c8c5d7ee948a4071275104a48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 5
+  MaxHP: 5
+  vertspid: -0.3
+  canIjump: 1
+  body: {fileID: 0}
+  jumpLimit: 0
+  Xspeed: 0
+  _maxVerticalSpeed: 7
+  extrajumpcount: 1
+  _lastJumpPress: 0
+  _fallingTime: 0
+  WallJumpXDirection: 0
+  _wallJumpFreezeTimer: 2
+  _wallJumpXHandicap: 0
+  _healthBar: {fileID: 0}
+  _callWhat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1454206434}
+        m_TargetAssemblyTypeName: ElevatorController, Assembly-CSharp
+        m_MethodName: Interact_Action
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1374699479
 GameObject:
   m_ObjectHideFlags: 0
@@ -21902,7 +21902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftBar: {fileID: 1319776389932773261, guid: 7d901fc3141ad284190abfb2e27b907f, type: 3}
   _rightBar: {fileID: 9185611855248492120, guid: 7e4b27de91194a445b80869fbd3568e5, type: 3}
-  _player: {fileID: 1361875253}
+  _player: {fileID: 0}
   _energyBar: {fileID: 663067777}
 --- !u!114 &1967066950
 MonoBehaviour:
