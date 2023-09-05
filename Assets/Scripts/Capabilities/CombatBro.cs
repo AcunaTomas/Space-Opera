@@ -26,7 +26,15 @@ public class CombatBro : PlayerCombat
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             Debug.Log("asdasdasdas");
-            enemyCollider.GetComponent<DetectableController>().Detectado();
+            try
+            {
+                enemyCollider.GetComponent<DetectableController>().Detectado();
+            }
+            catch (System.Exception)
+            {
+                enemyCollider.GetComponent<DetectableController2>().Detectado();
+            }
+            
         }
     }
 
@@ -36,7 +44,14 @@ public class CombatBro : PlayerCombat
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             Debug.Log("asdasdasdas");
-            enemyCollider.GetComponent<DetectableController>().Detectado();
+            try
+            {
+                enemyCollider.GetComponent<DetectableController>().Detectado();
+            }
+            catch (System.Exception)
+            {
+                enemyCollider.GetComponent<DetectableController2>().Detectado();
+            }
         }
     }
 
@@ -46,7 +61,14 @@ public class CombatBro : PlayerCombat
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             Debug.Log("asdasdasdas");
-            enemyCollider.GetComponent<DetectableController>().Detectado();
+            try
+            {
+                enemyCollider.GetComponent<DetectableController>().Detectado();
+            }
+            catch (System.Exception)
+            {
+                enemyCollider.GetComponent<DetectableController2>().Detectado();
+            }
         }
     }
 
