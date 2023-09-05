@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CombatBro : PlayerCombat
 {
+    public Animator _animator;
+
     [SerializeField]
     private GameObject balarda;
     [SerializeField]
@@ -28,6 +30,9 @@ public class CombatBro : PlayerCombat
             Debug.Log("asdasdasdas");
             enemyCollider.GetComponent<DetectableController>().Detectado();
         }
+
+        _animator.SetTrigger("Attack");
+        
     }
 
     public override void AttackUp()
@@ -38,6 +43,8 @@ public class CombatBro : PlayerCombat
             Debug.Log("asdasdasdas");
             enemyCollider.GetComponent<DetectableController>().Detectado();
         }
+
+        _animator.SetTrigger("Attack");
     }
 
     public override void AttackDown()
@@ -48,6 +55,8 @@ public class CombatBro : PlayerCombat
             Debug.Log("asdasdasdas");
             enemyCollider.GetComponent<DetectableController>().Detectado();
         }
+
+        _animator.SetTrigger("Attack");
     }
 
     private void OnDrawGizmosSelected()
