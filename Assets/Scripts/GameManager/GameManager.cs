@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     
     void Update()
     {
-        if (Input.GetKeyDown("5"))
+        /* if (Input.GetKeyDown("5"))
         {
             DataPersistentManager.INSTANCE.DeleteSave();
         }
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             _escapePressed = false;
-        }
+        } */
 
         if (Input.GetAxis("Debug Reset") > 0)
         {
@@ -477,5 +477,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         yield return new WaitForSeconds(1f);
         obj.SetActive(true);
+    }
+
+    public void ActivatePlayerCombat()
+    {
+        PLAYER_COMBAT = true;
     }
 }

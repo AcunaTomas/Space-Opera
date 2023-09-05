@@ -2,17 +2,26 @@
     "DIALOGUES":  
     [
         {
-            "ID": "objective01_explore",
+            "ID": "lvl02_intro",
             "STRINGS":
             [
-                "Explora el extraño lugar"
+                "Brody*brody_img*normal*Okey... No veo sangre ni nada, este tipo es bastante resistente.",
+                "Brody*brody_img*normal*Mejor dejo que descanse.",
+                "Brody*brody_img*normal*Mientras tanto... Esa <color=#FFFF00>nave</color> necesita reparación.*manualDo*ActivateObjectives"
+            ]
+        },
+        {
+            "ID": "objective01",
+            "STRINGS":
+            [
+                "Ve al taller"
             ]
         },
         {
             "ID": "lvl02_portrait",
             "STRINGS":
             [
-                "Narrator*narrator_img*normal*Foto de un hombre rubio junto a una niña."
+                "Narrator*narrator_img*normal*Retrato de una niña."
             ]
         },
         {
@@ -31,15 +40,66 @@
             "STRINGS":
             [
                 "Narrator*narrator_img*normal*Es un cartel de <color=#FFFF00>“se busca”</color>...",
-                "Narrator*narrator_img*normal*Aunque no puede entender el lenguaje."
+                "Brody*brody_img*normal*Con la nave reparada voy a poder buscar a ese desgraciado."
+            ]
+        },
+        {
+            "ID": "lvl02_workshop",
+            "STRINGS":
+            [
+                "Brody*brody_img*normal*¡Oh cierto! No tengo las <color=#FFFF00>herramientas</color> aquí ¿Dónde las dejé?*manualDo*Objective02"
+            ]
+        },
+        {
+            "ID": "objective02_tools",
+            "STRINGS":
+            [
+                "Busca las herramientas"
+            ]
+        },
+        {
+            "ID": "tuto_radar",
+            "STRINGS":
+            [
+                "Para activar el radar, presiona:\n#BUTTON_MOVEMENT"
+            ]
+        },
+        {
+            "ID": "lvl02_radar_and_jump",
+            "STRINGS":
+            [
+                "Narrator*narrator_img*normal*Los objetos rastreados por el radar emiten <color=#FFFF00>señales</color>, síguelas para encontrarlos.",
+                "Narrator*narrator_img*normal*Brody también tiene la capacidad de hacer un <color=#FFFF00>salto doble</color>.*manualDo*TutoJump"
+            ]
+        },
+        {
+            "ID": "tuto_jump",
+            "STRINGS":
+            [
+                "Para hacer doble salto, presiona:\n#BUTTON_MOVEMENT"
+            ]
+        },
+        {
+            "ID": "lvl02_platform",
+            "STRINGS":
+            [
+                "Brody*brody_img*normal*Siempre me gustó esta vista...",
+                "Brody*brody_img*normal*Mmmm... podría hacer una pausa y seguir practicando mi tiro."
+            ]
+        },
+        {
+            "ID": "lvl02_ship",
+            "STRINGS":
+            [
+                "Brody*brody_img*normal*¡Perfecto! ¡Tengo todo!",
+                "Brody*brody_img*normal*Esa nave quedará como nueva... incluso mejor.*manualDo*EndTuto"
             ]
         },
         {
             "ID": "lvl02_hammock",
             "STRINGS":
             [
-                "Narrator*narrator_img*normal*Una pequeña hamaca que parece estar sin uso hace tiempo...",
-                "Narrator*narrator_img*normal*Aunque el soldadito no tiene ni idea para qué sirve."
+                "Narrator*narrator_img*normal*Una pequeña hamaca que hace tiempo que no se usa..."
             ]
         },
         {
