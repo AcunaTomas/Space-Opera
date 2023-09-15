@@ -20,6 +20,6 @@ public class Door : MonoBehaviour
 
     public void BoxCollider2DNoMore()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
     }
 }

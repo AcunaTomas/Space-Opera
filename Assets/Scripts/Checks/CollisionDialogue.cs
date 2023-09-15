@@ -53,7 +53,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (_checkpoint)
+        if (_checkpoint && col.CompareTag("Player"))
         {
             StartDialogue();
             return;
