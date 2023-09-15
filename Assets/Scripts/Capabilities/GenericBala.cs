@@ -21,9 +21,20 @@ public class GenericBala : MonoBehaviour
     {
        GameObject player = GameObject.FindWithTag("Player");
        Debug.Log(player);
-       Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
-       body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
+       Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+       if (directionX == 10)
+       {
+            body.AddForce(new Vector2(directionX * 15 ,directionY * 150));
+       }
+       else{
+            body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
+       }
        
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.Log(directionY);
     }
 
 

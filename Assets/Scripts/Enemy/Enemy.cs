@@ -32,7 +32,9 @@ public class Enemy : MonoBehaviour
     public enum EnemyType
     {
         melee,
-        gun
+        gun,
+
+        simple
     }
 
     void Start()
@@ -58,13 +60,13 @@ public class Enemy : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("BalaPlayer"))
-        {
-            TakeDamage(40);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("BalaPlayer"))
+    //     {
+    //         TakeDamage(40);
+    //     }
+    // }
 
     public void TakeDamage(int damage)
     {
