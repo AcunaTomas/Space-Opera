@@ -34,18 +34,59 @@ public class GenericBala : MonoBehaviour
 
        if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
        {
-            body.AddForce(new Vector2(directionX * -15 ,directionY * 150));
+          body.AddForce(new Vector2(directionX * -15 ,directionY * 150));
        }
        else if (directionX == 10)
        {
-            body.AddForce(new Vector2(directionX * 15 ,directionY * 150));
+          body.AddForce(new Vector2(directionX * 15 ,directionY * 150));
        }
        else
        {
-            body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
+          body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
        }
+
+       // Rotación no eficiente de la bala
+
+       if (directionY > 0 && directionX > 0)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, 45);
+       }
+       else if (directionY > 0 && directionX < 0)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, -45);
+       }
+       else if (directionY > 0)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, 90);
+       }
+       else if (directionY == 1)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, 90);
+       }
+
+
+
+       if (directionY < 0 && directionX > 0)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, -45);
+       }
+       else if (directionY < 0 && directionX < 0)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, 45);
+       }
+       else if (directionY < 0)
+       {
+          transform.rotation = Quaternion.Euler(0, 0, -90);
+       }
+
+
        
-       
+
+    }
+
+    private void FixedUpdate()
+    {
+          Debug.Log(directionY);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
