@@ -22,21 +22,31 @@ public class GenericBala : MonoBehaviour
        GameObject player = GameObject.FindWithTag("Player");
        Debug.Log(player);
        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-       if (directionX == 10)
+       
+
+       if (player.GetComponent<SpriteRenderer>().flipX == true)
+       {
+            GetComponent<SpriteRenderer>().flipX = true;
+       }
+
+
+       // Acá empieza el tema disparo, es un quilombo y seguramente se llena mas de if statements xd
+
+       if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
+       {
+            body.AddForce(new Vector2(directionX * -15 ,directionY * 150));
+       }
+       else if (directionX == 10)
        {
             body.AddForce(new Vector2(directionX * 15 ,directionY * 150));
        }
-       else{
+       else
+       {
             body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
        }
        
+       
     }
-
-    private void FixedUpdate()
-    {
-        Debug.Log(directionY);
-    }
-
 
     private void OnCollisionEnter2D(Collision2D other) {
         other.gameObject.SendMessage("TakeDamage",damages,SendMessageOptions.DontRequireReceiver);

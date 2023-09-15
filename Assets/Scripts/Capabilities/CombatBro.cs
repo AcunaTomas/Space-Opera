@@ -15,16 +15,7 @@ public class CombatBro : PlayerCombat
 
     public override void Bomb()
     {
-        var a = Instantiate(balarda, transform.position, Quaternion.identity);
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
-        {
-         return;   
-        }
-        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
-    }
-    public override void Attack()
-    {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 10, discoverable);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 10, discoverable);
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             Debug.Log("asdasdasdas");
@@ -38,47 +29,52 @@ public class CombatBro : PlayerCombat
             }
             
         }
+    }
+    public override void Attack()
+    {
+        if (spriteRenderer.flipX)
+        {
+            attackPoint.localPosition = new Vector2(-0.15f, 0);
+        }
+        else
+        {
+            attackPoint.localPosition = new Vector2(0.15f, 0);
+        }   
 
         _animator.SetTrigger("Attack");
+
+        var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+         return;   
+        }
+        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+
         
     }
 
     public override void AttackUp()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 10, discoverable);
-        foreach (Collider2D enemyCollider in hitEnemies)
+        var a = Instantiate(balarda, transform.position, Quaternion.identity);
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
-            Debug.Log("asdasdasdas");
-            try
-            {
-                enemyCollider.GetComponent<DetectableController>().Detectado();
-            }
-            catch (System.Exception)
-            {
-                enemyCollider.GetComponent<DetectableController2>().Detectado();
-            }
+         return;   
         }
+        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
 
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger("AttackUp");
     }
 
     public override void AttackDown()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 10, discoverable);
-        foreach (Collider2D enemyCollider in hitEnemies)
+        var a = Instantiate(balarda, transform.position, Quaternion.identity);
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
-            Debug.Log("asdasdasdas");
-            try
-            {
-                enemyCollider.GetComponent<DetectableController>().Detectado();
-            }
-            catch (System.Exception)
-            {
-                enemyCollider.GetComponent<DetectableController2>().Detectado();
-            }
+         return;   
         }
+        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
 
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger("AttackDown");
     }
 
     private void OnDrawGizmosSelected()
