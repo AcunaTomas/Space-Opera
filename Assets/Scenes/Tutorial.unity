@@ -7540,7 +7540,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.3125019, y: -6.709186}
+  m_Offset: {x: 0.3149346, y: -6.709186}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7551,7 +7551,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5226746, y: 0.09449673}
+  m_Size: {x: 1.9085419, y: 0.09449673}
   m_EdgeRadius: 0
 --- !u!114 &611256040
 MonoBehaviour:
@@ -16974,6 +16974,7 @@ MonoBehaviour:
   attackRange: 0.17
   attackDamage: 40
   attackRate: 2
+  spriteRenderer: {fileID: 0}
   bombRate: 1.5
   launchOffset: {fileID: 879704530}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
@@ -17187,6 +17188,8 @@ MonoBehaviour:
   WallJumpXDirection: 0
   _wallJumpFreezeTimer: 2
   _wallJumpXHandicap: 0
+  _spriteRenderer: {fileID: 0}
+  _animator: {fileID: 0}
   _healthBar: {fileID: 1967066949}
   _callWhat:
     m_PersistentCalls:
@@ -21268,7 +21271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1794070770
 RectTransform:
   m_ObjectHideFlags: 0

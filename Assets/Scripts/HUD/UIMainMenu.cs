@@ -17,7 +17,7 @@ public class UIMainMenu : MonoBehaviour
         ScenesManager.Instance.LoadNewGame();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown("3"))
         {

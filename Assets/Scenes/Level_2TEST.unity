@@ -9381,6 +9381,8 @@ MonoBehaviour:
   WallJumpXDirection: 0
   _wallJumpFreezeTimer: 2
   _wallJumpXHandicap: 0
+  _spriteRenderer: {fileID: 0}
+  _animator: {fileID: 0}
   _healthBar: {fileID: 0}
   _callWhat:
     m_PersistentCalls:
@@ -9497,6 +9499,8 @@ MonoBehaviour:
   WallJumpXDirection: 0
   _wallJumpFreezeTimer: 0.5
   _wallJumpXHandicap: 0
+  _spriteRenderer: {fileID: 0}
+  _animator: {fileID: 0}
   _healthBar: {fileID: 0}
   _callWhat:
     m_PersistentCalls:
@@ -11119,6 +11123,8 @@ MonoBehaviour:
   WallJumpXDirection: 0
   _wallJumpFreezeTimer: 0.5
   _wallJumpXHandicap: 0
+  _spriteRenderer: {fileID: 0}
+  _animator: {fileID: 0}
   _healthBar: {fileID: 0}
   _callWhat:
     m_PersistentCalls:
@@ -11286,6 +11292,7 @@ MonoBehaviour:
   attackRange: 2.06
   attackDamage: 40
   attackRate: 2
+  spriteRenderer: {fileID: 0}
   bombRate: 2
   launchOffset: {fileID: 865386762}
   projectilePrefab: {fileID: 0}
@@ -12297,7 +12304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1343648487
 RectTransform:
   m_ObjectHideFlags: 0
