@@ -98,11 +98,8 @@ public class GenericBala : MonoBehaviour
        else if (directionY > 0)
        {
           transform.rotation = Quaternion.Euler(0, 0, 90);
-       }
-       else if (directionY == 1)
-       {
-          transform.rotation = Quaternion.Euler(0, 0, 90);
-       }
+          GetComponent<SpriteRenderer>().flipX = false;
+        }
 
 
 
@@ -117,6 +114,7 @@ public class GenericBala : MonoBehaviour
        else if (directionY < 0)
        {
           transform.rotation = Quaternion.Euler(0, 0, -90);
+          GetComponent<SpriteRenderer>().flipX = false;
        }
 
 
