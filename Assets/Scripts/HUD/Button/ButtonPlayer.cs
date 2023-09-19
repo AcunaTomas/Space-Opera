@@ -20,7 +20,7 @@ public class ButtonPlayer : MonoBehaviour
 
         _time += Time.deltaTime;
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire2"))
         {
             _time = 0f;
             _keys.SetActive(false);
