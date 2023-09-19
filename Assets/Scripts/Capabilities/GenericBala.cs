@@ -30,7 +30,7 @@ public class GenericBala : MonoBehaviour
        }
 
 
-       // Acá empieza el tema disparo, es un quilombo y seguramente se llena mas de if statements xd
+       // Acá empieza el tema disparo, AVISO QUE ESTO ES CLARAMENTE INEFICIENTE, I HATE MY LIFE
 
        if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
        {
@@ -40,10 +40,50 @@ public class GenericBala : MonoBehaviour
        {
           body.AddForce(new Vector2(directionX * 15 ,directionY * 150));
        }
-       else
+       else if (directionX == 0 && directionY > 0 && directionY <= 1)
        {
-          body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
+         body.AddForce(new Vector2(0, 150));
        }
+       else if (directionX == 0 && directionY < 0)
+       {
+         body.AddForce(new Vector2(0, -150));
+       }
+       else if (directionY == 0 && directionX > 0 && directionX <= 1)
+       {
+         body.AddForce(new Vector2(150, 0));
+       }
+       else if (directionY == 0 && directionX < 0)
+       {
+         body.AddForce(new Vector2(-150, 0));
+       }
+       else if (directionX > 0 && directionX <= 1 && directionY > 0 && directionY <= 1)
+       {
+         body.AddForce(new Vector2(150, 150));
+       }
+       else if (directionX < 0 && directionY < 0)
+       {
+         body.AddForce(new Vector2(-150, -150));
+       }
+       else if (directionX > 0 && directionY < 0)
+       {
+         body.AddForce(new Vector2(150, -150));
+       }
+       else if (directionX < 0 && directionY > 0)
+       {
+         body.AddForce(new Vector2(-150, 150));
+       }
+
+
+
+      // Código inicial de Acuña que funcionaba pero las balas tienen velocidad variable
+
+      //  else
+      //  {
+      //    body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
+      //  }
+
+
+
 
        // Rotación no eficiente de la bala
 
@@ -86,7 +126,9 @@ public class GenericBala : MonoBehaviour
 
     private void FixedUpdate()
     {
-          Debug.Log(directionY);
+         Debug.Log(directionX);
+         Debug.Log(directionY);
+         
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

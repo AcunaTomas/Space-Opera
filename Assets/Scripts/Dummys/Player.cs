@@ -44,9 +44,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _wallJumpXHandicap = false;
 
-    private SpriteRenderer _spriteRenderer;
+    public SpriteRenderer _spriteRenderer;
 
-    private Animator _animator;
+    public Animator _animator;
     [SerializeField]
     private UpdateBars _healthBar;
     [SerializeField]
@@ -182,6 +182,7 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f))
             {
                 SpecialJump();
+                _animator.SetTrigger("DoubleJump");
             }
         }
         //Debug.Log(canIjump);
@@ -193,7 +194,8 @@ public class Player : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, 0);
         body.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
         extrajumpcount -= 1;
-
+        _animator.SetBool("IsJumping", false);
+        _animator.SetTrigger("DoubleJump");
     }
 
     private void WallJump()

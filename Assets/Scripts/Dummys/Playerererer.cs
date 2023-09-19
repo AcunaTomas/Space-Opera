@@ -15,7 +15,7 @@ public class Playerererer : Player
         Debug.Log("aaaaaaaaaaaaaaaaaaa");
         setXStunVariables();
         body.AddForce(new Vector2(3 * GetOrientation(), 0), ForceMode2D.Impulse);
-
+        _animator.SetTrigger("Dash");
     }
 
 }
