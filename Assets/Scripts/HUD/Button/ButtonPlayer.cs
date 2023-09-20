@@ -10,6 +10,12 @@ public class ButtonPlayer : MonoBehaviour
     private CombatBro _playerCombat;
     private float _time = 0f;
 
+    public void ResetTime()
+    {
+        _time = 0f;
+        _keys.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +32,7 @@ public class ButtonPlayer : MonoBehaviour
             _keys.SetActive(false);
         }
 
-        if (_time > 15f)
+        if (_time > 30f)
         {
             _keys.SetActive(true);
         }
