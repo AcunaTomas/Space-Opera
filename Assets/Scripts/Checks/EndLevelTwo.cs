@@ -7,6 +7,8 @@ public class EndLevelTwo : MonoBehaviour
     [SerializeField]
     private GameObject[] _detectable;
     [SerializeField]
+    private Transform _player;
+    [SerializeField]
     private GameObject[] _dialogues;
     [SerializeField]
     private GameObject _triggerEnd;
@@ -24,6 +26,7 @@ public class EndLevelTwo : MonoBehaviour
                 if (go.name == _detectable[i].name)
                 {
                     StartCoroutine(Check(i));
+                    _player.GetChild(_player.childCount - 1).GetChild(i).gameObject.SetActive(false);
                 }
                 else
                 {
@@ -39,6 +42,18 @@ public class EndLevelTwo : MonoBehaviour
                 if (go.name == _detectable[i].name)
                 {
                     StartCoroutine(Check(i));
+                    _player.GetChild(_player.childCount - 1).GetChild(i).gameObject.SetActive(false);
+                }
+            }
+        }
+
+        if (_cont == 3)
+        {
+            for (int i = 0; i < _detectable.Length; i++)
+            {
+                if (go.name == _detectable[i].name)
+                {
+                    _player.GetChild(_player.childCount - 1).GetChild(i).gameObject.SetActive(false);
                 }
             }
         }
