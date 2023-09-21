@@ -8,5 +8,6 @@ public static class LoadJson
     public static string LVL1_DIALOGUES = Resources.Load<TextAsset>("Text/lvl1").text;
     public static string LVL1_CINEMATIC = Resources.Load<TextAsset>("Text/lvl1_cinematic").text;
     public static string LVL2 = Resources.Load<TextAsset>("Text/lvl2").text;
+    public static string LVL3 = Resources.Load<TextAsset>("Text/lvl3").text;
     public static string LVL2_CINEMATIC = Resources.Load<TextAsset>("Text/lvl2_cinematic").text;
 }

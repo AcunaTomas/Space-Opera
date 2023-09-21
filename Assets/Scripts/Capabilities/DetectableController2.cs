@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DetectableController2 : MonoBehaviour
 {
-    public GameObject _bullet;
+    //public GameObject _bullet;
     public GameObject _brillo;
     public GameObject _trigger;
     public void Detectado()
     {
-        Instantiate(_bullet, transform.position, Quaternion.identity);
+        //Instantiate(_bullet, transform.position, Quaternion.identity);
         _brillo.SetActive(true);
         try
         {

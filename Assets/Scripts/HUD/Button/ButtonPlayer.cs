@@ -5,6 +5,8 @@ using UnityEngine;
 public class ButtonPlayer : MonoBehaviour
 {
     [SerializeField]
+    private Transform _player;
+    [SerializeField]
     private GameObject _keys;
     [SerializeField]
     private CombatBro _playerCombat;
@@ -16,7 +18,6 @@ public class ButtonPlayer : MonoBehaviour
         _keys.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!_playerCombat.enabled)
@@ -29,7 +30,16 @@ public class ButtonPlayer : MonoBehaviour
         if (Input.GetButton("Fire2"))
         {
             _time = 0f;
+            if (_player.GetChild(_player.childCount - 1).name == "Oval")
+            {
+                _player.GetChild(_player.childCount - 1).gameObject.SetActive(true);
+            }
             _keys.SetActive(false);
+        }
+
+        if (_time > 4f)
+        {
+            _player.GetChild(_player.childCount - 1).gameObject.SetActive(false);
         }
 
         if (_time > 30f)
