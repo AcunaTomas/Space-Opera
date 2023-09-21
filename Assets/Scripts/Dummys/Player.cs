@@ -57,6 +57,10 @@ public class Player : MonoBehaviour
     private bool _skillPermitted = true;
     private float _skillHold;
 
+
+    public float dashRate = 2f;
+    float nextDashTime = 0f;
+
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;
@@ -137,10 +141,11 @@ public class Player : MonoBehaviour
             _airborneTime = 0;
         }
         
-        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f)
+        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f && Time.time >= nextDashTime)
         {
             TheTheSkill();
             ChangeSkillStatus(false);
+            nextDashTime = Time.time + 1f / dashRate;
         }
 
     }
@@ -182,7 +187,6 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f))
             {
                 SpecialJump();
-                _animator.SetTrigger("DoubleJump");
             }
         }
         //Debug.Log(canIjump);
@@ -309,7 +313,12 @@ public class Player : MonoBehaviour
                         _spriteRenderer.flipX = false;
                     }
                     unsetXStunVariables();
-                    //extrajumpcount += -1;
+
+                    if (extrajumpcount == 1)
+                    {
+                        extrajumpcount += 1;
+                    }
+
                     WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
                     _maxVerticalSpeed = speedCaps.x;
                     _animator.SetBool("wall", true);

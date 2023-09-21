@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="11" nextobjectid="123">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="12" nextobjectid="123">
  <tileset firstgid="1" source="tile_black.tsx"/>
  <tileset firstgid="2" name="Sprite-0001" tilewidth="32" tileheight="32" tilecount="20" columns="10">
   <image source="Sprite-0001.png" width="320" height="64"/>
@@ -31,6 +31,7 @@
  <tileset firstgid="5580" source="Tile/tile_lvl3_outside_03.tsx"/>
  <tileset firstgid="5582" source="Tile/tile_lvl3_outside_02_1.tsx"/>
  <tileset firstgid="5585" source="Tile/tile_lvl3_outside_01_1.tsx"/>
+ <tileset firstgid="5590" source="Objects/obj_lvl3_bush_01.tsx"/>
  <layer id="2" name="fondo" width="30" height="20">
   <data encoding="csv">
    <chunk x="0" y="-80" width="16" height="16">
@@ -2740,6 +2741,28 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</chunk>
+  </data>
+ </layer>
+ <layer id="11" name="Extras" width="30" height="20">
+  <data encoding="csv">
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,5591,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
   </data>
  </layer>

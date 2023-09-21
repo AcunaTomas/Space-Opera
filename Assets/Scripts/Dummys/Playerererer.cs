@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Playerererer : Player
 {
+    
 
-
-   public override void SpecialJump()
+    public override void SpecialJump()
    {
         
    }
