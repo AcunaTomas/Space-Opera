@@ -51,6 +51,11 @@ public class CollisionDialogue : MonoBehaviour
         
     }
 
+    public void GetPlayer()
+    {
+        _player = GameObject.FindWithTag("Player");
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (_checkpoint && col.CompareTag("Player"))

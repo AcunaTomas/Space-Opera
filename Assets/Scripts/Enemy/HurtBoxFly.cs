@@ -25,6 +25,11 @@ public class HurtBoxFly : MonoBehaviour
         return orientation;
     }
 
+    public void GetPlayer()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -44,6 +49,7 @@ public class HurtBoxFly : MonoBehaviour
 
     private void MoveAgain()
     {
+        Debug.Log("hfjlkahfjkasjkhaf");
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<PlayerCombat>().enabled = true;

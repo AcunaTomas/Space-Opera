@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
     {
         melee,
         gun,
-
         simple
     }
 
@@ -165,6 +164,12 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         isDead = true;
+
+        if (_enemyType == EnemyType.simple)
+        {
+            gameObject.SetActive(false);
+        }
+
         if (attackDamage < 50)
         {
             animator.SetTrigger("Die");
