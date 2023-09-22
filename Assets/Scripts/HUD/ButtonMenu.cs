@@ -59,6 +59,40 @@ public class ButtonMenu : MonoBehaviour
         _buttonText.transform.localScale = newScale;
     }
 
+    public void OnSelectedLevelMenu()
+    {
+        for (int i = 0; i < _parent.childCount; i++)
+        {
+            Transform child = _parent.GetChild(i);
+            if (child.GetComponent<ButtonMenu>().ACTIVE)
+            {
+                if (child.name == transform.name)
+                {
+                    break;
+                }
+
+                child.GetComponent<ButtonMenu>().ACTIVE = false;
+                child.GetChild(0).gameObject.SetActive(false);
+                child.GetChild(1).gameObject.SetActive(false);
+                child.GetComponentInChildren<TMP_Text>().transform.localScale = _originalScale;
+                if (!EventSystem.current.alreadySelecting)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+                break;
+            }
+        }
+
+        ACTIVE = true;
+        _parent.GetComponent<TextSelectLevel>().ChangeText(transform.GetChild(1).GetComponent<TextMeshProUGUI>(), transform.name);
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(true);
+        if (!EventSystem.current.alreadySelecting)
+        {
+            EventSystem.current.SetSelectedGameObject(gameObject);
+        }
+    }
+
     private void Update()
     {
         if (!ACTIVE)
@@ -66,9 +100,9 @@ public class ButtonMenu : MonoBehaviour
             return;
         }
 
-        if(EventSystem.current.currentSelectedGameObject == null)
+        if (EventSystem.current.currentSelectedGameObject == null)
         {
-            if (_lastSelected.gameObject.activeSelf && _lastSelected.GetComponent<Button>() != null && _lastSelected.GetComponent<Button>().interactable)
+            if (_lastSelected.gameObject.activeSelf && _lastSelected.GetComponent<Button>() != null)
             {
                 EventSystem.current.SetSelectedGameObject(_lastSelected);
             }            
