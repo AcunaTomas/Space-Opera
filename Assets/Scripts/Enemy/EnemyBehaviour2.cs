@@ -12,6 +12,7 @@ public class EnemyBehaviour2 : MonoBehaviour
     public GameObject hotZone;
     public GameObject triggerArea;
     public Transform attackPoint;
+    public Transform attackPointFlip;
 
     private Animator animator;
     private float distance;
@@ -40,6 +41,7 @@ void Update()
     if (attackMode == false)
     {
         attackPoint.gameObject.SetActive(false);
+        attackPointFlip.gameObject.SetActive(false);
     }
 }
 
@@ -96,7 +98,15 @@ void Attack()
     animator.SetBool("Attack", true);
     AudioManager.INSTANCE.PlayEnemyAttack();
 
-    attackPoint.gameObject.SetActive(true);
+        if (transform.position.x > target.position.x)
+        {
+            attackPointFlip.gameObject.SetActive(true);
+        }
+        else
+        {
+            attackPoint.gameObject.SetActive(true);
+        }
+
     timerAttack = 0;
 }
 
@@ -124,6 +134,7 @@ public void TriggerCooling()
     Debug.Log("COOLING");
     cooling = true;
     attackPoint.gameObject.SetActive(false);
+    attackPointFlip.gameObject.SetActive(false);
 }
 
 public void Flip()
@@ -133,7 +144,7 @@ public void Flip()
     {
         GetComponent<SpriteRenderer>().flipX = true;
         attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(-1);
-    }
+        }
     else
     {
         GetComponent<SpriteRenderer>().flipX = false;

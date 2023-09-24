@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
     public float dashRate = 2f;
     float nextDashTime = 0f;
 
+    private bool _coolingHit = false;
+
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;
@@ -476,14 +478,20 @@ public class Player : MonoBehaviour
     
     public void LoseHP(int damage)
     {
-        HP -= damage;
-        _animator.SetBool("IsJumping", false);
-        _animator.SetTrigger("Hurt");
-        _healthBar.UpdateHP();
-        
-        if (HP <= 0)
+        if (!_coolingHit)
         {
-            Die();
+            HP -= damage;
+            _animator.SetBool("IsJumping", false);
+            _animator.SetTrigger("Hurt");
+            _healthBar.UpdateHP();
+
+            _coolingHit = true;
+            StartCoroutine(StartCooldown());
+
+            if (HP <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -550,5 +558,12 @@ public class Player : MonoBehaviour
         MaxHP = hp;
         //HP = MaxHP;
         //_healthBar.UpdateHP();
+    }
+
+    private IEnumerator StartCooldown()
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        _coolingHit = false;
     }
 }

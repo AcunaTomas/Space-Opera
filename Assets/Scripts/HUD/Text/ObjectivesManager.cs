@@ -124,14 +124,14 @@ public class ObjectivesManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("q") && !_buttonPressed)
+        if ((Input.GetKeyDown("q") || Input.GetKeyDown("joystick button 4")) && !_buttonPressed)
         {
             _canInteract = false;
             _buttonPressed = true;
             StartCoroutine(FoldUnfold(_fold));
         }
 
-        if (Input.GetKeyUp("q"))
+        if (Input.GetKeyUp("q") || Input.GetKeyUp("joystick button 4"))
         {
             _buttonPressed = false;
         }

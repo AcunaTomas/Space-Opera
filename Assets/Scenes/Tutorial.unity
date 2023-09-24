@@ -3410,6 +3410,7 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+  attackPointFlip: {fileID: 0}
 --- !u!114 &336505901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8078,7 +8079,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052498193}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &672410678
 MonoBehaviour:
@@ -8310,7 +8311,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052498193}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &680568459
 MonoBehaviour:
@@ -13152,6 +13153,7 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+  attackPointFlip: {fileID: 0}
 --- !u!114 &1037132467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17206,6 +17208,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  dashRate: 0
+  _canDash: 0
 --- !u!1 &1374699479
 GameObject:
   m_ObjectHideFlags: 0
@@ -19058,6 +19062,7 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+  attackPointFlip: {fileID: 0}
 --- !u!114 &1579205342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20077,6 +20082,7 @@ MonoBehaviour:
   hotZone: {fileID: 0}
   triggerArea: {fileID: 0}
   attackPoint: {fileID: 0}
+  attackPointFlip: {fileID: 0}
 --- !u!114 &1655921239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20635,7 +20641,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052498193}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1729220266
 MonoBehaviour:
@@ -22371,6 +22377,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933744474}
   m_CullTransparentMesh: 1
+--- !u!1 &1943594254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1943594255}
+  - component: {fileID: 1943594257}
+  - component: {fileID: 1943594256}
+  m_Layer: 0
+  m_Name: Checkpoint3.5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1943594255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943594254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.634, y: 9.232, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2052498193}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1943594256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943594254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb056cd2f07fb947bb0b5c4e74f81d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1943594257
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943594254}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.051669, y: 0.6136427}
+  m_EdgeRadius: 0
 --- !u!1 &1948563505
 GameObject:
   m_ObjectHideFlags: 0
@@ -23734,7 +23811,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052498193}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2034704781
 MonoBehaviour:
@@ -23863,6 +23940,7 @@ Transform:
   - {fileID: 1784848702}
   - {fileID: 778441950}
   - {fileID: 1861037043}
+  - {fileID: 1943594255}
   - {fileID: 1729220265}
   - {fileID: 680568458}
   - {fileID: 2034704780}

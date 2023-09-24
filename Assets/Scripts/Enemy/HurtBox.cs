@@ -14,7 +14,7 @@ public class HurtBox : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
-    
+
     public float setOrientation(float orientationValue)
     {
         orientation = orientationValue;
@@ -31,7 +31,6 @@ public class HurtBox : MonoBehaviour
             other.GetComponent<PlayerCombat>().enabled = false;
             //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(orientation * 5, 0), ForceMode2D.Impulse);
             gameObject.SetActive(false);
-            Debug.Log(orientation);
             Invoke("MoveAgain", 0.2f);
             Debug.Log("hit");
         }
@@ -43,5 +42,4 @@ public class HurtBox : MonoBehaviour
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<PlayerCombat>().enabled = true;
     }
-
 }
