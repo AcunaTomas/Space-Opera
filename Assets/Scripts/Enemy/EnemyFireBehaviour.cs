@@ -16,6 +16,10 @@ public class EnemyFireBehaviour : MonoBehaviour
         _player = GameObject.FindWithTag("Player").transform;
     }
 
+    public void GetPlayer()
+    {
+        _player = GameObject.FindWithTag("Player").transform;
+    }
     void FixedUpdate()
     {
         float _distanceFromPlayer = Vector2.Distance(_player.position, transform.position);
