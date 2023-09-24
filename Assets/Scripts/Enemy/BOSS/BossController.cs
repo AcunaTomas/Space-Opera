@@ -81,12 +81,12 @@ public class BossController : MonoBehaviour
             Instantiate(_missile, new Vector2(16.787f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(16.787f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(18.194f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(18.194f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(18.3435f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(18.3435f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(19.601f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.601f, 14.624f), Quaternion.identity);
-            
+            Instantiate(_missile, new Vector2(19.900f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(19.900f, 14.624f), Quaternion.identity);
+
         }
     }
 
@@ -98,16 +98,16 @@ public class BossController : MonoBehaviour
             StartCoroutine(StartCooldown());
             _lastRand = 3;
 
-            Instantiate(_missile, new Vector2(19.357f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.357f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(19.300f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(19.300f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(19.601f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.601f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(19.600f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(19.600f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(19.845f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.845f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(19.900f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(19.900f, 14.624f), Quaternion.identity);
         }
-    }
+    }   
 
     void Fourth()
     {
@@ -117,17 +117,20 @@ public class BossController : MonoBehaviour
             StartCoroutine(StartCooldown());
             _lastRand = 4;
 
-            Instantiate(_missile, new Vector2(19.144f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.144f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(16.800f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(16.800f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(17.579f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(17.579f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(17.100f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(17.100f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(18.371f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(18.371f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(17.400f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(17.400f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(18.0f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(18.0f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(17.700f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(17.700f, 14.624f), Quaternion.identity);
+
+            Instantiate(_missile, new Vector2(18.000f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(18.000f, 14.624f), Quaternion.identity);
         }
     }
 
