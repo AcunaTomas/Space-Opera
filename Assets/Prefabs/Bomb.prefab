@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1371156680632117489}
   - component: {fileID: 547076544165052639}
   - component: {fileID: 1513756975230739785}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Bomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   thrown: 1
   rb: {fileID: 8575101613034309097}
   animator: {fileID: 1513756975230739785}
+  bombDuration: 0.5
 --- !u!212 &547076544165052639
 SpriteRenderer:
   m_ObjectHideFlags: 0

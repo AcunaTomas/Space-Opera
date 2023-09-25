@@ -33,7 +33,8 @@ public class Enemy : MonoBehaviour
     {
         melee,
         gun,
-        simple
+        simple,
+        boss
     }
 
     void Start()
@@ -164,6 +165,13 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         isDead = true;
+
+        if (_enemyType == EnemyType.boss)
+        {
+            animator.SetTrigger("Die");
+            animator.SetBool("Died", true);
+            GetComponent<BossController>().enabled = false;
+        }
 
         if (_enemyType == EnemyType.simple)
         {

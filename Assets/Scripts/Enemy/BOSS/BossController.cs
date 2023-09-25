@@ -6,6 +6,7 @@ public class BossController : MonoBehaviour
 {
     public GameObject _missile;
     public GameObject _warning;
+    public Animator _animator;
 
     int _rand = 0;
     bool _coolingAttack;
@@ -57,6 +58,7 @@ public class BossController : MonoBehaviour
             _coolingAttack = true;
             StartCoroutine(StartCooldown());
             _lastRand = 1;
+            _animator.SetTrigger("Attack");
 
             Instantiate(_missile, new Vector2(16.787f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(16.787f, 14.624f), Quaternion.identity);
@@ -77,6 +79,7 @@ public class BossController : MonoBehaviour
             _coolingAttack = true;
             StartCoroutine(StartCooldown());
             _lastRand = 2;
+            _animator.SetTrigger("Attack");
 
             Instantiate(_missile, new Vector2(16.787f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(16.787f, 14.624f), Quaternion.identity);
@@ -97,6 +100,7 @@ public class BossController : MonoBehaviour
             _coolingAttack = true;
             StartCoroutine(StartCooldown());
             _lastRand = 3;
+            _animator.SetTrigger("Attack");
 
             Instantiate(_missile, new Vector2(19.300f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(19.300f, 14.624f), Quaternion.identity);
@@ -116,6 +120,7 @@ public class BossController : MonoBehaviour
             _coolingAttack = true;
             StartCoroutine(StartCooldown());
             _lastRand = 4;
+            _animator.SetTrigger("Attack");
 
             Instantiate(_missile, new Vector2(16.800f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(16.800f, 14.624f), Quaternion.identity);
