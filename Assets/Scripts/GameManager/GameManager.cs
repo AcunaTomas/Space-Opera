@@ -62,6 +62,21 @@ public class GameManager : MonoBehaviour, IDataPersistance
     
     void Update()
     {
+        if (Input.GetKeyDown("1"))
+        {
+            ScenesManager.Instance.LoadNextScene("lvl1");
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            ScenesManager.Instance.LoadNextScene("lvl2");
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            ScenesManager.Instance.LoadNextScene("lvl3");
+        }
+
         if (Input.GetKeyDown("5"))
         {
             DataPersistentManager.INSTANCE.DeleteSave();

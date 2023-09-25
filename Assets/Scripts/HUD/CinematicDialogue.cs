@@ -34,7 +34,10 @@ public class CinematicDialogue : MonoBehaviour
                 break;
             case 2:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2_CINEMATIC);
-                break;            
+                break;
+            case 4:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL_SELECT);
+                break;
             default:
                 break;
         }
@@ -69,20 +72,29 @@ public class CinematicDialogue : MonoBehaviour
     {
         if (_cont >= _zoneLines)
         {
-            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "MAS";
             gameObject.SetActive(false);
-            ScenesManager.Instance.LoadNextScene(_sceneName);//(ScenesManager.Scene.Tutorial);
+            if (_sceneName != "")
+            {
+                ScenesManager.Instance.LoadNextScene(_sceneName);
+            }
+            else
+            {
+                try
+                {
+                    GameObject _go = GameObject.Find("ActivatePanel");
+                    _go.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
+                }
+                catch (System.Exception)
+                {
+
+                }
+            }
 
             _cont = 0;
             return;
         }
         _animatorCinematic.SetTrigger(_cont.ToString());
         DifferentDialogues();
-
-        if (_zoneLines-1 == _cont)
-        {
-            transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "END";
-        }
     }
 
     private void DifferentDialogues()
