@@ -7,6 +7,7 @@ public class BasicSwitcherLogic : MonoBehaviour
     
     public Player bi2;
     public Playerererer brodi;
+    public bool _change = false;
 
     private string who = "Bito";
 
@@ -14,8 +15,9 @@ public class BasicSwitcherLogic : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("CharSwitch1") > 0 && Input.GetAxis("CharSwitch2") > 0 && cooldown == false)
+        if (_change)
         {
+            _change = false;
             switch (who)
             {
                 case "Bito":
@@ -47,6 +49,11 @@ public class BasicSwitcherLogic : MonoBehaviour
             brodi.gameObject.transform.position = bi2.gameObject.transform.position;
         }
 
+    }
+
+    public void ChangePlayer()
+    {
+        _change = true;
     }
 
     IEnumerator cooldown2()

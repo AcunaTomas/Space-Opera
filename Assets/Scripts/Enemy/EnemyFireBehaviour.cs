@@ -9,6 +9,7 @@ public class EnemyFireBehaviour : MonoBehaviour
     public float _shootingRange;
     public GameObject _bullet;
     public GameObject _bulletParent;
+    public Animator _animator;
     private Transform _player;
 
     void Start()
@@ -27,6 +28,11 @@ public class EnemyFireBehaviour : MonoBehaviour
         {
             Instantiate(_bullet, _bulletParent.transform.position, Quaternion.identity);
             _nextFireTime = Time.time + _fireRate;
+            _animator.SetBool("Attack", true);
+        }
+        else
+        {
+            _animator.SetBool("Attack", false);
         }
         
     }
