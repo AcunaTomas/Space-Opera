@@ -84,11 +84,11 @@ public class BossController : MonoBehaviour
             Instantiate(_missile, new Vector2(16.787f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(16.787f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(18.3435f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(18.3435f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(18.1935f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(18.1935f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(19.900f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.900f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(19.600f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(19.600f, 14.624f), Quaternion.identity);
 
         }
     }
@@ -102,14 +102,15 @@ public class BossController : MonoBehaviour
             _lastRand = 3;
             _animator.SetTrigger("Attack");
 
+            Instantiate(_missile, new Vector2(19.000f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(19.000f, 14.624f), Quaternion.identity);
+
             Instantiate(_missile, new Vector2(19.300f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(19.300f, 14.624f), Quaternion.identity);
 
             Instantiate(_missile, new Vector2(19.600f, 17.389f), Quaternion.identity);
             Instantiate(_warning, new Vector2(19.600f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(19.900f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(19.900f, 14.624f), Quaternion.identity);
         }
     }   
 
@@ -122,20 +123,12 @@ public class BossController : MonoBehaviour
             _lastRand = 4;
             _animator.SetTrigger("Attack");
 
-            Instantiate(_missile, new Vector2(16.800f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(16.800f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(17.54f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(17.54f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(17.100f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(17.100f, 14.624f), Quaternion.identity);
+            Instantiate(_missile, new Vector2(18.92f, 17.389f), Quaternion.identity);
+            Instantiate(_warning, new Vector2(18.92f, 14.624f), Quaternion.identity);
 
-            Instantiate(_missile, new Vector2(17.400f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(17.400f, 14.624f), Quaternion.identity);
-
-            Instantiate(_missile, new Vector2(17.700f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(17.700f, 14.624f), Quaternion.identity);
-
-            Instantiate(_missile, new Vector2(18.000f, 17.389f), Quaternion.identity);
-            Instantiate(_warning, new Vector2(18.000f, 14.624f), Quaternion.identity);
         }
     }
 

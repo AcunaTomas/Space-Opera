@@ -171,6 +171,7 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("Die");
             animator.SetBool("Died", true);
             GetComponent<BossController>().enabled = false;
+            GetComponentInChildren<HurtBoxFly>().enabled = false;
         }
 
         if (_enemyType == EnemyType.simple)
