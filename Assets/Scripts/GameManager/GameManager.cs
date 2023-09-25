@@ -52,6 +52,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
         _playerScript = PLAYER.GetComponent<Player>();
     }
 
+    public void GetPlayer()
+    {
+        PLAYER = GameObject.FindWithTag("Player");
+    }    
+
     void Start()
     {
         if (LEVEL < 1 || LEVEL > 4 )
@@ -64,17 +69,17 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         if (Input.GetKeyDown("1"))
         {
-            ScenesManager.Instance.LoadNextScene("lvl1");
+            ScenesManager.Instance.LoadNextScene("Tutorial");
         }
 
         if (Input.GetKeyDown("2"))
         {
-            ScenesManager.Instance.LoadNextScene("lvl2");
+            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
         }
 
         if (Input.GetKeyDown("3"))
         {
-            ScenesManager.Instance.LoadNextScene("lvl3");
+            ScenesManager.Instance.LoadNextScene("NewLevel3");
         }
 
         if (Input.GetKeyDown("5"))

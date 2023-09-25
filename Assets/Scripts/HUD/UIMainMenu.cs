@@ -19,9 +19,19 @@ public class UIMainMenu : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown("1"))
+        {
+            ScenesManager.Instance.LoadNextScene("Tutorial");
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
+        }
+
         if (Input.GetKeyDown("3"))
         {
-            ScenesManager.Instance.LoadNextScene("Level3");
+            ScenesManager.Instance.LoadNextScene("NewLevel3");
         }
     }
 

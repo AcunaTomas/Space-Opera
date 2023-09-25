@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField]
-    int HP = 5;
+    public int HP = 5;
     [SerializeField]
     int MaxHP = 5;
     [SerializeField]

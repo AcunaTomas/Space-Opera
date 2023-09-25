@@ -7,6 +7,7 @@ public class BossController : MonoBehaviour
     public GameObject _missile;
     public GameObject _warning;
     public Animator _animator;
+    public GameObject _player;
 
     int _rand = 0;
     bool _coolingAttack;
@@ -32,7 +33,19 @@ public class BossController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _rand = Random.Range(0, 4);
+        Debug.Log(_coolingAttack);
+        if (_player.GetComponent<Playerererer>().GetHP() <= 0)
+        {
+            PlayerRespawneando();
+            Debug.Log("Se murió el player");
+        }
+        else if (_player.GetComponent<Playerererer>().GetHP() > 0)
+        {
+            _rand = Random.Range(0, 4);
+        }
+
+        
+        //_rand = Random.Range(0, 4);
 
         if (_rand == 0 && _lastRand != 1)
         {
@@ -41,7 +54,7 @@ public class BossController : MonoBehaviour
         else if (_rand == 1 && _lastRand != 2)
         {
             Second();
-        }       
+        }
         else if (_rand == 2 && _lastRand != 3)
         {
             Third();
@@ -50,6 +63,8 @@ public class BossController : MonoBehaviour
         {
             Fourth();
         }
+        
+        
     }
     void First()
     {
@@ -135,6 +150,22 @@ public class BossController : MonoBehaviour
     private IEnumerator StartCooldown()
     {
         yield return new WaitForSeconds(2f);
+
+        _coolingAttack = false;
+    }
+
+    private void PlayerRespawneando()
+    {
+        if (!_coolingAttack)
+        {
+            _coolingAttack = true;
+            StartCoroutine(StartSecondCooldown());
+        }   
+    }
+
+    private IEnumerator StartSecondCooldown()
+    {
+        yield return new WaitForSeconds(3f);
 
         _coolingAttack = false;
     }

@@ -21,6 +21,24 @@ public class UpdateBars : MonoBehaviour
         SetHP();
     }
 
+    public void ResetHP()
+    {
+        _energy = 0;
+        _playerHP = 0;
+
+        _player = GameManager.INSTANCE.PLAYER.GetComponent<Player>();
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+
+        Debug.Log(GameManager.INSTANCE.PLAYER.name);
+        Debug.Log("resetHP");
+
+        SetHP();
+        UpdateEnergy();
+    }
+
     public void SetEnergy(int e)
     {
         _energy = e;
