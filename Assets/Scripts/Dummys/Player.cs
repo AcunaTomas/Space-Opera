@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     public float dashRate = 2f;
     float nextDashTime = 0f;
 
-    private bool _coolingHit = false;
+    public bool _coolingHit = false;
 
     public void ChangeSkillStatus(bool a)
     {
@@ -563,6 +563,13 @@ public class Player : MonoBehaviour
     private IEnumerator StartCooldown()
     {
         yield return new WaitForSeconds(0.8f);
+
+        _coolingHit = false;
+    }
+
+    public IEnumerator StartCooldownIFrame()
+    {
+        yield return new WaitForSeconds(0.4f);
 
         _coolingHit = false;
     }

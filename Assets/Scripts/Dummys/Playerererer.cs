@@ -18,6 +18,8 @@ public class Playerererer : Player
             setXStunVariables();
             body.AddForce(new Vector2(3 * GetOrientation(), 0), ForceMode2D.Impulse);
             _animator.SetTrigger("Dash");
+            _coolingHit = true;
+            StartCoroutine(StartCooldownIFrame());
         }
         
     }
