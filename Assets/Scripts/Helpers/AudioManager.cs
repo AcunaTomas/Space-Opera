@@ -37,6 +37,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip _buttonConfirm;
     [SerializeField]
+    private AudioClip _buttonSelect;
+    [SerializeField]
     private AudioClip _musicIntro;
     [SerializeField]
     private AudioClip _elevatorInteractor;
@@ -104,6 +106,12 @@ public class AudioManager : MonoBehaviour
     public void PlayUI()
     {
         _audioUI.clip = _buttonConfirm;
+        _audioUI.Play();
+    }
+
+    public void PlayUISelect()
+    {
+        _audioUI.clip = _buttonSelect;
         _audioUI.Play();
     }
 

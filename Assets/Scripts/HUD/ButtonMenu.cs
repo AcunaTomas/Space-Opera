@@ -37,6 +37,12 @@ public class ButtonMenu : MonoBehaviour
             Transform child = _parent.GetChild(i);
             if (child.GetComponent<ButtonMenu>().ACTIVE)
             {
+                if (child.name == transform.name)
+                {
+                    break;
+                }
+
+                AudioManager.INSTANCE.PlayUISelect();
                 child.GetComponent<Image>().enabled = false;
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
                 child.GetComponentInChildren<TMP_Text>().transform.localScale = _originalScale;
@@ -71,6 +77,7 @@ public class ButtonMenu : MonoBehaviour
                     break;
                 }
 
+                AudioManager.INSTANCE.PlayUISelect();
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
                 child.GetChild(0).gameObject.SetActive(false);
                 child.GetChild(1).gameObject.SetActive(false);
