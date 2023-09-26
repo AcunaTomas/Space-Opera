@@ -693,6 +693,8 @@ MonoBehaviour:
   _audioPlayerFall: {fileID: 0}
   _meleePlayer: {fileID: 0}
   _bombPlayer: {fileID: 0}
+  _gunBrody: {fileID: 0}
+  _scanBrody: {fileID: 0}
   _musicSource: {fileID: 1077488941}
   _audioAlarm: {fileID: 0}
   _audioInteractor: {fileID: 0}
@@ -701,6 +703,7 @@ MonoBehaviour:
   _audioEnemyAttack: {fileID: 0}
   _audioEnemyHit: {fileID: 0}
   _buttonConfirm: {fileID: 8300000, guid: 40f7cd8c397d5504fbb42fb7ea45cc53, type: 3}
+  _buttonSelect: {fileID: 0}
   _musicIntro: {fileID: 8300000, guid: cb956ff1fe445db42a58b1431c427136, type: 3}
   _elevatorInteractor: {fileID: 0}
   _elevatorSound: {fileID: 0}
@@ -722,6 +725,8 @@ MonoBehaviour:
   _pasoslvl1: []
   _attackMelee: []
   _attackBomb: {fileID: 0}
+  _attackBrody: {fileID: 0}
+  _attackScanBrody: {fileID: 0}
 --- !u!1 &882468916
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +871,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
