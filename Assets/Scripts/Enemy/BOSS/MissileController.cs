@@ -10,7 +10,7 @@ public class MissileController : MonoBehaviour
     public LayerMask playerLayers;
     public Animator _animator;
     public float bombRange = 1f;
-    public float bombDuration = 0.5f;
+    public float bombDuration = 0.2f;
     
     
     private bool isBombActive = false;
