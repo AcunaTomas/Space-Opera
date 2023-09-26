@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
 
         if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
         {
-            if (_coolingDashAnim) 
+            if (!_coolingDashAnim) 
             { 
                 _fallingTime += 0.16f;
                 _animator.SetFloat("fallingTime", _fallingTime);
