@@ -28,8 +28,8 @@ public class Player : MonoBehaviour
     private int extrajumpcount = 1;
     [SerializeField]
     private float _lastJumpPress = 0f;
-    [SerializeField]
-    private float _fallingTime = 0f;
+    
+    public float _fallingTime = 0f;
 
     [SerializeField]    
     private float WallJumpXDirection = 0f;
@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
     float nextDashTime = 0f;
 
     public bool _coolingHit = false;
+    public bool _coolingDashAnim = false;
 
     public void ChangeSkillStatus(bool a)
     {
@@ -116,8 +117,11 @@ public class Player : MonoBehaviour
 
         if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
         {
-            _fallingTime += 0.16f;
-            _animator.SetFloat("fallingTime", _fallingTime);
+            if (_coolingDashAnim) 
+            { 
+                _fallingTime += 0.16f;
+                _animator.SetFloat("fallingTime", _fallingTime);
+            }
         }
         else
         {
@@ -572,5 +576,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
 
         _coolingHit = false;
+    }
+
+    public IEnumerator StartCooldownDashingAnimation()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        _coolingDashAnim = false;
     }
 }
