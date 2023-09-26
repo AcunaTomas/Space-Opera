@@ -661,6 +661,8 @@ MonoBehaviour:
   _audioPlayerFall: {fileID: 0}
   _meleePlayer: {fileID: 0}
   _bombPlayer: {fileID: 0}
+  _gunBrody: {fileID: 0}
+  _scanBrody: {fileID: 0}
   _musicSource: {fileID: 909611893}
   _audioAlarm: {fileID: 0}
   _audioInteractor: {fileID: 0}
@@ -669,6 +671,7 @@ MonoBehaviour:
   _audioEnemyAttack: {fileID: 0}
   _audioEnemyHit: {fileID: 0}
   _buttonConfirm: {fileID: 8300000, guid: 40f7cd8c397d5504fbb42fb7ea45cc53, type: 3}
+  _buttonSelect: {fileID: 0}
   _musicIntro: {fileID: 8300000, guid: f1a6a72c90642b1408ca08ab5b9fc251, type: 3}
   _elevatorInteractor: {fileID: 8300000, guid: 703d349f0cd7a6042b446eea59f89b7f, type: 3}
   _elevatorSound: {fileID: 8300000, guid: 40194d393bab7914ea4bdf0ef8a15e42, type: 3}
@@ -696,6 +699,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ee59d1403ffb88241b5403087ef84cee, type: 3}
   - {fileID: 8300000, guid: 7ca80d4c7096dee4b9a35083b32299fb, type: 3}
   _attackBomb: {fileID: 8300000, guid: 70ebde0567b957c4da37fe598f1b834c, type: 3}
+  _attackBrody: {fileID: 0}
+  _attackScanBrody: {fileID: 0}
 --- !u!1 &882468916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1204,7 @@ MonoBehaviour:
   ZONENAME: intro_02
   _keyNextDialogue: 101
   _animatorCinematic: {fileID: 1716347075}
-  _sceneName: Level_2TEST
+  _sceneName: Lvl2_Radar
 --- !u!114 &1665518394
 MonoBehaviour:
   m_ObjectHideFlags: 0
