@@ -7,6 +7,8 @@ public class CombatBro : PlayerCombat
 {
     public Animator _animator;
 
+    public BrodyOval _radar;
+
     [SerializeField]
     private GameObject balarda;
     [SerializeField]
@@ -27,8 +29,9 @@ public class CombatBro : PlayerCombat
             {
                 enemyCollider.GetComponent<DetectableController2>().Detectado();
             }
-            
         }
+
+        _radar.enabled = true;
     }
     public override void Attack()
     {

@@ -17,6 +17,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _bombPlayer;
     [SerializeField]
+    private AudioSource _gunBrody;
+    [SerializeField]
+    private AudioSource _scanBrody;
+    [SerializeField]
     private AudioSource _musicSource;
     [SerializeField]
     private AudioSource _audioAlarm;
@@ -77,6 +81,11 @@ public class AudioManager : MonoBehaviour
     private int _meleeNum = 0;
     [SerializeField]
     private AudioClip _attackBomb;
+
+    [SerializeField]
+    private AudioClip _attackBrody;
+    [SerializeField]
+    private AudioClip _attackScanBrody;
 
 
     private void Awake()
@@ -151,6 +160,19 @@ public class AudioManager : MonoBehaviour
         _bombPlayer.clip = _attackBomb;
         _bombPlayer.Play();
     }
+
+    public void PlayBrodyGun()
+    {
+        _gunBrody.clip = _attackBrody;
+        _gunBrody.Play();
+    }
+
+    public void PlayBrodyScan()
+    {
+        _scanBrody.clip = _attackScanBrody;
+        _scanBrody.Play();
+    }
+    
 
     public void PlayElevatorInteractor()
     {

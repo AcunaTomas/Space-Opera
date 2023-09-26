@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BrodyOval : MonoBehaviour
 {
+
     [SerializeField]
     private Transform _player;
     [SerializeField]

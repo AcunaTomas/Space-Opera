@@ -169,4 +169,9 @@ public class BossController : MonoBehaviour
 
         _coolingAttack = false;
     }
+
+    public void DiedSound()
+    {
+        AudioManager.INSTANCE.PlayDoorClose();
+    }
 }
