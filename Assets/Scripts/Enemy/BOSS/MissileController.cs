@@ -48,6 +48,7 @@ public class MissileController : MonoBehaviour
             queryStartTime = Time.time;
 
             _animator.SetTrigger("Explode");
+            Debug.Log(_animator);
             Destroy(gameObject, 0.7f);
 
             _coolingCollision = true;
