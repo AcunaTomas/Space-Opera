@@ -122,12 +122,6 @@ public class GenericBala : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-         Debug.Log(directionX);
-         Debug.Log(directionY);
-         
-    }
 
     private void OnCollisionEnter2D(Collision2D other) {
         other.gameObject.SendMessage("TakeDamage",damages,SendMessageOptions.DontRequireReceiver);
