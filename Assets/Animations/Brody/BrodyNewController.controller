@@ -16,12 +16,39 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.3
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-8171856137376495553
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Brody_attackDiagDown
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 842064513791780048}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 8134b553e9220c440b557a50d3c62c16, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-8087058771735452537
 AnimatorState:
   serializedVersion: 6
@@ -186,7 +213,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_attackup
+  m_Name: Brody_attackup
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -200,7 +227,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b58f80899ba025c4481dabe29c548d5a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 70729bdf169623d4ca8c08995c0a7d41, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -241,7 +268,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_wallexit
+  m_Name: Brody_wallexit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -255,7 +282,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 226e815ff15e5814884a4b73c0cc42c0, type: 2}
+  m_Motion: {fileID: 7400000, guid: f6bc4067ef89b4d4eb8e90fd20fcce4f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -312,7 +339,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_fall
+  m_Name: Brody_fall
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -326,7 +353,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 28150b78e8d8b0849a06fbaadf4137af, type: 2}
+  m_Motion: {fileID: 7400000, guid: 95537830774924d4096d3f6904ccb4c7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -386,6 +413,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-3480471252926838154
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Brody_attackDiagUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -2253602861178111090}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: be283a871b40ada4b80b8a24a02b27a2, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!206 &-3239677820672858189
 BlendTree:
   m_ObjectHideFlags: 1
@@ -408,7 +462,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_hurt
+  m_Name: Brody_hurt
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -422,7 +476,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 21a619d0e49856f498e7d38cd93ced4d, type: 2}
+  m_Motion: {fileID: 7400000, guid: d631b89fc3726be4f93850cf18dadeaf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -478,6 +532,28 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1101 &-2253602861178111090
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 8947875072159076133}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 1
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &-2189010851954041116
 AnimatorState:
   serializedVersion: 6
@@ -485,7 +561,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_landing
+  m_Name: Brody_landing
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -499,7 +575,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ad0a6123e541b0342b245c9e4285c7fb, type: 2}
+  m_Motion: {fileID: 7400000, guid: e65e2a24e586bb34e80bbd96b7ede3cc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -537,7 +613,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_attackdown
+  m_Name: Brody_attackdown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -551,7 +627,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 70c68cee6bb89324c88c1e5b84de58d2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 142d0050e4d63f046b4e4c1fb6a1f000, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -610,7 +686,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: BrodyNewController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Blend
@@ -618,109 +694,121 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: AttackUp
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: AttackDown
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: AttackDiagUp
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: AttackDiagDown
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: Bomb
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: wall
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: land
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: fallingTime
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: speedY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Hurt
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Die
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: idle
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BitoMode
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Dash
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: DoubleJump
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -741,7 +829,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_wall
+  m_Name: Brody_wall 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -758,7 +846,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 03392a0517deeff4883118867ef6358b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 93f5237c16f557d499289fb23490ed4c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -771,7 +859,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_attack
+  m_Name: Brody_attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -785,7 +873,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5a6a6f93a2b31334ba7c9e968ab5b01a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2b4f503a8bdb9ca419d04cff654ad7f9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -820,7 +908,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_bomb
+  m_Name: Brody_bomb
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -834,7 +922,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 67fd80c8535bf4947abe2ce3dd499aa8, type: 2}
+  m_Motion: {fileID: 7400000, guid: de020d1c3418b7947a424e8dfa240946, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -866,6 +954,28 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &842064513791780048
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 8947875072159076133}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 1
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &1252854701832902281
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -898,7 +1008,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_die
+  m_Name: Brody_die
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -911,7 +1021,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5f7439a11ff49b348a38a284a9a69b38, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2ab62c56ca7daef43a3c873e89bfbada, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -931,7 +1041,7 @@ AnimatorStateMachine:
     m_Position: {x: 110, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8555106650344652427}
-    m_Position: {x: -200, y: -140, z: 0}
+    m_Position: {x: -210, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2401724354212549895}
     m_Position: {x: -410, y: -80, z: 0}
@@ -940,7 +1050,7 @@ AnimatorStateMachine:
     m_Position: {x: -270, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 267877821942417452}
-    m_Position: {x: -200, y: 20, z: 0}
+    m_Position: {x: -210, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4421065284400847636}
     m_Position: {x: -730, y: 400, z: 0}
@@ -958,10 +1068,10 @@ AnimatorStateMachine:
     m_Position: {x: 110, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6213608380654969660}
-    m_Position: {x: -270, y: 180, z: 0}
+    m_Position: {x: -270, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1474128089630247676}
-    m_Position: {x: -270, y: 250, z: 0}
+    m_Position: {x: -270, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3124008677640394213}
     m_Position: {x: -210, y: -200, z: 0}
@@ -970,22 +1080,22 @@ AnimatorStateMachine:
     m_Position: {x: -220, y: -270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4403699115292240178}
-    m_Position: {x: -950, y: -70, z: 0}
+    m_Position: {x: -950, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6456738278872231370}
-    m_Position: {x: -915, y: -5, z: 0}
+    m_Position: {x: -1000, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4197966556627826538}
-    m_Position: {x: -880, y: 60, z: 0}
+    m_Position: {x: -1000, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8183816890985929912}
-    m_Position: {x: -845, y: 125, z: 0}
+    m_Position: {x: -1000, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 800652439814079062}
-    m_Position: {x: -810, y: 190, z: 0}
+    m_Position: {x: -1000, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1749708975496105160}
-    m_Position: {x: -710, y: -210, z: 0}
+    m_Position: {x: -730, y: -210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7361544115555924311}
     m_Position: {x: -510, y: -300, z: 0}
@@ -995,6 +1105,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 7237557329078957251}
     m_Position: {x: -555, y: 325, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -8171856137376495553}
+    m_Position: {x: -270, y: 320, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -3480471252926838154}
+    m_Position: {x: -270, y: 220, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 5526928180920288676}
@@ -1011,6 +1127,8 @@ AnimatorStateMachine:
   - {fileID: 4675984409569656206}
   - {fileID: 3988287380053156838}
   - {fileID: 8917181030219848230}
+  - {fileID: 6393339630056666248}
+  - {fileID: 6454304979851633093}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
@@ -1128,7 +1246,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_jump
+  m_Name: Brody_jump 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1143,7 +1261,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b02e3a215c29f7b458238e504d9cc0dc, type: 2}
+  m_Motion: {fileID: 7400000, guid: f6bc4067ef89b4d4eb8e90fd20fcce4f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1378,6 +1496,56 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
+--- !u!1101 &6393339630056666248
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: AttackDiagUp
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -3480471252926838154}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &6454304979851633093
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: AttackDiagDown
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -8171856137376495553}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &6748253651915428994
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1458,7 +1626,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_fallnojump
+  m_Name: Brody_fallnojump
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1472,7 +1640,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a30de0163d336c94589dd58e7b2ffece, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6f938e8b7abfafa4db0f0119e69bc245, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1567,7 +1735,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_run
+  m_Name: Brody_run 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1581,7 +1749,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4e5efcfe1cbedb0448a0b629e0714b57, type: 2}
+  m_Motion: {fileID: 7400000, guid: 09c9abf58d9a90249942e9b39f9934ad, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1619,7 +1787,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_idle
+  m_Name: Brody_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1633,7 +1801,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 50c5c54665fd78640ae35f89cdf43d9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: c466261a4c137744d9fd9d4f0d69d16c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

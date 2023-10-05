@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
 
     public bool _coolingHit = false;
     public bool _coolingDashAnim = false;
+    public bool _coolingShootDown = false;
 
     public void ChangeSkillStatus(bool a)
     {
@@ -117,7 +118,7 @@ public class Player : MonoBehaviour
 
         if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
         {
-            if (!_coolingDashAnim) 
+            if (!_coolingDashAnim && !_coolingShootDown) 
             { 
                 _fallingTime += 0.16f;
                 _animator.SetFloat("fallingTime", _fallingTime);
@@ -583,5 +584,17 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         _coolingDashAnim = false;
+    }
+
+    public void StartCooldownShoot()
+    {
+        StartCoroutine(StartCooldownShootDown());
+    }
+
+    public IEnumerator StartCooldownShootDown()
+    {
+        yield return new WaitForSeconds(1f);
+
+        _coolingShootDown = false;
     }
 }

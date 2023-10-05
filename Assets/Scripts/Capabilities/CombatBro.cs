@@ -9,6 +9,8 @@ public class CombatBro : PlayerCombat
 
     public BrodyOval _radar;
 
+    public GameObject _player;
+
     [SerializeField]
     private GameObject balarda;
     [SerializeField]
@@ -65,7 +67,14 @@ public class CombatBro : PlayerCombat
         }
         a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
 
-        _animator.SetTrigger("AttackUp");
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            _animator.SetTrigger("AttackDiagUp");
+        }
+        else
+        {
+            _animator.SetTrigger("AttackUp");
+        }
     }
 
     public override void AttackDown()
@@ -77,7 +86,20 @@ public class CombatBro : PlayerCombat
         }
         a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
 
-        _animator.SetTrigger("AttackDown");
+        
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            _animator.SetTrigger("AttackDiagDown");
+        }
+        else
+        {
+            _animator.SetTrigger("AttackDown");
+        }
+
+        _animator.SetBool("IsJumping", false);
+        _player.GetComponent<Player>()._fallingTime = 0f;
+        _player.GetComponent<Player>()._coolingShootDown = true;
+        _player.GetComponent<Player>().StartCooldownShoot();
     }
 
     private void OnDrawGizmosSelected()
