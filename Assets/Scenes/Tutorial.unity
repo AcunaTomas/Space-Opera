@@ -7476,7 +7476,6 @@ MonoBehaviour:
   _characterPanelName: {fileID: 1582939204}
   _characterName: {fileID: 1506053277}
   _player: {fileID: 1361875249}
-  _keyNextDialogue: 101
   _dip: {fileID: 1960086995}
   _quilombo: 0
   ZONENAME: 
@@ -8919,7 +8918,6 @@ GameObject:
   - component: {fileID: 745114733}
   - component: {fileID: 745114732}
   - component: {fileID: 745114731}
-  - component: {fileID: 745114730}
   m_Layer: 0
   m_Name: movePlatachorma
   m_TagString: Untagged
@@ -8927,51 +8925,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &745114730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745114729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 0
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 745114731}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 745114730}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: disableAfter
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 0.5
-  _YDistance: 1
-  _timePressed: 0
 --- !u!114 &745114731
 MonoBehaviour:
   m_ObjectHideFlags: 0

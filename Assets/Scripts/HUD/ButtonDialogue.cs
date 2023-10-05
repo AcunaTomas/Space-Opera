@@ -80,6 +80,7 @@ public class ButtonDialogue : MonoBehaviour
 
     public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio)
     {
+        _buttonPressed = false;
         if (_notFirstDialogue == false)
         {
             _stopSubmit = false;
@@ -88,11 +89,9 @@ public class ButtonDialogue : MonoBehaviour
             {
                 case CollisionDialogue.ChangeAudio.dialogo:
                     AudioManager.INSTANCE.PlayDialogueInteractor();
-                    Debug.Log(_changeAudio);
                     break;
                 case CollisionDialogue.ChangeAudio.especial:
                     AudioManager.INSTANCE.PlayDialogueInteractor();
-                    Debug.Log(_changeAudio);
                     break;
                 default:
                     break;

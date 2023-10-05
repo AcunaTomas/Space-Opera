@@ -149,7 +149,6 @@ public class CollisionDialogue : MonoBehaviour
             _panelDialogue.DeactivateGO(gameObject);
         }
 
-        Debug.Log(_player.name);
         _player.GetComponent<Player>().enabled = false;
         _player.GetComponent<PlayerCombat>().enabled = false;
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
