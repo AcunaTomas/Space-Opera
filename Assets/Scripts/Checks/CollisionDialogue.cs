@@ -13,8 +13,6 @@ public class CollisionDialogue : MonoBehaviour
     [SerializeField]
     private string _id;
     [SerializeField]
-    private KeyCode _startDialogue;
-    [SerializeField]
     private bool _checkpoint;
     [SerializeField]
     private bool _interactableOnly;
@@ -24,6 +22,7 @@ public class CollisionDialogue : MonoBehaviour
     private bool _originalFlip;
     private bool _actualFlip;
     private GameObject _interactable;
+    private bool _buttonPressed = false;
 
     public ChangeAudio _changeAudio;
     public enum ChangeAudio
@@ -78,7 +77,6 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-
         if (_panelDialogue.gameObject.activeSelf || _checkpoint)
         {
             return;
@@ -87,6 +85,7 @@ public class CollisionDialogue : MonoBehaviour
         if (_player.tag == col.tag)
         {
             _eAvailable = true;
+            _buttonPressed = false;
             _interactable.SetActive(true);
 
             if (_interactableOnly)
@@ -131,7 +130,14 @@ public class CollisionDialogue : MonoBehaviour
         if (!_checkpoint)
         {
             _eAvailable = false;
-            _interactable.SetActive(false);
+            try
+            {
+                _interactable.SetActive(false);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("no es un error xd " + e);
+            }
             if(!_interactableOnly)
             {
                 _player.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
@@ -180,13 +186,15 @@ public class CollisionDialogue : MonoBehaviour
             return;
         }
 
-        if (Input.GetAxis("Submit") > 0)
+        if (Input.GetButtonDown("Submit") && !_buttonPressed)
         {
-            _eAvailable = false;
+            _buttonPressed = true;
+            StartDialogue();
         }
-        else
+
+        if (Input.GetButtonUp("Submit"))
         {
-            _eAvailable = true;
+            _buttonPressed = false;
         }
     }
 

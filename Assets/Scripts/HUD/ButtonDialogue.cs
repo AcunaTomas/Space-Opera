@@ -36,6 +36,7 @@ public class ButtonDialogue : MonoBehaviour
     private bool _notFirstDialogue = false;
     private GameObject _dialogueDeactivate;
     private bool _playerMovesAfterDialogue = true;
+    private bool _buttonPressed = false;
 
     public Animator lifeBarAnim;
 
@@ -250,10 +251,12 @@ public class ButtonDialogue : MonoBehaviour
     {
         _quilombo = true;
     }
+
     void OnEnable()
     {
         lifeBarAnim.SetTrigger("Disappear");
     }
+
     void OnDisable()
     {
         if (_quilombo)
@@ -261,5 +264,19 @@ public class ButtonDialogue : MonoBehaviour
             lifeBarAnim.SetTrigger("Appear");
         }
 
-    }    
+    }
+
+    void Update()
+    {        
+        if((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_buttonPressed)
+        {
+            _buttonPressed = true;
+            MoreDialoguePlz();
+        }
+
+        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
+        {
+            _buttonPressed = false;
+        }
+    }
 }
