@@ -19,8 +19,6 @@ public class ButtonDialogue : MonoBehaviour
     [SerializeField]
     private GameObject _player;
     [SerializeField]
-    private KeyCode _keyNextDialogue;
-    [SerializeField]
     private DialogueImgPj _dip;
     [SerializeField]
     private bool _quilombo = false;
@@ -37,6 +35,7 @@ public class ButtonDialogue : MonoBehaviour
     private GameObject _dialogueDeactivate;
     private bool _playerMovesAfterDialogue = true;
     private bool _buttonPressed = false;
+    private bool _stopSubmit = false;
 
     public Animator lifeBarAnim;
 
@@ -83,6 +82,7 @@ public class ButtonDialogue : MonoBehaviour
     {
         if (_notFirstDialogue == false)
         {
+            _stopSubmit = false;
             GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
             switch (_changeAudio)
             {
@@ -179,6 +179,7 @@ public class ButtonDialogue : MonoBehaviour
 
     private IEnumerator Fold()
     {
+        _stopSubmit = true;
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;
         float _firstWidth = _elementUI.sizeDelta.x;
@@ -267,7 +268,12 @@ public class ButtonDialogue : MonoBehaviour
     }
 
     void Update()
-    {        
+    {
+        if(_stopSubmit)
+        {
+            return;
+        }
+
         if((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_buttonPressed)
         {
             _buttonPressed = true;
