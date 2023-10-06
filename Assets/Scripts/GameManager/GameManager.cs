@@ -17,12 +17,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public ButtonDialogue CANVAS;
     public GameObject PAUSE_MENU;
     public GameObject PANEL_OBJECTIVE;
+    public bool PAUSED = false;
 
     private Player _playerScript;
     private bool _escapePressed = false;
-    private bool _paused = true;
     private bool _flag = true;
-
     private float restartTime;
 
     //LEVEL 1
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
         {
-            PauseUnPause(_paused);
+            PauseUnPause(PAUSED);
         }
 
         if (Input.GetKeyUp(KeyCode.Escape))
@@ -115,15 +114,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         if (bl)
         {
-            PAUSE_MENU.SetActive(true);
-            ChangeTimeScale(0f);
-        }
-        else
-        {
             PAUSE_MENU.SetActive(false);
             ChangeTimeScale(1f);
         }
-        _paused = !bl;
+        else
+        {
+            PAUSE_MENU.SetActive(true);
+            ChangeTimeScale(0f);
+        }
+        PAUSED = !bl;
     }
 
     public void ChangeTimeScale(float n)

@@ -180,7 +180,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void Update()
     {
-        if (!_eAvailable || _checkpoint)
+        if (!_eAvailable || _checkpoint || GameManager.INSTANCE.PAUSED)
         {
             return;
         }

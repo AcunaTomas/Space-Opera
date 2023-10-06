@@ -268,7 +268,7 @@ public class ButtonDialogue : MonoBehaviour
 
     void Update()
     {
-        if(_stopSubmit)
+        if(_stopSubmit || GameManager.INSTANCE.PAUSED)
         {
             return;
         }
