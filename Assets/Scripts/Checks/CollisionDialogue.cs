@@ -18,11 +18,13 @@ public class CollisionDialogue : MonoBehaviour
     private bool _interactableOnly;
     [SerializeField]
     private bool _panelDialogueDown;
+
     private bool _eAvailable = false;
     private bool _originalFlip;
     private bool _actualFlip;
     private GameObject _interactable;
     private bool _buttonPressed = false;
+    private bool _entered = false;
 
     public ChangeAudio _changeAudio;
     public enum ChangeAudio
@@ -57,6 +59,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        _entered = true;
         if (_checkpoint && col.CompareTag("Player"))
         {
             StartDialogue();
@@ -108,6 +111,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
+        _entered = false;
         if (_checkpoint)
         {
             return;
@@ -122,6 +126,11 @@ public class CollisionDialogue : MonoBehaviour
         }
 
         gameObject.GetComponent<SpriteRenderer>().flipX = _originalFlip;
+    }
+
+    public bool HasEntered()
+    {
+        return _entered;
     }
 
     public void StartDialogue()

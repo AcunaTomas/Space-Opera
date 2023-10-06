@@ -20,7 +20,6 @@ public class GenericBala : MonoBehaviour
     void Start()
     {
        GameObject player = GameObject.FindWithTag("Player");
-       Debug.Log(player);
        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
        
 
@@ -124,8 +123,6 @@ public class GenericBala : MonoBehaviour
 
     private void FixedUpdate()
     {
-         Debug.Log(directionX);
-         Debug.Log(directionY);
          
     }
 
