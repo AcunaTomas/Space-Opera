@@ -57,6 +57,9 @@ public class ButtonDialogue : MonoBehaviour
             case 3:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL3);
                 break;
+            case 4:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL_SELECT);
+                break;
             default:
                 break;
         }
@@ -76,6 +79,11 @@ public class ButtonDialogue : MonoBehaviour
         }
 
         return _zone.DIALOGUES[_ix].STRINGS[0].Split('#');
+    }
+
+    public void FirstDialogueSelectLvl ()
+    {
+        FirstDialogue(CollisionDialogue.ChangeAudio.dialogo);
     }
 
     public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio)
@@ -202,16 +210,24 @@ public class ButtonDialogue : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
-        if (GameManager.INSTANCE.PLAYER_COMBAT)
+        try
         {
-            _player.GetComponent<PlayerCombat>().enabled = true;
+            _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
+            if (GameManager.INSTANCE.PLAYER_COMBAT)
+            {
+                _player.GetComponent<PlayerCombat>().enabled = true;
+            }
+            else
+            {
+                _player.GetComponent<PlayerCombat>().enabled = false;
+            }
+            _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-        else
+        catch (System.Exception e)
         {
-            _player.GetComponent<PlayerCombat>().enabled = false;
+            Debug.Log("no es un error xd " + e);
         }
-        _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        
         gameObject.SetActive(false);
 
         _cont = 0;
