@@ -266,6 +266,7 @@ public class ButtonDialogue : MonoBehaviour
     public void setQuilombo()
     {
         _quilombo = true;
+        GameManager.INSTANCE.QUILOMB_MODE = true;
     }
 
     void OnEnable()

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject PAUSE_MENU;
     public GameObject PANEL_OBJECTIVE;
     public bool PAUSED = false;
+    public bool QUILOMB_MODE = false;
 
     private Player _playerScript;
     private bool _escapePressed = false;
