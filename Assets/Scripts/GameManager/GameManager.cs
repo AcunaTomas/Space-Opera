@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     private Player _playerScript;
     private bool _escapePressed = false;
-    private bool _flag = true;
     private float restartTime;
 
     //LEVEL 1
@@ -49,20 +48,25 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         INSTANCE = this;
         CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
-        _playerScript = PLAYER.GetComponent<Player>();
+        try
+        {
+            _playerScript = PLAYER.GetComponent<Player>();
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("no es un error xd " + e);
+        }
+    }
+
+    public void SaveGame(int level)
+    {
+        LEVEL = level;
+        DataPersistentManager.INSTANCE.SaveGame();
     }
 
     public void GetPlayer()
     {
         PLAYER = GameObject.FindWithTag("Player");
-    }    
-
-    void Start()
-    {
-        if (LEVEL < 1 || LEVEL > 4 )
-        {
-            Debug.LogError("El nivel se encuentra fuera del rango permitido (1-4)");
-        }
     }
     
     void Update()
@@ -133,18 +137,27 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
-        if (_flag)
+        if (QUILOMB_MODE)
         {
             return;
         }
 
-        _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
-        _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
-        PLAYER.transform.localPosition = data.PLAYER_POSITION;
-        PLAYER_COMBAT = data.PLAYER_COMBAT;
-        PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
-        PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
-        PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
+        if (LEVEL == 0)
+        {
+            LEVEL = data.LEVEL;
+            return;
+        }
+
+        if (LEVEL == 1)
+        {
+            _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
+            _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
+            PLAYER.transform.localPosition = data.PLAYER_POSITION;
+            PLAYER_COMBAT = data.PLAYER_COMBAT;
+            PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
+            PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
+            PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
+        }
 
         switch (LEVEL)
         {
@@ -327,17 +340,22 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.SaveData(GameData data)
     {
-        if (_flag)
+        data.LEVEL = LEVEL;
+
+        if (QUILOMB_MODE)
         {
             return;
         }
 
-        data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
-        data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
-        data.PLAYER_POSITION = CHECKPOINT;
-        data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
-        data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
-        data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
+        if (LEVEL == 1)
+        {
+            data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
+            data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
+            data.PLAYER_POSITION = CHECKPOINT;
+            data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
+            data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
+            data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
+        }
 
         switch (LEVEL)
         {

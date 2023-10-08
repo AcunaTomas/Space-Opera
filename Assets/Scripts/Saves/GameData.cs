@@ -11,6 +11,7 @@ public class GameData
     public bool PLAYER_FLIP_X = false;
     public bool PLAYER_COMBAT = false;
     public string OBJECTIVE;
+    public int LEVEL;
 
     //LEVEL 1
     public bool[] CANVAS_WS_LVL1_GENERAL = {true, true, true, true, true};
@@ -39,6 +40,7 @@ public class GameData
         PLAYER_MAX_HP = 5;
         PLAYER_ACTUAL_HP = 5;
         OBJECTIVE = "objective01_explore";
+        LEVEL = 1;
 
         //LEVEL 1
     }
