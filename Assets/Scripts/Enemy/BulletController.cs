@@ -13,7 +13,7 @@ public class BulletController : MonoBehaviour
     {
         _bulletRig = GetComponent<Rigidbody2D>();
         _target = GameObject.FindWithTag("Player");
-        Vector2 moveDir = (_target.transform.position - transform.position).normalized * speed;
+        //Vector2 moveDir = (_target.transform.position - transform.position).normalized * speed;
         if (_target.transform.position.x > transform.position.x)
         {
             GetComponent<SpriteRenderer>().flipX = false;
@@ -22,7 +22,15 @@ public class BulletController : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        _bulletRig.velocity = new Vector2(moveDir.x, 0);
+        if (_target.transform.position.x > transform.position.x)
+        {
+            _bulletRig.velocity = new Vector2(1, 0);
+        }
+        else
+        {
+            _bulletRig.velocity = new Vector2(-1, 0);
+        }
+        //_bulletRig.velocity = new Vector2(moveDir.x, 0);
         Destroy(this.gameObject, 2);
 
     }

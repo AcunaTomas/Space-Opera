@@ -31,7 +31,7 @@ public class EnemyShooting2 : MonoBehaviour
     private float intTimer;
     private GameObject player;
     private float timerAttack;
-    public float attackDelay = 0.5f;
+    public float attackDelay = 1.5f;
 
 
 void Awake()
