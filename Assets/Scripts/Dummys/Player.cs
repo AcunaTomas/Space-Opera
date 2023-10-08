@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 
     private float _wallJumpXtimeFreeze = 0.3f;
 
+    private float _coyoteValidTime;
+
     private float _xSpeedNullifier = 1;
 
     [SerializeField]
@@ -153,6 +155,16 @@ public class Player : MonoBehaviour
             TheTheSkill();
             ChangeSkillStatus(false);
             nextDashTime = Time.time + 1f / dashRate;
+        }
+
+        if (_coyoteValidTime > 0)
+        {
+            _coyoteValidTime -= Time.deltaTime;
+            if (Clamp(_coyoteValidTime, 0, 1) <= 0 && jumpLimit == 0)
+            {
+                _coyoteValidTime = 0;
+                canIjump = false;
+            }
         }
 
     }
@@ -376,7 +388,7 @@ public class Player : MonoBehaviour
     {
         if(jumpLimit == 0)
         {
-            canIjump = false;
+            //canIjump = false;
             _playerFall = true;
         }
 
@@ -384,7 +396,7 @@ public class Player : MonoBehaviour
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1;
-
+        _coyoteValidTime = 0.1f;
 
         if (collision.gameObject.CompareTag("Ascensor"))
         {
