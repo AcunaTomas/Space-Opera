@@ -1,24 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private Button _continue;
+    [SerializeField]
+    private Button _newGame;
+    [SerializeField]
+    private EventSystem _eventSystem;
 
     private void Start()
     {
         if (!DataPersistentManager.INSTANCE.HasGameData())
         {
+            DataPersistentManager.INSTANCE.NewGame();
+            DataPersistentManager.INSTANCE.SaveGame();
             _continue.interactable = false;
+        }
+        else
+        {
+            _eventSystem.firstSelectedGameObject = _continue.gameObject;
+            _continue.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            _continue.gameObject.GetComponent<ButtonMenu>().ACTIVE = true;
+            _newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = false;
         }
     }
 
     public void NewGameClicked()
     {
-        DataPersistentManager.INSTANCE.NewGame();
         ScenesManager.Instance.LoadNewGame();
     }
 

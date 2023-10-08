@@ -9,6 +9,8 @@ public class FileDataHandler
     private string _dataDirPath = "";
     private string _dataFileName = "";
 
+    private readonly string _backupExtension = ".bak";
+
     public FileDataHandler(string dataDirPath, string dataFileName)
     {
         _dataDirPath = dataDirPath;
@@ -46,6 +48,7 @@ public class FileDataHandler
     public void Save(GameData data)
     {
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        string backupFilePath = fullPath + _backupExtension;
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -58,6 +61,8 @@ public class FileDataHandler
                     writer.Write(dataToStore);
                 }
             }
+
+            //GameData verifiedGameData = Load(profileId);
         }
         catch (Exception e)
         {
