@@ -359,6 +359,36 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         switch (LEVEL)
         {
+            //MENU
+            case 0: //MENU
+            //MENU
+                data.PLAYER_POSITION = new Vector3(1.21f, 13.87508f, 0f);
+                data.PLAYER_MAX_HP = 5;
+                data.PLAYER_ACTUAL_HP = 5;
+                data.OBJECTIVE = "objective01_explore";
+                data.LEVEL = 1;
+                data.PLAYER_FLIP_X = false;
+                data.PLAYER_COMBAT = false;
+                data.CANVAS_WS_LVL1_GENERAL = new bool[5] { true, true, true, true, true };
+                data.CANVAS_WS_LVL1_ACTIVATE_EVENTS = new bool[5] { false, false, false, false, false };
+                data.TUTO_TRIG_LVL1 = new bool[2] { true, false };
+                data.CHECKPOINTS_LVL1 = new bool[8] { true, true, true, true, true, true, true, true };
+                data.DIALOGUES_LVL1 = new bool[15] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, false };
+                data.CHANGE_MUSIC_LVL1 = new bool[2] { false, true };
+                data.EVENTS_GO_HERE_LVL1 = new bool[13] { false, true, true, true, false, false, true, false, true, true, true, false, false };
+                data.INVISIBLE_TROLL_LVL1 = true;
+                data.ELEVATORS_LVL1 = new Vector3[3]{ new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
+                data.ELEVATOR_DOOR_LVL1 = true;
+                data.DUMMIES_LVL1 = new bool[3] { false, false, false };
+                data.DUMMIES_LAYER_LVL1 = new int[3] { 7, 7, 7 };
+                data.PILOT_QUILOMB_LVL1 = false;
+                data.EVENTS_QUILOMB_LVL1 = false;
+                data.EVENTS_ALL_QUILOMB_LVL1 = new bool[14] { true, true, true, true, true, true, true, true, true, true, true, true, true, true };
+                data.ELEVATOR_SHIP_LVL1 = new Vector3(0f, 0f, 0f);
+                data.SPIKES_LVL1 = new Vector3(0f, 0.32f, 0f);
+                data.BTTON_QUILOMB_LVL1 = true;
+                data.NPCS_LVL1 = true;
+                break;
             //LEVEL 1
             case 1: //LEVEL 1
             //LEVEL 1
@@ -521,4 +551,5 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         PLAYER_COMBAT = true;
     }
+
 }

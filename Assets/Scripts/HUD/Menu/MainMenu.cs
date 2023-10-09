@@ -18,8 +18,6 @@ public class MainMenu : MonoBehaviour
     {
         if (!DataPersistentManager.INSTANCE.HasGameData())
         {
-            DataPersistentManager.INSTANCE.NewGame();
-            DataPersistentManager.INSTANCE.SaveGame();
             _continue.interactable = false;
         }
         else
@@ -33,6 +31,9 @@ public class MainMenu : MonoBehaviour
 
     public void NewGameClicked()
     {
+        GameManager.INSTANCE.LEVEL = 0;
+        DataPersistentManager.INSTANCE.NewGame();
+        DataPersistentManager.INSTANCE.SaveGame();
         ScenesManager.Instance.LoadNewGame();
     }
 
