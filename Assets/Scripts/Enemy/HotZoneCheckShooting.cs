@@ -27,6 +27,7 @@ public class HotZoneCheckShooting : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             inRange = true;
+            enemyParent.inRange = true;
         }
     }
 
@@ -35,9 +36,10 @@ public class HotZoneCheckShooting : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            gameObject.SetActive(false);
             Debug.Log("OUT OF RANGE");
             inRange = false;
-            gameObject.SetActive(false);
+            enemyParent.target = null;
             enemyParent.triggerArea.SetActive(true);
             enemyParent.inRange = false;
             animator.SetBool("Run", false);

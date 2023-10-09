@@ -13,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPointDown;
     public LayerMask enemyLayers;
     public LayerMask doorLayers;
+    public LayerMask enemyBalaLayers;
 
     public float attackRange = 0.5f;
     public int attackDamage = 40;
@@ -116,6 +117,12 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
+
+                Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyBalaLayers);
+                foreach (Collider2D balaCollider in hitBala)
+                {
+                    balaCollider.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -132,6 +139,12 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
+
+                Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyBalaLayers);
+                foreach (Collider2D balaCollider in hitBala)
+                {
+                    balaCollider.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -147,6 +160,12 @@ public class PlayerCombat : MonoBehaviour
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
                     enemyCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                }
+
+                Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyBalaLayers);
+                foreach (Collider2D balaCollider in hitBala)
+                {
+                    balaCollider.gameObject.SetActive(false);
                 }
             }
         }

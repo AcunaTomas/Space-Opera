@@ -39,6 +39,7 @@ void Awake()
     intTimer = timer;
     animator = GetComponent<Animator>();
     player = GameObject.FindWithTag("Player");
+    _playerPos = player.transform;
 }
 
 void FixedUpdate() 
@@ -119,6 +120,12 @@ void Cooldown()
     timer -= Time.deltaTime;
 
     if (timer <= 0 && cooling && attackMode)
+    {
+        cooling = false;
+        timer = intTimer;
+    }
+
+    if (timer < 0 && !attackMode)
     {
         cooling = false;
         timer = intTimer;
