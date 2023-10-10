@@ -5,6 +5,7 @@ using UnityEngine;
 public class Playerererer : Player
 {
     public bool _canDash = true;
+    public GameObject _dashEffect;
 
     public override void SpecialJump()
    {
@@ -19,6 +20,16 @@ public class Playerererer : Player
             body.AddForce(new Vector2(3 * GetOrientation(), 0), ForceMode2D.Impulse);
             _animator.SetTrigger("Dash");
             _effectAnimator.SetTrigger("Effect");
+            if (_spriteRenderer.flipX)
+            {
+                _dashEffect.transform.localPosition = new Vector2(0.14f, -0.03f);
+                _dashEffect.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                _dashEffect.transform.localPosition = new Vector2(-0.14f, -0.03f);
+                _dashEffect.GetComponent<SpriteRenderer>().flipX = true;
+            }
             _fallingTime = 0f;
             _animator.SetBool("IsJumping", false);
             _coolingHit = true;

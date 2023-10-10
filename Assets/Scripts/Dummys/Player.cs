@@ -72,6 +72,8 @@ public class Player : MonoBehaviour
     public Animator _landingAnimator1;
     public Animator _landingAnimator2;
 
+    private float _timerBreak = 0f;
+
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;
@@ -97,6 +99,13 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
+        {
+            _timerBreak += Time.deltaTime;
+        }
+    }
 
     void FixedUpdate()
     {
@@ -432,7 +441,6 @@ public class Player : MonoBehaviour
 
         if (_wallJumpXHandicap == false)
         {
-            //print("MOVETRUE");
             Xspeed = (Input.GetAxis("Horizontal") * 13.8f) * _xSpeedNullifier;
         }
         else
