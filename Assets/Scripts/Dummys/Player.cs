@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 
     private float _wallJumpXtimeFreeze = 0.3f;
 
+    private float _coyoteValidTime;
+
     private float _xSpeedNullifier = 1;
 
     [SerializeField]
@@ -95,9 +97,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         _plaseJump();
-        
         WallJumpDelay();
         Movement();
+        Flip();
+
         if (Input.GetButton("Jump"))
         {
             _lastJumpPress += 0.17f;
@@ -115,7 +118,7 @@ public class Player : MonoBehaviour
             _skillHold = 0f;
         }
 
-        Flip();
+        
 
         if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
         {
@@ -154,6 +157,16 @@ public class Player : MonoBehaviour
             TheTheSkill();
             ChangeSkillStatus(false);
             nextDashTime = Time.time + 1f / dashRate;
+        }
+
+        if (_coyoteValidTime > 0)
+        {
+            _coyoteValidTime -= Time.deltaTime;
+            if (Clamp(_coyoteValidTime, 0, 1) <= 0 && jumpLimit == 0)
+            {
+                _coyoteValidTime = 0;
+                canIjump = false;
+            }
         }
 
     }
@@ -201,7 +214,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public virtual void SpecialJump()
+    public virtual void SpecialJump() //Defaults to double jump, Override it if you want to change its behaviour
     {
         body.velocity = new Vector2(body.velocity.x, 0);
         body.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
@@ -229,7 +242,7 @@ public class Player : MonoBehaviour
         
     }
 
-    public void setXStunVariables()
+    public void setXStunVariables() //for wall jump, negates x input for a short time
     {
         _wallJumpFreezeTimer = 0f;
         _wallJumpXtimeFreeze = 0.1f;
@@ -237,7 +250,7 @@ public class Player : MonoBehaviour
         speedCaps = new Vector2(4, speedCaps.y);
     }
 
-    private void unsetXStunVariables()
+    private void unsetXStunVariables() 
     {
 
         speedCaps = new Vector2(1.2f, speedCaps.y);
@@ -336,7 +349,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    //Elevator quick fix
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Ascensor"))
@@ -353,7 +366,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision) //for when you hit the ground
     {
         if (_fallingTime > 6)
         {
@@ -373,11 +386,11 @@ public class Player : MonoBehaviour
 
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D collision) //for when you leave the ground
     {
-        if(jumpLimit == 0)
+        if(jumpLimit == 0) //If the jump peaked or ended, set up the falling animation to play
         {
-            canIjump = false;
+            //canIjump = false;
             _playerFall = true;
         }
 
@@ -385,7 +398,7 @@ public class Player : MonoBehaviour
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1;
-
+        _coyoteValidTime = 0.1f;
 
         if (collision.gameObject.CompareTag("Ascensor"))
         {
@@ -464,7 +477,7 @@ public class Player : MonoBehaviour
 
     //Animaciones
 
-    private void Flip()
+    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is!
         {
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
@@ -501,7 +514,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Die()
+    void Die() //URGENT: this should lead to a game over screen
     {
         _animator.SetTrigger("Die");
         _animator.SetBool("isDead", true);
@@ -521,7 +534,7 @@ public class Player : MonoBehaviour
     {
     }
 
-    void Respawn() 
+    void Respawn() //also this shouldn't be here, this is main game logic stuff
     {
         if (!_coolingRespawn)
         {
@@ -545,7 +558,7 @@ public class Player : MonoBehaviour
         
     }
 
-    public void changeCallback(UnityEvent a)
+    public void changeCallback(UnityEvent a)  
     {
         _callWhat = a;
     }
