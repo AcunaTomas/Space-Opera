@@ -65,6 +65,11 @@ public class ButtonMenu : MonoBehaviour
         _buttonText.transform.localScale = newScale;
     }
 
+    private void OnEnable()
+    {
+        _spacebarPressed = false;
+    }
+
     public void OnSelectedLevelMenu()
     {
         for (int i = 0; i < _parent.childCount; i++)
@@ -119,13 +124,13 @@ public class ButtonMenu : MonoBehaviour
             _lastSelected = EventSystem.current.currentSelectedGameObject;
         }
 
-        if (Input.GetButtonDown("Jump") && !_spacebarPressed)
+        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_spacebarPressed)
         {
             _spacebarPressed = true;
             _button.onClick.Invoke();
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
         {
             _spacebarPressed = false;
         }

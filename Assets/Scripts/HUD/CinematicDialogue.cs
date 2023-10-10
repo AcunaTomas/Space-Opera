@@ -13,7 +13,6 @@ public class CinematicDialogue : MonoBehaviour
     private int _contCinematic = 2;
     private Zone _zone;
     private int _zoneLines;
-    private string[] _zoneNames;
     public string ZONENAME;
     private string[] _textParts;
     private int index = 0;

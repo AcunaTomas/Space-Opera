@@ -9,6 +9,8 @@ public class TextSelectLevel : MonoBehaviour
     private TextMeshProUGUI[] _dialogueText;
     [SerializeField]
     private TextMeshProUGUI _planetDescription;
+    [SerializeField]
+    private TextMeshProUGUI _title;
     private Zone _zone;
     public string ZONENAME;
     private string[] _textParts;
@@ -55,6 +57,24 @@ public class TextSelectLevel : MonoBehaviour
         _textParts = _zone.DIALOGUES[index].STRINGS[0].Split('*');
         text.text = _textParts[0];
         _planetDescription.text = _textParts[1];
+        ChangeTitle(_title);
+    }
+
+    public void ChangeTitle(TextMeshProUGUI text)
+    {
+        ZONENAME = "title";
+
+        for (int i = 0; i < _zone.DIALOGUES.Length; i++)
+        {
+            if (_zone.DIALOGUES[i].ID == ZONENAME)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        _textParts = _zone.DIALOGUES[index].STRINGS[0].Split('*');
+        text.text = _textParts[0];
     }
 
 }

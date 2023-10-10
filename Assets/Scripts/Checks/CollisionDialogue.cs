@@ -13,17 +13,18 @@ public class CollisionDialogue : MonoBehaviour
     [SerializeField]
     private string _id;
     [SerializeField]
-    private KeyCode _startDialogue;
-    [SerializeField]
     private bool _checkpoint;
     [SerializeField]
     private bool _interactableOnly;
     [SerializeField]
     private bool _panelDialogueDown;
+
     private bool _eAvailable = false;
     private bool _originalFlip;
     private bool _actualFlip;
     private GameObject _interactable;
+    private bool _buttonPressed = false;
+    private bool _entered = false;
 
     public ChangeAudio _changeAudio;
     public enum ChangeAudio
@@ -58,6 +59,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        _entered = true;
         if (_checkpoint && col.CompareTag("Player"))
         {
             StartDialogue();
@@ -78,7 +80,6 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-
         if (_panelDialogue.gameObject.activeSelf || _checkpoint)
         {
             return;
@@ -87,6 +88,7 @@ public class CollisionDialogue : MonoBehaviour
         if (_player.tag == col.tag)
         {
             _eAvailable = true;
+            _buttonPressed = false;
             _interactable.SetActive(true);
 
             if (_interactableOnly)
@@ -109,6 +111,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
+        _entered = false;
         if (_checkpoint)
         {
             return;
@@ -125,13 +128,25 @@ public class CollisionDialogue : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().flipX = _originalFlip;
     }
 
+    public bool HasEntered()
+    {
+        return _entered;
+    }
+
     public void StartDialogue()
     {
 
         if (!_checkpoint)
         {
             _eAvailable = false;
-            _interactable.SetActive(false);
+            try
+            {
+                _interactable.SetActive(false);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("no es un error xd " + e);
+            }
             if(!_interactableOnly)
             {
                 _player.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
@@ -143,7 +158,6 @@ public class CollisionDialogue : MonoBehaviour
             _panelDialogue.DeactivateGO(gameObject);
         }
 
-        Debug.Log(_player.name);
         _player.GetComponent<Player>().enabled = false;
         _player.GetComponent<PlayerCombat>().enabled = false;
         _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -175,18 +189,20 @@ public class CollisionDialogue : MonoBehaviour
 
     void Update()
     {
-        if (!_eAvailable || _checkpoint)
+        if (!_eAvailable || _checkpoint || GameManager.INSTANCE.PAUSED)
         {
             return;
         }
 
-        if (Input.GetAxis("Submit") > 0)
+        if (Input.GetButtonDown("Submit") && !_buttonPressed)
         {
-            _eAvailable = false;
+            _buttonPressed = true;
+            StartDialogue();
         }
-        else
+
+        if (Input.GetButtonUp("Submit"))
         {
-            _eAvailable = true;
+            _buttonPressed = false;
         }
     }
 

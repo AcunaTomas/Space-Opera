@@ -19,8 +19,6 @@ public class ButtonDialogue : MonoBehaviour
     [SerializeField]
     private GameObject _player;
     [SerializeField]
-    private KeyCode _keyNextDialogue;
-    [SerializeField]
     private DialogueImgPj _dip;
     [SerializeField]
     private bool _quilombo = false;
@@ -36,6 +34,8 @@ public class ButtonDialogue : MonoBehaviour
     private bool _notFirstDialogue = false;
     private GameObject _dialogueDeactivate;
     private bool _playerMovesAfterDialogue = true;
+    private bool _buttonPressed = false;
+    private bool _stopSubmit = false;
 
     public Animator lifeBarAnim;
 
@@ -56,6 +56,9 @@ public class ButtonDialogue : MonoBehaviour
                 break;
             case 3:
                 _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL3);
+                break;
+            case 4:
+                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL_SELECT);
                 break;
             default:
                 break;
@@ -78,20 +81,25 @@ public class ButtonDialogue : MonoBehaviour
         return _zone.DIALOGUES[_ix].STRINGS[0].Split('#');
     }
 
+    public void FirstDialogueSelectLvl ()
+    {
+        FirstDialogue(CollisionDialogue.ChangeAudio.dialogo);
+    }
+
     public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio)
     {
+        _buttonPressed = false;
         if (_notFirstDialogue == false)
         {
+            _stopSubmit = false;
             GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
             switch (_changeAudio)
             {
                 case CollisionDialogue.ChangeAudio.dialogo:
                     AudioManager.INSTANCE.PlayDialogueInteractor();
-                    Debug.Log(_changeAudio);
                     break;
                 case CollisionDialogue.ChangeAudio.especial:
                     AudioManager.INSTANCE.PlayDialogueInteractor();
-                    Debug.Log(_changeAudio);
                     break;
                 default:
                     break;
@@ -178,6 +186,7 @@ public class ButtonDialogue : MonoBehaviour
 
     private IEnumerator Fold()
     {
+        _stopSubmit = true;
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;
         float _firstWidth = _elementUI.sizeDelta.x;
@@ -201,16 +210,24 @@ public class ButtonDialogue : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
-        if (GameManager.INSTANCE.PLAYER_COMBAT)
+        try
         {
-            _player.GetComponent<PlayerCombat>().enabled = true;
+            _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
+            if (GameManager.INSTANCE.PLAYER_COMBAT)
+            {
+                _player.GetComponent<PlayerCombat>().enabled = true;
+            }
+            else
+            {
+                _player.GetComponent<PlayerCombat>().enabled = false;
+            }
+            _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-        else
+        catch (System.Exception e)
         {
-            _player.GetComponent<PlayerCombat>().enabled = false;
+            Debug.Log("no es un error xd " + e);
         }
-        _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        
         gameObject.SetActive(false);
 
         _cont = 0;
@@ -249,11 +266,14 @@ public class ButtonDialogue : MonoBehaviour
     public void setQuilombo()
     {
         _quilombo = true;
+        GameManager.INSTANCE.QUILOMB_MODE = true;
     }
+
     void OnEnable()
     {
         lifeBarAnim.SetTrigger("Disappear");
     }
+
     void OnDisable()
     {
         if (_quilombo)
@@ -261,5 +281,24 @@ public class ButtonDialogue : MonoBehaviour
             lifeBarAnim.SetTrigger("Appear");
         }
 
-    }    
+    }
+
+    void Update()
+    {
+        if(_stopSubmit || GameManager.INSTANCE.PAUSED)
+        {
+            return;
+        }
+
+        if((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_buttonPressed)
+        {
+            _buttonPressed = true;
+            MoreDialoguePlz();
+        }
+
+        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
+        {
+            _buttonPressed = false;
+        }
+    }
 }

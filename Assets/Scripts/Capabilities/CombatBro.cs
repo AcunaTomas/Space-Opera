@@ -19,10 +19,9 @@ public class CombatBro : PlayerCombat
 
     public override void Bomb()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 10, discoverable);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 30, discoverable);
         foreach (Collider2D enemyCollider in hitEnemies)
         {
-            Debug.Log("asdasdasdas");
             try
             {
                 enemyCollider.GetComponent<DetectableController>().Detectado();

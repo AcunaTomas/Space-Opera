@@ -17,12 +17,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public ButtonDialogue CANVAS;
     public GameObject PAUSE_MENU;
     public GameObject PANEL_OBJECTIVE;
+    public bool PAUSED = false;
+    public bool QUILOMB_MODE = false;
 
     private Player _playerScript;
     private bool _escapePressed = false;
-    private bool _paused = true;
-    private bool _flag = true;
-
     private float restartTime;
 
     //LEVEL 1
@@ -49,20 +48,25 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         INSTANCE = this;
         CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
-        _playerScript = PLAYER.GetComponent<Player>();
+        try
+        {
+            _playerScript = PLAYER.GetComponent<Player>();
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("no es un error xd " + e);
+        }
+    }
+
+    public void SaveGame(int level)
+    {
+        LEVEL = level;
+        DataPersistentManager.INSTANCE.SaveGame();
     }
 
     public void GetPlayer()
     {
         PLAYER = GameObject.FindWithTag("Player");
-    }    
-
-    void Start()
-    {
-        if (LEVEL < 1 || LEVEL > 4 )
-        {
-            Debug.LogError("El nivel se encuentra fuera del rango permitido (1-4)");
-        }
     }
     
     void Update()
@@ -89,7 +93,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
         {
-            PauseUnPause(_paused);
+            PauseUnPause(PAUSED);
         }
 
         if (Input.GetKeyUp(KeyCode.Escape))
@@ -115,15 +119,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         if (bl)
         {
-            PAUSE_MENU.SetActive(true);
-            ChangeTimeScale(0f);
-        }
-        else
-        {
             PAUSE_MENU.SetActive(false);
             ChangeTimeScale(1f);
         }
-        _paused = !bl;
+        else
+        {
+            PAUSE_MENU.SetActive(true);
+            ChangeTimeScale(0f);
+        }
+        PAUSED = !bl;
     }
 
     public void ChangeTimeScale(float n)
@@ -133,18 +137,27 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
-        if (_flag)
+        if (QUILOMB_MODE)
         {
             return;
         }
 
-        _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
-        _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
-        PLAYER.transform.localPosition = data.PLAYER_POSITION;
-        PLAYER_COMBAT = data.PLAYER_COMBAT;
-        PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
-        PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
-        PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
+        if (LEVEL == 0)
+        {
+            LEVEL = data.LEVEL;
+            return;
+        }
+
+        if (LEVEL == 1)
+        {
+            _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
+            _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
+            PLAYER.transform.localPosition = data.PLAYER_POSITION;
+            PLAYER_COMBAT = data.PLAYER_COMBAT;
+            PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
+            PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
+            PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
+        }
 
         switch (LEVEL)
         {
@@ -173,6 +186,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     if (!data.TUTO_TRIG_LVL1[i])
                     {
                         TUTO_TRIG_LVL1.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        TUTO_TRIG_LVL1.transform.GetChild(i).gameObject.SetActive(true);
                     }
                 }
 
@@ -327,20 +344,55 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.SaveData(GameData data)
     {
-        if (_flag)
+        data.LEVEL = LEVEL;
+
+        if (QUILOMB_MODE)
         {
             return;
         }
 
-        data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
-        data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
-        data.PLAYER_POSITION = CHECKPOINT;
-        data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
-        data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
-        data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
+        if (LEVEL == 1)
+        {
+            data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
+            data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
+            data.PLAYER_POSITION = CHECKPOINT;
+            data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
+            data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
+            data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
+        }
 
         switch (LEVEL)
         {
+            //MENU
+            case 0: //MENU
+            //MENU
+                data.PLAYER_POSITION = new Vector3(1.21f, 13.87508f, 0f);
+                data.PLAYER_MAX_HP = 5;
+                data.PLAYER_ACTUAL_HP = 5;
+                data.OBJECTIVE = "objective01_explore";
+                data.LEVEL = 1;
+                data.PLAYER_FLIP_X = false;
+                data.PLAYER_COMBAT = false;
+                data.CANVAS_WS_LVL1_GENERAL = new bool[5] { true, true, true, true, true };
+                data.CANVAS_WS_LVL1_ACTIVATE_EVENTS = new bool[5] { false, false, false, false, false };
+                data.TUTO_TRIG_LVL1 = new bool[2] { true, false };
+                data.CHECKPOINTS_LVL1 = new bool[8] { true, true, true, true, true, true, true, true };
+                data.DIALOGUES_LVL1 = new bool[15] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, false };
+                data.CHANGE_MUSIC_LVL1 = new bool[2] { false, true };
+                data.EVENTS_GO_HERE_LVL1 = new bool[13] { false, true, true, true, false, false, true, false, true, true, true, false, false };
+                data.INVISIBLE_TROLL_LVL1 = true;
+                data.ELEVATORS_LVL1 = new Vector3[3]{ new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
+                data.ELEVATOR_DOOR_LVL1 = true;
+                data.DUMMIES_LVL1 = new bool[3] { false, false, false };
+                data.DUMMIES_LAYER_LVL1 = new int[3] { 7, 7, 7 };
+                data.PILOT_QUILOMB_LVL1 = false;
+                data.EVENTS_QUILOMB_LVL1 = false;
+                data.EVENTS_ALL_QUILOMB_LVL1 = new bool[14] { true, true, true, true, true, true, true, true, true, true, true, true, true, true };
+                data.ELEVATOR_SHIP_LVL1 = new Vector3(0f, 0f, 0f);
+                data.SPIKES_LVL1 = new Vector3(0f, 0.32f, 0f);
+                data.BTTON_QUILOMB_LVL1 = true;
+                data.NPCS_LVL1 = true;
+                break;
             //LEVEL 1
             case 1: //LEVEL 1
             //LEVEL 1
@@ -371,6 +423,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
                     {
                         data.TUTO_TRIG_LVL1[i] = false;
                     }
+                    else
+                    {
+                        data.TUTO_TRIG_LVL1[i] = true;
+                    }
+
                 }
 
                 for (int i = 0; i < CHECKPOINTS_LVL1.transform.childCount; i++)
@@ -503,4 +560,5 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         PLAYER_COMBAT = true;
     }
+
 }

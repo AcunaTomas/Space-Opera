@@ -86,7 +86,6 @@ public class Interactable : MonoBehaviour
 
         if ((Input.GetAxis("Submit") > 0 || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _keyHeld == true)
         {
-            //Debug.Log("hold");
 
         }
         else
@@ -101,7 +100,6 @@ public class Interactable : MonoBehaviour
             if ((Input.GetAxis("Submit") > 0  || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0)
             {
                 interactAction.Invoke();
-                Debug.Log("Interact");
                 _keyHeld = true;
                 disableCheck();
             }
@@ -113,7 +111,6 @@ public class Interactable : MonoBehaviour
                 if ((Input.GetAxis("Submit") > 0 || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0)
                 {
                     interactAction.Invoke();
-                    Debug.Log("Interact");
                     _keyHeld = true;
 
                     restoreMove();

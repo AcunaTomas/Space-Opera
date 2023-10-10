@@ -9,14 +9,21 @@ public class EndLevelTwo : MonoBehaviour
     [SerializeField]
     private Transform _player;
     [SerializeField]
-    private GameObject[] _dialogues;
-    [SerializeField]
     private GameObject _triggerEnd;
     private int _cont = 0;
 
-    public void DeactivateObject (GameObject go)
+    public void DeactivateObject ()
     {
-        go.SetActive(false);
+        GameObject go = null;
+        for (int i = 0; i < _detectable.Length; i++)
+        {
+            if (_detectable[i].GetComponent<CollisionDialogue>().HasEntered())
+            {
+                go = _detectable[i];
+                break;
+            }
+        }
+        Debug.Log(go.name);
         _cont++;
 
         if (_cont == 1)
@@ -25,12 +32,12 @@ public class EndLevelTwo : MonoBehaviour
             {
                 if (go.name == _detectable[i].name)
                 {
-                    StartCoroutine(Check(i));
+                    _detectable[i].transform.GetChild(0).BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
                     _player.GetChild(_player.childCount - 1).GetChild(i).gameObject.SetActive(false);
                 }
                 else
                 {
-                    _dialogues[i].GetComponent<CollisionDialogue>().ChangeId("lvl02_tools_02");
+                    _detectable[i].GetComponent<CollisionDialogue>().ChangeId("lvl02_tools_02");
                 }
             }
         }
@@ -41,41 +48,16 @@ public class EndLevelTwo : MonoBehaviour
             {
                 if (go.name == _detectable[i].name)
                 {
-                    StartCoroutine(Check(i));
+                    _detectable[i].transform.GetChild(0).BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
                     _player.GetChild(_player.childCount - 1).GetChild(i).gameObject.SetActive(false);
                 }
-            }
-        }
-
-        if (_cont == 3)
-        {
-            for (int i = 0; i < _detectable.Length; i++)
-            {
-                if (go.name == _detectable[i].name)
+                else
                 {
-                    _player.GetChild(_player.childCount - 1).GetChild(i).gameObject.SetActive(false);
+                    _detectable[i].GetComponent<CollisionDialogue>().ChangeId("lvl02_ship");
                 }
             }
         }
 
-        int x = 0;
-        for (int i = 0; i < _detectable.Length; i++)
-        {
-            if (!_detectable[i].activeSelf)
-            {
-                x++;
-            }
-        }
-
-        if (x == _detectable.Length)
-        {
-            _triggerEnd.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
-        }
-    }
-
-    IEnumerator Check(int x)
-    {
-        yield return new WaitForSeconds(0.25f);
-        _dialogues[x].SetActive(true);
+        go.SetActive(false);
     }
 }

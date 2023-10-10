@@ -293,7 +293,6 @@ GameObject:
   - component: {fileID: 12746696}
   - component: {fileID: 12746699}
   - component: {fileID: 12746698}
-  - component: {fileID: 12746697}
   m_Layer: 0
   m_Name: Bitodialogo
   m_TagString: Untagged
@@ -316,39 +315,6 @@ Transform:
   m_Father: {fileID: 1802747111}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &12746697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12746695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 12746699}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 1.7
-  _YDistance: 0.3
-  _timePressed: 0
 --- !u!61 &12746698
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -390,7 +356,6 @@ MonoBehaviour:
   _player: {fileID: 1110223543}
   _panelDialogue: {fileID: 62871555}
   _id: bito_01
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -1029,7 +994,6 @@ MonoBehaviour:
   _characterPanelName: {fileID: 1850468836}
   _characterName: {fileID: 398460553}
   _player: {fileID: 2041125174}
-  _keyNextDialogue: 101
   _dip: {fileID: 1797964876}
   _quilombo: 0
   ZONENAME: 
@@ -2022,6 +1986,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
 --- !u!50 &98185819
 Rigidbody2D:
   serializedVersion: 4
@@ -2062,7 +2027,13 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyBalaLayers:
     serializedVersion: 2
     m_Bits: 0
   attackRange: 0.5
@@ -4856,7 +4827,6 @@ GameObject:
   m_Component:
   - component: {fileID: 331478039}
   - component: {fileID: 331478038}
-  - component: {fileID: 331478037}
   - component: {fileID: 331478036}
   - component: {fileID: 331478035}
   m_Layer: 0
@@ -4900,7 +4870,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.18795156}
+  m_Offset: {x: 1.267889, y: 0.18795156}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4911,41 +4881,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.257709, y: 0.6263895}
+  m_Size: {x: 4.584553, y: 0.6263895}
   m_EdgeRadius: 0
---- !u!114 &331478037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331478034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 331478038}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 12.12
-  _YDistance: 1.84
-  _timePressed: 0
 --- !u!114 &331478038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4961,7 +4898,6 @@ MonoBehaviour:
   _player: {fileID: 1520291843}
   _panelDialogue: {fileID: 62871555}
   _id: coachlvl3_2
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -6675,7 +6611,6 @@ GameObject:
   - component: {fileID: 593341587}
   - component: {fileID: 593341590}
   - component: {fileID: 593341589}
-  - component: {fileID: 593341588}
   m_Layer: 0
   m_Name: NPC 3
   m_TagString: Enemy
@@ -6698,39 +6633,6 @@ Transform:
   m_Father: {fileID: 50634379}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &593341588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 593341586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 593341589}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 1.12
-  _YDistance: 0.3
-  _timePressed: 0
 --- !u!114 &593341589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6746,7 +6648,6 @@ MonoBehaviour:
   _player: {fileID: 1809550087}
   _panelDialogue: {fileID: 62871555}
   _id: guardian_03
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -7578,7 +7479,6 @@ GameObject:
   m_Component:
   - component: {fileID: 732948256}
   - component: {fileID: 732948257}
-  - component: {fileID: 732948260}
   - component: {fileID: 732948259}
   - component: {fileID: 732948261}
   m_Layer: 0
@@ -7618,7 +7518,6 @@ MonoBehaviour:
   _player: {fileID: 2041125174}
   _panelDialogue: {fileID: 62871555}
   _id: lvl03_intro
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -7649,39 +7548,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3001988, y: 0.7343645}
   m_EdgeRadius: 0
---- !u!114 &732948260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732948255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 732948257}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 11.94
-  _YDistance: 1.56
-  _timePressed: 0
 --- !u!95 &732948261
 Animator:
   serializedVersion: 5
@@ -8600,7 +8466,13 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyBalaLayers:
     serializedVersion: 2
     m_Bits: 0
   attackRange: 0.5
@@ -8647,6 +8519,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
 --- !u!95 &789755956
 Animator:
   serializedVersion: 5
@@ -8908,7 +8781,6 @@ GameObject:
   - component: {fileID: 812051741}
   - component: {fileID: 812051740}
   - component: {fileID: 812051739}
-  - component: {fileID: 812051737}
   m_Layer: 0
   m_Name: NPC 1
   m_TagString: Enemy
@@ -8931,27 +8803,6 @@ Transform:
   m_Father: {fileID: 321617462}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &812051737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812051735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls: []
-  playerInstance: {fileID: 0}
-  _XDistance: 0.3
-  _YDistance: 0.3
-  _timePressed: 0
 --- !u!95 &812051739
 Animator:
   serializedVersion: 5
@@ -10382,7 +10233,6 @@ GameObject:
   m_Component:
   - component: {fileID: 954655938}
   - component: {fileID: 954655941}
-  - component: {fileID: 954655940}
   - component: {fileID: 954655939}
   - component: {fileID: 954655942}
   m_Layer: 0
@@ -10433,39 +10283,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.257709, y: 1.0022926}
   m_EdgeRadius: 0
---- !u!114 &954655940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954655937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 954655941}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 12.12
-  _YDistance: 1.84
-  _timePressed: 0
 --- !u!114 &954655941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10481,7 +10298,6 @@ MonoBehaviour:
   _player: {fileID: 2041125174}
   _panelDialogue: {fileID: 62871555}
   _id: lvl03_intro2
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -12248,7 +12064,13 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyBalaLayers:
     serializedVersion: 2
     m_Bits: 0
   attackRange: 0.5
@@ -12295,6 +12117,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
 --- !u!95 &1110223549
 Animator:
   serializedVersion: 5
@@ -12326,7 +12149,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1141802958}
   - component: {fileID: 1141802957}
-  - component: {fileID: 1141802956}
   - component: {fileID: 1141802955}
   - component: {fileID: 1141802954}
   m_Layer: 0
@@ -12370,7 +12192,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.18795156}
+  m_Offset: {x: 1.1854439, y: 0.18795156}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12381,41 +12203,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.257709, y: 0.6263895}
+  m_Size: {x: 4.4520645, y: 0.6263895}
   m_EdgeRadius: 0
---- !u!114 &1141802956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141802953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1141802957}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 12.12
-  _YDistance: 1.84
-  _timePressed: 0
 --- !u!114 &1141802957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12431,7 +12220,6 @@ MonoBehaviour:
   _player: {fileID: 1520291843}
   _panelDialogue: {fileID: 62871555}
   _id: coachlvl3_1
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -12880,7 +12668,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1171009278}
   - component: {fileID: 1171009277}
-  - component: {fileID: 1171009276}
   - component: {fileID: 1171009275}
   - component: {fileID: 1171009274}
   m_Layer: 0
@@ -12924,7 +12711,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0076169968, y: 0.18795156}
+  m_Offset: {x: 0.098095894, y: 0.17235184}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12935,41 +12722,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8721714, y: 0.6263895}
+  m_Size: {x: 2.652155, y: 0.65758896}
   m_EdgeRadius: 0
---- !u!114 &1171009276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171009273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1171009277}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 12.12
-  _YDistance: 1.84
-  _timePressed: 0
 --- !u!114 &1171009277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12985,7 +12739,6 @@ MonoBehaviour:
   _player: {fileID: 789755950}
   _panelDialogue: {fileID: 62871555}
   _id: bito_03
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -13389,7 +13142,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1242989850}
   - component: {fileID: 1242989854}
-  - component: {fileID: 1242989853}
   - component: {fileID: 1242989852}
   - component: {fileID: 1242989851}
   m_Layer: 0
@@ -13461,39 +13213,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3001988, y: 0.7343645}
   m_EdgeRadius: 0
---- !u!114 &1242989853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242989849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1242989854}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 11.94
-  _YDistance: 1.56
-  _timePressed: 0
 --- !u!114 &1242989854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13509,7 +13228,6 @@ MonoBehaviour:
   _player: {fileID: 2041125174}
   _panelDialogue: {fileID: 62871555}
   _id: lvl03_intro3
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -14095,7 +13813,6 @@ GameObject:
   - component: {fileID: 1305095582}
   - component: {fileID: 1305095586}
   - component: {fileID: 1305095584}
-  - component: {fileID: 1305095583}
   m_Layer: 0
   m_Name: NPC 1
   m_TagString: Enemy
@@ -14118,39 +13835,6 @@ Transform:
   m_Father: {fileID: 1143321134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1305095583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305095581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1305095584}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 1.12
-  _YDistance: 0.3
-  _timePressed: 0
 --- !u!114 &1305095584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14166,7 +13850,6 @@ MonoBehaviour:
   _player: {fileID: 1809550087}
   _panelDialogue: {fileID: 62871555}
   _id: guardian_01
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -16233,7 +15916,13 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyBalaLayers:
     serializedVersion: 2
     m_Bits: 0
   attackRange: 0.5
@@ -16301,6 +15990,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
 --- !u!1 &1523384060
 GameObject:
   m_ObjectHideFlags: 0
@@ -16467,7 +16157,6 @@ GameObject:
   - component: {fileID: 1566212041}
   - component: {fileID: 1566212044}
   - component: {fileID: 1566212043}
-  - component: {fileID: 1566212042}
   m_Layer: 0
   m_Name: NPC 2
   m_TagString: Enemy
@@ -16490,39 +16179,6 @@ Transform:
   m_Father: {fileID: 50634379}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1566212042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566212040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  interactKey: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1566212043}
-        m_TargetAssemblyTypeName: CollisionDialogue, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerInstance: {fileID: 0}
-  _XDistance: 1.12
-  _YDistance: 0.3
-  _timePressed: 0
 --- !u!114 &1566212043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16538,7 +16194,6 @@ MonoBehaviour:
   _player: {fileID: 1809550087}
   _panelDialogue: {fileID: 62871555}
   _id: guardian_02
-  _startDialogue: 101
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
@@ -19158,6 +18813,8 @@ MonoBehaviour:
   CANVAS: {fileID: 0}
   PAUSE_MENU: {fileID: 84948277}
   PANEL_OBJECTIVE: {fileID: 1523384060}
+  PAUSED: 0
+  QUILOMB_MODE: 0
   CANVAS_WS_LVL1: {fileID: 0}
   TUTO_TRIG_LVL1: {fileID: 0}
   CHECKPOINTS_LVL1: {fileID: 0}
@@ -19491,7 +19148,13 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyBalaLayers:
     serializedVersion: 2
     m_Bits: 0
   attackRange: 0.5
@@ -19538,6 +19201,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
 --- !u!95 &1809550093
 Animator:
   serializedVersion: 5
@@ -20319,6 +19983,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
   _canDash: 1
 --- !u!114 &1919219204
 MonoBehaviour:
@@ -20385,9 +20050,15 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
     serializedVersion: 2
     m_Bits: 256
+  enemyBalaLayers:
+    serializedVersion: 2
+    m_Bits: 0
   attackRange: 0.17
   attackDamage: 40
   attackRate: 2
@@ -22309,6 +21980,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
+  _coolingRespawn: 0
 --- !u!50 &2041125181
 Rigidbody2D:
   serializedVersion: 4
@@ -22443,9 +22115,15 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
+  enemyGunLayers:
+    serializedVersion: 2
+    m_Bits: 0
   doorLayers:
     serializedVersion: 2
     m_Bits: 256
+  enemyBalaLayers:
+    serializedVersion: 2
+    m_Bits: 0
   attackRange: 0
   attackDamage: 40
   attackRate: 2

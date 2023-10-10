@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DataPersistentManager : MonoBehaviour
 {
+    [Header("Debug")]
+    [SerializeField]
+    private bool _initializeDataIfNull = false;
+
     [Header("File Storage Config")]
     [SerializeField]
     private string _fileName;
@@ -17,36 +22,49 @@ public class DataPersistentManager : MonoBehaviour
     {
         if (INSTANCE != null)
         {
-            Debug.LogError("hay más de un DataPersistenManager en juego, la re putísima madre");
+            Debug.Log("hay más de un DataPersistenManager en juego, la re putísima madre. Pero lo destruí :)");
+            Destroy(gameObject);
+            return;
         }
         INSTANCE = this;
+        DontDestroyOnLoad(gameObject);
+        _dataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
     }
 
-    private void Start()
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        this._dataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
-        this._dataPersistanceObjects = FindAllDataPersistanceObjects();
+        _dataPersistanceObjects = FindAllDataPersistanceObjects();
         LoadGame();
     }
 
-    private void OnApplicationQuit()
+    private void OnEnable()
     {
-        //SaveGame();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void NewGame()
     {
-        this._gameData = new GameData();
+        _gameData = new GameData();
     }
 
     public void LoadGame()
     {
-        this._gameData = _dataHandler.Load();
+        _gameData = _dataHandler.Load();
 
-        if (this._gameData == null)
+        if (_gameData == null && _initializeDataIfNull)
+        {
+            NewGame();
+        }
+
+        if (_gameData == null)
         {
             Debug.Log("No se encontraron datos guardados. Esto puede suceder por varias razones: la primera es que soy de Boca, la segunda es porque seguramente no exista este archivo de guardado lo cual es lo más normal del mundo por lo que se debe revisar en primera instancia que se guarde una partida o que exista una partida guardada que se puede dar automáticamente por este sistema o porque el jugador hizo no sé qué cantidad de cosas en un nivel determinado que en cualquiera de los casos eso lo realiza la función SaveGame() y no esta función de acá así que andá a revisar el otro, la tercera y última por suerte es que probablemente este script no sirva para nada y me vi 30 minutos de video al pedo.");
-            NewGame();
+            return;
         }
 
         foreach (IDataPersistance dpo in _dataPersistanceObjects)
@@ -57,6 +75,12 @@ public class DataPersistentManager : MonoBehaviour
 
     public void SaveGame()
     {
+        if (_gameData == null)
+        {
+            Debug.Log("No hay datos. Se tiene que empezar un juego nuevo para eso bro.");
+            return;
+        }
+
         foreach (IDataPersistance dpo in _dataPersistanceObjects)
         {
             dpo.SaveData(_gameData);
@@ -75,5 +99,10 @@ public class DataPersistentManager : MonoBehaviour
     {
         Debug.LogWarning("Por las dudas, borraste la partida guardada porque apretaste el 5.");
         _dataHandler.Delete();
+    }
+
+    public bool HasGameData()
+    {
+        return _gameData != null;
     }
 }

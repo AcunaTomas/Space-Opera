@@ -15,7 +15,6 @@ public class BombBoxController : MonoBehaviour
 
     public void ActivateAttack()
     {
-        Debug.Log("activa ataque");
         player.GetComponent<PlayerCombat>().enabled = true;
         GameManager.INSTANCE.PLAYER_COMBAT = true;
     }

@@ -44,8 +44,8 @@ public class ScenesManager : MonoBehaviour
     //esto por si hay 2 o más niveles o escenas, etc
     public void LoadNextScene(string SceneName)
     {
-        Debug.Log(SceneManager.GetSceneByName(SceneName).IsValid());
-        Debug.Log(SceneName);
+        //Debug.Log(SceneManager.GetSceneByName(SceneName).IsValid());
+        //Debug.Log(SceneName);
         StartCoroutine(LoadLevel(SceneName));
     }
 
