@@ -126,6 +126,10 @@ public class ButtonMenu : MonoBehaviour
 
         if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_spacebarPressed)
         {
+            if (!_button.interactable)
+            {
+                return;
+            }
             _spacebarPressed = true;
             _button.onClick.Invoke();
         }
