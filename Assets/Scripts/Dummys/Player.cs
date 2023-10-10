@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     public bool _coolingHit = false;
     public bool _coolingDashAnim = false;
     public bool _coolingShootDown = false;
+    public bool _coolingRespawn = false;
 
     public void ChangeSkillStatus(bool a)
     {
@@ -522,18 +523,25 @@ public class Player : MonoBehaviour
 
     void Respawn() 
     {
-        transform.parent = null;
-        transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
-        _animator.SetTrigger("idle");
-        _animator.SetBool("isDead", false);
-        GetComponent<PlayerCombat>().enabled = true;
-        GetComponent<Player>().enabled = true;
-        HP = MaxHP;
-        _healthBar.UpdateHP();
-        if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2")
+        if (!_coolingRespawn)
         {
-            _callWhat.Invoke();
+            transform.parent = null;
+            transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
+            _animator.SetTrigger("idle");
+            _animator.SetBool("isDead", false);
+            GetComponent<PlayerCombat>().enabled = true;
+            GetComponent<Player>().enabled = true;
+            HP = MaxHP;
+            _healthBar.UpdateHP();
+            if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2" && GameManager.INSTANCE.ELEVATORS_LVL1[1].localPosition.y > 0)
+            {
+                _callWhat.Invoke();
+            }
+
+            _coolingRespawn = true;
+            StartCoroutine(StartCooldownRespawn());
         }
+        
         
     }
 
@@ -596,5 +604,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         _coolingShootDown = false;
+    }
+
+    public IEnumerator StartCooldownRespawn()
+    {
+        yield return new WaitForSeconds(2f);
+
+        _coolingRespawn = false;
     }
 }

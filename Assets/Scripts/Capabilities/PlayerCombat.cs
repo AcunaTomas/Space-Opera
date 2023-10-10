@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPointUp;
     public Transform attackPointDown;
     public LayerMask enemyLayers;
+    public LayerMask enemyGunLayers;
     public LayerMask doorLayers;
     public LayerMask enemyBalaLayers;
 
@@ -118,6 +119,12 @@ public class PlayerCombat : MonoBehaviour
                     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
 
+                Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyGunLayers);
+                foreach (Collider2D enemyGunCollider in hitEnemiesGun)
+                {
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                }
+
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyBalaLayers);
                 foreach (Collider2D balaCollider in hitBala)
                 {
@@ -140,6 +147,12 @@ public class PlayerCombat : MonoBehaviour
                     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
 
+                Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyGunLayers);
+                foreach (Collider2D enemyGunCollider in hitEnemiesGun)
+                {
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                }
+
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyBalaLayers);
                 foreach (Collider2D balaCollider in hitBala)
                 {
@@ -160,6 +173,12 @@ public class PlayerCombat : MonoBehaviour
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
                     enemyCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                }
+
+                Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyGunLayers);
+                foreach (Collider2D enemyGunCollider in hitEnemiesGun)
+                {
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
                 }
 
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyBalaLayers);
