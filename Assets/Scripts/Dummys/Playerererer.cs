@@ -18,6 +18,7 @@ public class Playerererer : Player
             setXStunVariables();
             body.AddForce(new Vector2(3 * GetOrientation(), 0), ForceMode2D.Impulse);
             _animator.SetTrigger("Dash");
+            _effectAnimator.SetTrigger("Effect");
             _fallingTime = 0f;
             _animator.SetBool("IsJumping", false);
             _coolingHit = true;

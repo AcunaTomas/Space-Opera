@@ -68,6 +68,10 @@ public class Player : MonoBehaviour
     public bool _coolingShootDown = false;
     public bool _coolingRespawn = false;
 
+    public Animator _effectAnimator;
+    public Animator _landingAnimator1;
+    public Animator _landingAnimator2;
+
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;
@@ -221,6 +225,7 @@ public class Player : MonoBehaviour
         extrajumpcount -= 1;
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("DoubleJump");
+        _effectAnimator.SetTrigger("Effect");
     }
 
     private void WallJump()
@@ -371,6 +376,8 @@ public class Player : MonoBehaviour
         if (_fallingTime > 6)
         {
             _animator.SetTrigger("land");
+            _landingAnimator1.SetTrigger("Effect");
+            _landingAnimator2.SetTrigger("Effect");
         }
         
         if (collision.gameObject.CompareTag("Ascensor"))
