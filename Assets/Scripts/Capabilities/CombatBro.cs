@@ -38,11 +38,11 @@ public class CombatBro : PlayerCombat
     {
         if (spriteRenderer.flipX)
         {
-            attackPoint.localPosition = new Vector2(-0.15f, 0);
+            attackPoint.localPosition = new Vector2(-0.25f, 0);
         }
         else
         {
-            attackPoint.localPosition = new Vector2(0.15f, 0);
+            attackPoint.localPosition = new Vector2(0.25f, 0);
         }   
 
         _animator.SetTrigger("Attack");
@@ -59,40 +59,79 @@ public class CombatBro : PlayerCombat
 
     public override void AttackUp()
     {
-        var a = Instantiate(balarda, transform.position, Quaternion.identity);
+        
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
          return;   
         }
-        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+        
 
         if (Input.GetAxis("Horizontal") != 0)
         {
             _animator.SetTrigger("AttackDiagUp");
+            if (spriteRenderer.flipX)
+            {
+                attackPoint.localPosition = new Vector2(-0.13f, 0.1f);
+            }
+            else
+            {
+                attackPoint.localPosition = new Vector2(0.13f, 0.1f); ;
+            }
+            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
+            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
         else
         {
             _animator.SetTrigger("AttackUp");
+
+            if (spriteRenderer.flipX)
+            {
+                attackPoint.localPosition = new Vector2(0.04f, 0.17f);
+            }
+            else
+            {
+                attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
+            }
+            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
+            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
     }
 
     public override void AttackDown()
     {
-        var a = Instantiate(balarda, transform.position, Quaternion.identity);
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
          return;   
         }
-        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
 
         
         if (Input.GetAxis("Horizontal") != 0)
         {
             _animator.SetTrigger("AttackDiagDown");
+            if (spriteRenderer.flipX)
+            {
+                attackPoint.localPosition = new Vector2(-0.1f, -0.1f);
+            }
+            else
+            {
+                attackPoint.localPosition = new Vector2(0.1f, -0.1f);
+            }
+            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
+            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
         else
         {
             _animator.SetTrigger("AttackDown");
+            if (spriteRenderer.flipX)
+            {
+                attackPoint.localPosition = new Vector2(0f, -0.17f);
+            }
+            else
+            {
+                attackPoint.localPosition = new Vector2(0f, -0.17f);
+            }
+            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
+            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
         _animator.SetBool("IsJumping", false);
