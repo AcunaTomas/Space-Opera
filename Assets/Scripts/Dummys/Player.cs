@@ -324,6 +324,12 @@ public class Player : MonoBehaviour
                 extrajumpcount = 2;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
+                
+                if (_animator.GetBool("Dash"))
+                {
+                    StartCoroutine(StopDashAnim());
+                }
+                    
                 _maxVerticalSpeed = speedCaps.y;
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
@@ -394,6 +400,8 @@ public class Player : MonoBehaviour
             transform.parent = collision.gameObject.transform;
         }
         extrajumpcount = 1;
+
+        _animator.SetBool("Dash", false);
 
         // if (collision.gameObject.CompareTag("Enemy"))
         // {
@@ -617,9 +625,18 @@ public class Player : MonoBehaviour
 
     public IEnumerator StartCooldownDashingAnimation()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
 
         _coolingDashAnim = false;
+        _animator.SetBool("Dash", false);
+    }
+
+    public IEnumerator StopDashAnim()
+    {
+        yield return new WaitForSeconds(0.12f);
+
+        _coolingDashAnim = false;
+        _animator.SetBool("Dash", false);
     }
 
     public void StartCooldownShoot()
