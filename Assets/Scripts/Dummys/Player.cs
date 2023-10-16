@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-
+    private Object dustEffect;
+    [SerializeField]
+    float HorizontalInputValue;
     [SerializeField]
     public int HP = 5;
     [SerializeField]
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private UnityEvent _callWhat;
     private bool _playerFall = false;
+    [SerializeField]
     private float _airborneTime = 0f;
 
     private bool _skillPermitted = true;
@@ -73,6 +76,21 @@ public class Player : MonoBehaviour
     public Animator _landingAnimator2;
 
     private float _timerBreak = 0f;
+
+    private float dustSpawnCooldown = 0f;
+
+    public struct parama
+    {
+        public bool a;
+        public Vector2 b;
+        
+        public parama(bool ab, Vector2 bb)
+        {
+            a = ab;
+            b = bb;
+        }
+    }
+
 
     public void ChangeSkillStatus(bool a)
     {
@@ -97,6 +115,7 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        dustEffect = Resources.Load("Prefabs/dustEffect");
     }
 
     private void Update()
@@ -109,6 +128,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        HorizontalInputValue = Input.GetAxis("Horizontal"); 
         _plaseJump();
         WallJumpDelay();
         Movement();
@@ -180,6 +200,15 @@ public class Player : MonoBehaviour
                 _coyoteValidTime = 0;
                 canIjump = false;
             }
+        }
+
+        if (dustSpawnCooldown > 0)
+        {
+            dustSpawnCooldown -=0.017f;
+        }
+        else
+        {
+            dustSpawnCooldown = 0f;
         }
 
     }
@@ -436,7 +465,6 @@ public class Player : MonoBehaviour
     void Movement()
     {
         //Horizontal
-        //orientation.transform.localPosition = new Vector2(Clamp(body.velocity.x, -1, 1), 0);
         if(_wallJumpXtimeFreeze > 0f)
         {
             _wallJumpXtimeFreeze += -0.016f;
@@ -463,9 +491,6 @@ public class Player : MonoBehaviour
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
 
 
-
-
-        //body.velocity = new Vector2(Clamp(Xspeed, -speedCaps.x, speedCaps.x), vertspid);
         vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
@@ -473,6 +498,7 @@ public class Player : MonoBehaviour
         {
             body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
         }
+
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
         {
             if (canIjump) //airborne checko
@@ -483,19 +509,39 @@ public class Player : MonoBehaviour
             {
                 body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
             }
+
         }
+        
+        if (body.velocity.x >= 1.2f && _spriteRenderer.flipX == true && canIjump) //Spawns dust
+        {
+
+            if (dustSpawnCooldown > 0)
+            {
+                return;
+            }
+            Debug.Log("Drift");
+            var a = Instantiate(dustEffect) as GameObject;
+            a.gameObject.SendMessage("Initialize", new parama(true,transform.position));
+            dustSpawnCooldown = 0.1f;
+        }
+        if (body.velocity.x <= -1.2f && _spriteRenderer.flipX == false && canIjump)
+        {
+            
+            if (dustSpawnCooldown > 0)
+            {
+                return;
+            }
+            Debug.Log("Drift2");
+            var a = Instantiate(dustEffect) as GameObject;
+            a.gameObject.SendMessage("Initialize", new parama(true,transform.position));
+            dustSpawnCooldown = 0.1f;
+        }
+
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
         {
             body.velocity = new Vector2(body.velocity.x, _maxVerticalSpeed * Clamp(body.velocity.y, -1, 1));  //Huge reach
         }
 
-            //just checking if I understood how to normalized a vector
-           /* float magnitude = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y);
-            Vector2 normal = new Vector2(transform.position. x / magnitude, transform.position.y / magnitude);
-            Debug.Log("Formula: " + normal.ToString());
-            Debug.Log("Built-In: " + transform.position.normalized.ToString());
-           */
-            //Debug.Log(transform.localPosition);
     }
 
     //Animaciones
