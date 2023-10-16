@@ -30,6 +30,7 @@ public class CameraMovement : MonoBehaviour
         {
             _allButtons.gameObject.SetActive(true);
             _stopDoingThis = true;
+            GameManager.INSTANCE.ActivateCursor(true);
         }
     }
 
@@ -55,6 +56,7 @@ public class CameraMovement : MonoBehaviour
                 _animator.CrossFade(_animator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0, 1f);
                 _allButtons.gameObject.SetActive(true);
                 _stopDoingThis = true;
+                GameManager.INSTANCE.ActivateCursor(true);
             }
 
             _goDown = !_goDown;

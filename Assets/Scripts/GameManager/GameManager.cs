@@ -54,8 +54,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
         }
         catch (System.Exception e)
         {
-            Debug.Log("no es un error xd " + e);
+            
         }
+    }
+
+    private void Start()
+    {
+        ActivateCursor(false);
     }
 
     public void SaveGame(int level)
@@ -119,11 +124,14 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         if (bl)
         {
+            ActivateCursor(false);
             PAUSE_MENU.SetActive(false);
+            PAUSE_MENU.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
             ChangeTimeScale(1f);
         }
         else
         {
+            ActivateCursor(true);
             PAUSE_MENU.SetActive(true);
             ChangeTimeScale(0f);
         }
@@ -559,6 +567,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public void ActivatePlayerCombat()
     {
         PLAYER_COMBAT = true;
+    }
+
+    public void ActivateCursor(bool bl)
+    {
+        //Cursor.visible = bl;
     }
 
 }

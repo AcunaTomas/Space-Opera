@@ -17,16 +17,33 @@ public class ButtonMenu : MonoBehaviour
     void Start()
     {
         _buttonText = GetComponentInChildren<TMP_Text>();
-        _originalScale = _buttonText.transform.localScale;
+
+        try
+        {
+            _originalScale = _buttonText.transform.localScale;
+        }
+        catch (System.Exception e)
+        {
+
+        }
+
         _activeImage = GetComponent<Image>();
         _parent = transform.parent;
         _lastSelected = gameObject;
         _button = GetComponent<Button>();
+
         if (ACTIVE)
         {
             _activeImage.enabled = true;
-            Vector3 newScale = _originalScale * 1.15f;
-            _buttonText.transform.localScale = newScale;
+            try
+            {
+                Vector3 newScale = _originalScale * 1.15f;
+                _buttonText.transform.localScale = newScale;
+            }
+            catch (System.Exception e)
+            {
+
+            }
         }
     }
 
