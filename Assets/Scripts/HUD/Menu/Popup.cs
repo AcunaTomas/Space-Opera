@@ -10,6 +10,7 @@ public class Popup : MonoBehaviour
         try
         {
             transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(2).gameObject.SetActive(true);
         }
         catch (System.Exception e)
         {
