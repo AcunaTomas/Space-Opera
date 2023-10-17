@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="64" nextobjectid="350">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="65" nextobjectid="350">
  <tileset firstgid="1" source="../Tutorial tiled/paleta  background.tsx"/>
  <tileset firstgid="5" source="../Tutorial tiled/tile_lvl1_inside_01.tsx"/>
  <tileset firstgid="21" source="../Tutorial tiled/tile_black.tsx"/>
@@ -68,6 +68,7 @@
  <tileset firstgid="825" source="../Tutorial tiled/Background Elements/obj_lvl1_coachplat_01.tsx"/>
  <tileset firstgid="826" source="../Tutorial tiled/tile_lvl1_inside_04.tsx"/>
  <tileset firstgid="830" source="../Tutorial tiled/Background Art/bg_lvl1_elevator_06.tsx"/>
+ <tileset firstgid="854" source="../Tutorial tiled/Background Elements/obj_lvl1_light_01.tsx"/>
  <layer id="37" name="Fondo" width="30" height="20">
   <data encoding="csv">
    <chunk x="-32" y="-16" width="16" height="16">
@@ -347,6 +348,28 @@
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 822,822,823,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+ <layer id="64" name="NewFondo" width="30" height="20">
+  <data encoding="csv">
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,854,855,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,856,857,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
