@@ -5,6 +5,7 @@ using System.IO;
 
 public static class LoadJson
 {
+    public static string MAIN_MENU = Resources.Load<TextAsset>("Text/main_menu").text;
     public static string LVL1_DIALOGUES = Resources.Load<TextAsset>("Text/lvl1").text;
     public static string LVL1_CINEMATIC = Resources.Load<TextAsset>("Text/lvl1_cinematic").text;
     public static string LVL2 = Resources.Load<TextAsset>("Text/lvl2").text;
