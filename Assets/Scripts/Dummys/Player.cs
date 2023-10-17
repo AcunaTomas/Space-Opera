@@ -512,7 +512,7 @@ public class Player : MonoBehaviour
 
         }
         
-        if (body.velocity.x >= 1.2f && _spriteRenderer.flipX == true && canIjump) //Spawns dust
+        if (body.velocity.x >= 1.2f && _spriteRenderer.flipX == true && canIjump && _lastJumpPress == 0f) //Spawns dust
         {
 
             if (dustSpawnCooldown > 0)
@@ -524,7 +524,7 @@ public class Player : MonoBehaviour
             a.gameObject.SendMessage("Initialize", new parama(true,transform.position));
             dustSpawnCooldown = 0.1f;
         }
-        if (body.velocity.x <= -1.2f && _spriteRenderer.flipX == false && canIjump)
+        if (body.velocity.x <= -1.2f && _spriteRenderer.flipX == false && canIjump && _lastJumpPress == 0f)
         {
             
             if (dustSpawnCooldown > 0)
