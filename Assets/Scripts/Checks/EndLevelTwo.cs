@@ -23,7 +23,6 @@ public class EndLevelTwo : MonoBehaviour
                 break;
             }
         }
-        Debug.Log(go.name);
         _cont++;
 
         if (_cont == 1)

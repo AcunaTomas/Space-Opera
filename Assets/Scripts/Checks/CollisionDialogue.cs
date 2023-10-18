@@ -59,8 +59,12 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        _entered = true;
-        if (_checkpoint && col.CompareTag("Player"))
+        if(!col.CompareTag("Player"))
+        {
+            return;
+        }
+
+        if (_checkpoint)
         {
             StartDialogue();
             return;
@@ -87,6 +91,7 @@ public class CollisionDialogue : MonoBehaviour
 
         if (_player.tag == col.tag)
         {
+            _entered = true;
             _eAvailable = true;
             _buttonPressed = false;
             _interactable.SetActive(true);
@@ -111,6 +116,11 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
+        if (!col.CompareTag("Player"))
+        {
+            return;
+        }
+
         _entered = false;
         if (_checkpoint)
         {
