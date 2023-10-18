@@ -6,6 +6,7 @@ public class ProjectileBehaviour : MonoBehaviour
 {
     public Transform bombPoint;
     public LayerMask enemyLayers;
+    public LayerMask enemyGunLayers;
     public float bombRange = 1f;
     public int bombDamage = 80;
     
@@ -60,6 +61,12 @@ public class ProjectileBehaviour : MonoBehaviour
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
                     enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
+                }
+
+                Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyGunLayers);
+                foreach (Collider2D enemyGunCollider in hitEnemiesGun)
+                {
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
                 }
             }
         }
