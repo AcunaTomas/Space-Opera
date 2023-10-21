@@ -17,7 +17,7 @@ public class FileDataHandler
         _dataFileName = dataFileName;
     }
 
-    public GameData Load()
+    public object Load()
     {
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
         GameData loadedData = null;
@@ -45,7 +45,7 @@ public class FileDataHandler
         return loadedData;
     }
 
-    public void Save(GameData data)
+    public void Save(object data)
     {
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
         string backupFilePath = fullPath + _backupExtension;
@@ -62,7 +62,6 @@ public class FileDataHandler
                 }
             }
 
-            //GameData verifiedGameData = Load(profileId);
         }
         catch (Exception e)
         {

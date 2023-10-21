@@ -31,7 +31,7 @@ public class CombatBro : PlayerCombat
                 enemyCollider.GetComponent<DetectableController2>().Detectado();
             }
         }
-
+        AchievementsManager.INSTANCE.Achievement03();
         _radar.enabled = true;
     }
     public override void Attack()
