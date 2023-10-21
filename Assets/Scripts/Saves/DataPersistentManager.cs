@@ -64,6 +64,7 @@ public class DataPersistentManager : MonoBehaviour
     public void NewAchievements()
     {
         _achievementsData = new AchievementsData();
+        SaveAchievements();
     }
 
     public void LoadGame()
