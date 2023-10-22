@@ -24,14 +24,55 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
 
     public bool ACHIEVEMENT06 = false;
 
+    private bool _achievementEarned = false;
+    private bool _dontDoIt = false;
+    private bool _fold = false;
+    private float _movementY;
+    private float _time = 0f;
+
     private void Awake()
     {
         INSTANCE = this;
     }
 
-    public void AchievementEarned()
+    private void Start()
     {
+        _movementY = GetComponent<RectTransform>().sizeDelta.y;
+    }
 
+    public IEnumerator AchievementEarned(bool var)
+    {
+        _fold = !_fold;
+        float _time = 0f;
+        float _initialY;
+        float _finalY;
+
+        if (var)
+        {
+            _initialY = transform.localPosition.y;
+            _finalY = _initialY - _movementY;
+        }
+        else
+        {
+            _initialY = transform.localPosition.y;
+            _finalY = _initialY + _movementY;
+        }
+
+        while (_time < 0.2f)
+        {
+            float _percentage = _time / 0.2f;
+            float _newY = Mathf.Lerp(_initialY, _finalY, _percentage);
+            transform.localPosition = new Vector2(transform.localPosition.x, _newY);
+
+            _time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localPosition = new Vector2(transform.localPosition.x, _finalY);
+
+        yield return new WaitForSeconds(0.1f);
+
+        
     }
 
     public void Achievement01()
@@ -45,7 +86,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         if (ENEMIES_KILLED == ENEMIES_LVL01)
         {
             ACHIEVEMENT01 = true;
-            AchievementEarned();
+            _achievementEarned = true;
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -61,7 +102,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         if (ITEMS_COLLECTED == ITEMS_TOTAL)
         {
             ACHIEVEMENT02 = true;
-            AchievementEarned();
+            _achievementEarned = true;
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -77,7 +118,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         if (RADAR_COUNT == 5)
         {
             ACHIEVEMENT03 = true;
-            AchievementEarned();
+            _achievementEarned = true;
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -93,7 +134,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         if (BOMB_COUNT == 5)
         {
             ACHIEVEMENT04 = true;
-            AchievementEarned();
+            _achievementEarned = true;
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -106,7 +147,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         }
 
         ACHIEVEMENT05 = true;
-        AchievementEarned();
+        _achievementEarned = true;
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
 
@@ -118,7 +159,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         }
 
         ACHIEVEMENT06 = true;
-        AchievementEarned();
+        _achievementEarned = true;
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
 
@@ -150,5 +191,32 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         data.ITEMS_COLLECTED = ITEMS_COLLECTED;
         data.RADAR_COUNT = RADAR_COUNT;
         data.BOMB_COUNT = BOMB_COUNT;
+    }
+
+    private void Update()
+    {
+        if (!_achievementEarned)
+        {
+            return;
+        }
+        
+        if (!_dontDoIt)
+        {
+            StartCoroutine(AchievementEarned(_fold));
+            _dontDoIt = true;
+        }
+
+        if (_dontDoIt)
+        {
+            _time += Time.deltaTime;
+            if (_time > 2f)
+            {
+                StartCoroutine(AchievementEarned(_fold));
+                _dontDoIt = false;
+                _achievementEarned = false;
+                _time = 0f;
+                return;
+            }
+        }
     }
 }
