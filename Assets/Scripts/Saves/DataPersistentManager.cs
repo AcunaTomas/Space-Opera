@@ -36,6 +36,7 @@ public class DataPersistentManager : MonoBehaviour
         INSTANCE = this;
         DontDestroyOnLoad(gameObject);
         _dataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
+        _dataHandlerAchievements = new FileDataHandler(Application.persistentDataPath, _achievementName);
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -69,7 +70,7 @@ public class DataPersistentManager : MonoBehaviour
 
     public void LoadGame()
     {
-        _gameData = (GameData) _dataHandler.Load();
+        _gameData = _dataHandler.Load();
 
         if (_gameData == null && _initializeDataIfNull)
         {
@@ -96,7 +97,7 @@ public class DataPersistentManager : MonoBehaviour
             return;
         }
 
-        _achievementsData = (AchievementsData)_dataHandlerAchievements.Load();
+        _achievementsData = _dataHandlerAchievements.LoadAch();
 
         foreach (AchievementPersistance dpo in _dataPersistanceAchievements)
         {

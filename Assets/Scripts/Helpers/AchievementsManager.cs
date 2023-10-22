@@ -6,23 +6,23 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
 {
     public static AchievementsManager INSTANCE;
 
-    public bool ACHIEVEMENT01;
+    public bool ACHIEVEMENT01 = false;
     public int ENEMIES_LVL01 = 10;
-    public int ENEMIES_KILLED;
+    public int ENEMIES_KILLED = 0;
 
-    public bool ACHIEVEMENT02;
+    public bool ACHIEVEMENT02 = false;
     public int ITEMS_TOTAL = 1;
-    public int ITEMS_COLLECTED;
+    public int ITEMS_COLLECTED = 0;
 
-    public bool ACHIEVEMENT03;
-    public int RADAR_COUNT;
+    public bool ACHIEVEMENT03 = false;
+    public int RADAR_COUNT = 0;
 
-    public bool ACHIEVEMENT04;
-    public int BOMB_COUNT;
+    public bool ACHIEVEMENT04 = false;
+    public int BOMB_COUNT = 0;
 
-    public bool ACHIEVEMENT05;
+    public bool ACHIEVEMENT05 = false;
 
-    public bool ACHIEVEMENT06;
+    public bool ACHIEVEMENT06 = false;
 
     private void Awake()
     {

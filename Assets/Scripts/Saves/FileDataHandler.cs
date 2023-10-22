@@ -17,7 +17,7 @@ public class FileDataHandler
         _dataFileName = dataFileName;
     }
 
-    public object Load()
+    public GameData Load()
     {
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
         GameData loadedData = null;
@@ -39,6 +39,34 @@ public class FileDataHandler
             catch (Exception e)
             {
                 
+                Debug.LogError("error al cargar save " + fullPath + "\n" + e);
+            }
+        }
+        return loadedData;
+    }
+
+    public AchievementsData LoadAch()
+    {
+        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        AchievementsData loadedData = null;
+        if (File.Exists(fullPath))
+        {
+            try
+            {
+                string dataToLoad = "";
+                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        dataToLoad = reader.ReadToEnd();
+                    }
+                }
+
+                loadedData = JsonUtility.FromJson<AchievementsData>(dataToLoad);
+            }
+            catch (Exception e)
+            {
+
                 Debug.LogError("error al cargar save " + fullPath + "\n" + e);
             }
         }

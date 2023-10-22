@@ -1575,6 +1575,7 @@ GameObject:
   - component: {fileID: 263295163}
   - component: {fileID: 263295164}
   - component: {fileID: 263295165}
+  - component: {fileID: 263295166}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1758,6 +1759,30 @@ MonoBehaviour:
   _continue: {fileID: 236782155}
   _newGame: {fileID: 1314329403}
   _eventSystem: {fileID: 871983424}
+--- !u!114 &263295166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263295157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c07e79046014d34ca39c155a3272da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ACHIEVEMENT01: 0
+  ENEMIES_LVL01: 10
+  ENEMIES_KILLED: 0
+  ACHIEVEMENT02: 0
+  ITEMS_TOTAL: 1
+  ITEMS_COLLECTED: 0
+  ACHIEVEMENT03: 0
+  RADAR_COUNT: 0
+  ACHIEVEMENT04: 0
+  BOMB_COUNT: 0
+  ACHIEVEMENT05: 0
+  ACHIEVEMENT06: 0
 --- !u!1 &272840864
 GameObject:
   m_ObjectHideFlags: 0
