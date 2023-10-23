@@ -511,30 +511,33 @@ public class Player : MonoBehaviour
             }
 
         }
-        
-        if (body.velocity.x >= 1.2f && _spriteRenderer.flipX == true && canIjump && _lastJumpPress == 0f) //Spawns dust
+
+        if (body.velocity.x >= 0.3f && _spriteRenderer.flipX == true && canIjump) //Spawns dust
         {
 
             if (dustSpawnCooldown > 0)
             {
                 return;
             }
-            Debug.Log("Drift");
+                
+            Debug.Log("Drift");     
             var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true,transform.position));
-            dustSpawnCooldown = 0.1f;
-        }
-        if (body.velocity.x <= -1.2f && _spriteRenderer.flipX == false && canIjump && _lastJumpPress == 0f)
-        {
+            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));  
+            dustSpawnCooldown = 0.16f;
             
+        }
+        if (body.velocity.x <= -0.3f && _spriteRenderer.flipX == false && canIjump)
+        {
+
             if (dustSpawnCooldown > 0)
             {
                 return;
             }
+
             Debug.Log("Drift2");
             var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true,transform.position));
-            dustSpawnCooldown = 0.1f;
+            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            dustSpawnCooldown = 0.16f;
         }
 
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
