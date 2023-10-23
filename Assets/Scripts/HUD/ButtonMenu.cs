@@ -82,6 +82,35 @@ public class ButtonMenu : MonoBehaviour
         _buttonText.transform.localScale = newScale;
     }
 
+    public void OnPointerEnterPause()
+    {
+        for (int i = 0; i < _parent.childCount; i++)
+        {
+            Transform child = _parent.GetChild(i);
+            if (child.GetComponent<ButtonMenu>().ACTIVE)
+            {
+                if (child.name == transform.name)
+                {
+                    break;
+                }
+
+                AudioManager.INSTANCE.PlayUISelect();
+                child.GetComponent<ButtonMenu>().ACTIVE = false;
+                if (!EventSystem.current.alreadySelecting)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+                break;
+            }
+        }
+
+        ACTIVE = true;
+        if (!EventSystem.current.alreadySelecting)
+        {
+            EventSystem.current.SetSelectedGameObject(gameObject);
+        }
+    }
+
     private void OnEnable()
     {
         _spacebarPressed = false;

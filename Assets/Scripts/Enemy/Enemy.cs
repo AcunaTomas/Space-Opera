@@ -164,6 +164,10 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if (GameManager.INSTANCE.LEVEL == 1)
+        {
+            AchievementsManager.INSTANCE.Achievement01();
+        }
         isDead = true;
 
         if (_enemyType == EnemyType.boss)
@@ -185,6 +189,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            AchievementsManager.INSTANCE.Achievement04();
             animator.SetTrigger("DieBomb");
         }
         

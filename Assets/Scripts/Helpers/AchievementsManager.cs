@@ -7,7 +7,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     public static AchievementsManager INSTANCE;
 
     public bool ACHIEVEMENT01 = false;
-    public int ENEMIES_LVL01 = 10;
+    public int ENEMIES_LVL01 = 11;
     public int ENEMIES_KILLED = 0;
 
     public bool ACHIEVEMENT02 = false;

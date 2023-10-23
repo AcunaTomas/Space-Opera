@@ -383,7 +383,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 data.PLAYER_COMBAT = false;
                 data.CANVAS_WS_LVL1_GENERAL = new bool[5] { true, true, true, true, true };
                 data.CANVAS_WS_LVL1_ACTIVATE_EVENTS = new bool[5] { false, false, false, false, false };
-                data.TUTO_TRIG_LVL1 = new bool[2] { true, false };
+                data.TUTO_TRIG_LVL1 = new bool[4] { true, true, true, false };
                 data.CHECKPOINTS_LVL1 = new bool[8] { true, true, true, true, true, true, true, true };
                 data.DIALOGUES_LVL1 = new bool[15] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, false };
                 data.CHANGE_MUSIC_LVL1 = new bool[2] { false, true };
