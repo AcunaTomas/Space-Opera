@@ -187,7 +187,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         data.ACHIEVEMENT05 = ACHIEVEMENT05;
         data.ACHIEVEMENT06 = ACHIEVEMENT06;
 
-        data.ENEMIES_KILLED = ENEMIES_KILLED;
+        data.ENEMIES_KILLED = 0;
         data.ITEMS_COLLECTED = ITEMS_COLLECTED;
         data.RADAR_COUNT = RADAR_COUNT;
         data.BOMB_COUNT = BOMB_COUNT;
@@ -209,7 +209,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         if (_dontDoIt)
         {
             _time += Time.deltaTime;
-            if (_time > 2f)
+            if (_time > 3f)
             {
                 StartCoroutine(AchievementEarned(_fold));
                 _dontDoIt = false;

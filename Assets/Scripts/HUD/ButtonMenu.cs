@@ -13,6 +13,8 @@ public class ButtonMenu : MonoBehaviour
     public bool ACTIVE = false;
     private bool _spacebarPressed = false;
     private Button _button;
+    [SerializeField]
+    private Sprite[] _backgrounds;
     
     void Start()
     {
@@ -96,6 +98,7 @@ public class ButtonMenu : MonoBehaviour
 
                 AudioManager.INSTANCE.PlayUISelect();
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
+                child.GetComponent<Image>().sprite = _backgrounds[0];
                 if (!EventSystem.current.alreadySelecting)
                 {
                     EventSystem.current.SetSelectedGameObject(null);
@@ -105,6 +108,7 @@ public class ButtonMenu : MonoBehaviour
         }
 
         ACTIVE = true;
+        _activeImage.sprite = _backgrounds[1];
         if (!EventSystem.current.alreadySelecting)
         {
             EventSystem.current.SetSelectedGameObject(gameObject);
