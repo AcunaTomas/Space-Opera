@@ -92,12 +92,12 @@ public class DataPersistentManager : MonoBehaviour
 
     public void LoadAchievement()
     {
+        _achievementsData = _dataHandlerAchievements.LoadAch();
+
         if (_achievementsData == null)
         {
             return;
         }
-
-        _achievementsData = _dataHandlerAchievements.LoadAch();
 
         foreach (AchievementPersistance dpo in _dataPersistanceAchievements)
         {

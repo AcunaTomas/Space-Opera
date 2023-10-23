@@ -31,6 +31,7 @@ public class CameraMovement : MonoBehaviour
             _allButtons.gameObject.SetActive(true);
             _stopDoingThis = true;
             GameManager.INSTANCE.ActivateCursor(true);
+            AchievementsManager.INSTANCE.ChangeSpritesMenu();
         }
     }
 
@@ -57,6 +58,7 @@ public class CameraMovement : MonoBehaviour
                 _allButtons.gameObject.SetActive(true);
                 _stopDoingThis = true;
                 GameManager.INSTANCE.ActivateCursor(true);
+                AchievementsManager.INSTANCE.ChangeSpritesMenu();
             }
 
             _goDown = !_goDown;

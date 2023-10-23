@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AchievementsManager : MonoBehaviour, AchievementPersistance
 {
@@ -30,6 +31,10 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     private float _movementY;
     private float _time = 0f;
 
+    public Image[] _actualImages;
+    public Sprite[] _achievementsImageEarned;
+    public Sprite[] _achievementsImageNotEarned;
+
     private void Awake()
     {
         INSTANCE = this;
@@ -38,6 +43,23 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     private void Start()
     {
         _movementY = GetComponent<RectTransform>().sizeDelta.y;
+    }
+
+    public void ChangeSpritesMenu()
+    {
+        bool[] _bl = new bool[6] { ACHIEVEMENT01, ACHIEVEMENT02, ACHIEVEMENT03, ACHIEVEMENT04, ACHIEVEMENT05, ACHIEVEMENT06 };
+
+        for (int i = 0; i < _bl.Length; i++)
+        {
+            if (_bl[i])
+            {
+                _actualImages[i].sprite = _achievementsImageEarned[i];
+            }
+            else
+            {
+                _actualImages[i].sprite = _achievementsImageNotEarned[i];
+            }
+        }
     }
 
     public IEnumerator AchievementEarned(bool var)
@@ -202,7 +224,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         
         if (!_dontDoIt)
         {
-            StartCoroutine(AchievementEarned(_fold));
+            //StartCoroutine(AchievementEarned(_fold));
             _dontDoIt = true;
         }
 
@@ -211,7 +233,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
             _time += Time.deltaTime;
             if (_time > 3f)
             {
-                StartCoroutine(AchievementEarned(_fold));
+                //StartCoroutine(AchievementEarned(_fold));
                 _dontDoIt = false;
                 _achievementEarned = false;
                 _time = 0f;
