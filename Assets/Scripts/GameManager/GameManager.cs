@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private Player _playerScript;
     private bool _escapePressed = false;
     private float restartTime;
+    public float dustcap = 0;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]

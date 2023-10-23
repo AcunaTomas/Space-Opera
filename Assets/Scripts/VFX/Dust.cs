@@ -22,17 +22,22 @@ public class Dust : MonoBehaviour
         _sp.flipX = a.a;
         if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
         {
-            _sp.flipX = false;
-            transform.position = new Vector2(transform.position.x +0.15f, transform.position.y -0.018f);
+            _sp.flipX = true;
+            transform.position = new Vector2(transform.position.x -0.08f, transform.position.y -0.018f);
         }
         else
         {
-            _sp.flipX = true;
-            transform.position = new Vector2(transform.position.x -0.15f, transform.position.y -0.018f);
+            _sp.flipX = false;
+            transform.position = new Vector2(transform.position.x +0.08f, transform.position.y -0.018f);
         }
-        //_sp = GetComponent<SpriteRenderer>();
-        //_sp.flipX = a.a;
-        Destroy(gameObject, 0.8f);  
+        StartCoroutine(xd());
+    }
+    private IEnumerator xd()
+    {
+        yield return new WaitForSeconds(0.4f);
+        GameManager.INSTANCE.dustcap -= 1;
+        Destroy(gameObject);
+
     }
 
 }
