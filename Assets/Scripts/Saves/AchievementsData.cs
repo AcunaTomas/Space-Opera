@@ -6,7 +6,6 @@ using UnityEngine;
 public class AchievementsData
 {
     public bool ACHIEVEMENT01 = false;
-    public int ENEMIES_KILLED = 0;
 
     public bool ACHIEVEMENT02 = false;
     public int ITEMS_COLLECTED = 0;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AchievementsManager : MonoBehaviour, AchievementPersistance
 {
@@ -24,6 +25,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     public bool ACHIEVEMENT05 = false;
 
     public bool ACHIEVEMENT06 = false;
+    private int _animals_killed = 0;
 
     private bool _achievementEarned = false;
     private bool _dontDoIt = false;
@@ -35,6 +37,10 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     public Sprite[] _achievementsImageEarned;
     public Sprite[] _achievementsImageNotEarned;
 
+    private Image _panel;
+    private TextMeshProUGUI _title;
+    private TextMeshProUGUI _description;
+
     private void Awake()
     {
         INSTANCE = this;
@@ -43,6 +49,9 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     private void Start()
     {
         _movementY = GetComponent<RectTransform>().sizeDelta.y;
+        _panel = transform.GetChild(0).GetComponent<Image>();
+        _title = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        _description = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
     }
 
     public void ChangeSpritesMenu()
@@ -97,6 +106,13 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         
     }
 
+    private void UpdateAchievementPanel(int n)
+    {
+        n--;
+        _title.text = "¡Logro desbloqueado!";
+        _panel.sprite = _achievementsImageEarned[n];
+    }
+
     public void Achievement01()
     {
         if (ACHIEVEMENT01)
@@ -109,6 +125,8 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         {
             ACHIEVEMENT01 = true;
             _achievementEarned = true;
+            UpdateAchievementPanel(1);
+            _description.text = "Mátalos a todos";
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -125,6 +143,8 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         {
             ACHIEVEMENT02 = true;
             _achievementEarned = true;
+            UpdateAchievementPanel(2);
+            _description.text = "Para la colección";
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -141,6 +161,8 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         {
             ACHIEVEMENT03 = true;
             _achievementEarned = true;
+            UpdateAchievementPanel(3);
+            _description.text = "Maestro rastreador";
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -157,6 +179,8 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         {
             ACHIEVEMENT04 = true;
             _achievementEarned = true;
+            UpdateAchievementPanel(4);
+            _description.text = "Hombre bombardero";
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -170,18 +194,27 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
 
         ACHIEVEMENT05 = true;
         _achievementEarned = true;
+        UpdateAchievementPanel(5);
+        _description.text = "Nos vemos";
         DataPersistentManager.INSTANCE.SaveAchievements();
+    }
+
+    public void YouFuckingKilledAnimals()
+    {
+        _animals_killed++;
     }
 
     public void Achievement06()
     {
-        if (ACHIEVEMENT06)
+        if (ACHIEVEMENT06 || _animals_killed > 0)
         {
             return;
         }
 
         ACHIEVEMENT06 = true;
         _achievementEarned = true;
+        UpdateAchievementPanel(6);
+        _description.text = "Amante de la naturaleza";
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
 
@@ -194,7 +227,6 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         ACHIEVEMENT05 = data.ACHIEVEMENT05;
         ACHIEVEMENT06 = data.ACHIEVEMENT06;
 
-        ENEMIES_KILLED = data.ENEMIES_KILLED;
         ITEMS_COLLECTED = data.ITEMS_COLLECTED;
         RADAR_COUNT = data.RADAR_COUNT;
         BOMB_COUNT = data.BOMB_COUNT;
@@ -209,7 +241,6 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         data.ACHIEVEMENT05 = ACHIEVEMENT05;
         data.ACHIEVEMENT06 = ACHIEVEMENT06;
 
-        data.ENEMIES_KILLED = 0;
         data.ITEMS_COLLECTED = ITEMS_COLLECTED;
         data.RADAR_COUNT = RADAR_COUNT;
         data.BOMB_COUNT = BOMB_COUNT;
@@ -224,7 +255,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
         
         if (!_dontDoIt)
         {
-            //StartCoroutine(AchievementEarned(_fold));
+            StartCoroutine(AchievementEarned(_fold));
             _dontDoIt = true;
         }
 
@@ -233,7 +264,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
             _time += Time.deltaTime;
             if (_time > 3f)
             {
-                //StartCoroutine(AchievementEarned(_fold));
+                StartCoroutine(AchievementEarned(_fold));
                 _dontDoIt = false;
                 _achievementEarned = false;
                 _time = 0f;

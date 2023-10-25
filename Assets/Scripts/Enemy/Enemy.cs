@@ -168,6 +168,11 @@ public class Enemy : MonoBehaviour
         {
             AchievementsManager.INSTANCE.Achievement01();
         }
+
+        if (GameManager.INSTANCE.LEVEL == 3)
+        {
+            AchievementsManager.INSTANCE.YouFuckingKilledAnimals();
+        }
         isDead = true;
 
         if (_enemyType == EnemyType.boss)

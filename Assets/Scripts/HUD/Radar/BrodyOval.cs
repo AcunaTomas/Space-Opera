@@ -9,8 +9,7 @@ public class BrodyOval : MonoBehaviour
     private GameObject _instantiate;
     [SerializeField]
     private GameObject[] _detectables;
-    [SerializeField]
-    private int _objects = 3;
+    private int _objects = 0;
     [SerializeField]
     private float _xRadio = 0.2f;
     [SerializeField]
@@ -26,6 +25,7 @@ public class BrodyOval : MonoBehaviour
         for (int i = 0; i < _detectables.Length; i++)
         {
             _detectableColliders[i] = _detectables[i].GetComponent<Collider2D>();
+            _objects++;
         }
         _instantiatedObjects = new GameObject[_objects];
 
@@ -50,6 +50,14 @@ public class BrodyOval : MonoBehaviour
             _instantiatedObjects[i] = Instantiate(_instantiate, _ovalContainer.position + spawnPosition, Quaternion.identity);
             _instantiatedObjects[i].transform.parent = _ovalContainer;
             _instantiatedObjects[i].SetActive(true);
+        }
+
+        for (int i = 0; i < _detectables.Length; i++)
+        {
+            if (!_detectables[i].activeSelf)
+            {
+                _player.transform.GetChild(_player.transform.childCount - 1).GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 
