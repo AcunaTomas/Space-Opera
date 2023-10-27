@@ -79,17 +79,17 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         if (Input.GetKeyDown("1"))
         {
-            ScenesManager.Instance.LoadNextScene("Tutorial");
+            ScenesManager.Instance.LoadNextScene("TutorialTrailer");
         }
 
         if (Input.GetKeyDown("2"))
         {
-            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
+            ScenesManager.Instance.LoadNextScene("Lvl2_Trailer");
         }
 
         if (Input.GetKeyDown("3"))
         {
-            ScenesManager.Instance.LoadNextScene("NewLevel3");
+            ScenesManager.Instance.LoadNextScene("Level3Trailer");
         }
 
         if (Input.GetKeyDown("5"))
