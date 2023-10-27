@@ -211,6 +211,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
             return;
         }
 
+        Debug.Log("oa");
         ACHIEVEMENT06 = true;
         _achievementEarned = true;
         UpdateAchievementPanel(6);
