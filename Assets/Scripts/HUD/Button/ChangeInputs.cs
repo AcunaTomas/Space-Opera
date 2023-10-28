@@ -11,6 +11,7 @@ public class ChangeInputs : MonoBehaviour
     private GameObject[] _controller;
     private int _previousControllerCount = 0;
     private int _connectedControllerCount = 0;
+    public bool _control = false; 
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class ChangeInputs : MonoBehaviour
             if (!string.IsNullOrEmpty(name))
             {
                 _connectedControllerCount++;
+                ControlTrue();
             }
         }
 
@@ -48,7 +50,18 @@ public class ChangeInputs : MonoBehaviour
             {
                 _keyboard[i].SetActive(_connectedControllerCount == 0);
                 _controller[i].SetActive(_connectedControllerCount > 0);
+                ControlFalse();
             }
         }
+    }
+
+    void ControlTrue()
+    {
+        _control = true;
+    }    
+
+    void ControlFalse()
+    {
+        _control = false;
     }
 }

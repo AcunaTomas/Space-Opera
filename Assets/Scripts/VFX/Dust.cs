@@ -8,6 +8,7 @@ public class Dust : MonoBehaviour
     // Start is called before the first frame update
     SpriteRenderer _sp;
     Transform _position;
+    GameObject _controller;
 
     void Start()
     {
@@ -20,16 +21,37 @@ public class Dust : MonoBehaviour
         transform.position = a.b;
         _sp = GetComponent<SpriteRenderer>();
         _sp.flipX = a.a;
-        if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
+
+        _controller = GameObject.FindWithTag("ControllerCheck");
+
+        if (_controller.GetComponent<ChangeInputs>()._control == false)
         {
-            _sp.flipX = false;
-            transform.position = new Vector2(transform.position.x +0.15f, transform.position.y -0.018f);
+            if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
+            {
+                _sp.flipX = false;
+                transform.position = new Vector2(transform.position.x + 0.15f, transform.position.y - 0.018f);
+            }
+            else
+            {
+                _sp.flipX = true;
+                transform.position = new Vector2(transform.position.x - 0.15f, transform.position.y - 0.018f);
+            }
         }
         else
         {
-            _sp.flipX = true;
-            transform.position = new Vector2(transform.position.x -0.15f, transform.position.y -0.018f);
+            if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
+            {
+                _sp.flipX = true;
+                transform.position = new Vector2(transform.position.x - 0.05f, transform.position.y - 0.018f);
+            }
+            else
+            {
+                _sp.flipX = false;
+                transform.position = new Vector2(transform.position.x + 0.05f, transform.position.y - 0.018f);
+            }
         }
+        
+
         StartCoroutine(xd());
     }
     private IEnumerator xd()
