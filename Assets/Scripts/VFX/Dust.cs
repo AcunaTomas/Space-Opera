@@ -22,13 +22,13 @@ public class Dust : MonoBehaviour
         _sp.flipX = a.a;
         if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
         {
-            _sp.flipX = true;
-            transform.position = new Vector2(transform.position.x -0.08f, transform.position.y -0.018f);
+            _sp.flipX = false;
+            transform.position = new Vector2(transform.position.x +0.15f, transform.position.y -0.018f);
         }
         else
         {
-            _sp.flipX = false;
-            transform.position = new Vector2(transform.position.x +0.08f, transform.position.y -0.018f);
+            _sp.flipX = true;
+            transform.position = new Vector2(transform.position.x -0.15f, transform.position.y -0.018f);
         }
         StartCoroutine(xd());
     }
