@@ -12,6 +12,8 @@ public class GameData
     public bool PLAYER_COMBAT = false;
     public string OBJECTIVE;
     public int LEVEL;
+    public float MUSIC_VOLUME = 1f;
+    public float SFX_VOLUME = 1f;
 
     //LEVEL 1
     public bool[] CANVAS_WS_LVL1_GENERAL = {true, true, true, true, true};
