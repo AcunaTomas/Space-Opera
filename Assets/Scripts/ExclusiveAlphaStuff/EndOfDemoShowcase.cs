@@ -15,6 +15,6 @@ public class EndOfDemoShowcase : MonoBehaviour
     IEnumerator EndMySuffering()
     {
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("THE GANTLET");
+        SceneManager.LoadScene("Credits");
     }
 }

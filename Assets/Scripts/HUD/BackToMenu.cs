@@ -8,7 +8,7 @@ public class BackToMenu : MonoBehaviour
     {
         if (Input.GetButton("Jump"))
         {
-            ScenesManager.Instance.LoadMainMenu();
+            ScenesManager.Instance.LoadNextScene("SceneMainMenu");
         }
     }
 }
