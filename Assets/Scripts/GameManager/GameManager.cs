@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject PANEL_OBJECTIVE;
     public bool PAUSED = false;
     public bool QUILOMB_MODE = false;
+    public float MUSIC_VOLUME;
+    public float SFX_VOLUME;
 
     private Player _playerScript;
     private bool _escapePressed = false;
@@ -146,6 +148,9 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
+        MUSIC_VOLUME = data.MUSIC_VOLUME;
+        SFX_VOLUME = data.SFX_VOLUME;
+
         if (QUILOMB_MODE)
         {
             return;
@@ -354,6 +359,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     void IDataPersistance.SaveData(GameData data)
     {
         data.LEVEL = LEVEL;
+        data.MUSIC_VOLUME = MUSIC_VOLUME;
+        data.SFX_VOLUME = SFX_VOLUME;
 
         if (QUILOMB_MODE)
         {
