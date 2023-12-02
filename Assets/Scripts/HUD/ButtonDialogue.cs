@@ -257,10 +257,6 @@ public class ButtonDialogue : MonoBehaviour
             _characterName.text = _textParts[0];
         }
 
-        if (_textParts[0] == "NarratorBrody")
-        {
-            _characterPanelName.SetActive(false);
-        }
     }
 
     public void setQuilombo()
