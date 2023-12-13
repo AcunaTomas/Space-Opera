@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float HorizontalInputValue;
     [SerializeField]
-    public int HP = 5;
+    int HP = 5;
     [SerializeField]
     int MaxHP = 5;
     [SerializeField]
@@ -82,8 +82,6 @@ public class Player : MonoBehaviour
     public Animator _landingAnimator1;
     public Animator _landingAnimator2;
 
-    private float _timerBreak = 0f;
-
     private float dustSpawnCooldown = 0f;
 
     public struct parama
@@ -119,14 +117,6 @@ public class Player : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         dustEffect = Resources.Load("Prefabs/dustEffect");
-    }
-
-    private void Update()
-    {
-        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
-        {
-            _timerBreak += Time.deltaTime;
-        }
     }
 
     void FixedUpdate()
@@ -231,7 +221,7 @@ public class Player : MonoBehaviour
         speedCaps = new Vector2(1.2f, speedCaps.y);
     }
 
-    void WallJumpDelay() // Sticks The player on the wall
+    void WallJumpDelay() // Sticks The player to the wall
     {
         if (_wallJumpFreezeTimer > 0 && wallijumpy)
         {
@@ -640,7 +630,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void MoveToPoint() //Please push them where they need to go please please please
+    public void MoveToPoint() //Please push them where they need to go please please please, It does :D
     {
         if (body.position.x < destinationX)
         {

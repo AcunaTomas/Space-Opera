@@ -18844,9 +18844,12 @@ MonoBehaviour:
   _maxVerticalSpeed: 7
   extrajumpcount: 1
   _lastJumpPress: 0
+  canIMove: 1
   _fallingTime: 0
   WallJumpXDirection: 0
   _wallJumpFreezeTimer: 2
+  destinationX: 0
+  destinationY: 0
   _wallJumpXHandicap: 0
   _spriteRenderer: {fileID: 0}
   _animator: {fileID: 0}
@@ -18867,6 +18870,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _airborneTime: 0
+  _skillPermitted: 1
   dashRate: 0
   _coolingHit: 0
   _coolingDashAnim: 0
