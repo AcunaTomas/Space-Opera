@@ -16,4 +16,7 @@ public class spritetest : MonoBehaviour
     {
        transform.position += new Vector3(0.01f,0,0);
     }
+
+    //We don't really know why this exists, but it's gonna stay here for the memories :D
+
 }
