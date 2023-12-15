@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="19" nextobjectid="30">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="20" nextobjectid="49">
  <tileset firstgid="1" source="tile_black.tsx"/>
  <tileset firstgid="2" source="Tile/tile_lvl3_outside_01.tsx"/>
  <tileset firstgid="7" name="obj_lvl3_bridge_01" tilewidth="32" tileheight="32" tilecount="4" columns="4">
@@ -803,7 +803,20 @@
 </chunk>
   </data>
  </layer>
- <objectgroup id="2" name="World">
+ <objectgroup id="19" name="Capa de Objetos 5">
+  <object id="30" x="0" y="448" width="1184" height="32"/>
+  <object id="33" x="1184" y="416" width="128" height="32">
+   <polygon points="-0.00959596,15.9929 127.99,15.9929 127.99,47.9929 -0.00959596,47.9929"/>
+  </object>
+  <object id="34" x="1312" y="448" width="128" height="32">
+   <polygon points="0,8.00568 128,8.00568 128,40.0057 0,40.0057"/>
+  </object>
+  <object id="35" x="1440" y="384" width="128" height="96"/>
+  <object id="36" x="1568" y="320" width="64" height="96"/>
+  <object id="37" x="1632" y="256" width="64" height="160"/>
+  <object id="38" x="1568" y="416" width="576" height="64"/>
+ </objectgroup>
+ <objectgroup id="2" name="World" visible="0">
   <object id="2" x="0" y="448" width="839" height="36">
    <polygon points="0,0 1184.06,-0.0625 1184.06,-16.1244 1311.88,-16.0568 1311.99,7.81818 1440.03,8 1440,-64 1568,-64 1568,-128 1632,-128 1632,-192 1696,-192 1696,-32 2112,-32 2112,32 0,36"/>
   </object>
@@ -823,19 +836,13 @@
    <polygon points="0,0 96,0 96,9.33333 0,9.33333"/>
   </object>
   <object id="5" x="0" y="320" width="320" height="32">
-   <polygon points="0,0 308.997,0.0152778 296.896,9.08333 0.0208333,9.08333"/>
-  </object>
-  <object id="6" x="128" y="224" width="320" height="32">
-   <polygon points="-20.9688,0.015625 309.016,0.03125 296.853,8.92391 -9.125,9.0625"/>
+   <polygon points="-0.00390625,0.00390625 308.997,0.00390625 296.9,9.06805 0.0208333,9.08333"/>
   </object>
   <object id="10" x="512" y="192" width="64" height="32">
    <polygon points="0,0 64,0 63.8182,8.90909 -0.181818,8.90909"/>
   </object>
   <object id="11" x="672" y="160" width="64" height="32">
    <polygon points="0,0 96,0 96,9.75 0,9.75"/>
-  </object>
-  <object id="13" x="320" y="64" width="320" height="32">
-   <polygon points="10.8485,-0.151515 309,0.333333 296.659,8.99242 25.7803,9.59848"/>
   </object>
   <object id="14" x="320" y="-320" width="160" height="32">
    <polygon points="10.6173,64 149.056,64 136.787,72.9565 22.8268,73.087"/>
@@ -852,14 +859,20 @@
   <object id="20" x="96" y="32" width="128" height="32">
    <polygon points="0,0 128,0 128,10.1818 0,10.1818"/>
   </object>
-  <object id="22" x="32" y="-64" width="64" height="32">
-   <polygon points="32,-32 64,-32 64,64 37.7273,63.75 37.9051,-21.5899 32.0048,-21.6213"/>
+  <object id="41" x="96" y="224" width="341" height="10.3333">
+   <polygon points="11,0 341,0 326.043,10.4638 25.875,9.67708"/>
   </object>
-  <object id="23" x="606.666" y="256" width="251.252" height="32">
-   <polygon points="12.2952,0.015625 251.252,0 252.001,9.20833 25.8099,8.92708"/>
+  <object id="43" x="608" y="256" width="256" height="8">
+   <polygon points="11,0 250,0 250,9 23,9"/>
   </object>
-  <object id="24" x="8" y="-256" width="152" height="17.5">
-   <polygon points="-8,0 140.984,-0.015625 128.941,8.95041 -8.0125,9.59861"/>
+  <object id="46" x="320" y="64" width="320" height="10">
+   <polygon points="11,0 309,0 294,10 26,10"/>
+  </object>
+  <object id="47" x="64" y="-96" width="32" height="96">
+   <polygon points="0,0 32,0 32,96 3.81818,96 3,11 0,11"/>
+  </object>
+  <object id="48" x="14" y="-272" width="160" height="32">
+   <polygon points="-14,16 135,16 122,25 -14,25"/>
   </object>
  </objectgroup>
 </map>
