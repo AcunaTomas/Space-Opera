@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private float restartTime;
     public float dustcap = 0;
     public GameObject VFX_FADE;
+    public ButtonDialogue.Zone lvlDiag;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
@@ -52,7 +53,23 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         INSTANCE = this;
         VFX_FADE.SetActive(true);
-
+        switch (GameManager.INSTANCE.LEVEL)
+        {
+            case 1:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL1_DIALOGUES);
+                break;
+            case 2:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL2);
+                break;
+            case 3:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL3);
+                break;
+            case 4:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL_SELECT);
+                break;
+            default:
+                break;
+        }
         CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
         try
         {

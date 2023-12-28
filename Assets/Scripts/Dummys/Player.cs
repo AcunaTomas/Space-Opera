@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     private float _lastJumpPress = 0f;
     [SerializeField]
     private bool canIMove = true;
-
+    private float _autoPilotOffset = 0.2f;
     public float _fallingTime = 0f;
 
     [SerializeField]    
@@ -632,14 +632,14 @@ public class Player : MonoBehaviour
 
     public void MoveToPoint() //Please push them where they need to go please please please, It does :D
     {
-        if (body.position.x < destinationX)
+        if (body.position.x < (destinationX - _autoPilotOffset))
         {
             body.AddForce(new Vector2(speedCaps.x, 0), ForceMode2D.Force);
             _animator.SetFloat("Speed", speedCaps.x);
             _spriteRenderer.flipX = false;
             return;
         }
-        if (body.position.x > destinationX)
+        if (body.position.x > (destinationX + _autoPilotOffset))
         {
             body.AddForce(new Vector2(speedCaps.x * -1, 0), ForceMode2D.Force);
             _animator.SetFloat("Speed", speedCaps.x);
@@ -648,6 +648,8 @@ public class Player : MonoBehaviour
         }
         body.velocity = new Vector2(0,0);
         _animator.SetFloat("Speed", 0);
+        doIhaveToGoSomewhere = false;
+
 
     }
     public void setDestination(float x, float y)
