@@ -20,8 +20,6 @@ public class ButtonDialogue : MonoBehaviour
     private GameObject _player;
     [SerializeField]
     private DialogueImgPj _dip;
-    [SerializeField]
-    private bool _quilombo = false;
 
     private int _cont = 0;
     private Zone _zone;
@@ -259,12 +257,6 @@ public class ButtonDialogue : MonoBehaviour
 
     }
 
-    public void setQuilombo()
-    {
-        _quilombo = true;
-        GameManager.INSTANCE.QUILOMB_MODE = true;
-    }
-
     void OnEnable()
     {
         lifeBarAnim.SetTrigger("Disappear");
@@ -272,7 +264,7 @@ public class ButtonDialogue : MonoBehaviour
 
     void OnDisable()
     {
-        if (_quilombo)
+        if (GameManager.INSTANCE.QUILOMB_MODE)
         {
             lifeBarAnim.SetTrigger("Appear");
         }

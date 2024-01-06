@@ -27,6 +27,7 @@ public class ElevatorController : MonoBehaviour
 
     void Start()
     {
+        pisomundo = GameObject.Find("CollPisos");
         switch (_audioCheck)
         {
             case AudioCheck.ascensor:

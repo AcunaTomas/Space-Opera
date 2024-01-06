@@ -146,6 +146,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
         Time.timeScale = n;
     }
 
+    public void setQuilombo()
+    {
+        QUILOMB_MODE = true;
+    }
+
     void IDataPersistance.LoadData(GameData data)
     {
         MUSIC_VOLUME = data.MUSIC_VOLUME;

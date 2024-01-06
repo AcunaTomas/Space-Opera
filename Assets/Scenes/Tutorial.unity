@@ -1211,6 +1211,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1960086994}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: setQuilombo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   external: 1
   single_use: 0
   options: 3
@@ -2368,7 +2380,7 @@ MonoBehaviour:
   upperpos: {fileID: 1783310330}
   speed: 0.4
   iselevatorup: 0
-  pisomundo: {fileID: 223013446}
+  pisomundo: {fileID: 0}
   pisoascensor: {fileID: 1983637501}
   _audioCheck: 2
 --- !u!1 &192637785
@@ -2747,11 +2759,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &223013446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7151414856623861453, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
-  m_PrefabInstance: {fileID: 565354653}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &230895673
 GameObject:
   m_ObjectHideFlags: 0
@@ -5967,7 +5974,7 @@ MonoBehaviour:
   upperpos: {fileID: 715818262}
   speed: 3
   iselevatorup: 0
-  pisomundo: {fileID: 223013446}
+  pisomundo: {fileID: 0}
   pisoascensor: {fileID: 1983637501}
   _audioCheck: 1
 --- !u!1 &486951481
@@ -6263,7 +6270,7 @@ MonoBehaviour:
   upperpos: {fileID: 433159423}
   speed: 2
   iselevatorup: 0
-  pisomundo: {fileID: 223013446}
+  pisomundo: {fileID: 1309095735}
   pisoascensor: {fileID: 1983637501}
   _audioCheck: 0
 --- !u!61 &503724701
@@ -6524,7 +6531,7 @@ MonoBehaviour:
   upperpos: {fileID: 1735220323}
   speed: 2
   iselevatorup: 0
-  pisomundo: {fileID: 223013446}
+  pisomundo: {fileID: 0}
   pisoascensor: {fileID: 1983637501}
   _audioCheck: 0
 --- !u!4 &562499110 stripped
@@ -7425,6 +7432,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 798164037423034884, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1990008
+      objectReference: {fileID: 0}
     - target: {fileID: 1057383881090968077, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
@@ -7552,6 +7563,10 @@ PrefabInstance:
     - target: {fileID: 2912539160299158240, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955936810106569071, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31900084
       objectReference: {fileID: 0}
     - target: {fileID: 3063740555220841558, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_TagString
@@ -7945,6 +7960,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NotClimbable
       objectReference: {fileID: 0}
+    - target: {fileID: 8093396314448253930, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.399
+      objectReference: {fileID: 0}
     - target: {fileID: 8094855247685826928, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -8072,6 +8091,10 @@ PrefabInstance:
     - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
       value: -2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936107991872636239, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5990008
       objectReference: {fileID: 0}
     - target: {fileID: 9028019598062919236, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_Layer
@@ -8591,7 +8614,6 @@ MonoBehaviour:
   _characterName: {fileID: 1506053277}
   _player: {fileID: 1361875249}
   _dip: {fileID: 1960086995}
-  _quilombo: 0
   ZONENAME: 
   _textParts: []
   lifeBarAnim: {fileID: 923639375}
@@ -14480,18 +14502,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 614841604}
-        m_TargetAssemblyTypeName: ButtonDialogue, Assembly-CSharp
-        m_MethodName: setQuilombo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: manualDo
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1011243896}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayAlarm
@@ -18598,6 +18608,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1309095735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6101157581318106426, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+  m_PrefabInstance: {fileID: 565354653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1324461178 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -4693364880726125412, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
@@ -20346,7 +20361,7 @@ MonoBehaviour:
   upperpos: {fileID: 1832297077}
   speed: 2
   iselevatorup: 0
-  pisomundo: {fileID: 223013446}
+  pisomundo: {fileID: 0}
   pisoascensor: {fileID: 1983637501}
   _audioCheck: 0
 --- !u!61 &1454206439
