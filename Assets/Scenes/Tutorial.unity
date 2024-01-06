@@ -2698,7 +2698,7 @@ GameObject:
   - component: {fileID: 203419988}
   m_Layer: 0
   m_Name: borde invisble super trol
-  m_TagString: Untagged
+  m_TagString: NotClimbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2743,6 +2743,7 @@ Transform:
   m_Children:
   - {fileID: 1136002678}
   - {fileID: 1717305607}
+  - {fileID: 344517838}
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4150,6 +4151,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341002717}
   m_CullTransparentMesh: 1
+--- !u!1 &344517837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344517838}
+  - component: {fileID: 344517839}
+  m_Layer: 0
+  m_Name: BordeBaranda
+  m_TagString: NotClimbable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344517838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344517837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.79, y: 7.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 203419989}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &344517839
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344517837}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 17.321486, y: -3.3109355}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.031391144, y: 0.80079746}
+  m_EdgeRadius: 0
 --- !u!1 &366359626
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,6 +7870,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7151414856623861453, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Name
+      value: CollPisos
+      objectReference: {fileID: 0}
+    - target: {fileID: 7151414856623861453, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -7933,6 +7996,82 @@ PrefabInstance:
     - target: {fileID: 8560611125846742990, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 0.031254202
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: -0.0014090409
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 0.029553266
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: -0.12680201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].x
+      value: 0.03256962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
+      value: -0.6389233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].y
+      value: -0.6399707
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].x
+      value: 0.3200294
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].y
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].x
+      value: 1.9200001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].y
+      value: -0.3200294
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[10].x
+      value: 1.9200292
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[10].y
+      value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: 3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: -0.64002943
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
+      value: 3.5200293
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577514353742901037, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
+      value: -2.24
       objectReference: {fileID: 0}
     - target: {fileID: 9028019598062919236, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
       propertyPath: m_Layer
@@ -23428,7 +23567,7 @@ GameObject:
   - component: {fileID: 1717305608}
   m_Layer: 0
   m_Name: BordeDerecho
-  m_TagString: Untagged
+  m_TagString: NotClimbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

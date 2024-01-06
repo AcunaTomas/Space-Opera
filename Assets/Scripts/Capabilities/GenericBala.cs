@@ -8,6 +8,7 @@ public class GenericBala : MonoBehaviour
     private Rigidbody2D body;
     private float directionX = 10f;  
     private float directionY = 0f;
+    private float bulletTimeout = 6f;
 
     [SerializeField]
     private int damages = 5;
@@ -117,10 +118,15 @@ public class GenericBala : MonoBehaviour
        }
 
 
-       
+       StartCoroutine(Timeout());
 
     }
 
+    private IEnumerator Timeout()
+    {
+      yield return new WaitForSeconds(bulletTimeout);
+      Destroy(gameObject);
+    }
 
     private void OnCollisionEnter2D(Collision2D other) {
         other.gameObject.SendMessage("TakeDamage",damages,SendMessageOptions.DontRequireReceiver);
