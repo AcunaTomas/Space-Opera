@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
         melee,
         gun,
         simple,
+        shoot,
         boss
     }
 
@@ -181,6 +182,14 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Died", true);
             GetComponent<BossController>().enabled = false;
             GetComponentInChildren<HurtBoxFly>().enabled = false;
+        }
+
+        if (_enemyType == EnemyType.shoot)
+        {
+            animator.SetTrigger("Die");
+            GetComponent<EnemyFireBehaviour>().enabled = false;
+            GetComponentInChildren<HurtBoxFly>().enabled = false;
+
         }
 
         if (_enemyType == EnemyType.simple)

@@ -37,6 +37,11 @@ public class EnemyFireBehaviour : MonoBehaviour
         
     }
 
+    public void Test()
+    {
+        _animator.SetBool("Attack", false);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
