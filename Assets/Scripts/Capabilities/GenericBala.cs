@@ -129,7 +129,12 @@ public class GenericBala : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        other.gameObject.SendMessage("TakeDamage",damages,SendMessageOptions.DontRequireReceiver);
+        
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.SendMessage("TakeDamage", damages, SendMessageOptions.DontRequireReceiver);
+            Destroy(gameObject);
+        }
         Destroy(gameObject);
     }
 }

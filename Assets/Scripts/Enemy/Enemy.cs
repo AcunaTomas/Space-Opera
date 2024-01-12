@@ -87,6 +87,12 @@ public class Enemy : MonoBehaviour
                 GetComponent<EnemyShooting2>().enabled = false;
             }
 
+            if (_enemyType == EnemyType.simple)
+            {
+                GetComponent<EnemyPatrol>()._waiting = false;
+                GetComponent<EnemyPatrol>().NoHit();
+            }
+
             AudioManager.INSTANCE.PlayEnemyHit();
 
             if (currentHealth <= 0 && !_Inmortal) 
