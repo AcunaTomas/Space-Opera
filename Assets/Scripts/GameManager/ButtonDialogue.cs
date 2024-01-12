@@ -43,24 +43,8 @@ public class ButtonDialogue : MonoBehaviour
         {
             return;
         }
+        _zone = GameManager.INSTANCE.lvlDiag;
 
-        switch (GameManager.INSTANCE.LEVEL)
-        {
-            case 1:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_DIALOGUES);
-                break;
-            case 2:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2);
-                break;
-            case 3:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL3);
-                break;
-            case 4:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL_SELECT);
-                break;
-            default:
-                break;
-        }
     }
 
     public string[] AddText(string _zoneName)

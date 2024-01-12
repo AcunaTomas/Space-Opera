@@ -9,13 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     float HorizontalInputValue;
     [SerializeField]
-    public int HP = 5;
+    int HP = 5;
     [SerializeField]
     int MaxHP = 5;
     [SerializeField]
     float vertspid = -0.3f;
     public bool canIjump = true;
-    bool _firstImpulse = true;
     bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
@@ -30,7 +29,9 @@ public class Player : MonoBehaviour
     private int extrajumpcount = 1;
     [SerializeField]
     private float _lastJumpPress = 0f;
-    
+    [SerializeField]
+    private bool canIMove = true;
+    private float _autoPilotOffset = 0.2f;
     public float _fallingTime = 0f;
 
     [SerializeField]    
@@ -44,6 +45,11 @@ public class Player : MonoBehaviour
     private float _coyoteValidTime;
 
     private float _xSpeedNullifier = 1;
+
+    private bool doIhaveToGoSomewhere = false;
+
+    [SerializeField]
+    private float destinationX,destinationY;
 
     [SerializeField]
     private bool _wallJumpXHandicap = false;
@@ -59,6 +65,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _airborneTime = 0f;
 
+    [SerializeField]
     private bool _skillPermitted = true;
     private float _skillHold;
 
@@ -74,8 +81,6 @@ public class Player : MonoBehaviour
     public Animator _effectAnimator;
     public Animator _landingAnimator1;
     public Animator _landingAnimator2;
-
-    private float _timerBreak = 0f;
 
     private float dustSpawnCooldown = 0f;
 
@@ -103,11 +108,7 @@ public class Player : MonoBehaviour
         {
             return -1;
         }
-        if (_spriteRenderer.flipX == false)
-        {
-            return 1;
-        }
-        return 0;
+        return 1;
     }
 
     void Start()
@@ -118,99 +119,24 @@ public class Player : MonoBehaviour
         dustEffect = Resources.Load("Prefabs/dustEffect");
     }
 
-    private void Update()
-    {
-        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
-        {
-            _timerBreak += Time.deltaTime;
-        }
-    }
-
     void FixedUpdate()
     {
-        HorizontalInputValue = Input.GetAxis("Horizontal"); 
-        _plaseJump();
+        
+        if (canIMove == true)
+        {
+            HorizontalInputValue = Input.GetAxis("Horizontal");
+            _plaseJump();
+            Movement();
+            Effects();
+            Flip();
+        }
+        if (doIhaveToGoSomewhere == true)
+        {
+            MoveToPoint();
+        }
         WallJumpDelay();
-        Movement();
-        Flip();
-
-        if (Input.GetButton("Jump"))
-        {
-            _lastJumpPress += 0.17f;
-        }
-        else
-        {
-            _lastJumpPress = 0f;
-        }
-        if (Input.GetButton("Whoosh"))
-        {
-            _skillHold += 0.17f;
-        }
-        else
-        {
-            _skillHold = 0f;
-        }
-
-        
-
-        if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
-        {
-            if (!_coolingDashAnim && !_coolingShootDown) 
-            { 
-                _fallingTime += 0.16f;
-                _animator.SetFloat("fallingTime", _fallingTime);
-            }
-        }
-        else
-        {
-            _fallingTime = 0;
-            _animator.SetFloat("fallingTime", _fallingTime);
-        }
-
-        if (body.velocity.y < 0 && canIjump == false) 
-        {
-            _animator.SetFloat("speedY", body.velocity.y);
-        }
-        else
-        {
-            _animator.SetFloat("speedY", 1);
-        }
-
-        if (!canIjump && !wallijumpy)
-        {
-            _airborneTime += 0.1f;
-        }
-        else
-        {
-            _airborneTime = 0;
-        }
-        
-        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f && Time.time >= nextDashTime)
-        {
-            TheTheSkill();
-            ChangeSkillStatus(false);
-            nextDashTime = Time.time + 1f / dashRate;
-        }
-
-        if (_coyoteValidTime > 0)
-        {
-            _coyoteValidTime -= Time.deltaTime;
-            if (Clamp(_coyoteValidTime, 0, 1) <= 0 && jumpLimit == 0)
-            {
-                _coyoteValidTime = 0;
-                canIjump = false;
-            }
-        }
-
-        if (dustSpawnCooldown > 0)
-        {
-            dustSpawnCooldown -=0.017f;
-        }
-        else
-        {
-            dustSpawnCooldown = 0f;
-        }
-
+        speedCapping();
+        UpdateTimers();
     }
 
     private void _plaseJump()
@@ -222,7 +148,6 @@ public class Player : MonoBehaviour
            if (_lastJumpPress <= 0.30f)
            {
             vertspid = 1.3f + jumpLimit;
-            //_firstImpulse = false;
             
            }
            else
@@ -236,7 +161,6 @@ public class Player : MonoBehaviour
         }
         if (jumpLimit >= 0.4f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
-            //Debug.Log("Jump Peak");
             vertspid = 0f;
             jumpLimit = 0f;
             canIjump = false;
@@ -252,7 +176,6 @@ public class Player : MonoBehaviour
                 SpecialJump();
             }
         }
-        //Debug.Log(canIjump);
 
     }
 
@@ -266,7 +189,7 @@ public class Player : MonoBehaviour
         _effectAnimator.SetTrigger("Effect");
     }
 
-    private void WallJump()
+    private void WallJump() //Wall jumping handler
     {
 
         if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
@@ -293,13 +216,12 @@ public class Player : MonoBehaviour
         speedCaps = new Vector2(4, speedCaps.y);
     }
 
-    private void unsetXStunVariables() 
+    private void unsetXStunVariables() //like the last one, but for unfreezing
     {
-
         speedCaps = new Vector2(1.2f, speedCaps.y);
     }
 
-    void WallJumpDelay()
+    void WallJumpDelay() // Sticks The player to the wall
     {
         if (_wallJumpFreezeTimer > 0 && wallijumpy)
         {
@@ -319,37 +241,37 @@ public class Player : MonoBehaviour
         _wallJumpXHandicap = false;
     } 
 
-    private float Clamp(float x, float y, float z)
+    private float Clamp(float x, float y, float z) // Should be replaced with Mathf.Clamp
     {
         if (x.CompareTo(y) < 0) return y;
         else if (x.CompareTo(z) > 0) return z;
         else return x;
     }
 
-    public int GetHP()
+    public int GetHP() //Possibly the cleanest piece of code written in here
     {
         return HP;
     }
 
-    void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision) //Handles collisions, both vertical and horizontal, and changes the "state" (Read: I have not explicitly defined them because I'm an idiot and it would have been easier that way but didn't do that due to a fear of mixed state bugs that happened anyway so why did I not define states in the first place fuck) accordingly
     {
         Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
         Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
         //Debug.Log(collision.GetContact(0).normal);
-        ContactPoint2D[] contacts= new ContactPoint2D[8];
+        ContactPoint2D[] contacts= new ContactPoint2D[8]; //Realistically, the maximum should be around 6, but I want to be careful
         collision.GetContacts(contacts);
 
         //Debug.Log(normalcoll.y);
         //Debug.Log(normalcoll.x);
 
-        for (var i = 0; i < collision.contactCount; i++)
+        for (var i = 0; i < collision.contactCount; i++) // does this for every single contact point registered
         {
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
                 ChangeSkillStatus(true);
                 canIjump = true;
                 wallijumpy = false;
-                _firstImpulse = true;
+
                 extrajumpcount = 2;
                 _animator.SetBool("IsJumping", false);
                 _animator.SetBool("wall", false);
@@ -490,55 +412,11 @@ public class Player : MonoBehaviour
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
 
-
         vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
-        if (Mathf.Abs(body.velocity.x) > speedCaps.x)
-        {
-            body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
-        }
 
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
-        {
-            if (canIjump) //airborne checko
-            {
-                body.velocity = new Vector2(0f, body.velocity.y);
-            }
-            else
-            {
-                body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
-            }
-
-        }
-
-        if (Input.GetAxis("Horizontal") > 0 && _spriteRenderer.flipX == true && canIjump) //Spawns dust
-        {
-
-            if (GameManager.INSTANCE.dustcap > 0)
-            {
-                return;
-            }
-                
-            Debug.Log("Drift");     
-            var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
-            GameManager.INSTANCE.dustcap = 1;
-            
-        }
-        if (Input.GetAxis("Horizontal") < 0 && _spriteRenderer.flipX == false && canIjump)
-        {
-
-            if (GameManager.INSTANCE.dustcap > 0)
-            {
-                return;
-            }
-
-            Debug.Log("Drift2");
-            var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
-            GameManager.INSTANCE.dustcap = 1;
-        }
+       
 
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
         {
@@ -705,5 +583,182 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         _coolingRespawn = false;
+    }
+
+    private void Effects()
+    {
+         if (Input.GetAxis("Horizontal") > 0 && _spriteRenderer.flipX == true && canIjump) //Spawns dust
+        {
+
+            if (GameManager.INSTANCE.dustcap > 0 || body.velocity.x == 0)
+            {
+                return;
+            }
+                
+            Debug.Log("Drift");     
+            var a = Instantiate(dustEffect) as GameObject;
+            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            GameManager.INSTANCE.dustcap = 1;
+            
+        }
+        if (Input.GetAxis("Horizontal") < 0 && _spriteRenderer.flipX == false && canIjump)
+        {
+
+            if (GameManager.INSTANCE.dustcap > 0 || body.velocity.x == 0)
+            {
+                return;
+            }
+
+            Debug.Log("Drift2");
+            var a = Instantiate(dustEffect) as GameObject;
+            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            GameManager.INSTANCE.dustcap = 1;
+        }
+    }
+
+    public void MovementEnableToggle(bool a)
+    {
+        canIMove = a;
+        if (a == false)
+        {
+           _animator.SetFloat("Speed", 0);
+            Xspeed = 0;
+            _xSpeedNullifier = 0;
+            body.velocity = new Vector2(0,0);
+            return;
+        }
+
+    }
+
+    public void MoveToPoint() //Please push them where they need to go please please please, It does :D
+    {
+        if (body.position.x < (destinationX - _autoPilotOffset))
+        {
+            body.AddForce(new Vector2(speedCaps.x, 0), ForceMode2D.Force);
+            _animator.SetFloat("Speed", speedCaps.x);
+            _spriteRenderer.flipX = false;
+            return;
+        }
+        if (body.position.x > (destinationX + _autoPilotOffset))
+        {
+            body.AddForce(new Vector2(speedCaps.x * -1, 0), ForceMode2D.Force);
+            _animator.SetFloat("Speed", speedCaps.x);
+            _spriteRenderer.flipX = true;
+            return;
+        }
+        body.velocity = new Vector2(0,0);
+        _animator.SetFloat("Speed", 0);
+        doIhaveToGoSomewhere = false;
+
+
+    }
+    public void setDestination(float x, float y)
+    {
+        destinationX = x;
+        destinationY = y;
+        doIhaveToGoSomewhere = true;
+        
+    }
+    private void speedCapping()
+    {
+        if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+        {
+            body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
+        }
+        if(doIhaveToGoSomewhere == true)
+        {
+            return;
+        }
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
+        {
+            if (canIjump) //airborne checko
+            {
+                body.velocity = new Vector2(0f, body.velocity.y);
+            }
+            else
+            {
+                body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
+            }
+
+        }
+    
+    }
+
+    private void UpdateTimers()
+    {
+        if (canIjump == false && wallijumpy == false && body.velocity.y < 0)
+        {
+            if (!_coolingDashAnim && !_coolingShootDown) 
+            { 
+                _fallingTime += 0.16f;
+                _animator.SetFloat("fallingTime", _fallingTime);
+            }
+        }
+        else
+        {
+            _fallingTime = 0;
+            _animator.SetFloat("fallingTime", _fallingTime);
+        }
+
+        if (body.velocity.y < 0 && canIjump == false) 
+        {
+            _animator.SetFloat("speedY", body.velocity.y);
+        }
+        else
+        {
+            _animator.SetFloat("speedY", 1);
+        }
+
+        if (!canIjump && !wallijumpy)
+        {
+            _airborneTime += 0.1f;
+        }
+        else
+        {
+            _airborneTime = 0;
+        }
+        
+        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f && Time.time >= nextDashTime)
+        {
+            TheTheSkill();
+            ChangeSkillStatus(false);
+            nextDashTime = Time.time + 1f / dashRate;
+        }
+
+        if (_coyoteValidTime > 0)
+        {
+            _coyoteValidTime -= Time.deltaTime;
+            if (Clamp(_coyoteValidTime, 0, 1) <= 0 && jumpLimit == 0)
+            {
+                _coyoteValidTime = 0;
+                canIjump = false;
+            }
+        }
+
+        if (dustSpawnCooldown > 0)
+        {
+            dustSpawnCooldown -=0.017f;
+        }
+        else
+        {
+            dustSpawnCooldown = 0f;
+        }
+
+        if (Input.GetButton("Jump"))
+        {
+            _lastJumpPress += 0.17f;
+        }
+        else
+        {
+            _lastJumpPress = 0f;
+        }
+        if (Input.GetButton("Whoosh"))
+        {
+            _skillHold += 0.17f;
+        }
+        else
+        {
+            _skillHold = 0f;
+        }
     }
 }

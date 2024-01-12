@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private bool _escapePressed = false;
     private float restartTime;
     public float dustcap = 0;
+    public GameObject VFX_FADE;
+    public ButtonDialogue.Zone lvlDiag;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
@@ -50,6 +52,24 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private void Awake()
     {
         INSTANCE = this;
+        VFX_FADE.SetActive(true);
+        switch (GameManager.INSTANCE.LEVEL)
+        {
+            case 1:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL1_DIALOGUES);
+                break;
+            case 2:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL2);
+                break;
+            case 3:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL3);
+                break;
+            case 4:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL_SELECT);
+                break;
+            default:
+                break;
+        }
         CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
         try
         {
@@ -585,6 +605,18 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public void ActivateCursor(bool bl)
     {
         //Cursor.visible = bl;
+    }
+
+
+    public void AllMovementToggle(bool a)
+    {
+        PLAYER_COMBAT = a;
+        _playerScript.GetComponent<PlayerCombat>().enabled = a;
+        _playerScript.MovementEnableToggle(a);
+    }
+    public void TellThePlayerToMoveSomewhere(Transform a)
+    {
+        _playerScript.setDestination(a.position.x,a.position.y);
     }
 
 }
