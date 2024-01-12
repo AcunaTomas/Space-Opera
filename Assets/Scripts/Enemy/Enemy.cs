@@ -38,6 +38,9 @@ public class Enemy : MonoBehaviour
         boss
     }
 
+    [SerializeField]
+    private GameObject _objectToDisable;
+
     void Start()
     {
 
@@ -194,13 +197,18 @@ public class Enemy : MonoBehaviour
         {
             animator.SetTrigger("Die");
             GetComponent<EnemyFireBehaviour>().enabled = false;
-            GetComponentInChildren<HurtBoxFly>().enabled = false;
 
         }
 
         if (_enemyType == EnemyType.simple)
         {
-            gameObject.SetActive(false);
+            animator.SetTrigger("Die");
+            GetComponent<EnemyPatrol>().enabled = false;
+            GetComponentInChildren<HurtBoxFly>().enabled = false;
+
+            _objectToDisable.SetActive(false);
+
+
         }
 
         if (attackDamage < 50)

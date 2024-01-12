@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6385773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33, y: -0.1609, z: 0}
+  m_LocalPosition: {x: 0.42, y: -0.1609, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1614,6 +1614,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 3
+  _objectToDisable: {fileID: 0}
 --- !u!212 &95562963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2160,7 +2161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23617299883927047a16b4d1ea8731b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 45
+  _speed: 60
   _circleRadius: 0.03
   _groundCheck: {fileID: 1717189059}
   _groundLayer:
@@ -2183,7 +2184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 132371716}
   maxHealth: 100
-  _Inmortal: 1
+  _Inmortal: 0
   _MakeFunctionCallOnHit: 1
   _callWhat:
     m_PersistentCalls:
@@ -2191,6 +2192,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 2
+  _objectToDisable: {fileID: 195353346}
 --- !u!50 &132371712
 Rigidbody2D:
   serializedVersion: 4
@@ -7606,6 +7608,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 0
+  _objectToDisable: {fileID: 0}
 --- !u!61 &743692728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9628,7 +9631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23617299883927047a16b4d1ea8731b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 45
+  _speed: 60
   _circleRadius: 0.03
   _groundCheck: {fileID: 6385773}
   _groundLayer:
@@ -9659,6 +9662,7 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 2
+  _objectToDisable: {fileID: 472147910}
 --- !u!50 &884069202
 Rigidbody2D:
   serializedVersion: 4
@@ -18698,7 +18702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717189059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33, y: -0.1609, z: 0}
+  m_LocalPosition: {x: 0.42, y: -0.1609, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24555,6 +24559,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6084924630564075088, guid: 0fba43ff3dd092640941d570b06353d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084924630564075090, guid: 0fba43ff3dd092640941d570b06353d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6084924630564075090, guid: 0fba43ff3dd092640941d570b06353d3, type: 3}
       propertyPath: m_TagString
       value: Untagged

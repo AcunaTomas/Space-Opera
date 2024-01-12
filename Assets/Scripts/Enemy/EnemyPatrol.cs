@@ -14,7 +14,7 @@ public class EnemyPatrol : MonoBehaviour
     public bool _isGrounded;
     private Animator _animator;
 
-    private float _waitTime = 4f;
+    private float _waitTime = 3f;
     private float _waitCounter = 0f;
     public   bool _waiting = false;
 
