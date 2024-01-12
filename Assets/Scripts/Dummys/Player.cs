@@ -147,17 +147,22 @@ public class Player : MonoBehaviour
             
            if (_lastJumpPress <= 0.30f)
            {
-            vertspid = 1.3f + jumpLimit;
-            
+                vertspid = 1.3f + jumpLimit;
+                _animator.SetBool("IsJumping", true);
+                _animator.SetFloat("Speed", 1f);
            }
            else
            {   
                vertspid = jumpLimit;
            }
-            jumpLimit += 0.04f;
-            
-            _animator.SetBool("IsJumping", true);
-            _animator.SetFloat("Speed", 1f);
+           
+           jumpLimit += 0.04f;
+           
+           if (_lastJumpPress > 4f)
+           {
+                jumpLimit = 0f;
+           }
+           
         }
         if (jumpLimit >= 0.4f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
