@@ -395,10 +395,18 @@ public class Player : MonoBehaviour
                     if ((contacts[i].normal.x) > 0) 
                     {
                         _spriteRenderer.flipX = true;
+                        if (_playerType == PlayerType.Brody)
+                        {
+                            _animator.runtimeAnimatorController = _brodyLeft;
+                        }
                     } 
                     else
                     {
                         _spriteRenderer.flipX = false;
+                        if (_playerType == PlayerType.Brody)
+                        {
+                            _animator.runtimeAnimatorController = _brodyRight;
+                        }
                     }
                     unsetXStunVariables();
 
@@ -575,7 +583,7 @@ public class Player : MonoBehaviour
                 if (_playerType == PlayerType.Brody)
                 {
                     _animator.runtimeAnimatorController = _brodyLeft;
-            }
+                }
             }
             else if (Input.GetAxisRaw("Horizontal") > 0)
             {
@@ -604,6 +612,9 @@ public class Player : MonoBehaviour
 
             _coolingHit = true;
             StartCoroutine(StartCooldown());
+
+            _animator.SetBool("HurtBool", true);
+            StartCoroutine(StartCooldownHurtAnim());
 
             if (HP <= 0)
             {
@@ -690,6 +701,14 @@ public class Player : MonoBehaviour
 
         _coolingHit = false;
     }
+
+    private IEnumerator StartCooldownHurtAnim()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        _animator.SetBool("HurtBool", false);
+    }
+    
 
     public IEnumerator StartCooldownIFrame()
     {

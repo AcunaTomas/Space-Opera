@@ -40,6 +40,9 @@ public class HurtBox : MonoBehaviour
     {
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        player.GetComponent<PlayerCombat>().enabled = true;
+        if (player.GetComponent<Player>().HP > 0)
+        {
+            player.GetComponent<PlayerCombat>().enabled = true;
+        }
     }
 }

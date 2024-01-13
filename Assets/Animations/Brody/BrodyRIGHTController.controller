@@ -224,6 +224,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &-6518219268363146424
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -3124008677640394213}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.625
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &-6456738278872231370
 AnimatorState:
   serializedVersion: 6
@@ -417,7 +442,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.99
+  m_ExitTime: 0.9
   m_HasExitTime: 1
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -1132,6 +1157,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: HurtBool
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: Die
     m_Type: 9
     m_DefaultFloat: 0
@@ -1410,6 +1441,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &1366913672249553566
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Die
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1347664661679562467}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1107 &1627358528786411529
 AnimatorStateMachine:
   serializedVersion: 6
@@ -1427,16 +1483,16 @@ AnimatorStateMachine:
     m_Position: {x: -210, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2401724354212549895}
-    m_Position: {x: -410, y: -80, z: 0}
+    m_Position: {x: -410, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 311389463587307607}
-    m_Position: {x: -270, y: 110, z: 0}
+    m_Position: {x: -280, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 267877821942417452}
     m_Position: {x: -210, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4421065284400847636}
-    m_Position: {x: -750, y: 390, z: 0}
+    m_Position: {x: -730, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2189010851954041116}
     m_Position: {x: 440, y: 400, z: 0}
@@ -1451,7 +1507,7 @@ AnimatorStateMachine:
     m_Position: {x: 110, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6213608380654969660}
-    m_Position: {x: -270, y: 160, z: 0}
+    m_Position: {x: -280, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1474128089630247676}
     m_Position: {x: -270, y: 270, z: 0}
@@ -1460,22 +1516,22 @@ AnimatorStateMachine:
     m_Position: {x: -210, y: -200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1347664661679562467}
-    m_Position: {x: -220, y: -270, z: 0}
+    m_Position: {x: -210, y: -270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4403699115292240178}
     m_Position: {x: -940, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6456738278872231370}
-    m_Position: {x: -1200, y: 60, z: 0}
+    m_Position: {x: -1380, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4197966556627826538}
-    m_Position: {x: -1200, y: 130, z: 0}
+    m_Position: {x: -1380, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8183816890985929912}
-    m_Position: {x: -1200, y: 200, z: 0}
+    m_Position: {x: -1380, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 800652439814079062}
-    m_Position: {x: -1000, y: 230, z: 0}
+    m_Position: {x: -1380, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1749708975496105160}
     m_Position: {x: -730, y: -210, z: 0}
@@ -1484,10 +1540,10 @@ AnimatorStateMachine:
     m_Position: {x: -510, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8087058771735452537}
-    m_Position: {x: -590, y: 260, z: 0}
+    m_Position: {x: -1380, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7237557329078957251}
-    m_Position: {x: -555, y: 325, z: 0}
+    m_Position: {x: -1380, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8171856137376495553}
     m_Position: {x: -270, y: 320, z: 0}
@@ -1514,7 +1570,7 @@ AnimatorStateMachine:
     m_Position: {x: -580, y: -440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2627347730648256953}
-    m_Position: {x: -1185.0627, y: 343.88525, z: 0}
+    m_Position: {x: -1380, y: 270, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 5526928180920288676}
@@ -1662,6 +1718,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 2002677563508350151}
   - {fileID: 8236273385221307789}
+  - {fileID: -6518219268363146424}
+  - {fileID: 1366913672249553566}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1877,7 +1935,7 @@ AnimatorStateTransition:
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
-  m_OrderedInterruption: 1
+  m_OrderedInterruption: 0
   m_CanTransitionToSelf: 1
 --- !u!1101 &5506711002439331949
 AnimatorStateTransition:
@@ -1918,6 +1976,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: fallingTime
     m_EventTreshold: 6
+  - m_ConditionMode: 2
+    m_ConditionEvent: HurtBool
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2401724354212549895}
   m_Solo: 0
@@ -2303,6 +2364,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: DoubleJump
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: HurtBool
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7361544115555924311}
