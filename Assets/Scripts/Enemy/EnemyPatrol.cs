@@ -86,13 +86,11 @@ public class EnemyPatrol : MonoBehaviour
 
     public void NoHit()
     {
-        Debug.Log("No se le pega");
         gameObject.tag = "Untagged";
     }
 
     void SiHit()
     {
-        Debug.Log("Se le pega");
         gameObject.tag = "Enemy";
     }
     

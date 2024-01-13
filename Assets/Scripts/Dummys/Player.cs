@@ -78,6 +78,17 @@ public class Player : MonoBehaviour
     private float _timerBreak = 0f;
 
     private float dustSpawnCooldown = 0f;
+    [SerializeField]
+    private RuntimeAnimatorController _brodyRight;
+    [SerializeField]
+    private RuntimeAnimatorController _brodyLeft;
+
+    public PlayerType _playerType;
+    public enum PlayerType
+    {
+        Bito,
+        Brody
+    }
 
     public struct parama
     {
@@ -112,6 +123,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        switch (_playerType)
+        {
+            default:
+
+                break;
+        }
+
         body = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -549,16 +567,24 @@ public class Player : MonoBehaviour
 
     //Animaciones
 
-    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is!
+    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is! || In fact, Marian DID draw a batch of redundant sprites, so no mirroring for Brody, kinda...
         {
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 _spriteRenderer.flipX = true;
+                if (_playerType == PlayerType.Brody)
+                {
+                    _animator.runtimeAnimatorController = _brodyLeft;
+            }
             }
             else if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 _spriteRenderer.flipX = false;
-            }
+                if (_playerType == PlayerType.Brody)
+                {
+                    _animator.runtimeAnimatorController = _brodyRight;
+                }
+        }
 
         }
    /*  void OnDrawGizmosSelected()
