@@ -289,4 +289,10 @@ public class ButtonDialogue : MonoBehaviour
             _buttonPressed = false;
         }
     }
+
+
+    public void ChangeLifeBar(Animator _newLifeBar)
+    {
+        lifeBarAnim = _newLifeBar;
+    }
 }

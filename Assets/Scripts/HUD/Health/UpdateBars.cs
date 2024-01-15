@@ -5,7 +5,13 @@ using UnityEngine;
 public class UpdateBars : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _leftBar;
+    private GameObject _leftBar0;
+    [SerializeField]
+    private GameObject _leftBar1;
+    [SerializeField]
+    private GameObject _leftBar2;
+    [SerializeField]
+    private GameObject _leftBar3;
     [SerializeField]
     private GameObject _rightBar;
     [SerializeField]
@@ -69,9 +75,21 @@ public class UpdateBars : MonoBehaviour
             {
                 go = Instantiate(_rightBar, transform);
             }
+            else if (i == _playerHP-2)
+            {
+                go = Instantiate(_leftBar3, transform);
+            }
+            else if (i == _playerHP - 3)
+            {
+                go = Instantiate(_leftBar2, transform);
+            }
+            else if (i == _playerHP - 4)
+            {
+                go = Instantiate(_leftBar1, transform);
+            }
             else
             {
-                go = Instantiate(_leftBar, transform);
+                go = Instantiate(_leftBar0, transform);
             }
         }
     }
