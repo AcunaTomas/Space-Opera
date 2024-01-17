@@ -16,7 +16,6 @@ public class CombatBro : PlayerCombat
     [SerializeField]
     private LayerMask discoverable;
 
-
     public override void Bomb()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 30, discoverable);
@@ -37,6 +36,9 @@ public class CombatBro : PlayerCombat
         _player.GetComponent<Player>().enabled = false;
         _player.GetComponent<CombatBro>().enabled = false;
         _player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y);
+        //_player.GetComponent<Player>()._animator.SetFloat("fallingTime", 0f);
+        //_player.GetComponent<Player>()._animator.SetBool("IsJumping", false);
+        //_player.GetComponent<Player>()._animator.Play("Brody_scan2");
         StartCoroutine(StartCooldownMovement());
     }
     public override void Attack()

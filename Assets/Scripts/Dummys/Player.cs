@@ -90,6 +90,8 @@ public class Player : MonoBehaviour
         Brody
     }
 
+    public bool _isBrodyJumping = false;
+
     public struct parama
     {
         public bool a;
