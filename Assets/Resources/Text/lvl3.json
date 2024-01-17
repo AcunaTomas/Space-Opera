@@ -7,20 +7,22 @@
             [
                 "Nativo*???_img*angry*...",
                 "Nativo*???_img*angry*¡Ustedes! ¡Alto ahí! ¡No pueden pasar!",
-                "Brody*brody_img*normal*Tranquilo viejo, buscamos a un sabio de aquí que supuestamente sabe de todo.",
-                "Nativo*???_img*normal*Ah, se refieren al <color=#FFFF00>Oráculo</color>",
-                "Nativo*???_img*normal*Solo pueden llegar a él con el permiso del <color=#FFFF00>guardián del bosque</color>.",
-                "Nativo*???_img*normal*Dudo que les permita pasar, el guardián habla en nombre de la naturaleza, y este bosque ha sufrido mucho últimamente.",
-                "Brody*brody_img*normal*¿A qué te refieres con sufrir?"
+                "Brody*brody_img*normal*Tranquilo viejo, recibimos una señal de ayuda de aquí mismo y vinimos a ver qué ocurre.",
+                "Nativo*???_img*normal*¿Señal? No sé a qué te refieres, pero si, necesitamos ayuda.",
+                "Nativo*???_img*normal*Las aldeas que están en las copas de los árboles están siendo invadidas y ya se acaban los recursos para defendernos.",
+                "Brody*brody_img*normal*¿Invadidas por quienes?",
+                "Nativo*???_img*normal*No sabemos quienes son, llevan semanas aquí y se están llevando todos nuestros frutos…",
+                "Nativo*???_img*normal*Ahora que lo mencionas, se parecen a tu amigo de ahí."
             ]
         },
         {
             "ID": "lvl03_intro2",
             "STRINGS":
             [
-                "Bito*bito_img*normal*¿Serán ellos?",
+                "Bito*bito_img*normal*¿A mí? Oh no… ¿Serán ellos?",
                 "Brody*brody_img*normal*Seguro que sí.",
-                "Brody*brody_img*normal*Mejor separémosnos, ve a ayudar a los heridos, yo voy a hablar con el <color=#FFFF00>guardián</color>.",
+                "Nativo*???_img*normal*Si quieren ayudar, primero necesitan hablar con el <color=#FFFF00>sabio del bosque</color>.",
+                "Brody*brody_img*normal*Okey, mejor separemosnos, ve a ayudar a los heridos, yo voy a hablar con el <color=#FFFF00>sabio</color>.",
                 "Bito*bito_img*normal*Ok."
             ]
         },
@@ -28,7 +30,7 @@
             "ID": "lvl03_intro3",
             "STRINGS":
             [
-                "Brody*brody_img*normal*¿Dónde encuentro al guardián?",
+                "Brody*brody_img*normal*¿Dónde encuentro al <color=#FFFF00>sabio</color>.?",
                 "Nativo*???_img*normal*Sigue el <color=#FFFF00>sendero de luces</color>, eso te guiará hasta él, buena suerte."
             ]
         },
@@ -36,16 +38,16 @@
             "ID": "objective01",
             "STRINGS":
             [
-                "Busca al guardián"
+                "Busca al sabio"
             ]
         },
         {
             "ID": "guardian_01",
             "STRINGS":
             [
-                "Guardián*guardian_img*normal*Lo puedo sentir...",
-                "Brody*brody_img*normal*¿Usted es el guardián?",
-                "Guardián*guardian_img*normal*<color=#FFFF00>Nuestra salvación</color>... Está aquí...",
+                "Sabio*guardian_img*normal*Lo puedo sentir...",
+                "Brody*brody_img*normal*¿Usted es el sabio?",
+                "Sabio*guardian_img*normal*<color=#FFFF00>Nuestra salvación</color>... Está aquí...",
                 "Brody*brody_img*normal*Disculpe anciano, no entiendo."
             ]
         },
@@ -53,10 +55,10 @@
             "ID": "guardian_02",
             "STRINGS":
             [
-                "Guardián*guardian_img*normal*Y tú... Tú lo estás guiando...",
+                "Sabio*guardian_img*normal*Y tú... Tú lo estás guiando...",
                 "Brody*brody_img*normal*¿Hablas de Bito?",
-                "Guardián*guardian_img*normal*No te preocupes, todo tendrá respuesta a su debido tiempo...",
-                "Guardián*guardian_img*normal*<color=#FFFF00>Pueden pasar</color>... La naturaleza está de su lado...",
+                "Sabio*guardian_img*normal*No te preocupes, todo tendrá respuesta a su debido tiempo...",
+                "Sabio*guardian_img*normal*<color=#FFFF00>Pueden pasar</color>... La naturaleza está de su lado...",
                 "Brody*brody_img*normal*Pero..."
             ]
         },
@@ -79,7 +81,7 @@
             "ID": "bito_01",
             "STRINGS":
             [
-                "Brody*brody_img*normal*¿Todo bien por acá?",
+                "Brody*brody_img*normal*¿Todo bien por aquí?",
                 "Bito*bito_img*normal*Todos están mal heridos...",
                 "Brody*brody_img*normal*Lo sé, pero ahora que tenemos el permiso para avanzar, podremos hacer algo por esta gente.",
                 "Bito*bito_img*normal*Ah, es por eso que se abrió aquel hueco en el árbol entonces.",
@@ -129,10 +131,10 @@
             "ID": "coachlvl3_2",
             "STRINGS":
             [
-                "Coach*coach_img*normal*Espera un momento…",
-                "Coach*coach_img*normal*Esa armadura… La reconozco…",
-                "Coach*coach_img*normal*¡Eres el desertor! ¡Debo informar esto!*manualDo*ActivateGag1",
-                "Coach*coach_img*normal*¡Prepárate para sufrir, escoria!*manualDo*DeactivateGag1"
+                "Coach*coach_img*normal*Me sorprende que haya funcionado la señal de ayuda falsa HAHAHA",
+                "Coach*coach_img*normal*Tu escape me puso en graves aprietos, pero pude seguir tu rastro...",
+                "Coach*coach_img*normal*Pero nunca pensé que te atraería hacia mi tan fácilmente HAHAHA*manualDo*ActivateGag1",
+                "Coach*coach_img*normal*¡Así que ahora prepárate para sufrir, escoria!*manualDo*DeactivateGag1"
             ]
         },
         {
