@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
@@ -23,6 +24,12 @@ public class CinematicDialogue : MonoBehaviour
     [SerializeField]
     private string _sceneName;
     private bool _ePressed = false;
+    //DialogueSkip
+    private bool _dialogueSkipEnd = true;
+    [SerializeField]
+    private Image _skipBar;
+    private float _holdSkip = 0f;
+    private float _holdToSkip = 3f;
 
     void Start()
     {
@@ -117,6 +124,11 @@ public class CinematicDialogue : MonoBehaviour
             _cont++;
         }
     }
+    private void ActualizarSkip(float cantidade)
+    {
+        _holdSkip += cantidade;
+        _skipBar.fillAmount = _holdSkip / _holdToSkip;
+    }
 
     void Update()
     {
@@ -128,7 +140,23 @@ public class CinematicDialogue : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") || Input.GetButtonDown("Submit"))
         {
-             _ePressed = false;
+            ActualizarSkip(-_holdSkip);
+            _ePressed = false;
+        }
+
+        
+        if(Input.GetButton("Jump") || Input.GetButton("Submit"))
+        {
+            if(_dialogueSkipEnd)
+            {
+                Debug.Log("charging skip");
+                ActualizarSkip(Time.deltaTime);         
+                if(_holdSkip >= _holdToSkip)
+                {
+                    ScenesManager.Instance.LoadNextScene(_sceneName);
+                    _dialogueSkipEnd = false;
+                }
+            }
         }
     }
 

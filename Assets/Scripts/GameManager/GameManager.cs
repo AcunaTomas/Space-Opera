@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public float dustcap = 0;
     public GameObject VFX_FADE;
     public ButtonDialogue.Zone lvlDiag;
+    public bool DIALOGUESKIPEND = false;
+    public int DIALOGUESKIPCOUNT;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
@@ -618,5 +620,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         _playerScript.setDestination(a.position.x,a.position.y);
     }
+
+    public void IsSkippable(bool toggle)
+    {
+        if(DIALOGUESKIPEND && !toggle)
+        {
+            DIALOGUESKIPCOUNT++;
+        }
+        DIALOGUESKIPEND = toggle;
+        
+    } 
 
 }
