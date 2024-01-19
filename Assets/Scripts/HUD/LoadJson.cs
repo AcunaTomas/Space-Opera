@@ -5,7 +5,7 @@ using System.IO;
 
 public static class LoadJson
 {
-    public static bool DEBUG_MODE = false;
+    public static bool DEBUG_MODE = true;
     public static string MAIN_MENU = Resources.Load<TextAsset>("Text/main_menu").text;
     public static string LVL1_DIALOGUES = Resources.Load<TextAsset>("Text/lvl1").text;
     public static string LVL1_CINEMATIC = Resources.Load<TextAsset>("Text/lvl1_cinematic").text;
