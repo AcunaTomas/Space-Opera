@@ -101,24 +101,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
     
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+        if(LoadJson.DEBUG_MODE)
         {
-            ScenesManager.Instance.LoadNextScene("Tutorial");
-        }
-
-        if (Input.GetKeyDown("2"))
-        {
-            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
-        }
-
-        if (Input.GetKeyDown("3"))
-        {
-            ScenesManager.Instance.LoadNextScene("NewLevel3");
-        }
-
-        if (Input.GetKeyDown("5"))
-        {
-            DataPersistentManager.INSTANCE.DeleteSave();
+            DebugLowLevels();
+            DebugDeleteSaveData();
+            DebugReset();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
@@ -130,19 +117,6 @@ public class GameManager : MonoBehaviour, IDataPersistance
         {
             _escapePressed = false;
         } 
-
-        if (Input.GetAxis("Debug Reset") > 0)
-        {
-            restartTime += Time.deltaTime;
-            if (restartTime >= 2f)
-            {
-                ScenesManager.Instance.ReloadScene();
-            }
-        }
-        else
-        {
-            restartTime = 0f;
-        }
     }
 
     public void PauseUnPause(bool bl)
@@ -172,7 +146,47 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         QUILOMB_MODE = true;
     }
+    private void DebugLowLevels()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            ScenesManager.Instance.LoadNextScene("Tutorial");
+        }
 
+        if (Input.GetKeyDown("2"))
+        {
+            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            ScenesManager.Instance.LoadNextScene("NewLevel3");
+        }
+    }
+
+    private void DebugDeleteSaveData()
+    {
+        if (Input.GetKeyDown("5"))
+        {
+            DataPersistentManager.INSTANCE.DeleteSave();
+        }
+    }
+
+    private void DebugReset()
+    {
+        if (Input.GetAxis("Debug Reset") > 0)
+        {
+            restartTime += Time.deltaTime;
+            if (restartTime >= 2f)
+            {
+                ScenesManager.Instance.ReloadScene();
+            }
+        }
+        else
+        {
+            restartTime = 0f;
+        }
+    }
     void IDataPersistance.LoadData(GameData data)
     {
         MUSIC_VOLUME = data.MUSIC_VOLUME;
