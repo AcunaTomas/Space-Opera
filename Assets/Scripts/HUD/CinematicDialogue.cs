@@ -23,7 +23,6 @@ public class CinematicDialogue : MonoBehaviour
     private Animator _animatorCinematic;
     [SerializeField]
     private string _sceneName;
-    private bool _ePressed = false;
     //DialogueSkip
     private bool _dialogueSkipEnd = true;
     [SerializeField]
@@ -132,16 +131,14 @@ public class CinematicDialogue : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_ePressed)
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit"))
         {
-            _ePressed = true;
             MoreDialoguePlz();
         }
 
-        if (Input.GetButtonUp("Jump") || Input.GetButtonDown("Submit"))
+        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
         {
             ActualizarSkip(-_holdSkip);
-            _ePressed = false;
         }
 
         
