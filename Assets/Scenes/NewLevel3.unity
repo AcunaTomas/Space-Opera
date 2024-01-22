@@ -1938,6 +1938,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
   _playerType: 0
+  _isBrodyJumping: 0
 --- !u!50 &98185819
 Rigidbody2D:
   serializedVersion: 4
@@ -9298,6 +9299,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
   _playerType: 0
+  _isBrodyJumping: 0
 --- !u!95 &789755956
 Animator:
   serializedVersion: 5
@@ -13717,6 +13719,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
   _playerType: 0
+  _isBrodyJumping: 0
 --- !u!95 &1110223549
 Animator:
   serializedVersion: 5
@@ -18280,6 +18283,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
   _playerType: 0
+  _isBrodyJumping: 0
 --- !u!1 &1523384060
 GameObject:
   m_ObjectHideFlags: 0
@@ -21561,18 +21565,24 @@ MonoBehaviour:
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: 523060d048a4a2e40afb171565fe1680, type: 3}
+    - EMOTION: normalLeft
+      ICON: {fileID: 2800000, guid: 922e471d3d76c4341aeccc254c30f0c9, type: 3}
   - NAME: brody_img
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: fa8c6f9bd684ba943a72518643a1a678, type: 3}
+    - EMOTION: normalLeft
+      ICON: {fileID: 2800000, guid: 0821c257f0eca8d45909107d0d6fd6cd, type: 3}
   - NAME: guardian_img
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: f75312d75d544224f93da7ab252710e3, type: 3}
+    - EMOTION: normalRight
+      ICON: {fileID: 2800000, guid: 80a3d8cec8884394ca71958b6ccbd4cd, type: 3}
   - NAME: coach_img
     EMOTIONS:
     - EMOTION: normal
-      ICON: {fileID: 2800000, guid: c79d0e01e009e3e4dbd90ae9bf73dd8e, type: 3}
+      ICON: {fileID: 2800000, guid: 7d84248d409ac3b448605a1001e4d34b, type: 3}
 --- !u!114 &1797964877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22020,6 +22030,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
   _playerType: 0
+  _isBrodyJumping: 0
 --- !u!95 &1809550093
 Animator:
   serializedVersion: 5
@@ -23090,6 +23101,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
   _playerType: 0
+  _isBrodyJumping: 0
   _canDash: 1
   _dashEffect: {fileID: 1643446870}
 --- !u!114 &1919219204
@@ -25380,6 +25392,7 @@ MonoBehaviour:
   _brodyRight: {fileID: 9100000, guid: 0ba0ecc4bc2f69b4693dea3bfcce2c3c, type: 2}
   _brodyLeft: {fileID: 22100000, guid: 027de1833b29c3c46a22c0616e8680f0, type: 2}
   _playerType: 1
+  _isBrodyJumping: 0
 --- !u!50 &2041125181
 Rigidbody2D:
   serializedVersion: 4
