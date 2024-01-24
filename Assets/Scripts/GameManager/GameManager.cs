@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private bool _escapePressed = false;
     private float restartTime;
     public float dustcap = 0;
+    public GameObject VFX_FADE;
+    public ButtonDialogue.Zone lvlDiag;
+    public bool DIALOGUESKIPEND = false;
+    public int DIALOGUESKIPCOUNT;
 
     //LEVEL 1
     [Header("LEVEL 1\n")]
@@ -50,7 +54,25 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private void Awake()
     {
         INSTANCE = this;
-        CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
+        VFX_FADE.SetActive(true);
+        switch (GameManager.INSTANCE.LEVEL)
+        {
+            case 1:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL1_DIALOGUES);
+                break;
+            case 2:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL2);
+                break;
+            case 3:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL3);
+                break;
+            case 4:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL_SELECT);
+                break;
+            default:
+                break;
+        }
+        CANVAS = GameObject.FindWithTag("PanelDialogue").GetComponent<ButtonDialogue>(); //transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
         try
         {
             _playerScript = PLAYER.GetComponent<Player>();
@@ -79,24 +101,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
     
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+        if(LoadJson.DEBUG_MODE)
         {
-            ScenesManager.Instance.LoadNextScene("Tutorial");
-        }
-
-        if (Input.GetKeyDown("2"))
-        {
-            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
-        }
-
-        if (Input.GetKeyDown("3"))
-        {
-            ScenesManager.Instance.LoadNextScene("NewLevel3");
-        }
-
-        if (Input.GetKeyDown("5"))
-        {
-            DataPersistentManager.INSTANCE.DeleteSave();
+            DebugLowLevels();
+            DebugDeleteSaveData();
+            DebugReset();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
@@ -108,19 +117,6 @@ public class GameManager : MonoBehaviour, IDataPersistance
         {
             _escapePressed = false;
         } 
-
-        if (Input.GetAxis("Debug Reset") > 0)
-        {
-            restartTime += Time.deltaTime;
-            if (restartTime >= 2f)
-            {
-                ScenesManager.Instance.ReloadScene();
-            }
-        }
-        else
-        {
-            restartTime = 0f;
-        }
     }
 
     public void PauseUnPause(bool bl)
@@ -150,7 +146,47 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         QUILOMB_MODE = true;
     }
+    private void DebugLowLevels()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            ScenesManager.Instance.LoadNextScene("Tutorial");
+        }
 
+        if (Input.GetKeyDown("2"))
+        {
+            ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            ScenesManager.Instance.LoadNextScene("NewLevel3");
+        }
+    }
+
+    private void DebugDeleteSaveData()
+    {
+        if (Input.GetKeyDown("5"))
+        {
+            DataPersistentManager.INSTANCE.DeleteSave();
+        }
+    }
+
+    private void DebugReset()
+    {
+        if (Input.GetAxis("Debug Reset") > 0)
+        {
+            restartTime += Time.deltaTime;
+            if (restartTime >= 2f)
+            {
+                ScenesManager.Instance.ReloadScene();
+            }
+        }
+        else
+        {
+            restartTime = 0f;
+        }
+    }
     void IDataPersistance.LoadData(GameData data)
     {
         MUSIC_VOLUME = data.MUSIC_VOLUME;
@@ -586,5 +622,27 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         //Cursor.visible = bl;
     }
+
+
+    public void AllMovementToggle(bool a)
+    {
+        PLAYER_COMBAT = a;
+        _playerScript.GetComponent<PlayerCombat>().enabled = a;
+        _playerScript.MovementEnableToggle(a);
+    }
+    public void TellThePlayerToMoveSomewhere(Transform a)
+    {
+        _playerScript.setDestination(a.position.x,a.position.y);
+    }
+
+    public void IsSkippable(bool toggle)
+    {
+        if(DIALOGUESKIPEND && !toggle)
+        {
+            DIALOGUESKIPCOUNT++;
+        }
+        DIALOGUESKIPEND = toggle;
+        
+    } 
 
 }

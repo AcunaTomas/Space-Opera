@@ -20,6 +20,12 @@ public class ButtonDialogue : MonoBehaviour
     private GameObject _player;
     [SerializeField]
     private DialogueImgPj _dip;
+    [SerializeField]
+    private GameObject[] _dialogueSkipAction;
+    private int _dialogueNumber;
+    private bool _dialogueSkipEnd;
+    [SerializeField]
+    private Image _skipBar;
 
     private int _cont = 0;
     private Zone _zone;
@@ -35,6 +41,10 @@ public class ButtonDialogue : MonoBehaviour
     private bool _buttonPressed = false;
     private bool _stopSubmit = false;
 
+    //DialogueSkip
+    private float _holdSkip = 0f;
+    private float _holdToSkip = 3f;
+
     public Animator lifeBarAnim;
 
     void Awake()
@@ -43,24 +53,7 @@ public class ButtonDialogue : MonoBehaviour
         {
             return;
         }
-
-        switch (GameManager.INSTANCE.LEVEL)
-        {
-            case 1:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL1_DIALOGUES);
-                break;
-            case 2:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL2);
-                break;
-            case 3:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL3);
-                break;
-            case 4:
-                _zone = JsonUtility.FromJson<Zone>(LoadJson.LVL_SELECT);
-                break;
-            default:
-                break;
-        }
+        _zone = GameManager.INSTANCE.lvlDiag;
     }
 
     public string[] AddText(string _zoneName)
@@ -256,14 +249,21 @@ public class ButtonDialogue : MonoBehaviour
         }
 
     }
+    private void ActualizarSkip(float cantidade)
+    {
+        _holdSkip += cantidade;
+        _skipBar.fillAmount = _holdSkip / _holdToSkip;
+    }
 
     void OnEnable()
     {
+        _dialogueSkipEnd = GameManager.INSTANCE.DIALOGUESKIPEND;
+        _dialogueNumber = GameManager.INSTANCE.DIALOGUESKIPCOUNT;
         lifeBarAnim.SetTrigger("Disappear");
     }
-
     void OnDisable()
     {
+        ActualizarSkip(-_holdSkip);
         if (GameManager.INSTANCE.QUILOMB_MODE)
         {
             lifeBarAnim.SetTrigger("Appear");
@@ -286,7 +286,23 @@ public class ButtonDialogue : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
         {
+            ActualizarSkip(-_holdSkip);
             _buttonPressed = false;
+        }
+
+        if((Input.GetButton("Jump") || Input.GetButton("Submit")) && LoadJson.DEBUG_MODE)
+        {
+            if(_dialogueSkipEnd)
+            {
+                Debug.Log("charging skip");
+                ActualizarSkip(Time.deltaTime);         
+                if(_holdSkip >= _holdToSkip)
+                {
+                    _dialogueSkipAction[_dialogueNumber].SetActive(true);
+                    _dialogueSkipEnd = false;
+                    StartCoroutine(Fold());
+                }
+            }
         }
     }
 
