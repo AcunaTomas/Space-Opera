@@ -16,8 +16,8 @@ public class ButtonDialogue : MonoBehaviour
     private GameObject _characterPanelName;
     [SerializeField]
     private TextMeshProUGUI _characterName;
-    [SerializeField]
-    private GameObject _player;
+
+    public GameObject _player;
     [SerializeField]
     private DialogueImgPj _dip;
     [SerializeField]

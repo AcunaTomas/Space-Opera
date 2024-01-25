@@ -171,13 +171,14 @@ public class CollisionDialogue : MonoBehaviour
             _panelDialogue.DeactivateGO(gameObject);
         }
 
-        if (_panelDialogue.GetComponent<Player>() != null) // Null check for cutscenes, since those don't need an actual player
+        if (_player.GetComponent<Player>() != null) // Null check for cutscenes, since those don't need an actual player
         {
             _player.GetComponent<Player>().enabled = false;
             _player.GetComponent<PlayerCombat>().enabled = false;
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             _player.GetComponent<Animator>().SetFloat("Speed", 0f);
             _player.GetComponent<Animator>().SetFloat("speedY", 0.1f);
+            print("Paralisis");
         }
 
 
