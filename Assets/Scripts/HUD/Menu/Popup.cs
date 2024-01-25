@@ -14,7 +14,7 @@ public class Popup : MonoBehaviour
         }
         catch (System.Exception e)
         {
-
+                print("PopUp null Reference Exception" + e);
         }
     }
 }

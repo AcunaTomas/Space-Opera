@@ -37,8 +37,8 @@ public class VolumeSettings : MonoBehaviour
         }
         catch (System.Exception e)
         {
-
-             
+            print("Volume exception, Probably called outside of the menu" + e);
+            
         }
         _mixer.SetFloat("music", Mathf.Log10(volume)*20);
         GameManager.INSTANCE.MUSIC_VOLUME = volume;
@@ -54,7 +54,7 @@ public class VolumeSettings : MonoBehaviour
         }
         catch (System.Exception e)
         {
-
+            print("Volume exception, Probably called outside of the menu" + e);
             
         }
         _mixer.SetFloat("sfx", Mathf.Log10(volume) * 20);

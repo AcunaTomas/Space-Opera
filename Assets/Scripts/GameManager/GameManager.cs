@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         INSTANCE = this;
         VFX_FADE.SetActive(true);
+        CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
+
         switch (GameManager.INSTANCE.LEVEL)
         {
             case 1:
@@ -72,20 +74,21 @@ public class GameManager : MonoBehaviour, IDataPersistance
             default:
                 break;
         }
-        CANVAS = GameObject.FindWithTag("PanelDialogue").GetComponent<ButtonDialogue>(); //transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
+
         try
         {
             _playerScript = PLAYER.GetComponent<Player>();
         }
         catch (System.Exception e)
         {
-            
+            print("Oh no" + e);
         }
     }
 
     private void Start()
     {
         ActivateCursor(false);
+        
     }
 
     public void SaveGame(int level)

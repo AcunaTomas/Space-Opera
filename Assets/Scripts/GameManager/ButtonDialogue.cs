@@ -26,6 +26,9 @@ public class ButtonDialogue : MonoBehaviour
     private bool _dialogueSkipEnd;
     [SerializeField]
     private Image _skipBar;
+    private static ButtonDialogue _instance;
+    public static ButtonDialogue INSTANCE;
+
 
     private int _cont = 0;
     private Zone _zone;
@@ -45,17 +48,26 @@ public class ButtonDialogue : MonoBehaviour
     private float _holdSkip = 0f;
     private float _holdToSkip = 3f;
 
-    public Animator lifeBarAnim;
+    [SerializeField]
+    private Animator lifeBarAnim;
 
     void Awake()
     {
+        INSTANCE = this;
+        _dip = transform.parent.gameObject.GetComponent<DialogueImgPj>();
         if (_zone != null)
         {
             return;
         }
         _zone = GameManager.INSTANCE.lvlDiag;
-    }
+        _player = GameManager.INSTANCE.PLAYER;
+        lifeBarAnim = transform.parent.GetChild(0).gameObject.GetComponent<Animator>();
 
+    }
+    private void Start()
+    {
+
+    }
     public string[] AddText(string _zoneName)
     {
         Awake();

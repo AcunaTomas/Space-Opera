@@ -294,12 +294,17 @@ public class Player : MonoBehaviour
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
                 ChangeSkillStatus(true);
-                canIjump = true;
-                wallijumpy = false;
+                if (contacts[i].point.y < transform.position.y)
+                {
+                    canIjump = true;
+                    wallijumpy = false;
+                    extrajumpcount = 2;
+                    _animator.SetBool("IsJumping", false);
+                    _animator.SetBool("wall", false);
+                }
 
-                extrajumpcount = 2;
-                _animator.SetBool("IsJumping", false);
-                _animator.SetBool("wall", false);
+
+
                 
                 if (_animator.GetBool("Dash"))
                 {
@@ -383,7 +388,11 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
-        extrajumpcount = 1;
+        if (collision.gameObject.transform.position.y <= transform.position.y)
+        {
+            extrajumpcount = 1;
+        }
+
 
         _animator.SetBool("Dash", false);
 

@@ -41,7 +41,6 @@ public class CollisionDialogue : MonoBehaviour
     }
     void Start()
     {
-        _player = GameObject.FindWithTag("Player");
         _panelDialogue = GameManager.INSTANCE.CANVAS;
         if (_checkpoint || _interactableOnly)
         {
@@ -59,6 +58,10 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (_player == null)
+        {
+            GetPlayer();
+        }
         if(!col.CompareTag("Player"))
         {
             return;
@@ -168,11 +171,15 @@ public class CollisionDialogue : MonoBehaviour
             _panelDialogue.DeactivateGO(gameObject);
         }
 
-        _player.GetComponent<Player>().enabled = false;
-        _player.GetComponent<PlayerCombat>().enabled = false;
-        _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        _player.GetComponent<Animator>().SetFloat("Speed", 0f);
-        _player.GetComponent<Animator>().SetFloat("speedY", 0.1f);
+        if (_panelDialogue.GetComponent<Player>() != null) // Null check for cutscenes, since those don't need an actual player
+        {
+            _player.GetComponent<Player>().enabled = false;
+            _player.GetComponent<PlayerCombat>().enabled = false;
+            _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            _player.GetComponent<Animator>().SetFloat("Speed", 0f);
+            _player.GetComponent<Animator>().SetFloat("speedY", 0.1f);
+        }
+
 
         _panelDialogue.gameObject.SetActive(true);
         if (_panelDialogueDown)
