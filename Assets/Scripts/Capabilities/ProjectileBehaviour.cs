@@ -54,7 +54,6 @@ public class ProjectileBehaviour : MonoBehaviour
             }
             else
             {
-                Debug.Log("Explota");
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
                 //rb.constraints = RigidbodyConstraints2D.FreezeAll;
             

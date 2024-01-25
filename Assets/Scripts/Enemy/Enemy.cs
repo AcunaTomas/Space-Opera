@@ -217,8 +217,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            AchievementsManager.INSTANCE.Achievement04();
-            animator.SetTrigger("DieBomb");
+            if (_enemyType == EnemyType.melee || _enemyType == EnemyType.gun)
+            {
+                AchievementsManager.INSTANCE.Achievement04();
+                animator.SetTrigger("DieBomb");
+            }    
         }
         
         try

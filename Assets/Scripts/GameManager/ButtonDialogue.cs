@@ -306,7 +306,6 @@ public class ButtonDialogue : MonoBehaviour
         {
             if(_dialogueSkipEnd)
             {
-                Debug.Log("charging skip");
                 ActualizarSkip(Time.deltaTime);         
                 if(_holdSkip >= _holdToSkip)
                 {

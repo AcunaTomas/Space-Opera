@@ -377,7 +377,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) //for when you hit the ground
     {
-        if (_fallingTime > 6)
+        if (_fallingTime > 6.1)
         {
             _animator.SetTrigger("land");
             _landingAnimator1.SetTrigger("Effect");
@@ -656,7 +656,7 @@ public class Player : MonoBehaviour
                 return;
             }
                 
-            Debug.Log("Drift");     
+            //Debug.Log("Drift");     
             var a = Instantiate(dustEffect) as GameObject;
             a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
             GameManager.INSTANCE.dustcap = 1;
@@ -670,7 +670,7 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            Debug.Log("Drift2");
+            //Debug.Log("Drift2");
             var a = Instantiate(dustEffect) as GameObject;
             a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
             GameManager.INSTANCE.dustcap = 1;
