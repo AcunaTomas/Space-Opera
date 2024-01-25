@@ -48,6 +48,10 @@ public class ScenesManager : MonoBehaviour
         //Debug.Log(SceneName);
         StartCoroutine(LoadLevel(SceneName));
     }
+    public string GetSceneCurrentName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
 
     IEnumerator LoadLevel(string SceneName)
     {

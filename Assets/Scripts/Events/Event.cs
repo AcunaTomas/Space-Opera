@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(PersistableEvent))]
 public class Event : MonoBehaviour
 {
     
@@ -67,6 +68,7 @@ public class Event : MonoBehaviour
     
     void doTheThing(eventType thing)
     {
+        SaveState();
         switch (thing)
         {
             case eventType.Spawn:
@@ -97,14 +99,14 @@ public class Event : MonoBehaviour
                         break;
                     }
                     interactAction.Invoke();
-
                     break;
                 }
         }
 
-        if (single_use)
+        if (single_use) //Need to modify this just disables the scripts and obj
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            this.enabled = false;
         }
     }
 
@@ -131,5 +133,10 @@ public class Event : MonoBehaviour
         }
 
 
+    }
+
+    void SaveState()
+    {
+        gameObject.GetComponent<PersistableEvent>().StatusChanged();
     }
 }

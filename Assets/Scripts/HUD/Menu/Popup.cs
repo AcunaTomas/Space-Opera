@@ -14,7 +14,7 @@ public class Popup : MonoBehaviour
         }
         catch (System.Exception e)
         {
-
+            print("Pause/Popup Menu Exception" + e);
         }
     }
 }

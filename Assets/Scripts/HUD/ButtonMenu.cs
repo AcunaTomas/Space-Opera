@@ -26,7 +26,7 @@ public class ButtonMenu : MonoBehaviour
         }
         catch (System.Exception e)
         {
-
+            print("Button Text scaling issue" + e);
         }
 
         _activeImage = GetComponent<Image>();
@@ -44,7 +44,7 @@ public class ButtonMenu : MonoBehaviour
             }
             catch (System.Exception e)
             {
-
+                print("Button Text scaling issue" + e);
             }
         }
     }

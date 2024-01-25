@@ -191,87 +191,44 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     void IDataPersistance.LoadData(GameData data)
     {
-        MUSIC_VOLUME = data.MUSIC_VOLUME;
-        SFX_VOLUME = data.SFX_VOLUME;
-
-        if (QUILOMB_MODE)
-        {
-            return;
-        }
-
-        if (LEVEL == 0)
+        if (ScenesManager.Instance.GetSceneCurrentName() == "SceneMainMenu")
         {
             LEVEL = data.LEVEL;
             return;
-        }
 
-        if (LEVEL == 1)
-        {
-            _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
-            _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
-            PLAYER.transform.localPosition = data.PLAYER_POSITION;
-            PLAYER_COMBAT = data.PLAYER_COMBAT;
-            PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
-            PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
-            PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
-        }
+        }    
 
-        switch (LEVEL)
-        {
-            //LEVEL 1
-            case 1: //LEVEL 1
-            //LEVEL 1
 
-                break;
+        _playerScript.SetMaxHP(data.PLAYER_MAX_HP);
+        _playerScript.SetHP(data.PLAYER_ACTUAL_HP);
+        PLAYER.transform.localPosition = data.PLAYER_POSITION;
+        PLAYER_COMBAT = data.PLAYER_COMBAT;
+        PLAYER.GetComponent<PlayerCombat>().enabled = data.PLAYER_COMBAT;
+        PLAYER.GetComponent<SpriteRenderer>().flipX = data.PLAYER_FLIP_X;
+        PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().ChangeZoneName(data.OBJECTIVE);
 
-            default:
-                break;
-        }
+
+
+
+        
     }
 
     void IDataPersistance.SaveData(GameData data)
     {
-        data.LEVEL = LEVEL;
-        data.MUSIC_VOLUME = MUSIC_VOLUME;
-        data.SFX_VOLUME = SFX_VOLUME;
-
-        if (QUILOMB_MODE)
+        if (ScenesManager.Instance.GetSceneCurrentName() == "SceneMainMenu")
         {
+            data.LEVEL = 1;
             return;
+
         }
-
-        if (LEVEL == 1)
-        {
-            data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
-            data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
-            data.PLAYER_POSITION = CHECKPOINT;
-            data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
-            data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
-            data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
-        }
-
-        switch (LEVEL)
-        {
-            //MENU
-            case 0: //MENU
-            //MENU
-                data.PLAYER_POSITION = new Vector3(1.21f, 13.87508f, 0f);
-                data.PLAYER_MAX_HP = 5;
-                data.PLAYER_ACTUAL_HP = 5;
-                data.OBJECTIVE = "objective01_explore";
-                data.LEVEL = 1;
-                data.PLAYER_FLIP_X = false;
-                data.PLAYER_COMBAT = false;
-                break;
-            //LEVEL 1
-            case 1: //LEVEL 1
-            //LEVEL 1
-
-                break;
-
-            default:
-                break;
-        }
+        data.LEVEL = LEVEL;
+        data.PLAYER_MAX_HP = _playerScript.GetMaxHP();
+        data.PLAYER_ACTUAL_HP = _playerScript.GetHP();
+        data.PLAYER_POSITION = CHECKPOINT;
+        data.PLAYER_FLIP_X = PLAYER.GetComponent<SpriteRenderer>().flipX;
+        data.PLAYER_COMBAT = PLAYER.GetComponent<PlayerCombat>().enabled;
+        data.OBJECTIVE = PANEL_OBJECTIVE.transform.GetChild(0).GetComponent<ObjectivesManager>().GetZoneName();
+        data.SavedEvents = DataPersistentManager.INSTANCE.SavedEvents.ToArray();
     }
 
     public void StartGameObject(GameObject obj)

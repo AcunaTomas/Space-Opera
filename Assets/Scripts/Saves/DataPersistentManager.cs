@@ -17,13 +17,14 @@ public class DataPersistentManager : MonoBehaviour
     private string _achievementName;
 
     private GameData _gameData;
-    private List<IDataPersistance> _dataPersistanceObjects;
+    public List<IDataPersistance> _dataPersistanceObjects;
     private FileDataHandler _dataHandler;
 
     private AchievementsData _achievementsData;
     private FileDataHandler _dataHandlerAchievements;
     private List<AchievementPersistance> _dataPersistanceAchievements;
     public static DataPersistentManager INSTANCE { get; private set; }
+    public List<PersistableEvent> SavedEvents;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class DataPersistentManager : MonoBehaviour
     {
         _dataPersistanceObjects = FindAllDataPersistanceObjects();
         _dataPersistanceAchievements = FindAllDataPersistanceAchievements();
+        SavedEvents = FindAllPersistableEvents();
         LoadGame();
         LoadAchievement();
     }
@@ -136,8 +138,15 @@ public class DataPersistentManager : MonoBehaviour
         _dataHandlerAchievements.Save(_achievementsData);
     }
 
+    private List<PersistableEvent> FindAllPersistableEvents()
+    {
+        var a = FindObjectsOfType<PersistableEvent>(true);
+        return  new List<PersistableEvent> (a);
+    }
+
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
+
         IEnumerable<IDataPersistance> _dpo = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
         return new List<IDataPersistance> (_dpo);
     }

@@ -12,10 +12,9 @@ public class GameData
     public bool PLAYER_COMBAT = false;
     public string OBJECTIVE;
     public int LEVEL;
-    public float MUSIC_VOLUME = 1f;
-    public float SFX_VOLUME = 1f;
+    public PersistableEvent[] SavedEvents;
 
-    //LEVEL 1
+
 
     public GameData()
     {
@@ -25,6 +24,6 @@ public class GameData
         OBJECTIVE = "objective01_explore";
         LEVEL = 1;
 
-        //LEVEL 1
+        
     }
 }
