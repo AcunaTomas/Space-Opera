@@ -51,11 +51,20 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public GameObject BTTON_QUILOMB_LVL1;
     public GameObject NPCS_LVL1;
 
+    
     private void Awake()
     {
         INSTANCE = this;
         VFX_FADE.SetActive(true);
-        CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
+        if (LEVEL == 4)
+        {
+            CANVAS = transform.GetChild(2).gameObject.GetComponent<ButtonDialogue>();
+        }
+        else
+        {
+            CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
+        }
+        
 
         switch (GameManager.INSTANCE.LEVEL)
         {
