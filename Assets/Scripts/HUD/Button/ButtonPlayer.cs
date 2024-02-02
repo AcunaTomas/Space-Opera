@@ -15,7 +15,7 @@ public class ButtonPlayer : MonoBehaviour
     public void ResetTime()
     {
         _time = 0f;
-        _keys.SetActive(false);
+        //_keys.SetActive(false);
     }
 
     void Update()
@@ -34,7 +34,7 @@ public class ButtonPlayer : MonoBehaviour
             {
                 _player.GetChild(_player.childCount - 1).gameObject.SetActive(true);
             }
-            _keys.SetActive(false);
+            //_keys.SetActive(false);
         }
 
         if (_time > 4f)
@@ -44,7 +44,7 @@ public class ButtonPlayer : MonoBehaviour
 
         if (_time > 30f)
         {
-            _keys.SetActive(true);
+            //_keys.SetActive(true);
         }
     }
 }

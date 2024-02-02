@@ -53,24 +53,13 @@ public class Enemy : MonoBehaviour
 
 
         currentHealth = maxHealth;
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = GameManager.INSTANCE.PLAYER;
         
         _ub = GameObject.FindWithTag("LifeBar").GetComponent<UpdateBars>();
         Physics2D.IgnoreCollision(player.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("BalaPlayer"))
-    //     {
-    //         TakeDamage(40);
-    //     }
-    // }
 
     public void TakeDamage(int damage)
     {

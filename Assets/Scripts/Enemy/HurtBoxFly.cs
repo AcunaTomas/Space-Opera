@@ -13,9 +13,9 @@ public class HurtBoxFly : MonoBehaviour
 
     private float _timeStamp;
 
-    private void Awake()
+    void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameManager.INSTANCE.PLAYER;
         Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
     
@@ -27,7 +27,7 @@ public class HurtBoxFly : MonoBehaviour
 
     public void GetPlayer()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameManager.INSTANCE.PLAYER;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

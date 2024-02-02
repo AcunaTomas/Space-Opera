@@ -919,10 +919,10 @@ GameObject:
   - component: {fileID: 558290266}
   - component: {fileID: 558290265}
   - component: {fileID: 558290264}
-  - component: {fileID: 558290268}
   - component: {fileID: 558290269}
   - component: {fileID: 558290270}
   - component: {fileID: 558290271}
+  - component: {fileID: 558290272}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1008,62 +1008,13 @@ RectTransform:
   - {fileID: 1278991549}
   - {fileID: 704164146}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &558290268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558290263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1fc63badaa3d3c4f9cd548dbbfdc8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ALTSKIPENABLED: Disabled
-  LEVEL: 4
-  PLAYER: {fileID: 1720765269}
-  BUTTON_INTERACT: {fileID: 0}
-  CHECKPOINT: {x: 0, y: 0, z: 0}
-  ACTUAL_CHECKPOINT: {fileID: 0}
-  PLAYER_COMBAT: 0
-  CANVAS: {fileID: 1278991550}
-  PAUSE_MENU: {fileID: 0}
-  PANEL_OBJECTIVE: {fileID: 0}
-  PAUSED: 0
-  QUILOMB_MODE: 0
-  MUSIC_VOLUME: 0
-  SFX_VOLUME: 0
-  dustcap: 0
-  VFX_FADE: {fileID: 704164145}
-  lvlDiag:
-    DIALOGUES: []
-  DIALOGUESKIPEND: 0
-  DIALOGUESKIPCOUNT: 0
-  CANVAS_WS_LVL1: {fileID: 0}
-  TUTO_TRIG_LVL1: {fileID: 0}
-  CHECKPOINTS_LVL1: {fileID: 0}
-  DIALOGUES_LVL1: {fileID: 0}
-  CHANGE_MUSIC_LVL1: {fileID: 0}
-  EVENTS_GO_HERE_LVL1: {fileID: 0}
-  DOORS_LVL1: {fileID: 0}
-  INVISIBLE_TROLL_LVL1: {fileID: 0}
-  ELEVATORS_LVL1: []
-  ELEVATOR_DOOR_LVL1: {fileID: 0}
-  DUMMIES_LVL1: []
-  PILOT_QUILOMB_LVL1: {fileID: 0}
-  EVENTS_QUILOMB_LVL1: {fileID: 0}
-  ELEVATOR_SHIP_LVL1: {fileID: 0}
-  SPIKES_LVL1: {fileID: 0}
-  BTTON_QUILOMB_LVL1: {fileID: 0}
-  NPCS_LVL1: {fileID: 0}
 --- !u!95 &558290269
 Animator:
   serializedVersion: 5
@@ -1116,6 +1067,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obj: {fileID: 1278991548}
   _time: 0.5
+--- !u!114 &558290272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558290263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fc63badaa3d3c4f9cd548dbbfdc8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ALTSKIPENABLED: Disabled
+  LEVEL: 4
+  PLAYER: {fileID: 1720765269}
+  BUTTON_INTERACT: {fileID: 0}
+  CHECKPOINT: {x: 0, y: 0, z: 0}
+  ACTUAL_CHECKPOINT: {fileID: 0}
+  PLAYER_COMBAT: 0
+  CANVAS: {fileID: 1278991550}
+  PAUSE_MENU: {fileID: 0}
+  PANEL_OBJECTIVE: {fileID: 0}
+  PAUSED: 0
+  QUILOMB_MODE: 0
+  MUSIC_VOLUME: 0
+  SFX_VOLUME: 0
+  dustcap: 0
+  VFX_FADE: {fileID: 704164145}
+  lvlDiag:
+    DIALOGUES: []
+  DIALOGUESKIPEND: 0
+  DIALOGUESKIPCOUNT: 0
+  CANVAS_WS_LVL1: {fileID: 0}
+  TUTO_TRIG_LVL1: {fileID: 0}
+  CHECKPOINTS_LVL1: {fileID: 0}
+  DIALOGUES_LVL1: {fileID: 0}
+  CHANGE_MUSIC_LVL1: {fileID: 0}
+  EVENTS_GO_HERE_LVL1: {fileID: 0}
+  DOORS_LVL1: {fileID: 0}
+  INVISIBLE_TROLL_LVL1: {fileID: 0}
+  ELEVATORS_LVL1: []
+  ELEVATOR_DOOR_LVL1: {fileID: 0}
+  DUMMIES_LVL1: []
+  PILOT_QUILOMB_LVL1: {fileID: 0}
+  EVENTS_QUILOMB_LVL1: {fileID: 0}
+  ELEVATOR_SHIP_LVL1: {fileID: 0}
+  SPIKES_LVL1: {fileID: 0}
+  BTTON_QUILOMB_LVL1: {fileID: 0}
+  NPCS_LVL1: {fileID: 0}
 --- !u!1 &575195267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,7 +1831,7 @@ Transform:
   - {fileID: 982951286}
   - {fileID: 832620421}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &882468918
 MonoBehaviour:
@@ -2810,7 +2810,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 558290268}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SaveGame
         m_Mode: 3

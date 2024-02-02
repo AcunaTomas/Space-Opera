@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public bool DIALOGUESKIPEND = false;
     public int DIALOGUESKIPCOUNT;
 
-    //LEVEL 1
+    //Delete this later
     [Header("LEVEL 1\n")]
     public GameObject CANVAS_WS_LVL1;
     public GameObject TUTO_TRIG_LVL1;
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         {
             CANVAS = transform.GetChild(1).gameObject.GetComponent<ButtonDialogue>();
         }
+
         
 
         switch (GameManager.INSTANCE.LEVEL)

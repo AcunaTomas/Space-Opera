@@ -26,8 +26,6 @@ public class ButtonDialogue : MonoBehaviour
     private bool _dialogueSkipEnd;
     [SerializeField]
     private Image _skipBar;
-    private static ButtonDialogue _instance;
-    public static ButtonDialogue INSTANCE;
 
 
     private int _cont = 0;
@@ -53,7 +51,6 @@ public class ButtonDialogue : MonoBehaviour
 
     void Awake()
     {
-        INSTANCE = this;
         _dip = transform.parent.gameObject.GetComponent<DialogueImgPj>();
         if (_zone != null)
         {

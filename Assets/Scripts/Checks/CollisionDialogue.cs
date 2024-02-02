@@ -33,12 +33,7 @@ public class CollisionDialogue : MonoBehaviour
         especial
     }
 
-    void Awake()
-    {
-        _player = GameObject.FindWithTag("Player");
-        //Physics2D.IgnoreCollision(_player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(_player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-    }
+    
     void Start()
     {
         _panelDialogue = GameManager.INSTANCE.CANVAS;
@@ -53,7 +48,11 @@ public class CollisionDialogue : MonoBehaviour
 
     public void GetPlayer()
     {
-        _player = GameObject.FindWithTag("Player");
+        _player = GameManager.INSTANCE.PLAYER;
+    }
+    public void GetCanvas()
+    {
+        _panelDialogue = GameManager.INSTANCE.CANVAS;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -62,7 +61,11 @@ public class CollisionDialogue : MonoBehaviour
         {
             GetPlayer();
         }
-        if(!col.CompareTag("Player"))
+        if (_panelDialogue == null)
+        {
+            GetCanvas();
+        }
+        if(!col.CompareTag("Player") && !col.CompareTag("CutScenePlayer"))
         {
             return;
         }
@@ -119,7 +122,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (!col.CompareTag("Player"))
+        if (!col.CompareTag("Player") && !col.CompareTag("CutScenePlayer")) 
         {
             return;
         }
@@ -178,7 +181,7 @@ public class CollisionDialogue : MonoBehaviour
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             _player.GetComponent<Animator>().SetFloat("Speed", 0f);
             _player.GetComponent<Animator>().SetFloat("speedY", 0.1f);
-            print("Paralisis");
+
         }
 
 
