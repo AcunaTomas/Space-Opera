@@ -6,9 +6,9 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     
-    public void LookLeft()
+    public void LookDown()
     {
-        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.8f;
+        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.35f;
     }
     public void LookRight()
     {
@@ -21,6 +21,10 @@ public class CameraController : MonoBehaviour
     public void BackToNormal()
     {
         GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.5f;
+    }
+    public void BackToNormalY()
+    {
+        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.5f;
     }
     public void LookAtTarget(Transform target)
     {
