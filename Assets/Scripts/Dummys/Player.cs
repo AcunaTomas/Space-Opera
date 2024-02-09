@@ -320,7 +320,7 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && !collision.gameObject.CompareTag("Movible")) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {
