@@ -137,6 +137,7 @@ public class Player : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         dustEffect = Resources.Load("Prefabs/dustEffect");
+
     }
 
     void FixedUpdate()
