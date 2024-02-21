@@ -35,7 +35,8 @@ public class Enemy : MonoBehaviour
         gun,
         simple,
         shoot,
-        boss
+        boss,
+        shield
     }
 
     [SerializeField]
