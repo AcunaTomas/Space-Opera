@@ -61,7 +61,6 @@ void EnemyLogic()
         {
             Attack();
         }
-        //Attack();
     }
 
     if (cooling)
@@ -98,14 +97,14 @@ void Attack()
     animator.SetBool("Attack", true);
     AudioManager.INSTANCE.PlayEnemyAttack();
 
-        if (transform.position.x > target.position.x)
-        {
-            attackPointFlip.gameObject.SetActive(true);
-        }
-        else
-        {
-            attackPoint.gameObject.SetActive(true);
-        }
+    if (transform.position.x > target.position.x)
+    {
+        attackPointFlip.gameObject.SetActive(true);
+    }
+    else
+    {
+        attackPoint.gameObject.SetActive(true);
+    }
 
     timerAttack = 0;
 }
@@ -150,10 +149,6 @@ public void Flip()
         GetComponent<SpriteRenderer>().flipX = false;
         attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(1);
     }
-
-    
-    //Ternary Operator
-    //rotation.y = (currentTarget.position.x < transform.position.x) ? rotation.y = 180f : rotation.y = 0f;
 
     transform.eulerAngles = rotation;
 }
