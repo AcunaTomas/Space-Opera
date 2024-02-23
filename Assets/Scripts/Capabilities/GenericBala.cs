@@ -141,7 +141,6 @@ public class GenericBala : MonoBehaviour
     {
       if (other.gameObject.tag == "Destroyable")
         {
-          Debug.Log("Realmente funciona?");
           //other.gameObject.GetComponent<Event>().manualDo();
           other.gameObject.GetComponent<Event>().external = false;
           other.gameObject.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);

@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class HurtBoxPinchos : MonoBehaviour
+public class HurtBoxPinchos : HurtBox
 {
-    int attackDamage = 1;
-    float orientation = 1f;
-    private GameObject player;
-
-    private void Awake()
+    
+    public override void Awake()
     {
         player = GameObject.FindWithTag("Player");
     }
-    
-    public float setOrientation(float orientationValue)
-    {
-        orientation = orientationValue;
-        return orientation;
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -34,7 +25,7 @@ public class HurtBoxPinchos : MonoBehaviour
         }
     }
 
-    private void MoveAgain()
+    public override void MoveAgain()
     {
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
