@@ -16,7 +16,7 @@ public class HotZoneCheckShield : MonoBehaviour
 
     private void Update()
     {
-        if (inRange && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+        if (inRange && !animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyShield_attack"))
         {
             enemyParent.Flip();
         }
@@ -37,7 +37,9 @@ public class HotZoneCheckShield : MonoBehaviour
         {
             inRange = false;
             gameObject.SetActive(false);
-            enemyParent.triggerArea.SetActive(true);
+            enemyParent.StartCooldownTrigger();
+            //enemyParent.triggerArea.SetActive(true);
+            enemyParent.gameObject.layer = LayerMask.NameToLayer("Enemy");
             enemyParent.inRange = false;
             animator.SetBool("Run", false);
         }
