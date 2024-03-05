@@ -273,10 +273,7 @@ public class ButtonDialogue : MonoBehaviour
     void OnDisable()
     {
         ActualizarSkip(-_holdSkip);
-        if (GameManager.INSTANCE.QUILOMB_MODE)
-        {
-            lifeBarAnim.SetTrigger("Appear");
-        }
+
 
     }
 

@@ -97,17 +97,8 @@ public class Player : MonoBehaviour
 
     public bool _isBrodyJumping = false;
 
-    public struct parama
-    {
-        public bool a;
-        public Vector2 b;
-        
-        public parama(bool ab, Vector2 bb)
-        {
-            a = ab;
-            b = bb;
-        }
-    }
+
+
 
 
     public void ChangeSkillStatus(bool a)
@@ -282,12 +273,9 @@ public class Player : MonoBehaviour
     {
         Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
         Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
-        //Debug.Log(collision.GetContact(0).normal);
         ContactPoint2D[] contacts= new ContactPoint2D[8]; //Realistically, the maximum should be around 6, but I want to be careful
         collision.GetContacts(contacts);
 
-        //Debug.Log(normalcoll.y);
-        //Debug.Log(normalcoll.x);
 
         for (var i = 0; i < collision.contactCount; i++) // does this for every single contact point registered
         {
@@ -315,7 +303,7 @@ public class Player : MonoBehaviour
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
                 {
-                    AudioManager.INSTANCE.PlayPlayerJump();
+                    GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
                     _playerFall = false;
                 }
 
@@ -549,7 +537,7 @@ public class Player : MonoBehaviour
             GetComponent<Player>().enabled = true;
             HP = MaxHP;
             _healthBar.UpdateHP();
-            if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2" && GameManager.INSTANCE.ELEVATORS_LVL1[1].localPosition.y > 0)
+            if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2")
             {
                 _callWhat.Invoke();
             }
@@ -568,7 +556,7 @@ public class Player : MonoBehaviour
 
     public void PlaySound(string a)
     {
-        AudioManager.INSTANCE.gameObject.SendMessage(a);
+        GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo(a,0));
     }
 
     public void SetHP(int hp)
@@ -658,7 +646,7 @@ public class Player : MonoBehaviour
                 
             //Debug.Log("Drift");     
             var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            a.gameObject.SendMessage("Initialize", new Dust.parama(true, transform.position));
             GameManager.INSTANCE.dustcap = 1;
             
         }
@@ -672,7 +660,7 @@ public class Player : MonoBehaviour
 
             //Debug.Log("Drift2");
             var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            a.gameObject.SendMessage("Initialize", new Dust.parama(true, transform.position));
             GameManager.INSTANCE.dustcap = 1;
         }
     }

@@ -12,7 +12,6 @@ public class HurtBoxFatal : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
-        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
     
     public float setOrientation(float orientationValue)

@@ -16,7 +16,6 @@ public class HurtBoxFly : MonoBehaviour
     void Start()
     {
         player = GameManager.INSTANCE.PLAYER;
-        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
     
     public float setOrientation(float orientationValue)
