@@ -18,6 +18,8 @@ public class CollisionDialogue : MonoBehaviour
     private bool _interactableOnly;
     [SerializeField]
     private bool _panelDialogueDown;
+    [SerializeField]
+    private bool _panelDialogueRight;
 
     private bool _eAvailable = false;
     private bool _originalFlip;
@@ -188,6 +190,12 @@ public class CollisionDialogue : MonoBehaviour
             _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,0f);
             _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0f);
             _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,160f);
+        }
+        else if (_panelDialogueRight)
+        {
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1f);
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1f);
+            _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(243f, -160f);
         }
         else
         {
