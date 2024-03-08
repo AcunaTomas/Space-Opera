@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
-                                                     //y: usado para el movimiento vertical.
+                                                       //y: usado para el movimiento vertical.
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
     [SerializeField]
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     private float _autoPilotOffset = 0.2f;
     public float _fallingTime = 0f;
 
-    [SerializeField]    
+    [SerializeField]
     private float WallJumpXDirection = 0f;
 
     [SerializeField]
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     private bool doIhaveToGoSomewhere = false;
 
     [SerializeField]
-    private float destinationX,destinationY;
+    private float destinationX, destinationY;
 
     [SerializeField]
     private bool _wallJumpXHandicap = false;
@@ -87,6 +87,17 @@ public class Player : MonoBehaviour
     private RuntimeAnimatorController _brodyRight;
     [SerializeField]
     private RuntimeAnimatorController _brodyLeft;
+
+    private float _cameraTimer = 0f;
+
+    [SerializeField]
+    private GameObject _cameraUp;
+    [SerializeField]
+    private GameObject _cameraDown;
+
+    //Esta cámara hay que sacarla de acá, es solo para que ande, imagino que después podemos designar la cámara activa en el game manager y llamar esa
+    [SerializeField]
+    private Cinemachine.CinemachineVirtualCamera _activeCamera;
 
     public PlayerType _playerType;
     public enum PlayerType
@@ -150,6 +161,7 @@ public class Player : MonoBehaviour
             Movement();
             Effects();
             Flip();
+            CameraUpDown();
         }
         if (doIhaveToGoSomewhere == true)
         {
@@ -464,6 +476,47 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
         {
             body.velocity = new Vector2(body.velocity.x, _maxVerticalSpeed * Clamp(body.velocity.y, -1, 1));  //Huge reach
+        }
+
+    }
+
+    private void CameraUpDown()
+    {
+        if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            _cameraTimer += Time.deltaTime;
+        }
+        else if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            _cameraTimer += Time.deltaTime;
+        }
+        else if (Input.GetAxis("Horizontal") == 0)
+        {
+            _cameraTimer = 0;
+        }
+        else
+        {
+            _cameraTimer = 0;
+        }
+
+        //Camara
+        if (Input.GetAxis("Vertical") > 0 && _cameraTimer >= 1.5f)
+        {
+            _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = _cameraUp.transform;
+            _animator.SetBool("LookUp", true);
+            _animator.SetBool("LookDown", false);
+        }
+        else if (Input.GetAxis("Vertical") < 0 && _cameraTimer >= 1.5f)
+        {
+            _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = _cameraDown.transform;
+            _animator.SetBool("LookUp", false);
+            _animator.SetBool("LookDown", true);
+        }
+        else
+        {
+            _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = this.gameObject.transform;
+            _animator.SetBool("LookUp", false);
+            _animator.SetBool("LookDown", false);
         }
 
     }
