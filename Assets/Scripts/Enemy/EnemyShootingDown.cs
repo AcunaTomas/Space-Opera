@@ -30,37 +30,33 @@ public class EnemyShootingDown : MonoBehaviour
         if(_hitSomething)
         {
             Flip(_hitRef.transform);
-        }
-        if(_hitSomething && _hitMiddle && !_hitDowns && _nextFireTime - _animDelay/2 < Time.time)
-        {
-            _animator.SetBool("AttackSides", false);
-            _animator.SetBool("AttackDownSides", false);
-            _animator.SetBool("AttackDown", true);
-            //_bullet.GetComponent<BulletController2>().ChangeTargetPos(_hitRef.point);
             _bullet.GetComponent<BulletController2>()._targetPos = _hitRef.point;
-            Invoke("Attack", _animDelay);
-            _nextFireTime = Time.time + _fireRate;
+            if(_hitMiddle && !_hitDowns)
+            {
+                _animator.SetBool("AttackSides", false);
+                _animator.SetBool("AttackDownSides", false);
+                _animator.SetBool("AttackDown", true);
+                //_bullet.GetComponent<BulletController2>().ChangeTargetPos(_hitRef.point);
+            }
+            else if(!_hitMiddle && _hitDowns)
+            {
+                _animator.SetBool("AttackSides", false);
+                _animator.SetBool("AttackDown", false);
+                _animator.SetBool("AttackDownSides", true);
+
+            }
+            else if(!_hitMiddle && !_hitDowns )
+            {
+                _animator.SetBool("AttackDown", false);
+                _animator.SetBool("AttackDownSides", false);
+                _animator.SetBool("AttackSides", true);
+            }
         }
-        else if(_hitSomething && !_hitMiddle && _hitDowns &&_nextFireTime - _animDelay/2 < Time.time)
-        {
-            _animator.SetBool("AttackSides", false);
-            _animator.SetBool("AttackDown", false);
-            _animator.SetBool("AttackDownSides", true);
-            _bullet.GetComponent<BulletController2>()._targetPos = _hitRef.point;
-            Invoke("Attack", _animDelay);
-            //Instantiate(_bullet, _salidaRef, Quaternion.identity);
-            _nextFireTime = Time.time + _fireRate;
-        }
-        else if(_hitSomething && !_hitMiddle && !_hitDowns &&_nextFireTime - _animDelay/2 < Time.time)
-        {
-            _animator.SetBool("AttackDown", false);
-            _animator.SetBool("AttackDownSides", false);
-            _animator.SetBool("AttackSides", true);
-            _bullet.GetComponent<BulletController2>()._targetPos = _hitRef.point;
-            Invoke("Attack", _animDelay);
-            //Instantiate(_bullet, _salidaRef, Quaternion.identity);
-            _nextFireTime = Time.time + _fireRate;
-        }
+        if(_nextFireTime - _animDelay/2 < Time.time)
+            {  
+                Invoke("Attack", _animDelay);
+                _nextFireTime = Time.time + _fireRate;
+            }
         /*
         if (_distanceFromPlayer <= _shootingRange && _nextFireTime < Time.time && _player.position.y <= transform.position.y)
         {
@@ -73,6 +69,7 @@ public class EnemyShootingDown : MonoBehaviour
             _animator.SetBool("Attack", false);
         }
         */
+        
         
         
     }

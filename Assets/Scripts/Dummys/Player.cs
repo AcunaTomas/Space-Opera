@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
+    private Vector2 speedCapsStatic = new Vector2(1.2f, 4f);
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
     [SerializeField]
@@ -243,7 +244,7 @@ public class Player : MonoBehaviour
 
     private void unsetXStunVariables() //like the last one, but for unfreezing
     {
-        speedCaps = new Vector2(1.2f, speedCaps.y);
+        speedCaps = new Vector2(speedCapsStatic.x, speedCaps.y);
     }
 
     void WallJumpDelay() // Sticks The player to the wall
@@ -436,7 +437,7 @@ public class Player : MonoBehaviour
         else
         {
             _wallJumpXHandicap = false;
-            speedCaps = new Vector2(1.2f, speedCaps.y);
+            speedCaps = new Vector2(speedCaps.x, speedCaps.y);
         }
 
         if (_wallJumpXHandicap == false)
@@ -743,6 +744,22 @@ public class Player : MonoBehaviour
 
         }
     
+    }
+
+    public void SetSpeed(float _speedLimit, int axis = 0)
+    {
+        if(axis == 0)
+        {
+            speedCaps.x = _speedLimit;
+            return;
+        }
+        speedCaps.y = _speedLimit;
+        return;
+    }
+
+    public void ResetSpeed()
+    {
+        speedCaps = speedCapsStatic;
     }
 
     private void UpdateTimers()
