@@ -86,7 +86,13 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextBombTime)
         {
-            if(Input.GetAxis("Fire2") > 0)
+            if (Input.GetAxis("Fire2") > 0 && (Input.GetAxis("Vertical") < 0))
+            {
+                Invoke(nameof(Bomb2), -0.15f);
+                nextBombTime = Time.time + 2f / bombRate;
+                animator.SetTrigger("Bomb2");
+            }
+            else if (Input.GetAxis("Fire2") > 0)
             {
                 Invoke(nameof(Bomb), 0.15f);
                 nextBombTime = Time.time + 2f / bombRate;
@@ -288,6 +294,21 @@ public class PlayerCombat : MonoBehaviour
         }
         
         
+    }
+    public virtual void Bomb2()
+    {
+        if (spriteRenderer.flipX)
+        {
+            launchOffset.localPosition = new Vector2(-0.15f, -0.12f);
+            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+        }
+        else
+        {
+            launchOffset.localPosition = new Vector2(0.15f, -0.12f);
+            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+        }
+
+
     }
 
     void OnDrawGizmosSelected() 
