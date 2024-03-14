@@ -102,7 +102,7 @@ public class Event : MonoBehaviour
                 }
         }
 
-        if (single_use)
+        if (single_use && !external)
         {
             Destroy(gameObject);
         }

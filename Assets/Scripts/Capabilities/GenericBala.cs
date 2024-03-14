@@ -31,7 +31,7 @@ public class GenericBala : MonoBehaviour
 
 
        // Acá empieza el tema disparo, AVISO QUE ESTO ES CLARAMENTE INEFICIENTE, I HATE MY LIFE
-
+      
        if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
        {
           body.AddForce(new Vector2(directionX * -15 ,directionY * 150));
@@ -128,13 +128,23 @@ public class GenericBala : MonoBehaviour
       Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.SendMessage("TakeDamage", damages, SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+      if (other.gameObject.tag == "Destroyable")
+        {
+          //other.gameObject.GetComponent<Event>().manualDo();
+          other.gameObject.GetComponent<Event>().external = false;
+          other.gameObject.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
+          Destroy(gameObject);
+        }
     }
 }

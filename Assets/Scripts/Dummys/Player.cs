@@ -22,7 +22,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
-                                                       //y: usado para el movimiento vertical.
+                                                     //y: usado para el movimiento vertical.
+    private Vector2 speedCapsStatic = new Vector2(1.2f, 4f);
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
     [SerializeField]
@@ -95,7 +96,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _cameraDown;
 
-    //Esta cámara hay que sacarla de acá, es solo para que ande, imagino que después podemos designar la cámara activa en el game manager y llamar esa
+    //Esta cï¿½mara hay que sacarla de acï¿½, es solo para que ande, imagino que despuï¿½s podemos designar la cï¿½mara activa en el game manager y llamar esa
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera _activeCamera;
 
@@ -256,7 +257,7 @@ public class Player : MonoBehaviour
 
     private void unsetXStunVariables() //like the last one, but for unfreezing
     {
-        speedCaps = new Vector2(1.2f, speedCaps.y);
+        speedCaps = new Vector2(speedCapsStatic.x, speedCaps.y);
     }
 
     void WallJumpDelay() // Sticks The player to the wall
@@ -333,7 +334,7 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && !collision.gameObject.CompareTag("Movible")) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {
@@ -449,7 +450,7 @@ public class Player : MonoBehaviour
         else
         {
             _wallJumpXHandicap = false;
-            speedCaps = new Vector2(1.2f, speedCaps.y);
+            speedCaps = new Vector2(speedCaps.x, speedCaps.y);
         }
 
         if (_wallJumpXHandicap == false)
@@ -797,6 +798,22 @@ public class Player : MonoBehaviour
 
         }
     
+    }
+
+    public void SetSpeed(float _speedLimit, int axis = 0)
+    {
+        if(axis == 0)
+        {
+            speedCaps.x = _speedLimit;
+            return;
+        }
+        speedCaps.y = _speedLimit;
+        return;
+    }
+
+    public void ResetSpeed()
+    {
+        speedCaps = speedCapsStatic;
     }
 
     private void UpdateTimers()
