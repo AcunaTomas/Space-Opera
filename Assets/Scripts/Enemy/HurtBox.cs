@@ -8,6 +8,7 @@ public class HurtBox : MonoBehaviour
     protected int attackDamage = 1;
     protected float orientation = 1f;
     protected GameObject player;
+    
 
     public virtual void Awake()
     {
@@ -26,12 +27,13 @@ public class HurtBox : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player = GameObject.FindWithTag("Player");
-            other.GetComponent<Player>().LoseHP(attackDamage);
-            other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
-            other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            other.GetComponent<Player>().LoseHP(attackDamage, transform.position);
+            //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
+                //other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll; Volver a poner luego?
             other.GetComponent<PlayerCombat>().enabled = false;
             //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(orientation * 5, 0), ForceMode2D.Impulse);
             gameObject.SetActive(false);
+            transform.parent.gameObject.GetComponent<EnemyBehaviour2>().DONTMOVE = true; 
             DelayMoveAgain(0.2f);
             Debug.Log("hit");
         }
@@ -42,8 +44,9 @@ public class HurtBox : MonoBehaviour
     }
     public virtual void MoveAgain()
     {
-        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        transform.parent.gameObject.GetComponent<EnemyBehaviour2>().DONTMOVE = false; 
+        //player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        //player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         if (player.GetComponent<Player>().GetHP() > 0)
         {
             player.GetComponent<PlayerCombat>().enabled = true;

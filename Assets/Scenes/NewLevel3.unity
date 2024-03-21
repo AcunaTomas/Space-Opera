@@ -465,6 +465,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!1 &22625832
 GameObject:
@@ -1515,6 +1516,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 4
   _objectToDisable: {fileID: 0}
+  knockbackForce: 3
 --- !u!212 &95562963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2105,6 +2107,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 2
   _objectToDisable: {fileID: 195353346}
+  knockbackForce: 3
 --- !u!50 &132371712
 Rigidbody2D:
   serializedVersion: 4
@@ -4612,6 +4615,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!4 &331478039
 Transform:
@@ -6626,6 +6630,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!61 &593341590
 BoxCollider2D:
@@ -7555,6 +7560,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!61 &732948259
 BoxCollider2D:
@@ -7871,6 +7877,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 0
   _objectToDisable: {fileID: 0}
+  knockbackForce: 3
 --- !u!61 &743692728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9867,6 +9874,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 2
   _objectToDisable: {fileID: 472147910}
+  knockbackForce: 3
 --- !u!50 &884069202
 Rigidbody2D:
   serializedVersion: 4
@@ -10924,6 +10932,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!95 &954655942
 Animator:
@@ -13480,6 +13489,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!4 &1141802958
 Transform:
@@ -14108,6 +14118,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!4 &1171009278
 Transform:
@@ -14674,6 +14685,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!1 &1262840670
 GameObject:
@@ -15593,6 +15605,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!61 &1305095586
 BoxCollider2D:
@@ -18059,6 +18072,7 @@ MonoBehaviour:
   _checkpoint: 1
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!61 &1566212044
 BoxCollider2D:
@@ -22632,6 +22646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193770c8c5d7ee948a4071275104a48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
   HorizontalInputValue: 0
   HP: 5
   MaxHP: 5
@@ -22668,6 +22683,9 @@ MonoBehaviour:
   _landingAnimator2: {fileID: 463315479}
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
+  _cameraUp: {fileID: 0}
+  _cameraDown: {fileID: 0}
+  _activeCamera: {fileID: 0}
   _playerType: 0
   _isBrodyJumping: 0
   _canDash: 1
@@ -24927,6 +24945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ead70c9acda2d645ad2b16f86fa298a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
   HorizontalInputValue: 0
   HP: 5
   MaxHP: 5
@@ -24963,6 +24982,9 @@ MonoBehaviour:
   _landingAnimator2: {fileID: 1102954129}
   _brodyRight: {fileID: 9100000, guid: 0ba0ecc4bc2f69b4693dea3bfcce2c3c, type: 2}
   _brodyLeft: {fileID: 22100000, guid: 027de1833b29c3c46a22c0616e8680f0, type: 2}
+  _cameraUp: {fileID: 0}
+  _cameraDown: {fileID: 0}
+  _activeCamera: {fileID: 0}
   _playerType: 1
   _isBrodyJumping: 0
 --- !u!50 &2041125181

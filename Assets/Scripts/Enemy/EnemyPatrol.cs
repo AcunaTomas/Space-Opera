@@ -27,7 +27,7 @@ public class EnemyPatrol : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
 
-        _enemyLayer = LayerMask.NameToLayer("Enemy");
+        _enemyLayer = LayerMask.NameToLayer("");
         _defaultLayer = LayerMask.NameToLayer("Default");
     }
 
@@ -91,7 +91,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void SiHit()
     {
-        gameObject.tag = "Enemy";
+        gameObject.tag = "";
     }
     
     void OnDrawGizmosSelected()

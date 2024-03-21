@@ -378,7 +378,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 PILOT_QUILOMB_LVL1.SetActive(data.PILOT_QUILOMB_LVL1);
                 if (data.PILOT_QUILOMB_LVL1 && !data.BTTON_QUILOMB_LVL1)
                 {
-                    PILOT_QUILOMB_LVL1.GetComponent<Enemy>().TakeDamage(40);
+                    PILOT_QUILOMB_LVL1.GetComponent<Enemy>().TakeDamage(40, transform.position);
                     ELEVATOR_SHIP_LVL1.localPosition = data.ELEVATOR_SHIP_LVL1;
                 }
 

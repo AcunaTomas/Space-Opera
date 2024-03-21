@@ -15,7 +15,7 @@ public class HurtBoxPinchos : HurtBox
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Player>().LoseHP(attackDamage);
+            other.GetComponent<Player>().LoseHP(attackDamage, transform.position);
             other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
             other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;

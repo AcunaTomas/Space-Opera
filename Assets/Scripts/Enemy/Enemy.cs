@@ -42,6 +42,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject _objectToDisable;
 
+    [Header("KnockBack")]
+    [SerializeField] private float knockbackRecibido = 0f; //.0.2f va
+    [SerializeField] private float knockbackDado = 0f; //3f va
+
+
     void Start()
     {
 
@@ -73,8 +78,15 @@ public class Enemy : MonoBehaviour
     //     }
     // }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 sourcePosition)
     {
+        if(knockbackRecibido > 0)
+        {
+            Debug.Log("EmpujoEnem");
+            Vector2 dir = (Vector2)transform.position - sourcePosition;
+            GetComponent<Rigidbody2D>().AddForce(dir.normalized * knockbackRecibido, ForceMode2D.Impulse);
+        }
+
         if (!_coolingHit && !isDead)
         {
             currentHealth -= damage;
@@ -274,7 +286,10 @@ public class Enemy : MonoBehaviour
         }   
     }
 
-
+    public float GetKnockback()
+    {
+        return knockbackDado;
+    }
     
     
 }

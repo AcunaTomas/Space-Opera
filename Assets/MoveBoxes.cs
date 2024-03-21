@@ -50,10 +50,10 @@ public class MoveBoxes : MonoBehaviour
                 _playerPosRef = gameObject.transform.position.x;
                 _isDragging = true;
             }
-            /*Debuggers de los hits :D
+            ///*Debuggers de los hits :D
             Debug.Log("IZQUIERDA: " + hitIZQ.distance + hitIZQ.collider.name);
             Debug.Log("DERECHA: " + hitDER.distance + hitDER.collider.name);
-            */
+            //*/
             if(box.gameObject.transform.position.x < gameObject.transform.position.x) //Si el jugador está a la derecha
             {
                 MoveBoxDirection(box.gameObject.transform, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
@@ -97,7 +97,7 @@ public class MoveBoxes : MonoBehaviour
 
     bool HitBuilding(RaycastHit2D hit) //En caso de que haya un nuevo tag que funcione como pared agregar acá ♥ ⬇⬇
     {
-        if(hit.collider.gameObject.tag == "NotClimbable" || hit.collider.gameObject.tag == "Untagged")
+        if(hit.collider.gameObject.CompareTag("NotClimbable") || hit.collider.gameObject.CompareTag("Untagged"))
         {
             return true;
         }
@@ -108,7 +108,7 @@ public class MoveBoxes : MonoBehaviour
     }
     bool HitPlayer(RaycastHit2D hit)
     {
-        if(hit.collider.gameObject.tag == "Player")
+        if(hit.collider.gameObject.CompareTag("Player"))
         {
             return true;
         }

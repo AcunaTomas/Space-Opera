@@ -34,7 +34,7 @@ public class MissileController : MonoBehaviour
 
                 foreach (Collider2D enemyCollider in hitPlayer)
                 {
-                    enemyCollider.GetComponent<Player>().LoseHP(_attackDamage);
+                    enemyCollider.GetComponent<Player>().LoseHP(_attackDamage, transform.position);
                 }
             }
         }
