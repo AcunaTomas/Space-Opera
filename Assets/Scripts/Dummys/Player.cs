@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Shinjingi;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,13 +15,18 @@ public class Player : MonoBehaviour
     int MaxHP = 5;
     [SerializeField]
     float vertspid = -0.3f;
+    [SerializeField]
+    float _gravity = -0.1f;
+    [SerializeField]
+    float _jumpImpulse = 0.65f;
     public bool canIjump = true;
     bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
-    private float jumpLimit = 0f;
+    public float jumpLimit = 0f;
     [SerializeField]
     public float Xspeed = 0f;
+    
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     [SerializeField]
@@ -28,7 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
-    private float _lastJumpPress = 0f;
+    public float _lastJumpPress = 0f;
     [SerializeField]
     private bool canIMove = true;
     private float _autoPilotOffset = 0.2f;
@@ -87,7 +93,8 @@ public class Player : MonoBehaviour
     private RuntimeAnimatorController _brodyRight;
     [SerializeField]
     private RuntimeAnimatorController _brodyLeft;
-
+    [SerializeField]
+    private bool justLanded;
     public PlayerType _playerType;
     public enum PlayerType
     {
@@ -141,6 +148,7 @@ public class Player : MonoBehaviour
             Effects();
             Flip();
         }
+        
         if (doIhaveToGoSomewhere == true)
         {
             MoveToPoint();
@@ -155,25 +163,18 @@ public class Player : MonoBehaviour
         
         if (canIjump && Input.GetButton("Jump"))
         {
-            
-           if (_lastJumpPress <= 0.30f)
-           {
-                vertspid = 1.3f + jumpLimit;
-                _animator.SetBool("IsJumping", true);
-                _animator.SetFloat("Speed", 1f);
-           }
-           else
-           {   
-               vertspid = jumpLimit;
-           }
-           
-           jumpLimit += 0.04f;
-           
            if (_lastJumpPress > 4f)
            {
                 jumpLimit = 0f;
            }
-           
+           else
+           {
+                vertspid = _jumpImpulse - jumpLimit;
+                _animator.SetBool("IsJumping", true);
+                _animator.SetFloat("Speed", 1f);
+           }
+           jumpLimit += 0.04f;        
+
         }
         if (jumpLimit >= 0.4f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
         {
@@ -187,7 +188,7 @@ public class Player : MonoBehaviour
         }
         if (wallijumpy == false && canIjump == false && extrajumpcount >= 2)
         {
-            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f))
+            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.33f) && justLanded == false )
             {
                 SpecialJump();
             }
@@ -282,17 +283,17 @@ public class Player : MonoBehaviour
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
                 ChangeSkillStatus(true);
-                if (contacts[i].point.y < transform.position.y)
+                if (contacts[i].point.y <= transform.position.y)
                 {
+                    justLanded = false;
                     canIjump = true;
                     wallijumpy = false;
                     extrajumpcount = 2;
+                    _airborneTime = 0;
+                    
                     _animator.SetBool("IsJumping", false);
                     _animator.SetBool("wall", false);
                 }
-
-
-
                 
                 if (_animator.GetBool("Dash"))
                 {
@@ -365,6 +366,11 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) //for when you hit the ground
     {
+        
+        ContactPoint2D[] contacts= new ContactPoint2D[8];
+        collision.GetContacts(contacts);
+        extrajumpcount = 1;
+
         if (_fallingTime > 6.1)
         {
             _animator.SetTrigger("land");
@@ -376,13 +382,24 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
-        if (collision.gameObject.transform.position.y <= transform.position.y)
+ /*        if (collision.gameObject.transform.position.y <= transform.position.y)
         {
             extrajumpcount = 1;
+        } */
+
+        foreach (ContactPoint2D contact in contacts)
+        {
+            if (Mathf.Abs(contact.normal.y) > Mathf.Abs(contact.normal.x) && contact.normal.y > 0)
+            {
+                if (contact.point.y <= transform.position.y)
+                {
+                    justLanded = true;
+                    print(justLanded);
+                }
+
+            }
         }
 
-
-        _animator.SetBool("Dash", false);
 
         // if (collision.gameObject.CompareTag("Enemy"))
         // {
@@ -398,6 +415,7 @@ public class Player : MonoBehaviour
             //canIjump = false;
             _playerFall = true;
         }
+
 
         wallijumpy = false;
         _maxVerticalSpeed = speedCaps.y;
@@ -437,16 +455,17 @@ public class Player : MonoBehaviour
         }
         if (canIjump == false)
         {
-            vertspid += -0.1f;
+            vertspid += _gravity;
 
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
+        
+        
 
         vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
 
-       
 
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
         {
@@ -457,7 +476,7 @@ public class Player : MonoBehaviour
 
     //Animaciones
 
-    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is! || In fact, Marian DID draw a batch of redundant sprites, so no mirroring for Brody, kinda...
+    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is! || In fact, Marian DID draw a batch of redundant sprites, so no mirroring for Brody, kinda... || Fuck.
         {
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
@@ -573,8 +592,7 @@ public class Player : MonoBehaviour
     public void SetMaxHP(int hp)
     {
         MaxHP = hp;
-        //HP = MaxHP;
-        //_healthBar.UpdateHP();
+
     }
 
     private IEnumerator StartCooldown()
@@ -698,7 +716,7 @@ public class Player : MonoBehaviour
         body.velocity = new Vector2(0,0);
         _animator.SetFloat("Speed", 0);
         doIhaveToGoSomewhere = false;
-
+        MovementEnableToggle(true);
 
     }
     public void setDestination(float x, float y)
@@ -792,8 +810,8 @@ public class Player : MonoBehaviour
         {
             dustSpawnCooldown = 0f;
         }
-
-        if (Input.GetButton("Jump"))
+        print(Input.GetAxis("Jump"));
+        if (Input.GetAxis("Jump") > 0)
         {
             _lastJumpPress += 0.17f;
         }

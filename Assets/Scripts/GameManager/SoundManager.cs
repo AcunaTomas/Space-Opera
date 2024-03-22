@@ -30,7 +30,6 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
         INSTANCE = this;
-        
 
     }
     
@@ -42,11 +41,8 @@ public class SoundManager : MonoBehaviour
             case 0:
                 PlayerAudio.SendMessage("QueueSound",SoundInfo.clip);
                 break;
-            case 1:
-                Music.Play();
-                break;
             case 2:
-                FX.Play();
+                FX.SendMessage("QueueSound",SoundInfo.clip);
                 break;
             case 3:
                 Ambient.Play();
@@ -55,6 +51,10 @@ public class SoundManager : MonoBehaviour
                 print("Playback failed");
                 break;
         }
+    }
+    public void StartMusic(string SongID)
+    {
+        Music.SendMessage("QueueSound", SongID);
     }
 
 }

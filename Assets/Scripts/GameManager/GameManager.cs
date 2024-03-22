@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour{
         INSTANCE = this;
         CameraController = gameObject.GetComponentInChildren<CameraController>();
 
-        switch (GameManager.INSTANCE.LEVEL)
+        switch (LEVEL)
         {
             case 1:
                 lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL1_DIALOGUES);
@@ -54,17 +54,21 @@ public class GameManager : MonoBehaviour{
             case 4:
                 lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL_SELECT);
                 break;
+            case 999:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL999);
+                break;
             default:
+                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL999);
                 break;
         }
-
+        print(lvlDiag.DIALOGUES);
         try
         {
             _playerScript = PLAYER.GetComponent<Player>();
         }
         catch (System.Exception e)
         {
-            print("Oh no" + e);
+            print("Oh no \n" + e);
         }
     }
 
@@ -206,5 +210,10 @@ public class GameManager : MonoBehaviour{
         DIALOGUESKIPEND = toggle;
         
     } 
+
+    public void SetFps(int fps)
+    {
+        Application.targetFrameRate = fps;
+    }
 
 }

@@ -40,6 +40,8 @@ public class Event : MonoBehaviour
 
     public bool AutoActivate = false;
     
+    public float Execution_Delay = 0f;
+
     public eventType options =  new eventType();
 
     private GameObject _player;
@@ -51,7 +53,7 @@ public class Event : MonoBehaviour
         _player = GameObject.FindWithTag("Player");
         if (AutoActivate)
         {
-            doTheThing(options);
+            StartCoroutine(Delay(Execution_Delay));
         }
         //Physics2D.IgnoreCollision(_player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
@@ -61,7 +63,7 @@ public class Event : MonoBehaviour
         //Debug.Log("trig");
         if (other.gameObject.tag  == "Player" || other.gameObject.tag == "CutScenePlayer")
         {
-            doTheThing(options);
+            StartCoroutine(Delay(Execution_Delay));
         }
     }
 
@@ -136,5 +138,11 @@ public class Event : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator Delay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        doTheThing(options);
     }
 }

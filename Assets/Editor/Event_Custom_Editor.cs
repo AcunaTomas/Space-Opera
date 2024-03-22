@@ -45,6 +45,8 @@ public class Event_Custom_Editor : Editor
         evento.single_use = (bool)EditorGUILayout.Toggle("Single Use?", evento.single_use);
         EditorGUILayout.Separator();
         evento.AutoActivate = (bool)EditorGUILayout.Toggle("Auto Activate?", evento.AutoActivate);
+        EditorGUILayout.Separator();
+        evento.Execution_Delay = (float)EditorGUILayout.FloatField("Execution Delay", evento.Execution_Delay);
         base.serializedObject.ApplyModifiedProperties();
     }
 

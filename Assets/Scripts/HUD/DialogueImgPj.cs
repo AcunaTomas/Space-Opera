@@ -23,7 +23,7 @@ public class DialogueImgPj : MonoBehaviour
     public List<Character> CHARACTERS = new List<Character>();
     public Dictionary<string, List<Emotion>> CHARACTERS_TRUE;
 
-    private void Start ()
+    private void Awake()
     {
         CHARACTERS_TRUE = CHARACTERS.ToDictionary(character => character.NAME, character => character.EMOTIONS);
     }
