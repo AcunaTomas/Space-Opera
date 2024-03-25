@@ -22,7 +22,9 @@ namespace Shinjingi
 
         private bool _desiredJump, _isJumping;
         public bool _onGround;
-
+        
+        
+        
 
         // Start is called before the first frame update
         void Awake()

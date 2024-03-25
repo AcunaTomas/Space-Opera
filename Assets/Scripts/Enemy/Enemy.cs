@@ -36,7 +36,8 @@ public class Enemy : MonoBehaviour
         simple,
         shoot,
         boss,
-        shield
+        shield,
+        gunTower,
     }
 
     [SerializeField]
@@ -72,7 +73,7 @@ public class Enemy : MonoBehaviour
     //         TakeDamage(40);
     //     }
     // }
-
+    
     public void TakeDamage(int damage)
     {
         if (!_coolingHit && !isDead)
@@ -80,6 +81,7 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
             attackDamage = damage;
             animator.SetTrigger("Hurt");
+            CameraController.Instance.ScreenShake(.3f, .1f);
 
             if (_enemyType == EnemyType.melee)
             {
@@ -89,6 +91,11 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.gun)
             {
                 GetComponent<EnemyShooting2>().enabled = false;
+            }
+
+            if (_enemyType == EnemyType.gunTower)
+            {
+                GetComponent<EnemyShootingDown>().enabled = false;
             }
 
             if (_enemyType == EnemyType.simple)
@@ -137,6 +144,11 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.gun)
             {
                 GetComponent<EnemyShooting2>().enabled = false;
+            }
+
+            if (_enemyType == EnemyType.gunTower)
+            {
+                GetComponent<EnemyShootingDown>().enabled = false;
             }
 
 
@@ -199,6 +211,12 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("Die");
             GetComponent<EnemyFireBehaviour>().enabled = false;
 
+        }
+
+        if (_enemyType == EnemyType.gunTower)
+        {
+            animator.SetTrigger("Die");
+            GetComponent<EnemyShootingDown>().enabled = false;
         }
 
         if (_enemyType == EnemyType.simple)
@@ -270,6 +288,11 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.gun)
             {
                 GetComponent<EnemyShooting2>().enabled = true;
+            }
+
+            if (_enemyType == EnemyType.gunTower)
+            {
+                GetComponent<EnemyShootingDown>().enabled = true;
             }
         }   
     }

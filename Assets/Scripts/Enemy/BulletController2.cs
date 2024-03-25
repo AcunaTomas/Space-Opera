@@ -24,7 +24,7 @@ public class BulletController2 : MonoBehaviour
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(Vector3.forward * (angle));
         _bulletRB.velocity = new Vector2(moveDir.x, moveDir.y);
-        Destroy(this.gameObject, 4);
+        Destroy(this.gameObject, 3);
 
     }
 
@@ -35,7 +35,6 @@ public class BulletController2 : MonoBehaviour
             col.gameObject.SendMessage("LoseHP",damage,SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
-        
         
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveBoxes : MonoBehaviour
 {
     private float _playerPosRef;
+    [SerializeField]
     private float _boxLimitRef;
     private float _holdLimit;
     [SerializeField] private float _posOffset; //.16 funciona
@@ -13,6 +14,7 @@ public class MoveBoxes : MonoBehaviour
     private bool _isDragging;
     [SerializeField] private LayerMask _layerRef;
     private Player _playerRef;
+
     private void OnEnable()
     {
         _isDragging = false;    
@@ -25,7 +27,6 @@ public class MoveBoxes : MonoBehaviour
     {
         if(_boxLimitRef != 0f)
         {
-            Debug.Log("LimitRef");
             if(Input.GetButton("Submit"))
             {
                 //Debug.Log("KEEP HOLDING" + _holdLimit);
@@ -45,6 +46,8 @@ public class MoveBoxes : MonoBehaviour
             _playerRef.SetSpeed(_speedDrag);
             if(!_isDragging)
             {
+                box.GetComponent<Animator>().SetBool("inRange", true);
+                GetComponent<Animator>().SetBool("Push", true);
                 _holdLimit = 0f;
                 _boxLimitRef = 0f;
                 _playerPosRef = gameObject.transform.position.x;
@@ -74,6 +77,7 @@ public class MoveBoxes : MonoBehaviour
         else if(HitBuilding(HitDirection))
         {
             _boxLimitRef = BoxRef.gameObject.transform.position.x;
+
             if(_holdLimit>=.4f)
             {
                 Debug.Log("GoBack");
@@ -91,6 +95,9 @@ public class MoveBoxes : MonoBehaviour
             Physics2D.queriesHitTriggers = true; //Detecta triggers >:)
             _playerRef.ResetSpeed();
             _isDragging = false;
+            box.GetComponent<Animator>().SetBool("inRange", false);
+            GetComponent<Animator>().SetBool("Push", false);
+            GetComponent<Animator>().SetTrigger("idle");
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
     }

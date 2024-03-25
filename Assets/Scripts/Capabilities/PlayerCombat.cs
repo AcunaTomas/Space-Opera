@@ -40,6 +40,11 @@ public class PlayerCombat : MonoBehaviour
 
     private float queryStartTime;
 
+    private float _attackCount = 1;
+    private float _attackAnimTimer = 0f;
+    private float _attackAnimDelay = 2f;
+
+
     public bool GetSpriteRend()
     {
         return spriteRenderer.flipX;
@@ -194,6 +199,14 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
         }
+        
+        _attackAnimTimer += Time.deltaTime; 
+
+        if (_attackAnimTimer >= _attackAnimDelay)
+        {
+            _attackCount = 1; 
+            _attackAnimTimer = 0f;
+        }
 
     }
 
@@ -212,8 +225,30 @@ public class PlayerCombat : MonoBehaviour
             attackSprite.flipX = false;
         }   
 
-        animator.SetTrigger("Attack");
-        attackAnimator.SetTrigger("Golpe");
+        if (_attackCount == 1)
+        {
+            animator.SetTrigger("Attack1");
+            attackAnimator.SetTrigger("Golpe1");
+            _attackCount = 2;
+
+            _attackAnimTimer = 0f;
+        }
+        else if (_attackCount == 2)
+        {
+            animator.SetTrigger("Attack2");
+            attackAnimator.SetTrigger("Golpe2");
+            _attackCount = 3;
+
+            _attackAnimTimer = 0f;
+        }
+        else if (_attackCount == 3)
+        {
+            animator.SetTrigger("Attack3");
+            attackAnimator.SetTrigger("Golpe3");
+            _attackCount = 1;
+            
+            _attackAnimTimer = 0f;
+        }
 
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);

@@ -558,6 +558,7 @@ public class Player : MonoBehaviour
             _animator.SetBool("IsJumping", false);
             _animator.SetTrigger("Hurt");
             _healthBar.UpdateHP();
+            CameraController.Instance.ScreenShake(.5f, .1f);
 
             _coolingHit = true;
             StartCoroutine(StartCooldown());
