@@ -45,7 +45,6 @@ public class PlayerCombat : MonoBehaviour
     private float _attackAnimDelay = 2f;
 
 
-
     public bool GetSpriteRend()
     {
         return spriteRenderer.flipX;
