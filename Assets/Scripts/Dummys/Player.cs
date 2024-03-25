@@ -80,6 +80,8 @@ public class Player : MonoBehaviour
     public float dashRate = 2f;
     float nextDashTime = 0f;
 
+    [SerializeField]
+    private bool grounded;
     public bool _coolingHit = false;
     public bool _coolingDashAnim = false;
     public bool _coolingShootDown = false;
@@ -150,7 +152,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         
-        if (canIMove == true)
+        if (canIMove)
         {
             HorizontalInputValue = Input.GetAxis("Horizontal");
             
@@ -170,12 +172,11 @@ public class Player : MonoBehaviour
 
     private void _plaseJump()
     {
-        
+        //GetButtonDown solo es true en el frame que se apreta espacio
         if (Input.GetButtonDown("Jump") && canIjump)
         {
             vertspid = _jumpImpulse;
             _animator.SetBool("IsJumping", true);
-            print("Initial Impulse");
             canIjump = false;
             return;
         }
@@ -256,6 +257,7 @@ public class Player : MonoBehaviour
         _xSpeedNullifier = 1;
     }
 
+
     IEnumerator WallXHandicap()
     {
         _wallJumpXHandicap = true;
@@ -282,7 +284,6 @@ public class Player : MonoBehaviour
         ContactPoint2D[] contacts= new ContactPoint2D[8]; //Realistically, the maximum should be around 6, but I want to be careful
         collision.GetContacts(contacts);
 
-
         for (var i = 0; i < collision.contactCount; i++) // does this for every single contact point registered
         {
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
@@ -293,7 +294,11 @@ public class Player : MonoBehaviour
                 {
                     StartCoroutine(StopDashAnim());
                 }
-                    
+                if (contacts[i].point.y <= transform.position.y)
+                {
+                    canIjump = true;
+                    grounded = true;
+                }
                 _maxVerticalSpeed = speedCaps.y;
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
@@ -392,7 +397,7 @@ public class Player : MonoBehaviour
                     wallijumpy = false;
                     extrajumpcount = 2;
                     _airborneTime = 0;
-                    
+                    grounded = true;
                     _animator.SetBool("IsJumping", false);
                     _animator.SetBool("wall", false);
                 }
@@ -413,19 +418,10 @@ public class Player : MonoBehaviour
         wallijumpy = false;
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
-        _xSpeedNullifier = 1;
-        ContactPoint2D[] contacts= new ContactPoint2D[8];
-        foreach (ContactPoint2D contact in contacts)
-        {
-            if (Mathf.Abs(contact.normal.y) > Mathf.Abs(contact.normal.x) && contact.normal.y > 0)
-            {
-                if (contact.point.y <= transform.position.y)
-                {
-                    _coyoteValidTime = 0.1f;
-                }
-
-            }
-        }
+        _xSpeedNullifier = 1f;         
+        _coyoteValidTime = 0.1f;
+        grounded = false;
+        canIjump = false;    
         if (collision.gameObject.CompareTag("Ascensor"))
         {
             transform.parent = null;
@@ -790,15 +786,7 @@ public class Player : MonoBehaviour
             nextDashTime = Time.time + 1f / dashRate;
         }
 
-        if (_coyoteValidTime > 0)
-        {
-            _coyoteValidTime -= Time.deltaTime;
-            if (Clamp(_coyoteValidTime, 0, 1) <= 0 && jumpLimit == 0)
-            {
-                _coyoteValidTime = 0;
-                canIjump = false;
-            }
-        }
+
 
         if (dustSpawnCooldown > 0)
         {
@@ -808,7 +796,6 @@ public class Player : MonoBehaviour
         {
             dustSpawnCooldown = 0f;
         }
-        print(Input.GetAxis("Jump"));
         if (Input.GetAxis("Jump") > 0)
         {
             _lastJumpPress += 0.17f;

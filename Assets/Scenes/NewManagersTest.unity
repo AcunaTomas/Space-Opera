@@ -6245,7 +6245,7 @@ MonoBehaviour:
   MaxHP: 5
   vertspid: -0.3
   _gravity: -0.1
-  _jumpImpulse: 0.85
+  _jumpImpulse: 0.9
   canIjump: 1
   wallijumpy: 0
   body: {fileID: 0}
@@ -6282,6 +6282,7 @@ MonoBehaviour:
   justLanded: 0
   _playerType: 1
   _isBrodyJumping: 0
+  _SpaceBarReleaseJumpDecay: 0.1
 --- !u!50 &1763975266
 Rigidbody2D:
   serializedVersion: 4
