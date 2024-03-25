@@ -105,8 +105,8 @@ public class Player : MonoBehaviour
 
     public bool _isBrodyJumping = false;
 
-
-
+    [SerializeField]
+    private float _SpaceBarReleaseJumpDecay = 0.01f;
 
 
     public void ChangeSkillStatus(bool a)
@@ -175,6 +175,7 @@ public class Player : MonoBehaviour
         {
             vertspid = _jumpImpulse;
             _animator.SetBool("IsJumping", true);
+            print("Initial Impulse");
             canIjump = false;
             return;
         }
@@ -198,7 +199,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonUp("Jump"))
         {
-            vertspid = 0f;
+            vertspid = vertspid - _SpaceBarReleaseJumpDecay;
         }
 
 
