@@ -137,6 +137,10 @@ public class PlayerCombat : MonoBehaviour
                     }
                     hitsomething = false;
                 }
+                else
+                {
+                    _attackCount = 1;
+                }
             }
             else
             {
