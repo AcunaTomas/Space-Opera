@@ -32,8 +32,14 @@ public class UIManager : MonoBehaviour
         DIALOGUE_PANEL.FirstDialogue(CollisionDialogue.ChangeAudio.dialogo);
     }
 
-    private void Update() {
-        
+    public bool DialougeBoxStatus()
+    {
+        return DIALOGUE_PANEL.gameObject.activeSelf;
+    }
+
+    public string[] DialougeBoxLoadText(string zoneName)
+    {
+        return DIALOGUE_PANEL.AddText(zoneName);
     }
 
 }

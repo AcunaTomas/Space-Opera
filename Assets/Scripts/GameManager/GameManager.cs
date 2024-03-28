@@ -11,13 +11,9 @@ public class GameManager : MonoBehaviour{
     public static GameManager INSTANCE;
     public int LEVEL;
     public GameObject PLAYER;
-    public GameObject BUTTON_INTERACT;
     public Vector3 CHECKPOINT;
     public GameObject ACTUAL_CHECKPOINT;
     public bool PLAYER_COMBAT = false;
-    public ButtonDialogue CANVAS;
-    public GameObject PAUSE_MENU;
-    public GameObject PANEL_OBJECTIVE;
     public bool PAUSED = false;
     public float MUSIC_VOLUME;
     public float SFX_VOLUME;
@@ -115,8 +111,6 @@ public class GameManager : MonoBehaviour{
     public void PauseUnPause(bool bl)
     {
             ActivateCursor(bl);
-            PAUSE_MENU.SetActive(bl);
-            PAUSE_MENU.transform.GetChild(0).GetChild(0).gameObject.SetActive(bl);
             ChangeTimeScale(System.Convert.ToSingle(bl));
 
         PAUSED = !bl;

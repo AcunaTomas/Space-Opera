@@ -9,7 +9,7 @@ public class CollisionDialogue : MonoBehaviour
     [SerializeField]
     private GameObject _player;
     [SerializeField]
-    private ButtonDialogue _panelDialogue;
+    private UIManager _panelDialogue;
     [SerializeField]
     private string _id;
     [SerializeField]
@@ -36,7 +36,7 @@ public class CollisionDialogue : MonoBehaviour
     
     void Start()
     {
-        _panelDialogue = GameManager.INSTANCE.CANVAS;
+        _panelDialogue = UIManager.INSTANCE;
         if (_checkpoint || _interactableOnly)
         {
             return;
@@ -52,7 +52,7 @@ public class CollisionDialogue : MonoBehaviour
     }
     public void GetCanvas()
     {
-        _panelDialogue = GameManager.INSTANCE.CANVAS;
+        _panelDialogue = UIManager.INSTANCE;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -76,9 +76,9 @@ public class CollisionDialogue : MonoBehaviour
             return;
         }
 
-        _interactable = GameManager.INSTANCE.BUTTON_INTERACT;
-        _interactable.transform.parent = transform;
-        _interactable.transform.localPosition = new Vector3 (0f, 0.2f, 0f);
+        //_interactable = GameManager.INSTANCE.BUTTON_INTERACT;
+       // _interactable.transform.parent = transform;
+        //_interactable.transform.localPosition = new Vector3 (0f, 0.2f, 0f);
         
         if (_interactableOnly)
         {
@@ -90,7 +90,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (_panelDialogue.gameObject.activeSelf || _checkpoint)
+        if (_panelDialogue.DialougeBoxStatus() || _checkpoint)
         {
             return;
         }
@@ -100,7 +100,7 @@ public class CollisionDialogue : MonoBehaviour
             _entered = true;
             _eAvailable = true;
             _buttonPressed = false;
-            _interactable.SetActive(true);
+            //_interactable.SetActive(true);
 
             if (_interactableOnly)
             {
@@ -134,7 +134,7 @@ public class CollisionDialogue : MonoBehaviour
         }
 
         _eAvailable = false;
-        _interactable.SetActive(false);
+        //_interactable.SetActive(false);
 
         if (_interactableOnly)
         {
@@ -171,7 +171,7 @@ public class CollisionDialogue : MonoBehaviour
         else if (_checkpoint)
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            _panelDialogue.DeactivateGO(gameObject);
+
         }
 
         if (_player.GetComponent<Player>() != null) // Null check for cutscenes, since those don't need an actual player
@@ -184,22 +184,7 @@ public class CollisionDialogue : MonoBehaviour
 
         }
 
-
-        _panelDialogue.gameObject.SetActive(true);
-        if (_panelDialogueDown)
-        {
-            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,0f);
-            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0f);
-            _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,160f);
-        }
-        else
-        {
-            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,1f);
-            _panelDialogue.gameObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,1f);
-            _panelDialogue.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f,-160f);
-        }
-        _panelDialogue.ZONENAME = _id;
-        _panelDialogue.FirstDialogue(_changeAudio);
+        _panelDialogue.OpenDialogueBox(_id);
 
     }
 

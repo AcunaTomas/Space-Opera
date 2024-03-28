@@ -222,9 +222,8 @@ public class Player : MonoBehaviour
             _wallJumpXtimeFreeze = 0.3f;
             _wallJumpXHandicap = true;
             _xSpeedNullifier = 1;
-            body.AddForce(new Vector2(WallJumpXDirection * 2f, 4f), ForceMode2D.Impulse);
-            vertspid = 1f;
-            
+            body.AddForce(new Vector2(WallJumpXDirection * 2f, 0), ForceMode2D.Impulse);
+            vertspid = 0.9f;
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
             //Wall-e
