@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _landingEffect2;
 
-
     private float dustSpawnCooldown = 0f;
     [SerializeField]
     private RuntimeAnimatorController _brodyRight;
