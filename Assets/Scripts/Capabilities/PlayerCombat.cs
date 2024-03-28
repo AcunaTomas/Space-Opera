@@ -19,6 +19,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 40;
 
+    private int attackDamageCombo = 100;
+
     public float attackRate = 2f;
     float nextAttackTime = 0f;
     public SpriteRenderer spriteRenderer;
@@ -40,10 +42,15 @@ public class PlayerCombat : MonoBehaviour
 
     private float queryStartTime;
 
+    [SerializeField]
     private float _attackCount = 1;
+    [SerializeField]
     private float _attackAnimTimer = 0f;
-    private float _attackAnimDelay = 2f;
+    [SerializeField]
+    private float _attackAnimDelay = 0f;
 
+    [SerializeField]
+    private bool hitsomething = false;
 
     public bool GetSpriteRend()
     {
@@ -59,7 +66,6 @@ public class PlayerCombat : MonoBehaviour
         attackAnimatorUp = attackVisualUp.GetComponent<Animator>();
         attackAnimatorDown = attackVisualDown.GetComponent<Animator>();
         attackSprite = attackVisual.GetComponent<SpriteRenderer>();
-
     }
     void FixedUpdate()
     {
@@ -121,19 +127,50 @@ public class PlayerCombat : MonoBehaviour
             if (Time.time - queryStartTime >= attackDuration)
             {
                 isAttackActive = false;
+                if (hitsomething)
+                {
+                    _attackAnimTimer = 0f;
+                    _attackCount++;
+                    if (_attackCount > 3f)
+                    {
+                        _attackCount = 1;
+                    }
+                    hitsomething = false;
+                }
             }
             else
             {
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
-                    enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+                    if (_attackCount >= 3)
+                    {
+                        enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo);
+                        CameraController.Instance.ScreenShake(.3f, .1f);
+                    }
+                    else
+                    {
+                        enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
+                        
+                    }
+                    hitsomething = true;
                 }
 
                 Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyGunLayers);
                 foreach (Collider2D enemyGunCollider in hitEnemiesGun)
                 {
-                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                    if (_attackCount >= 3)
+                    {
+                        enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamageCombo);
+                        CameraController.Instance.ScreenShake(.3f, .1f);
+                    }
+                    else
+                    {
+                        enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+
+                        
+                    }
+                    hitsomething = true;
                 }
 
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyBalaLayers);
@@ -143,7 +180,7 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
         }
-
+        
         if (isAttackUpActive)
         {
             if (Time.time - queryStartTime >= attackDuration)
@@ -200,20 +237,19 @@ public class PlayerCombat : MonoBehaviour
             }
         }
         
-        _attackAnimTimer += Time.deltaTime; 
+         _attackAnimTimer += Time.deltaTime; 
 
         if (_attackAnimTimer >= _attackAnimDelay)
         {
             _attackCount = 1; 
-            _attackAnimTimer = 0f;
-        }
+            _attackAnimTimer = 0f;  
+        }  
 
     }
 
     
     public virtual void Attack()
     {
-
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
@@ -229,25 +265,30 @@ public class PlayerCombat : MonoBehaviour
         {
             animator.SetTrigger("Attack1");
             attackAnimator.SetTrigger("Golpe1");
-            _attackCount = 2;
+            //_attackCount = 2;
 
-            _attackAnimTimer = 0f;
+            //_attackAnimTimer = 0f;
+            return;
         }
-        else if (_attackCount == 2)
+        if (_attackCount == 2)
         {
             animator.SetTrigger("Attack2");
             attackAnimator.SetTrigger("Golpe2");
-            _attackCount = 3;
+            //_attackCount = 3;
 
-            _attackAnimTimer = 0f;
+            //_attackAnimTimer = 0f;
+
+            return;
         }
-        else if (_attackCount == 3)
+        if (_attackCount == 3)
         {
             animator.SetTrigger("Attack3");
             attackAnimator.SetTrigger("Golpe3");
-            _attackCount = 1;
+            //_attackCount = 1;
             
-            _attackAnimTimer = 0f;
+            //_attackAnimTimer = 0f;
+
+            return;
         }
 
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);

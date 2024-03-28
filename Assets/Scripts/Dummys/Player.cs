@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -80,8 +81,14 @@ public class Player : MonoBehaviour
     public bool _coolingRespawn = false;
 
     public Animator _effectAnimator;
-    public Animator _landingAnimator1;
-    public Animator _landingAnimator2;
+
+    [SerializeField]
+    private GameObject _doubleJumpEffect;
+    [SerializeField]
+    private GameObject _landingEffect1;
+    [SerializeField]
+    private GameObject _landingEffect2;
+
 
     private float dustSpawnCooldown = 0f;
     [SerializeField]
@@ -99,6 +106,9 @@ public class Player : MonoBehaviour
     //Esta c�mara hay que sacarla de ac�, es solo para que ande, imagino que despu�s podemos designar la c�mara activa en el game manager y llamar esa
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera _activeCamera;
+
+    private float _flickerDuration = 0.4f;
+    private int _flickerCount = 3;
 
     public PlayerType _playerType;
     public enum PlayerType
@@ -225,7 +235,15 @@ public class Player : MonoBehaviour
         extrajumpcount -= 1;
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("DoubleJump");
-        _effectAnimator.SetTrigger("Effect");
+
+        //acá hay que hacer el instantiate de Brody double jump
+        //_effectAnimator.SetTrigger("Effect");
+
+        var _jumpEffect = Instantiate(_doubleJumpEffect, this.transform);
+        _jumpEffect.GetComponent<Animator>().SetTrigger("Effect");
+
+        Destroy(_jumpEffect, 0.6f);
+
     }
 
     private void WallJump() //Wall jumping handler
@@ -317,8 +335,6 @@ public class Player : MonoBehaviour
                     _animator.SetBool("wall", false);
                 }
 
-
-
                 
                 if (_animator.GetBool("Dash"))
                 {
@@ -394,8 +410,14 @@ public class Player : MonoBehaviour
         if (_fallingTime > 6.1)
         {
             _animator.SetTrigger("land");
-            _landingAnimator1.SetTrigger("Effect");
-            _landingAnimator2.SetTrigger("Effect");
+
+            var _landing1 = Instantiate(_landingEffect1, this.transform);
+            var _landing2 = Instantiate(_landingEffect2, this.transform);
+            _landing1.GetComponent<Animator>().SetTrigger("Effect");
+            _landing2.GetComponent<Animator>().SetTrigger("Effect");
+
+            Destroy(_landing1, 0.7f);
+            Destroy(_landing2, 0.7f);
         }
         
         if (collision.gameObject.CompareTag("Ascensor"))
@@ -566,9 +588,14 @@ public class Player : MonoBehaviour
             _animator.SetBool("HurtBool", true);
             StartCoroutine(StartCooldownHurtAnim());
 
+
             if (HP <= 0)
             {
                 Die();
+            }
+            else
+            {
+                StartCoroutine(FlickerSprite());
             }
         }
     }
@@ -645,11 +672,37 @@ public class Player : MonoBehaviour
         //_healthBar.UpdateHP();
     }
 
+    private IEnumerator FlickerSprite()
+    {
+        Debug.Log("FLIKER");
+        for (int i = 0; i < _flickerCount; i++)
+        {
+            for (float t = 1f; t >= 0.5; t -= Time.deltaTime / _flickerDuration)
+            {
+                Color newColor = _spriteRenderer.color;
+                newColor.a = t;
+                _spriteRenderer.color = newColor;
+                yield return null;
+            }
+            
+            for (float t = 0.5f; t <= 1f; t += Time.deltaTime / _flickerDuration)
+            {
+                Color newColor = _spriteRenderer.color;
+                newColor.a = t;
+                _spriteRenderer.color = newColor;
+                yield return null;
+            }
+            
+            yield return new WaitForSeconds(_flickerDuration);
+        }
+    }
+
     private IEnumerator StartCooldown()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(2f);
 
         _coolingHit = false;
+        Debug.Log("PUEDE RECIBIR DAÑO");
     }
 
     private IEnumerator StartCooldownHurtAnim()

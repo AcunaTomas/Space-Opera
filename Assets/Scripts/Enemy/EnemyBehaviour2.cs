@@ -79,7 +79,6 @@ void EnemyLogic()
 
 void Move()
 {
-    Debug.Log("move");
     animator.SetBool("Run", true);
 
     if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))

@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
             attackDamage = damage;
             animator.SetTrigger("Hurt");
-            CameraController.Instance.ScreenShake(.3f, .1f);
+            //CameraController.Instance.ScreenShake(.3f, .1f);
 
             if (_enemyType == EnemyType.melee)
             {
