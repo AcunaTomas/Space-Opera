@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HurtBoxPinchos : HurtBox
 {
-    
     public override void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -15,12 +14,11 @@ public class HurtBoxPinchos : HurtBox
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Player>().LoseHP(attackDamage, transform.position);
-            other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
+            other.GetComponent<Player>().LoseHP(attackDamage, transform.position, KnockbackDaño);
             other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;
             Debug.Log(orientation);
-            Invoke("MoveAgain", 0.2f);
+            Invoke(nameof(MoveAgain), 0.2f);
             Debug.Log("hit");
         }
     }

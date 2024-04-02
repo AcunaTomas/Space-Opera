@@ -129,7 +129,7 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyGunLayers);
                 foreach (Collider2D enemyGunCollider in hitEnemiesGun)
                 {
-                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage, transform.position);
                     KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
                 }
 
@@ -159,7 +159,7 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyGunLayers);
                 foreach (Collider2D enemyGunCollider in hitEnemiesGun)
                 {
-                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage, transform.position);
                     KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
                 }
 
@@ -182,13 +182,13 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayers);
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
-                    enemyCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                    enemyCollider.GetComponent<Enemy>().TakeDamage2(attackDamage, transform.position);
                 }
 
                 Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyGunLayers);
                 foreach (Collider2D enemyGunCollider in hitEnemiesGun)
                 {
-                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage);
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage, transform.position);
                 }
 
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyBalaLayers);
@@ -315,9 +315,12 @@ public class PlayerCombat : MonoBehaviour
 
     void KnockbackHitting(Transform _enemyRef, float _knockback)
     {
+        gameObject.GetComponent<Player>()._coolingHit = true;
+        StartCoroutine(gameObject.GetComponent<Player>().StartCooldownCooling());
         Vector2 dir = transform.position - _enemyRef.position;
         dir = dir.normalized;
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * _knockback, dir.y),ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * _knockback, 0),ForceMode2D.Impulse);
+        //GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * _knockback, dir.y),ForceMode2D.Impulse);
     }
 
     void OnDrawGizmosSelected() 

@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     [Header("KnockBack")]
     [SerializeField] private float knockbackRecibido = 0f; //.0.2f va
-    [SerializeField] private float knockbackDado = 0f; //3f va
+    [SerializeField] private float knockbackDado = 0f; //.1f va
 
 
     void Start()
@@ -80,13 +80,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage, Vector2 sourcePosition)
     {
-        if(knockbackRecibido > 0)
-        {
-            Debug.Log("EmpujoEnem");
-            Vector2 dir = (Vector2)transform.position - sourcePosition;
-            GetComponent<Rigidbody2D>().AddForce(dir.normalized * knockbackRecibido, ForceMode2D.Impulse);
-        }
-
+        DoKnockback(sourcePosition);
         if (!_coolingHit && !isDead)
         {
             currentHealth -= damage;
@@ -120,8 +114,8 @@ public class Enemy : MonoBehaviour
                 _callWhat.Invoke();
             }
             _coolingHit = true;
-            StartCoroutine(StartCooldown());
-
+            StartCoroutine(StartCooldown(_coolingHit2));
+            /*
             if (_spriteRenderer.flipX == true)
             {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
@@ -130,11 +124,13 @@ public class Enemy : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
             }
+            */
         }
     }
 
-    public void TakeDamage2(int damage)
+    public void TakeDamage2(int damage, Vector2 sourcePosition)
     {
+        DoKnockback(sourcePosition);
         if (!_coolingHit2)
         {
             currentHealth -= damage;
@@ -163,22 +159,16 @@ public class Enemy : MonoBehaviour
                 _callWhat.Invoke();
             }
             _coolingHit2 = true;
-            StartCoroutine(StartCooldown2());
+            StartCoroutine(StartCooldown(_coolingHit2));
             
         }
     }
 
-    private IEnumerator StartCooldown()
+    private IEnumerator StartCooldown(bool xd)
     {
         yield return new WaitForSeconds(0.5f);
 
-        _coolingHit = false;
-    }
-    private IEnumerator StartCooldown2()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        _coolingHit2 = false;
+        xd = false;
     }
     public void changeCallback(UnityEvent a)
     {
@@ -286,10 +276,23 @@ public class Enemy : MonoBehaviour
         }   
     }
 
+    void DoKnockback(Vector2 sourcePosition)
+    {
+        if(knockbackRecibido > 0)
+        {
+            Debug.Log("KnockbackEnem");
+            Vector2 dir = (Vector2)transform.position - sourcePosition;
+            dir = dir.normalized;
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * knockbackRecibido, 0), ForceMode2D.Impulse);
+        }
+    }
     public float GetKnockback()
     {
         return knockbackDado;
     }
     
-    
+    public EnemyType GetEnemyType()
+    {
+        return _enemyType;
+    }
 }

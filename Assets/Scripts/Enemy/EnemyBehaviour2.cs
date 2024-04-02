@@ -48,8 +48,10 @@ void Update()
 
 void EnemyLogic() 
 {
-    distance = Vector2.Distance(transform.position, target.position);
-
+    if(!DONTMOVE)
+    {
+        distance = Vector2.Distance(transform.position, target.position);
+    }
     if (distance > attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
     {   
         Move();
@@ -73,7 +75,7 @@ void EnemyLogic()
 
     if (player.GetComponent<Player>().GetHP() <= 0)
     {
-        Move();
+        //Move(); Porque harias que se mueva al enemigo si ya lo mataron xd?
         StopAttack();
     }
 }
@@ -83,7 +85,7 @@ void Move()
     Debug.Log("move");
     animator.SetBool("Run", true);
 
-    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !DONTMOVE)
+    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !DONTMOVE && !GetComponent<Enemy>()._coolingHit)
     {
         Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);

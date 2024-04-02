@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class EnemyShootingDown : MonoBehaviour
     private bool _hitDowns;
     private Vector2 _salidaRef;
     [SerializeField] private float _animDelay;
+
+    [SerializeField] float distance = 3f;
 
     void Start()
     {
@@ -87,10 +90,6 @@ public class EnemyShootingDown : MonoBehaviour
             //_bulletParent.transform.localPosition = new Vector2(0.2f,0);
         }
 
-    
-    //Ternary Operator
-    //rotation.y = (currentTarget.position.x < transform.position.x) ? rotation.y = 180f : rotation.y = 0f;
-
         transform.eulerAngles = rotation;
     }
     void DoRaycasts()
@@ -105,17 +104,100 @@ public class EnemyShootingDown : MonoBehaviour
         Vector2 _refAbajoDER = _bulletParent.gameObject.transform.GetChild(2).transform.position;
         Vector2 _refIZQ = _bulletParent.gameObject.transform.GetChild(3).transform.position;
         Vector2 _refDER = _bulletParent.gameObject.transform.GetChild(4).transform.position;
-        RaycastHit2D hitAbajo = Physics2D.Raycast(_refAbajo, Vector2.down, _layerRef);
-        RaycastHit2D hitAbajoIZQ = Physics2D.Raycast(_refAbajoIZQ, Vector2.left + Vector2.down, _layerRef);
-        RaycastHit2D hitAbajoDER = Physics2D.Raycast(_refAbajoDER, Vector2.right + Vector2.down, _layerRef);
-        RaycastHit2D hitIZQ = Physics2D.Raycast(_refIZQ, Vector2.left, _layerRef);
-        RaycastHit2D hitDER = Physics2D.Raycast(_refDER, Vector2.right, _layerRef);
-        HitPlayer(hitAbajo, _refAbajo, hitAbajoIZQ, _refAbajoIZQ, hitAbajoDER, _refAbajoDER, hitIZQ, _refIZQ, hitDER, _refDER);
+        RaycastHit2D hitAbajo = Physics2D.Raycast(_refAbajo, Vector2.down, distance, _layerRef);
+        RaycastHit2D hitAbajoIZQ = Physics2D.Raycast(_refAbajoIZQ, Vector2.left + Vector2.down, distance, _layerRef);
+        RaycastHit2D hitAbajoDER = Physics2D.Raycast(_refAbajoDER, Vector2.right + Vector2.down, distance, _layerRef);
+        RaycastHit2D hitIZQ = Physics2D.Raycast(_refIZQ, Vector2.left, distance, _layerRef);
+        RaycastHit2D hitDER = Physics2D.Raycast(_refDER, Vector2.right, distance, _layerRef);
+        HitPlayer(hitAbajo, _refAbajo, 1);
+        HitPlayer(hitAbajoIZQ, _refAbajoIZQ, 2);
+        HitPlayer(hitAbajoDER, _refAbajoDER, 3);
+        HitPlayer(hitIZQ, _refIZQ, 4);
+        HitPlayer(hitDER, _refDER, 5);
+
+        //HitPlayer(hitAbajo, _refAbajo, hitAbajoIZQ, _refAbajoIZQ, hitAbajoDER, _refAbajoDER, hitIZQ, _refIZQ, hitDER, _refDER);
         /*
         HitPlayer(hitAbajoIZQ);
         HitPlayer(hitAbajoDER);
         */
     }
+    void HitPlayer(RaycastHit2D hit1, Vector2 refsal1, int xd)
+    {
+        if(!hit1)
+        {
+            //_hitSomething = false;
+            return;
+        }
+        else
+        {
+            //Debug.Log(hit1.collider.name + " y se anima " + xd);
+            _hitRef = hit1;
+            _salidaRef = refsal1;
+        }
+        if(xd == 1)
+        {
+            _hitSomething = true;
+            _hitMiddle = true;
+            _hitDowns = false;
+        }
+        if(xd == 2)
+        {
+            _hitSomething = true;
+            _hitMiddle = false;
+            _hitDowns = true;
+        }
+        if(xd == 3)
+        {
+            _hitSomething = true;
+            _hitMiddle = false;
+            _hitDowns = true;
+        }
+        if(xd == 4)
+        {
+            _hitSomething = true;
+            _hitMiddle = false;
+            _hitDowns = false;
+        }
+        if(xd == 5)
+        {
+            _hitSomething = true;
+            _hitMiddle = false;
+            _hitDowns = false;
+        }
+        /*
+        switch (xd)
+        {
+            case 1:
+                _hitSomething = true;
+                _hitMiddle = true;
+                _hitDowns = false;
+                break;
+            case 2:
+                _hitSomething = true;
+                _hitMiddle = false;
+                _hitDowns = true;
+                break;
+            case 3:
+                _hitSomething = true;
+                _hitMiddle = false;
+                _hitDowns = true;
+                break;
+            case 4:
+                _hitSomething = true;
+                _hitMiddle = false;
+                _hitDowns = false;
+                break;
+            case 5:
+                _hitSomething = true;
+                _hitMiddle = false;
+                _hitDowns = false;
+                break;
+            default:
+                break;
+        }
+        */
+    }
+    /*
     void HitPlayer(RaycastHit2D hit1, Vector2 refsal1, RaycastHit2D hit2, Vector2 refsal2, RaycastHit2D hit3, Vector2 refsal3, RaycastHit2D hit4, Vector2 refsal4, RaycastHit2D hit5, Vector2 refsal5)
     {
         if(hit1.collider.gameObject.tag != "Player" && hit2.collider.gameObject.tag != "Player" && hit3.collider.gameObject.tag != "Player" && hit4.collider.gameObject.tag != "Player" && hit5.collider.gameObject.tag != "Player")
@@ -167,7 +249,7 @@ public class EnemyShootingDown : MonoBehaviour
             _hitRef = hit5;
             _salidaRef = refsal5;
         }
-    }
+    */
     public void Attack()
     {
         Instantiate(_bullet, _salidaRef, Quaternion.identity);

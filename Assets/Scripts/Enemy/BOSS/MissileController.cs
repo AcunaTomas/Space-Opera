@@ -18,7 +18,7 @@ public class MissileController : MonoBehaviour
     int _attackDamage = 1;
     bool _coolingCollision = false;
 
-
+    [SerializeField]private float KnockbackDaño = .5f;
     private void FixedUpdate()
     {
         if (isBombActive)
@@ -34,7 +34,7 @@ public class MissileController : MonoBehaviour
 
                 foreach (Collider2D enemyCollider in hitPlayer)
                 {
-                    enemyCollider.GetComponent<Player>().LoseHP(_attackDamage, transform.position);
+                    enemyCollider.GetComponent<Player>().LoseHP(_attackDamage, transform.position, KnockbackDaño);
                 }
             }
         }

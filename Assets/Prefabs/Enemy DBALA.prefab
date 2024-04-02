@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1057679034379681883}
-  m_Layer: 7
+  m_Layer: 18
   m_Name: BulletSourceAb_IZQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,6 +246,8 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 1
   _objectToDisable: {fileID: 0}
+  knockbackRecibido: 0
+  knockbackDado: 0
 --- !u!114 &6110143221509005809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +265,7 @@ MonoBehaviour:
   _animator: {fileID: 1430123722234393767}
   _layerRef:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 262144
   _animDelay: 0.5
 --- !u!1 &4073128888219151211
 GameObject:
@@ -274,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6696329583675781266}
-  m_Layer: 7
+  m_Layer: 18
   m_Name: BulletSourceIZQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5333344024348576770}
-  m_Layer: 7
+  m_Layer: 18
   m_Name: BulletSourceAb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7190290600211248825}
-  m_Layer: 7
+  m_Layer: 18
   m_Name: BulletSourceAb_DER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7510939832384254118}
-  m_Layer: 7
+  m_Layer: 18
   m_Name: BulletSourceDER
   m_TagString: Untagged
   m_Icon: {fileID: 0}

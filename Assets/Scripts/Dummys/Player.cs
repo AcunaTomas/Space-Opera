@@ -6,8 +6,6 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     private Object dustEffect;
-    [Header("KnockBack")]
-    [SerializeField]private float knockbackRecibido = 3f;
     [Header("Stats")]
     [SerializeField]
     float HorizontalInputValue;
@@ -552,13 +550,19 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
     
-    public void LoseHP(int damage, Vector2 sourcePosition)
+    public void LoseHP(int damage, Vector2 sourcePosition, float KnockbackDaño)
     {
-        if (!_coolingHit)
+        if (!_coolingHit && HP > 0)
         {
             HP -= damage;
             _animator.SetBool("IsJumping", false);
             _animator.SetTrigger("Hurt");
+            if (HP <= 0)
+            {
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                Die();
+                return;
+            }
             _healthBar.UpdateHP();
 
             _coolingHit = true;
@@ -567,16 +571,12 @@ public class Player : MonoBehaviour
             _animator.SetBool("HurtBool", true);
             StartCoroutine(StartCooldownHurtAnim());
 
-            if (HP <= 0)
-            {
-                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                Die();
-            }
+            
             //Knockback
             Vector2 dir = (Vector2)transform.position - sourcePosition;
             dir  = dir.normalized;
-            body.AddForce(new Vector2(dir.x * knockbackRecibido, dir.y),ForceMode2D.Impulse);
-            //body.AddForce(dir.normalized  * knockbackRecibido, ForceMode2D.Impulse);
+            body.AddForce(new Vector2(dir.x * KnockbackDaño, 0),ForceMode2D.Impulse);
+            //body.AddForce(dir.normalized  * KnockbackDaño, ForceMode2D.Impulse);
         }
     }
 
@@ -672,6 +672,13 @@ public class Player : MonoBehaviour
     public IEnumerator StartCooldownIFrame()
     {
         yield return new WaitForSeconds(0.4f);
+
+        _coolingHit = false;
+    }
+    
+    public IEnumerator StartCooldownCooling()
+    {
+        yield return new WaitForSeconds(0.1f);
 
         _coolingHit = false;
     }

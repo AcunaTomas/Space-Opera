@@ -444,7 +444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2122726532402086752}
   maxHealth: 10
-  _Inmortal: 0
+  _Inmortal: 1
   _MakeFunctionCallOnHit: 0
   _callWhat:
     m_PersistentCalls:
@@ -453,8 +453,8 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 0
   _objectToDisable: {fileID: 0}
-  knockbackRecibido: 0
-  knockbackDado: 10
+  knockbackRecibido: 0.2
+  knockbackDado: 0.1
 --- !u!114 &2122726532402086778
 MonoBehaviour:
   m_ObjectHideFlags: 0
