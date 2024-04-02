@@ -678,6 +678,10 @@ public class Player : MonoBehaviour
 
     public void MovementEnableToggle(bool a)
     {
+        if (doIhaveToGoSomewhere)
+        {
+            return;
+        }
         canIMove = a;
         if (a == false)
         {
