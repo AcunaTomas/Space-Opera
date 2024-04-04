@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBehaviour2 : MonoBehaviour
@@ -7,6 +8,7 @@ public class EnemyBehaviour2 : MonoBehaviour
     public float attackDistance;
     public float moveSpeed;
     public bool DONTMOVE = false;
+    bool GOLPEADO = false;
     public float timer;
     [HideInInspector] public Transform target;
     [HideInInspector] public bool inRange;
@@ -48,7 +50,8 @@ void Update()
 
 void EnemyLogic() 
 {
-    if(!DONTMOVE)
+    GOLPEADO = gameObject.GetComponent<Enemy>()._coolingHit;
+    if(!DONTMOVE || !GOLPEADO)
     {
         distance = Vector2.Distance(transform.position, target.position);
     }

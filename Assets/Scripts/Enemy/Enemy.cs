@@ -113,8 +113,7 @@ public class Enemy : MonoBehaviour
             {
                 _callWhat.Invoke();
             }
-            _coolingHit = true;
-            StartCoroutine(StartCooldown(_coolingHit2));
+            StartCoroutine(StartCooldownCH1());
             /*
             if (_spriteRenderer.flipX == true)
             {
@@ -158,17 +157,22 @@ public class Enemy : MonoBehaviour
             {
                 _callWhat.Invoke();
             }
-            _coolingHit2 = true;
-            StartCoroutine(StartCooldown(_coolingHit2));
+            StartCoroutine(StartCooldownCH2());
             
         }
     }
 
-    private IEnumerator StartCooldown(bool xd)
+    private IEnumerator StartCooldownCH1()
     {
-        yield return new WaitForSeconds(0.5f);
-
-        xd = false;
+        _coolingHit = true;
+        yield return new WaitForSeconds(0.3f);
+        _coolingHit = false;
+    }
+    private IEnumerator StartCooldownCH2()
+    {
+        _coolingHit2 = true;
+        yield return new WaitForSeconds(0.3f);
+        _coolingHit2 = false;
     }
     public void changeCallback(UnityEvent a)
     {

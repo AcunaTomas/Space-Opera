@@ -196,7 +196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1430123722234393761
 Transform:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430123722234393770}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.696, y: 13.891, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1430123722234393767}
   maxHealth: 100
-  _Inmortal: 0
+  _Inmortal: 1
   _MakeFunctionCallOnHit: 0
   _callWhat:
     m_PersistentCalls:
@@ -411,6 +411,9 @@ MonoBehaviour:
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 1
+  _objectToDisable: {fileID: 0}
+  knockbackRecibido: 0.1
+  knockbackDado: 0.05
 --- !u!114 &1057679033258244041
 MonoBehaviour:
   m_ObjectHideFlags: 0
