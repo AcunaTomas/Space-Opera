@@ -9,7 +9,12 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
-  errors: []
+  errors:
+  - Mismatching width/height detected. Tileset = (96, 32), image = (160, 32). This
+    may happen when a tileset image has been resized. Open map and tileset in Tiled
+    Map Editor and resave.
+  - Could not find tile 7. Make sure the tilesets were successfully imported.
+  - Could not find tile 8. Make sure the tilesets were successfully imported.
   warnings:
   - Tileset 'tile_lvl2_outside_01' is an embedded tileset. Exported tilesets are
     preferred.
@@ -20,7 +25,7 @@ ScriptedImporter:
   importerVersion: 26
   pixelsPerUnit: 100
   edgesPerEllipse: 32
-  numberOfObjectsImported: 14
+  numberOfObjectsImported: 9
   tilesAsObjects: 0
   sortingMode: 0
   isIsometric: 0
