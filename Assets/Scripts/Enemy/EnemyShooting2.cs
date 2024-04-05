@@ -46,7 +46,7 @@ void FixedUpdate()
 {
     if (inRange)
     {
-       EnemyLogic();
+        EnemyLogic();
     }
 
     if (attackMode == false)
@@ -74,7 +74,7 @@ void EnemyLogic()
 
     if ((Vector2.Distance(transform.position, _playerPos.position) < _distanciaFrenado) && (Vector2.Distance(transform.position, _playerPos.position) > _distanciaRetroceso))
     {
-        transform.position = transform.position;
+        //transform.position = transform.position;
         animator.SetBool("Run", false);
     }
 

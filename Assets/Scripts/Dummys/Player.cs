@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     private Object dustEffect;
+    [Header("Stats")]
     [SerializeField]
     float HorizontalInputValue;
     [SerializeField]
@@ -488,7 +489,6 @@ public class Player : MonoBehaviour
 
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
-
         vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
@@ -571,13 +571,23 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(orientation.transform.position, 1);
     } */
     
-    public void LoseHP(int damage)
+    public void LoseHP(int damage, Vector2 sourcePosition, float KnockbackDaño)
     {
-        if (!_coolingHit)
+        if (!_coolingHit && HP > 0)
         {
             HP -= damage;
             _animator.SetBool("IsJumping", false);
             _animator.SetTrigger("Hurt");
+            if (HP <= 0)
+            {
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                Die();
+                return;
+            }
+            else
+            {
+                StartCoroutine(FlickerSprite());
+            }
             _healthBar.UpdateHP();
             CameraController.Instance.ScreenShake(.5f, .1f);
 
@@ -588,14 +598,13 @@ public class Player : MonoBehaviour
             StartCoroutine(StartCooldownHurtAnim());
 
 
-            if (HP <= 0)
-            {
-                Die();
-            }
-            else
-            {
-                StartCoroutine(FlickerSprite());
-            }
+            
+            //Knockback || Ver _coolingHit alternativa
+            Vector2 dir = (Vector2)transform.position - sourcePosition;
+            dir  = dir.normalized;
+            body.AddForce(new Vector2(dir.x * KnockbackDaño, 0),ForceMode2D.Impulse);
+            //body.AddForce(dir.normalized  * KnockbackDaño, ForceMode2D.Impulse);
+            
         }
     }
 
@@ -623,6 +632,8 @@ public class Player : MonoBehaviour
     {
         if (!_coolingRespawn)
         {
+            body.constraints = RigidbodyConstraints2D.None;
+            body.constraints = RigidbodyConstraints2D.FreezeRotation;
             transform.parent = null;
             transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
             _animator.SetTrigger("idle");
@@ -718,6 +729,13 @@ public class Player : MonoBehaviour
 
         _coolingHit = false;
     }
+    
+    public IEnumerator StartCooldownCooling()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        _coolingHit = false;
+    }
 
     public IEnumerator StartCooldownDashingAnimation()
     {
@@ -780,7 +798,7 @@ public class Player : MonoBehaviour
 
             //Debug.Log("Drift2");
             var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            a.SendMessage("Initialize", new parama(true, transform.position));
             GameManager.INSTANCE.dustcap = 1;
         }
     }
@@ -840,7 +858,7 @@ public class Player : MonoBehaviour
         }
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
         {
-            if (canIjump) //airborne checko
+            if (canIjump && !_coolingHit) //airborne checko
             {
                 body.velocity = new Vector2(0f, body.velocity.y);
             }

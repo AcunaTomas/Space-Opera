@@ -466,6 +466,7 @@ MonoBehaviour:
   _interactableOnly: 0
   _panelDialogueDown: 0
   _panelDialogueRight: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!1 &22625832
 GameObject:
@@ -1516,6 +1517,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 4
   _objectToDisable: {fileID: 0}
+  knockbackForce: 3
 --- !u!212 &95562963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2106,6 +2108,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 2
   _objectToDisable: {fileID: 195353346}
+  knockbackForce: 3
 --- !u!50 &132371712
 Rigidbody2D:
   serializedVersion: 4
@@ -7875,6 +7878,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 0
   _objectToDisable: {fileID: 0}
+  knockbackForce: 3
 --- !u!61 &743692728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9871,6 +9875,7 @@ MonoBehaviour:
   _coolingHit2: 0
   _enemyType: 2
   _objectToDisable: {fileID: 472147910}
+  knockbackForce: 3
 --- !u!50 &884069202
 Rigidbody2D:
   serializedVersion: 4
@@ -22642,6 +22647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193770c8c5d7ee948a4071275104a48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
   HorizontalInputValue: 0
   HP: 5
   MaxHP: 5
@@ -24945,6 +24951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ead70c9acda2d645ad2b16f86fa298a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
   HorizontalInputValue: 0
   HP: 5
   MaxHP: 5

@@ -59,13 +59,13 @@ public class ProjectileBehaviour : MonoBehaviour
             
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
-                    enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
+                    enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
                 }
 
                 Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyGunLayers);
                 foreach (Collider2D enemyGunCollider in hitEnemiesGun)
                 {
-                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
+                    enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
                 }
             }
         }

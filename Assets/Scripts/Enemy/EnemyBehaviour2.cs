@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBehaviour2 : MonoBehaviour
 {
     public float attackDistance;
     public float moveSpeed;
+    public bool DONTMOVE = false;
+    bool GOLPEADO = false;
     public float timer;
     [HideInInspector] public Transform target;
     [HideInInspector] public bool inRange;
@@ -35,7 +38,7 @@ void Update()
 {
     if (inRange)
     {
-       EnemyLogic();
+        EnemyLogic();    
     }
 
     if (attackMode == false)
@@ -47,8 +50,11 @@ void Update()
 
 void EnemyLogic() 
 {
-    distance = Vector2.Distance(transform.position, target.position);
-
+    GOLPEADO = gameObject.GetComponent<Enemy>()._coolingHit;
+    if(!DONTMOVE || !GOLPEADO)
+    {
+        distance = Vector2.Distance(transform.position, target.position);
+    }
     if (distance > attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
     {   
         Move();
@@ -72,7 +78,7 @@ void EnemyLogic()
 
     if (player.GetComponent<Player>().GetHP() <= 0)
     {
-        Move();
+        //Move(); Porque harias que se mueva al enemigo si ya lo mataron xd?
         StopAttack();
     }
 }
@@ -81,7 +87,7 @@ void Move()
 {
     animator.SetBool("Run", true);
 
-    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !DONTMOVE && !GetComponent<Enemy>()._coolingHit)
     {
         Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -113,7 +119,6 @@ void Attack()
 void Cooldown()
 {
     timer -= Time.deltaTime;
-
     if (timer <= 0 && cooling && attackMode)
     {
         cooling = false;
@@ -176,7 +181,7 @@ public void Flip()
 
     // void Start() 
     // {
-    //     rb2d = GetComponent<Rigidbody2D>();
+    //      = GetCrb2domponent<Rigidbody2D>();
     // }
 
     // void Update()
