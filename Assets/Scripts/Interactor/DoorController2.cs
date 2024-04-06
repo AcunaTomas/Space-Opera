@@ -1,31 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorController2 : MonoBehaviour
 {
-    public int maxHealth = 10;
-    int currentHealth;
-
-    void Start()
+    [SerializeField]
+    private UnityEvent _callSomething;
+    public void changeCallback(UnityEvent a)
     {
-        currentHealth = maxHealth;
-        
+        _callSomething = a;
     }
 
-    public void TakeDamageDoor(int damage)
+    public void DoSomeShit()
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0) 
-        {   
-            Die();
-        }
+        _callSomething.Invoke();
     }
 
-    void Die()
-    {
-        Destroy(gameObject);
-        Destroy(GameObject.FindWithTag("Puerta3"));
-    }
 }

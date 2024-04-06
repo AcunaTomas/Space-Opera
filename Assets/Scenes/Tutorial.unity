@@ -5549,7 +5549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1244319963940795668, guid: de3ac0a0184ddf74ba0caa62ca941a44, type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1244319963940795668, guid: de3ac0a0184ddf74ba0caa62ca941a44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10511,7 +10511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663067777
 GameObject:
@@ -13503,7 +13503,7 @@ Transform:
   - {fileID: 1752893319}
   - {fileID: 99582515}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846924230
 GameObject:
@@ -23032,6 +23032,8 @@ MonoBehaviour:
   HP: 5
   MaxHP: 5
   vertspid: -0.3
+  _gravity: -0.1
+  _jumpImpulse: 0.95
   canIjump: 1
   body: {fileID: 0}
   jumpLimit: 0
@@ -23067,6 +23069,7 @@ MonoBehaviour:
   _airborneTime: 0
   _skillPermitted: 1
   dashRate: 0
+  grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
@@ -23082,6 +23085,7 @@ MonoBehaviour:
   _activeCamera: {fileID: 1872195454}
   _playerType: 0
   _isBrodyJumping: 0
+  _SpaceBarReleaseJumpDecay: 0.01
   _canDash: 0
   _dashEffect: {fileID: 0}
 --- !u!114 &1361875262
@@ -33653,7 +33657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalPosition.x

@@ -16,11 +16,16 @@ public class Player : MonoBehaviour
     int MaxHP = 5;
     [SerializeField]
     float vertspid = -0.3f;
+    [SerializeField]
+    float _gravity = -0.1f;
+    [SerializeField]
+    float _jumpImpulse = 0.95f;
     public bool canIjump = true;
     bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
     private float jumpLimit = 0f;
+    private bool justLanded;
     [SerializeField]
     public float Xspeed = 0f;
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
@@ -76,6 +81,8 @@ public class Player : MonoBehaviour
     public float dashRate = 2f;
     float nextDashTime = 0f;
 
+    [SerializeField]
+    private bool grounded;
     public bool _coolingHit = false;
     public bool _coolingDashAnim = false;
     public bool _coolingShootDown = false;
@@ -118,6 +125,9 @@ public class Player : MonoBehaviour
     }
 
     public bool _isBrodyJumping = false;
+
+    [SerializeField]
+    private float _SpaceBarReleaseJumpDecay = 0.01f;
 
     public struct parama
     {
@@ -162,18 +172,27 @@ public class Player : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        if (canIMove)
+        {
+            _plaseJump();
+        }
+   
+    }
+
     void FixedUpdate()
     {
         
-        if (canIMove == true)
+        if (canIMove)
         {
             HorizontalInputValue = Input.GetAxis("Horizontal");
-            _plaseJump();
+            
             Movement();
             Effects();
             Flip();
-            CameraUpDown();
         }
+        
         if (doIhaveToGoSomewhere == true)
         {
             MoveToPoint();
@@ -185,45 +204,35 @@ public class Player : MonoBehaviour
 
     private void _plaseJump()
     {
-        
-        if (canIjump && Input.GetButton("Jump"))
+        //GetButtonDown solo es true en el frame que se apreta espacio
+        if (Input.GetButtonDown("Jump") && canIjump)
         {
-            
-           if (_lastJumpPress <= 0.30f)
-           {
-                vertspid = 1.3f + jumpLimit;
-                _animator.SetBool("IsJumping", true);
-                _animator.SetFloat("Speed", 1f);
-           }
-           else
-           {   
-               vertspid = jumpLimit;
-           }
-           
-           jumpLimit += 0.04f;
-           
-           if (_lastJumpPress > 4f)
-           {
-                jumpLimit = 0f;
-           }
-           
-        }
-        if (jumpLimit >= 0.4f || (Input.GetButton("Jump") == false && _lastJumpPress > 0.12f)) // TO-DO: Encontrar una forma de reformular este or
-        {
-            vertspid = 0f;
-            jumpLimit = 0f;
+            vertspid = _jumpImpulse;
+            _animator.SetBool("IsJumping", true);
             canIjump = false;
+            return;
         }
-        if (wallijumpy && canIjump == false)
+        if (Input.GetButtonDown("Jump") && !canIjump)
         {
-            WallJump();
-        }
-        if (wallijumpy == false && canIjump == false && extrajumpcount >= 2)
-        {
-            if (Input.GetButton("Jump") && (_lastJumpPress <= 0.16f))
+            if (wallijumpy)
+            {
+                WallJump();
+                return;
+            }
+            if (extrajumpcount > 1)
             {
                 SpecialJump();
             }
+            return;
+        }
+        if (Input.GetButton("Jump") && !canIjump)
+        {
+            vertspid += _jumpImpulse * Time.deltaTime;
+            return;
+        }
+        if (Input.GetButtonUp("Jump"))
+        {
+            vertspid = vertspid - _SpaceBarReleaseJumpDecay;
         }
 
     }
@@ -248,20 +257,15 @@ public class Player : MonoBehaviour
 
     private void WallJump() //Wall jumping handler
     {
-
-        if (Input.GetButton("Jump") && _lastJumpPress <= 0.15f)
-        {
             _wallJumpFreezeTimer = 0f;
             _wallJumpXtimeFreeze = 0.3f;
             _wallJumpXHandicap = true;
             _xSpeedNullifier = 1;
-            body.AddForce(new Vector2(WallJumpXDirection * 2f, 4f), ForceMode2D.Impulse);
-            vertspid = 1f;
-            
+            body.AddForce(new Vector2(WallJumpXDirection * 2f, 0), ForceMode2D.Impulse);
+            vertspid = 0.9f;
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
             //Wall-e
-        }
         
     }
 
@@ -314,43 +318,34 @@ public class Player : MonoBehaviour
     {
         Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
         Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
-        //Debug.Log(collision.GetContact(0).normal);
         ContactPoint2D[] contacts= new ContactPoint2D[8]; //Realistically, the maximum should be around 6, but I want to be careful
         collision.GetContacts(contacts);
-
-        //Debug.Log(normalcoll.y);
-        //Debug.Log(normalcoll.x);
 
         for (var i = 0; i < collision.contactCount; i++) // does this for every single contact point registered
         {
             if (Mathf.Abs(contacts[i].normal.y) > Mathf.Abs(contacts[i].normal.x) && contacts[i].normal.y > 0) //Contacto Vertical
             {
                 ChangeSkillStatus(true);
-                if (contacts[i].point.y < transform.position.y)
-                {
-                    canIjump = true;
-                    wallijumpy = false;
-                    extrajumpcount = 2;
-                    _animator.SetBool("IsJumping", false);
-                    _animator.SetBool("wall", false);
-                }
-
                 
                 if (_animator.GetBool("Dash"))
                 {
                     StartCoroutine(StopDashAnim());
                 }
-                    
+                if (contacts[i].point.y <= transform.position.y)
+                {
+                    canIjump = true;
+                    grounded = true;
+                }
                 _maxVerticalSpeed = speedCaps.y;
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
                 {
-                    AudioManager.INSTANCE.PlayPlayerJump();
+                    //GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
                     _playerFall = false;
                 }
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && !collision.gameObject.CompareTag("Movible")) //Contacto Horizontal/Pared
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {
@@ -407,15 +402,20 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) //for when you hit the ground
     {
+        
+        ContactPoint2D[] contacts= new ContactPoint2D[8];
+        collision.GetContacts(contacts);
+        extrajumpcount = 1;
+
         if (_fallingTime > 6.1)
         {
             _animator.SetTrigger("land");
 
             var _landing1 = Instantiate(_landingEffect1, this.transform);
             var _landing2 = Instantiate(_landingEffect2, this.transform);
+
             _landing1.GetComponent<Animator>().SetTrigger("Effect");
             _landing2.GetComponent<Animator>().SetTrigger("Effect");
-
             Destroy(_landing1, 0.7f);
             Destroy(_landing2, 0.7f);
         }
@@ -424,13 +424,30 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
-        if (collision.gameObject.transform.position.y <= transform.position.y)
+ /*        if (collision.gameObject.transform.position.y <= transform.position.y)
         {
             extrajumpcount = 1;
+        } */
+
+        foreach (ContactPoint2D contact in contacts)
+        {
+            if (Mathf.Abs(contact.normal.y) > Mathf.Abs(contact.normal.x) && contact.normal.y > 0)
+            {
+                if (contact.point.y <= transform.position.y)
+                {
+                    justLanded = false;
+                    canIjump = true;
+                    wallijumpy = false;
+                    extrajumpcount = 2;
+                    _airborneTime = 0;
+                    grounded = true;
+                    _animator.SetBool("IsJumping", false);
+                    _animator.SetBool("wall", false);
+                }
+
+            }
         }
 
-
-        _animator.SetBool("Dash", false);
 
         // if (collision.gameObject.CompareTag("Enemy"))
         // {
@@ -439,20 +456,16 @@ public class Player : MonoBehaviour
 
     }
 
+
     void OnCollisionExit2D(Collision2D collision) //for when you leave the ground
     {
-        if(jumpLimit == 0) //If the jump peaked or ended, set up the falling animation to play
-        {
-            //canIjump = false;
-            _playerFall = true;
-        }
-
         wallijumpy = false;
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
-        _xSpeedNullifier = 1;
+        _xSpeedNullifier = 1f;         
         _coyoteValidTime = 0.1f;
-
+        grounded = false;
+        canIjump = false;    
         if (collision.gameObject.CompareTag("Ascensor"))
         {
             transform.parent = null;
@@ -472,7 +485,7 @@ public class Player : MonoBehaviour
         else
         {
             _wallJumpXHandicap = false;
-            speedCaps = new Vector2(speedCaps.x, speedCaps.y);
+            speedCaps = new Vector2(1.2f, speedCaps.y);
         }
 
         if (_wallJumpXHandicap == false)
@@ -483,17 +496,14 @@ public class Player : MonoBehaviour
         {
             Xspeed = body.velocity.x;
         }
-        if (canIjump == false)
-        {
-            vertspid += -0.1f;
-
-        }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
+        
+        vertspid += _gravity;
+
         vertspid = Clamp(vertspid, 0f, speedCaps.y);
         body.AddForce(new Vector2(Xspeed, 0), ForceMode2D.Force);
         body.AddForce(new Vector2(0, vertspid), ForceMode2D.Impulse);
 
-       
 
         if (Mathf.Abs(body.velocity.y) > _maxVerticalSpeed)
         {
@@ -928,15 +938,7 @@ public class Player : MonoBehaviour
             nextDashTime = Time.time + 1f / dashRate;
         }
 
-        if (_coyoteValidTime > 0)
-        {
-            _coyoteValidTime -= Time.deltaTime;
-            if (Clamp(_coyoteValidTime, 0, 1) <= 0 && jumpLimit == 0)
-            {
-                _coyoteValidTime = 0;
-                canIjump = false;
-            }
-        }
+
 
         if (dustSpawnCooldown > 0)
         {
@@ -946,8 +948,7 @@ public class Player : MonoBehaviour
         {
             dustSpawnCooldown = 0f;
         }
-
-        if (Input.GetButton("Jump"))
+        if (Input.GetAxis("Jump") > 0)
         {
             _lastJumpPress += 0.17f;
         }

@@ -184,6 +184,12 @@ public class PlayerCombat : MonoBehaviour
                 {
                     balaCollider.gameObject.SetActive(false);
                 }
+
+                Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
+                foreach (Collider2D door in hitDoor)
+                {
+                    door.GetComponent<DoorController2>().DoSomeShit();
+                }
             }
         }
         
@@ -299,20 +305,6 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
-
-        // foreach (Collider2D enemyCollider in hitEnemies)
-        // {
-        //     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
-        //     AudioManager.INSTANCE.PlayEnemyHit();
-        // }
-
-        foreach (Collider2D door in hitDoor)
-        {
-            door.GetComponent<DoorController2>().TakeDamageDoor(attackDamage);
-        }
-
     }
 
     public virtual void AttackUp()
@@ -334,7 +326,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D door in hitDoor)
         {
-            door.GetComponent<DoorController2>().TakeDamageDoor(attackDamage);
+            door.GetComponent<DoorController2>().DoSomeShit();
         }
 
     }
@@ -359,7 +351,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D door in hitDoor)
         {
-            door.GetComponent<DoorController2>().TakeDamageDoor(attackDamage);
+            door.GetComponent<DoorController2>().DoSomeShit();
         }
 
     }
