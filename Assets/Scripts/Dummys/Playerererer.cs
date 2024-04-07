@@ -5,7 +5,9 @@ using UnityEngine;
 public class Playerererer : Player
 {
     public bool _canDash = true;
+    public bool _failDash = false;
     public GameObject _dashEffect;
+
 
     public override void SpecialJump()
    {
@@ -37,6 +39,16 @@ public class Playerererer : Player
             _coolingDashAnim = true;
             StartCoroutine(StartCooldownDashingAnimation());
         }
+
+        if (_failDash)
+            {
+                setXStunVariables();
+                _animator.SetBool("Dash", true);
+                _animator.SetBool("IsJumping", false);
+                _fallingTime = 0f;
+                _coolingDashAnim = true;
+                StartCoroutine(StartCooldownDashingAnimation());
+            }
         
     }
 

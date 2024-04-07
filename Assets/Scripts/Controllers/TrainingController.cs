@@ -44,6 +44,9 @@ public class TrainingController : MonoBehaviour
             _training2.gameObject.SetActive(true);
             _training2Coll.gameObject.SetActive(true);
             _startTraining2.gameObject.SetActive(true);
+
+            StartCoroutine(StartShake());
+
         }
         else if (_training1Finish == true && _training2Finish == true)
         {
@@ -54,6 +57,8 @@ public class TrainingController : MonoBehaviour
             _training3.gameObject.SetActive(true);
             _training3Coll.gameObject.SetActive(true);
             _startTraining3.gameObject.SetActive(true);
+
+            StartCoroutine(StartShake());
         }
     }
 
@@ -66,5 +71,12 @@ public class TrainingController : MonoBehaviour
         _training2Finish = true;
     }
 
+
+    public IEnumerator StartShake()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        CameraController.Instance.ScreenShake(.6f, .5f);
+    }
 
 }

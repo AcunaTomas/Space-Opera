@@ -39,12 +39,15 @@ public class ButtonPlayer : MonoBehaviour
 
         if (_time > 4f)
         {
-            _player.GetChild(_player.childCount - 1).gameObject.SetActive(false);
+            if (_player.GetChild(_player.childCount - 1).name == "Oval")
+            {
+                _player.GetChild(_player.childCount - 1).gameObject.SetActive(false);
+            }
         }
 
-        if (_time > 30f)
-        {
-            _keys.SetActive(true);
-        }
+        // if (_time > 30f)
+        // {
+        //     _keys.SetActive(true);
+        // }
     }
 }

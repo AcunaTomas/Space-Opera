@@ -7,9 +7,24 @@ public class FallingObjectBehaviour : MonoBehaviour
     private bool _fall;
     [SerializeField] private LayerMask _layerRef;
     [SerializeField] private float _speed = 2.5f; //me gusta en 2.5(?) Movelo a tú gusto si es un objeto más pesado:D
+
+    public PlayerType _objectType;
+    public enum PlayerType
+    {
+        Default,
+        Container
+    }
+
     void Awake()
     {
         _fall = false;
+
+        switch (_objectType)
+        {
+            default:
+
+                break;
+        }
     }
     void FixedUpdate()
     {
@@ -49,7 +64,15 @@ public class FallingObjectBehaviour : MonoBehaviour
         else
         {
             transform.position -= new Vector3(0,distanceRef,0);
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            if (_objectType == PlayerType.Container)
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            else
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            
             SetFall(false);
         }
     }

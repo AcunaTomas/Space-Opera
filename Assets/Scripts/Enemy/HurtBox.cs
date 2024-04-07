@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HurtBox : MonoBehaviour
 {
+    public bool _persistant = false;
     protected int attackDamage = 1;
     protected float orientation = 1f;
     protected GameObject player;
@@ -33,7 +34,11 @@ public class HurtBox : MonoBehaviour
                 //other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll; Volver a poner luego?
             other.GetComponent<PlayerCombat>().enabled = false;
             //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(orientation * 5, 0), ForceMode2D.Impulse);
-            gameObject.SetActive(false);
+            if (!_persistant)
+            {
+                gameObject.SetActive(false);
+            }
+            
             if(transform.parent != null)
             {
                 _enemyRef = transform.parent.gameObject.GetComponent<Enemy>();

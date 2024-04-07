@@ -170,10 +170,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
             ScenesManager.Instance.LoadNextScene("Lvl2_Radar");
         }
 
-        if (Input.GetKeyDown("3"))
-        {
-            ScenesManager.Instance.LoadNextScene("NewLevel3");
-        }
+        // if (Input.GetKeyDown("3"))
+        // {
+        //     ScenesManager.Instance.LoadNextScene("NewLevel3");
+        // }
     }
 
     private void DebugDeleteSaveData()
@@ -628,6 +628,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public void ActivatePlayerCombat()
     {
         PLAYER_COMBAT = true;
+    }
+
+    public void DeactivatePlayerCombat()
+    {
+        PLAYER_COMBAT = false;
     }
 
     public void ActivateCursor(bool bl)

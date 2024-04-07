@@ -235,6 +235,14 @@ public class Enemy : MonoBehaviour
 
 
         }
+        
+        if (_enemyType == EnemyType.shield)
+        {
+            animator.SetTrigger("Die");
+            GetComponent<EnemyShieldBehaviour>().enabled = false;
+
+            _objectToDisable.SetActive(false);
+        }
 
         if (attackDamage < 50)
         {

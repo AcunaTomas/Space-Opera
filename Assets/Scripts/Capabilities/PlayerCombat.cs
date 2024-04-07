@@ -7,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
-
+    public Transform attackPointVisual;
     public Transform attackPoint;
     public Transform attackPointUp;
     public Transform attackPointDown;
@@ -267,11 +267,13 @@ public class PlayerCombat : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
+            attackPointVisual.localPosition = new Vector2(0.15f, 0);
             attackSprite.flipX = true;
         }
         else
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
+            attackPointVisual.localPosition = new Vector2(-0.15f, 0);
             attackSprite.flipX = false;
         }   
 
