@@ -9,7 +9,11 @@ public class PlayerCombat : MonoBehaviour
     private Animator animator;
     public Transform attackPointVisual;
     public Transform attackPoint;
+    [SerializeField]
+    public GameObject attackPointUpVisual;
     public Transform attackPointUp;
+    [SerializeField]
+    public GameObject attackPointDownVisual;
     public Transform attackPointDown;
     public LayerMask enemyLayers;
     public LayerMask enemyGunLayers;
@@ -113,13 +117,17 @@ public class PlayerCombat : MonoBehaviour
         
         if (spriteRenderer.flipX)
         {
-            attackPointUp.localPosition = new Vector2(0, 0.2f);
-            attackPointDown.localPosition = new Vector2(0, -0.2f);
+            attackPointUp.localPosition = new Vector2(0, 0.15f);
+            attackPointUpVisual.GetComponent<SpriteRenderer>().flipX = true;
+            attackPointDown.localPosition = new Vector2(0, -0.15f);
+            attackPointDownVisual.GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
-            attackPointUp.localPosition = new Vector2(0, 0.2f);
-            attackPointDown.localPosition = new Vector2(0, -0.2f);
+            attackPointUp.localPosition = new Vector2(0, 0.15f);
+            attackPointUpVisual.GetComponent<SpriteRenderer>().flipX = false;
+            attackPointDown.localPosition = new Vector2(0, -0.15f);
+            attackPointDownVisual.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         if (isAttackActive)

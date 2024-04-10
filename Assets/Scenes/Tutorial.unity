@@ -5406,7 +5406,7 @@ Transform:
   m_GameObject: {fileID: 376857241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.6031305, y: -1.769, z: 0}
-  m_LocalScale: {x: 5.5664234, y: 5.5664234, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1702247729}
@@ -14402,7 +14402,7 @@ Transform:
   m_GameObject: {fileID: 899824765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.6031305, y: -1.769, z: 0}
-  m_LocalScale: {x: 5.5664234, y: 5.5664234, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1348288284}
@@ -22019,7 +22019,7 @@ Transform:
   m_GameObject: {fileID: 1348288283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 899824766}
@@ -22092,7 +22092,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.96, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -22524,7 +22524,9 @@ MonoBehaviour:
   animator: {fileID: 1361875256}
   attackPointVisual: {fileID: 978171851}
   attackPoint: {fileID: 1494852398}
+  attackPointUpVisual: {fileID: 1348288283}
   attackPointUp: {fileID: 899824766}
+  attackPointDownVisual: {fileID: 1702247728}
   attackPointDown: {fileID: 376857242}
   enemyLayers:
     serializedVersion: 2
@@ -27644,7 +27646,7 @@ Transform:
   m_GameObject: {fileID: 1702247728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 376857242}
