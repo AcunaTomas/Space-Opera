@@ -174,9 +174,9 @@ public class GameManager : MonoBehaviour{
         obj.SetActive(true);
     }
 
-    public void ActivatePlayerCombat()
+    public void TogglePlayerCombat(bool a)
     {
-        PLAYER_COMBAT = true;
+        PLAYER_COMBAT = a;
     }
 
     public void ActivateCursor(bool bl)

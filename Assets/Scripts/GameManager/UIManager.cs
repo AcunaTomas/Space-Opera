@@ -41,5 +41,11 @@ public class UIManager : MonoBehaviour
     {
         return DIALOGUE_PANEL.AddText(zoneName);
     }
+    
+    public void UpdateObjectiveText(string a)
+    {
+        OBJECTIVES_DISPLAY.ChangeZoneName(a);
+        OBJECTIVES_DISPLAY.ChangeObjectiveBool();
+    }
 
 }
