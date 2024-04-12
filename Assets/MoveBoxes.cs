@@ -68,7 +68,7 @@ public class MoveBoxes : MonoBehaviour
             if(!_isDragging)
             {
                 box.GetComponent<Animator>().SetBool("inRange", true);
-                GetComponent<Animator>().SetBool("Push", true);
+                //GetComponent<Animator>().SetBool("Push", true);
                 _holdLimit = 0f;
                 _boxLimitRef = 0f;
                 _playerPosRef = gameObject.transform.position.x;
@@ -85,10 +85,31 @@ public class MoveBoxes : MonoBehaviour
             if(box.gameObject.transform.position.x < gameObject.transform.position.x) //Si el jugador está a la derecha
             {
                 MoveBoxDirection(box.gameObject.transform, ManchotoDER, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
+                if (_playerRef.Xspeed > 0.01)
+                {
+                    GetComponent<Animator>().SetBool("Drag", true);
+                    GetComponent<Animator>().SetBool("Push", false);
+                }
+                else if (_playerRef.Xspeed < 0.01)
+                {
+                    GetComponent<Animator>().SetBool("Push", true);
+                    GetComponent<Animator>().SetBool("Drag", false);
+                }
+                
             }
             else if(box.gameObject.transform.position.x > gameObject.transform.position.x) //Si el jugador está a la izquierda
             {
                 MoveBoxDirection(box.gameObject.transform, ManchotoIZQ, hitDER, _posOffset, -_posOffLimit); //Offset positivo, la caja está a la derecha y el limite negativo(Está del otro lado)
+                if (_playerRef.Xspeed > 0.01)
+                {
+                    GetComponent<Animator>().SetBool("Push", true);
+                    GetComponent<Animator>().SetBool("Drag", false);
+                }
+                else if (_playerRef.Xspeed < 0.01)
+                {
+                    GetComponent<Animator>().SetBool("Drag", true);
+                    GetComponent<Animator>().SetBool("Push", false);
+                }
             }
         }
     }
@@ -125,6 +146,7 @@ public class MoveBoxes : MonoBehaviour
             _isDragging = false;
             box.GetComponent<Animator>().SetBool("inRange", false);
             GetComponent<Animator>().SetBool("Push", false);
+            GetComponent<Animator>().SetBool("Drag", false);
             GetComponent<Animator>().SetTrigger("idle");
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
