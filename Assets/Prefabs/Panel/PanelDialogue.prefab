@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 4382136192717587895}
   - component: {fileID: 4382136192717587896}
   - component: {fileID: 4382136192717587897}
+  - component: {fileID: 3826332870638925183}
   m_Layer: 5
   m_Name: PanelDialogue
   m_TagString: PanelDialogue
@@ -464,9 +465,52 @@ MonoBehaviour:
   _dip: {fileID: 0}
   _dialogueSkipAction: []
   _skipBar: {fileID: 4382136192216730805}
+  _zone:
+    DIALOGUES: []
   ZONENAME: 
   _textParts: []
   lifeBarAnim: {fileID: 0}
+--- !u!114 &3826332870638925183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382136192717587899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0596d5caf6812449885fab39b51ff96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CHARACTERS:
+  - NAME: ???_img
+    EMOTIONS:
+    - EMOTION: normal
+      ICON: {fileID: 2800000, guid: df79a74ed4595f14aa0355320ab01f3a, type: 3}
+    - EMOTION: angry
+      ICON: {fileID: 2800000, guid: d8647912c4c05664992f9e0fee0040e3, type: 3}
+  - NAME: bito_img
+    EMOTIONS:
+    - EMOTION: normal
+      ICON: {fileID: 2800000, guid: 523060d048a4a2e40afb171565fe1680, type: 3}
+    - EMOTION: normalLeft
+      ICON: {fileID: 2800000, guid: 922e471d3d76c4341aeccc254c30f0c9, type: 3}
+  - NAME: brody_img
+    EMOTIONS:
+    - EMOTION: normal
+      ICON: {fileID: 2800000, guid: fa8c6f9bd684ba943a72518643a1a678, type: 3}
+    - EMOTION: normalLeft
+      ICON: {fileID: 2800000, guid: 0821c257f0eca8d45909107d0d6fd6cd, type: 3}
+  - NAME: guardian_img
+    EMOTIONS:
+    - EMOTION: normal
+      ICON: {fileID: 2800000, guid: f75312d75d544224f93da7ab252710e3, type: 3}
+    - EMOTION: normalRight
+      ICON: {fileID: 2800000, guid: 80a3d8cec8884394ca71958b6ccbd4cd, type: 3}
+  - NAME: coach_img
+    EMOTIONS:
+    - EMOTION: normal
+      ICON: {fileID: 2800000, guid: 7d84248d409ac3b448605a1001e4d34b, type: 3}
 --- !u!1 &4382136193088229196
 GameObject:
   m_ObjectHideFlags: 0

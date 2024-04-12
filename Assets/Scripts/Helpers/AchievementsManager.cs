@@ -109,7 +109,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
     private void UpdateAchievementPanel(int n)
     {
         n--;
-        _title.text = "¡Logro desbloqueado!";
+        _title.text = "ï¿½Logro desbloqueado!";
         _panel.sprite = _achievementsImageEarned[n];
     }
 
@@ -126,7 +126,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
             ACHIEVEMENT01 = true;
             _achievementEarned = true;
             UpdateAchievementPanel(1);
-            _description.text = "Mátalos a todos";
+            _description.text = "Mï¿½talos a todos";
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }
@@ -144,7 +144,7 @@ public class AchievementsManager : MonoBehaviour, AchievementPersistance
             ACHIEVEMENT02 = true;
             _achievementEarned = true;
             UpdateAchievementPanel(2);
-            _description.text = "Para la colección";
+            _description.text = "Para la colecciï¿½n";
         }
         DataPersistentManager.INSTANCE.SaveAchievements();
     }

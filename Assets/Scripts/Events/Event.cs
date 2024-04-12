@@ -38,7 +38,10 @@ public class Event : MonoBehaviour
     //Si se borra cuando se activa, por defecto es true
     public bool single_use = true;
 
+    public bool AutoActivate = false;
     
+    public float Execution_Delay = 0f;
+
     public eventType options =  new eventType();
 
     private GameObject _player;
@@ -48,15 +51,19 @@ public class Event : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindWithTag("Player");
+        if (AutoActivate)
+        {
+            StartCoroutine(Delay(Execution_Delay));
+        }
         //Physics2D.IgnoreCollision(_player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("trig");
-        if (other.gameObject.tag  == "Player")
+        if (other.gameObject.tag  == "Player" || other.gameObject.tag == "CutScenePlayer")
         {
-            doTheThing(options);
+            StartCoroutine(Delay(Execution_Delay));
         }
     }
 
@@ -131,5 +138,11 @@ public class Event : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator Delay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        doTheThing(options);
     }
 }

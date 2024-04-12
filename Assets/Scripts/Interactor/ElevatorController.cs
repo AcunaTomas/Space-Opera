@@ -118,16 +118,16 @@ public class ElevatorController : MonoBehaviour
         switch (_audioCheck)
         {
             case AudioCheck.ascensor:
-                AudioManager.INSTANCE.PlayElevatorInteractor();
-                AudioManager.INSTANCE.PlayElevator();
+                //AudioManager.INSTANCE.PlayElevatorInteractor();
+                //AudioManager.INSTANCE.PlayElevator();
                 pisomundo.SetActive(false);
                 pisoascensor.SetActive(true);
                 break;
             case AudioCheck.pinchos:
-                AudioManager.INSTANCE.PlayPinchos();
+                //AudioManager.INSTANCE.PlayPinchos();
                 break;  
             case AudioCheck.nave:
-                AudioManager.INSTANCE.PlayElevatorNave();
+                //AudioManager.INSTANCE.PlayElevatorNave();
                 break;            
             default:
                 break;
@@ -140,7 +140,7 @@ public class ElevatorController : MonoBehaviour
         switch (_audioCheck)
         {
             case AudioCheck.ascensor:
-                AudioManager.INSTANCE.StopElevator();
+                //AudioManager.INSTANCE.StopElevator();
                 pisomundo.SetActive(true);
                 pisoascensor.SetActive(false);
                 break;            

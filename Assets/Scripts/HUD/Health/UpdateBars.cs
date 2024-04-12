@@ -23,6 +23,7 @@ public class UpdateBars : MonoBehaviour
     
     void Start()
     {
+        _player = GameManager.INSTANCE.PLAYER.GetComponent<Player>();
         _playerHP = _player.GetMaxHP();
         SetHP();
     }

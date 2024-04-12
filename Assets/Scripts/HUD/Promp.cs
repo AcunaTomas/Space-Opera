@@ -10,16 +10,16 @@ public class Promp : MonoBehaviour
 
     void Start()
     {
-        _interactable = GameManager.INSTANCE.BUTTON_INTERACT;
+        //_interactable = GameManager.INSTANCE.BUTTON_INTERACT;
     }
     
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            _interactable.transform.parent = transform;
-            _interactable.transform.localPosition = _position;
-            _interactable.SetActive(true);
+            ///_interactable.transform.parent = transform;
+            //_interactable.transform.localPosition = _position;
+            //_interactable.SetActive(true);
         }
 
     }
@@ -28,7 +28,7 @@ public class Promp : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            _interactable.SetActive(false);
+           // _interactable.SetActive(false);
         }
 
     }

@@ -26,11 +26,10 @@ public class ButtonDialogue : MonoBehaviour
     private bool _dialogueSkipEnd;
     [SerializeField]
     private Image _skipBar;
-    private static ButtonDialogue _instance;
-    public static ButtonDialogue INSTANCE;
 
 
     private int _cont = 0;
+    [SerializeField]
     private Zone _zone;
     private int _zoneLines;
     private string[] _zoneNames;
@@ -53,8 +52,7 @@ public class ButtonDialogue : MonoBehaviour
 
     void Awake()
     {
-        INSTANCE = this;
-        _dip = transform.parent.gameObject.GetComponent<DialogueImgPj>();
+        _dip = GetComponent<DialogueImgPj>();
         if (_zone != null)
         {
             return;
@@ -64,10 +62,8 @@ public class ButtonDialogue : MonoBehaviour
         lifeBarAnim = transform.parent.GetChild(0).gameObject.GetComponent<Animator>();
 
     }
-    private void Start()
-    {
 
-    }
+
     public string[] AddText(string _zoneName)
     {
         Awake();
@@ -98,13 +94,11 @@ public class ButtonDialogue : MonoBehaviour
             GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
             switch (_changeAudio)
             {
-                case CollisionDialogue.ChangeAudio.dialogo:
-                    AudioManager.INSTANCE.PlayDialogueInteractor();
-                    break;
                 case CollisionDialogue.ChangeAudio.especial:
-                    AudioManager.INSTANCE.PlayDialogueInteractor();
+                    SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
                     break;
                 default:
+                    SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
                     break;
             }
             for (int i = 2; i < transform.childCount; i++)
@@ -181,6 +175,7 @@ public class ButtonDialogue : MonoBehaviour
             {
                 _dialogueDeactivate.SetActive(false);
             }
+            GameManager.INSTANCE.AllMovementToggle(true);
             return;
         }
 
@@ -250,7 +245,7 @@ public class ButtonDialogue : MonoBehaviour
         else
         {
             _characterPanelName.SetActive(true);
-            
+            print(_dip.CHARACTERS);
             List<Emotion> _emos = _dip.CHARACTERS_TRUE[_textParts[1]];
             Emotion emo = _emos.FirstOrDefault(e => e.EMOTION == _textParts[2]);
             _characterImage.color = new Color (255, 255, 255, 255);
@@ -272,14 +267,17 @@ public class ButtonDialogue : MonoBehaviour
         _dialogueSkipEnd = GameManager.INSTANCE.DIALOGUESKIPEND;
         _dialogueNumber = GameManager.INSTANCE.DIALOGUESKIPCOUNT;
         lifeBarAnim.SetTrigger("Disappear");
+        if (_zone != null && _player != null)
+        {
+            return;
+        }
+        _zone = GameManager.INSTANCE.lvlDiag;
+        _player = GameManager.INSTANCE.PLAYER;
     }
     void OnDisable()
     {
         ActualizarSkip(-_holdSkip);
-        if (GameManager.INSTANCE.QUILOMB_MODE)
-        {
-            lifeBarAnim.SetTrigger("Appear");
-        }
+        lifeBarAnim.SetTrigger("Appear");
 
     }
 

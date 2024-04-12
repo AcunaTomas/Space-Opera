@@ -292,7 +292,7 @@ Transform:
   - {fileID: 169184774}
   - {fileID: 1152335906}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &28748282
 GameObject:
@@ -362,6 +362,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &28748285
 BoxCollider2D:
@@ -493,6 +495,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &33231689
 BoxCollider2D:
@@ -898,7 +902,7 @@ Transform:
   - {fileID: 892942911}
   - {fileID: 786310627}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &87391221
 GameObject:
@@ -1021,7 +1025,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5e03df2d81a00d7479e7132aea4dd480, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1257,6 +1261,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &99582517
 BoxCollider2D:
@@ -1390,6 +1396,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 1
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &99590232
 BoxCollider2D:
@@ -1583,7 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044b4d22a841f3548b8a9a0bcee313b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1361875249}
+  _player: {fileID: 0}
   _panelDialogue: {fileID: 0}
   _id: lvl01_sleep_soldier
   _checkpoint: 0
@@ -1855,6 +1863,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &111145425
 BoxCollider2D:
@@ -2023,7 +2033,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52ff3054145fad449a4d36a4abaaeb4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3100,7 +3110,7 @@ Transform:
   - {fileID: 1717305607}
   - {fileID: 344517838}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &211216296
 GameObject:
@@ -3654,6 +3664,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &271127747
 BoxCollider2D:
@@ -3972,6 +3984,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &291303696
 BoxCollider2D:
@@ -4284,6 +4298,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &324382074
 BoxCollider2D:
@@ -4403,6 +4419,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &327370495
 BoxCollider2D:
@@ -4675,7 +4693,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 93a4e7a6105c7aa42a4c3189e5c9d92c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4695,8 +4713,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336505894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.741, y: 10.6802, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.78, y: 0.0007991791, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4817,6 +4835,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &340017020
 BoxCollider2D:
@@ -4982,6 +5002,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &341002721
 BoxCollider2D:
@@ -5998,6 +6020,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &453125269
 BoxCollider2D:
@@ -6327,6 +6351,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &457438581
 BoxCollider2D:
@@ -6578,6 +6604,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &465436652
 BoxCollider2D:
@@ -6733,6 +6761,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &469727327
 BoxCollider2D:
@@ -6932,7 +6962,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f60a3ff1b3a37ff4d807426b22e2761d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7030,6 +7060,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &491364013
 BoxCollider2D:
@@ -7237,6 +7269,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &513650815
 BoxCollider2D:
@@ -9483,11 +9517,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
---- !u!4 &565354654 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4070304015650352116, guid: 7965f963b9cc22244b766a45ec5cd53d, type: 3}
-  m_PrefabInstance: {fileID: 565354653}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &565354655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9571,6 +9600,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &565354656
 BoxCollider2D:
@@ -9682,7 +9713,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &571340749
 MonoBehaviour:
@@ -10023,6 +10054,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &619072217
 BoxCollider2D:
@@ -10154,6 +10187,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &623338758
 BoxCollider2D:
@@ -10204,15 +10239,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626305482}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.176156, y: 15.31948, z: 0.52900386}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.3458443, y: 1.3074799, z: 0.45266035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1735220323}
   - {fileID: 547742873}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653433188 stripped
 GameObject:
@@ -10298,7 +10333,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663067777
 GameObject:
@@ -10920,6 +10955,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &702041360
 BoxCollider2D:
@@ -11181,6 +11218,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &715270856
 BoxCollider2D:
@@ -11262,15 +11301,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718682588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.176156, y: 15.31948, z: 0.0763435}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.3458443, y: 1.3074799, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1832297077}
   - {fileID: 1224837159}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &723041247
 GameObject:
@@ -11446,6 +11485,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &725165152
 BoxCollider2D:
@@ -11694,6 +11735,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &751212358
 BoxCollider2D:
@@ -11757,7 +11800,7 @@ Transform:
   - {fileID: 1347743922}
   - {fileID: 1546196198}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771006322
 GameObject:
@@ -12037,7 +12080,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 93a4e7a6105c7aa42a4c3189e5c9d92c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12295,6 +12338,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &786310629
 BoxCollider2D:
@@ -12436,6 +12481,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &795348737
 BoxCollider2D:
@@ -12699,6 +12746,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &810875215
 BoxCollider2D:
@@ -12749,15 +12798,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819379623}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.522, y: 14.012, z: 0.0763435}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 433159423}
   - {fileID: 1423000971}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &825995278
 GameObject:
@@ -13387,7 +13436,7 @@ Transform:
   - {fileID: 1752893319}
   - {fileID: 99582515}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846924230
 GameObject:
@@ -13560,6 +13609,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620673
 MonoBehaviour:
@@ -13584,6 +13635,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620674
 MonoBehaviour:
@@ -13608,6 +13661,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620675
 MonoBehaviour:
@@ -13632,6 +13687,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620676
 MonoBehaviour:
@@ -13656,6 +13713,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620677
 MonoBehaviour:
@@ -13680,6 +13739,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!61 &854620678
 BoxCollider2D:
@@ -13730,6 +13791,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620680
 MonoBehaviour:
@@ -13754,6 +13817,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620681
 MonoBehaviour:
@@ -13778,6 +13843,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!114 &854620682
 MonoBehaviour:
@@ -13802,6 +13869,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!1 &870075408
 GameObject:
@@ -14242,7 +14311,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4a14e99eb65dc8e4d9fb8df2492ac913, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14352,6 +14421,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &890463723
 BoxCollider2D:
@@ -14447,6 +14518,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &892942913
 BoxCollider2D:
@@ -14574,6 +14647,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &902574348
 BoxCollider2D:
@@ -14840,7 +14915,7 @@ Transform:
   m_Children:
   - {fileID: 715818262}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953376413
 GameObject:
@@ -14954,6 +15029,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &957490945
 BoxCollider2D:
@@ -15085,6 +15162,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &965810943
 BoxCollider2D:
@@ -15290,7 +15369,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1430987733
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 15
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15438,6 +15517,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &978624682
 BoxCollider2D:
@@ -16942,7 +17023,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec34f8e4458f34746aeb0f1e8d99e4bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16970,7 +17051,7 @@ Transform:
   - {fileID: 1603221266}
   - {fileID: 1861113710}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1037132466
 MonoBehaviour:
@@ -17519,6 +17600,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1100546947
 BoxCollider2D:
@@ -17677,6 +17760,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1105511084
 BoxCollider2D:
@@ -18232,6 +18317,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1142438216
 BoxCollider2D:
@@ -18403,14 +18490,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147961946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.176156, y: 7.319483, z: 0.8927045}
+  m_LocalPosition: {x: -4.3458443, y: -6.6925173, z: 0.816361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1783310330}
   - {fileID: 110809630}
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 1411314274}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1148097661
 GameObject:
@@ -18770,6 +18857,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1182503674
 BoxCollider2D:
@@ -19280,6 +19369,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1223087083
 BoxCollider2D:
@@ -19430,6 +19521,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1238803624
 BoxCollider2D:
@@ -19693,6 +19786,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1252417091
 BoxCollider2D:
@@ -20066,7 +20161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f60a3ff1b3a37ff4d807426b22e2761d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20299,6 +20394,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1271516013
 BoxCollider2D:
@@ -20427,6 +20524,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1273417057
 BoxCollider2D:
@@ -20641,7 +20740,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52ff3054145fad449a4d36a4abaaeb4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20722,6 +20821,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1283904721
 BoxCollider2D:
@@ -20901,6 +21002,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1286870661
 BoxCollider2D:
@@ -21200,6 +21303,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1289882135
 BoxCollider2D:
@@ -21391,6 +21496,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!1 &1299997470
 GameObject:
@@ -21553,7 +21660,7 @@ Transform:
   - {fileID: 1559031039}
   - {fileID: 2118731683}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1303424077
 GameObject:
@@ -21956,6 +22063,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1334972367
 BoxCollider2D:
@@ -22157,6 +22266,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1347743924
 BoxCollider2D:
@@ -22277,7 +22388,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1430987733
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 15
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22486,6 +22597,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1349440708
 BoxCollider2D:
@@ -22589,6 +22702,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1356400556
 BoxCollider2D:
@@ -22830,7 +22945,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1430987733
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: af8a851380fc34a4bb0c7696edb4af92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22884,7 +22999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361875249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 13.88, z: 0}
+  m_LocalPosition: {x: 7.65, y: 16.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22898,7 +23013,7 @@ Transform:
   - {fileID: 51902790}
   - {fileID: 1831089835}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1361875259
 MonoBehaviour:
@@ -22948,6 +23063,7 @@ MonoBehaviour:
   _gravity: -0.1
   _jumpImpulse: 0.92
   canIjump: 1
+  wallijumpy: 0
   body: {fileID: 0}
   jumpLimit: 0
   Xspeed: 0
@@ -23124,11 +23240,6 @@ PrefabInstance:
 --- !u!224 &1362945215 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2918979520446490594, guid: 7cab7c2ec7685954387dfc8b3731f62b, type: 3}
-  m_PrefabInstance: {fileID: 1362945214}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1362945216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2918979520446490593, guid: 7cab7c2ec7685954387dfc8b3731f62b, type: 3}
   m_PrefabInstance: {fileID: 1362945214}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1366286704
@@ -23319,6 +23430,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1374699482
 BoxCollider2D:
@@ -23450,6 +23563,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1374860872
 BoxCollider2D:
@@ -23885,6 +24000,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.051669, y: 0.6136427}
   m_EdgeRadius: 0
+--- !u!1 &1411314273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411314274}
+  m_Layer: 0
+  m_Name: Elevator Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1411314274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411314273}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.522, y: 14.012, z: 0.0763435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1147961947}
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423000970
 GameObject:
   m_ObjectHideFlags: 0
@@ -24167,6 +24314,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1450362969
 BoxCollider2D:
@@ -24455,6 +24604,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1468412699
 BoxCollider2D:
@@ -24896,7 +25047,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7441cc80845e7314eb54eaf86db97ec8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25013,6 +25164,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1505803945
 BoxCollider2D:
@@ -25163,7 +25316,7 @@ Transform:
   - {fileID: 147689625}
   - {fileID: 1275706217}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544889445
 GameObject:
@@ -25310,6 +25463,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1546196200
 BoxCollider2D:
@@ -25567,7 +25722,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1022207212, guid: 31401c3cfa804eb4d97f64133fafc36b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26289,7 +26444,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 93a4e7a6105c7aa42a4c3189e5c9d92c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27032,7 +27187,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1022207212, guid: 31401c3cfa804eb4d97f64133fafc36b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27058,7 +27213,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603264736}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1655921235
 Animator:
@@ -27552,18 +27707,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676767701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 13.88, z: -10}
+  m_LocalPosition: {x: 7.65, y: 16.04, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1690426105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3988700466451475702, guid: 0bb1cf70399ed3340bbb8f308b821543, type: 3}
-  m_PrefabInstance: {fileID: 3988700464912250383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1690426106 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3988700466451475701, guid: 0bb1cf70399ed3340bbb8f308b821543, type: 3}
@@ -27784,6 +27934,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1694374678
 BoxCollider2D:
@@ -27904,7 +28056,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1430987733
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 15
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28229,7 +28381,7 @@ Transform:
   - {fileID: 211216297}
   - {fileID: 1608467082}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1745429510
 GameObject:
@@ -28262,7 +28414,7 @@ Transform:
   - {fileID: 965810941}
   - {fileID: 1806574066}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752893318
 GameObject:
@@ -28332,6 +28484,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1752893321
 BoxCollider2D:
@@ -28543,6 +28697,8 @@ MonoBehaviour:
       m_Calls: []
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 0
 --- !u!61 &1778475353
 BoxCollider2D:
@@ -28650,6 +28806,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1781297195
 BoxCollider2D:
@@ -29130,6 +29288,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1806574068
 BoxCollider2D:
@@ -29659,7 +29819,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1510211086, guid: 14be900eb80fc554c9dcd64b97a79bf6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29733,6 +29893,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 718682589}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1836450052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1836450053}
+  m_Layer: 7
+  m_Name: Dummies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1836450053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836450052}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.521, y: 10.6794, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1846739717
 GameObject:
@@ -29920,6 +30111,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1852376797
 BoxCollider2D:
@@ -30234,7 +30427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872195453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 13.88, z: -10}
+  m_LocalPosition: {x: 7.65, y: 16.04, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30398,6 +30591,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1873211235
 BoxCollider2D:
@@ -30622,7 +30817,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5e03df2d81a00d7479e7132aea4dd480, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30978,7 +31173,7 @@ GameObject:
   - component: {fileID: 1960086994}
   - component: {fileID: 1960086993}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31020,46 +31215,20 @@ MonoBehaviour:
   ALTSKIPENABLED: Disabled
   LEVEL: 1
   PLAYER: {fileID: 1361875249}
-  BUTTON_INTERACT: {fileID: 147689624}
   CHECKPOINT: {x: 0, y: 0, z: 0}
   ACTUAL_CHECKPOINT: {fileID: 0}
   PLAYER_COMBAT: 0
-  CANVAS: {fileID: 0}
-  PAUSE_MENU: {fileID: 1690426105}
-  PANEL_OBJECTIVE: {fileID: 953376413}
   PAUSED: 0
-  QUILOMB_MODE: 0
   MUSIC_VOLUME: 0
   SFX_VOLUME: 0
+  UIManager: {fileID: 0}
+  SoundManager: {fileID: 0}
+  CameraController: {fileID: 0}
   dustcap: 0
-  VFX_FADE: {fileID: 1362945216}
   lvlDiag:
     DIALOGUES: []
   DIALOGUESKIPEND: 0
   DIALOGUESKIPCOUNT: 0
-  CANVAS_WS_LVL1: {fileID: 1594080307}
-  TUTO_TRIG_LVL1: {fileID: 679659541}
-  CHECKPOINTS_LVL1: {fileID: 2052498192}
-  DIALOGUES_LVL1: {fileID: 1275706216}
-  CHANGE_MUSIC_LVL1: {fileID: 1745429510}
-  EVENTS_GO_HERE_LVL1: {fileID: 846053803}
-  DOORS_LVL1: {fileID: 1302365037}
-  INVISIBLE_TROLL_LVL1: {fileID: 1136002677}
-  ELEVATORS_LVL1:
-  - {fileID: 503724695}
-  - {fileID: 1454206429}
-  - {fileID: 562499110}
-  ELEVATOR_DOOR_LVL1: {fileID: 254448217}
-  DUMMIES_LVL1:
-  - {fileID: 1655921231}
-  - {fileID: 1579205340}
-  - {fileID: 336505894}
-  PILOT_QUILOMB_LVL1: {fileID: 1037132458}
-  EVENTS_QUILOMB_LVL1: {fileID: 81820184}
-  ELEVATOR_SHIP_LVL1: {fileID: 565354654}
-  SPIKES_LVL1: {fileID: 484388088}
-  BTTON_QUILOMB_LVL1: {fileID: 1861113709}
-  NPCS_LVL1: {fileID: 1543783992}
 --- !u!114 &1960086995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31200,7 +31369,7 @@ RectTransform:
   - {fileID: 1794070770}
   - {fileID: 1362945215}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -31262,7 +31431,7 @@ MonoBehaviour:
   _leftBar2: {fileID: 1319776389932773261, guid: b6d45b0e4abc37b40abddece05633d05, type: 3}
   _leftBar3: {fileID: 1319776389932773261, guid: efae527d02f026b4c8e65e5bb4764109, type: 3}
   _rightBar: {fileID: 9185611855248492120, guid: 7e4b27de91194a445b80869fbd3568e5, type: 3}
-  _player: {fileID: 1361875261}
+  _player: {fileID: 0}
   _energyBar: {fileID: 663067777}
 --- !u!114 &1967066950
 MonoBehaviour:
@@ -31404,6 +31573,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1982267568
 BoxCollider2D:
@@ -31913,7 +32084,7 @@ Transform:
   m_Children:
   - {fileID: 1011243895}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2030173527
 MonoBehaviour:
@@ -32098,7 +32269,7 @@ Transform:
   - {fileID: 1402947597}
   - {fileID: 1859316768}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055439418
 GameObject:
@@ -32168,6 +32339,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &2055439421
 BoxCollider2D:
@@ -32287,6 +32460,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &2080065952
 BoxCollider2D:
@@ -32430,6 +32605,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &2080965410
 BoxCollider2D:
@@ -32660,6 +32837,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &2099307366
 BoxCollider2D:
@@ -32829,7 +33008,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec34f8e4458f34746aeb0f1e8d99e4bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

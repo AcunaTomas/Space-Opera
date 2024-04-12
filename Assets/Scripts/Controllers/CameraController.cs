@@ -21,11 +21,11 @@ public class CameraController : MonoBehaviour
     }
     public void LookRight()
     {
-        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.3f;
+        gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.3f;
     }
     public void LookRight2()
     {
-        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.1f;
+        gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.1f;
     }
     public void BackToNormal()
     {
@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
     }
     public void LookAtTarget(Transform target)
     {
-        GetComponent<CinemachineVirtualCamera>().Follow = target;
+        gameObject.GetComponent<CinemachineVirtualCamera>().Follow = target;
     }
     public void LookAtPlayer()
     {

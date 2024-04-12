@@ -21,13 +21,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _jumpImpulse = 0.95f;
     public bool canIjump = true;
+    [SerializeField]
     bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
-    private float jumpLimit = 0f;
+    public float jumpLimit = 0f;
     private bool justLanded;
     [SerializeField]
     public float Xspeed = 0f;
+    
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     private Vector2 speedCapsStatic = new Vector2(1.2f, 4f);
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int extrajumpcount = 1;
     [SerializeField]
-    private float _lastJumpPress = 0f;
+    public float _lastJumpPress = 0f;
     [SerializeField]
     private bool canIMove = true;
     private float _autoPilotOffset = 0.2f;
@@ -129,19 +131,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _SpaceBarReleaseJumpDecay = 0.01f;
 
-    public struct parama
-    {
-        public bool a;
-        public Vector2 b;
-        
-        public parama(bool ab, Vector2 bb)
-        {
-            a = ab;
-            b = bb;
-        }
-    }
-
-
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;
@@ -169,7 +158,6 @@ public class Player : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         dustEffect = Resources.Load("Prefabs/dustEffect");
-
     }
 
     void Update()
@@ -188,10 +176,12 @@ public class Player : MonoBehaviour
         {
             HorizontalInputValue = Input.GetAxis("Horizontal");
             
+            
             Movement();
             Effects();
             Flip();
         }
+        
         
         if (doIhaveToGoSomewhere == true)
         {
@@ -234,6 +224,8 @@ public class Player : MonoBehaviour
         {
             vertspid = vertspid - _SpaceBarReleaseJumpDecay;
         }
+
+
 
     }
 
@@ -295,6 +287,7 @@ public class Player : MonoBehaviour
         _xSpeedNullifier = 1;
     }
 
+
     IEnumerator WallXHandicap()
     {
         _wallJumpXHandicap = true;
@@ -340,7 +333,7 @@ public class Player : MonoBehaviour
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
                 {
-                    //GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
+                    GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
                     _playerFall = false;
                 }
 
@@ -555,7 +548,7 @@ public class Player : MonoBehaviour
 
     //Animaciones
 
-    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is! || In fact, Marian DID draw a batch of redundant sprites, so no mirroring for Brody, kinda...
+    private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is! || In fact, Marian DID draw a batch of redundant sprites, so no mirroring for Brody, kinda... || Fuck.
         {
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
@@ -652,7 +645,7 @@ public class Player : MonoBehaviour
             GetComponent<Player>().enabled = true;
             HP = MaxHP;
             _healthBar.UpdateHP();
-            if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2" && GameManager.INSTANCE.ELEVATORS_LVL1[1].localPosition.y > 0)
+            if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2")
             {
                 _callWhat.Invoke();
             }
@@ -671,7 +664,7 @@ public class Player : MonoBehaviour
 
     public void PlaySound(string a)
     {
-        AudioManager.INSTANCE.gameObject.SendMessage(a);
+        GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo(a,0));
     }
 
     public void SetHP(int hp)
@@ -688,8 +681,6 @@ public class Player : MonoBehaviour
     public void SetMaxHP(int hp)
     {
         MaxHP = hp;
-        //HP = MaxHP;
-        //_healthBar.UpdateHP();
     }
 
     private IEnumerator FlickerSprite()
@@ -794,7 +785,7 @@ public class Player : MonoBehaviour
                 
             //Debug.Log("Drift");     
             var a = Instantiate(dustEffect) as GameObject;
-            a.gameObject.SendMessage("Initialize", new parama(true, transform.position));
+            a.gameObject.SendMessage("Initialize", new Dust.parama(true, transform.position));
             GameManager.INSTANCE.dustcap = 1;
             
         }
@@ -808,13 +799,17 @@ public class Player : MonoBehaviour
 
             //Debug.Log("Drift2");
             var a = Instantiate(dustEffect) as GameObject;
-            a.SendMessage("Initialize", new parama(true, transform.position));
+            a.SendMessage("Initialize", new Dust.parama(true, transform.position), SendMessageOptions.DontRequireReceiver );
             GameManager.INSTANCE.dustcap = 1;
         }
     }
 
     public void MovementEnableToggle(bool a)
     {
+        if (doIhaveToGoSomewhere)
+        {
+            return;
+        }
         canIMove = a;
         if (a == false)
         {
@@ -846,7 +841,7 @@ public class Player : MonoBehaviour
         body.velocity = new Vector2(0,0);
         _animator.SetFloat("Speed", 0);
         doIhaveToGoSomewhere = false;
-
+        MovementEnableToggle(true);
 
     }
     public void setDestination(float x, float y)

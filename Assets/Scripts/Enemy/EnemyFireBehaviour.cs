@@ -14,12 +14,12 @@ public class EnemyFireBehaviour : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").transform;
+        _player = GameManager.INSTANCE.PLAYER.transform;
     }
 
     public void GetPlayer()
     {
-        _player = GameObject.FindWithTag("Player").transform;
+        _player = GameManager.INSTANCE.PLAYER.transform;
     }
     void FixedUpdate()
     {

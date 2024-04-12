@@ -5,7 +5,8 @@ using UnityEngine.Playables;
 
 public class TimelineController : MonoBehaviour
 {
-    public GameObject PANEL_DIALOGUE;
+    [SerializeField]
+    private UIManager PANEL_DIALOGUE;
 
 
 
@@ -13,9 +14,9 @@ public class TimelineController : MonoBehaviour
     {
         if (PANEL_DIALOGUE == null)
         {
-            PANEL_DIALOGUE = GameManager.INSTANCE.CANVAS.gameObject;
+            PANEL_DIALOGUE = UIManager.INSTANCE;
         }
-        if (PANEL_DIALOGUE.activeSelf)
+        if (PANEL_DIALOGUE.DialougeBoxStatus())
         {
             GetComponent<PlayableDirector>().Pause();
         }

@@ -5,10 +5,22 @@ using UnityEngine;
 
 public class Dust : MonoBehaviour
 {
-    // Start is called before the first frame update
     SpriteRenderer _sp;
     Transform _position;
     GameObject _controller;
+
+    public struct parama
+    {
+        public bool a;
+        public Vector2 b;
+        
+        public parama(bool ab, Vector2 bb)
+        {
+            a = ab;
+            b = bb;
+        }
+    }
+
 
     void Start()
     {
@@ -16,7 +28,7 @@ public class Dust : MonoBehaviour
         _position = GetComponent<Transform>();
     }
 
-    public void Initialize(Player.parama a)
+    public void Initialize(parama a)
     {
         transform.position = a.b;
         _sp = GetComponent<SpriteRenderer>();
@@ -24,7 +36,7 @@ public class Dust : MonoBehaviour
 
         _controller = GameObject.FindWithTag("ControllerCheck");
 
-        if (_controller.GetComponent<ChangeInputs>()._control == false)
+        if (_controller.GetComponent<ChangeInputs>()._control == false) 
         {
             if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
             {

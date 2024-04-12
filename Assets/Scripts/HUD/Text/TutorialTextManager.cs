@@ -12,7 +12,7 @@ public class TutorialTextManager : MonoBehaviour
 
     void Start()
     {
-        _text = GameManager.INSTANCE.CANVAS.AddText(_zoneName);
+        _text = UIManager.INSTANCE.DialougeBoxLoadText(_zoneName);
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _text[0];
     }
 }

@@ -16,4 +16,6 @@ public static class LoadJson
     public static string LVL_2X = Resources.Load<TextAsset>("Text/lvl2x").text;
     public static string LVL3_CINEMATIC = Resources.Load<TextAsset>("Text/lvl3_cinematic").text;
 
+    public static string LVL999 = Resources.Load<TextAsset>("Text/lvl999").text;
+
 }
