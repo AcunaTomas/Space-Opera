@@ -10,7 +10,7 @@ public class ObjectivesManager : MonoBehaviour
     [SerializeField]
     private string _zoneName;
 
-    private string[] _text;
+    private string _text;
     private bool _canInteract = true;
     private bool _buttonPressed = false;
     private bool _fold = false;
@@ -26,8 +26,8 @@ public class ObjectivesManager : MonoBehaviour
 
     private void ChangeObjective()
     {
-        _text = UIManager.INSTANCE.DialougeBoxLoadText(_zoneName);
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _text[0];
+        _text = UIManager.INSTANCE.DialogueBoxLoadText(_zoneName);
+        gameObject.transform.GetChild(0).GetComponent<TMP_Text>().text = _text;
     }
 
     public void ChangeZoneName(string _zn)

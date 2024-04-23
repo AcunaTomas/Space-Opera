@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour{
     private bool _escapePressed = false;
     private float restartTime;
     public float dustcap = 0;
-    public ButtonDialogue.Zone lvlDiag;
+    //public ButtonDialogue.Zone lvlDiag;
     public bool DIALOGUESKIPEND = false;
     public int DIALOGUESKIPCOUNT;
 
@@ -38,8 +38,10 @@ public class GameManager : MonoBehaviour{
 
         switch (LEVEL)
         {
+            /*
             case 1:
                 lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL1_DIALOGUES);
+
                 break;
             case 2:
                 lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL2);
@@ -51,13 +53,16 @@ public class GameManager : MonoBehaviour{
                 lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL_SELECT);
                 break;
             case 999:
-                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL999);
+                    //lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadCSV.LVL999);
+                //ButtonDialogueNew.SetLvlDialog(LoadCSV.LVL999);
                 break;
+            */
             default:
-                lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL999);
+                    //lvlDiag = Boss(LoadCSV.LVL999);
+                //ButtonDialogueNew.SetLvlDialog(LoadCSV.LVL999);
                 break;
         }
-        print(lvlDiag.DIALOGUES);
+        //print(lvlDiag.DIALOGUES);
         try
         {
             _playerScript = PLAYER.GetComponent<Player>();

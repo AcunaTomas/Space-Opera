@@ -434,6 +434,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &481843198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1146045660670119963, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+  m_PrefabInstance: {fileID: 2819203581942517513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aace5b31392f0214a8184e81809ecbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &534966288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1073,11 @@ Transform:
   m_Father: {fileID: 1763975258}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1126859979 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2819203583555645950, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+  m_PrefabInstance: {fileID: 2819203581942517513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1219750370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1568,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: whatTheFuck
+          m_StringArgument: whatTheFrick
           m_BoolArgument: 0
         m_CallState: 2
   external: 0
@@ -2750,6 +2766,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1146045660670119963, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: lifeBarAnim
+      value: 
+      objectReference: {fileID: 1126859979}
     - target: {fileID: 1298742866581381497, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: CHARACTERS.Array.data[2].EMOTIONS.Array.size
       value: 3
@@ -2814,9 +2834,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2819203582217209311, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: DIALOGUE_PANEL
+      value: 
+      objectReference: {fileID: 481843198}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2902,5 +2926,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2004008508292469183, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}

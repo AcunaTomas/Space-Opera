@@ -371,8 +371,8 @@ GameObject:
   - component: {fileID: 4382136192717587898}
   - component: {fileID: 4382136192717587895}
   - component: {fileID: 4382136192717587896}
-  - component: {fileID: 4382136192717587897}
   - component: {fileID: 3826332870638925183}
+  - component: {fileID: 2952180802259797021}
   m_Layer: 5
   m_Name: PanelDialogue
   m_TagString: PanelDialogue
@@ -445,31 +445,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4382136192717587897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4382136192717587899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14c3cb67712c514da1abecdb408e158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterImage: {fileID: 4382136191959591226}
-  _dialogueText: {fileID: 4382136193256190162}
-  _characterPanelName: {fileID: 4382136193088229196}
-  _characterName: {fileID: 4382136191697824366}
-  _player: {fileID: 0}
-  _dip: {fileID: 0}
-  _dialogueSkipAction: []
-  _skipBar: {fileID: 4382136192216730805}
-  _zone:
-    DIALOGUES: []
-  ZONENAME: 
-  _textParts: []
-  lifeBarAnim: {fileID: 0}
 --- !u!114 &3826332870638925183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +486,33 @@ MonoBehaviour:
     EMOTIONS:
     - EMOTION: normal
       ICON: {fileID: 2800000, guid: 7d84248d409ac3b448605a1001e4d34b, type: 3}
+--- !u!114 &2952180802259797021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382136192717587899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aace5b31392f0214a8184e81809ecbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterImage: {fileID: 4382136191959591226}
+  _dialogueText: {fileID: 4382136193256190162}
+  _characterPanelName: {fileID: 4382136193088229196}
+  _characterName: {fileID: 4382136191697824366}
+  _player: {fileID: 0}
+  _dip: {fileID: 3826332870638925183}
+  _dialogueSkipAction: []
+  _skipBar: {fileID: 4382136192216730805}
+  lvlDialog: {fileID: 4900000, guid: 8b08d7cd87e6b5d45aa9b10d6bfc7564, type: 3}
+  ListaDialogo:
+    list: []
+  _zoneLines: 0
+  ZONENAME: 
+  _textParts: []
+  lifeBarAnim: {fileID: 0}
 --- !u!1 &4382136193088229196
 GameObject:
   m_ObjectHideFlags: 0

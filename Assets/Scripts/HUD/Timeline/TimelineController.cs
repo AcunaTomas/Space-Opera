@@ -16,7 +16,7 @@ public class TimelineController : MonoBehaviour
         {
             PANEL_DIALOGUE = UIManager.INSTANCE;
         }
-        if (PANEL_DIALOGUE.DialougeBoxStatus())
+        if (PANEL_DIALOGUE.DialogueBoxStatus())
         {
             GetComponent<PlayableDirector>().Pause();
         }

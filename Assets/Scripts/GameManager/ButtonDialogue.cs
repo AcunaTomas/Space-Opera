@@ -8,6 +8,7 @@ using System.Linq;
 
 public class ButtonDialogue : MonoBehaviour
 {
+    /*
     [SerializeField]
     private RawImage _characterImage;
     [SerializeField]
@@ -320,4 +321,5 @@ public class ButtonDialogue : MonoBehaviour
     {
         lifeBarAnim = _newLifeBar;
     }
+    */
 }
