@@ -5,7 +5,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager INSTANCE;
-    public ButtonDialogue DIALOGUE_PANEL;
+    public ButtonDialogueNew DIALOGUE_PANEL;
     public ObjectivesManager OBJECTIVES_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
     public GameObject PAUSE_MENU;
@@ -32,12 +32,12 @@ public class UIManager : MonoBehaviour
         DIALOGUE_PANEL.FirstDialogue(CollisionDialogue.ChangeAudio.dialogo);
     }
 
-    public bool DialougeBoxStatus()
+    public bool DialogueBoxStatus()
     {
         return DIALOGUE_PANEL.gameObject.activeSelf;
     }
 
-    public string[] DialougeBoxLoadText(string zoneName)
+    public string DialogueBoxLoadText(string zoneName)
     {
         return DIALOGUE_PANEL.AddText(zoneName);
     }

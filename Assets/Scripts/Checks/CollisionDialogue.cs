@@ -92,7 +92,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (_panelDialogue.DialougeBoxStatus() || _checkpoint)
+        if (_panelDialogue.DialogueBoxStatus() || _checkpoint)
         {
             return;
         }
