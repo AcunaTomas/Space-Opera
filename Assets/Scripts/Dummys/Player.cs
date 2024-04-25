@@ -117,6 +117,11 @@ public class Player : MonoBehaviour
     private float _flickerDuration = 0.4f;
     private int _flickerCount = 3;
 
+    //Map Stuff, this is just a first try
+    [SerializeField]
+    private GameObject _Map;
+
+
     public PlayerType _playerType;
     public enum PlayerType
     {
@@ -178,6 +183,8 @@ public class Player : MonoBehaviour
         {
             _plaseJump();
         }
+
+        
    
     }
 
@@ -200,6 +207,23 @@ public class Player : MonoBehaviour
         WallJumpDelay();
         speedCapping();
         UpdateTimers();
+
+
+        //Map Stuff, this is just a first try
+
+        if (Input.GetButton("Map"))
+        {
+            _Map.GetComponent<Animator>().SetBool("Open", true);
+        }
+        else
+        {
+            _Map.GetComponent<Animator>().SetBool("Open", false);
+        }
+        // if (Input.GetButtonUp("Map"))
+        // {
+        //     _Map.GetComponent<Animator>().SetTrigger("Close");
+        // }
+
     }
 
     private void _plaseJump()
