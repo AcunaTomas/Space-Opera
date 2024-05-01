@@ -524,21 +524,21 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: ../../../Desktop/AudioBTS/FMOD-bts/FMOD-bts.fspro
-  sourceBankPath: ../../../Desktop/AudioBTS/FMOD-bts/Build
+  sourceBankPath: Assets/FMOD/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
-  AutomaticSampleLoading: 0
+  AutomaticSampleLoading: 1
   EncryptionKey: 
   ImportType: 0
   TargetAssetPath: FMODBanks
-  TargetBankFolder: 
-  EventLinkage: 0
+  TargetBankFolder: Assets/FMOD/Desktop
+  EventLinkage: 1
   LoggingLevel: 2
   SpeakerModeSettings: []
   SampleRateSettings: []
@@ -556,7 +556,7 @@ MonoBehaviour:
   EnableMemoryTracking: 0
   AndroidUseOBB: 0
   AndroidPatchBuild: 0
-  MeterChannelOrdering: 0
+  MeterChannelOrdering: 2
   StopEventsOutsideMaxDistance: 0
   BoltUnitOptionsBuildPending: 0
   EnableErrorCallback: 0
