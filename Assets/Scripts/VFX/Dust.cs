@@ -38,7 +38,7 @@ public class Dust : MonoBehaviour
 
         if (_controller.GetComponent<ChangeInputs>()._control == false) 
         {
-            if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
+            if (GameManager.INSTANCE.GetActivePlayer().GetComponent<SpriteRenderer>().flipX)
             {
                 _sp.flipX = false;
                 transform.position = new Vector2(transform.position.x + 0.15f, transform.position.y - 0.018f);
@@ -51,7 +51,7 @@ public class Dust : MonoBehaviour
         }
         else
         {
-            if (GameManager.INSTANCE.PLAYER.GetComponent<SpriteRenderer>().flipX)
+            if (GameManager.INSTANCE.GetActivePlayer().GetComponent<SpriteRenderer>().flipX)
             {
                 _sp.flipX = true;
                 transform.position = new Vector2(transform.position.x - 0.05f, transform.position.y - 0.018f);

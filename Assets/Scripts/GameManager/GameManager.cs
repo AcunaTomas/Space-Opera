@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour{
         //print(lvlDiag.DIALOGUES);
         try
         {
-            _playerScript = PLAYER.GetComponent<Player>();
+            _playerScript = GetActivePlayer();
         }
         catch (System.Exception e)
         {
@@ -88,9 +88,13 @@ public class GameManager : MonoBehaviour{
         DataPersistentManager.INSTANCE.SaveGame();
     }
 
-    public void GetPlayer()
+    public Player GetActivePlayer()
     {
-        PLAYER = GameObject.FindWithTag("Player");
+        if (PLAYER.transform.GetChild(0).gameObject.activeSelf)
+        {
+            return PLAYER.transform.GetChild(0).GetComponent<Player>();
+        }
+        return PLAYER.transform.GetChild(1).GetComponent<Player>();
     }
     
     void Update()
