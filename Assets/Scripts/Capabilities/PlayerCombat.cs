@@ -33,6 +33,10 @@ public class PlayerCombat : MonoBehaviour
     float nextBombTime = 0f;
     public Transform launchOffset;
     public ProjectileBehaviour projectilePrefab;
+    //TESTING
+    public JabulaniBehaviour _jabulani;
+
+    //TESTING
     Animator attackAnimator;
     Animator attackAnimatorUp;
     Animator attackAnimatorDown;
@@ -371,12 +375,12 @@ public class PlayerCombat : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             launchOffset.localPosition = new Vector2(-0.15f, 0);
-            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+            Instantiate(projectilePrefab, launchOffset.position, transform.rotation); //projectilePrefab
         }
         else
         {
             launchOffset.localPosition = new Vector2(0.15f, 0);
-            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+            Instantiate(projectilePrefab, launchOffset.position, transform.rotation); //projectilePrefab
         }
         
     }
@@ -385,12 +389,12 @@ public class PlayerCombat : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             launchOffset.localPosition = new Vector2(-0.15f, -0.12f);
-            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+            Instantiate(_jabulani, launchOffset.position, transform.rotation); //projectilePrefab
         }
         else
         {
             launchOffset.localPosition = new Vector2(0.15f, -0.12f);
-            Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+            Instantiate(_jabulani, launchOffset.position, transform.rotation); //projectilePrefab
         }
 
     }
