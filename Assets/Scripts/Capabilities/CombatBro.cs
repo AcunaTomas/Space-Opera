@@ -11,10 +11,14 @@ public class CombatBro : PlayerCombat
 
     public GameObject _player;
 
+    
     [SerializeField]
     private GameObject balarda;
     [SerializeField]
     private LayerMask discoverable;
+
+    [SerializeField]
+    private bool _canHack = false;
 
     public override void Bomb()
     {
@@ -30,6 +34,25 @@ public class CombatBro : PlayerCombat
                 enemyCollider.GetComponent<DetectableController2>().Detectado();
             }
         }
+        
+        if (_canHack)
+        {
+            Collider2D[] hackDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
+            foreach (Collider2D doorCollider in hackDoor)
+            {
+                try
+                {
+                    doorCollider.GetComponent<Animator>().SetTrigger("OpenDoor");
+                }
+                catch (System.Exception)
+                {
+                    doorCollider.GetComponent<Animator>().SetTrigger("OpenDoor");
+                }
+            }
+        }
+
+        
+
         AchievementsManager.INSTANCE.Achievement03();
         _radar.enabled = true;
 
