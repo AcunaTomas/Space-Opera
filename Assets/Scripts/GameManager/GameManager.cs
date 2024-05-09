@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour{
     private bool _escapePressed = false;
     private float restartTime;
     public float dustcap = 0;
+    public TextAsset lvlDialog;
     //public ButtonDialogue.Zone lvlDiag;
     public bool DIALOGUESKIPEND = false;
     public int DIALOGUESKIPCOUNT;
@@ -38,6 +39,10 @@ public class GameManager : MonoBehaviour{
 
         switch (LEVEL)
         {
+            case 999:
+                    //lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadCSV.LVL999);
+                lvlDialog = LoadCSV.LVL999;
+                break;
             /*
             case 1:
                 lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadJson.LVL1_DIALOGUES);
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour{
                 break;
             case 999:
                     //lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadCSV.LVL999);
-                //ButtonDialogueNew.SetLvlDialog(LoadCSV.LVL999);
+                ButtonDialogueNew.SetLvlDialog(LoadCSV.LVL999);
                 break;
             */
             default:
