@@ -50,7 +50,7 @@ public class CollisionDialogue : MonoBehaviour
 
     public void GetPlayer()
     {
-        _player = GameManager.INSTANCE.PLAYER;
+        _player = GameManager.INSTANCE.GetActivePlayer().gameObject;
     }
     public void GetCanvas()
     {
@@ -59,7 +59,7 @@ public class CollisionDialogue : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (_player == null)
+        if (_player == null || !_player.gameObject.activeSelf)
         {
             GetPlayer();
         }

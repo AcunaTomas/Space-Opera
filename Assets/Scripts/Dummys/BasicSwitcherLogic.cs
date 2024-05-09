@@ -15,7 +15,7 @@ public class BasicSwitcherLogic : MonoBehaviour
 
     void Update()
     {
-        if (_change)
+        if (Input.GetAxis("CharSwitch1") > 0 && cooldown == false)
         {
             _change = false;
             switch (who)

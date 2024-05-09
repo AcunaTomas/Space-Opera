@@ -101,7 +101,7 @@ public class ButtonDialogueNew : MonoBehaviour
         {
             return;
         }
-        _player = GameManager.INSTANCE.PLAYER;
+        _player = GameManager.INSTANCE.GetActivePlayer().gameObject;
         lifeBarAnim = transform.parent.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
@@ -330,12 +330,13 @@ public class ButtonDialogueNew : MonoBehaviour
         _dialogueSkipEnd = GameManager.INSTANCE.DIALOGUESKIPEND;
         _dialogueNumber = GameManager.INSTANCE.DIALOGUESKIPCOUNT;
         lifeBarAnim.SetTrigger("Disappear");
+        _player = GameManager.INSTANCE.GetActivePlayer().gameObject;
         if (lvlDialog != null && _player != null)
         {
             return;
         }
         //_zone = GameManager.INSTANCE.lvlDiag;
-        _player = GameManager.INSTANCE.PLAYER;
+        
     }
     void OnDisable()
     {
