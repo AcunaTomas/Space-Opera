@@ -78,13 +78,13 @@ public class MoveBoxes : MonoBehaviour
             Debug.Log("IZQUIERDA: " + hitIZQ.distance + hitIZQ.collider.name);
             Debug.Log("DERECHA: " + hitDER.distance + hitDER.collider.name);
             */
-            Vector2 ManchotoDER = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.max;
-            Vector2 ManchotoIZQ = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.min;
+            Vector2 colliderDER = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.max;
+            Vector2 colliderIZQ = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.min;
             Vector2 PlayerIZQ = box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.max;
             Vector2 PlayerDER = box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.min;
             if(box.gameObject.transform.position.x < gameObject.transform.position.x) //Si el jugador está a la derecha
             {
-                MoveBoxDirection(box.gameObject.transform, ManchotoDER, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
+                MoveBoxDirection(box.gameObject.transform, colliderDER, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
                 if (_playerRef.Xspeed > 0.01)
                 {
                     GetComponent<Animator>().SetBool("Drag", true);
@@ -99,7 +99,7 @@ public class MoveBoxes : MonoBehaviour
             }
             else if(box.gameObject.transform.position.x > gameObject.transform.position.x) //Si el jugador está a la izquierda
             {
-                MoveBoxDirection(box.gameObject.transform, ManchotoIZQ, hitDER, _posOffset, -_posOffLimit); //Offset positivo, la caja está a la derecha y el limite negativo(Está del otro lado)
+                MoveBoxDirection(box.gameObject.transform, colliderIZQ, hitDER, _posOffset, -_posOffLimit); //Offset positivo, la caja está a la derecha y el limite negativo(Está del otro lado)
                 if (_playerRef.Xspeed > 0.01)
                 {
                     GetComponent<Animator>().SetBool("Push", true);

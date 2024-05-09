@@ -32,6 +32,7 @@ public class ButtonDialogueNew : MonoBehaviour
     private int _contRepe = 0;
 
     [SerializeField] private TextAsset lvlDialog;
+    [SerializeField] float typingTime = .02f;
     
     [System.Serializable]
     public class CSVFormat
@@ -95,6 +96,7 @@ public class ButtonDialogueNew : MonoBehaviour
 
     void Awake()
     {
+        SetLvlDialog(GameManager.INSTANCE.lvlDialog);
         ReadCSV();
         _dip = GetComponent<DialogueImgPj>();
         if (lvlDialog != null)
@@ -142,7 +144,7 @@ public class ButtonDialogueNew : MonoBehaviour
                 {
                     if(_index == -1) _index = i;
                     _zoneLines++;
-                    Debug.Log("Tengo el index");
+                    Debug.Log("Se qué estás leyendo esto ( ͡° ͜ʖ ͡°)"); //index
                     //break;
                 }
             }
@@ -208,7 +210,7 @@ public class ButtonDialogueNew : MonoBehaviour
         else
         {
             _characterPanelName.SetActive(true);
-            print(_dip.CHARACTERS);
+            //print(_dip.CHARACTERS); print de srchenko
             if(ListaDialogo.list[_contLinea].IMAGE != "")
             {
                 List<Emotion> _emos = _dip.CHARACTERS_TRUE[ListaDialogo.list[_contLinea].IMAGE];
@@ -282,26 +284,64 @@ public class ButtonDialogueNew : MonoBehaviour
     }
     private IEnumerator WaitToText()
     {
-        _dialogueText.text = "";
-        for(int line = 0; line < _textParts.Length; line++)
+        _dialogueText.text = string.Empty;
+        _dialogueText.text = ListaDialogo.list[_contLinea].TEXT;
+        _dialogueText.maxVisibleCharacters = 0;
+        int chCounterAll = 0;
+        bool color = false;
+        
+        for(int word = 0; word < _textParts.Length; word++)
         {
-            SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo(ListaDialogo.list[_contLinea].SFX,2));
-            //Debug.Log("Line nº:" + line + " =" + _textParts[line] + " of " + _textParts.Length);
-            if(line == _textParts.Length - 1)
-                {
-                    _dialogueText.text += _textParts[line];
-                    _endLine = true;
-                }
-            else
+            SoundManager.INSTANCE.SendMessage("PlaySound", new SoundManager.SoundInfo(ListaDialogo.list[_contLinea].SFX,2));
+            int chCounterWord = 0;
+            
+            foreach(char ch in _textParts[word])
             {
-                _dialogueText.text +=  _textParts[line] + " ";
+                chCounterWord++;
+                if(_endLine)
+                {
+                    _dialogueText.text = ListaDialogo.list[_contLinea].TEXT;
+                    _dialogueText.maxVisibleCharacters = 200;
+                    break;
+                }
+                if(ch == '<') color = true;
+                if(color)
+                {
+                    if(ch == '>') color = false;
+                    yield return new WaitForSeconds(0);
+                }
+                else
+                {
+                chCounterAll++;
+                _dialogueText.maxVisibleCharacters = chCounterAll;
+                    //SoundManager.INSTANCE.SendMessage("PlaySound", new SoundManager.SoundInfo(ListaDialogo.list[_contLinea].SFX,2));
+                //_dialogueText.text += ch;
+                yield return new WaitForSeconds(typingTime);
+                }
+            }
+            
+            //Debug.Log("Caracteres: "+ chCounterWord);
+            //Debug.Log("Caracteres split: "+_textParts[word].Length);
+            if(word == _textParts.Length - 1 && chCounterWord == _textParts[word].Length) //Si es la última palabra y caracter entonces es la última linea
+            {
+                //_dialogueText.text += _textParts[word];
+                _endLine = true;
+            }
+            else //Esto para tener en cuenta el espacio después de cada palabra
+            {
+                chCounterAll++;
+                _dialogueText.maxVisibleCharacters = chCounterAll;
+                yield return new WaitForSeconds(typingTime);
+                //_dialogueText.text +=  _textParts[word] + " ";
             }
             if(_endLine)
             {
                 _dialogueText.text = ListaDialogo.list[_contLinea].TEXT;
+                _dialogueText.maxVisibleCharacters = 200;
+                //Debug.Log("Caracteres: " + chCounterAll);
                 break;
             }
-            yield return new WaitForSeconds(0.2f);
+            //Debug.Log(_dialogueText.maxWidth);
         }
     }
     public string AddText(string _zoneName)
