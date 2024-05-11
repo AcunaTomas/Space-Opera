@@ -22854,6 +22854,7 @@ MonoBehaviour:
   bombRate: 1.5
   launchOffset: {fileID: 879704530}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
+  _jabulani: {fileID: 0}
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -22999,7 +23000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361875249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.65, y: 16.04, z: 0}
+  m_LocalPosition: {x: 0.56, y: 13.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25857,17 +25858,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4382136192717587898, guid: b893a4ae349a8054f80f83f016d29305, type: 3}
   m_PrefabInstance: {fileID: 1550361952}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1550361954 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4382136192717587897, guid: b893a4ae349a8054f80f83f016d29305, type: 3}
-  m_PrefabInstance: {fileID: 1550361952}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14c3cb67712c514da1abecdb408e158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1554073027
 GameObject:
   m_ObjectHideFlags: 0
@@ -27707,7 +27697,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676767701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.65, y: 16.04, z: -10}
+  m_LocalPosition: {x: 0.56, y: 13.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30085,7 +30075,7 @@ MonoBehaviour:
   interactAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1550361954}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonDialogue, Assembly-CSharp
         m_MethodName: PlayerMovesAfterDialogue
         m_Mode: 6
@@ -30427,7 +30417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872195453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.65, y: 16.04, z: -10}
+  m_LocalPosition: {x: 0.56, y: 13.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31225,8 +31215,7 @@ MonoBehaviour:
   SoundManager: {fileID: 0}
   CameraController: {fileID: 0}
   dustcap: 0
-  lvlDiag:
-    DIALOGUES: []
+  lvlDialog: {fileID: 0}
   DIALOGUESKIPEND: 0
   DIALOGUESKIPCOUNT: 0
 --- !u!114 &1960086995

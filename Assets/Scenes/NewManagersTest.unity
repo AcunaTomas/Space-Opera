@@ -2240,6 +2240,7 @@ MonoBehaviour:
   bombRate: 2
   launchOffset: {fileID: 1574586540}
   projectilePrefab: {fileID: 0}
+  _jabulani: {fileID: 0}
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -2252,6 +2253,7 @@ MonoBehaviour:
   discoverable:
     serializedVersion: 2
     m_Bits: 8192
+  _canHack: 0
 --- !u!114 &1763975265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2817,7 +2819,7 @@ PrefabInstance:
     - target: {fileID: 2819203582151671796, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: PLAYER
       value: 
-      objectReference: {fileID: 1763975257}
+      objectReference: {fileID: 1525959993}
     - target: {fileID: 2819203582151671797, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2868,7 +2870,7 @@ PrefabInstance:
       objectReference: {fileID: 481843198}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.00000071525574
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y
