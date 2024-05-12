@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour{
 
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour{
     //public ButtonDialogue.Zone lvlDiag;
     public bool DIALOGUESKIPEND = false;
     public int DIALOGUESKIPCOUNT;
+
+    public GameObject DebugInfo;
 
     //Later is now...
     
@@ -109,6 +112,10 @@ public class GameManager : MonoBehaviour{
             DebugLowLevels();
             DebugDeleteSaveData();
             DebugReset();
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                DebugInfo.SetActive(!DebugInfo.activeSelf);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
@@ -168,7 +175,7 @@ public class GameManager : MonoBehaviour{
             restartTime += Time.deltaTime;
             if (restartTime >= 2f)
             {
-                ScenesManager.Instance.ReloadScene();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
         else
@@ -228,5 +235,6 @@ public class GameManager : MonoBehaviour{
     {
         Application.targetFrameRate = fps;
     }
+
 
 }

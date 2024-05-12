@@ -6,7 +6,7 @@ public class BasicSwitcherLogic : MonoBehaviour
 {
     
     public Player bi2;
-    public Playerererer brodi;
+    public Player brodi;
     public bool _change = false;
 
     private string who = "Bito";
