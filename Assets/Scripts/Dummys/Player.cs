@@ -618,7 +618,7 @@ public class Player : MonoBehaviour
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
         Invoke("Respawn", 1.7f);
-        transform.parent = null;
+        //transform.parent = null;
     }
 
     public void AddHP(int hp)
@@ -637,7 +637,7 @@ public class Player : MonoBehaviour
         {
             body.constraints = RigidbodyConstraints2D.None;
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
-            transform.parent = null;
+            //transform.parent = null;
             transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
             _animator.SetTrigger("idle");
             _animator.SetBool("isDead", false);

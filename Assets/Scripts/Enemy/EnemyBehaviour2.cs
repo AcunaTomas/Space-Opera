@@ -101,7 +101,7 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
-    AudioManager.INSTANCE.PlayEnemyAttack();
+    //AudioManager.INSTANCE.PlayEnemyAttack();
 
         if (transform.position.x > target.position.x)
         {

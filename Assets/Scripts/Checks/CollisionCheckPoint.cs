@@ -10,7 +10,7 @@ public class CollisionCheckPoint : MonoBehaviour
         if (col.tag == "Player")
         {
             gameObject.SetActive(false);
-            GameManager.INSTANCE.CHECKPOINT = GameManager.INSTANCE.PLAYER.transform.localPosition;
+            GameManager.INSTANCE.CHECKPOINT = gameObject.transform.localPosition;  //GameManager.INSTANCE.PLAYER.transform.localPosition;
             GameManager.INSTANCE.ACTUAL_CHECKPOINT = gameObject; 
             Restore();
         }

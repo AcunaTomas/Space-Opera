@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour
                 GetComponent<EnemyPatrol>().NoHit();
             }
 
-            AudioManager.INSTANCE.PlayEnemyHit();
+            //AudioManager.INSTANCE.PlayEnemyHit();
 
             if (currentHealth <= 0 && !_Inmortal) 
             {   
@@ -148,7 +148,7 @@ public class Enemy : MonoBehaviour
             }
 
 
-            AudioManager.INSTANCE.PlayEnemyHit();
+            //AudioManager.INSTANCE.PlayEnemyHit();
 
             if (currentHealth <= 0 && !_Inmortal) 
             {   
