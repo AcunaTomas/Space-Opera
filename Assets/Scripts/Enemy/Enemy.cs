@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private bool _Inmortal = false;
     private bool isDead;
 
-    public bool _MakeFunctionCallOnHit;
+    public bool _MakeFunctionCallOnDie;
     
     [SerializeField]
     private UnityEvent _callWhat;
@@ -105,10 +105,7 @@ public class Enemy : MonoBehaviour
             {   
                 Die();
             }
-            if (_MakeFunctionCallOnHit)
-            {
-                _callWhat.Invoke();
-            }
+           
             StartCoroutine(StartCooldownCH1());
             /*
             if (_spriteRenderer.flipX == true)
@@ -154,10 +151,7 @@ public class Enemy : MonoBehaviour
             {   
                 Die();
             }
-            if (_MakeFunctionCallOnHit)
-            {
-                _callWhat.Invoke();
-            }
+           
             StartCoroutine(StartCooldownCH2());
             
         }
@@ -274,6 +268,11 @@ public class Enemy : MonoBehaviour
         }
         catch(System.Exception)
         {
+        }
+
+        if (_MakeFunctionCallOnDie)
+        {
+            _callWhat.Invoke();
         }
 
         this.enabled = false;
