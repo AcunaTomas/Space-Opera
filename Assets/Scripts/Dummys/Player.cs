@@ -592,7 +592,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(FlickerSprite());
             }
             _healthBar.UpdateHP();
-            CameraController.Instance.ScreenShake(.5f, .1f);
+            //CameraController.Instance.ScreenShake(.5f, .1f);
 
             _coolingHit = true;
             StartCoroutine(StartCooldown());

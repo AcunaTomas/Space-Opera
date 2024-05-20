@@ -8,8 +8,11 @@ public class HurtBoxFatal : HurtBox
 
     public override void Awake()
     {
-        player = GameObject.FindWithTag("Player");
-        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
         ChangeAttackDMG(100);
+    }
+    void Start()
+    {
+        player = GameManager.INSTANCE.GetActivePlayer().gameObject;
+        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 }

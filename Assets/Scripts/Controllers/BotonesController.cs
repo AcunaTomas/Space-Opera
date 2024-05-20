@@ -26,6 +26,8 @@ public class BotonesController : MonoBehaviour
             _animator.SetTrigger("ButtonPress");
             _puerta.GetComponent<Animator>().SetTrigger("OpenDoor");
             _callWhat.Invoke();
+            other.gameObject.GetComponent<Animator>().SetTrigger("Explode");
+            Destroy(other.gameObject, 0.5f);
         }
         if (other.gameObject.CompareTag("BalaPlayer"))
         {
