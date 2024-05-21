@@ -17,7 +17,6 @@ public class Playerererer : Player
     {
         if (_canDash)
         {
-            Debug.Log("aaaaaaaaaaaaaaaaaaa");
             setXStunVariables();
             body.AddForce(new Vector2(3 * GetOrientation(), 0), ForceMode2D.Impulse);
             _animator.SetBool("Dash", true);
@@ -32,6 +31,7 @@ public class Playerererer : Player
                 _dashEffect.transform.localPosition = new Vector2(-0.14f, -0.03f);
                 _dashEffect.GetComponent<SpriteRenderer>().flipX = true;
             }
+
             _fallingTime = 0f;
             _animator.SetBool("IsJumping", false);
             _coolingHit = true;

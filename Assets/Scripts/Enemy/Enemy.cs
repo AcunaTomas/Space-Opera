@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
         GameObject player = GameManager.INSTANCE.PLAYER;
         
         _ub = GameObject.FindWithTag("LifeBar").GetComponent<UpdateBars>();
-        Physics2D.IgnoreCollision(player.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
+        //Physics2D.IgnoreCollision(player.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }

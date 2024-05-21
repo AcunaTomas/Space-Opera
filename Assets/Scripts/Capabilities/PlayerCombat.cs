@@ -7,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
-    public Transform attackPointVisual;
+    public GameObject attackPointVisual;
     public Transform attackPoint;
     [SerializeField]
     public GameObject attackPointUpVisual;
@@ -37,10 +37,9 @@ public class PlayerCombat : MonoBehaviour
     public JabulaniBehaviour _jabulani;
 
     //TESTING
-    Animator attackAnimator;
+    //Animator attackAnimator;
     Animator attackAnimatorUp;
     Animator attackAnimatorDown;
-    SpriteRenderer attackSprite;
 
     public float attackDuration = 0.3f;
 
@@ -50,8 +49,7 @@ public class PlayerCombat : MonoBehaviour
 
     private float queryStartTime;
 
-    [SerializeField]
-    private float _attackCount = 1;
+    public float _attackCount = 1;
     [SerializeField]
     private float _attackAnimTimer = 0f;
     [SerializeField]
@@ -70,10 +68,6 @@ public class PlayerCombat : MonoBehaviour
         GameObject attackVisual = GameObject.FindWithTag("AttackVisual");
         GameObject attackVisualUp = GameObject.FindWithTag("AttackVisualUp");
         GameObject attackVisualDown = GameObject.FindWithTag("AttackVisualDown");
-        attackAnimator = attackVisual.GetComponent<Animator>();
-        attackAnimatorUp = attackVisualUp.GetComponent<Animator>();
-        attackAnimatorDown = attackVisualDown.GetComponent<Animator>();
-        attackSprite = attackVisual.GetComponent<SpriteRenderer>();
     }
     void FixedUpdate()
     {
@@ -122,16 +116,12 @@ public class PlayerCombat : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             attackPointUp.localPosition = new Vector2(0, 0.15f);
-            attackPointUpVisual.GetComponent<SpriteRenderer>().flipX = true;
             attackPointDown.localPosition = new Vector2(0, -0.15f);
-            attackPointDownVisual.GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             attackPointUp.localPosition = new Vector2(0, 0.15f);
-            attackPointUpVisual.GetComponent<SpriteRenderer>().flipX = false;
             attackPointDown.localPosition = new Vector2(0, -0.15f);
-            attackPointDownVisual.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         if (isAttackActive)
@@ -279,43 +269,30 @@ public class PlayerCombat : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
-            attackPointVisual.localPosition = new Vector2(0.15f, 0);
-            attackSprite.flipX = true;
+            //attackPointVisual.localPosition = new Vector2(0.15f, 0);
         }
         else
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
-            attackPointVisual.localPosition = new Vector2(-0.15f, 0);
-            attackSprite.flipX = false;
+            //attackPointVisual.localPosition = new Vector2(-0.15f, 0);
         }   
 
         if (_attackCount == 1)
         {
             animator.SetTrigger("Attack1");
-            attackAnimator.SetTrigger("Golpe1");
-            //_attackCount = 2;
-
-            //_attackAnimTimer = 0f;
+            Instantiate(attackPointVisual, attackPoint);
             return;
         }
         if (_attackCount == 2)
         {
             animator.SetTrigger("Attack2");
-            attackAnimator.SetTrigger("Golpe2");
-            //_attackCount = 3;
-
-            //_attackAnimTimer = 0f;
-
+            Instantiate(attackPointVisual, attackPoint);
             return;
         }
         if (_attackCount == 3)
         {
             animator.SetTrigger("Attack3");
-            attackAnimator.SetTrigger("Golpe3");
-            //_attackCount = 1;
-            
-            //_attackAnimTimer = 0f;
-
+            Instantiate(attackPointVisual, attackPoint);
             return;
         }
 
@@ -326,17 +303,9 @@ public class PlayerCombat : MonoBehaviour
 
         animator.SetTrigger("AttackUp");
         animator.SetBool("IsJumping", false);
-        attackAnimatorUp.SetTrigger("GolpeUp");
-        Debug.Log("Ataca arriba");
+        Instantiate(attackPointUpVisual, attackPointUp);
 
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayers);
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, doorLayers);
-
-        // foreach (Collider2D enemyCollider in hitEnemies)
-        // {
-        //     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
-        //     AudioManager.INSTANCE.PlayEnemyHit();
-        // }
 
         foreach (Collider2D door in hitDoor)
         {
@@ -350,18 +319,10 @@ public class PlayerCombat : MonoBehaviour
 
         animator.SetTrigger("AttackDown");
         animator.SetBool("IsJumping", false);
-        attackAnimatorDown.SetTrigger("GolpeDown");
-        Debug.Log("Ataca abajo");
+        Instantiate(attackPointDownVisual, attackPointDown);
 
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayers);
+
         Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, doorLayers);
-
-        // foreach (Collider2D enemyCollider in hitEnemies)
-        // {
-        //     enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage);
-        //     GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
-        //     AudioManager.INSTANCE.PlayEnemyHit();
-        // }
 
         foreach (Collider2D door in hitDoor)
         {

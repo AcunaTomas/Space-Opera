@@ -12,7 +12,7 @@ public class HurtBoxFatal : HurtBox
     }
     void Start()
     {
-        player = GameManager.INSTANCE.GetActivePlayer().gameObject;
-        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
+        //player = GameManager.INSTANCE.GetActivePlayer().gameObject;
+        //Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 }
