@@ -53,7 +53,7 @@ public class CombatBro : PlayerCombat
 
         
 
-        AchievementsManager.INSTANCE.Achievement03();
+        //AchievementsManager.INSTANCE.Achievement03();
         _radar.enabled = true;
 
         _player.GetComponent<Player>().enabled = false;

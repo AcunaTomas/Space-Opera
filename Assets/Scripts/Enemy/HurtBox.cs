@@ -41,18 +41,27 @@ public class HurtBox : MonoBehaviour
             
             if(transform.parent != null)
             {
-                _enemyRef = transform.parent.gameObject.GetComponent<Enemy>();
-                switch (_enemyRef.GetEnemyType())
-            {
-                case Enemy.EnemyType.melee:
-                    transform.parent.gameObject.GetComponent<EnemyBehaviour2>().DONTMOVE = true;
-                    break;
-                case Enemy.EnemyType.gun:
-                    Debug.Log("pistola");
-                    break;
-                default:
-                    break;
-            }
+                try
+                {
+                    _enemyRef = transform.parent.gameObject.GetComponent<Enemy>();
+                    switch (_enemyRef.GetEnemyType())
+                {
+                    case Enemy.EnemyType.melee:
+                        transform.parent.gameObject.GetComponent<EnemyBehaviour2>().DONTMOVE = true;
+                        break;
+                    case Enemy.EnemyType.gun:
+                        Debug.Log("pistola");
+                        break;
+                    default:
+                        break;
+                }
+                }
+                catch
+                {
+                    return;
+                }
+                
+                
             }
             DelayMoveAgain(0.2f);
             Debug.Log("hit");

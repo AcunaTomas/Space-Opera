@@ -35,41 +35,11 @@ public class JabulaniBehaviour : MonoBehaviour
         Throw();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.transform.GetChild(5).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(player.transform.GetChild(6).GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 
     public void FixedUpdate()
     {
 
-        //if(!thrown)
-        //{
-        //    transform.position += transform.right * speed * Time.deltaTime;
-        //}
-
-        // if (isBombActive)
-        // {
-        //     if (Time.time - queryStartTime >= bombDuration)
-        //     {
-        //         isBombActive = false;
-        //     }
-        //     else
-        //     {
-        //         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
-        //         //rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            
-        //         foreach (Collider2D enemyCollider in hitEnemies)
-        //         {
-        //             enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
-        //         }
-
-        //         Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyGunLayers);
-        //         foreach (Collider2D enemyGunCollider in hitEnemiesGun)
-        //         {
-        //             enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
-        //         }
-        //     }
-        // }
 
     }
 
@@ -89,21 +59,14 @@ public class JabulaniBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetTrigger("Explode");
+            Destroy(gameObject, 0.5f);
+        }
+
         if (!_coolingCollision)
         {
-            //isBombActive = true;
-            //queryStartTime = Time.time;
-
-            //AudioManager.INSTANCE.PlayPlayerBomb();
-            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
-            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            
-            //foreach (Collider2D enemyCollider in hitEnemies)
-            //{
-                //enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage);
-            //}
-
-            //animator.SetTrigger("Explode");
             Destroy(gameObject, 5f);
 
             _coolingCollision = true;

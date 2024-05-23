@@ -132,7 +132,16 @@ public class GenericBala : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-          other.gameObject.GetComponent<Enemy>().TakeDamage(damages, gameObject.transform.position);
+          try
+          {
+            other.gameObject.GetComponent<Enemy>().TakeDamage(damages, gameObject.transform.position);
+          }
+          catch
+          {
+            Destroy(gameObject);
+            return;
+          }
+          
         }
         Destroy(gameObject);
     }

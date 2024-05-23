@@ -6,7 +6,7 @@ public class Playerererer : Player
 {
     public bool _canDash = true;
     public bool _isDashing;
-    private float _dashForce = 20f;
+    private float _dashForce = 30f;
     private float _dashTime = 0.3f;
     private float _dashCooldown = 0.3f;
     public bool _failDash = false;
@@ -14,7 +14,7 @@ public class Playerererer : Player
 
     public IEnumerator Dash() 
     //Si usamos este dash hay que resetear los booleanos cuando se hace el switch:
-    //_canDash, canImove, _animator.SetBool("Dash", true), _isdashing, _coolingDashAnim, _coolingHit
+    //_canDash, canImove, _animator.SetBool("Dash", false), _isdashing, _coolingDashAnim, _coolingHit
     
 //                              .-----.
 //                             /7  .  (
@@ -65,13 +65,13 @@ public class Playerererer : Player
         //_effectAnimator.SetTrigger("Effect");
         _fallingTime = 0f;
         _animator.SetBool("IsJumping", false);
-        _coolingHit = true;
-        StartCoroutine(StartCooldownIFrame());
+        //_coolingHit = true;
+        //StartCoroutine(StartCooldownIFrame());
         _coolingDashAnim = true;
         StartCoroutine(StartCooldownDashingAnimation());
 
-
         yield return new WaitForSeconds(_dashTime);
+
         body.gravityScale = originalGravity;
         _isDashing = false;
         canIMove = true;

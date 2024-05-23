@@ -184,12 +184,12 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.INSTANCE.LEVEL == 1)
         {
-            AchievementsManager.INSTANCE.Achievement01();
+            //AchievementsManager.INSTANCE.Achievement01();
         }
 
         if (GameManager.INSTANCE.LEVEL == 3)
         {
-            AchievementsManager.INSTANCE.YouFuckingKilledAnimals();
+            //AchievementsManager.INSTANCE.YouFuckingKilledAnimals();
         }
         isDead = true;
 
@@ -241,7 +241,7 @@ public class Enemy : MonoBehaviour
         {
             if (_enemyType == EnemyType.melee || _enemyType == EnemyType.gun)
             {
-                AchievementsManager.INSTANCE.Achievement04();
+                //AchievementsManager.INSTANCE.Achievement04();
                 animator.SetTrigger("DieBomb");
             }    
         }
