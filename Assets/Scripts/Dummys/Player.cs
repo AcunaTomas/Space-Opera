@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float vertspid = -0.3f;
     [SerializeField]
-    float _gravity = -0.1f;
+    public float _gravity = -0.1f;
     [SerializeField]
     float _jumpImpulse = 0.95f;
     public bool canIjump = true;
@@ -39,8 +39,7 @@ public class Player : MonoBehaviour
     private int extrajumpcount = 1;
     [SerializeField]
     public float _lastJumpPress = 0f;
-    [SerializeField]
-    private bool canIMove = true;
+    public bool canIMove = true;
     private float _autoPilotOffset = 0.2f;
     public float _fallingTime = 0f;
 
@@ -80,8 +79,8 @@ public class Player : MonoBehaviour
     private float _skillHold;
 
 
-    public float dashRate = 2f;
-    float nextDashTime = 0f;
+    //public float dashRate = 2f;
+    //float nextDashTime = 0f;
 
     [SerializeField]
     private bool grounded;
@@ -160,7 +159,7 @@ public class Player : MonoBehaviour
         dustEffect = Resources.Load("Prefabs/dustEffect");
     }
 
-    void Update()
+    void  Update()
     {
         if (canIMove)
         {
@@ -398,7 +397,7 @@ public class Player : MonoBehaviour
         
         ContactPoint2D[] contacts= new ContactPoint2D[8];
         collision.GetContacts(contacts);
-        extrajumpcount = 1;
+        //extrajumpcount = 1;
 
         if (_fallingTime > 6.1)
         {
@@ -926,11 +925,11 @@ public class Player : MonoBehaviour
             _airborneTime = 0;
         }
         
-        if (Input.GetAxis("Whoosh") > 0 && _skillPermitted && _skillHold <= 0.17f && Time.time >= nextDashTime)
+        if (Input.GetAxis("Whoosh") > 0 && _skillHold <= 0.17f)
         {
             TheTheSkill();
-            ChangeSkillStatus(false);
-            nextDashTime = Time.time + 1f / dashRate;
+            //ChangeSkillStatus(false);
+            //nextDashTime = Time.time + 1f / dashRate;
         }
 
 

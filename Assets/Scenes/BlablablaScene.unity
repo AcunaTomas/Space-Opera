@@ -9206,6 +9206,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 631586457
       objectReference: {fileID: 0}
+    - target: {fileID: -4290221004935677047, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2678431278612389639, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_Name
       value: VSTest
@@ -11626,7 +11630,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -11645,6 +11648,7 @@ MonoBehaviour:
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.01
   _canDash: 1
+  _isDashing: 0
   _failDash: 0
   _dashEffect: {fileID: 1963827396}
 --- !u!50 &1463393647
@@ -15273,7 +15277,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
