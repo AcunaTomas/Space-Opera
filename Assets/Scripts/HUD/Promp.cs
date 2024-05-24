@@ -6,20 +6,16 @@ public class Promp : MonoBehaviour
 {
     [SerializeField]
     private Vector3 _position;
-    private GameObject _interactable;
+    public GameObject _interactable;
 
-    void Start()
-    {
-        //_interactable = GameManager.INSTANCE.BUTTON_INTERACT;
-    }
     
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            ///_interactable.transform.parent = transform;
-            //_interactable.transform.localPosition = _position;
-            //_interactable.SetActive(true);
+            _interactable.transform.parent = transform;
+            _interactable.transform.localPosition = _position;
+            _interactable.SetActive(true);
         }
 
     }
@@ -28,7 +24,7 @@ public class Promp : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-           // _interactable.SetActive(false);
+           _interactable.SetActive(false);
         }
 
     }

@@ -31,8 +31,18 @@ public class Interactable : MonoBehaviour
     float _tempY;
     bool _keyHeld = false;
 
+    [SerializeField]
+    private UnityEvent afterAction;
+    [SerializeField]
+    private float _waitTime;
+
     
     void Start()
+    {
+        //playerInstance = GameObject.FindWithTag("Player");
+    }
+
+    void FixedUpdate()
     {
         playerInstance = GameObject.FindWithTag("Player");
     }
@@ -100,6 +110,7 @@ public class Interactable : MonoBehaviour
             if ((Input.GetAxis("Submit") > 0  || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0)
             {
                 interactAction.Invoke();
+                StartCoroutine(DoAfter());
                 _keyHeld = true;
                 disableCheck();
             }
@@ -143,5 +154,18 @@ public class Interactable : MonoBehaviour
     {
         _YDistance = y;
     }
+
+
+    IEnumerator DoAfter()
+    {
+        yield return new WaitForSeconds(_waitTime);
+        afterAction.Invoke();
+    }
+
+
+
+
+
+    
 }
 
