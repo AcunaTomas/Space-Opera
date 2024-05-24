@@ -1,0 +1,147 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class InteractableOnlyBrody : Interactable
+{
+    bool moved = false;
+    bool timedDisable = false;
+    float disableIn = 0;
+    float moveAmount = 0;
+    float _tempX;
+    float _tempY;
+    bool _keyHeld = false;
+    
+    void Start()
+    {
+        //playerInstance = GameObject.FindWithTag("Player");
+    }
+
+    void FixedUpdate()
+    {
+        playerInstance = GameObject.FindWithTag("Player");
+    }
+
+    public void TemporaryMove(float x)
+    {
+        /* _tempX = _XDistance;
+         _tempY = _YDistance;
+
+         _XDistance = x;
+         _YDistance = x; */
+        moveAmount = x;
+        moved = true;
+    }
+
+    public void disableAfter(float x)
+    {
+        if (timedDisable == true)
+        {
+            return;
+        }
+        timedDisable = true;
+        disableIn = x;
+    }
+
+    public void restoreMove()
+    {
+        print(moveAmount);
+        if (moveAmount > 0)
+        {
+            moveAmount -= 1;
+            return;
+        }
+/*        _XDistance = _tempX;
+        _YDistance = _tempY;*/
+        moved = false;
+    }
+
+
+    void Update()
+    {
+
+        if (_keyHeld == true)
+        {
+            _timePressed += Time.deltaTime;
+        }
+        else
+        {
+            _timePressed = 0;
+        }
+
+        if ((Input.GetAxis("Submit") > 0 || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _keyHeld == true)
+        {
+
+        }
+        else
+        {
+           
+            _keyHeld = false;
+        }
+
+
+        if ((Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance) && !moved)
+        {
+            if ((Input.GetAxis("Submit") > 0  || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0 && playerInstance.GetComponent<Player>()._playerType == Player.PlayerType.Brody)
+            {
+                interactAction.Invoke();
+                StartCoroutine(DoAfter());
+                _keyHeld = true;
+                disableCheck();
+            }
+        }
+        else
+        {
+            if (moved)
+            {
+                if ((Input.GetAxis("Submit") > 0 || Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) && _timePressed <= 0 && playerInstance.GetComponent<Player>()._playerType == Player.PlayerType.Brody)
+                {
+                    interactAction.Invoke();
+                    _keyHeld = true;
+
+                    restoreMove();
+                    disableCheck();
+                }
+            }
+        }
+
+    }
+
+    void disableCheck()
+    {
+        if (timedDisable == false)
+        {
+            return;
+        }
+        if (disableIn > 0)
+        {
+            disableIn -= 1;
+            return;
+        }
+        gameObject.GetComponent<Interactable>().enabled = false;
+    }
+
+    public void SetXRange(float x)
+    {
+        _XDistance = x;
+    }
+    public void SetYRange(float y)
+    {
+        _YDistance = y;
+    }
+
+
+    IEnumerator DoAfter()
+    {
+        yield return new WaitForSeconds(_waitTime);
+        afterAction.Invoke();
+    }
+
+
+
+
+
+    
+}
+

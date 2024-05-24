@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Promp : MonoBehaviour
 {
-    [SerializeField]
-    private Vector3 _position;
+    public Vector3 _position;
     public GameObject _interactable;
 
     

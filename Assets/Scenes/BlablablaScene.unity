@@ -1314,10 +1314,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 27.27706, y: 0.019678548}
+    - - {x: 27.26476, y: 0.02787609}
       - {x: 23.11558, y: 0.027876094}
-      - {x: 23.103283, y: 1.6295062}
-      - {x: 27.264765, y: 1.6254076}
+      - {x: 23.11558, y: 1.6295062}
+      - {x: 27.264765, y: 1.629506}
 --- !u!4 &98784244
 Transform:
   m_ObjectHideFlags: 0
@@ -1326,7 +1326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98784242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.85, y: -2.58, z: 0}
+  m_LocalPosition: {x: 1.85, y: -2.587, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1531,8 +1531,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 191988962}
-  - component: {fileID: 191988964}
   - component: {fileID: 191988963}
+  - component: {fileID: 191988965}
   m_Layer: 0
   m_Name: Interact
   m_TagString: Untagged
@@ -1581,7 +1581,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &191988964
+--- !u!114 &191988965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1590,7 +1590,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 191988961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c438f75367aa65244ab1618b1c15e837, type: 3}
+  m_Script: {fileID: 11500000, guid: 111b134db96d7054e903df69060752aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
@@ -1653,6 +1653,18 @@ MonoBehaviour:
   afterAction:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1763975263}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HackEnd
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1763975265}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -1687,31 +1699,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1763975263}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: HackEnd
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1429237345}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OpenDoor
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2045032802}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
@@ -1723,7 +1711,19 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: OpenDoor
-          m_BoolArgument: 1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1429237345}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OpenDoor
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 191988961}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -1737,7 +1737,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 383498220}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -2699,7 +2699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246868531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.03, y: -2.58, z: 0}
+  m_LocalPosition: {x: 1.94, y: -2.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4170,7 +4170,7 @@ GameObject:
   - component: {fileID: 383498218}
   - component: {fileID: 383498222}
   - component: {fileID: 383498221}
-  - component: {fileID: 383498220}
+  - component: {fileID: 383498223}
   - component: {fileID: 383498219}
   m_Layer: 0
   m_Name: Compu (1)
@@ -4222,20 +4222,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &383498220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383498217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58fcf7d653d92e4da597fc523033fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _position: {x: 0, y: 0.2, z: 0}
-  _interactable: {fileID: 1752457029}
 --- !u!95 &383498221
 Animator:
   serializedVersion: 5
@@ -4309,6 +4295,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &383498223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383498217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91360f2d8484b04ba9b60971915347f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _position: {x: 0, y: 0.2, z: 0}
+  _interactable: {fileID: 1752457029}
 --- !u!1 &400659634
 GameObject:
   m_ObjectHideFlags: 0
@@ -5438,8 +5438,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 7, y: 4.25}
       - {x: 12.5, y: 4.25}
-      - {x: 12.5, y: 0.050000012}
-      - {x: 7, y: 0.050000012}
+      - {x: 12.5, y: 0.05}
+      - {x: 7, y: 0.05}
 --- !u!1 &640025444
 GameObject:
   m_ObjectHideFlags: 0
@@ -6137,7 +6137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721597545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.58, z: 0}
+  m_LocalPosition: {x: 0, y: -2.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6870,8 +6870,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 5.3, y: 0}
-      - {x: 5.3, y: 1.576856}
+    - - {x: 5.24, y: 0}
+      - {x: 5.24, y: 1.576856}
       - {x: 12.5, y: 1.5768557}
       - {x: 12.5, y: 0}
 --- !u!1 &844969449
@@ -13282,7 +13282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543753695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -2.58, z: 0}
+  m_LocalPosition: {x: 1.939, y: -2.525, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

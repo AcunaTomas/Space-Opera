@@ -5,22 +5,13 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField]
-    private bool isInRange;
 
-    [SerializeField]
-    private KeyCode interactKey;
-
-    [SerializeField]
-    private UnityEvent interactAction;
-
-    [SerializeField]
-    GameObject playerInstance;
-    [SerializeField]
-    float _XDistance = 0.3f;
-    [SerializeField]
-    float _YDistance = 0.3f;
-
+    public bool isInRange;
+    public KeyCode interactKey;
+    public UnityEvent interactAction;
+    public GameObject playerInstance;
+    public  float _XDistance = 0.3f;
+    public float _YDistance = 0.3f;
     public float _timePressed = 0f; 
 
     bool moved = false;
@@ -31,10 +22,8 @@ public class Interactable : MonoBehaviour
     float _tempY;
     bool _keyHeld = false;
 
-    [SerializeField]
-    private UnityEvent afterAction;
-    [SerializeField]
-    private float _waitTime;
+    public UnityEvent afterAction;
+    public float _waitTime;
 
     
     void Start()
