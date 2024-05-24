@@ -16,7 +16,7 @@ public class MainMenuText : MonoBehaviour
 
     private void Start()
     {
-        ChangeText();
+        //ChangeText();
     }
 
     [System.Serializable]

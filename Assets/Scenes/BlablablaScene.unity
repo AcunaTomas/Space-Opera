@@ -7994,11 +7994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1483006196378356000, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.9866055
+      value: -1.987
       objectReference: {fileID: 0}
     - target: {fileID: 1483006196378356000, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6974015
+      value: 0.721
       objectReference: {fileID: 0}
     - target: {fileID: 1483006196378356000, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8031,6 +8031,14 @@ PrefabInstance:
     - target: {fileID: 1483006196378356000, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483006196378356003, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2115421
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483006196378356003, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.015710756
       objectReference: {fileID: 0}
     - target: {fileID: 1483006196378356028, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_Name
@@ -11648,6 +11656,7 @@ MonoBehaviour:
   launchOffset: {fileID: 1792255215}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
   _jabulani: {fileID: -7344408648342331455, guid: 9ac0f9df8a82f2c43adb90d613ec5ac9, type: 3}
+  _jabulaniOn: 1
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -11708,10 +11717,10 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 0}
+  _canDash: 1
   _playerType: 0
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.01
-  _canDash: 1
   _isDashing: 0
   _failDash: 0
   _dashEffect: {fileID: 1963827396}
@@ -13529,6 +13538,7 @@ Transform:
   - {fileID: 324894589}
   - {fileID: 1664427396}
   - {fileID: 953555951}
+  - {fileID: 1872438361}
   m_Father: {fileID: 367952289}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15345,6 +15355,7 @@ MonoBehaviour:
   launchOffset: {fileID: 1574586540}
   projectilePrefab: {fileID: 0}
   _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -15413,6 +15424,7 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 1691364927}
+  _canDash: 1
   _playerType: 1
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.1
@@ -15605,7 +15617,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 2, y: 9.8}
-      - {x: 5.6, y: 11.8}
+      - {x: 2, y: 11.8}
       - {x: 8.8, y: 11.8}
       - {x: 8.8, y: 8.7}
       - {x: 2, y: 8.7}
@@ -16079,6 +16091,112 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1872438360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1872438361}
+  - component: {fileID: 1872438363}
+  - component: {fileID: 1872438362}
+  m_Layer: 0
+  m_Name: Compu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1872438361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872438360}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.8830681, y: -2.5968542, z: -0.94643563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1636173996}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1872438362
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872438360}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccc04009a7d8eb14aa573276bebf7b60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1872438363
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872438360}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 631586457
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -718939406, guid: 52662cd3b9535164090f3d4e9ffb1631, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.96, y: 0.64}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1896667466
 GameObject:
   m_ObjectHideFlags: 0

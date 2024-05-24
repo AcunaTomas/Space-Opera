@@ -36,6 +36,8 @@ public class PlayerCombat : MonoBehaviour
     //TESTING
     public JabulaniBehaviour _jabulani;
 
+    public bool _jabulaniOn;
+
     //TESTING
     //Animator attackAnimator;
     Animator attackAnimatorUp;
@@ -101,9 +103,12 @@ public class PlayerCombat : MonoBehaviour
         {
             if (Input.GetAxis("Fire2") > 0 && (Input.GetAxis("Vertical") < 0))
             {
-                Invoke(nameof(Bomb2), -0.15f);
-                nextBombTime = Time.time + 2f / bombRate;
-                animator.SetTrigger("Bomb2");
+                if (_jabulaniOn)
+                {
+                    Invoke(nameof(Bomb2), -0.15f);
+                    nextBombTime = Time.time + 2f / bombRate;
+                    animator.SetTrigger("Bomb2");
+                }
             }
             else if (Input.GetAxis("Fire2") > 0)
             {
@@ -152,7 +157,7 @@ public class PlayerCombat : MonoBehaviour
                     if (_attackCount >= 3)
                     {
                         enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo, transform.position);
-                        CameraController.Instance.ScreenShake(.3f, .1f);
+                        //CameraController.Instance.ScreenShake(.3f, .1f);
                     }
                     else
                     {
@@ -169,7 +174,7 @@ public class PlayerCombat : MonoBehaviour
                     if (_attackCount >= 3)
                     {
                         enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamageCombo, transform.position);
-                        CameraController.Instance.ScreenShake(.3f, .1f);
+                        //CameraController.Instance.ScreenShake(.3f, .1f);
                     }
                     else
                     {

@@ -34,7 +34,6 @@ public class JabulaniBehaviour : MonoBehaviour
         rango = GetComponent<BoxCollider2D>();
         Throw();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        Physics2D.IgnoreCollision(player.GetComponent<CircleCollider2D>(), GetComponent<Collider2D>());
     }
 
     public void FixedUpdate()

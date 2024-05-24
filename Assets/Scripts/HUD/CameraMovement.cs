@@ -20,7 +20,7 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
-        AudioManager.INSTANCE.PlayMusic();
+        //AudioManager.INSTANCE.PlayMusic();
     }
     
     IEnumerator Jump()

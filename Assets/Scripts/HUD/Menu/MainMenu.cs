@@ -22,18 +22,18 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            _eventSystem.firstSelectedGameObject = _continue.gameObject;
-            _continue.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
-            _continue.gameObject.GetComponent<ButtonMenu>().ACTIVE = true;
-            _newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = false;
+            _eventSystem.firstSelectedGameObject = _newGame.gameObject;
+            _newGame.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            _newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = true;
+            //_newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = false;
         }
     }
 
     public void NewGameClicked()
     {
-        GameManager.INSTANCE.LEVEL = 0;
-        DataPersistentManager.INSTANCE.NewGame();
-        DataPersistentManager.INSTANCE.SaveGame();
+        //GameManager.INSTANCE.LEVEL = 0;
+        //DataPersistentManager.INSTANCE.NewGame();
+        //DataPersistentManager.INSTANCE.SaveGame();
         ScenesManager.Instance.LoadNewGame();
     }
 

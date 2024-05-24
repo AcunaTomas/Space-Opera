@@ -38,7 +38,7 @@ public class ScenesManager : MonoBehaviour
     {
         transition.SetTrigger("SceneStart");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("CutsceneDialogue");
+        SceneManager.LoadScene("BlablablaScene");
     } 
 
     //esto por si hay 2 o más niveles o escenas, etc

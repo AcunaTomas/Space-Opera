@@ -78,12 +78,7 @@ public class Player : MonoBehaviour
     private bool _skillPermitted = true;
     private float _skillHold;
 
-
-    //public float dashRate = 2f;
-    //float nextDashTime = 0f;
-
-    [SerializeField]
-    private bool grounded;
+    public bool grounded;
     public bool _coolingHit = false;
     public bool _coolingDashAnim = false;
     public bool _coolingShootDown = false;
@@ -117,6 +112,8 @@ public class Player : MonoBehaviour
 
     private float _flickerDuration = 0.4f;
     private int _flickerCount = 3;
+
+    public bool _canDash = true;
 
     public PlayerType _playerType;
     public enum PlayerType
@@ -159,7 +156,7 @@ public class Player : MonoBehaviour
         dustEffect = Resources.Load("Prefabs/dustEffect");
     }
 
-    void  Update()
+    public virtual void Update()
     {
         if (canIMove)
         {
@@ -191,7 +188,7 @@ public class Player : MonoBehaviour
         UpdateTimers();
     }
 
-    private void _plaseJump()
+    public void _plaseJump()
     {
         //GetButtonDown solo es true en el frame que se apreta espacio
         if (Input.GetButtonDown("Jump") && canIjump)
@@ -368,6 +365,7 @@ public class Player : MonoBehaviour
 
                     WallJumpXDirection = Clamp(contacts[i].normal.x, -1, 1);
                     _maxVerticalSpeed = speedCaps.x;
+                    _animator.SetBool("Dash", false);
                     _animator.SetBool("wall", true);
                     _animator.SetBool("IsJumping", false);  
                 }
@@ -739,7 +737,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator StartCooldownDashingAnimation()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.25f);
 
         _coolingDashAnim = false;
         _animator.SetBool("Dash", false);
@@ -852,10 +850,24 @@ public class Player : MonoBehaviour
     }
     private void speedCapping()
     {
-        if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+        if (_playerType == PlayerType.Bito)
         {
-            body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
+            if (gameObject.GetComponent<Playerererer>()._isDashing == false)
+            {
+                if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+                {
+                    body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
+                }
+            }
         }
+        else
+        {
+            if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+            {
+                body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
+            }
+        }
+
         if(doIhaveToGoSomewhere == true)
         {
             return;
@@ -864,11 +876,34 @@ public class Player : MonoBehaviour
         {
             if (canIjump && !_coolingHit) //airborne checko
             {
-                body.velocity = new Vector2(0f, body.velocity.y);
+                if (_playerType == PlayerType.Bito)
+                {
+                    if (gameObject.GetComponent<Playerererer>()._isDashing == false)
+                    {
+                        body.velocity = new Vector2(0f, body.velocity.y);
+                    }
+                    
+                }
+                else
+                {
+                    body.velocity = new Vector2(0f, body.velocity.y);
+                }
+                
             }
-            else
+            else 
             {
-                body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
+                if (_playerType == PlayerType.Bito)
+                {
+                    if (gameObject.GetComponent<Playerererer>()._isDashing == false)
+                    {
+                        body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
+                    }
+                }
+                else
+                {
+                    body.velocity = new Vector2(Clamp(body.velocity.x,-0.7f,0.7f), body.velocity.y);
+                }
+                
             }
 
         }
