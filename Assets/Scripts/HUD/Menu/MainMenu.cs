@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour
         //DataPersistentManager.INSTANCE.NewGame();
         //DataPersistentManager.INSTANCE.SaveGame();
         ScenesManager.Instance.LoadNewGame();
+        AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
     }
 
     public void ContinueClicked()

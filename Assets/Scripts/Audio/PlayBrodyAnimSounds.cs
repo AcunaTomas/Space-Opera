@@ -8,4 +8,9 @@ public class PlayBrodyAnimSounds : MonoBehaviour
     {
         AudioController.instance.PlayOneShot(FMODEvents.instance.FootstepsBrody, this.transform.position);
     }
+
+    public void PlayLaserAttackSound()
+    {
+        AudioController.instance.PlayOneShot(FMODEvents.instance.ShootBrody, this.transform.position);
+    }
 }

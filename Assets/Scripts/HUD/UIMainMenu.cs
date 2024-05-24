@@ -29,6 +29,7 @@ public class UIMainMenu : MonoBehaviour
     public void ExitGame()
     {
         #if UNITY_STANDALONE
+            AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_close, this.transform.position);
             Application.Quit();
         #endif
         #if UNITY_EDITOR
