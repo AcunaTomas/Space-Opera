@@ -32,11 +32,11 @@ public class MoveBoxes : MonoBehaviour
         {
             if(box.gameObject.transform.localScale.x >1)
             {
-                box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.44f - box.gameObject.transform.localScale.x/100, box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
+                box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.60f - box.gameObject.transform.localScale.x/100, box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
             }
             else
             {
-                box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.49f  + Math.Abs(box.gameObject.transform.localScale.x/10 - .1f), box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
+                box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.63f  + Math.Abs(box.gameObject.transform.localScale.x/10 - .1f), box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
             }
             /* esto contemplado por si toca hacer algo de poco grosor y alto, thats the pun .565f
             else
