@@ -6,7 +6,6 @@ using UnityEngine;
 public class MoveBoxes : MonoBehaviour
 {
     private float _playerPosRef;
-    private float _boxLimitRef;
     private float _holdLimit;
     [SerializeField] private float _posOffset; //.16 funciona para .5 de escala
     [SerializeField] private float _posOffLimit; //.025 goat
@@ -14,6 +13,7 @@ public class MoveBoxes : MonoBehaviour
     private bool _isDragging;
     [SerializeField] private LayerMask _layerRef;
     private Player _playerRef;
+    SpriteRenderer _spriteRenderer;
     private void OnEnable()
     {
         _isDragging = false;    
@@ -21,18 +21,10 @@ public class MoveBoxes : MonoBehaviour
     private void Start()
     {
         _playerRef = GetComponent<Player>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void FixedUpdate()
     {
-        if(_boxLimitRef != 0f)
-        {
-            Debug.Log("LimitRef");
-            if(Input.GetButton("Submit"))
-            {
-                //Debug.Log("KEEP HOLDING" + _holdLimit);
-                _holdLimit += Time.deltaTime;
-            }
-        }
     }
     void OnTriggerEnter2D(Collider2D box) //Cuando te acercas a la caja
     {
@@ -44,9 +36,9 @@ public class MoveBoxes : MonoBehaviour
             }
             else
             {
-                box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.565f + Math.Abs(box.gameObject.transform.localScale.x/10 - .1f), box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
+                box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.49f  + Math.Abs(box.gameObject.transform.localScale.x/10 - .1f), box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
             }
-            /* esto contemplado por si toca hacer algo de poco grosor y alto, thats the pun
+            /* esto contemplado por si toca hacer algo de poco grosor y alto, thats the pun .565f
             else
             {
                 box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.70f + Math.Abs(box.gameObject.transform.localScale.x/10 - .1f), box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
@@ -56,61 +48,71 @@ public class MoveBoxes : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D box) //Cuando te quedas en la caja
     {
-        if(box.gameObject.CompareTag("Movible") && Input.GetButton("Submit"))
+        if(box.gameObject.CompareTag("Movible"))
         {
-
-            Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
-            Vector2 _refDER = new Vector2 (box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.max.x, box.gameObject.transform.GetComponent<Collider2D>().bounds.min.y);
-            Vector2 _refIZQ = new Vector2 (box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.min.x, box.gameObject.transform.GetComponent<Collider2D>().bounds.min.y);
-            RaycastHit2D hitIZQ = Physics2D.Raycast(_refIZQ, Vector2.left, _layerRef);
-            RaycastHit2D hitDER = Physics2D.Raycast(_refDER, Vector2.right, _layerRef);
-            _playerRef.SetSpeed(_speedDrag);
-            if(!_isDragging)
+            if(Input.GetButton("Submit"))
             {
-                box.GetComponent<Animator>().SetBool("inRange", true);
-                //GetComponent<Animator>().SetBool("Push", true);
-                _holdLimit = 0f;
-                _boxLimitRef = 0f;
-                _playerPosRef = gameObject.transform.position.x;
-                _isDragging = true;
-            }
-            /*Debuggers de los hits :D
-            Debug.Log("IZQUIERDA: " + hitIZQ.distance + hitIZQ.collider.name);
-            Debug.Log("DERECHA: " + hitDER.distance + hitDER.collider.name);
-            */
-            Vector2 colliderDER = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.max;
-            Vector2 colliderIZQ = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.min;
-            Vector2 PlayerIZQ = box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.max;
-            Vector2 PlayerDER = box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.min;
-            if(box.gameObject.transform.position.x < gameObject.transform.position.x) //Si el jugador está a la derecha
-            {
-                MoveBoxDirection(box.gameObject.transform, colliderDER, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
-                if (_playerRef.Xspeed > 0.01)
-                {
-                    GetComponent<Animator>().SetBool("Drag", true);
-                    GetComponent<Animator>().SetBool("Push", false);
-                }
-                else if (_playerRef.Xspeed < 0.01)
-                {
-                    GetComponent<Animator>().SetBool("Push", true);
-                    GetComponent<Animator>().SetBool("Drag", false);
-                }
                 
+                Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
+                Vector2 _refDER = new Vector2 (box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.max.x, box.gameObject.transform.GetComponent<Collider2D>().bounds.min.y + .1f * box.gameObject.transform.localScale.y);
+                Vector2 _refIZQ = new Vector2 (box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.min.x, box.gameObject.transform.GetComponent<Collider2D>().bounds.min.y + .1f * box.gameObject.transform.localScale.y);
+                RaycastHit2D hitIZQ = Physics2D.Raycast(_refIZQ, Vector2.left, _layerRef);
+                RaycastHit2D hitDER = Physics2D.Raycast(_refDER, Vector2.right, _layerRef);
+                _playerRef.SetSpeed(_speedDrag);
+                if(!_isDragging)
+                {
+                    box.GetComponent<Animator>().SetBool("inRange", true);
+                    if((_spriteRenderer.flipX && transform.position.x> box.gameObject.transform.position.x)||(!_spriteRenderer.flipX && transform.position.x<box.gameObject.transform.position.x))GetComponent<Animator>().SetBool("Push", true);
+                    if((!_spriteRenderer.flipX && transform.position.x> box.gameObject.transform.position.x)||(_spriteRenderer.flipX && transform.position.x<box.gameObject.transform.position.x))GetComponent<Animator>().SetBool("Drag", true);
+                    _holdLimit = 0f;
+                    _isDragging = true;
+                }
+                /*Debuggers de los hits :D
+                Debug.Log("IZQUIERDA: " + hitIZQ.distance + hitIZQ.collider.name);
+                Debug.Log("DERECHA: " + hitDER.distance + hitDER.collider.name);
+                */
+                Vector2 colliderDER = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.max;
+                Vector2 colliderIZQ = box.gameObject.transform.GetComponent<CapsuleCollider2D>().bounds.min;
+                Vector2 PlayerIZQ = box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.max;
+                Vector2 PlayerDER = box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.min;
+                if(box.gameObject.transform.position.x < gameObject.transform.position.x) //Si el jugador está a la derecha
+                {
+                    MoveBoxDirection(box.gameObject.transform, colliderDER, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
+                    if (Input.GetAxisRaw("Horizontal") > 0.1)
+                    {
+                        GetComponent<Animator>().SetBool("Drag", true);
+                        GetComponent<Animator>().SetBool("Push", false);
+                    }
+                    else if (Input.GetAxisRaw("Horizontal") < -0.1)
+                    {
+                        GetComponent<Animator>().SetBool("Push", true);
+                        GetComponent<Animator>().SetBool("Drag", false);
+                    }
+                    
+                }
+                else if(box.gameObject.transform.position.x > gameObject.transform.position.x) //Si el jugador está a la izquierda
+                {
+                    MoveBoxDirection(box.gameObject.transform, colliderIZQ, hitDER, _posOffset, -_posOffLimit); //Offset positivo, la caja está a la derecha y el limite negativo(Está del otro lado)
+                    if (Input.GetAxisRaw("Horizontal") > 0.1)
+                    {
+                        GetComponent<Animator>().SetBool("Push", true);
+                        GetComponent<Animator>().SetBool("Drag", false);
+                    }
+                    else if (Input.GetAxisRaw("Horizontal") < -0.1)
+                    {
+                        GetComponent<Animator>().SetBool("Drag", true);
+                        GetComponent<Animator>().SetBool("Push", false);
+                    }
+                }
             }
-            else if(box.gameObject.transform.position.x > gameObject.transform.position.x) //Si el jugador está a la izquierda
+            else
             {
-                MoveBoxDirection(box.gameObject.transform, colliderIZQ, hitDER, _posOffset, -_posOffLimit); //Offset positivo, la caja está a la derecha y el limite negativo(Está del otro lado)
-                if (_playerRef.Xspeed > 0.01)
-                {
-                    GetComponent<Animator>().SetBool("Push", true);
-                    GetComponent<Animator>().SetBool("Drag", false);
-                }
-                else if (_playerRef.Xspeed < 0.01)
-                {
-                    GetComponent<Animator>().SetBool("Drag", true);
-                    GetComponent<Animator>().SetBool("Push", false);
-                }
+                _isDragging = false;
+                box.GetComponent<Animator>().SetBool("inRange", false);
+                ResetAnimMove();
             }
+            
+            
         }
     }
 
@@ -120,20 +122,18 @@ public class MoveBoxes : MonoBehaviour
         float distanceXD = Mathf.Abs(Origin.x - BoxRef.position.x) * PushForce;
         if(HitBuilding(HitDirection) && HitDirection.distance > Mathf.Abs(PushLimit))
         {
-            Debug.Log("new offset xd: " + distanceXD);
+            //Debug.Log("new offset xd: " + distanceXD);
             BoxRef.position = new Vector2(transform.position.x + distanceXD, BoxRef.position.y);
 
         }
         else if(HitBuilding(HitDirection))
         {
-            _boxLimitRef = BoxRef.position.x;
-            if(_holdLimit>=.4f)
+            if(((Input.GetAxisRaw("Horizontal")>0.2) && BoxRef.position.x < transform.position.x) || ((Input.GetAxisRaw("Horizontal")<-0.2) && BoxRef.position.x > transform.position.x))
             {
-                Debug.Log("GoBack");
+                //Debug.Log("GoBack "+ Input.GetAxisRaw("Horizontal"));
                 transform.position = new Vector2(transform.position.x + PushLimit, transform.position.y);
                 BoxRef.position = new Vector2(BoxRef.position.x + PushLimit, BoxRef.position.y);
                 _holdLimit = 0f;
-                _boxLimitRef = 0;
             }
         }
     }
@@ -145,8 +145,7 @@ public class MoveBoxes : MonoBehaviour
             _playerRef.ResetSpeed();
             _isDragging = false;
             box.GetComponent<Animator>().SetBool("inRange", false);
-            GetComponent<Animator>().SetBool("Push", false);
-            GetComponent<Animator>().SetBool("Drag", false);
+            ResetAnimMove();
             GetComponent<Animator>().SetTrigger("idle");
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
@@ -154,7 +153,7 @@ public class MoveBoxes : MonoBehaviour
 
     bool HitBuilding(RaycastHit2D hit) //En caso de que haya un nuevo tag que funcione como pared agregar acá ♥ ⬇⬇
     {
-        if(hit.collider.gameObject.CompareTag("NotClimbable") || hit.collider.gameObject.CompareTag("Untagged"))
+        if(hit.collider.gameObject.CompareTag("NotClimbable") || hit.collider.gameObject.CompareTag("Untagged") || hit.collider.gameObject.CompareTag("Movible"))
         {
             return true;
         }
@@ -173,5 +172,11 @@ public class MoveBoxes : MonoBehaviour
         {
             return false;
         }
+    }
+
+    void ResetAnimMove()
+    {
+        GetComponent<Animator>().SetBool("Push", false);
+        GetComponent<Animator>().SetBool("Drag", false);
     }
 }

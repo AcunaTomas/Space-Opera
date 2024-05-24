@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     private Vector2 speedCapsStatic = new Vector2(1.2f, 4f);
+    bool speedChanged = false; 
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
     [SerializeField]
@@ -334,7 +335,7 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false) //Contacto Horizontal/Pared
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && collision.gameObject.CompareTag("Movible") == false) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {
@@ -474,8 +475,9 @@ public class Player : MonoBehaviour
         }
         else
         {
+            Debug.Log("??");
             _wallJumpXHandicap = false;
-            speedCaps = new Vector2(1.2f, speedCaps.y);
+            if(!speedChanged) speedCaps = new Vector2(1.2f, speedCaps.y);
         }
 
         if (_wallJumpXHandicap == false)
@@ -912,6 +914,7 @@ public class Player : MonoBehaviour
 
     public void SetSpeed(float _speedLimit, int axis = 0)
     {
+        speedChanged = true;
         if(axis == 0)
         {
             speedCaps.x = _speedLimit;
@@ -923,6 +926,7 @@ public class Player : MonoBehaviour
 
     public void ResetSpeed()
     {
+        speedChanged = false;
         speedCaps = speedCapsStatic;
     }
 
