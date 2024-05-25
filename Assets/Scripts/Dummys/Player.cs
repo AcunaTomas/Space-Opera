@@ -254,6 +254,7 @@ public class Player : MonoBehaviour
             vertspid = 0.9f;
             _animator.SetBool("wall", false);
             Debug.Log("WallE");
+            _spriteRenderer.flipX = !_spriteRenderer.flipX;
             //Wall-e
         
     }
@@ -264,11 +265,13 @@ public class Player : MonoBehaviour
         _wallJumpXtimeFreeze = 0.1f;
         _wallJumpXHandicap = true;
         speedCaps = new Vector2(4, speedCaps.y);
+        
     }
 
     private void unsetXStunVariables() //like the last one, but for unfreezing
     {
         speedCaps = new Vector2(speedCapsStatic.x, speedCaps.y);
+        
     }
 
     void WallJumpDelay() // Sticks The player to the wall
@@ -330,7 +333,7 @@ public class Player : MonoBehaviour
                 _xSpeedNullifier = 1;
                 if (_playerFall && _airborneTime > 0.8f)
                 {
-                    GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
+                   //GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
                     _playerFall = false;
                 }
 
@@ -343,7 +346,7 @@ public class Player : MonoBehaviour
 
                     if ((contacts[i].normal.x) > 0) 
                     {
-                        _spriteRenderer.flipX = true;
+                        //_spriteRenderer.flipX = true;
                         if (_playerType == PlayerType.Brody)
                         {
                             _animator.runtimeAnimatorController = _brodyLeft;
@@ -351,7 +354,7 @@ public class Player : MonoBehaviour
                     } 
                     else
                     {
-                        _spriteRenderer.flipX = false;
+                        //_spriteRenderer.flipX = false;
                         if (_playerType == PlayerType.Brody)
                         {
                             _animator.runtimeAnimatorController = _brodyRight;
@@ -475,7 +478,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("??");
+            //Debug.Log("??");
             _wallJumpXHandicap = false;
             if(!speedChanged) speedCaps = new Vector2(1.2f, speedCaps.y);
         }
@@ -616,6 +619,7 @@ public class Player : MonoBehaviour
         _animator.SetBool("isDead", true);
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
+        GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
         Invoke("Respawn", 1.7f);
         //transform.parent = null;
     }
@@ -637,7 +641,7 @@ public class Player : MonoBehaviour
             body.constraints = RigidbodyConstraints2D.None;
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
             //transform.parent = null;
-            transform.localPosition = GameManager.INSTANCE.CHECKPOINT;
+            transform.position = GameManager.INSTANCE.ACTUAL_CHECKPOINT.transform.position;
             _animator.SetTrigger("idle");
             _animator.SetBool("isDead", false);
             GetComponent<PlayerCombat>().enabled = true;
@@ -650,7 +654,9 @@ public class Player : MonoBehaviour
             }
 
             _coolingRespawn = true;
+            GameManager.INSTANCE.Boludos.ToggleCharSwitching(true);
             StartCoroutine(StartCooldownRespawn());
+            
         }
         
         
@@ -663,7 +669,7 @@ public class Player : MonoBehaviour
 
     public void PlaySound(string a)
     {
-        GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo(a,0));
+        //GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo(a,0));
     }
 
     public void SetHP(int hp)

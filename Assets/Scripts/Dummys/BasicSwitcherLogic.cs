@@ -13,41 +13,63 @@ public class BasicSwitcherLogic : MonoBehaviour
 
     private bool cooldown = false;
 
+    bool enabled = true;
+
+    private Object effect; 
+
+    private float effectDuration = 0.4f;
+    void Start()
+    {
+        effect = Resources.Load("Prefabs/Sparkle");
+    }
     void Update()
     {
-        if (Input.GetAxis("CharSwitch1") > 0 && cooldown == false)
+        if (enabled)
         {
-            _change = false;
-            switch (who)
-            {
-                case "Bito":
+            if (Input.GetAxis("CharSwitch1") > 0 && cooldown == false)
+                {
+                    _change = false;
+
+                    switch (who)
                     {
-                        bi2.gameObject.SetActive(false);
-                        brodi.gameObject.SetActive(true);
-                        brodi.gameObject.transform.position = bi2.gameObject.transform.position;
-                        who = "Brody";
-                        StartCoroutine(cooldown2());
-                        break;
+                        case "Bito":
+                            {
+                            
+                                bi2.gameObject.SetActive(false);
+                                brodi.gameObject.SetActive(true);
+                                brodi.gameObject.transform.position = bi2.gameObject.transform.position;
+                                who = "Brody";
+                                StartCoroutine(cooldown2());
+                                var a = Instantiate(effect) as GameObject;
+                                a.transform.position = brodi.gameObject.transform.position;
+                                Destroy(a,effectDuration);
+                                break;
+                            }
+                        case "Brody":
+                            {
+
+                                brodi.gameObject.SetActive(false);
+                                bi2.gameObject.SetActive(true);
+                                bi2.gameObject.transform.position = brodi.gameObject.transform.position;
+                                who = "Bito";
+                                StartCoroutine(cooldown2());
+                                var a = Instantiate(effect) as GameObject;
+                                a.transform.position = bi2.gameObject.transform.position;
+                                Destroy(a,effectDuration);
+                                break;
+                            }
                     }
-                case "Brody":
-                    {
-                        brodi.gameObject.SetActive(false);
-                        bi2.gameObject.SetActive(true);
-                        bi2.gameObject.transform.position = brodi.gameObject.transform.position;
-                        who = "Bito";
-                        StartCoroutine(cooldown2());
-                        break;
-                    }
-            }
+                }
+                if (who == "Brody")
+                {
+                    bi2.gameObject.transform.position = brodi.gameObject.transform.position;
+                }
+                else
+                {
+                    brodi.gameObject.transform.position = bi2.gameObject.transform.position;
+                }
         }
-        if (who == "Brody")
-        {
-            bi2.gameObject.transform.position = brodi.gameObject.transform.position;
-        }
-        else
-        {
-            brodi.gameObject.transform.position = bi2.gameObject.transform.position;
-        }
+   
 
     }
 
@@ -55,6 +77,18 @@ public class BasicSwitcherLogic : MonoBehaviour
     {
         _change = true;
     }
+
+
+    public void ToggleCharSwitching(bool a, float time=0f)
+    {
+        if (time == 0f)
+        {
+            enabled = a;
+            return;
+        }
+        
+    }
+
 
     IEnumerator cooldown2()
     {

@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
     }
     public void LookAtPlayer()
     {
-        GetComponent<CinemachineVirtualCamera>().Follow = GameObject.FindWithTag("Player").transform;
+        GetComponent<CinemachineVirtualCamera>().Follow = GameManager.INSTANCE.GetActivePlayer().gameObject.transform;
     }
 
     //ScreenShake
@@ -72,7 +72,10 @@ public class CameraController : MonoBehaviour
         }
     }
     
-
+    private void ToggleOff()
+    {
+        gameObject.SetActive(false);
+    }
 
 
 

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour{
     public SoundManager SoundManager;
     public CameraController CameraController;
 
+    public BasicSwitcherLogic Boludos;
+
     private Player _playerScript;
     private bool _escapePressed = false;
     private float restartTime;
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour{
         UIManager = UIManager.INSTANCE;
         SoundManager = SoundManager.INSTANCE;
         ActivateCursor(false);
-        CameraController.LookAtPlayer();
+
 
     }
 
