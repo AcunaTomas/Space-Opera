@@ -11,6 +11,6 @@ public class PlayBitoAnimationSounds : MonoBehaviour
 
     public void PlaySwordSound()
     {
-        AudioController.instance.PlayOneShot(FMODEvents.instance.ShootBrody, this.transform.position);
+        AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
     }
 }

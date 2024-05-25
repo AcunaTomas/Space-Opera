@@ -9,6 +9,10 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference FootstepsBrody { get; private set; }
     [field: SerializeField] public EventReference ShootBrody { get; private set; }
 
+    [field: Header("Bito")]
+    [field: SerializeField] public EventReference LaserAttack { get; private set; }
+    //[field: SerializeField] public EventReference LaserSound { get; private set; }
+
     [field: Header("UI")]
     [field: SerializeField] public EventReference sfx_ui_navigate { get; private set; }
     [field: SerializeField] public EventReference sfx_ui_select { get; private set; }
