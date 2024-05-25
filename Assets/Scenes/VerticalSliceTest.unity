@@ -560,7 +560,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4436,7 +4436,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7698,6 +7698,7 @@ MonoBehaviour:
   launchOffset: {fileID: 1792255215}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
   _jabulani: {fileID: -7344408648342331455, guid: 9ac0f9df8a82f2c43adb90d613ec5ac9, type: 3}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -7744,7 +7745,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -7759,10 +7759,11 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 0}
+  _canDash: 1
   _playerType: 0
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.01
-  _canDash: 1
+  _isDashing: 0
   _failDash: 0
   _dashEffect: {fileID: 1963827396}
 --- !u!50 &1463393647
@@ -7848,7 +7849,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8695,7 +8696,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10282,6 +10283,7 @@ MonoBehaviour:
   launchOffset: {fileID: 1574586540}
   projectilePrefab: {fileID: 0}
   _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -10336,7 +10338,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -10351,6 +10352,7 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 1691364927}
+  _canDash: 1
   _playerType: 1
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.1
@@ -11065,7 +11067,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

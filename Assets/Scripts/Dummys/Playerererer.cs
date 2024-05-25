@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,13 @@ public class Playerererer : Player
 {
     public bool _isDashing;
     private float _dashForce = 4f;
-    
+
     private float _dashCooldown = 0.5f;
     public bool _failDash = false;
     public GameObject _dashEffect;
 
     private float _dashTimer = 0f;
     private float _dashTime = 0.2f;
-
 
     float dashRate = 2f;
     float nextDashTime = 0f;

@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a37d716d6d5ba1489bab70c7d6cda69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 0
   "KnockbackDa\xF1o": 0.5
 --- !u!1 &2122726532402086765
 GameObject:
@@ -277,7 +278,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -296,7 +297,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: f1274d9c7d39e484abb56a0060ac55c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -446,7 +447,7 @@ MonoBehaviour:
   animator: {fileID: 2122726532402086752}
   maxHealth: 100
   _Inmortal: 0
-  _MakeFunctionCallOnHit: 0
+  _MakeFunctionCallOnDie: 0
   _callWhat:
     m_PersistentCalls:
       m_Calls: []
@@ -549,4 +550,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a37d716d6d5ba1489bab70c7d6cda69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 0
   "KnockbackDa\xF1o": 0.5

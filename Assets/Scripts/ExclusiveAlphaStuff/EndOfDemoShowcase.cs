@@ -15,6 +15,6 @@ public class EndOfDemoShowcase : MonoBehaviour
     IEnumerator EndMySuffering()
     {
         yield return new WaitForSeconds(3f);
-        ScenesManager.Instance.LoadNextScene("Credits");
+        ScenesManager.Instance.LoadNextScene("BlablablaScene");
     }
 }

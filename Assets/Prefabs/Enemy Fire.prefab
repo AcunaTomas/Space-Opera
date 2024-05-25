@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d411cf24746ba544968dfb805e6b38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 0
+  "KnockbackDa\xF1o": 0.5
 --- !u!1 &6084924630956779701
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,13 +235,16 @@ MonoBehaviour:
   animator: {fileID: 6084924630956779708}
   maxHealth: 80
   _Inmortal: 0
-  _MakeFunctionCallOnHit: 1
+  _MakeFunctionCallOnDie: 0
   _callWhat:
     m_PersistentCalls:
       m_Calls: []
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 2
+  _objectToDisable: {fileID: 0}
+  knockbackRecibido: 0
+  knockbackDado: 0
 --- !u!114 &6084924630956779706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +260,7 @@ MonoBehaviour:
   _shootingRange: 1.72
   _bullet: {fileID: 266234059271671040, guid: b709d098541b2574cb493dcdcdd0015d, type: 3}
   _bulletParent: {fileID: 6084924629715738677}
+  _animator: {fileID: 0}
 --- !u!95 &6084924630956779708
 Animator:
   serializedVersion: 5
