@@ -5,9 +5,21 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("FootstepsBrody")]
+    [field: Header("Brody")]
     [field: SerializeField] public EventReference FootstepsBrody { get; private set; }
-    
+    [field: SerializeField] public EventReference ShootBrody { get; private set; }
+
+    [field: Header("Bito")]
+    [field: SerializeField] public EventReference LaserAttack { get; private set; }
+    //[field: SerializeField] public EventReference LaserSound { get; private set; }
+
+    [field: Header("UI")]
+    [field: SerializeField] public EventReference sfx_ui_navigate { get; private set; }
+    [field: SerializeField] public EventReference sfx_ui_select { get; private set; }
+    [field: SerializeField] public EventReference sfx_ui_open { get; private set; }
+    [field: SerializeField] public EventReference sfx_ui_close { get; private set; }
+    [field: SerializeField] public EventReference sfx_ui_save { get; private set; }
+    [field: SerializeField] public EventReference sfx_ui_error { get; private set; }
     
     public static FMODEvents instance { get; private set; }
 

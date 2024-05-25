@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8983820183254443685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8983820183254443684}
+  - component: {fileID: 8983820183254443682}
+  m_Layer: 0
+  m_Name: Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8983820183254443684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983820183254443685}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8983820183605247283}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8983820183254443682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983820183254443685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf25fec8cec6624c95a1f43a81c9bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FootstepsBrody>k__BackingField:
+    Guid:
+      Data1: -978042134
+      Data2: 1164495812
+      Data3: -701644901
+      Data4: -1154226434
+    Path: event:/CHARACTERS/Footsteps
+  <ShootBrody>k__BackingField:
+    Guid:
+      Data1: 58928590
+      Data2: 1289893582
+      Data3: 2127888294
+      Data4: -1697703662
+    Path: event:/BRODY_SFX/AttackLaser
+  <sfx_ui_navigate>k__BackingField:
+    Guid:
+      Data1: 1363968601
+      Data2: 1164078692
+      Data3: 125626282
+      Data4: 699427975
+    Path: event:/UI/SFX_MainMenu_navigate
+  <sfx_ui_select>k__BackingField:
+    Guid:
+      Data1: -1900112380
+      Data2: 1314197457
+      Data3: -362009669
+      Data4: -788612341
+    Path: event:/UI/SFX_MainMenu_select
+  <sfx_ui_open>k__BackingField:
+    Guid:
+      Data1: 180251301
+      Data2: 1086056792
+      Data3: 540782218
+      Data4: 851804659
+    Path: event:/UI/SFX_MainMenu_open
+  <sfx_ui_close>k__BackingField:
+    Guid:
+      Data1: 576972540
+      Data2: 1257226253
+      Data3: -751664980
+      Data4: -1799005689
+    Path: event:/UI/SFX_MainMenu_close
+  <sfx_ui_save>k__BackingField:
+    Guid:
+      Data1: 801371280
+      Data2: 1298695005
+      Data3: 1035541173
+      Data4: -333428497
+    Path: event:/UI/SFX_MainMenu_save
+  <sfx_ui_error>k__BackingField:
+    Guid:
+      Data1: -354129429
+      Data2: 1127755497
+      Data3: -1836958275
+      Data4: -65913599
+    Path: event:/UI/SFX_MainMenu_error
+--- !u!1 &8983820183605247285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8983820183605247283}
+  - component: {fileID: 8983820183605247284}
+  - component: {fileID: 8983820183605247282}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8983820183605247283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983820183605247285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8983820183254443684}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8983820183605247284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983820183605247285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c4b9deaabb333458518d8dc946b64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mixer: {fileID: 24100000, guid: 537860407f5fd144d80b61b124d2603e, type: 2}
+  _sliderMusic: {fileID: 0}
+  _sliderSFX: {fileID: 0}
+--- !u!114 &8983820183605247282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983820183605247285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe9f4d207fae5a498078376bfcdfeb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

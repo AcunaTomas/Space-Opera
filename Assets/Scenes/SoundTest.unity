@@ -2878,6 +2878,8 @@ MonoBehaviour:
   bombRate: 1.5
   launchOffset: {fileID: 1973215971}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
+  _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -2999,7 +3001,6 @@ MonoBehaviour:
         m_CallState: 2
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 0
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -3014,10 +3015,11 @@ MonoBehaviour:
   _cameraUp: {fileID: 2040020913}
   _cameraDown: {fileID: 497777268}
   _activeCamera: {fileID: 0}
+  _canDash: 0
   _playerType: 0
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.05
-  _canDash: 0
+  _isDashing: 0
   _failDash: 1
   _dashEffect: {fileID: 0}
 --- !u!212 &1445065401
@@ -3900,6 +3902,8 @@ MonoBehaviour:
   bombRate: 2
   launchOffset: {fileID: 1574586540}
   projectilePrefab: {fileID: 0}
+  _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -3912,6 +3916,7 @@ MonoBehaviour:
   discoverable:
     serializedVersion: 2
     m_Bits: 8192
+  _canHack: 0
 --- !u!114 &1763975265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3953,7 +3958,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -3968,6 +3972,7 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 1691364927}
+  _canDash: 1
   _playerType: 1
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.1
@@ -4798,7 +4803,7 @@ PrefabInstance:
       objectReference: {fileID: 481843198}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000071525574
+      value: 0.00000035762787
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4887,6 +4892,30 @@ PrefabInstance:
     - target: {fileID: 2819203583605741119, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Path
+      value: event:/BRODY_SFX/AttackLaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <FootstepsBrody>k__BackingField.Path
+      value: event:/CHARACTERS/Footsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data1
+      value: 58928590
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data2
+      value: 1289893582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data3
+      value: 2127888294
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data4
+      value: -1697703662
       objectReference: {fileID: 0}
     - target: {fileID: 7382873452649697702, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: bi2

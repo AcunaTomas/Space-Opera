@@ -37,6 +37,7 @@ public class ButtonMenu : MonoBehaviour
         if (ACTIVE)
         {
             _activeImage.enabled = true;
+            AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_navigate, this.transform.position);
             try
             {
                 Vector3 newScale = _originalScale * 1.15f;
@@ -61,7 +62,7 @@ public class ButtonMenu : MonoBehaviour
                     break;
                 }
 
-                AudioManager.INSTANCE.PlayUISelect();
+                AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
                 child.GetComponent<Image>().enabled = false;
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
                 child.GetComponentInChildren<TMP_Text>().transform.localScale = _originalScale;
@@ -96,7 +97,7 @@ public class ButtonMenu : MonoBehaviour
                     break;
                 }
 
-                AudioManager.INSTANCE.PlayUISelect();
+                AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
                 child.GetComponent<Image>().sprite = _backgrounds[0];
                 if (!EventSystem.current.alreadySelecting)
@@ -132,7 +133,7 @@ public class ButtonMenu : MonoBehaviour
                     break;
                 }
 
-                AudioManager.INSTANCE.PlayUISelect();
+                AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_save, this.transform.position);
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
                 child.GetChild(0).gameObject.SetActive(false);
                 child.GetChild(1).gameObject.SetActive(false);
