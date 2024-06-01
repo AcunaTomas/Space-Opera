@@ -25,6 +25,8 @@ public class CollisionCheckPoint : MonoBehaviour
                 transform.parent.GetChild(i).gameObject.SetActive(true);
             }
         }
-        DataPersistentManager.INSTANCE.SaveGame();
+        Debug.LogWarning("Game Saved");
+
+        //DataPersistentManager.INSTANCE.SaveGame();
     }
 }

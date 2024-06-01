@@ -18,8 +18,15 @@ public class Player : MonoBehaviour
     float vertspid = -0.3f;
     [SerializeField]
     public float _gravity = -0.1f;
+
+    [Header("Jump Values")]
     [SerializeField]
     float _jumpImpulse = 0.95f;
+
+    [SerializeField]
+    private float _SpaceBarReleaseJumpDecay = 0.01f;
+
+    [Header("Everything else")]
     public bool canIjump = true;
     [SerializeField]
     bool wallijumpy = false;
@@ -125,8 +132,7 @@ public class Player : MonoBehaviour
 
     public bool _isBrodyJumping = false;
 
-    [SerializeField]
-    private float _SpaceBarReleaseJumpDecay = 0.01f;
+
 
     public void ChangeSkillStatus(bool a)
     {
@@ -173,10 +179,13 @@ public class Player : MonoBehaviour
         {
             HorizontalInputValue = Input.GetAxis("Horizontal");
             
-            
+            if(!wallijumpy)
+            {
+                Flip();
+            }
             Movement();
             Effects();
-            Flip();
+            
         }
         
         
