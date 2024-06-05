@@ -11,7 +11,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("Bito")]
     [field: SerializeField] public EventReference LaserAttack { get; private set; }
-    //[field: SerializeField] public EventReference LaserSound { get; private set; }
+    [field: SerializeField] public EventReference Jump { get; private set; }
 
     [field: Header("UI")]
     [field: SerializeField] public EventReference sfx_ui_navigate { get; private set; }

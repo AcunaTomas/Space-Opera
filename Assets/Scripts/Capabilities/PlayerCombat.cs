@@ -19,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyGunLayers;
     public LayerMask doorLayers;
     public LayerMask enemyBalaLayers;
+    public FMODUnity.StudioEventEmitter laserSound;
 
     public float attackRange = 0.5f;
     public int attackDamage = 40;
@@ -70,6 +71,7 @@ public class PlayerCombat : MonoBehaviour
         GameObject attackVisual = GameObject.FindWithTag("AttackVisual");
         GameObject attackVisualUp = GameObject.FindWithTag("AttackVisualUp");
         GameObject attackVisualDown = GameObject.FindWithTag("AttackVisualDown");
+        FMODUnity.StudioEventEmitter laserSound = GameObject.FindWithTag("SoundFX").GetComponent<FMODUnity.StudioEventEmitter>();
     }
     void FixedUpdate()
     {
@@ -81,6 +83,8 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackActive = true;
                 queryStartTime = Time.time;
+                Debug.Log("atacando");
+                laserSound.Play();
             }
             else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") > 0))
             {

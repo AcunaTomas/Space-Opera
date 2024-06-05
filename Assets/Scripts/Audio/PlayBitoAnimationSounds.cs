@@ -9,8 +9,8 @@ public class PlayBitoAnimationSounds : MonoBehaviour
         AudioController.instance.PlayOneShot(FMODEvents.instance.FootstepsBrody, this.transform.position);
     }
 
-    public void PlaySwordSound()
+    /*public void PlaySwordSound()
     {
         AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
-    }
+    }*/
 }
