@@ -690,7 +690,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator FlickerSprite()
     {
-        Debug.Log("FLIKER");
         for (int i = 0; i < _flickerCount; i++)
         {
             for (float t = 1f; t >= 0.5; t -= Time.deltaTime / _flickerDuration)
