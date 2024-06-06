@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController Instance {get; private set;}
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
+    public CinemachineConfiner _confiner;
     private float shakeTimer;
     
     private void Awake()
@@ -54,9 +55,19 @@ public class CameraController : MonoBehaviour
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakeTimer = time;
     }
-
+    private void SwitchConfiners(ConfinerController Shape)
+    {
+        print(Shape);
+        if (Shape.gameObject.name != _confiner.m_BoundingShape2D.gameObject.name)
+        {
+            _confiner.m_BoundingShape2D = Shape.BoundingShape;
+            _confiner.InvalidatePathCache();
+        }
+        
+    }
     private void FixedUpdate()
     {
+
         if (shakeTimer > 0f)
         {
             shakeTimer -= Time.deltaTime; 
