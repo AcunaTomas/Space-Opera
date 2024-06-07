@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && !canIjump)
         {
-            if (wallijumpy)
+            if (wallijumpy && vertspid <= 0) 
             {
                 WallJump();
                 return;
@@ -230,7 +230,6 @@ public class Player : MonoBehaviour
         {
             vertspid = vertspid - _SpaceBarReleaseJumpDecay;
         }
-
 
 
     }
@@ -347,7 +346,7 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && collision.gameObject.CompareTag("Movible") == false) //Contacto Horizontal/Pared
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && collision.gameObject.CompareTag("Movible") == false && vertspid <= 0) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {
