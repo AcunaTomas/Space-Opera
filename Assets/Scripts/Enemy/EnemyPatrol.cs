@@ -10,11 +10,14 @@ public class EnemyPatrol : MonoBehaviour
     public float _circleRadius;
     public GameObject _groundCheck;
     public LayerMask _groundLayer;
+
+    public LayerMask _changeSideLayer;
     public bool _facingRight;
     public bool _isGrounded;
+    public bool _changeSide;
     private Animator _animator;
 
-    private float _waitTime = 3f;
+    private float _waitTime = 0.3f;
     private float _waitCounter = 0f;
     public   bool _waiting = false;
 
@@ -27,7 +30,7 @@ public class EnemyPatrol : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
 
-        _enemyLayer = LayerMask.NameToLayer("");
+        _enemyLayer = LayerMask.NameToLayer("Enemy");
         _defaultLayer = LayerMask.NameToLayer("Default");
     }
 
@@ -40,7 +43,7 @@ public class EnemyPatrol : MonoBehaviour
 
             if (_waitCounter > _waitTime)
             {
-                _animator.SetTrigger("Start");
+                //_animator.SetTrigger("Start");
                 _waiting = false;
                 return;
             }
@@ -50,11 +53,12 @@ public class EnemyPatrol : MonoBehaviour
         {
             _rb.velocity = Vector2.right * _speed * Time.deltaTime;
             _isGrounded = Physics2D.OverlapCircle(_groundCheck.transform.position, _circleRadius, _groundLayer);
+            _changeSide = Physics2D.OverlapCircle(_groundCheck.transform.position, _circleRadius, _changeSideLayer);
             //_animator.SetTrigger("Start");
-            if (!_isGrounded && _facingRight)
+            if (!_isGrounded && _facingRight || _changeSide && _facingRight)
             {
                 
-                _animator.SetTrigger("Stop");
+                //_animator.SetTrigger("Stop");
                 _waitCounter = 0f;
                 _waiting = true;
 
@@ -63,10 +67,10 @@ public class EnemyPatrol : MonoBehaviour
 
 
             }
-            else if (!_isGrounded && !_facingRight)
+            else if (!_isGrounded && !_facingRight || _changeSide && !_facingRight)
             {
                 
-                _animator.SetTrigger("Stop");
+                //_animator.SetTrigger("Stop");
                 _waitCounter = 0f;
                 _waiting = true;
 
@@ -91,7 +95,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void SiHit()
     {
-        gameObject.tag = "";
+        gameObject.tag = "Enemy";
     }
     
     void OnDrawGizmosSelected()

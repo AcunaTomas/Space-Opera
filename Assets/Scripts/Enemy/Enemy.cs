@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.simple)
             {
                 GetComponent<EnemyPatrol>()._waiting = false;
-                GetComponent<EnemyPatrol>().NoHit();
+                //GetComponent<EnemyPatrol>().NoHit();
             }
 
             //AudioManager.INSTANCE.PlayEnemyHit();
@@ -210,9 +210,9 @@ public class Enemy : MonoBehaviour
 
         if (_enemyType == EnemyType.simple)
         {
-            animator.SetTrigger("Die");
+            //animator.SetTrigger("Die");
             GetComponent<EnemyPatrol>().enabled = false;
-            GetComponentInChildren<HurtBoxFly>().enabled = false;
+            GetComponentInChildren<HurtBox>().enabled = false;
 
             _objectToDisable.SetActive(false);
 
