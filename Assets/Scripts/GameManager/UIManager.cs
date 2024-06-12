@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public ButtonDialogueNew DIALOGUE_PANEL;
     public ObjectivesManager OBJECTIVES_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
+    public GameObject UPGRADE;
     public GameObject PAUSE_MENU;
     public GameObject VFX_FADE;
     public UpdateBars LifeBar;
