@@ -57,9 +57,9 @@ public class CameraController : MonoBehaviour
     }
     private void SwitchConfiners(ConfinerController Shape)
     {
-        print(Shape);
         if (Shape.gameObject.name != _confiner.m_BoundingShape2D.gameObject.name)
         {
+            _confiner.m_Damping = 0.5f;
             _confiner.m_BoundingShape2D = Shape.BoundingShape;
             _confiner.InvalidatePathCache();
         }
@@ -67,6 +67,10 @@ public class CameraController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (_confiner.m_Damping > 0)
+        {
+            _confiner.m_Damping -= 0.01f;
+        }
 
         if (shakeTimer > 0f)
         {
