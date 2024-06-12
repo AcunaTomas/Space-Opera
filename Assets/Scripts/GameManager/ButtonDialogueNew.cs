@@ -119,38 +119,7 @@ public class ButtonDialogueNew : MonoBehaviour
         Debug.Log("ZoneName First Dialogue:" + ZONENAME);
         if (_notFirstDialogue == false)
         {
-            _zoneLines = 0;
-            _stopSubmit = false;
-            GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
-            switch (_changeAudio)
-            {
-                case CollisionDialogue.ChangeAudio.especial:
-                    SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
-                    break;
-                default:
-                    SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
-                    break;
-            }
-            for (int i = 2; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(true);
-            }
-            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 250f);
-
-            //for (int i = 0; i < _zone.DIALOGUES.Length; i++)
-            for (int i = 0; i < ListaDialogo.list.Length; i++)
-            {
-                if (ListaDialogo.list[i].ID == ZONENAME)
-                {
-                    if(_index == -1) _index = i;
-                    _zoneLines++;
-                    Debug.Log("Se qué estás leyendo esto ( ͡° ͜ʖ ͡°)"); //index
-                    //break;
-                }
-            }
-            _contLinea = _index;
-            DifferentDialogues();
-            _notFirstDialogue = true;
+            StartCoroutine(UnFold());
             return;
         }
         
@@ -231,9 +200,52 @@ public class ButtonDialogueNew : MonoBehaviour
             _contLinea++;
         }
     }
+    private IEnumerator UnFold() //Acá se llama al primer díalogo 'u'
+    {
+        Debug.Log("UnFold");
+        RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
+        float _time = 0f;
+        float _firstWidth = 1200;
 
+        while (_time < 0.3f)
+        {
+            float _percentage = _time / 0.3f;
+            float _newWidth = Mathf.Lerp(0f, _firstWidth, _percentage);
+            _elementUI.sizeDelta = new Vector2(_newWidth, _elementUI.sizeDelta.y);
+            Debug.Log(_newWidth + " " + _percentage);
+            _time += Time.deltaTime;
+            yield return null;
+        }
+        _elementUI.sizeDelta = new Vector2(_firstWidth, _elementUI.sizeDelta.y);
+        yield return new WaitForSeconds(0.1f);
+        _zoneLines = 0;
+            _stopSubmit = false;
+            GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
+            SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
+            for (int i = 2; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+                    //gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1200f, 250f);
+
+            //for (int i = 0; i < _zone.DIALOGUES.Length; i++)
+            for (int i = 0; i < ListaDialogo.list.Length; i++)
+            {
+                if (ListaDialogo.list[i].ID == ZONENAME)
+                {
+                    if(_index == -1) _index = i;
+                    _zoneLines++;
+                    Debug.Log("Se qué estás leyendo esto ( ͡° ͜ʖ ͡°)"); //index
+                    //break;
+                }
+            }
+            _contLinea = _index;
+            DifferentDialogues();
+            _notFirstDialogue = true;
+    }
     private IEnumerator Fold()
     {
+        Debug.Log("Fold");
         _stopSubmit = true;
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;

@@ -2241,6 +2241,7 @@ MonoBehaviour:
   launchOffset: {fileID: 1574586540}
   projectilePrefab: {fileID: 0}
   _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -2295,7 +2296,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -2310,6 +2310,7 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 1691364927}
+  _canDash: 1
   _playerType: 1
   _isBrodyJumping: 0
   _SpaceBarReleaseJumpDecay: 0.1
@@ -2792,7 +2793,31 @@ PrefabInstance:
       propertyPath: CHARACTERS.Array.data[2].EMOTIONS.Array.data[2].EMOTION
       value: god
       objectReference: {fileID: 0}
+    - target: {fileID: 2004008507439906106, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004008507720112318, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004008508292469180, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2004008508292469181, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004008508325534538, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004008508762933060, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004008508828706002, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2870,7 +2895,7 @@ PrefabInstance:
       objectReference: {fileID: 481843198}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000071525574
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2956,6 +2981,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7382873452649697702, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: bi2
+      value: 
+      objectReference: {fileID: 1763975265}
+    - target: {fileID: 7382873452649697702, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: brodi
+      value: 
+      objectReference: {fileID: 1763975265}
     m_RemovedComponents:
     - {fileID: 2004008508292469183, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
