@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
     private float _skillHold;
 
     public bool grounded;
+    bool _knockbacked = false;
     public bool _coolingHit = false;
     public bool _coolingDashAnim = false;
     public bool _coolingShootDown = false;
@@ -138,7 +139,6 @@ public class Player : MonoBehaviour
     {
         _skillPermitted = a;
     }
-
     public float GetOrientation()
     {
         if (_spriteRenderer.flipX)
@@ -147,7 +147,12 @@ public class Player : MonoBehaviour
         }
         return 1;
     }
-
+    void OnEnable()
+    {
+        Debug.Log(":D");
+        canIMove = true;
+        _coolingHit = false;
+    }
     void Start()
     {
         switch (_playerType)
@@ -612,7 +617,9 @@ public class Player : MonoBehaviour
 
 
             
-            //Knockback || Ver _coolingHit alternativa
+            //Knockback
+            _knockbacked = true;
+            canIMove = false;
             Vector2 dir = (Vector2)transform.position - sourcePosition;
             dir  = dir.normalized;
             body.AddForce(new Vector2(dir.x * KnockbackDaño, 0),ForceMode2D.Impulse);
@@ -698,7 +705,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator FlickerSprite()
     {
-        Debug.Log("FLIKER");
         for (int i = 0; i < _flickerCount; i++)
         {
             for (float t = 1f; t >= 0.5; t -= Time.deltaTime / _flickerDuration)
@@ -723,8 +729,10 @@ public class Player : MonoBehaviour
 
     private IEnumerator StartCooldown()
     {
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(.5f);
+        _knockbacked = false;
+        canIMove = true;
+        yield return new WaitForSeconds(1.5f);
         _coolingHit = false;
         Debug.Log("PUEDE RECIBIR DAÑO");
     }
@@ -890,7 +898,7 @@ public class Player : MonoBehaviour
         }
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
         {
-            if (canIjump && !_coolingHit) //airborne checko
+            if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
             {
                 if (_playerType == PlayerType.Bito)
                 {

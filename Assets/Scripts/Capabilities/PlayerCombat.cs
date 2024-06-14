@@ -157,6 +157,7 @@ public class PlayerCombat : MonoBehaviour
                     if (_attackCount >= 3)
                     {
                         enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo, transform.position);
+                        KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
                         //CameraController.Instance.ScreenShake(.3f, .1f);
                     }
                     else
@@ -174,6 +175,7 @@ public class PlayerCombat : MonoBehaviour
                     if (_attackCount >= 3)
                     {
                         enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamageCombo, transform.position);
+                        KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
                         //CameraController.Instance.ScreenShake(.3f, .1f);
                     }
                     else

@@ -833,9 +833,12 @@ MonoBehaviour:
   UIManager: {fileID: 0}
   SoundManager: {fileID: 0}
   CameraController: {fileID: 0}
+  Boludos: {fileID: 0}
   dustcap: 0
+  lvlDialog: {fileID: 0}
   DIALOGUESKIPEND: 0
   DIALOGUESKIPCOUNT: 0
+  DebugInfo: {fileID: 0}
 --- !u!1 &2819203582217209305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819203582277508601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000011920929, y: 0.96, z: -10}
+  m_LocalPosition: {x: 0.0000010728836, y: 0.96, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3491,6 +3494,62 @@ MonoBehaviour:
       Data3: -701644901
       Data4: -1154226434
     Path: event:/BrodyFootsteps
+  <ShootBrody>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <LaserAttack>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_navigate>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_select>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_open>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_close>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_save>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_error>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &7112625544827923557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3726,7 +3785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4382136192717587898, guid: b893a4ae349a8054f80f83f016d29305, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4382136192717587898, guid: b893a4ae349a8054f80f83f016d29305, type: 3}
       propertyPath: m_SizeDelta.y

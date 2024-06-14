@@ -43,6 +43,8 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 var a = Instantiate(effect) as GameObject;
                                 a.transform.position = brodi.gameObject.transform.position;
                                 Destroy(a,effectDuration);
+
+                                brodi.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 break;
                             }
                         case "Brody":
@@ -56,6 +58,8 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 var a = Instantiate(effect) as GameObject;
                                 a.transform.position = bi2.gameObject.transform.position;
                                 Destroy(a,effectDuration);
+
+                                bi2.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 break;
                             }
                     }
@@ -79,14 +83,9 @@ public class BasicSwitcherLogic : MonoBehaviour
     }
 
 
-    public void ToggleCharSwitching(bool a, float time=0f)
+    public void ToggleCharSwitching(bool a)
     {
-        if (time == 0f)
-        {
-            enabled = a;
-            return;
-        }
-        
+        enabled = a;  
     }
 
 
@@ -96,4 +95,5 @@ public class BasicSwitcherLogic : MonoBehaviour
         yield return new WaitForSeconds(1f);
         cooldown = false;
     }
+
 }
