@@ -197,7 +197,10 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
                 foreach (Collider2D door in hitDoor)
                 {
-                    door.GetComponent<DoorController2>().DoSomeShit();
+                    if(gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+                    {
+                        door.GetComponent<DoorController2>().DoSomeShit();
+                    }
                 }
             }
         }
@@ -316,7 +319,11 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D door in hitDoor)
         {
-            door.GetComponent<DoorController2>().DoSomeShit();
+            if (gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+            {
+                door.GetComponent<DoorController2>().DoSomeShit();
+            }
+            
         }
 
     }
@@ -333,7 +340,10 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D door in hitDoor)
         {
-            door.GetComponent<DoorController2>().DoSomeShit();
+            if (gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+            {
+                door.GetComponent<DoorController2>().DoSomeShit();
+            }
         }
 
     }

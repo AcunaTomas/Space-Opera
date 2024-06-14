@@ -20,7 +20,10 @@ public class ScenesManager : MonoBehaviour
     {
         SceneMainMenu,
         Tutorial,
-        THE_GANTLET
+        THE_GANTLET,
+        MainMenuVS,
+        VSTest
+
     }
     
     public void LoadScene(Scene scene)
@@ -60,7 +63,7 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(Scene.SceneMainMenu.ToString());
+        SceneManager.LoadScene(Scene.MainMenuVS.ToString());
     }
 
     public void ReloadScene()

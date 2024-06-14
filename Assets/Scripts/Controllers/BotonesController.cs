@@ -21,14 +21,6 @@ public class BotonesController : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Bomb"))
-        {
-            _animator.SetTrigger("ButtonPress");
-            _puerta.GetComponent<Animator>().SetTrigger("OpenDoor");
-            _callWhat.Invoke();
-            other.gameObject.GetComponent<Animator>().SetTrigger("Explode");
-            Destroy(other.gameObject, 0.5f);
-        }
         if (other.gameObject.CompareTag("BalaPlayer"))
         {
             _animator.SetTrigger("ButtonPress");

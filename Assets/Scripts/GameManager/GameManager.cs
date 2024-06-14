@@ -137,6 +137,14 @@ public class GameManager : MonoBehaviour{
             ChangeTimeScale(System.Convert.ToSingle(bl));
 
         PAUSED = !bl;
+        if (PAUSED == true)
+        {
+            UIManager.PAUSE_MENU.SetActive(true);
+        }
+        else
+        {
+            UIManager.PAUSE_MENU.SetActive(false);
+        }
     }
 
     public void ChangeTimeScale(float n)
