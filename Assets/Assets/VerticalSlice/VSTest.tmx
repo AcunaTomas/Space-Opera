@@ -400,7 +400,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="26" name="Backgorund" width="48" height="16" visible="0">
+ <layer id="26" name="Backgorund" width="48" height="16">
   <data encoding="csv">
    <chunk x="-48" y="-48" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -872,7 +872,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="31" name="Background2xd" width="48" height="16" visible="0">
+ <layer id="31" name="Background2xd" width="48" height="16">
   <data encoding="csv">
    <chunk x="0" y="-32" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2072,7 +2072,7 @@
 </chunk>
   </data>
  </layer>
- <objectgroup id="28" name="Colliders" visible="0">
+ <objectgroup id="28" name="Colliders">
   <object id="595" x="32" y="-32" width="32" height="32"/>
   <object id="596" x="-1378.79" y="415.333" width="4290.94" height="32">
    <polygon points="2.79,0.667 4293.73,0.667 4293.73,32.667 2.79,32.667"/>
@@ -2191,7 +2191,7 @@
   </object>
   <object id="957" x="768" y="-32" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="29" name="notCimbable" visible="0">
+ <objectgroup id="29" name="notCimbable">
   <object id="632" x="-1378.39" y="-895.033" width="446.5" height="479.167">
    <polygon points="0,0 450.39,-0.967 450.39,478.2 0,479.167"/>
   </object>
@@ -2275,16 +2275,13 @@
    <property name="Contains Confiners" type="bool" value="true"/>
   </properties>
   <object id="983" x="-1222.67" y="-906.667" width="584" height="584">
-   <polygon points="102.667,10.6667 550.667,10.6667 550.667,586.667 166.667,586.667 166.667,650.667 134.667,650.667 134.667,586.667 102.667,586.667"/>
+   <polygon points="102.667,10.6667 550.667,10.6667 550.67,554.667 102.67,554.667"/>
   </object>
   <object id="984" x="-1344" y="-320">
-   <polygon points="0,0 0,224 1056,224 1056,0 384,0 320,0 320,96 224,96 224,32 192,32 192,0"/>
+   <polygon points="-32,0 -32,224 1088,224 1088,0"/>
   </object>
   <object id="987" x="-288" y="-64">
-   <polygon points="0,0 0,288 -1056,288 -1056,32 -1056,0"/>
-  </object>
-  <object id="989" x="-576" y="32">
-   <polygon points="0,0 0,32 -224,32 -224,-32 -448,-32 -448,-64 -192,-64 -192,0"/>
+   <polygon points="32,0 32,288 -1088,288 -1088,0"/>
   </object>
  </objectgroup>
 </map>
