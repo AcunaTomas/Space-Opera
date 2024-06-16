@@ -22,7 +22,7 @@ public class CustomImporter : CustomTmxImporter
 
             for (int i = 0; i < rootGameOBJ.transform.childCount; i++) //find the layer with confiners
             {
-                if (rootGameOBJ.transform.GetChild(i).GetComponent<SuperCustomProperties>().TryGetCustomProperty("Contains Confiners", out CustomProperty prop) == true)
+                if (rootGameOBJ.transform.GetChild(i).GetComponent<SuperCustomProperties>().TryGetCustomProperty("CC", out CustomProperty prop) == true)
                 {
                     confinerLayer = rootGameOBJ.transform.GetChild(i);
                     processLayers(confinerLayer);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="48" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="32" nextobjectid="995">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="48" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="33" nextobjectid="999">
  <tileset firstgid="1" source="Test1.tsx"/>
  <tileset firstgid="5" source="tile_lvl1_inside_05.tsx"/>
  <tileset firstgid="13" source="bg_lvl1_hall.tsx"/>
@@ -400,7 +400,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="26" name="Backgorund" width="48" height="16">
+ <layer id="26" name="Backgorund" width="48" height="16" visible="0">
   <data encoding="csv">
    <chunk x="-48" y="-48" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2198,6 +2198,20 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup id="32" name="Mis camaras :D">
+  <properties>
+   <property name="CC" type="bool" value="true"/>
+  </properties>
+  <object id="995" x="-1034" y="-702" width="554" height="606">
+   <polygon points="-86,-2 522,-2 522,604 -86,604"/>
+  </object>
+  <object id="996" x="-1376" y="-96" width="1120" height="192">
+   <polygon points="0,0 1120,0 1120,224 0,224"/>
+  </object>
+  <object id="997" x="-1036" y="60" width="1120" height="192">
+   <polygon points="-340,68 780,68 780,388 -340,388"/>
+  </object>
+ </objectgroup>
  <objectgroup id="28" name="Colliders">
   <object id="595" x="32" y="-32" width="32" height="32"/>
   <object id="596" x="-1378.79" y="415.333" width="4290.94" height="32">
@@ -2362,7 +2376,7 @@
    <polygon points="0,32 896,40 896,128 832,128 832,128 608,129 608,64 448,64 448,193 352,193 352,224 320,224 320,128 0,128"/>
   </object>
   <object id="986" x="-896" y="224" width="96" height="96">
-   <polygon points="0,0 96,0 96,64 352,64 352,80 384,80 384,88 352,88 352,128 320,128 320,96 96,96 0,96"/>
+   <polygon points="96,64 352,64 352,80 384,80 384,88 352,88 352,128 320,128 320,96 96,96"/>
   </object>
   <object id="627" x="-992.61" y="-768" width="64" height="32"/>
   <object id="628" x="-896.61" y="-768" width="64" height="32"/>
@@ -2382,19 +2396,6 @@
   <object id="992" x="-1056" y="80" width="32" height="16"/>
   <object id="993" x="-1024" y="64" width="32" height="32"/>
   <object id="994" x="-416" y="0" width="32" height="96"/>
- </objectgroup>
- <objectgroup id="25" name="cams">
-  <properties>
-   <property name="Contains Confiners" type="bool" value="true"/>
-  </properties>
-  <object id="983" x="-1222.67" y="-906.667" width="584" height="584">
-   <polygon points="102.667,10.6667 550.667,10.6667 550.67,554.667 102.67,554.667"/>
-  </object>
-  <object id="984" x="-1344" y="-320">
-   <polygon points="-32,0 -32,224 1088,224 1088,0"/>
-  </object>
-  <object id="987" x="-288" y="-64">
-   <polygon points="32,0 32,288 -1088,288 -1088,0"/>
-  </object>
+  <object id="998" x="-896" y="224" width="96" height="96"/>
  </objectgroup>
 </map>
