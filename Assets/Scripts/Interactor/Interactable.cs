@@ -14,26 +14,21 @@ public class Interactable : MonoBehaviour
     public float _YDistance = 0.3f;
     public float _timePressed = 0f; 
 
-    bool moved = false;
-    bool timedDisable = false;
-    float disableIn = 0;
-    float moveAmount = 0;
-    float _tempX;
-    float _tempY;
-    bool _keyHeld = false;
+    public bool moved = false;
+    public bool timedDisable = false;
+    public float disableIn = 0;
+    public float moveAmount = 0;
+    public float _tempX;
+    public float _tempY;
+    public bool _keyHeld = false;
 
     public UnityEvent afterAction;
     public float _waitTime;
 
-    
-    void Start()
-    {
-        //playerInstance = GameObject.FindWithTag("Player");
-    }
 
     void FixedUpdate()
     {
-        playerInstance = GameObject.FindWithTag("Player");
+        playerInstance = GameManager.INSTANCE.GetActivePlayer().gameObject;
     }
 
     public void TemporaryMove(float x)
@@ -121,7 +116,7 @@ public class Interactable : MonoBehaviour
 
     }
 
-    void disableCheck()
+    public void disableCheck()
     {
         if (timedDisable == false)
         {
@@ -145,7 +140,7 @@ public class Interactable : MonoBehaviour
     }
 
 
-    IEnumerator DoAfter()
+    public IEnumerator DoAfter()
     {
         yield return new WaitForSeconds(_waitTime);
         afterAction.Invoke();

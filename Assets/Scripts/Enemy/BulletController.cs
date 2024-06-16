@@ -24,11 +24,11 @@ public class BulletController : MonoBehaviour
         }
         if (_target.transform.position.x > transform.position.x)
         {
-            _bulletRig.velocity = new Vector2(1, 0);
+            _bulletRig.velocity = new Vector2(speed, 0);
         }
         else
         {
-            _bulletRig.velocity = new Vector2(-1, 0);
+            _bulletRig.velocity = new Vector2(-speed, 0);
         }
         //_bulletRig.velocity = new Vector2(moveDir.x, 0);
         Destroy(this.gameObject, 2);

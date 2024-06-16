@@ -18,8 +18,15 @@ public class Player : MonoBehaviour
     float vertspid = -0.3f;
     [SerializeField]
     public float _gravity = -0.1f;
+
+    [Header("Jump Values")]
     [SerializeField]
     float _jumpImpulse = 0.95f;
+
+    [SerializeField]
+    private float _SpaceBarReleaseJumpDecay = 0.01f;
+
+    [Header("Everything else")]
     public bool canIjump = true;
     [SerializeField]
     bool wallijumpy = false;
@@ -126,8 +133,7 @@ public class Player : MonoBehaviour
 
     public bool _isBrodyJumping = false;
 
-    [SerializeField]
-    private float _SpaceBarReleaseJumpDecay = 0.01f;
+
 
     public void ChangeSkillStatus(bool a)
     {
@@ -178,10 +184,13 @@ public class Player : MonoBehaviour
         {
             HorizontalInputValue = Input.GetAxis("Horizontal");
             
-            
+            if(!wallijumpy)
+            {
+                Flip();
+            }
             Movement();
             Effects();
-            Flip();
+            
         }
         
         
@@ -206,7 +215,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && !canIjump)
         {
-            if (wallijumpy)
+            if (wallijumpy && vertspid <= 0) 
             {
                 WallJump();
                 return;
@@ -226,7 +235,6 @@ public class Player : MonoBehaviour
         {
             vertspid = vertspid - _SpaceBarReleaseJumpDecay;
         }
-
 
 
     }
@@ -343,7 +351,7 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && collision.gameObject.CompareTag("Movible") == false) //Contacto Horizontal/Pared
+            if (Mathf.Abs(contacts[i].normal.y) < Mathf.Abs(contacts[i].normal.x) && extrajumpcount > 0 && collision.gameObject.CompareTag("NotClimbable") == false && collision.gameObject.CompareTag("Movible") == false && vertspid <= 0) //Contacto Horizontal/Pared
             {
                 if (canIjump == false) 
                 {

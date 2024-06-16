@@ -5,58 +5,6 @@ using UnityEngine.Events;
 
 public class InteractableOnlyBrody : Interactable
 {
-    bool moved = false;
-    bool timedDisable = false;
-    float disableIn = 0;
-    float moveAmount = 0;
-    float _tempX;
-    float _tempY;
-    bool _keyHeld = false;
-    
-    void Start()
-    {
-        //playerInstance = GameObject.FindWithTag("Player");
-    }
-
-    void FixedUpdate()
-    {
-        playerInstance = GameObject.FindWithTag("Player");
-    }
-
-    public void TemporaryMove(float x)
-    {
-        /* _tempX = _XDistance;
-         _tempY = _YDistance;
-
-         _XDistance = x;
-         _YDistance = x; */
-        moveAmount = x;
-        moved = true;
-    }
-
-    public void disableAfter(float x)
-    {
-        if (timedDisable == true)
-        {
-            return;
-        }
-        timedDisable = true;
-        disableIn = x;
-    }
-
-    public void restoreMove()
-    {
-        print(moveAmount);
-        if (moveAmount > 0)
-        {
-            moveAmount -= 1;
-            return;
-        }
-/*        _XDistance = _tempX;
-        _YDistance = _tempY;*/
-        moved = false;
-    }
-
 
     void Update()
     {
@@ -108,35 +56,6 @@ public class InteractableOnlyBrody : Interactable
 
     }
 
-    void disableCheck()
-    {
-        if (timedDisable == false)
-        {
-            return;
-        }
-        if (disableIn > 0)
-        {
-            disableIn -= 1;
-            return;
-        }
-        gameObject.GetComponent<Interactable>().enabled = false;
-    }
-
-    public void SetXRange(float x)
-    {
-        _XDistance = x;
-    }
-    public void SetYRange(float y)
-    {
-        _YDistance = y;
-    }
-
-
-    IEnumerator DoAfter()
-    {
-        yield return new WaitForSeconds(_waitTime);
-        afterAction.Invoke();
-    }
 
 
 

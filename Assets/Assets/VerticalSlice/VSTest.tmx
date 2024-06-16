@@ -400,7 +400,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="26" name="Backgorund" width="48" height="16" visible="0">
+ <layer id="26" name="Backgorund" width="48" height="16">
   <data encoding="csv">
    <chunk x="-48" y="-48" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2383,5 +2383,18 @@
   <object id="993" x="-1024" y="64" width="32" height="32"/>
   <object id="994" x="-416" y="0" width="32" height="96"/>
  </objectgroup>
- <objectgroup id="25" name="cams"/>
+ <objectgroup id="25" name="cams">
+  <properties>
+   <property name="Contains Confiners" type="bool" value="true"/>
+  </properties>
+  <object id="983" x="-1222.67" y="-906.667" width="584" height="584">
+   <polygon points="102.667,10.6667 550.667,10.6667 550.67,554.667 102.67,554.667"/>
+  </object>
+  <object id="984" x="-1344" y="-320">
+   <polygon points="-32,0 -32,224 1088,224 1088,0"/>
+  </object>
+  <object id="987" x="-288" y="-64">
+   <polygon points="32,0 32,288 -1088,288 -1088,0"/>
+  </object>
+ </objectgroup>
 </map>

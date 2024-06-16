@@ -246,5 +246,8 @@ public class GameManager : MonoBehaviour{
         Application.targetFrameRate = fps;
     }
 
-
+    public void ChangeCameras(ConfinerController Shape)
+    {
+        CameraController.SendMessage("SwitchConfiners", Shape);
+    }
 }
