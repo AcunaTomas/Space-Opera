@@ -8888,6 +8888,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5849746642550790367, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5849746642550790367, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 631586457
+      objectReference: {fileID: 0}
     - target: {fileID: -5810734309092536072, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
@@ -9132,6 +9140,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NotClimbable
       objectReference: {fileID: 0}
+    - target: {fileID: 3150380536302047249, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150380536302047249, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 631586457
+      objectReference: {fileID: 0}
     - target: {fileID: 3189904077513386154, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
@@ -9267,6 +9283,18 @@ PrefabInstance:
     - target: {fileID: 7841349110329565814, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906989849588816843, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906989849588816843, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906989849588816843, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 631586457
       objectReference: {fileID: 0}
     - target: {fileID: 8294411451309074047, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
@@ -11240,7 +11268,7 @@ MonoBehaviour:
   _wallJumpXHandicap: 0
   _spriteRenderer: {fileID: 1463393650}
   _animator: {fileID: 1463393644}
-  _healthBar: {fileID: 1562329856}
+  _healthBar: {fileID: 0}
   _callWhat:
     m_PersistentCalls:
       m_Calls: []
@@ -12254,17 +12282,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1721754, y: 0.71026087}
   m_EdgeRadius: 0
---- !u!114 &1562329856 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2819203582917488998, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
-  m_PrefabInstance: {fileID: 2819203581942517513}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2697d431472d4564ea30815ea549a321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1574586539
 GameObject:
   m_ObjectHideFlags: 0
@@ -14374,7 +14391,7 @@ MonoBehaviour:
   _wallJumpXHandicap: 0
   _spriteRenderer: {fileID: 1763975269}
   _animator: {fileID: 1763975263}
-  _healthBar: {fileID: 1562329856}
+  _healthBar: {fileID: 0}
   _callWhat:
     m_PersistentCalls:
       m_Calls: []
