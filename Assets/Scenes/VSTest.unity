@@ -7891,13 +7891,12 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1995419891}
   - {fileID: 1251652132}
   - {fileID: 1632886908}
   - {fileID: 1131303785}
   - {fileID: 1733196847}
   m_Father: {fileID: 1600678505}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &578733301
 GameObject:
@@ -15147,7 +15146,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 576902383}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1131303786
 BoxCollider2D:
@@ -15658,6 +15657,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NotClimbable
       objectReference: {fileID: 0}
+    - target: {fileID: 6493079529862967473, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6621703739813585773, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
@@ -15665,6 +15668,14 @@ PrefabInstance:
     - target: {fileID: 7053687337905583927, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203421152087060501, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203421152087060501, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 631586457
       objectReference: {fileID: 0}
     - target: {fileID: 7268088007835216056, guid: eca8cc04a4a49014db2db5d47ce9f26c, type: 3}
       propertyPath: m_TagString
@@ -17921,7 +17932,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 576902383}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1251652134
 BoxCollider2D:
@@ -19585,6 +19596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boton Puerta
       objectReference: {fileID: 0}
+    - target: {fileID: 5237410132228886123, guid: d5da5b11f474f944283b3577f23ed8c0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5237410132228886125, guid: d5da5b11f474f944283b3577f23ed8c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.985
@@ -19605,6 +19620,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5237410132228886126, guid: d5da5b11f474f944283b3577f23ed8c0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ce78e72e0152160489d7d911eb73a199, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5da5b11f474f944283b3577f23ed8c0, type: 3}
 --- !u!1 &1435493116
@@ -22423,9 +22442,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 576902383}
   - {fileID: 1484088926}
   - {fileID: 1591476632}
-  - {fileID: 576902383}
   - {fileID: 92944471}
   m_Father: {fileID: 367952289}
   m_RootOrder: 2
@@ -23003,7 +23022,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 576902383}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1632886910
 BoxCollider2D:
@@ -25011,7 +25030,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 576902383}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1733196848
 BoxCollider2D:
@@ -29515,6 +29534,14 @@ PrefabInstance:
     - target: {fileID: 1483006195651207690, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_TagString
       value: NotClimbable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483006195651207691, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6b07638dbb012c40af9de1531377a22, type: 3}
+    - target: {fileID: 1483006195651207694, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1483006196378356000, guid: a951595f23f960f4b88f2f0b289a5a82, type: 3}
       propertyPath: m_RootOrder
