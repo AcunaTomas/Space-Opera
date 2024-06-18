@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour{
 
     public GameObject DebugInfo;
 
+
+    public bool ShowHPBarOnSpawn;
+
     //Later is now...
     
     private void Awake()
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour{
         UIManager = UIManager.INSTANCE;
         SoundManager = SoundManager.INSTANCE;
         ActivateCursor(false);
-
+        UIManager.ToggleHP(ShowHPBarOnSpawn);
 
     }
 
@@ -250,4 +253,5 @@ public class GameManager : MonoBehaviour{
     {
         CameraController.SendMessage("SwitchConfiners", Shape);
     }
+
 }

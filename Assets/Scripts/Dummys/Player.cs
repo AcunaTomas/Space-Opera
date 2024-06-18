@@ -606,7 +606,7 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(FlickerSprite());
             }
-            _healthBar.UpdateHP();
+            GameManager.INSTANCE.UIManager.LifeBar.UpdateHP();
             //CameraController.Instance.ScreenShake(.5f, .1f);
 
             _coolingHit = true;
