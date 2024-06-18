@@ -88,14 +88,16 @@ public class EnemyPatrol : MonoBehaviour
         _speed = -_speed;
     }
 
-    public void NoHit()
+    public void ChangeSpeed()
     {
-        gameObject.tag = "Untagged";
-    }
-
-    void SiHit()
-    {
-        gameObject.tag = "Enemy";
+        if (_speed > 0)
+        {
+            _speed = 60;
+        }
+        else if (_speed < 0)
+        {
+            _speed = -60;
+        }
     }
     
     void OnDrawGizmosSelected()
