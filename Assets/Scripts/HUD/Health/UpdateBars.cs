@@ -28,18 +28,24 @@ public class UpdateBars : MonoBehaviour
         SetHP();
     }
 
+    public void UpdatePlayer()
+    {
+        _player = GameManager.INSTANCE.GetActivePlayer();
+        _playerHP = _player.GetMaxHP();
+        transform.parent.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(!transform.parent.GetChild(0).GetChild(0).GetChild(1).gameObject.activeSelf);
+        transform.parent.GetChild(0).GetChild(3).GetChild(1).gameObject.SetActive(!transform.parent.GetChild(0).GetChild(3).GetChild(1).gameObject.activeSelf);
+        UpdateHP();
+    }
     public void ResetHP()
     {
         _energy = 0;
         _playerHP = 0;
 
-        _player = GameManager.INSTANCE.PLAYER.GetComponent<Player>();
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             Destroy(transform.GetChild(i).gameObject);
         }
 
-        Debug.Log(GameManager.INSTANCE.PLAYER.name);
         Debug.Log("resetHP");
 
         SetHP();

@@ -49,4 +49,16 @@ public class UIManager : MonoBehaviour
         OBJECTIVES_DISPLAY.ChangeObjectiveBool();
     }
 
+    public void ToggleHP(bool a)
+    {
+        if (a)
+        {
+            transform.GetChild(0).GetComponent<Animator>().SetTrigger("Appear");
+            return;
+        }
+        transform.GetChild(0).GetComponent<Animator>().SetTrigger("Disappear");
+        
+    }
+    
+
 }
