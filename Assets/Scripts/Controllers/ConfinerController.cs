@@ -20,4 +20,14 @@ public class ConfinerController : MonoBehaviour
         }
 
     }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.tag == "Player" && GameManager.INSTANCE.CameraController.GetCurrentConfiner() != BoundingShape)
+        {
+            GameManager.INSTANCE.ChangeCameras(self);
+        }
+    }
+
 }

@@ -92,7 +92,10 @@ public class CameraController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-
+    public Collider2D GetCurrentConfiner()
+    {
+        return _confiner.m_BoundingShape2D;
+    }
 
 
 }
