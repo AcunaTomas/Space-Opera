@@ -675,40 +675,21 @@ MonoBehaviour:
   ALTSKIPENABLED: Disabled
   LEVEL: 5
   PLAYER: {fileID: 0}
-  BUTTON_INTERACT: {fileID: 0}
   CHECKPOINT: {x: 0, y: 0, z: 0}
   ACTUAL_CHECKPOINT: {fileID: 0}
   PLAYER_COMBAT: 0
-  CANVAS: {fileID: 0}
-  PAUSE_MENU: {fileID: 0}
-  PANEL_OBJECTIVE: {fileID: 0}
   PAUSED: 0
-  QUILOMB_MODE: 1
   MUSIC_VOLUME: 0
   SFX_VOLUME: 0
+  UIManager: {fileID: 0}
+  SoundManager: {fileID: 0}
+  CameraController: {fileID: 0}
+  Boludos: {fileID: 0}
   dustcap: 0
-  VFX_FADE: {fileID: 0}
-  lvlDiag:
-    DIALOGUES: []
+  lvlDialog: {fileID: 0}
   DIALOGUESKIPEND: 0
   DIALOGUESKIPCOUNT: 0
-  CANVAS_WS_LVL1: {fileID: 0}
-  TUTO_TRIG_LVL1: {fileID: 0}
-  CHECKPOINTS_LVL1: {fileID: 0}
-  DIALOGUES_LVL1: {fileID: 0}
-  CHANGE_MUSIC_LVL1: {fileID: 0}
-  EVENTS_GO_HERE_LVL1: {fileID: 0}
-  DOORS_LVL1: {fileID: 0}
-  INVISIBLE_TROLL_LVL1: {fileID: 0}
-  ELEVATORS_LVL1: []
-  ELEVATOR_DOOR_LVL1: {fileID: 0}
-  DUMMIES_LVL1: []
-  PILOT_QUILOMB_LVL1: {fileID: 0}
-  EVENTS_QUILOMB_LVL1: {fileID: 0}
-  ELEVATOR_SHIP_LVL1: {fileID: 0}
-  SPIKES_LVL1: {fileID: 0}
-  BTTON_QUILOMB_LVL1: {fileID: 0}
-  NPCS_LVL1: {fileID: 0}
+  DebugInfo: {fileID: 0}
 --- !u!95 &558290269
 Animator:
   serializedVersion: 5
@@ -1352,7 +1333,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

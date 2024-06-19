@@ -400,6 +400,8 @@ MonoBehaviour:
   bombRate: 1.5
   launchOffset: {fileID: 789567019}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
+  _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -488,7 +490,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -560,6 +562,7 @@ MonoBehaviour:
   vertspid: -0.3
   _gravity: -0.1
   _jumpImpulse: 0.95
+  _SpaceBarReleaseJumpDecay: 0.01
   canIjump: 1
   wallijumpy: 0
   body: {fileID: 0}
@@ -583,7 +586,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -598,10 +600,10 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 0}
+  _canDash: 1
   _playerType: 0
   _isBrodyJumping: 0
-  _SpaceBarReleaseJumpDecay: 0.01
-  _canDash: 1
+  _isDashing: 0
   _failDash: 0
   _dashEffect: {fileID: 0}
 --- !u!1 &168073560
@@ -887,7 +889,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1195,7 +1197,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1843,9 +1845,12 @@ MonoBehaviour:
   UIManager: {fileID: 0}
   SoundManager: {fileID: 0}
   CameraController: {fileID: 0}
+  Boludos: {fileID: 0}
   dustcap: 0
+  lvlDialog: {fileID: 0}
   DIALOGUESKIPEND: 0
   DIALOGUESKIPCOUNT: 0
+  DebugInfo: {fileID: 0}
 --- !u!1 &561836356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,7 +2667,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3177,6 +3182,62 @@ MonoBehaviour:
       Data3: -701644901
       Data4: -1154226434
     Path: event:/BrodyFootsteps
+  <ShootBrody>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <LaserAttack>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_navigate>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_select>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_open>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_close>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_save>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <sfx_ui_error>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1377320733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,7 +3807,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3888,6 +3949,8 @@ MonoBehaviour:
   bombRate: 1.5
   launchOffset: {fileID: 919190451}
   projectilePrefab: {fileID: 1371156680632117489, guid: 00220c44cb276374bb56c84711a78d6a, type: 3}
+  _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
   _attackCount: 1
   _attackAnimTimer: 0
@@ -3976,7 +4039,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4005,7 +4068,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1776651951
@@ -4048,6 +4111,7 @@ MonoBehaviour:
   vertspid: -0.3
   _gravity: -0.1
   _jumpImpulse: 0.95
+  _SpaceBarReleaseJumpDecay: 0.01
   canIjump: 1
   wallijumpy: 0
   body: {fileID: 0}
@@ -4071,7 +4135,6 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
   grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
@@ -4086,9 +4149,9 @@ MonoBehaviour:
   _cameraUp: {fileID: 0}
   _cameraDown: {fileID: 0}
   _activeCamera: {fileID: 0}
+  _canDash: 1
   _playerType: 0
   _isBrodyJumping: 0
-  _SpaceBarReleaseJumpDecay: 0.01
 --- !u!114 &1776651953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4270,7 +4333,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4376,7 +4439,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -43049,7 +43112,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -46050,7 +46113,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -61541,7 +61604,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

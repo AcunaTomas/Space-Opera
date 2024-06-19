@@ -1082,40 +1082,21 @@ MonoBehaviour:
   ALTSKIPENABLED: Disabled
   LEVEL: 4
   PLAYER: {fileID: 1720765269}
-  BUTTON_INTERACT: {fileID: 0}
   CHECKPOINT: {x: 0, y: 0, z: 0}
   ACTUAL_CHECKPOINT: {fileID: 0}
   PLAYER_COMBAT: 0
-  CANVAS: {fileID: 1278991550}
-  PAUSE_MENU: {fileID: 0}
-  PANEL_OBJECTIVE: {fileID: 0}
   PAUSED: 0
-  QUILOMB_MODE: 0
   MUSIC_VOLUME: 0
   SFX_VOLUME: 0
+  UIManager: {fileID: 0}
+  SoundManager: {fileID: 0}
+  CameraController: {fileID: 0}
+  Boludos: {fileID: 0}
   dustcap: 0
-  VFX_FADE: {fileID: 704164145}
-  lvlDiag:
-    DIALOGUES: []
+  lvlDialog: {fileID: 0}
   DIALOGUESKIPEND: 0
   DIALOGUESKIPCOUNT: 0
-  CANVAS_WS_LVL1: {fileID: 0}
-  TUTO_TRIG_LVL1: {fileID: 0}
-  CHECKPOINTS_LVL1: {fileID: 0}
-  DIALOGUES_LVL1: {fileID: 0}
-  CHANGE_MUSIC_LVL1: {fileID: 0}
-  EVENTS_GO_HERE_LVL1: {fileID: 0}
-  DOORS_LVL1: {fileID: 0}
-  INVISIBLE_TROLL_LVL1: {fileID: 0}
-  ELEVATORS_LVL1: []
-  ELEVATOR_DOOR_LVL1: {fileID: 0}
-  DUMMIES_LVL1: []
-  PILOT_QUILOMB_LVL1: {fileID: 0}
-  EVENTS_QUILOMB_LVL1: {fileID: 0}
-  ELEVATOR_SHIP_LVL1: {fileID: 0}
-  SPIKES_LVL1: {fileID: 0}
-  BTTON_QUILOMB_LVL1: {fileID: 0}
-  NPCS_LVL1: {fileID: 0}
+  DebugInfo: {fileID: 0}
 --- !u!1 &575195267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,7 +2050,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 476057943
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 100
   m_Sprite: {fileID: 776705927, guid: 501b9e06d8b62604ba6b69b92f67125a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2169,7 +2150,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2271,8 +2252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  attackPointVisual: {fileID: 0}
   attackPoint: {fileID: 0}
+  attackPointUpVisual: {fileID: 0}
   attackPointUp: {fileID: 0}
+  attackPointDownVisual: {fileID: 0}
   attackPointDown: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
@@ -2293,7 +2277,13 @@ MonoBehaviour:
   bombRate: 2
   launchOffset: {fileID: 0}
   projectilePrefab: {fileID: 0}
+  _jabulani: {fileID: 0}
+  _jabulaniOn: 0
   attackDuration: 0.3
+  _attackCount: 1
+  _attackAnimTimer: 0
+  _attackAnimDelay: 0
+  hitsomething: 0
 --- !u!114 &1022544836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,7 +2300,11 @@ MonoBehaviour:
   HP: 5
   MaxHP: 5
   vertspid: -0.3
+  _gravity: -0.1
+  _jumpImpulse: 0.95
+  _SpaceBarReleaseJumpDecay: 0.01
   canIjump: 1
+  wallijumpy: 0
   body: {fileID: 0}
   jumpLimit: 0
   Xspeed: 0
@@ -2332,16 +2326,21 @@ MonoBehaviour:
       m_Calls: []
   _airborneTime: 0
   _skillPermitted: 1
-  dashRate: 2
+  grounded: 0
   _coolingHit: 0
   _coolingDashAnim: 0
   _coolingShootDown: 0
   _coolingRespawn: 0
   _effectAnimator: {fileID: 0}
-  _landingAnimator1: {fileID: 0}
-  _landingAnimator2: {fileID: 0}
+  _doubleJumpEffect: {fileID: 0}
+  _landingEffect1: {fileID: 0}
+  _landingEffect2: {fileID: 0}
   _brodyRight: {fileID: 0}
   _brodyLeft: {fileID: 0}
+  _cameraUp: {fileID: 0}
+  _cameraDown: {fileID: 0}
+  _activeCamera: {fileID: 0}
+  _canDash: 1
   _playerType: 0
   _isBrodyJumping: 0
 --- !u!1 &1036368106
@@ -3227,17 +3226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14c3cb67712c514da1abecdb408e158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterImage: {fileID: 321313056}
-  _dialogueText: {fileID: 1483836875}
-  _characterPanelName: {fileID: 2003336885}
-  _characterName: {fileID: 1041138406}
-  _player: {fileID: 1720765269}
-  _dip: {fileID: 558290270}
-  _dialogueSkipAction: []
-  _skipBar: {fileID: 723942563}
-  ZONENAME: intro_selection
-  _textParts: []
-  lifeBarAnim: {fileID: 1716347075}
 --- !u!114 &1278991551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3311,6 +3299,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 0
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1278991554
 BoxCollider2D:
@@ -3411,6 +3401,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1340659290
 BoxCollider2D:
@@ -3667,7 +3659,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 476057943
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 100
   m_Sprite: {fileID: 776705927, guid: 501b9e06d8b62604ba6b69b92f67125a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4025,6 +4017,8 @@ MonoBehaviour:
         m_CallState: 2
   external: 0
   single_use: 1
+  AutoActivate: 0
+  Execution_Delay: 0
   options: 3
 --- !u!61 &1537267024
 BoxCollider2D:
@@ -4389,11 +4383,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1022544830}
-  _panelDialogue: {fileID: 1278991550}
+  _panelDialogue: {fileID: 0}
   _id: lvl1_selection
   _checkpoint: 0
   _interactableOnly: 0
   _panelDialogueDown: 0
+  _panelDialogueRight: 0
   _changeAudio: 0
 --- !u!4 &1701799225
 Transform:
@@ -4430,7 +4425,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4522,7 +4517,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5048,7 +5043,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 476057943
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 100
   m_Sprite: {fileID: 776705927, guid: 501b9e06d8b62604ba6b69b92f67125a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
