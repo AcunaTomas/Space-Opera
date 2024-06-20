@@ -41,7 +41,7 @@ public class ButtonMenu : MonoBehaviour
             try
             {
                 Vector3 newScale = _originalScale * 1.15f;
-                _buttonText.transform.localScale = newScale;
+                //_buttonText.transform.localScale = newScale;
             }
             catch (System.Exception e)
             {
@@ -99,6 +99,7 @@ public class ButtonMenu : MonoBehaviour
 
                 AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
+                child.GetComponent<Image>().enabled = true;
                 child.GetComponent<Image>().sprite = _backgrounds[0];
                 if (!EventSystem.current.alreadySelecting)
                 {
@@ -182,7 +183,7 @@ public class ButtonMenu : MonoBehaviour
                 return;
             }
             _spacebarPressed = true;
-            _button.onClick.Invoke();
+            //_button.onClick.Invoke();
         }
 
         if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))

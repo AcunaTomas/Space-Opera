@@ -41,8 +41,8 @@ public class ButtonDialogueNew : MonoBehaviour
         public string PROFILE;
         public string IMAGE;
         public string EMOTION;
-        public string TEXT;
         public string SFX;
+        public string TEXT;
         public string LANG;
     }
 
@@ -58,7 +58,7 @@ public class ButtonDialogueNew : MonoBehaviour
 
         int tableSize = data.Length / 7 - 1;
         ListaDialogo.list = new CSVFormat[tableSize];
-
+        
         for(int i = 0; i < tableSize; i++)
         {
             ListaDialogo.list[i] = new CSVFormat();
@@ -67,9 +67,13 @@ public class ButtonDialogueNew : MonoBehaviour
             ListaDialogo.list[i].PROFILE = data[7 * (i + 1)+ 1];
             ListaDialogo.list[i].IMAGE = data[7 * (i + 1) + 2];
             ListaDialogo.list[i].EMOTION = data[7 * (i + 1) + 3];
-            ListaDialogo.list[i].TEXT = data[7 * (i + 1) + 4];
-            ListaDialogo.list[i].SFX = data[7 * (i + 1) + 5];
-            ListaDialogo.list[i].LANG = data[7 * (i + 1) + 6];
+            ListaDialogo.list[i].SFX = data[7 * (i + 1) + 4];
+            if(DataPersistentManager.INSTANCE !=null)
+            {
+                if(DataPersistentManager.INSTANCE.Language() == "ES") ListaDialogo.list[i].TEXT = data[7 * (i + 1) + 5];
+                else ListaDialogo.list[i].TEXT = data[7 * (i + 1) + 6];
+            }
+            else ListaDialogo.list[i].TEXT = data[7 * (i + 1) + 5];
         }
     }
     [SerializeField]
@@ -212,7 +216,6 @@ public class ButtonDialogueNew : MonoBehaviour
             float _percentage = _time / 0.3f;
             float _newWidth = Mathf.Lerp(0f, _firstWidth, _percentage);
             _elementUI.sizeDelta = new Vector2(_newWidth, _elementUI.sizeDelta.y);
-            Debug.Log(_newWidth + " " + _percentage);
             _time += Time.deltaTime;
             yield return null;
         }
@@ -368,7 +371,7 @@ public class ButtonDialogueNew : MonoBehaviour
                 break;
             }
         }
-        return ListaDialogo.list[_ix].ID;
+        return ListaDialogo.list[_ix].TEXT;
     }
 
     private void ActualizarSkip(float cantidade)
@@ -447,5 +450,10 @@ public class ButtonDialogueNew : MonoBehaviour
     public void SetLvlDialog(TextAsset newText)
     {
         lvlDialog = newText;
+    }
+
+    public void UpdateLanguage()
+    {
+        ReadCSV();
     }
 }

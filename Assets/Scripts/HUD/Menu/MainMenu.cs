@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
             _eventSystem.firstSelectedGameObject = _newGame.gameObject;
             _newGame.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
             _newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = true;
+            ChangeLanguage("ES");
             //_newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = false;
         }
     }
@@ -35,9 +36,21 @@ public class MainMenu : MonoBehaviour
         //DataPersistentManager.INSTANCE.NewGame();
         //DataPersistentManager.INSTANCE.SaveGame();
         ScenesManager.Instance.LoadNewGame();
+        
         AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
     }
 
+    public void ChangeLanguage(string newLanguage = "ES")
+    {
+                //DataPersistentManager.INSTANCE.SetLanguage(newLanguage);
+        
+        if(DataPersistentManager.INSTANCE.Language() == "ES" ) DataPersistentManager.INSTANCE.SetLanguage("EN");
+
+        else DataPersistentManager.INSTANCE.SetLanguage("ES");
+        if(UIManager.INSTANCE != null) UIManager.INSTANCE.UpdateLanguage();
+        AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
+        
+    }
     public void ContinueClicked()
     {
         //DataPersistentManager.INSTANCE.SaveGame();

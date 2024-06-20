@@ -41,7 +41,8 @@ public class ScenesManager : MonoBehaviour
     {
         transition.SetTrigger("SceneStart");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("BlablablaScene");
+        SceneManager.LoadScene("NewManagersTest");
+        //SceneManager.LoadScene("BlablablaScene");
     } 
 
     //esto por si hay 2 o más niveles o escenas, etc

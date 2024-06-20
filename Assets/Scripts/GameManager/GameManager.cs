@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour{
                 break;
             */
             default:
-                    //lvlDiag = Boss(LoadCSV.LVL999);
+                lvlDialog = LoadCSV.LVL3;
                 //ButtonDialogueNew.SetLvlDialog(LoadCSV.LVL999);
                 break;
         }

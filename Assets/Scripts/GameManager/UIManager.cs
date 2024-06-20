@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager INSTANCE;
     public ButtonDialogueNew DIALOGUE_PANEL;
+    public TutorialTextManager DIALOGUE_TUTORIAL;
     public ObjectivesManager OBJECTIVES_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
     public GameObject UPGRADE;
@@ -49,4 +50,10 @@ public class UIManager : MonoBehaviour
         OBJECTIVES_DISPLAY.ChangeObjectiveBool();
     }
 
+    public void UpdateLanguage()
+    {
+        DIALOGUE_TUTORIAL.UpdateLanguage();
+        DIALOGUE_PANEL.UpdateLanguage();
+        OBJECTIVES_DISPLAY.UpdateLanguage();
+    }
 }

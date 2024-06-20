@@ -136,4 +136,9 @@ public class ObjectivesManager : MonoBehaviour
         }
         
     }
+    public void UpdateLanguage()
+    {
+        _text = UIManager.INSTANCE.DialogueBoxLoadText(_zoneName);
+        gameObject.transform.GetChild(0).GetComponent<TMP_Text>().text = _text;
+    }
 }

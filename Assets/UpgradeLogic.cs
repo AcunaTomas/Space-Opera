@@ -18,8 +18,6 @@ public class UpgradeLogic : MonoBehaviour
     void Update()
     {
         if(gameObject.activeSelf && !upgradeW1.activeSelf && !upgradeW2.activeSelf) Reboot();
-
-        Debug.Log(fade.color);
         if(_startCounting) time += Time.unscaledDeltaTime;
         if(upgradeW1.activeSelf)
         {
@@ -28,10 +26,20 @@ public class UpgradeLogic : MonoBehaviour
             upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW1.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 255, 255, time/ _fadeDelay);
             
-            if(time > _showDelay)
+            //idioma xd
+            if(DataPersistentManager.INSTANCE != null)
             {
-                upgradeW1.transform.GetChild(3).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
-                upgradeW1.transform.GetChild(4).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
+                switch (DataPersistentManager.INSTANCE.Language())
+                {
+                    case "ES":
+                    upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "NUEVA HABILIDAD DESBLOQUEADA";
+                    break;
+                    case "EN":
+                    upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "NEW SKILL UNLOCKED";
+                    break;
+                    default:
+                    break;
+                }
             }
             if(time > _showDelay)
             {
