@@ -11,6 +11,9 @@ public class DoorController2 : MonoBehaviour
     private bool _hasCooldown;
     private bool _coolingHit = false;
 
+    [SerializeField]
+    private GameObject _luzVentilacion;
+
     public void changeCallback(UnityEvent a)
     {
         _callSomething = a;
@@ -38,6 +41,10 @@ public class DoorController2 : MonoBehaviour
     {
         float _hitNumber = GetComponent<Animator>().GetFloat("HowManyHits");
         GetComponent<Animator>().SetFloat("HowManyHits", _hitNumber + 1);
+        if (GetComponent<Animator>().GetFloat("HowManyHits") == 2)
+        {
+            _luzVentilacion.SetActive(true);
+        }
     }
 
     IEnumerator Cooldown()

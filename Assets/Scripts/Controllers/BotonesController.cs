@@ -26,6 +26,7 @@ public class BotonesController : MonoBehaviour
             _animator.SetTrigger("ButtonPress");
             _puerta.GetComponent<Animator>().SetTrigger("OpenDoor");
             _callWhat.Invoke();
+            this.enabled = false;
         }
             
     }

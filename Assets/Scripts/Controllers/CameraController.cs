@@ -93,12 +93,4 @@ public class CameraController : MonoBehaviour
     }
 
 
-    public void SetDamping()
-    {
-        _confiner.m_Damping = 0f;
-    }
-
-
-
-
 }
