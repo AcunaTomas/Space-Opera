@@ -19,6 +19,7 @@ public static class LoadCSV
     public static string LVL3_CINEMATIC = Resources.Load<TextAsset>("Text/lvl3_cinematic").text;
     public static TextAsset LVL3 = Resources.Load<TextAsset>("Text/lvl999");
     public static TextAsset LVL999 = Resources.Load<TextAsset>("Text/lvl999");
+    public static TextAsset LVL15 = Resources.Load<TextAsset>("Text/lvl15");
     
     
 }

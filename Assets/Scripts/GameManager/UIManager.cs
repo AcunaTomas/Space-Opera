@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject PAUSE_MENU;
     public GameObject VFX_FADE;
     public UpdateBars LifeBar;
-
+    public string CURRENTPLAYER;
 
     void Awake()
     {
@@ -56,4 +56,5 @@ public class UIManager : MonoBehaviour
         DIALOGUE_PANEL.UpdateLanguage();
         OBJECTIVES_DISPLAY.UpdateLanguage();
     }
+
 }

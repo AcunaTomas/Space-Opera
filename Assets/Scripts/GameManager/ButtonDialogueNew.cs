@@ -206,7 +206,6 @@ public class ButtonDialogueNew : MonoBehaviour
     }
     private IEnumerator UnFold() //Acá se llama al primer díalogo 'u'
     {
-        Debug.Log("UnFold");
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;
         float _firstWidth = 1200;
@@ -248,7 +247,6 @@ public class ButtonDialogueNew : MonoBehaviour
     }
     private IEnumerator Fold()
     {
-        Debug.Log("Fold");
         _stopSubmit = true;
         RectTransform _elementUI = gameObject.GetComponent<RectTransform>();
         float _time = 0f;

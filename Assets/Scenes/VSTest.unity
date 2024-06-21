@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &9715937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,6 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &20842601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,6 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &37101782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1780,6 +1783,13 @@ MonoBehaviour:
   _XDistance: 0.3
   _YDistance: 0.01
   _timePressed: 0
+  moved: 0
+  timedDisable: 0
+  disableIn: 0
+  moveAmount: 0
+  _tempX: 0
+  _tempY: 0
+  _keyHeld: 0
   afterAction:
     m_PersistentCalls:
       m_Calls:
@@ -4160,6 +4170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &353917075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6833,6 +6844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &677144952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7183,6 +7195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &700772984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7771,6 +7784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &768500114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9244,6 +9258,13 @@ MonoBehaviour:
   _XDistance: 1
   _YDistance: 1
   _timePressed: 0
+  moved: 0
+  timedDisable: 0
+  disableIn: 0
+  moveAmount: 0
+  _tempX: 0
+  _tempY: 0
+  _keyHeld: 0
   afterAction:
     m_PersistentCalls:
       m_Calls: []
@@ -9700,6 +9721,13 @@ MonoBehaviour:
   _XDistance: 0.3
   _YDistance: 0.01
   _timePressed: 0
+  moved: 0
+  timedDisable: 0
+  disableIn: 0
+  moveAmount: 0
+  _tempX: 0
+  _tempY: 0
+  _keyHeld: 0
   afterAction:
     m_PersistentCalls:
       m_Calls:
@@ -10485,6 +10513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &997988619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11450,6 +11479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &1076633262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12080,6 +12110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &1129721669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12490,6 +12521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &1138784405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13520,6 +13552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &1275701597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15066,6 +15099,7 @@ MonoBehaviour:
   vertspid: -0.3
   _gravity: -0.1
   _jumpImpulse: 0.9
+  _SpaceBarReleaseJumpDecay: 0.01
   canIjump: 1
   wallijumpy: 0
   body: {fileID: 0}
@@ -15106,7 +15140,6 @@ MonoBehaviour:
   _canDash: 1
   _playerType: 0
   _isBrodyJumping: 0
-  _SpaceBarReleaseJumpDecay: 0.01
   _isDashing: 0
   _failDash: 0
   _dashEffect: {fileID: 1963827396}
@@ -19759,6 +19792,7 @@ MonoBehaviour:
   vertspid: -0.3
   _gravity: -0.1
   _jumpImpulse: 0.95
+  _SpaceBarReleaseJumpDecay: 0.1
   canIjump: 1
   wallijumpy: 0
   body: {fileID: 0}
@@ -19799,7 +19833,6 @@ MonoBehaviour:
   _canDash: 1
   _playerType: 1
   _isBrodyJumping: 0
-  _SpaceBarReleaseJumpDecay: 0.1
 --- !u!50 &1763975266
 Rigidbody2D:
   serializedVersion: 4
@@ -19971,6 +20004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &1771392106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20439,6 +20473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a7113448a0a86428a2a15b139f35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confiner: {fileID: 0}
 --- !u!114 &1843273287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21090,6 +21125,13 @@ MonoBehaviour:
   _XDistance: 0.3
   _YDistance: 0.1
   _timePressed: 0
+  moved: 0
+  timedDisable: 0
+  disableIn: 0
+  moveAmount: 0
+  _tempX: 0
+  _tempY: 0
+  _keyHeld: 0
   afterAction:
     m_PersistentCalls:
       m_Calls:
@@ -23253,6 +23295,10 @@ PrefabInstance:
       value: Game Manager
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582151671796, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: LEVEL
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819203582151671796, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: PLAYER
       value: 
       objectReference: {fileID: 1525959993}
@@ -23346,7 +23392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.561111
+      value: 2.560326
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y
