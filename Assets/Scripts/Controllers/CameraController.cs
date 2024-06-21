@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
     public void ScreenShake(float intensity, float time)
     {
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-            _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakeTimer = time;
@@ -90,6 +90,12 @@ public class CameraController : MonoBehaviour
     private void ToggleOff()
     {
         gameObject.SetActive(false);
+    }
+
+
+    public void SetDamping()
+    {
+        _confiner.m_Damping = 0f;
     }
 
 
