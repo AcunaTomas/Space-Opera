@@ -17,14 +17,14 @@ public class EnemyBehaviour2 : MonoBehaviour
     public Transform attackPoint;
     public Transform attackPointFlip;
 
-    private Animator animator;
+    public Animator animator;
     private float distance;
     private bool attackMode;
     private bool cooling;
     private float intTimer;
     private GameObject player;
     private float timerAttack;
-    private float attackDelay = 0.5f;
+    private float attackDelay = 1f;
 
 
 void Awake()
@@ -32,6 +32,7 @@ void Awake()
     intTimer = timer;
     animator = GetComponent<Animator>();
     player = GameObject.FindWithTag("Player");
+    animator.SetBool("Dead", false);
 }
 
 void Update() 
@@ -62,6 +63,7 @@ void EnemyLogic()
     }
     else if (attackDistance >= distance && cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
     {
+        animator.SetBool("Run", false);
         timerAttack += Time.deltaTime;
         if (timerAttack > attackDelay)
         {
@@ -85,10 +87,9 @@ void EnemyLogic()
 
 void Move()
 {
-    animator.SetBool("Run", true);
-
-    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !DONTMOVE && !GetComponent<Enemy>()._coolingHit)
+    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !DONTMOVE && !GetComponent<Enemy>()._coolingHit && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_confused") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_alert"))
     {
+        animator.SetBool("Run", true);
         Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
@@ -102,17 +103,26 @@ void Attack()
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
     //AudioManager.INSTANCE.PlayEnemyAttack();
-
-        if (transform.position.x > target.position.x)
-        {
-            attackPointFlip.gameObject.SetActive(true);
-        }
-        else
-        {
-            attackPoint.gameObject.SetActive(true);
-        }
-
     timerAttack = 0;
+
+    StartCoroutine(AtaquePosta());
+}
+
+IEnumerator AtaquePosta()
+{
+    yield return new WaitForSeconds(0.5f);
+
+    if (transform.position.x > target.position.x)
+    {
+        attackPointFlip.gameObject.SetActive(true);
+    }
+    else
+    {
+        attackPoint.gameObject.SetActive(true);
+    }
+    yield return new WaitForSeconds(0.001f);
+
+    animator.SetBool("Attack", false);
 }
 
 
@@ -162,73 +172,10 @@ public void Flip()
     transform.eulerAngles = rotation;
 }
 
-
-    // [SerializeField]
-    // animator animator;
-
-    // [SerializeField]
-    // GameObject player;
-    // [SerializeField]
-    // bool flip;
-    // //public float speed;
-
-    // [SerializeField]
-    // float agroRange;
-    // [SerializeField]
-    // float moveSpeed;
-    
-    // Rigidbody2D rb2d;
-
-    // void Start() 
-    // {
-    //      = GetCrb2domponent<Rigidbody2D>();
-    // }
-
-    // void Update()
-    // {
-
-    //     float distToPlayer = Vector2.Distance (transform.position, player.transform.position);
-        
-    //     if (distToPlayer < agroRange)
-    //     {
-    //         Chase();
-    //         Debug.Log("Chase");
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("Stop");
-    //     }
-
-    //     Vector3 scale = transform.localScale;
-
-    //     if (player.transform.position.x > transform.position.x)
-    //     {
-    //         scale.x = Mathf.Abs(scale.x) * -1 * (flip ? -1 : 1);
-    //         //transform.Translate(speed * Time.deltaTime, 0, 0);
-    //         //Debug.Log("un lado");
-    //     }
-    //     else
-    //     {
-    //         scale.x = Mathf.Abs(scale.x) * (flip ? -1 : 1);
-    //         //transform.Translate(speed * Time.deltaTime * -1, 0, 0);
-    //         //Debug.Log("el otro");
-    //     }
-
-    //     transform.localScale = scale;
-
-    // }
+public void StopAlertAnim()
+{
+    animator.SetBool("Alert", false);
+}
 
 
-    // void Chase() 
-    // {
-    //     if (player.transform.position.x > transform.position.x)
-    //         transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-    //     else
-    //     transform.Translate(moveSpeed * Time.deltaTime * -1, 0, 0);
-    // }
-
-    // void Patrol()
-    // {
-        
-    // }
 }

@@ -256,6 +256,14 @@ public class Enemy : MonoBehaviour
         if (_enemyType == EnemyType.melee)
         {
             GetComponent<EnemyBehaviour2>().enabled = false;
+            //GetComponentInChildren<HotZoneCheck>().enabled = false;
+            //GetComponentInChildren<TriggerAreaCheck>().enabled = false;
+
+            GetComponentInChildren<HotZoneCheck>().gameObject.SetActive(false);
+            GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
+            GetComponent<Animator>().SetBool("CantTransition", true);
+
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
 
         if (_enemyType == EnemyType.gun)
@@ -318,5 +326,12 @@ public class Enemy : MonoBehaviour
     public EnemyType GetEnemyType()
     {
         return _enemyType;
+    }
+
+
+    public void NoMoreAnimator()
+    {
+        //I hate my life
+        GetComponent<Animator>().enabled = false;
     }
 }

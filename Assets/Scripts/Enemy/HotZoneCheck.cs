@@ -16,18 +16,18 @@ public class HotZoneCheck : MonoBehaviour
 
     private void Update()
     {
-        if (inRange && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+        if (enemyParent.inRange && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
         {
             enemyParent.Flip();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
-        {
-            inRange = true;
-        }
+     private void OnTriggerEnter2D(Collider2D collider)
+     {
+         if (collider.gameObject.CompareTag("Player"))
+         {
+            enemyParent.inRange = true;
+         }
     }
 
 
@@ -35,10 +35,11 @@ public class HotZoneCheck : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            inRange = false;
+            enemyParent.inRange = false;
             gameObject.SetActive(false);
             enemyParent.triggerArea.SetActive(true);
             enemyParent.inRange = false;
+            enemyParent.animator.SetTrigger("Confused");
             animator.SetBool("Run", false);
         }
     }
