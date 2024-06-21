@@ -17,53 +17,9 @@ public class CombatBro : PlayerCombat
     [SerializeField]
     private LayerMask discoverable;
 
-    [SerializeField]
-    private bool _canHack = false;
-
     public override void Bomb()
     {
         _animator.SetTrigger("idle");
-        // Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 30, discoverable);
-        // foreach (Collider2D enemyCollider in hitEnemies)
-        // {
-        //     try
-        //     {
-        //         enemyCollider.GetComponent<DetectableController>().Detectado();
-        //     }
-        //     catch (System.Exception)
-        //     {
-        //         enemyCollider.GetComponent<DetectableController2>().Detectado();
-        //     }
-        // }
-        
-        // if (_canHack)
-        // {
-        //     Collider2D[] hackDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
-        //     foreach (Collider2D doorCollider in hackDoor)
-        //     {
-        //         try
-        //         {
-        //             doorCollider.GetComponent<Animator>().SetTrigger("OpenDoor");
-        //         }
-        //         catch (System.Exception)
-        //         {
-        //             doorCollider.GetComponent<Animator>().SetTrigger("OpenDoor");
-        //         }
-        //     }
-        // }
-
-        
-
-        // //AchievementsManager.INSTANCE.Achievement03();
-        // _radar.enabled = true;
-
-        // _player.GetComponent<Player>().enabled = false;
-        // _player.GetComponent<CombatBro>().enabled = false;
-        // _player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y);
-        // //_player.GetComponent<Player>()._animator.SetFloat("fallingTime", 0f);
-        // //_player.GetComponent<Player>()._animator.SetBool("IsJumping", false);
-        // //_player.GetComponent<Player>()._animator.Play("Brody_scan2");
-        // StartCoroutine(StartCooldownMovement());
     }
     public override void Attack()
     {
@@ -183,5 +139,12 @@ public class CombatBro : PlayerCombat
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+
+
+    public void hackBool(bool a)
+    {
+        _canHack = a;
     }
 }

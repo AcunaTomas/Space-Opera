@@ -7,6 +7,10 @@ public class DoorController2 : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent _callSomething;
+    [SerializeField]
+    private bool _hasCooldown;
+    private bool _coolingHit = false;
+
     public void changeCallback(UnityEvent a)
     {
         _callSomething = a;
@@ -14,7 +18,38 @@ public class DoorController2 : MonoBehaviour
 
     public void DoSomeShit()
     {
-        _callSomething.Invoke();
+        if (_hasCooldown)
+        {
+            if (!_coolingHit)
+            {
+                _callSomething.Invoke();
+                _coolingHit = true;
+                StartCoroutine(Cooldown());
+            }
+        }
+        else
+        {
+            _callSomething.Invoke();
+        }
+        
+    }
+
+    public void IncreaseHits()
+    {
+        float _hitNumber = GetComponent<Animator>().GetFloat("HowManyHits");
+        GetComponent<Animator>().SetFloat("HowManyHits", _hitNumber + 1);
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _coolingHit = false;
+    }
+
+    public void EnemiesCounter()
+    {
+        float _enemies = GetComponent<Animator>().GetFloat("DeadEnemies");
+        GetComponent<Animator>().SetFloat("DeadEnemies", _enemies + 1);
     }
 
 }

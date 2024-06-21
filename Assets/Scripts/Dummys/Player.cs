@@ -415,7 +415,7 @@ public class Player : MonoBehaviour
         //extrajumpcount = 1;
 
         if (_fallingTime > 6.1)
-        {
+        {   
             _animator.SetTrigger("land");
 
             var _landing1 = Instantiate(_landingEffect1, this.transform);

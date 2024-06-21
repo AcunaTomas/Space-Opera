@@ -60,6 +60,10 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     private bool hitsomething = false;
 
+
+    public bool _canHack;
+
+
     public bool GetSpriteRend()
     {
         return spriteRenderer.flipX;
