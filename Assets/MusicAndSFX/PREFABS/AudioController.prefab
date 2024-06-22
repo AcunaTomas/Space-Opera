@@ -58,6 +58,20 @@ MonoBehaviour:
       Data3: 2127888294
       Data4: -1697703662
     Path: event:/BRODY_SFX/AttackLaser
+  <LaserAttack>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <JumpSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <sfx_ui_navigate>k__BackingField:
     Guid:
       Data1: 1363968601
@@ -109,7 +123,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8983820183605247283}
-  - component: {fileID: 8983820183605247284}
   - component: {fileID: 8983820183605247282}
   m_Layer: 0
   m_Name: AudioController
@@ -134,21 +147,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8983820183605247284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983820183605247285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c4b9deaabb333458518d8dc946b64b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mixer: {fileID: 24100000, guid: 537860407f5fd144d80b61b124d2603e, type: 2}
-  _sliderMusic: {fileID: 0}
-  _sliderSFX: {fileID: 0}
 --- !u!114 &8983820183605247282
 MonoBehaviour:
   m_ObjectHideFlags: 0

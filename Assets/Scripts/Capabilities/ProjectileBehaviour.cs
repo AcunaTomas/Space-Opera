@@ -100,6 +100,7 @@ public class ProjectileBehaviour : MonoBehaviour
             //}
 
             animator.SetTrigger("Explode");
+            GetComponent<FMODUnity.StudioEventEmitter>().Play();
             Destroy(gameObject, 0.7f);
 
             _coolingCollision = true;

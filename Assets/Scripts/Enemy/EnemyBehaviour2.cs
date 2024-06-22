@@ -102,13 +102,12 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
-    //AudioManager.INSTANCE.PlayEnemyAttack();
     timerAttack = 0;
 
     StartCoroutine(AtaquePosta());
 }
 
-IEnumerator AtaquePosta()
+/* IEnumerator AtaquePosta()
 {
     yield return new WaitForSeconds(0.5f);
 
@@ -122,6 +121,25 @@ IEnumerator AtaquePosta()
     }
     yield return new WaitForSeconds(0.001f);
 
+    timerAttack = 0;
+
+    StartCoroutine(AtaquePosta());
+} */
+
+IEnumerator AtaquePosta()
+{
+    yield return new WaitForSeconds(0.5f);
+    AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesAttack, this.transform.position);
+    if (transform.position.x > target.position.x)
+    {
+        attackPointFlip.gameObject.SetActive(true);
+    }
+    else
+    {
+        attackPoint.gameObject.SetActive(true);
+    }
+    yield return new WaitForSeconds(0.001f);
+    
     animator.SetBool("Attack", false);
 }
 

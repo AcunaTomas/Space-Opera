@@ -597,6 +597,7 @@ public class Player : MonoBehaviour
             transform.parent.GetChild(1).GetComponent<Player>().HP -= damage;
             _animator.SetBool("IsJumping", false);
             _animator.SetTrigger("Hurt");
+            
             if (HP <= 0)
             {
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
@@ -633,6 +634,7 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Die");
         _animator.SetBool("isDead", true);
+        AudioController.instance.PlayOneShot(FMODEvents.instance.GameOverMelody, this.transform.position);
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
         GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);

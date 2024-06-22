@@ -79,6 +79,7 @@ public class JabulaniBehaviour : MonoBehaviour
         yield return new WaitForSeconds(4.5f);
 
         animator.SetTrigger("Explode");
+        GetComponent<FMODUnity.StudioEventEmitter>().Play();
 
         _coolingCollision = false;
     }
