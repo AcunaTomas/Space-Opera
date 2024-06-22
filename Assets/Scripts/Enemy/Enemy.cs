@@ -261,6 +261,7 @@ public class Enemy : MonoBehaviour
             //GetComponentInChildren<HotZoneCheck>().enabled = false;
             //GetComponentInChildren<TriggerAreaCheck>().enabled = false;
 
+            StartCoroutine(AfterDie());
 
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -341,5 +342,15 @@ public class Enemy : MonoBehaviour
     {
         //I hate my life
         GetComponent<Animator>().enabled = false;
+    }
+
+    IEnumerator AfterDie()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        GetComponentInChildren<HotZoneCheck>().gameObject.SetActive(false);
+        GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
+        GetComponentInChildren<HotZoneCheck>().enabled = false;
+        GetComponentInChildren<TriggerAreaCheck>().enabled = false;
     }
 }

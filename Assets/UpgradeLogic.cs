@@ -21,7 +21,12 @@ public class UpgradeLogic : MonoBehaviour
         if(_startCounting) time += Time.unscaledDeltaTime;
         if(upgradeW1.activeSelf)
         {
-            if(fade.color.a < .4f) fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fade.color.a +.1f);
+            //if(fade.color.a < .4f) fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fade.color.a +.1f);
+            if (!transition.GetCurrentAnimatorStateInfo(0).IsName("PopUp_star2"))
+            {
+                transition.SetTrigger("PopUpStart");
+            }
+            
             upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, time / _fadeDelay);
             upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW1.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 255, 255, time/ _fadeDelay);
@@ -78,8 +83,8 @@ public class UpgradeLogic : MonoBehaviour
                 _startCounting = false;
                 //fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0f);
                 gameObject.SetActive(false);
-                transition.enabled = !transition.enabled;
-                transition.SetTrigger("SceneStart");
+                //transition.enabled = !transition.enabled;
+                transition.SetTrigger("PopUpEnd");
             }
         }
     }
