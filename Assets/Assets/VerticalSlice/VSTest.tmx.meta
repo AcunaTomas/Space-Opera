@@ -9,17 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
-  errors:
-  - "Custom importer 'CustomImporter' threw an exception. Message = 'There is no
-    'PolygonCollider2D' attached to the \"Object_1026\" game object, but a script
-    is trying to access it.\nYou probably need to add a PolygonCollider2D to the
-    game object \"Object_1026\". Or your script needs to check if the component is
-    attached before using it.', Stack:\n  at (wrapper managed-to-native) UnityEngine.Collider2D.set_isTrigger(UnityEngine.Collider2D,bool)\r\n 
-    at CustomImporter.processLayers (UnityEngine.Transform layer) [0x00004] in D:\\Unity\\Space-Opera\\Assets\\Editor\\CustomImporter.cs:37
-    \r\n  at CustomImporter.TmxAssetImported (SuperTiled2Unity.Editor.TmxAssetImportedArgs
-    args) [0x00055] in D:\\Unity\\Space-Opera\\Assets\\Editor\\CustomImporter.cs:28
-    \r\n  at SuperTiled2Unity.Editor.TmxAssetImporter.RunCustomImporterType (System.Type
-    type) [0x00048] in D:\\Unity\\Space-Opera\\Assets\\SuperTiled2Unity\\Scripts\\Editor\\Importers\\TmxAssetImporter.cs:493 "
+  errors: []
   warnings:
   - Tileset 'bg_lab_09' is an embedded tileset. Exported tilesets are preferred.
   - Tileset 'tile_lab_09' is an embedded tileset. Exported tilesets are preferred.
