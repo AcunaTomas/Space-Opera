@@ -30,6 +30,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("Enemies")]
     [field: SerializeField] public EventReference EnemiesDead { get; private set; }
+    [field: SerializeField] public EventReference EnemiesAttack { get; private set; }
 
     [field: Header("General")]
     [field: SerializeField] public EventReference GameOverMelody { get; private set; }

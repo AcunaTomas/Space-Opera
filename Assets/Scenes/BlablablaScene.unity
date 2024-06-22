@@ -944,6 +944,8 @@ GameObject:
   - component: {fileID: 57140359}
   - component: {fileID: 57140358}
   - component: {fileID: 57140357}
+  - component: {fileID: 57140361}
+  - component: {fileID: 57140360}
   m_Layer: 0
   m_Name: Electricidad Pared
   m_TagString: Untagged
@@ -1040,6 +1042,68 @@ Transform:
   m_Father: {fileID: 1911540706}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &57140360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57140356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -352825602
+      Data2: 1133175582
+      Data3: -884921684
+      Data4: -1800435079
+    Path: event:/AMBIENTS/Maps/Electricity/ShortCircuit
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10
+--- !u!114 &57140361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57140356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1502656269
+      Data2: 1156056604
+      Data3: 1460723092
+      Data4: -1859290202
+    Path: event:/AMBIENTS/Maps/Electricity/Electricity
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10
 --- !u!1 &57940638
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,7 +9674,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 0.96}
+    oldSize: {x: 0.96, y: 0.96}
     newSize: {x: 1.28, y: 0.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23848,6 +23912,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5549412853347973137, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 1525959993}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <DashSound>k__BackingField.Path
       value: event:/BITO_SFX/BITO_dash
@@ -24003,6 +24071,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2819203583648031210, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
     - {fileID: 2819203582277508603, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+    - {fileID: 2819203582277508605, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
 --- !u!4 &2819203581942517514 stripped
 Transform:

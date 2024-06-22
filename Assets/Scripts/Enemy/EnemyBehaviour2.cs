@@ -101,7 +101,7 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
-    //AudioManager.INSTANCE.PlayEnemyAttack();
+    AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesAttack, this.transform.position);
 
         if (transform.position.x > target.position.x)
         {
