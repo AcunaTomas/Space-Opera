@@ -223,7 +223,7 @@ public class ButtonDialogueNew : MonoBehaviour
         _zoneLines = 0;
             _stopSubmit = false;
             GameManager.INSTANCE.ALTSKIPENABLED = "AltDialogueSkip";
-            SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
+            //SoundManager.INSTANCE.SendMessage("PlaySound",new SoundManager.SoundInfo("Dialogue_Interact",2));
             for (int i = 2; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(true);
@@ -305,7 +305,7 @@ public class ButtonDialogueNew : MonoBehaviour
         
         for(int word = 0; word < _textParts.Length; word++)
         {
-            SoundManager.INSTANCE.SendMessage("PlaySound", new SoundManager.SoundInfo(ListaDialogo.list[_contLinea].SFX,2));
+            //SoundManager.INSTANCE.SendMessage("PlaySound", new SoundManager.SoundInfo(ListaDialogo.list[_contLinea].SFX,2));
             int chCounterWord = 0;
             
             foreach(char ch in _textParts[word])
