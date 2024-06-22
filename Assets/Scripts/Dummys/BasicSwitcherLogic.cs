@@ -44,6 +44,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 a.transform.position = brodi.gameObject.transform.position;
                                 Destroy(a,effectDuration);
                                 GameManager.INSTANCE.UIManager.LifeBar.UpdatePlayer();
+                                UIManager.INSTANCE.CURRENTPLAYER = "Bito";
                                 brodi.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 break;
                             }
@@ -59,6 +60,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 a.transform.position = bi2.gameObject.transform.position;
                                 Destroy(a,effectDuration);
                                 GameManager.INSTANCE.UIManager.LifeBar.UpdatePlayer();
+                                UIManager.INSTANCE.CURRENTPLAYER = "Brody";
                                 bi2.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 break;
                             }

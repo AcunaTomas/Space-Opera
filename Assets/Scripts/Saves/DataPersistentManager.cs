@@ -15,6 +15,7 @@ public class DataPersistentManager : MonoBehaviour
     private string _fileName;
     [SerializeField]
     private string _achievementName;
+    private string _language;
 
     private GameData _gameData;
     private List<IDataPersistance> _dataPersistanceObjects;
@@ -29,7 +30,7 @@ public class DataPersistentManager : MonoBehaviour
     {
         if (INSTANCE != null)
         {
-            Debug.Log("hay más de un DataPersistenManager en juego, la re putísima madre. Pero lo destruí :)");
+            Debug.Log("hay más de un DataPersistenManager en juego. Pero lo destruí :)");
             Destroy(gameObject);
             return;
         }
@@ -66,6 +67,15 @@ public class DataPersistentManager : MonoBehaviour
     {
         _achievementsData = new AchievementsData();
         SaveAchievements();
+    }
+
+    public void SetLanguage(string newLanguage)
+    {
+        _language = newLanguage;
+    }
+    public string Language()
+    {
+        return _language;
     }
 
     public void LoadGame()

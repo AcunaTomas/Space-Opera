@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour{
 
         switch (LEVEL)
         {
+            case 15:
+                lvlDialog = LoadCSV.LVL15;
+                break;
             case 999:
                     //lvlDiag = JsonUtility.FromJson<ButtonDialogue.Zone>(LoadCSV.LVL999);
                 lvlDialog = LoadCSV.LVL999;
@@ -71,7 +74,7 @@ public class GameManager : MonoBehaviour{
                 break;
             */
             default:
-                    //lvlDiag = Boss(LoadCSV.LVL999);
+                lvlDialog = LoadCSV.LVL3;
                 //ButtonDialogueNew.SetLvlDialog(LoadCSV.LVL999);
                 break;
         }
