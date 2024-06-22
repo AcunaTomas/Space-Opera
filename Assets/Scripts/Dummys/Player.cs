@@ -593,7 +593,8 @@ public class Player : MonoBehaviour
     {
         if (!_coolingHit && HP > 0)
         {
-            HP -= damage;
+            transform.parent.GetChild(0).GetComponent<Player>().HP -= damage;
+            transform.parent.GetChild(1).GetComponent<Player>().HP -= damage;
             _animator.SetBool("IsJumping", false);
             _animator.SetTrigger("Hurt");
             if (HP <= 0)

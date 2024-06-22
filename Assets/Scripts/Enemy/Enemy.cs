@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private UnityEvent _callWhat;
     private UpdateBars _ub;
-
+    private UpdateBars _ub2;
     public bool _coolingHit = false;
     public bool _coolingHit2 = false;
 
@@ -62,7 +62,8 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         GameObject player = GameManager.INSTANCE.PLAYER;
         
-        _ub = GameObject.FindWithTag("LifeBar").GetComponent<UpdateBars>();
+        _ub =  UIManager.INSTANCE.LifeBar;
+        _ub2 = UIManager.INSTANCE.LifeBar2;
         //Physics2D.IgnoreCollision(player.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -243,7 +244,8 @@ public class Enemy : MonoBehaviour
         
         try
         {
-            _ub.EnergyPlusOne();   
+            _ub.EnergyPlusOne();
+            _ub2.EnergyPlusOne();    
         }
         catch (System.Exception)
         {
@@ -259,8 +261,14 @@ public class Enemy : MonoBehaviour
             //GetComponentInChildren<HotZoneCheck>().enabled = false;
             //GetComponentInChildren<TriggerAreaCheck>().enabled = false;
 
-            GetComponentInChildren<HotZoneCheck>().gameObject.SetActive(false);
-            GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            //GetComponentInChildren<HotZoneCheck>().gameObject.SetActive(false);
+            //GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
             GetComponent<Animator>().SetBool("CantTransition", true);
 
             gameObject.layer = LayerMask.NameToLayer("Default");

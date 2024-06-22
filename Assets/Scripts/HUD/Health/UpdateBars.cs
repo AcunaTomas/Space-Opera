@@ -19,21 +19,31 @@ public class UpdateBars : MonoBehaviour
     [SerializeField]
     private GameObject _energyBar;
     private int _playerHP;
-    private int _energy = 0;
+    public int _energy = 0;
     
     void Start()
     {
-        _player = GameManager.INSTANCE.GetActivePlayer();
+        //_player = GameManager.INSTANCE.GetActivePlayer();
         _playerHP = _player.GetMaxHP();
         SetHP();
     }
 
+    private void OnEnable() {
+        UpdateHP();
+        UpdateEnergy();
+    }
+
+    private void Update() {
+        UpdateHP();
+        UpdateEnergy();
+    }
+
     public void UpdatePlayer()
     {
-        _player = GameManager.INSTANCE.GetActivePlayer();
+        //_player = GameManager.INSTANCE.GetActivePlayer();
         _playerHP = _player.GetMaxHP();
-        transform.parent.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(!transform.parent.GetChild(0).GetChild(0).GetChild(1).gameObject.activeSelf);
-        transform.parent.GetChild(0).GetChild(3).GetChild(1).gameObject.SetActive(!transform.parent.GetChild(0).GetChild(3).GetChild(1).gameObject.activeSelf);
+        //transform.parent.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(!transform.parent.GetChild(0).GetChild(0).GetChild(1).gameObject.activeSelf);
+        //transform.parent.GetChild(0).GetChild(3).GetChild(1).gameObject.SetActive(!transform.parent.GetChild(0).GetChild(3).GetChild(1).gameObject.activeSelf);
         UpdateHP();
     }
     public void ResetHP()

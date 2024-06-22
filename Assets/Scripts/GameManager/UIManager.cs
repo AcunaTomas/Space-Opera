@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject PAUSE_MENU;
     public GameObject VFX_FADE;
     public UpdateBars LifeBar;
+
+    public UpdateBars LifeBar2;
     public string CURRENTPLAYER;
 
     void Awake()
@@ -24,11 +26,14 @@ public class UIManager : MonoBehaviour
         }
         INSTANCE = this;
 
-        transform.GetChild(7).SetSiblingIndex(1);
+        transform.GetChild(6).SetSiblingIndex(1);
 
     }
 
-
+    void Start()
+    {
+        ToggleHPBars();
+    }
     public void OpenDialogueBox(string TextID = "default")
     {
         GameManager.INSTANCE.AllMovementToggle(false);
@@ -53,7 +58,7 @@ public class UIManager : MonoBehaviour
         OBJECTIVES_DISPLAY.ChangeObjectiveBool();
     }
 
-    public void ToggleHP(bool a)
+    public void ToggleHP(bool a) //Lmao this goes unused
     {
         if (a)
         {
@@ -69,5 +74,19 @@ public class UIManager : MonoBehaviour
         DIALOGUE_TUTORIAL.UpdateLanguage();
         DIALOGUE_PANEL.UpdateLanguage();
         OBJECTIVES_DISPLAY.UpdateLanguage();
+    }
+
+    public void ToggleHPBars() //HardCoded piece of shit why do i have to do this oh my god
+    {
+        if(GameManager.INSTANCE.GetActivePlayer()._playerType == Player.PlayerType.Bito)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(true);
+            LifeBar2._energy = LifeBar._energy;
+            return;
+        }
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+        LifeBar._energy = LifeBar2._energy;
     }
 }
