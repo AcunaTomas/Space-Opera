@@ -5786,11 +5786,6 @@ Transform:
   m_Father: {fileID: 2036310506}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &474453640 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-  m_PrefabInstance: {fileID: 930884277}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &507065191
 GameObject:
   m_ObjectHideFlags: 0
@@ -5829,7 +5824,6 @@ Transform:
   - {fileID: 1436620491}
   - {fileID: 1863642818}
   - {fileID: 354520815}
-  - {fileID: 474453640}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9639,83 +9633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0.2, z: 0}
   _interactable: {fileID: 1537015597}
---- !u!1001 &930884277
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 507065192}
-    m_Modifications:
-    - target: {fileID: 8983820183254443682, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: <LaserAttack>k__BackingField.Path
-      value: event:/BRODY_SFX/AttackLaser
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183254443682, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: <LaserAttack>k__BackingField.Guid.Data1
-      value: 58928590
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183254443682, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: <LaserAttack>k__BackingField.Guid.Data2
-      value: 1289893582
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183254443682, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: <LaserAttack>k__BackingField.Guid.Data3
-      value: 2127888294
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183254443682, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: <LaserAttack>k__BackingField.Guid.Data4
-      value: -1697703662
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.420067
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.42782372
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15279423
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247283, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983820183605247285, guid: fb9862d8fae713f429415af72df74935, type: 3}
-      propertyPath: m_Name
-      value: AudioController
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fb9862d8fae713f429415af72df74935, type: 3}
 --- !u!1 &932614958
 GameObject:
   m_ObjectHideFlags: 0
@@ -23681,7 +23598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582403902560, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582421947341, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_IsActive
@@ -23930,6 +23847,90 @@ PrefabInstance:
     - target: {fileID: 5533399564409868815, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DashSound>k__BackingField.Path
+      value: event:/BITO_SFX/BITO_dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpSound>k__BackingField.Path
+      value: event:/BITO_SFX/BITO_jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Path
+      value: event:/BRODY_SFX/AttackLaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <LaserAttack>k__BackingField.Path
+      value: event:/BITO_SFX/BITO_Laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <FootstepsBrody>k__BackingField.Path
+      value: event:/CHARACTERS/Footsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DashSound>k__BackingField.Guid.Data1
+      value: 35818559
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DashSound>k__BackingField.Guid.Data2
+      value: 1230205616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DashSound>k__BackingField.Guid.Data3
+      value: 703885701
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DashSound>k__BackingField.Guid.Data4
+      value: -463431329
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpSound>k__BackingField.Guid.Data1
+      value: 1426384960
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpSound>k__BackingField.Guid.Data2
+      value: 1201387794
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpSound>k__BackingField.Guid.Data3
+      value: -908650089
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpSound>k__BackingField.Guid.Data4
+      value: -1986959065
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data1
+      value: 58928590
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data2
+      value: 1289893582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data3
+      value: 2127888294
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <ShootBrody>k__BackingField.Guid.Data4
+      value: -1697703662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <LaserAttack>k__BackingField.Guid.Data1
+      value: -757237570
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <LaserAttack>k__BackingField.Guid.Data2
+      value: 1231193498
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <LaserAttack>k__BackingField.Guid.Data3
+      value: -1642719553
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <LaserAttack>k__BackingField.Guid.Data4
+      value: 2024903629
       objectReference: {fileID: 0}
     - target: {fileID: 7382873452649697702, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: bi2

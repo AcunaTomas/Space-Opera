@@ -20,6 +20,8 @@ public class Playerererer : Player
 
     bool _touchedFloor = false;
 
+    private bool _dashSounded = false;
+
 
     public IEnumerator Dash1()
     {
@@ -91,6 +93,13 @@ public class Playerererer : Player
     {
         if (_isDashing)
         {   
+            if(!_dashSounded)
+            {
+                AudioController.instance.PlayOneShot(FMODEvents.instance.DashSound, this.transform.position);
+                _dashSounded = true;
+            }
+
+
             _animator.SetBool("Dash", true);
             _fallingTime = 0f;
             _animator.SetBool("IsJumping", false);
@@ -119,6 +128,7 @@ public class Playerererer : Player
                 _isDashing = false;
                 canIMove = true;
                 body.gravityScale = 1;
+                _dashSounded = false;
             }
         }
     }
