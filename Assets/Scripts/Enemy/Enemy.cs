@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
             attackDamage = damage;
             animator.SetTrigger("Hurt");
+            
             //CameraController.Instance.ScreenShake(.3f, .1f);
 
             if (_enemyType == EnemyType.melee)
@@ -193,12 +194,14 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Died", true);
             GetComponent<BossController>().enabled = false;
             GetComponentInChildren<HurtBoxFly>().enabled = false;
+            AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);
         }
 
         if (_enemyType == EnemyType.shoot)
         {
             animator.SetTrigger("Die");
             GetComponent<EnemyFireBehaviour>().enabled = false;
+            AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);
 
         }
 
@@ -206,6 +209,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetTrigger("Die");
             GetComponent<EnemyShootingDown>().enabled = false;
+            AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);
         }
 
         if (_enemyType == EnemyType.simple)
@@ -213,6 +217,7 @@ public class Enemy : MonoBehaviour
             //animator.SetTrigger("Die");
             GetComponent<EnemyPatrol>().enabled = false;
             GetComponentInChildren<HurtBox>().enabled = false;
+            AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);
 
             _objectToDisable.SetActive(false);
 
@@ -223,6 +228,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetTrigger("Die");
             GetComponent<EnemyShieldBehaviour>().enabled = false;
+            AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);
 
             _objectToDisable.SetActive(false);
         }

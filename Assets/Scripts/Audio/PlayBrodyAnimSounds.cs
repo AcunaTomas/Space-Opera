@@ -16,6 +16,11 @@ public class PlayBrodyAnimSounds : MonoBehaviour
 
     public void PlayJumpSound()
     {
-        AudioController.instance.PlayOneShot(FMODEvents.instance.JumpSound, this.transform.position);
+        AudioController.instance.PlayOneShot(FMODEvents.instance.JumpBrody, this.transform.position);
+    }
+
+    public void GetDamageSound()
+    {
+        AudioController.instance.PlayOneShot(FMODEvents.instance.GetDamageBrody, this.transform.position);
     }
 }

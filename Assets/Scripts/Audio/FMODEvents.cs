@@ -8,6 +8,8 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Brody")]
     [field: SerializeField] public EventReference FootstepsBrody { get; private set; }
     [field: SerializeField] public EventReference ShootBrody { get; private set; }
+    [field: SerializeField] public EventReference JumpBrody { get; private set; }
+    [field: SerializeField] public EventReference GetDamageBrody { get; private set; }
 
     [field: Header("Bito")]
     [field: SerializeField] public EventReference LaserAttack { get; private set; }
@@ -15,6 +17,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference FallingSound { get; private set; }
     [field: SerializeField] public EventReference FallSound { get; private set; }
     [field: SerializeField] public EventReference DashSound { get; private set; }
+    [field: SerializeField] public EventReference GetDamageBito { get; private set; }
 
     [field: Header("UI")]
     [field: SerializeField] public EventReference sfx_ui_navigate { get; private set; }
@@ -23,6 +26,13 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference sfx_ui_close { get; private set; }
     [field: SerializeField] public EventReference sfx_ui_save { get; private set; }
     [field: SerializeField] public EventReference sfx_ui_error { get; private set; }
+
+
+    [field: Header("Enemies")]
+    [field: SerializeField] public EventReference EnemiesDead { get; private set; }
+
+    [field: Header("General")]
+    [field: SerializeField] public EventReference GameOverMelody { get; private set; }
     
     public static FMODEvents instance { get; private set; }
 

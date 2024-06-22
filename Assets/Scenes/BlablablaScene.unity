@@ -23853,6 +23853,10 @@ PrefabInstance:
       value: event:/BITO_SFX/BITO_dash
       objectReference: {fileID: 0}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpBrody>k__BackingField.Path
+      value: event:/BRODY_SFX/BRODY_jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <JumpSound>k__BackingField.Path
       value: event:/BITO_SFX/BITO_jump
       objectReference: {fileID: 0}
@@ -23865,8 +23869,16 @@ PrefabInstance:
       value: event:/BITO_SFX/BITO_Laser
       objectReference: {fileID: 0}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBito>k__BackingField.Path
+      value: event:/BITO_SFX/BITO_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <FootstepsBrody>k__BackingField.Path
       value: event:/CHARACTERS/Footsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBrody>k__BackingField.Path
+      value: event:/BRODY_SFX/BRODY_damage
       objectReference: {fileID: 0}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <DashSound>k__BackingField.Guid.Data1
@@ -23883,6 +23895,22 @@ PrefabInstance:
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <DashSound>k__BackingField.Guid.Data4
       value: -463431329
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpBrody>k__BackingField.Guid.Data1
+      value: 1089538535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpBrody>k__BackingField.Guid.Data2
+      value: 1245230186
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpBrody>k__BackingField.Guid.Data3
+      value: -463091549
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <JumpBrody>k__BackingField.Guid.Data4
+      value: -1881552593
       objectReference: {fileID: 0}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <JumpSound>k__BackingField.Guid.Data1
@@ -23931,6 +23959,38 @@ PrefabInstance:
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <LaserAttack>k__BackingField.Guid.Data4
       value: 2024903629
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBito>k__BackingField.Guid.Data1
+      value: 1282219164
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBito>k__BackingField.Guid.Data2
+      value: 1249105932
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBito>k__BackingField.Guid.Data3
+      value: 844651436
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBito>k__BackingField.Guid.Data4
+      value: 918978221
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBrody>k__BackingField.Guid.Data1
+      value: 862684420
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBrody>k__BackingField.Guid.Data2
+      value: 1253966678
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBrody>k__BackingField.Guid.Data3
+      value: 1340511379
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <GetDamageBrody>k__BackingField.Guid.Data4
+      value: -863420466
       objectReference: {fileID: 0}
     - target: {fileID: 7382873452649697702, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: bi2
