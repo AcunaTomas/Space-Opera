@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
             return;
         }
         INSTANCE = this;
+
+        transform.GetChild(7).SetSiblingIndex(1);
+
     }
 
 
