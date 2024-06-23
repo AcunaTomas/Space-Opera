@@ -8,6 +8,9 @@ public class TimerScript : MonoBehaviour
     [SerializeField]
     private UnityEvent _callWhat;
 
+    [SerializeField]
+    private float _time = 5;
+
     void Awake()
     {
        StartCoroutine(QuePaseEltiempo());
@@ -16,7 +19,7 @@ public class TimerScript : MonoBehaviour
 
     IEnumerator QuePaseEltiempo()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(_time);
         Debug.Log("I would like to die pls");
         _callWhat.Invoke();
 
