@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
     
     public void UpdateLanguage()
     {
-        DIALOGUE_TUTORIAL.UpdateLanguage();
+        //DIALOGUE_TUTORIAL.UpdateLanguage();
         DIALOGUE_PANEL.UpdateLanguage();
         OBJECTIVES_DISPLAY.UpdateLanguage();
     }

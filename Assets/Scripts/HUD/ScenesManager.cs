@@ -41,7 +41,7 @@ public class ScenesManager : MonoBehaviour
     {
         transition.SetTrigger("SceneStart");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("VSTest");
+        SceneManager.LoadScene("CutsceneNave");
         //SceneManager.LoadScene("BlablablaScene");
     } 
 
