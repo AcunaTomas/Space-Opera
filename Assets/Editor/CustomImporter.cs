@@ -34,7 +34,7 @@ public class CustomImporter : CustomTmxImporter
         {
             for (int i = 0; i < layer.childCount; i++)
             {
-                layer.GetChild(i).gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+                layer.GetChild(i).gameObject.GetComponent<Collider2D>().isTrigger = true;
                 layer.GetChild(i).gameObject.AddComponent<ConfinerController>();
             }
         }

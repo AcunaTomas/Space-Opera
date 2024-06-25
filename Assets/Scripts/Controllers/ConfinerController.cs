@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ConfinerController : MonoBehaviour
 {
-    public PolygonCollider2D BoundingShape;
+    public Collider2D BoundingShape;
     public ConfinerController self;
     void Awake()
     {
-        BoundingShape = GetComponent<PolygonCollider2D>();
+        BoundingShape = GetComponent<Collider2D>();
         self = GetComponent<ConfinerController>();
     }
 
