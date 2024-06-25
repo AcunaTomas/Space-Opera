@@ -47,6 +47,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 UIManager.INSTANCE.CURRENTPLAYER = "Brody";
                                 brodi.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 UIManager.INSTANCE.ToggleHPBars();
+                                brodi.SetHP(bi2.GetHP());
                                 break;
                             }
                         case "Brody":
@@ -64,6 +65,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 UIManager.INSTANCE.CURRENTPLAYER = "Bito";
                                 bi2.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 UIManager.INSTANCE.ToggleHPBars();
+                                bi2.SetHP(brodi.GetHP());
                                 break;
                             }
                     }
