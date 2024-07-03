@@ -626,6 +626,8 @@ public class Player : MonoBehaviour
             dir  = dir.normalized;
             body.AddForce(new Vector2(dir.x * KnockbackDaño, 0),ForceMode2D.Impulse);
             //body.AddForce(dir.normalized  * KnockbackDaño, ForceMode2D.Impulse);
+
+            vertspid = 0f;            
             
         }
     }
@@ -742,7 +744,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator StartCooldownHurtAnim()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.166f);
 
         _animator.SetBool("HurtBool", false);
     }

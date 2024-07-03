@@ -109,16 +109,16 @@ public class PlayerCombat : MonoBehaviour
             {
                 if (_jabulaniOn)
                 {
-                    Invoke(nameof(Bomb2), -0.15f);
+                    Invoke(nameof(Bomb2), 0.15f);
                     nextBombTime = Time.time + 2f / bombRate;
                     animator.SetTrigger("Bomb2");
                 }
             }
             else if (Input.GetAxis("Fire2") > 0)
             {
-                Invoke(nameof(Bomb), 0.15f);
+                Bomb();
                 nextBombTime = Time.time + 2f / bombRate;
-                animator.SetTrigger("Bomb");
+                //animator.SetTrigger("Bomb");
             }
         }
         
@@ -354,6 +354,12 @@ public class PlayerCombat : MonoBehaviour
 
     public virtual void Bomb()
     {
+        animator.SetTrigger("Bomb");
+        Invoke(nameof(InstantiateBomb), 0.15f);
+    }
+
+    private void InstantiateBomb()
+    {
         if (spriteRenderer.flipX)
         {
             launchOffset.localPosition = new Vector2(-0.15f, 0);
@@ -364,7 +370,6 @@ public class PlayerCombat : MonoBehaviour
             launchOffset.localPosition = new Vector2(0.15f, 0);
             Instantiate(projectilePrefab, launchOffset.position, transform.rotation); //projectilePrefab
         }
-        
     }
     public virtual void Bomb2()
     {

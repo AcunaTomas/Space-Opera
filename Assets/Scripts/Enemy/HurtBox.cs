@@ -63,7 +63,7 @@ public class HurtBox : MonoBehaviour
                 
                 
             }
-            DelayMoveAgain(0.2f);
+            DelayMoveAgain(0.166f);
             Debug.Log("hit");
         }
     }

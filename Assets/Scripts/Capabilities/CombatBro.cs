@@ -19,7 +19,7 @@ public class CombatBro : PlayerCombat
 
     public override void Bomb()
     {
-        _animator.SetTrigger("idle");
+
     }
     public override void Attack()
     {
