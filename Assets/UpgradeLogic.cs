@@ -8,7 +8,7 @@ public class UpgradeLogic : MonoBehaviour
 {
     [SerializeField] GameObject upgradeW1;
     [SerializeField] GameObject upgradeW2;
-    [SerializeField] Image fade;
+    //[SerializeField] Image fade;
     [SerializeField] float _showDelay = 1f; //Cuando tarda en mostrarlo
     [SerializeField] float _fadeDelay = 1f; //cuanto tarda el fade
     [SerializeField] Animator transition;
