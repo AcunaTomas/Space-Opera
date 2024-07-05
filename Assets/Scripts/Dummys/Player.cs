@@ -638,7 +638,7 @@ public class Player : MonoBehaviour
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
         GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
-        Invoke("Respawn", 1.7f);
+        GameManager.INSTANCE.Boludos.RespawnBoludos();
         //transform.parent = null;
     }
 
@@ -652,32 +652,18 @@ public class Player : MonoBehaviour
     {
     }
 
-    void Respawn() //also this shouldn't be here, this is main game logic stuff
-    {
-        if (!_coolingRespawn)
-        {
-            body.constraints = RigidbodyConstraints2D.None;
-            body.constraints = RigidbodyConstraints2D.FreezeRotation;
-            //transform.parent = null;
-            transform.position = GameManager.INSTANCE.ACTUAL_CHECKPOINT.transform.position;
-            _animator.SetTrigger("idle");
-            _animator.SetBool("isDead", false);
-            GetComponent<PlayerCombat>().enabled = true;
-            GetComponent<Player>().enabled = true;
-            HP = MaxHP;
-            _healthBar.UpdateHP();
-            if (GameManager.INSTANCE.ACTUAL_CHECKPOINT.name == "Checkpoint2")
-            {
-                _callWhat.Invoke();
-            }
 
-            _coolingRespawn = true;
-            GameManager.INSTANCE.Boludos.ToggleCharSwitching(true);
-            StartCoroutine(StartCooldownRespawn());
-            
-        }
-        
-        
+    public void ResetVars()
+    {
+        body.constraints = RigidbodyConstraints2D.None;
+        body.constraints = RigidbodyConstraints2D.FreezeRotation;
+        transform.position = GameManager.INSTANCE.ACTUAL_CHECKPOINT.transform.position;
+        _animator.SetTrigger("idle");
+        _animator.SetBool("isDead", false);
+        GetComponent<PlayerCombat>().enabled = true;
+        GetComponent<Player>().enabled = true;
+        HP = MaxHP;
+        _healthBar.UpdateHP();
     }
 
     public void changeCallback(UnityEvent a)  

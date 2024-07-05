@@ -15,7 +15,8 @@ public class CameraController : MonoBehaviour
 
     [SerializeField]
     private float _interpolation_Speed = 0.5f;
-
+    
+    [SerializeField]
     private float _target_Size;
     
     private void Awake()
@@ -77,7 +78,7 @@ public class CameraController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_cinemachineVirtualCamera.m_Lens.OrthographicSize != _target_Size)
+        if (_cinemachineVirtualCamera.m_Lens.OrthographicSize > _target_Size || _cinemachineVirtualCamera.m_Lens.OrthographicSize < _target_Size)
         {
             _cinemachineVirtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(_cinemachineVirtualCamera.m_Lens.OrthographicSize,_target_Size,_interpolation_Speed * Time.deltaTime);
         }

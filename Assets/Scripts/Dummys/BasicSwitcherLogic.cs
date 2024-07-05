@@ -18,6 +18,8 @@ public class BasicSwitcherLogic : MonoBehaviour
     private Object effect; 
 
     private float effectDuration = 0.4f;
+
+    public float RespawnCooldown = 2f;
     void Start()
     {
         effect = Resources.Load("Prefabs/Sparkle");
@@ -48,6 +50,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 brodi.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 UIManager.INSTANCE.ToggleHPBars();
                                 brodi.SetHP(bi2.GetHP());
+                                brodi._spriteRenderer.flipX = bi2._spriteRenderer.flipX;
                                 break;
                             }
                         case "Brody":
@@ -66,19 +69,26 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 bi2.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 UIManager.INSTANCE.ToggleHPBars();
                                 bi2.SetHP(brodi.GetHP());
+                                bi2._spriteRenderer.flipX = brodi._spriteRenderer.flipX;
                                 break;
                             }
                     }
-                    
                 }
                 if (who == "Brody")
                 {
                     bi2.gameObject.transform.position = brodi.gameObject.transform.position;
+
                 }
                 else
                 {
                     brodi.gameObject.transform.position = bi2.gameObject.transform.position;
+                    if (bi2.GetOrientation() != brodi.GetOrientation())
+                    {
+                        brodi.SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
+                    }
                 }
+
+            
         }
    
 
@@ -103,4 +113,17 @@ public class BasicSwitcherLogic : MonoBehaviour
         cooldown = false;
     }
 
+    public void RespawnBoludos()
+    {
+        StartCoroutine(Respawn(RespawnCooldown));
+    }
+
+
+    IEnumerator Respawn(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+        brodi.ResetVars();
+        bi2.ResetVars();
+        ToggleCharSwitching(true);
+    }
 }

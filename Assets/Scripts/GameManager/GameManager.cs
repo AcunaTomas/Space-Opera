@@ -135,6 +135,11 @@ public class GameManager : MonoBehaviour{
         {
             _escapePressed = false;
         } 
+
+        if (!_playerScript.gameObject.activeSelf)
+        {
+            _playerScript = GetActivePlayer();
+        }
     }
 
     public void PauseUnPause(bool bl)
@@ -228,6 +233,7 @@ public class GameManager : MonoBehaviour{
 
     public void AllMovementToggle(bool a)
     {
+
         PLAYER_COMBAT = a;
         _playerScript.GetComponent<PlayerCombat>().enabled = a;
         _playerScript.MovementEnableToggle(a);
