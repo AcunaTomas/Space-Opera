@@ -6,6 +6,8 @@ public class ConfinerController : MonoBehaviour
 {
     public Collider2D BoundingShape;
     public ConfinerController self;
+
+    public float OrtoSize;
     void Awake()
     {
         BoundingShape = GetComponent<Collider2D>();
@@ -13,7 +15,7 @@ public class ConfinerController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log(other.gameObject.name);
+
         if (other.gameObject.tag == "Player")
         {
             GameManager.INSTANCE.ChangeCameras(self);
@@ -23,7 +25,7 @@ public class ConfinerController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
+
         if (other.gameObject.tag == "Player" && GameManager.INSTANCE.CameraController.GetCurrentConfiner() != BoundingShape)
         {
             GameManager.INSTANCE.ChangeCameras(self);

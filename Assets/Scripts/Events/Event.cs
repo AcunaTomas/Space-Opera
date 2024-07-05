@@ -91,8 +91,8 @@ public class Event : MonoBehaviour
             case eventType.Teleport:
                 {
                     print("Teleport");
-                    print(who);
-                    print(where);
+                    //print(who);
+                    //print(where);
                     who.gameObject.transform.position = where;
                     break;
                 }

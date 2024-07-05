@@ -35,7 +35,14 @@ public class CustomImporter : CustomTmxImporter
             for (int i = 0; i < layer.childCount; i++)
             {
                 layer.GetChild(i).gameObject.GetComponent<Collider2D>().isTrigger = true;
-                layer.GetChild(i).gameObject.AddComponent<ConfinerController>();
+                var a = layer.GetChild(i).gameObject.AddComponent<ConfinerController>();
+
+                if (layer.GetChild(i).gameObject.GetComponent<SuperCustomProperties>().TryGetCustomProperty("Size", out CustomProperty prop) == true)
+                {
+                    Debug.Log(prop.m_Value);
+                    a.OrtoSize =   float.Parse(prop.m_Value);
+                    layer.GetChild(i).gameObject.GetComponent<SuperCustomProperties>().RemoveCustomProperty("Size");
+                }
             }
         }
 

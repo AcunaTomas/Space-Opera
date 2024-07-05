@@ -9,11 +9,20 @@ public class CameraController : MonoBehaviour
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     public CinemachineConfiner _confiner;
     private float shakeTimer;
+
+    [SerializeField]
+    private float _default_Size = 1.3f;
+
+    [SerializeField]
+    private float _interpolation_Speed = 0.5f;
+
+    private float _target_Size;
     
     private void Awake()
     {
         Instance = this;
         _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        _target_Size = _default_Size;
     }
 
     public void LookDown()
@@ -62,11 +71,16 @@ public class CameraController : MonoBehaviour
             _confiner.m_Damping = 0.5f;
             _confiner.m_BoundingShape2D = Shape.BoundingShape;
             _confiner.InvalidatePathCache();
+            _target_Size = Shape.OrtoSize;
         }
-        
+        Debug.Log(_target_Size);
     }
     private void FixedUpdate()
     {
+        if (_cinemachineVirtualCamera.m_Lens.OrthographicSize != _target_Size)
+        {
+            _cinemachineVirtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(_cinemachineVirtualCamera.m_Lens.OrthographicSize,_target_Size,_interpolation_Speed * Time.deltaTime);
+        }
         if (_confiner.m_Damping > 0)
         {
             _confiner.m_Damping -= 0.01f;
