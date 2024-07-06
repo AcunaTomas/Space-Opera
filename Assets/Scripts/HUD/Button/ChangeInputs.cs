@@ -33,6 +33,7 @@ public class ChangeInputs : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(gameObject.name);
         _connectedControllerCount = 0;
         foreach (string name in Input.GetJoystickNames())
         {

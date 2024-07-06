@@ -327,9 +327,10 @@ public class Enemy : MonoBehaviour
     {
         if(knockbackRecibido > 0)
         {
-            Debug.Log("KnockbackEnem");
+            
             Vector2 dir = (Vector2)transform.position - sourcePosition;
             dir = dir.normalized;
+            //Debug.Log("KnockbackEnem" + dir.x * knockbackRecibido);
             GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * knockbackRecibido, 0), ForceMode2D.Impulse);
         }
     }

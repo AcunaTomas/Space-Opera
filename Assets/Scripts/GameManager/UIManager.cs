@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager INSTANCE;
     public ButtonDialogueNew DIALOGUE_PANEL;
-    public TutorialTextManager DIALOGUE_TUTORIAL;
+    public GameObject CANVASWORLDSPACE;
     public ObjectivesManager OBJECTIVES_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
     public GameObject UPGRADE;
@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     public UpdateBars LifeBar2;
     public string CURRENTPLAYER;
+    [SerializeField]bool _moveAfterDialogue;
 
     void Awake()
     {
@@ -39,9 +40,12 @@ public class UIManager : MonoBehaviour
         GameManager.INSTANCE.AllMovementToggle(false);
         DIALOGUE_PANEL.ZONENAME = TextID;
         DIALOGUE_PANEL.gameObject.SetActive(true);
-        DIALOGUE_PANEL.FirstDialogue(CollisionDialogue.ChangeAudio.dialogo);
+        DIALOGUE_PANEL.FirstDialogue(CollisionDialogue.ChangeAudio.dialogo, _moveAfterDialogue);
     }
-
+    public void MoveAfterDialogue(bool yorn = true) //do before
+    {
+        _moveAfterDialogue = yorn;
+    }
     public bool DialogueBoxStatus()
     {
         return DIALOGUE_PANEL.gameObject.activeSelf;
@@ -74,6 +78,7 @@ public class UIManager : MonoBehaviour
         //DIALOGUE_TUTORIAL.UpdateLanguage();
         DIALOGUE_PANEL.UpdateLanguage();
         OBJECTIVES_DISPLAY.UpdateLanguage();
+        CANVASWORLDSPACE.BroadcastMessage("UpdateLanguage",SendMessageOptions.DontRequireReceiver);
     }
 
     public void ToggleHPBars() //HardCoded piece of shit why do i have to do this oh my god

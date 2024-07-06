@@ -117,6 +117,16 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
+            if(UIManager.INSTANCE.CURRENTPLAYER == "Brody")
+            {
+                gameObject.GetComponent<Animator>().SetBool("isBrody", true);
+                gameObject.GetComponent<Animator>().SetBool("isBito", false);
+            }
+            else
+            {
+                gameObject.GetComponent<Animator>().SetBool("isBito", true);
+                gameObject.GetComponent<Animator>().SetBool("isBrody", false);       
+            }
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(2).gameObject.SetActive(false);

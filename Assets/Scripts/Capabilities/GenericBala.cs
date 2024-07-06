@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GenericBala : MonoBehaviour
@@ -34,43 +36,43 @@ public class GenericBala : MonoBehaviour
       
        if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
        {
-          body.AddForce(new Vector2(directionX * -15 ,directionY * 150));
+          body.AddForce(new Vector2(directionX * -1.5f ,directionY * 15f));
        }
        else if (directionX == 10)
        {
-          body.AddForce(new Vector2(directionX * 15 ,directionY * 150));
+          body.AddForce(new Vector2(directionX * 1.5f ,directionY * 15f));
        }
        else if (directionX == 0 && directionY > 0 && directionY <= 1)
        {
-         body.AddForce(new Vector2(0, 150));
+         body.AddForce(new Vector2(0, 15f));
        }
        else if (directionX == 0 && directionY < 0)
        {
-         body.AddForce(new Vector2(0, -150));
+         body.AddForce(new Vector2(0, -15f));
        }
        else if (directionY == 0 && directionX > 0 && directionX <= 1)
        {
-         body.AddForce(new Vector2(150, 0));
+         body.AddForce(new Vector2(15f, 0));
        }
        else if (directionY == 0 && directionX < 0)
        {
-         body.AddForce(new Vector2(-150, 0));
+         body.AddForce(new Vector2(-15f, 0));
        }
        else if (directionX > 0 && directionX <= 1 && directionY > 0 && directionY <= 1)
        {
-         body.AddForce(new Vector2(150, 150));
+         body.AddForce(new Vector2(15f, 15f));
        }
        else if (directionX < 0 && directionY < 0)
        {
-         body.AddForce(new Vector2(-150, -150));
+         body.AddForce(new Vector2(-15f, -15f));
        }
        else if (directionX > 0 && directionY < 0)
        {
-         body.AddForce(new Vector2(150, -150));
+         body.AddForce(new Vector2(15f, -15f));
        }
        else if (directionX < 0 && directionY > 0)
        {
-         body.AddForce(new Vector2(-150, 150));
+         body.AddForce(new Vector2(-15f, 15f));
        }
 
 
@@ -134,7 +136,7 @@ public class GenericBala : MonoBehaviour
         {
           try
           {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(damages, gameObject.transform.position);
+            other.gameObject.GetComponent<Enemy>().TakeDamage(damages, new Vector2(Math.Abs(other.gameObject.transform.position.x), Math.Abs(other.gameObject.transform.position.y)));
           }
           catch
           {
