@@ -128,7 +128,7 @@ void Attack()
 
 IEnumerator AtaquePosta()
 {
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0.7f);
     AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesAttack, this.transform.position);
     if (transform.position.x > target.position.x)
     {
