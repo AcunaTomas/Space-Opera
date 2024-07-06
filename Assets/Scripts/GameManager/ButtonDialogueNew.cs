@@ -117,10 +117,11 @@ public class ButtonDialogueNew : MonoBehaviour
         //Debug.Log("ZoneName " + ZONENAME + " Length xd: " + ListaDialogo.list.Length);
     }
     
-    public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio)
+    public void FirstDialogue(CollisionDialogue.ChangeAudio _changeAudio, bool MoveAfterDialogue)
     {
         _buttonPressed = false;
         Debug.Log("ZoneName First Dialogue:" + ZONENAME);
+        _playerMovesAfterDialogue = MoveAfterDialogue;
         if (_notFirstDialogue == false)
         {
             StartCoroutine(UnFold());
@@ -158,7 +159,7 @@ public class ButtonDialogueNew : MonoBehaviour
             {
                 _dialogueDeactivate.SetActive(false);
             }
-            GameManager.INSTANCE.AllMovementToggle(true);
+            GameManager.INSTANCE.AllMovementToggle(_playerMovesAfterDialogue);
             return;
         }
 
@@ -273,15 +274,15 @@ public class ButtonDialogueNew : MonoBehaviour
 
         try
         {
-            _player.GetComponent<Player>().enabled = _playerMovesAfterDialogue;
-            if (GameManager.INSTANCE.PLAYER_COMBAT)
-            {
-                _player.GetComponent<PlayerCombat>().enabled = true;
-            }
-            else
-            {
-                _player.GetComponent<PlayerCombat>().enabled = false;
-            }
+            //_player.GetComponent<PlayerCombat>().enabled = _playerMovesAfterDialogue;
+            // if (GameManager.INSTANCE.PLAYER_COMBAT)
+            // {
+            //     _player.GetComponent<PlayerCombat>().enabled = true;
+            // }
+            // else
+            // {
+            //     _player.GetComponent<PlayerCombat>().enabled = false;
+            // }
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         catch (System.Exception e)
