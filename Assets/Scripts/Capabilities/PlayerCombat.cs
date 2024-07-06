@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -60,6 +61,9 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     private bool hitsomething = false;
 
+    private float hitCooldown = 0.1f;
+    private float lastHitTime;
+
 
     public bool _canHack;
 
@@ -77,6 +81,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Debug.Log($"Update: isAttackActive={isAttackActive}, _attackCount={_attackCount}, hitSomething={hitsomething}");
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") == 0) && (Input.GetAxis("Vertical") == 0))
@@ -151,6 +156,7 @@ public class PlayerCombat : MonoBehaviour
                 else
                 {
                     _attackCount = 1;
+                    hitsomething = false;
                 }
             }
             else
@@ -158,19 +164,24 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
                 foreach (Collider2D enemyCollider in hitEnemies)
                 {
-                    if (_attackCount >= 3)
+                    if (Time.time - lastHitTime >= hitCooldown)
                     {
-                        enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo, transform.position);
-                        KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
-                        CameraController.Instance.ScreenShake(.3f, .1f);
+                        if (_attackCount >= 3)
+                        {
+                            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo, transform.position);
+                            KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
+                            CameraController.Instance.ScreenShake(.3f, .1f);
+                        }
+                        else
+                        {
+                            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage, transform.position);
+                            KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
+                            hitsomething = true;
+                        }
+                        hitsomething = true;
+                        lastHitTime = Time.time;
                     }
-                    else
-                    {
-                        enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage, transform.position);
-                    KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
-                        
-                    }
-                    hitsomething = true;
+                    
                 }
 
                 Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyGunLayers);
@@ -271,8 +282,9 @@ public class PlayerCombat : MonoBehaviour
 
         if (_attackAnimTimer >= _attackAnimDelay)
         {
-            _attackCount = 1; 
-            _attackAnimTimer = 0f;  
+            _attackCount = 1;
+            hitsomething = false;
+            _attackAnimTimer = 0f;
         }  
 
     }
@@ -289,7 +301,11 @@ public class PlayerCombat : MonoBehaviour
         {
             attackPoint.localPosition = new Vector2(0.15f, 0);
             //attackPointVisual.localPosition = new Vector2(-0.15f, 0);
-        }   
+        }
+        
+        _attackAnimTimer = 0f;
+        hitsomething = false;
+        
 
         if (_attackCount == 1)
         {
