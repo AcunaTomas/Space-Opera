@@ -81,7 +81,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log($"Update: isAttackActive={isAttackActive}, _attackCount={_attackCount}, hitSomething={hitsomething}");
+        //Debug.Log($"Update: isAttackActive={isAttackActive}, _attackCount={_attackCount}, hitSomething={hitsomething}");
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") == 0) && (Input.GetAxis("Vertical") == 0))

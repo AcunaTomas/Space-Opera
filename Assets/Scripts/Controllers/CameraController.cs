@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
             _confiner.InvalidatePathCache();
             _target_Size = Shape.OrtoSize;
         }
-        Debug.Log(_target_Size);
+        //Debug.Log(_target_Size);
     }
     private void FixedUpdate()
     {
