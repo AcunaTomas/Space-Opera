@@ -43,6 +43,11 @@ public class HotZoneCheckShooting : MonoBehaviour
             enemyParent.triggerArea.SetActive(true);
             enemyParent.inRange = false;
             animator.SetBool("Run", false);
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn"))
+            {
+                animator.SetTrigger("Idle");
+            }
+            
         }
     }
 }

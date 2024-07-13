@@ -284,6 +284,7 @@ public class Enemy : MonoBehaviour
         if (_enemyType == EnemyType.gun)
         {
             GetComponent<EnemyShooting2>().enabled = false;
+            animator.SetBool("isDead", true);
         }
 
         try

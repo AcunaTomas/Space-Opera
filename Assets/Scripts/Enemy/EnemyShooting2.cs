@@ -61,14 +61,23 @@ void EnemyLogic()
 {
     if (Vector2.Distance(transform.position, _playerPos.position) > _distanciaFrenado)
     {
-        transform.position = Vector2.MoveTowards(transform.position, _playerPos.position, _speed * Time.deltaTime);
         animator.SetBool("Run", true);
+        animator.SetBool("Alert", true);
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+        {
+            transform.position = Vector2.MoveTowards(transform.position, _playerPos.position, _speed * Time.deltaTime);
+        }
     }
 
     if (Vector2.Distance(transform.position, _playerPos.position) < _distanciaRetroceso)
     {
-        transform.position = Vector2.MoveTowards(transform.position, _playerPos.position, -_speed * Time.deltaTime);
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+        {
+            transform.position = Vector2.MoveTowards(transform.position, _playerPos.position, -_speed * Time.deltaTime);
+        }
+        
         animator.SetBool("Run", true);
+        //animator.SetBool("Alert", true);
             
     }
 
@@ -78,7 +87,7 @@ void EnemyLogic()
         animator.SetBool("Run", false);
     }
 
-    if (cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+    if (cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_idle"))
     {
         if (timerAttack > attackDelay)
         {
@@ -107,6 +116,7 @@ void Attack()
 
     animator.SetBool("Run", false);
     animator.SetBool("Attack", true);
+    animator.SetTrigger("Shoot");
     Instantiate(_bullet, _bulletSource.position, Quaternion.identity);
     _bullet.SetActive(true);
     //AudioManager.INSTANCE.PlayEnemyAttack();  SONIDO DE ATAQUE
@@ -137,6 +147,7 @@ void StopAttack()
 {
     attackMode = false;
     animator.SetBool("Attack", false);
+    animator.SetTrigger("Idle");
 }
 
 public void TriggerCooling()
