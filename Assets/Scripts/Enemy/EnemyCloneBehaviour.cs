@@ -24,7 +24,7 @@ public class EnemyCloneBehaviour : MonoBehaviour
     private float intTimer;
     private GameObject player;
     private float timerAttack;
-    private float attackDelay = 1f;
+    private float attackDelay = 0f;
 
 
 void Awake()
@@ -110,15 +110,19 @@ void Attack()
 IEnumerator AtaquePosta()
 {
     yield return new WaitForSeconds(0.4f);
-    AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesAttack, this.transform.position);
-    if (transform.position.x > target.position.x)
+    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Clone_attack"))
     {
-        attackPointFlip.gameObject.SetActive(true);
+        AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesAttack, this.transform.position);
+        if (transform.position.x > target.position.x)
+        {
+            attackPointFlip.gameObject.SetActive(true);
+        }
+        else
+        {
+            attackPoint.gameObject.SetActive(true);
+        }
     }
-    else
-    {
-        attackPoint.gameObject.SetActive(true);
-    }
+    
     yield return new WaitForSeconds(0.001f);
     
     animator.SetBool("Attack", false);
