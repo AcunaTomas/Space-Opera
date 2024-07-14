@@ -52,6 +52,9 @@ public class HurtBox : MonoBehaviour
                     case Enemy.EnemyType.gun:
                         Debug.Log("pistola");
                         break;
+                    case Enemy.EnemyType.clone:
+                        transform.parent.gameObject.GetComponent<EnemyCloneBehaviour>().DONTMOVE = true;
+                        break;
                     default:
                         break;
                 }
@@ -83,6 +86,9 @@ public class HurtBox : MonoBehaviour
                     break;
                 case Enemy.EnemyType.gun:
                     Debug.Log("pistola");
+                    break;
+                case Enemy.EnemyType.clone:
+                    transform.parent.gameObject.GetComponent<EnemyCloneBehaviour>().DONTMOVE = false;
                     break;
                 default:
                     break;

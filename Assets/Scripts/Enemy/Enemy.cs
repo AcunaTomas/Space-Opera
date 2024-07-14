@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
         boss,
         shield,
         gunTower,
+
+        clone,
     }
 
     [SerializeField]
@@ -94,6 +96,10 @@ public class Enemy : MonoBehaviour
             {
                 GetComponent<EnemyShootingDown>().enabled = false;
             }
+            if (_enemyType == EnemyType.clone)
+            {
+                GetComponent<EnemyCloneBehaviour>().enabled = false;
+            }
 
             if (_enemyType == EnemyType.simple)
             {
@@ -145,6 +151,10 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.gunTower)
             {
                 GetComponent<EnemyShootingDown>().enabled = false;
+            }
+            if (_enemyType == EnemyType.clone)
+            {
+                GetComponent<EnemyCloneBehaviour>().enabled = false;
             }
 
 
@@ -235,18 +245,13 @@ public class Enemy : MonoBehaviour
             _objectToDisable.SetActive(false);
         }
 
-        if (attackDamage < 50)
+        if (_enemyType == EnemyType.clone)
         {
-            animator.SetTrigger("Die");
+            GetComponent<EnemyCloneBehaviour>().enabled = false;
+            GetComponent<Animator>().SetBool("CantTransition", true);
         }
-        else
-        {
-            if (_enemyType == EnemyType.melee || _enemyType == EnemyType.gun)
-            {
-                //AchievementsManager.INSTANCE.Achievement04();
-                animator.SetTrigger("DieBomb");
-            }    
-        }
+
+        animator.SetTrigger("Die");
         
         try
         {
@@ -320,6 +325,10 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.gunTower)
             {
                 GetComponent<EnemyShootingDown>().enabled = true;
+            }
+            if (_enemyType == EnemyType.clone)
+            {
+                GetComponent<EnemyCloneBehaviour>().enabled = true;
             }
         }   
     }
