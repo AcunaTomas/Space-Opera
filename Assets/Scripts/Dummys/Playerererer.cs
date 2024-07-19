@@ -15,7 +15,7 @@ public class Playerererer : Player
     private float _dashTime = 0.2f;
 
 
-    float dashRate = 2f;
+    //float dashRate = 2f;
     float nextDashTime = 0f;
 
     bool _touchedFloor = false;

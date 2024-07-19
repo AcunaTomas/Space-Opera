@@ -114,7 +114,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 if (_jabulaniOn)
                 {
-                    Invoke(nameof(Bomb2), 0.15f);
+                    Invoke(nameof(Bomb2), 1.25f);
                     nextBombTime = Time.time + 2f / bombRate;
                     animator.SetTrigger("Bomb2");
                 }

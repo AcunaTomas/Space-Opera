@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D body;
     [SerializeField]
     public float jumpLimit = 0f;
-    private bool justLanded;
+
     [SerializeField]
     public float Xspeed = 0f;
     
@@ -322,8 +322,8 @@ public class Player : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision) //Handles collisions, both vertical and horizontal, and changes the "state" (Read: I have not explicitly defined them because I'm an idiot and it would have been easier that way but didn't do that due to a fear of mixed state bugs that happened anyway so why did I not define states in the first place fuck) accordingly
     {
-        Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
-        Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
+        //Debug.DrawRay(new Vector2(0,0), collision.GetContact(0).normal * -1, Color.red);
+        //Debug.DrawRay(transform.position, transform.position.normalized, Color.green);
         ContactPoint2D[] contacts= new ContactPoint2D[8]; //Realistically, the maximum should be around 6, but I want to be careful
         collision.GetContacts(contacts);
 
@@ -442,7 +442,7 @@ public class Player : MonoBehaviour
             {
                 if (contact.point.y <= transform.position.y)
                 {
-                    justLanded = false;
+
                     canIjump = true;
                     wallijumpy = false;
                     extrajumpcount = 2;

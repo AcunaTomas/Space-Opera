@@ -71,11 +71,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c4c2e8502b43ef64fa8dae0d6fed497c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-7344408648342331455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,12 +97,13 @@ MonoBehaviour:
     m_Bits: 262144
   bombRange: 0.33
   bombDamage: 80
-  speed: 2
+  speed: 1
   launchOffset: {x: 0, y: 0, z: 0}
   thrown: 1
   rb: {fileID: 8575101613034309097}
   animator: {fileID: 1513756975230739785}
-  bombDuration: 0.5
+  _lifetime: 15
+  _explosionDuration: 0.5
 --- !u!212 &547076544165052639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ Animator:
   m_GameObject: {fileID: 4681821287026531398}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8d25c4c5f34e14b4e93c2b3129a294c2, type: 2}
+  m_Controller: {fileID: 9100000, guid: fae6255491e27a04fbd0b27dc607ccfb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
