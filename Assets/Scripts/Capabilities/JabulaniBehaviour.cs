@@ -49,8 +49,7 @@ public class JabulaniBehaviour : MonoBehaviour
 
     public void FixedUpdate()
     {
-        Debug.Log(rb.velocity);
-        Debug.Log(_direction);
+       
         if (canMove)
         {
             rb.AddForce(_direction * speed, ForceMode2D.Force);
@@ -87,10 +86,12 @@ public class JabulaniBehaviour : MonoBehaviour
             animator.SetTrigger("Explode");
             collision.gameObject.GetComponent<Enemy>().TakeDamage(bombDamage, transform.position);
             Destroy(gameObject, _explosionDuration);
+            GameManager.INSTANCE.GetActivePlayer().gameObject.GetComponent<PlayerCombat>()._jabulaniActive = false;
         }
 
         if (!_coolingCollision)
         {
+            canMove = false;
             Destroy(gameObject, _lifetime);
 
             _coolingCollision = true;
@@ -109,10 +110,30 @@ public class JabulaniBehaviour : MonoBehaviour
         
     }
 
+    private void ForceExplode()
+    {
+        canMove = false;
+        animator.SetTrigger("Explode");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyLayers);
+            
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
+        }
+
+        Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyGunLayers);
+        foreach (Collider2D enemyGunCollider in hitEnemiesGun)
+        {
+            enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
+        }
+        
+        Destroy(gameObject, _explosionDuration);
+    }
+
     private IEnumerator StartCooldown()
     {
         yield return new WaitForSeconds(_lifetime - _explosionDuration);
-
+        GameManager.INSTANCE.GetActivePlayer().gameObject.GetComponent<PlayerCombat>()._jabulaniActive = false;
         animator.SetTrigger("Explode");
         GetComponent<FMODUnity.StudioEventEmitter>().Play();
 

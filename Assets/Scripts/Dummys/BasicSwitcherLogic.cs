@@ -69,6 +69,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 bi2.gameObject.GetComponent<SpriteRenderer>().color += new Color (0, 0, 0, 100);
                                 UIManager.INSTANCE.ToggleHPBars();
                                 bi2.SetHP(brodi.GetHP());
+                                bi2.gameObject.GetComponent<PlayerCombat>()._jabulaniActive = false;
                                 bi2._spriteRenderer.flipX = brodi._spriteRenderer.flipX;
                                 break;
                             }

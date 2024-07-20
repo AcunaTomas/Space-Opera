@@ -67,6 +67,8 @@ public class PlayerCombat : MonoBehaviour
 
     public bool _canHack;
 
+    public bool _jabulaniActive = false;
+
 
     public bool GetSpriteRend()
     {
@@ -79,6 +81,27 @@ public class PlayerCombat : MonoBehaviour
         GameObject attackVisualUp = GameObject.FindWithTag("AttackVisualUp");
         GameObject attackVisualDown = GameObject.FindWithTag("AttackVisualDown");
     }
+
+    void Update()
+    {
+            if (Input.GetButtonDown("Fire3"))
+            {
+                if (_jabulaniOn && _jabulaniActive == false)
+                {
+                    Invoke(nameof(Bomb2), 1.25f);
+                    nextBombTime = Time.time + 2f / bombRate;
+                    animator.SetTrigger("Bomb2");
+                    _jabulaniActive = true;
+                }
+                else
+                {
+                    _jabulaniActive = false;
+                    GameObject.FindWithTag("Bomb").SendMessage("ForceExplode", SendMessageOptions.DontRequireReceiver);
+                    
+                }
+            }
+    }
+
     void FixedUpdate()
     {
         //Debug.Log($"Update: isAttackActive={isAttackActive}, _attackCount={_attackCount}, hitSomething={hitsomething}");
@@ -110,16 +133,8 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextBombTime)
         {
-            if (Input.GetAxis("Fire2") > 0 && (Input.GetAxis("Vertical") < 0))
-            {
-                if (_jabulaniOn)
-                {
-                    Invoke(nameof(Bomb2), 1.25f);
-                    nextBombTime = Time.time + 2f / bombRate;
-                    animator.SetTrigger("Bomb2");
-                }
-            }
-            else if (Input.GetAxis("Fire2") > 0)
+
+            if (Input.GetAxis("Fire2") > 0)
             {
                 Bomb();
                 nextBombTime = Time.time + 2f / bombRate;
