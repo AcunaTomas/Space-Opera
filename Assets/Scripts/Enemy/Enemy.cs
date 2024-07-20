@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private bool _Inmortal = false;
-    private bool isDead;
+    private bool isDead, isFromWave;
 
     public bool _MakeFunctionCallOnDie;
     
@@ -199,7 +199,12 @@ public class Enemy : MonoBehaviour
             //AchievementsManager.INSTANCE.YouFuckingKilledAnimals();
         }
         isDead = true;
-
+        if(isFromWave) //Logica oleada
+        {
+            WaveLogic wl = FindAnyObjectByType<WaveLogic>();
+            wl.OnEnemyKilled();
+        }
+        
         if (_enemyType == EnemyType.boss)
         {
             animator.SetTrigger("Die");
@@ -369,5 +374,10 @@ public class Enemy : MonoBehaviour
         GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
         GetComponentInChildren<HotZoneCheck>().enabled = false;
         GetComponentInChildren<TriggerAreaCheck>().enabled = false;
+    }
+
+    public void IsFromWave()
+    {
+        isFromWave = true;
     }
 }
