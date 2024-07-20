@@ -401,50 +401,46 @@ MonoBehaviour:
   waves:
   - waveName: Puente1
     enemyGroups:
-    - enemyName: Bala
-      enemyCount: 2
+    - enemyName: Shield
+      enemyCount: 6
       spawnCount: 0
-      enemyPrefab: {fileID: 1430123722234393770, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
-      relativeSpawnPoints:
-      - {fileID: 167820188}
+      enemyPrefab: {fileID: 3656869022965653570, guid: 0de8684031165c44c8c20052baba399e, type: 3}
+      SpawnPoint: {fileID: 167820188}
     - enemyName: Melee
-      enemyCount: 1
+      enemyCount: 6
       spawnCount: 0
       enemyPrefab: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
-      relativeSpawnPoints:
-      - {fileID: 167820188}
+      SpawnPoint: {fileID: 1294247150}
     waveQuota: 0
-    spawnInterval: 0.2
+    spawnInterval: 0
     spawnCount: 0
+    isOn: 1
   - waveName: Puente2
     enemyGroups:
     - enemyName: Bala
       enemyCount: 2
       spawnCount: 0
       enemyPrefab: {fileID: 1430123722234393770, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
-      relativeSpawnPoints:
-      - {fileID: 1975639040}
+      SpawnPoint: {fileID: 1975639040}
     - enemyName: Melee
       enemyCount: 1
       spawnCount: 0
       enemyPrefab: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
-      relativeSpawnPoints:
-      - {fileID: 1975639040}
+      SpawnPoint: {fileID: 1975639040}
     - enemyName: Bala
       enemyCount: 2
       spawnCount: 0
       enemyPrefab: {fileID: 1430123722234393770, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
-      relativeSpawnPoints:
-      - {fileID: 167820188}
+      SpawnPoint: {fileID: 1975639040}
     - enemyName: Melee
       enemyCount: 1
       spawnCount: 0
       enemyPrefab: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
-      relativeSpawnPoints:
-      - {fileID: 167820188}
+      SpawnPoint: {fileID: 0}
     waveQuota: 0
-    spawnInterval: 0.2
+    spawnInterval: 0
     spawnCount: 0
+    isOn: 0
   currentWaveCount: 0
   enemiesAlive: 0
   waveInterval: 300
@@ -461,6 +457,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 167820188}
+  - {fileID: 1294247150}
   - {fileID: 1975639040}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -2272,6 +2269,37 @@ MonoBehaviour:
   AutoActivate: 0
   Execution_Delay: 0
   options: 3
+--- !u!1 &1294247149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294247150}
+  m_Layer: 0
+  m_Name: SpawnPoint1.1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1294247150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294247149}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1, y: -2.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311736323}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1307626340
 GameObject:
   m_ObjectHideFlags: 0
@@ -4522,7 +4550,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 311736323}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2046950951
 GameObject:
@@ -5492,7 +5520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.593913
+      value: -13.592559
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y

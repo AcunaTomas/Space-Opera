@@ -12,6 +12,7 @@ public class WaveLogic : MonoBehaviour
         public int waveQuota; //La cantidad de enemigos spawnean en la wave
         public float spawnInterval; //El intervalo al que se spawnean enemigos(tiempo)
         public int spawnCount; //El numero de enemigos que hayan spawneado en la wave
+        public bool isOn;
     }
 
     [System.Serializable]
@@ -21,8 +22,8 @@ public class WaveLogic : MonoBehaviour
         public int enemyCount; //Cantidad de enemigos que spawnean
         public int spawnCount; //El numero de enemigos que hayan spawneado en la wave
         public GameObject enemyPrefab;
-        [Header("Spawn Positions")]
-        public List<Transform> relativeSpawnPoints; //Lista de puntos de spawns de los enemigos
+        [Header("Spawn Position")]
+        public Transform SpawnPoint; //Pasarlo a lista de puntos de spawns de los enemigos si queremos random
     }
     public List<Wave> waves;    //Una lista con todas las waves en el juego
     public int currentWaveCount; //El index de la wave (Las listas arrancan de 0)
@@ -46,7 +47,7 @@ public class WaveLogic : MonoBehaviour
     void Update()
     {
         Debug.Log("currentWaveCount: "+currentWaveCount);
-        if(currentWaveCount < waves.Count)
+        if(currentWaveCount < waves.Count && waves[currentWaveCount].isOn)
         {
             if (waves[currentWaveCount].spawnCount == 0 || enemiesAlive <= 0)
             {
@@ -102,8 +103,7 @@ public class WaveLogic : MonoBehaviour
                     //     return;
                     // }
 
-                    //Spawnea el enemigo en una posición random fuera de la cámara del jugador
-                    GameObject enemyRef = Instantiate(enemyGroup.enemyPrefab, enemyGroup.relativeSpawnPoints[Random.Range(0, enemyGroup.relativeSpawnPoints.Count)].position, Quaternion.identity);
+                    GameObject enemyRef = Instantiate(enemyGroup.enemyPrefab, enemyGroup.SpawnPoint.position, Quaternion.identity);
                     enemyRef.GetComponent<Enemy>().IsFromWave();
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;
