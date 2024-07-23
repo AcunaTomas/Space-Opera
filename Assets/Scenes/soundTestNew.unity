@@ -9698,6 +9698,7 @@ GameObject:
   - component: {fileID: 1463393641}
   - component: {fileID: 1463393651}
   - component: {fileID: 1463393652}
+  - component: {fileID: 1463393653}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -10021,6 +10022,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ecdaea55159e4469171487456f942b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1463393653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463393639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1958412958
+      Data2: 1144267838
+      Data3: -739054432
+      Data4: -2128542700
+    Path: event:/CHARACTERS/General/Transition
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1480978119
 GameObject:
   m_ObjectHideFlags: 0
@@ -12898,6 +12930,7 @@ GameObject:
   - component: {fileID: 1763975260}
   - component: {fileID: 1763975259}
   - component: {fileID: 1763975270}
+  - component: {fileID: 1763975271}
   m_Layer: 9
   m_Name: BrothyTest
   m_TagString: Player
@@ -13247,6 +13280,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06839a51b21594342a94649d78e24f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1763975271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763975257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1958412958
+      Data2: 1144267838
+      Data3: -739054432
+      Data4: -2128542700
+    Path: event:/CHARACTERS/General/Transition
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1771392103
 GameObject:
   m_ObjectHideFlags: 0
@@ -17160,6 +17224,10 @@ PrefabInstance:
       value: event:/BRODY_SFX/Brody_JUMP
       objectReference: {fileID: 0}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DoubleJump>k__BackingField.Path
+      value: event:/BRODY_SFX/Brody_DoubleJUMP
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <GetDamageBito>k__BackingField.Path
       value: event:/BITO_SFX/BITO_hurt
       objectReference: {fileID: 0}
@@ -17182,6 +17250,22 @@ PrefabInstance:
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <JumpBrody>k__BackingField.Guid.Data4
       value: -592113453
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DoubleJump>k__BackingField.Guid.Data1
+      value: 816810469
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DoubleJump>k__BackingField.Guid.Data2
+      value: 1265268053
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DoubleJump>k__BackingField.Guid.Data3
+      value: 976274057
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: <DoubleJump>k__BackingField.Guid.Data4
+      value: -1782342208
       objectReference: {fileID: 0}
     - target: {fileID: 6807386856410274369, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: <GetDamageBito>k__BackingField.Guid.Data1

@@ -210,6 +210,7 @@ public class Player : MonoBehaviour
         {
             vertspid = _jumpImpulse;
             _animator.SetBool("IsJumping", true);
+            AudioController.instance.PlayOneShot(FMODEvents.instance.JumpBrody, this.transform.position);
             canIjump = false;
             return;
         }
@@ -246,6 +247,7 @@ public class Player : MonoBehaviour
         extrajumpcount -= 1;
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("DoubleJump");
+        AudioController.instance.PlayOneShot(FMODEvents.instance.DoubleJump, this.transform.position);
 
         //acá hay que hacer el instantiate de Brody double jump
         //_effectAnimator.SetTrigger("Effect");

@@ -9,6 +9,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference FootstepsBrody { get; private set; }
     [field: SerializeField] public EventReference ShootBrody { get; private set; }
     [field: SerializeField] public EventReference JumpBrody { get; private set; }
+    [field: SerializeField] public EventReference DoubleJump { get; private set; }
     [field: SerializeField] public EventReference GetDamageBrody { get; private set; }
 
     [field: Header("Bito")]
