@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 97144891}
   - component: {fileID: 97144890}
   - component: {fileID: 97144893}
+  - component: {fileID: 97144894}
   m_Layer: 0
   m_Name: bg_enemyspaceship_01_0
   m_TagString: Untagged
@@ -258,6 +259,37 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _time: 5
+--- !u!114 &97144894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97144889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2051307184
+      Data2: 1308955803
+      Data3: -1787649903
+      Data4: 1103644532
+    Path: event:/OBJECTS/Enemy_MotherShip
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &193609232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1039,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077488939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
