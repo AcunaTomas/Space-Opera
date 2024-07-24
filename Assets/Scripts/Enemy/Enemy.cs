@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     public Animator animator;
     public int maxHealth = 100;
-    int currentHealth;
+    [HideInInspector] public int currentHealth;
     private GameObject player;
     private int attackDamage;
 
@@ -232,6 +232,7 @@ public class Enemy : MonoBehaviour
         if (_enemyType == EnemyType.simple)
         {
             animator.SetTrigger("Die");
+            GetComponent<EnemyPatrol>().attackSound.SetActive(false);
             GetComponent<EnemyPatrol>().enabled = false;
             GetComponentInChildren<HurtBox>().enabled = false;
             AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);

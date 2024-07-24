@@ -25,6 +25,10 @@ public class EnemyPatrol : MonoBehaviour
     int _defaultLayer;
 
 
+    public GameObject idleSound, attackSound;
+
+
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -32,6 +36,8 @@ public class EnemyPatrol : MonoBehaviour
 
         _enemyLayer = LayerMask.NameToLayer("Enemy");
         _defaultLayer = LayerMask.NameToLayer("Default");
+        idleSound.SetActive(true);
+        attackSound.SetActive(false);
     }
 
     void FixedUpdate()
@@ -54,6 +60,7 @@ public class EnemyPatrol : MonoBehaviour
             _rb.velocity = Vector2.right * _speed * Time.deltaTime;
             _isGrounded = Physics2D.OverlapCircle(_groundCheck.transform.position, _circleRadius, _groundLayer);
             _changeSide = Physics2D.OverlapCircle(_groundCheck.transform.position, _circleRadius, _changeSideLayer);
+    
             //_animator.SetTrigger("Start");
             if (!_isGrounded && _facingRight || _changeSide && _facingRight)
             {
@@ -64,12 +71,9 @@ public class EnemyPatrol : MonoBehaviour
 
                 _facingRight = !_facingRight;
                 Flip();
-
-
             }
             else if (!_isGrounded && !_facingRight || _changeSide && !_facingRight)
             {
-                
                 //_animator.SetTrigger("Stop");
                 _waitCounter = 0f;
                 _waiting = true;
@@ -78,7 +82,6 @@ public class EnemyPatrol : MonoBehaviour
                 Flip();
             }
         }
-
     }
 
     void Flip()
@@ -93,10 +96,14 @@ public class EnemyPatrol : MonoBehaviour
         if (_speed > 0)
         {
             _speed = 60;
+            idleSound.SetActive(false);
+            attackSound.SetActive(true);
         }
         else if (_speed < 0)
         {
             _speed = -60;
+            idleSound.SetActive(false);
+            attackSound.SetActive(true);
         }
     }
     

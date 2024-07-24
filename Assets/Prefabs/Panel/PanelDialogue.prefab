@@ -373,6 +373,8 @@ GameObject:
   - component: {fileID: 4382136192717587896}
   - component: {fileID: 3826332870638925183}
   - component: {fileID: 2952180802259797021}
+  - component: {fileID: 5083943634239851956}
+  - component: {fileID: 9120163678650897060}
   m_Layer: 5
   m_Name: PanelDialogue
   m_TagString: PanelDialogue
@@ -507,12 +509,75 @@ MonoBehaviour:
   _dialogueSkipAction: []
   _skipBar: {fileID: 4382136192216730805}
   lvlDialog: {fileID: 4900000, guid: 8b08d7cd87e6b5d45aa9b10d6bfc7564, type: 3}
+  typingTime: 0.02
   ListaDialogo:
     list: []
   _zoneLines: 0
   ZONENAME: 
   _textParts: []
   lifeBarAnim: {fileID: 0}
+--- !u!114 &5083943634239851956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382136192717587899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 180251301
+      Data2: 1086056792
+      Data3: 540782218
+      Data4: 851804659
+    Path: event:/UI/SFX_MainMenu_open
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &9120163678650897060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382136192717587899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 576972540
+      Data2: 1257226253
+      Data3: -751664980
+      Data4: -1799005689
+    Path: event:/UI/SFX_MainMenu_close
+  Event: 
+  PlayEvent: 12
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4382136193088229196
 GameObject:
   m_ObjectHideFlags: 0
