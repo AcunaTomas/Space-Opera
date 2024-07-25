@@ -50,7 +50,7 @@ public class MoveBoxes : MonoBehaviour
     {
         if(box.gameObject.CompareTag("Movible"))
         {
-            if(Input.GetButton("Submit"))
+            if(Input.GetButton("Submit") && !Input.GetButton("Jump") && !Input.GetButtonDown("Jump"))
             {
                 
                 Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
