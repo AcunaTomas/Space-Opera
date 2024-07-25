@@ -135,7 +135,6 @@ public class JabulaniBehaviour : MonoBehaviour
         yield return new WaitForSeconds(_lifetime - _explosionDuration);
         GameManager.INSTANCE.GetActivePlayer().gameObject.GetComponent<PlayerCombat>()._jabulaniActive = false;
         animator.SetTrigger("Explode");
-        GetComponent<FMODUnity.StudioEventEmitter>().Play();
 
         _coolingCollision = false;
     }

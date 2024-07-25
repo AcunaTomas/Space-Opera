@@ -48,9 +48,9 @@ public class MoveBoxes : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D box) //Cuando te quedas en la caja
     {
-        if(box.gameObject.CompareTag("Movible"))
+        if(box.gameObject.CompareTag("Movible") && GetComponent<Playerererer>().grounded)
         {
-            if(Input.GetButton("Submit") && !Input.GetButton("Jump") && !Input.GetButtonDown("Jump"))
+            if(Input.GetButton("Submit"))
             {
                 
                 Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
@@ -146,7 +146,7 @@ public class MoveBoxes : MonoBehaviour
             _isDragging = false;
             box.GetComponent<Animator>().SetBool("inRange", false);
             ResetAnimMove();
-            GetComponent<Animator>().SetTrigger("idle");
+            if(GetComponent<Playerererer>().grounded) GetComponent<Animator>().SetTrigger("idle");
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
     }

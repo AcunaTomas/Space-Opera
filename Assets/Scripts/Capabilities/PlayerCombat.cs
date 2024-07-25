@@ -86,7 +86,7 @@ public class PlayerCombat : MonoBehaviour
     {
             if (Input.GetButtonDown("Fire3"))
             {
-                if (_jabulaniOn && _jabulaniActive == false)
+                if (_jabulaniOn && _jabulaniActive == false && Time.time >= nextBombTime)
                 {
                     Invoke(nameof(Bomb2), 1.25f);
                     nextBombTime = Time.time + 2f / bombRate;
@@ -425,6 +425,11 @@ public class PlayerCombat : MonoBehaviour
         dir = dir.normalized;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * _knockback, 0),ForceMode2D.Impulse);
         //GetComponent<Rigidbody2D>().AddForce(new Vector2(dir.x * _knockback, dir.y),ForceMode2D.Impulse);
+    }
+
+    public void JabulaniEnable()
+    {
+        _jabulaniOn = true;
     }
 
     void OnDrawGizmosSelected() 
