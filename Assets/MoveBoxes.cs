@@ -154,12 +154,13 @@ public class MoveBoxes : MonoBehaviour
 
     bool HitBuilding(RaycastHit2D hit) //En caso de que haya un nuevo tag que funcione como pared agregar acá ♥ ⬇⬇
     {
-        if(hit.collider.gameObject.CompareTag("NotClimbable") || hit.collider.gameObject.CompareTag("Untagged") || hit.collider.gameObject.CompareTag("Movible"))
+        if(hit.collider.gameObject.CompareTag("NotClimbable") || hit.collider.gameObject.CompareTag("Untagged") || hit.collider.gameObject.CompareTag("Movible") || hit.collider.gameObject.CompareTag("Enemy"))
         {
             return true;
         }
         else
         {
+            Debug.Log("no pega");
             return false;
         }
     }
