@@ -22,6 +22,8 @@ public class Interactable : MonoBehaviour
     public float _tempY;
     public bool _keyHeld = false;
 
+    public bool waveMode;
+
     public UnityEvent afterAction;
     public float _waitTime;
 
@@ -117,6 +119,8 @@ public class Interactable : MonoBehaviour
             }
         }
 
+
+
     }
 
     public void disableCheck()
@@ -143,8 +147,17 @@ public class Interactable : MonoBehaviour
     }
 
 
+    private void EndWaveMode()
+    {
+        waveMode = false;
+    }
+
+
     public IEnumerator DoAfter()
     {
+
+        yield return new WaitUntil(() => waveMode == false);
+
         yield return new WaitForSeconds(_waitTime);
         afterAction.Invoke();
 

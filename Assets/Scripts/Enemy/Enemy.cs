@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     public Animator animator;
     public int maxHealth = 100;
-    [HideInInspector] public int currentHealth;
+    /*[HideInInspector]*/ public int currentHealth;
     private GameObject player;
     private int attackDamage;
 
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         
         _ub =  UIManager.INSTANCE.LifeBar;
         _ub2 = UIManager.INSTANCE.LifeBar2;
-        //Physics2D.IgnoreCollision(player.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());
+
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -179,7 +179,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator StartCooldownCH2()
     {
         _coolingHit2 = true;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         _coolingHit2 = false;
     }
     public void changeCallback(UnityEvent a)
