@@ -16,6 +16,7 @@ public class HurtBoxPinchos : HurtBox
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
             other.GetComponent<Player>().LoseHP(attackDamage, transform.position, KnockbackDaño);
             other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;
@@ -37,6 +38,7 @@ public class HurtBoxPinchos : HurtBox
             player.GetComponent<PlayerCombat>().enabled = true;
         }
         player.transform.position = new Vector2(destX, destY);
+        GameManager.INSTANCE.Boludos.ToggleCharSwitching(true);
     }
 
 }

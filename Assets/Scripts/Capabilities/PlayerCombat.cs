@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters;
@@ -86,18 +87,23 @@ public class PlayerCombat : MonoBehaviour
     {
             if (Input.GetButtonDown("Fire3"))
             {
+                var a =  GameObject.FindWithTag("Bomb");
+                if (a)
+                {
+                    a.SendMessage("ForceExplode", SendMessageOptions.DontRequireReceiver);
+                    _jabulaniActive = false;
+                    return;
+                }
                 if (_jabulaniOn && _jabulaniActive == false && Time.time >= nextBombTime)
                 {
                     nextBombTime = Time.time + 2f / bombRate;
                     animator.SetTrigger("Bomb2");
                     _jabulaniActive = true;
                 }
-                else
-                {
-                    _jabulaniActive = false;
-                    GameObject.FindWithTag("Bomb").SendMessage("ForceExplode", SendMessageOptions.DontRequireReceiver);
+
                     
-                }
+
+
             }
     }
 
