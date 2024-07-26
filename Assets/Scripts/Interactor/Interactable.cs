@@ -25,6 +25,9 @@ public class Interactable : MonoBehaviour
     public UnityEvent afterAction;
     public float _waitTime;
 
+    public UnityEvent afterafterAction;
+    public float _afterwaitTime;
+
 
     void FixedUpdate()
     {
@@ -144,6 +147,9 @@ public class Interactable : MonoBehaviour
     {
         yield return new WaitForSeconds(_waitTime);
         afterAction.Invoke();
+
+        yield return new WaitForSeconds(_afterwaitTime);
+        afterafterAction.Invoke();
     }
 
 

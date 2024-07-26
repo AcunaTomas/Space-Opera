@@ -88,7 +88,6 @@ public class PlayerCombat : MonoBehaviour
             {
                 if (_jabulaniOn && _jabulaniActive == false && Time.time >= nextBombTime)
                 {
-                    Invoke(nameof(Bomb2), 1.25f);
                     nextBombTime = Time.time + 2f / bombRate;
                     animator.SetTrigger("Bomb2");
                     _jabulaniActive = true;

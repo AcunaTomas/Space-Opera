@@ -152,6 +152,11 @@ public class JabulaniBehaviour : MonoBehaviour
         canMove = true;
         animator.SetTrigger("Run");
     }
+
+    public void ExplosionAudio()
+    {
+        GetComponent<FMODUnity.StudioEventEmitter>().Play();
+    }
 }
 
 
