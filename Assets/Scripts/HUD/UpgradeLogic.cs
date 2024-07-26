@@ -15,6 +15,9 @@ public class UpgradeLogic : MonoBehaviour
     float time;
 
     bool _startCounting;
+
+    public bool _jabulani;
+
     void Update()
     {
         if(gameObject.activeSelf && !upgradeW1.activeSelf && !upgradeW2.activeSelf) Reboot();
@@ -26,8 +29,14 @@ public class UpgradeLogic : MonoBehaviour
             {
                 transition.SetTrigger("PopUpStart");
             }
-            
-            upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, time / _fadeDelay);
+            if (_jabulani)
+            {
+                upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(0, 0.9254902f, 1, time / _fadeDelay);
+            }
+            else
+            {
+                upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, time / _fadeDelay);
+            }
             upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW1.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 255, 255, time/ _fadeDelay);
             
