@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class HurtBoxPinchos : HurtBox
 {
-    public override void Awake()
-    {
-        player = GameObject.FindWithTag("Player");
-    }
+
+    public float destX;
+    public float destY;
+
+
+
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,8 +20,11 @@ public class HurtBoxPinchos : HurtBox
             other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;
             Debug.Log(orientation);
-            Invoke(nameof(MoveAgain), 0.2f);
+            player = other.gameObject;
+            Invoke(nameof(MoveAgain), 0.5f);
             Debug.Log("hit");
+
+            
         }
     }
 
@@ -31,7 +36,7 @@ public class HurtBoxPinchos : HurtBox
         {
             player.GetComponent<PlayerCombat>().enabled = true;
         }
-        player.transform.position = new Vector2(6.4f, 9.1f);
+        player.transform.position = new Vector2(destX, destY);
     }
 
 }

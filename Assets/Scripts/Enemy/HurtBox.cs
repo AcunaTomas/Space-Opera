@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class HurtBox : MonoBehaviour
 {
     public bool _persistant = false;
@@ -15,7 +15,6 @@ public class HurtBox : MonoBehaviour
     public virtual void Awake()
     {
         player = GameObject.FindWithTag("Player");
-
     }
 
     public virtual float setOrientation(float orientationValue)

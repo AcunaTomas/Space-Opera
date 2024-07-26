@@ -48,11 +48,12 @@ public class MoveBoxes : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D box) //Cuando te quedas en la caja
     {
+        
         if(box.gameObject.CompareTag("Movible") && GetComponent<Playerererer>().grounded)
         {
-            if(Input.GetButton("Submit"))
+            if(Input.GetButton("Submit") && !GetComponent<Animator>().GetBool("IsJumping"))
             {
-                
+                if(GetComponent<Animator>().GetBool("IsJumping")) return;
                 Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
                 Vector2 _refDER = new Vector2 (box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.max.x, box.gameObject.transform.GetComponent<Collider2D>().bounds.min.y + .1f * box.gameObject.transform.localScale.y);
                 Vector2 _refIZQ = new Vector2 (box.gameObject.transform.GetComponent<BoxCollider2D>().bounds.min.x, box.gameObject.transform.GetComponent<Collider2D>().bounds.min.y + .1f * box.gameObject.transform.localScale.y);
@@ -139,7 +140,7 @@ public class MoveBoxes : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D box)  //Cuando te alejas a la caja
     {
-        if(box.gameObject.CompareTag("Movible") || Input.GetButtonUp("Submit"))
+        if(box.gameObject.CompareTag("Movible"))
         {
             Physics2D.queriesHitTriggers = true; //Detecta triggers >:)
             _playerRef.ResetSpeed();
