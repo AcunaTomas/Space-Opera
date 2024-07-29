@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _SpaceBarReleaseJumpDecay = 0.01f;
 
+    [SerializeField]
+    private bool _JumpMode;
+
     [Header("Everything else")]
     public bool canIjump = true;
     [SerializeField]
@@ -234,7 +237,13 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonUp("Jump"))
         {
-            vertspid = vertspid - _SpaceBarReleaseJumpDecay;
+            if (_JumpMode)
+            {
+                vertspid = -vertspid;
+
+                return;
+            }
+            vertspid = (vertspid) - _SpaceBarReleaseJumpDecay;
         }
 
 
