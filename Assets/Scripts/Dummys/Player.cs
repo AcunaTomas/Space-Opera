@@ -825,6 +825,7 @@ public class Player : MonoBehaviour
             return;
         }
         canIMove = a;
+        _canDash = a;
         if (a == false)
         {
            _animator.SetFloat("Speed", 0);
