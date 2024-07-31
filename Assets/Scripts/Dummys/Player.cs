@@ -201,6 +201,7 @@ public class Player : MonoBehaviour
         WallJumpDelay();
         speedCapping();
         UpdateTimers();
+        CameraUpDown();
     }
 
     public void _plaseJump()
