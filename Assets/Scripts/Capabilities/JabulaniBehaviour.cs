@@ -40,7 +40,7 @@ public class JabulaniBehaviour : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = player.GetComponent<SpriteRenderer>();
-        _SP =             GetComponent<SpriteRenderer>();
+        _SP = GetComponent<SpriteRenderer>();
         rango = GetComponent<BoxCollider2D>();
         thrown = true;
         Throw();
@@ -72,14 +72,23 @@ public class JabulaniBehaviour : MonoBehaviour
             _direction = transform.right; // + Vector3.up;
             //GetComponent<Rigidbody2D>().AddForce(direction * speed ,ForceMode2D.Impulse);
         }
-        Invoke("EnableMovement", _explosionDuration);
+        //Invoke("EnableMovement", _explosionDuration);
         thrown = false;
         //transform.Translate(launchOffset);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ContactPoint2D[] list = new ContactPoint2D[5] ; 
+        ContactPoint2D[] list = new ContactPoint2D[5];
         collision.GetContacts(list);
+        foreach (ContactPoint2D c in list)
+        {
+            if (c.normal == Vector2.up && !canMove)
+            {
+                Invoke("Arm",0f);
+            }
+        }
+
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             canMove = false;
@@ -145,6 +154,12 @@ public class JabulaniBehaviour : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(bombPoint.position, bombRange);
+    }
+
+    void Arm()
+    {
+        animator.SetTrigger("Arm");
+        Invoke("EnableMovement",0.5f);
     }
 
     void EnableMovement()

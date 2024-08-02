@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     private float _wallJumpXtimeFreeze = 0.3f;
 
-    private float _coyoteValidTime;
+
 
     private float _xSpeedNullifier = 1;
 
@@ -481,7 +481,7 @@ public class Player : MonoBehaviour
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1f;         
-        _coyoteValidTime = 0.1f;
+
         grounded = false;
         canIjump = false;    
         if (collision.gameObject.CompareTag("Ascensor"))
