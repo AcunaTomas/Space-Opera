@@ -401,20 +401,16 @@ MonoBehaviour:
   waves:
   - waveName: Puente1
     enemyGroups:
-    - enemyName: Shield
-      enemyCount: 6
-      spawnCount: 0
-      enemyPrefab: {fileID: 3656869022965653570, guid: 0de8684031165c44c8c20052baba399e, type: 3}
-      SpawnPoint: {fileID: 167820188}
     - enemyName: Melee
       enemyCount: 6
       spawnCount: 0
-      enemyPrefab: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      enemyPrefab: {fileID: 2122726532402086765, guid: e21981401ebcbe24b9aefcec14039a9e, type: 3}
       SpawnPoint: {fileID: 1294247150}
     waveQuota: 0
     spawnInterval: 0
     spawnCount: 0
     isOn: 1
+    Interactor: {fileID: 0}
   - waveName: Puente2
     enemyGroups:
     - enemyName: Bala
@@ -441,6 +437,7 @@ MonoBehaviour:
     spawnInterval: 0
     spawnCount: 0
     isOn: 0
+    Interactor: {fileID: 0}
   currentWaveCount: 0
   enemiesAlive: 0
   waveInterval: 300
@@ -3741,6 +3738,7 @@ MonoBehaviour:
   _attackAnimDelay: 0
   hitsomething: 0
   _canHack: 0
+  _jabulaniActive: 0
   _animator: {fileID: 1763975263}
   _radar: {fileID: 1763975259}
   _player: {fileID: 1763975257}
@@ -5520,7 +5518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.592559
+      value: -13.591765
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5534,6 +5532,10 @@ PrefabInstance:
       propertyPath: _confiner
       value: 
       objectReference: {fileID: 1691364930}
+    - target: {fileID: 2819203582277508604, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
+      propertyPath: orthographic size
+      value: 0.96
+      objectReference: {fileID: 0}
     - target: {fileID: 2819203582422793890, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.1
