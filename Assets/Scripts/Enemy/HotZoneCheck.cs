@@ -37,7 +37,7 @@ public class HotZoneCheck : MonoBehaviour
         {
             enemyParent.inRange = false;
             gameObject.SetActive(false);
-            enemyParent.triggerArea.SetActive(true);
+            //enemyParent.triggerArea.SetActive(true);
             enemyParent.inRange = false;
             enemyParent.animator.SetTrigger("Confused");
             animator.SetBool("Run", false);

@@ -38,11 +38,16 @@ public class IdleState : State
         animator.SetBool("Alert", true);
         var _exclamationMark = Instantiate(_alert, enemyBehaviour.gameObject.transform);
         Destroy(_exclamationMark, 0.5f);
-        enemyBehaviour.ChangeState(enemyBehaviour.chaseState);
+        Invoke(nameof(Alert), .5f);
     }
 
     public void PlayerKilled()
     {
         playerKilled = true;
+    }
+
+    void Alert()
+    {
+        enemyBehaviour.ChangeState(enemyBehaviour.chaseState);
     }
 }

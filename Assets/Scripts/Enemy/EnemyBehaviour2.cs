@@ -11,8 +11,8 @@ public class EnemyBehaviour2 : MonoBehaviour
     public float timer;
     [HideInInspector] public Transform target;
     [HideInInspector] public bool inRange;
-    public GameObject hotZone;
-    public GameObject triggerArea;
+    //public GameObject hotZone;
+    //public GameObject triggerArea;
     public Transform attackPoint;
     public Transform attackPointFlip;
 
