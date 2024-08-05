@@ -75,7 +75,7 @@ public class UpgradeLogic : MonoBehaviour
             //upgradeW2.transform.GetChild(2).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW2.transform.GetChild(3).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
         }
-        if(Input.GetButtonDown("Submit"))
+        if(Input.GetButtonDown("Submit") || Input.GetButtonDown("Jump"))
         {
             if(upgradeW1.activeSelf)
             {

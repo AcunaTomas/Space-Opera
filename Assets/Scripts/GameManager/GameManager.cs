@@ -126,12 +126,12 @@ public class GameManager : MonoBehaviour{
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !_escapePressed)
+        if (Input.GetButtonDown("Pause") && !_escapePressed)
         {
             PauseUnPause(PAUSED);
         }
 
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetButtonUp("Pause"))
         {
             _escapePressed = false;
         } 
