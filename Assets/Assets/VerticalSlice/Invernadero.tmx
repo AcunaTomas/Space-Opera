@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="65">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="69">
  <tileset firstgid="1" source="Background/Invernadero/bg_greenhouse_02.tsx"/>
  <tileset firstgid="137" source="Background/Invernadero/bg_greenhouse_01.tsx"/>
  <tileset firstgid="353" source="Background/Invernadero/bg_greenhouse_05.tsx"/>
@@ -26,6 +26,8 @@
  <tileset firstgid="5134" source="Tiles/Hallway/tilemap_hallway_02.tsx"/>
  <tileset firstgid="5229" source="Tiles/Invernadero/tilemap_greenhouse_04.tsx"/>
  <tileset firstgid="5529" source="Tiles/Hallway/tilemap_hallway_01.tsx"/>
+ <tileset firstgid="5624" source="Test1.tsx"/>
+ <tileset firstgid="5628" source="Tiles/Hangar/tilemap_hangar_03.tsx"/>
  <group id="2" name="Backgrounds">
   <layer id="10" name="Parallax" width="30" height="20">
    <data encoding="csv">
@@ -939,7 +941,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,4253,4254,4255,4256,
 0,0,0,0,0,0,0,0,0,0,0,0,4268,4269,4270,4271,
 0,0,0,0,0,0,0,0,0,0,0,0,4283,4284,4285,4286,
-0,0,0,0,0,0,0,0,0,0,0,0,4298,4299,4300,4301,
+0,0,0,0,0,0,0,0,0,0,0,0,0,4299,4300,4301,
 0,0,0,0,0,0,0,0,0,0,0,0,4313,4314,4315,4316,
 0,0,0,0,0,0,0,0,0,0,0,0,4328,4329,4330,4331,
 0,0,0,0,0,0,0,0,0,0,0,0,4343,4344,4345,4346,
@@ -1115,7 +1117,26 @@
    <data encoding="csv"/>
   </layer>
   <layer id="7" name="Zona 3" width="30" height="20">
-   <data encoding="csv"/>
+   <data encoding="csv">
+    <chunk x="-48" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,5713,5714,5715,5716,5716,5717,5714,5715,5717,5714,5715,0,0,0,0,
+0,5738,5739,5740,5741,5741,5742,5739,5740,5742,5739,5740,0,0,0,0,
+0,5763,5764,5765,5763,5763,5767,5764,5765,5767,5764,5765,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   </data>
   </layer>
  </group>
  <objectgroup id="12" name="Mis camaras :D">
@@ -1139,6 +1160,9 @@
   </object>
   <object id="6" x="-1312" y="622" width="736" height="160">
    <polygon points="-32,306 704,306 704,466 -32,466"/>
+  </object>
+  <object id="67" x="-1488.7" y="72.4" width="352" height="96">
+   <polygon points="-15.3043,183.6 336.696,183.6 336.696,279.6 -15.3043,279.6"/>
   </object>
  </objectgroup>
  <group id="5" name="Colisiones">
@@ -1212,8 +1236,8 @@
    <object id="29" x="-201" y="190" width="32" height="480">
     <polygon points="-503,2 -471,2 -471,738 -503,738"/>
    </object>
-   <object id="30" x="-649" y="158" width="32" height="480">
-    <polygon points="-503,-30 -471,-30 -471,497.667 -471,770 -503,770"/>
+   <object id="30" x="-649" y="342.8" width="32" height="364.8">
+    <polygon points="-503,-22.8 -471,-22.8 -471,378.227 -471,585.2 -503,585.2"/>
    </object>
    <object id="31" x="-602" y="164" width="32" height="192">
     <polygon points="-518,76 -438,76 -438,220 -454,220 -454,92 -518,92"/>
@@ -1238,6 +1262,11 @@
    </object>
    <object id="38" x="-766.333" y="935.33" width="480" height="32">
     <polygon points="-577.667,-39.3333 -97.667,-39.3333 -97.667,24.6667 -577.667,24.6667"/>
+   </object>
+   <object id="65" x="-1504" y="272" width="352" height="8"/>
+   <object id="66" x="-1504" y="320" width="352" height="8"/>
+   <object id="68" x="-649" y="133.892" width="32" height="91.08">
+    <polygon points="-503,-5.6925 -471,-5.6925 -471,94.4323 -471,146.108 -503,146.108"/>
    </object>
   </objectgroup>
   <objectgroup id="14" name="notCimbable">
