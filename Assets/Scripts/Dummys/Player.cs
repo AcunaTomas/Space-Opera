@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private float _decelerationValue = 0.5f;
     [SerializeField]
     bool _isOnPlatform = false;
+    public Vector2 _platformVelocity;
 
     [Header("Everything else")]
     public bool canIjump = true;
@@ -371,6 +372,7 @@ public class Player : MonoBehaviour
                 if (collision.rigidbody)
                 {
                     _isOnPlatform = true;
+                    _platformVelocity = collision.rigidbody.velocity;
                 }
                 else
                 {
@@ -494,6 +496,7 @@ public class Player : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision) //for when you leave the ground
     {
         wallijumpy = false;
+        _isOnPlatform = false;
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1f;         
@@ -915,7 +918,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && _isOnPlatform == false)
+
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
         {
             if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
             {
@@ -931,7 +935,10 @@ public class Player : MonoBehaviour
                 {
                     body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
                 }
-                
+                if (_isOnPlatform)
+                {
+                    body.velocity += _platformVelocity;
+                } 
             }
             else 
             {
@@ -950,6 +957,7 @@ public class Player : MonoBehaviour
             }
 
         }
+
     
     }
 
