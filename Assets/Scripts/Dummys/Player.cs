@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float _gravity = -0.1f;
 
-    [SerializeField]
-    private float _decelerationValue = 0.5f;
 
     [Header("Jump Values")]
     [SerializeField]
@@ -31,6 +29,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool _JumpMode;
+
+    [Header("Movement Stuff")]
+    [SerializeField]
+    private float _decelerationValue = 0.5f;
+    [SerializeField]
+    bool _isOnPlatform = false;
 
     [Header("Everything else")]
     public bool canIjump = true;
@@ -207,6 +211,7 @@ public class Player : MonoBehaviour
         WallJumpDelay();
         speedCapping();
         UpdateTimers();
+        CameraUpDown();
     }
 
     public void _plaseJump()
@@ -362,6 +367,14 @@ public class Player : MonoBehaviour
                 {
                    //GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
                     _playerFall = false;
+                }
+                if (collision.rigidbody)
+                {
+                    _isOnPlatform = true;
+                }
+                else
+                {
+                    _isOnPlatform = false;
                 }
 
             }
@@ -837,6 +850,7 @@ public class Player : MonoBehaviour
             return;
         }
         canIMove = a;
+        _canDash = a;
         if (a == false)
         {
            _animator.SetFloat("Speed", 0);
@@ -901,7 +915,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0 && _isOnPlatform == false)
         {
             if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
             {
