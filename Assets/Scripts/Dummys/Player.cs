@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float _gravity = -0.1f;
 
+    [SerializeField]
+    private float _decelerationValue = 0.5f;
+
     [Header("Jump Values")]
     [SerializeField]
     float _jumpImpulse = 0.95f;
@@ -906,13 +909,13 @@ public class Player : MonoBehaviour
                 {
                     if (gameObject.GetComponent<Playerererer>()._isDashing == false)
                     {
-                        body.velocity = new Vector2(0f, body.velocity.y);
+                        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
                     }
                     
                 }
                 else
                 {
-                    body.velocity = new Vector2(0f, body.velocity.y);
+                    body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
                 }
                 
             }
