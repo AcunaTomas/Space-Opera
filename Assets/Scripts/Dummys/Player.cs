@@ -35,7 +35,9 @@ public class Player : MonoBehaviour
     private float _decelerationValue = 0.5f;
     [SerializeField]
     bool _isOnPlatform = false;
-    public Vector2 _platformVelocity;
+    private Vector2 _platformVelocity;
+    private Vector2 _externalForce;
+
 
     [Header("Everything else")]
     public bool canIjump = true;
@@ -500,7 +502,7 @@ public class Player : MonoBehaviour
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1f;         
-
+        _externalForce = new Vector2(0,0);
         grounded = false;
         canIjump = false;    
         if (collision.gameObject.CompareTag("Ascensor"))
@@ -684,6 +686,10 @@ public class Player : MonoBehaviour
     {
     }
 
+    public void AddSpeed( Vector2 force)
+    {
+        _externalForce = force;
+    }
 
     public void ResetVars()
     {
@@ -938,7 +944,8 @@ public class Player : MonoBehaviour
                 if (_isOnPlatform)
                 {
                     body.velocity += _platformVelocity;
-                } 
+                }
+                
             }
             else 
             {
@@ -955,7 +962,7 @@ public class Player : MonoBehaviour
                 }
                 
             }
-
+            body.AddForce(_externalForce, ForceMode2D.Force);
         }
 
     

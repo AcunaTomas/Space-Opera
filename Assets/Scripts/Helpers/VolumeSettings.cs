@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class VolumeSettings : MonoBehaviour
 {
-    [SerializeField]
+
+    //Fuck it I'll just dummy this out
+    
+    /* [SerializeField]
     private AudioMixer _mixer;
     [SerializeField]
     private Slider _sliderMusic;
@@ -72,5 +75,5 @@ public class VolumeSettings : MonoBehaviour
 
         SetMusicVolume();
         SetSFXVolume();
-    }
+    } */
 }

@@ -13,7 +13,7 @@ public class BasicSwitcherLogic : MonoBehaviour
 
     private bool cooldown = false;
 
-    bool enabled = true;
+    bool IsEnabled = true;
 
     private Object effect; 
 
@@ -26,7 +26,7 @@ public class BasicSwitcherLogic : MonoBehaviour
     }
     void Update()
     {
-        if (enabled)
+        if (IsEnabled)
         {
             if (Input.GetAxis("CharSwitch1") > 0 && cooldown == false)
                 {
@@ -167,7 +167,7 @@ public class BasicSwitcherLogic : MonoBehaviour
 
     public void ToggleCharSwitching(bool a)
     {
-        enabled = a;  
+        IsEnabled = a;  
     }
 
 
