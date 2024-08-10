@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
+    private GameObject HUDBulani;
+    private GameObject ActiveHUDBulani;
     [SerializeField]
     private Animator animator;
     public GameObject attackPointVisual;
@@ -81,6 +82,12 @@ public class PlayerCombat : MonoBehaviour
         GameObject attackVisual = GameObject.FindWithTag("AttackVisual");
         GameObject attackVisualUp = GameObject.FindWithTag("AttackVisualUp");
         GameObject attackVisualDown = GameObject.FindWithTag("AttackVisualDown");
+        HUDBulani  = (GameObject) Resources.Load("Prefabs/Jabulani_HUD");
+        ActiveHUDBulani = Instantiate(HUDBulani);
+        ActiveHUDBulani.SendMessage("SetTarget", transform, SendMessageOptions.DontRequireReceiver);
+        ActiveHUDBulani.GetComponent<HUDFollower>().relativePos = new Vector3 (0.1f,0.2f,0);
+        ActiveHUDBulani.transform.SetParent(transform);
+        ActiveHUDBulani.SetActive(false);
     }
 
     void Update()
@@ -92,10 +99,12 @@ public class PlayerCombat : MonoBehaviour
                 {
                     a.SendMessage("ForceExplode", SendMessageOptions.DontRequireReceiver);
                     _jabulaniActive = false;
+                    ActiveHUDBulani.SetActive(false);
                     return;
                 }
                 if (_jabulaniOn && _jabulaniActive == false && Time.time >= nextBombTime)
                 {
+                    ActiveHUDBulani.SetActive(true);
                     nextBombTime = Time.time + 2f / bombRate;
                     animator.SetTrigger("Bomb2");
                     _jabulaniActive = true;

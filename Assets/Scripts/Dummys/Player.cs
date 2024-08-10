@@ -19,12 +19,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float _gravity = -0.1f;
 
+
     [Header("Jump Values")]
     [SerializeField]
     float _jumpImpulse = 0.95f;
 
     [SerializeField]
     private float _SpaceBarReleaseJumpDecay = 0.01f;
+
+    [SerializeField]
+    private bool _JumpMode;
+
+    [Header("Movement Stuff")]
+    [SerializeField]
+    private float _decelerationValue = 0.5f;
+    [SerializeField]
+    bool _isOnPlatform = false;
+    private Vector2 _platformVelocity;
+    private Vector2 _externalForce;
+
 
     [Header("Everything else")]
     public bool canIjump = true;
@@ -59,7 +72,7 @@ public class Player : MonoBehaviour
 
     private float _wallJumpXtimeFreeze = 0.3f;
 
-    private float _coyoteValidTime;
+
 
     private float _xSpeedNullifier = 1;
 
@@ -201,6 +214,7 @@ public class Player : MonoBehaviour
         WallJumpDelay();
         speedCapping();
         UpdateTimers();
+        CameraUpDown();
     }
 
     public void _plaseJump()
@@ -234,7 +248,13 @@ public class Player : MonoBehaviour
         }
         if (Input.GetButtonUp("Jump"))
         {
-            vertspid = vertspid - _SpaceBarReleaseJumpDecay;
+            if (_JumpMode)
+            {
+                vertspid = -vertspid;
+
+                return;
+            }
+            vertspid = (vertspid) - _SpaceBarReleaseJumpDecay;
         }
 
 
@@ -350,6 +370,15 @@ public class Player : MonoBehaviour
                 {
                    //GameManager.INSTANCE.SoundManager.SendMessage("PlaySound", new SoundManager.SoundInfo("PlayerJump",0));
                     _playerFall = false;
+                }
+                if (collision.rigidbody)
+                {
+                    _isOnPlatform = true;
+                    _platformVelocity = collision.rigidbody.velocity;
+                }
+                else
+                {
+                    _isOnPlatform = false;
                 }
 
             }
@@ -469,10 +498,11 @@ public class Player : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision) //for when you leave the ground
     {
         wallijumpy = false;
+        _isOnPlatform = false;
         _maxVerticalSpeed = speedCaps.y;
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1f;         
-        _coyoteValidTime = 0.1f;
+        _externalForce = new Vector2(0,0);
         grounded = false;
         canIjump = false;    
         if (collision.gameObject.CompareTag("Ascensor"))
@@ -656,6 +686,10 @@ public class Player : MonoBehaviour
     {
     }
 
+    public void AddSpeed( Vector2 force)
+    {
+        _externalForce = force;
+    }
 
     public void ResetVars()
     {
@@ -890,6 +924,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
         if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
         {
             if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
@@ -898,13 +933,17 @@ public class Player : MonoBehaviour
                 {
                     if (gameObject.GetComponent<Playerererer>()._isDashing == false)
                     {
-                        body.velocity = new Vector2(0f, body.velocity.y);
+                        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
                     }
                     
                 }
                 else
                 {
-                    body.velocity = new Vector2(0f, body.velocity.y);
+                    body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
+                }
+                if (_isOnPlatform)
+                {
+                    body.velocity += _platformVelocity;
                 }
                 
             }
@@ -923,8 +962,9 @@ public class Player : MonoBehaviour
                 }
                 
             }
-
+            body.AddForce(_externalForce, ForceMode2D.Force);
         }
+
     
     }
 
