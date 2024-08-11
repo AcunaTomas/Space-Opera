@@ -24,8 +24,8 @@ public class EnemyPatrol : MonoBehaviour
     int _enemyLayer;
     int _defaultLayer;
 
-
-    public GameObject idleSound, attackSound;
+    private Enemy _mainScript;
+    private EnemySoundsController _sounds;
 
 
 
@@ -33,11 +33,12 @@ public class EnemyPatrol : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _mainScript = GetComponent<Enemy>();
+        _sounds = GetComponent<EnemySoundsController>();
+
 
         _enemyLayer = LayerMask.NameToLayer("Enemy");
         _defaultLayer = LayerMask.NameToLayer("Default");
-        idleSound.SetActive(true);
-        attackSound.SetActive(false);
     }
 
     void FixedUpdate()
@@ -82,6 +83,19 @@ public class EnemyPatrol : MonoBehaviour
                 Flip();
             }
         }
+
+        if(_mainScript.currentHealth > 0)
+        {
+            if(_speed == 40 || _speed == -40)
+            {
+                _sounds.UpdateParameter("EnemyMode", 0);
+            }
+            else if(_speed == 60 || _speed == -60)
+            {
+                _sounds.UpdateParameter("EnemyMode", 1);
+            }
+        }
+        
     }
 
     void Flip()
@@ -96,15 +110,13 @@ public class EnemyPatrol : MonoBehaviour
         if (_speed > 0)
         {
             _speed = 60;
-            idleSound.SetActive(false);
-            attackSound.SetActive(true);
         }
         else if (_speed < 0)
         {
             _speed = -60;
-            idleSound.SetActive(false);
-            attackSound.SetActive(true);
         }
+
+
     }
     
     void OnDrawGizmosSelected()
