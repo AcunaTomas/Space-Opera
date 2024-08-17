@@ -22,6 +22,10 @@ public class ChaseState : State
         if(!enemyBehaviour.DONTMOVE || !coolingHitRef)
         {
             distance = Vector2.Distance(enemy.transform.position, enemyBehaviour.target.position);
+            if(enemy.transform.position.y + .5f < enemyBehaviour.target.position.y && enemyBehaviour.grounded)
+            {
+                //enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f);
+            }
         }
         if (distance > enemyBehaviour.attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
         {   

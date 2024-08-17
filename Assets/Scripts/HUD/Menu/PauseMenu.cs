@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -121,11 +122,13 @@ public class PauseMenu : MonoBehaviour
             {
                 gameObject.GetComponent<Animator>().SetBool("isBrody", true);
                 gameObject.GetComponent<Animator>().SetBool("isBito", false);
+                gameObject.GetComponent<Animator>().Play("OpenBrody");
             }
             else
             {
                 gameObject.GetComponent<Animator>().SetBool("isBito", true);
-                gameObject.GetComponent<Animator>().SetBool("isBrody", false);       
+                gameObject.GetComponent<Animator>().SetBool("isBrody", false);
+                gameObject.GetComponent<Animator>().Play("OpenBito");       
             }
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
@@ -141,16 +144,12 @@ public class PauseMenu : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[1]);
             }
         }
-        if(UIManager.INSTANCE.CURRENTPLAYER == "Brody")
-        {
-            gameObject.GetComponent<Animator>().SetBool("isBrody", true);
-            gameObject.GetComponent<Animator>().SetBool("isBito", false);
-        }
-        else
-        {
-            gameObject.GetComponent<Animator>().SetBool("isBito", true);
-            gameObject.GetComponent<Animator>().SetBool("isBrody", false);       
-        }
+    }
+
+    void OnDisable()
+    {
+        gameObject.GetComponent<Image>().sprite = null;
+        Debug.Log("Me funaron");
     }
 
 }

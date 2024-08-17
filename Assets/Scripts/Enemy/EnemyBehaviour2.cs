@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class EnemyBehaviour2 : MonoBehaviour
     public ChaseState chaseState;
     public AttackState attackState;
     [SerializeField] State state;
+    public bool grounded;
 
 void Awake()
 {
@@ -55,6 +57,18 @@ void Update()
         attackPoint.gameObject.SetActive(false);
         attackPointFlip.gameObject.SetActive(false);
     }
+
+    Debug.DrawRay(transform.position, Vector2.down, Color.red);
+    if(Physics.Raycast(transform.position, Vector2.down, 1f))
+    {
+        grounded = true;
+        Debug.Log("piso");
+    }
+    else
+    {
+        grounded = false;
+        Debug.Log("pisont");
+    }
 }
 
 public void TriggerCooling()
@@ -72,11 +86,14 @@ public void Flip()
     {
         GetComponent<SpriteRenderer>().flipX = true;
         attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(-1);
+        idleState.gameObject.GetComponent<BoxCollider2D>().offset = -idleState.gameObject.GetComponent<BoxCollider2D>().offset;
         }
     else
     {
         GetComponent<SpriteRenderer>().flipX = false;
         attackPoint.gameObject.GetComponent<HurtBox>().setOrientation(1);
+        idleState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(idleState.gameObject.GetComponent<BoxCollider2D>().offset.x),
+                                                                                        idleState.gameObject.GetComponent<BoxCollider2D>().offset.y);
     }
 
     

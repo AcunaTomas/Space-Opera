@@ -116,7 +116,7 @@ public class WaveLogic : MonoBehaviour
 
                     GameObject enemyRef = Instantiate(enemyGroup.enemyPrefab, enemyGroup.SpawnPoint.position, Quaternion.identity);
                     enemyRef.GetComponent<Enemy>().IsFromWave();
-                    if(enemyRef.GetComponent<EnemyBehaviour2>()) enemyRef.GetComponent<EnemyBehaviour2>().ChangeState(enemyRef.GetComponent<EnemyBehaviour2>().chaseState);
+                    //if(enemyRef.GetComponent<EnemyBehaviour2>()) enemyRef.GetComponent<EnemyBehaviour2>().ChangeState(enemyRef.GetComponent<EnemyBehaviour2>().chaseState);
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;
                     enemiesAlive++;

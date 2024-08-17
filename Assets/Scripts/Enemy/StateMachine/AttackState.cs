@@ -8,7 +8,6 @@ public class AttackState : State
     bool coolingHitRef;
     float distance;
     EnemyBehaviour2 enemyBehaviour;
-    [SerializeField] GameObject _alert;
     private bool attackMode;
     private float timerAttack, attackDelay = 1f, intTimer;
 

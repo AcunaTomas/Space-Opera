@@ -402,7 +402,7 @@ MonoBehaviour:
   - waveName: Puente1
     enemyGroups:
     - enemyName: Melee
-      enemyCount: 6
+      enemyCount: 3
       spawnCount: 0
       enemyPrefab: {fileID: 2122726532402086765, guid: e21981401ebcbe24b9aefcec14039a9e, type: 3}
       SpawnPoint: {fileID: 1294247150}
@@ -3765,6 +3765,9 @@ MonoBehaviour:
   _gravity: -0.1
   _jumpImpulse: 0.9
   _SpaceBarReleaseJumpDecay: 0.1
+  _JumpMode: 0
+  _decelerationValue: 0.5
+  _isOnPlatform: 0
   canIjump: 1
   wallijumpy: 0
   body: {fileID: 0}
@@ -5518,7 +5521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.591765
+      value: -13.594066
       objectReference: {fileID: 0}
     - target: {fileID: 2819203582277508600, guid: 08f15c1079a91ae498fdaeb5a0044ee3, type: 3}
       propertyPath: m_LocalPosition.y

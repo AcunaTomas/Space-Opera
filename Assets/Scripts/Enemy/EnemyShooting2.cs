@@ -32,6 +32,12 @@ public class EnemyShooting2 : MonoBehaviour
     private GameObject player;
     private float timerAttack;
     public float attackDelay = 1.5f;
+        //EnemyState
+    [Header("Estados")]
+    public IdleState idleState;
+    public ChaseState chaseState;
+    public AttackState attackState;
+    [SerializeField] State state;
 
 
 void Awake()
