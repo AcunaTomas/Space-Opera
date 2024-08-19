@@ -28,9 +28,9 @@ public class EnemyBehaviour2 : MonoBehaviour
 
     //EnemyState
     [Header("Estados")]
-    public IdleState idleState;
-    public ChaseState chaseState;
-    public AttackState attackState;
+    public MeleeIdleState idleState;
+    public MeleeChaseState chaseState;
+    public MeleeAttackState attackState;
     [SerializeField] State state;
     public bool grounded;
 
@@ -58,17 +58,17 @@ void Update()
         attackPointFlip.gameObject.SetActive(false);
     }
 
+    /* Saltado
     Debug.DrawRay(transform.position, Vector2.down, Color.red);
     if(Physics.Raycast(transform.position, Vector2.down, 1f))
     {
         grounded = true;
-        Debug.Log("piso");
     }
     else
     {
         grounded = false;
-        Debug.Log("pisont");
     }
+    */
 }
 
 public void TriggerCooling()

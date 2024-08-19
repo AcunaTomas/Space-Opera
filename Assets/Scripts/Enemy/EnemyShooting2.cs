@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EnemyShooting2 : MonoBehaviour
@@ -27,16 +27,16 @@ public class EnemyShooting2 : MonoBehaviour
     private Animator animator;
     private float distance;
     private bool attackMode;
-    private bool cooling;
+    [HideInInspector] public bool cooling;
     private float intTimer;
     private GameObject player;
-    private float timerAttack;
+    [HideInInspector] public float timerAttack;
     public float attackDelay = 1.5f;
         //EnemyState
     [Header("Estados")]
-    public IdleState idleState;
-    public ChaseState chaseState;
-    public AttackState attackState;
+    public RangeIdleState idleState;
+    public RangeChaseState chaseState;
+    public RangeAttackState attackState;
     [SerializeField] State state;
 
 
@@ -46,114 +46,17 @@ void Awake()
     animator = GetComponent<Animator>();
     player = GameObject.FindWithTag("Player");
     _playerPos = player.transform;
+    target = _playerPos;
+    idleState.Setup(player, gameObject, animator);
+    chaseState.Setup(player, gameObject, animator);
+    attackState.Setup(player, gameObject, animator);
+    if(!state) state = idleState;
 }
 
 void FixedUpdate() 
 {
-    if (inRange)
-    {
-        EnemyLogic();
-    }
-
-    if (attackMode == false)
-    {
-        //attackPoint.gameObject.SetActive(false);
-    }
-
+    state.Do();
     timerAttack += Time.deltaTime;
-}
-
-void EnemyLogic() 
-{
-    if (Vector2.Distance(transform.position, _playerPos.position) > _distanciaFrenado)
-    {
-        animator.SetBool("Run", true);
-        animator.SetBool("Alert", true);
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
-        {
-            transform.position = Vector2.MoveTowards(transform.position, _playerPos.position, _speed * Time.deltaTime);
-        }
-    }
-
-    if (Vector2.Distance(transform.position, _playerPos.position) < _distanciaRetroceso)
-    {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
-        {
-            transform.position = Vector2.MoveTowards(transform.position, _playerPos.position, -_speed * Time.deltaTime);
-        }
-        
-        animator.SetBool("Run", true);
-        //animator.SetBool("Alert", true);
-            
-    }
-
-    if ((Vector2.Distance(transform.position, _playerPos.position) < _distanciaFrenado) && (Vector2.Distance(transform.position, _playerPos.position) > _distanciaRetroceso))
-    {
-        //transform.position = transform.position;
-        animator.SetBool("Run", false);
-    }
-
-    if (cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_idle"))
-    {
-        if (timerAttack > attackDelay)
-        {
-            Attack();
-        }
-        //Attack();
-    }
-
-    if (player.GetComponent<Player>().GetHP() <= 0)
-    {
-        StopAttack();
-    }
-
-    if (cooling)
-    {
-        Cooldown();
-        animator.SetBool("Attack", false);
-    }
-}
-
-
-void Attack()
-{
-    timer = intTimer;
-    attackMode = true;
-
-    animator.SetBool("Run", false);
-    animator.SetBool("Attack", true);
-    animator.SetTrigger("Shoot");
-    Instantiate(_bullet, _bulletSource.position, Quaternion.identity);
-    _bullet.SetActive(true);
-    //AudioManager.INSTANCE.PlayEnemyAttack();  SONIDO DE ATAQUE
-
-    //attackPoint.gameObject.SetActive(true);
-    timerAttack = 0;
-}
-
-void Cooldown()
-{
-    timer -= Time.deltaTime;
-
-    if (timer <= 0 && cooling && attackMode)
-    {
-        cooling = false;
-        timer = intTimer;
-    }
-
-    if (timer < 0 && !attackMode)
-    {
-        cooling = false;
-        timer = intTimer;
-    }
-}
-
-
-void StopAttack() 
-{
-    attackMode = false;
-    animator.SetBool("Attack", false);
-    animator.SetTrigger("Idle");
 }
 
 public void TriggerCooling()
@@ -168,19 +71,32 @@ public void Flip()
     {
         GetComponent<SpriteRenderer>().flipX = true;
         _bulletSource.localPosition = new Vector2(-0.2f,0);
+        idleState.gameObject.GetComponent<BoxCollider2D>().offset = -idleState.gameObject.GetComponent<BoxCollider2D>().offset;
+        chaseState.gameObject.GetComponent<BoxCollider2D>().offset = -chaseState.gameObject.GetComponent<BoxCollider2D>().offset;
     }
     else
     {
         GetComponent<SpriteRenderer>().flipX = false;
         _bulletSource.localPosition = new Vector2(0.2f,0);
+        idleState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(idleState.gameObject.GetComponent<BoxCollider2D>().offset.x),
+                                                                                        idleState.gameObject.GetComponent<BoxCollider2D>().offset.y);
+        chaseState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(chaseState.gameObject.GetComponent<BoxCollider2D>().offset.x),
+                                                                                        chaseState.gameObject.GetComponent<BoxCollider2D>().offset.y);
     }
-
     
     //Ternary Operator
     //rotation.y = (currentTarget.position.x < transform.position.x) ? rotation.y = 180f : rotation.y = 0f;
 
     transform.eulerAngles = rotation;
 }
+public void ChangeState(State newState)
+{
+    state = newState;
+}
 
+public State GetState()
+{
+    return state;
+}
 
 }

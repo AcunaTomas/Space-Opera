@@ -371,10 +371,17 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        GetComponentInChildren<HotZoneCheck>().gameObject.SetActive(false);
-        GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
-        GetComponentInChildren<HotZoneCheck>().enabled = false;
-        GetComponentInChildren<TriggerAreaCheck>().enabled = false;
+        if(GetComponentInChildren<HotZoneCheck>())
+        {
+            GetComponentInChildren<HotZoneCheck>().gameObject.SetActive(false);
+            GetComponentInChildren<HotZoneCheck>().enabled = false;
+        }
+        
+        if(GetComponentInChildren<TriggerAreaCheck>())
+        {
+            GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
+            GetComponentInChildren<TriggerAreaCheck>().enabled = false;
+        }
     }
 
     public void IsFromWave()
