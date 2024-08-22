@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="86">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="92">
  <tileset firstgid="1" source="Test1.tsx"/>
  <tileset firstgid="5" source="Parallax/Hangar/plx_space_01.tsx"/>
  <tileset firstgid="155" source="Background/Hangar/bg_hangar_03.tsx"/>
@@ -1245,7 +1245,7 @@
     <polygon points="0,0 32,0 32,576 0,576"/>
    </object>
    <object id="57" x="672" y="128" width="447" height="32">
-    <polygon points="0,128 447,128 447,160 0,160"/>
+    <polygon points="0,128 448,128 448,160 0,160"/>
    </object>
    <object id="58" x="1088" y="-127" width="32" height="286">
     <polygon points="0,-1 32,-1 32,383 0,383"/>
@@ -1256,16 +1256,14 @@
    <object id="60" x="960" y="0" width="64" height="32">
     <polygon points="0,0 64,0 64,16 0,16"/>
    </object>
-   <object id="63" x="320" y="0" width="384" height="32"/>
    <object id="64" x="224" y="112" width="96" height="16"/>
    <object id="65" x="32" y="48" width="128" height="16"/>
    <object id="66" x="32" y="176" width="128" height="16"/>
-   <object id="68" x="320" y="32" width="32" height="256"/>
-   <object id="69" x="672" y="32" width="32" height="127">
-    <polygon points="0,0 32,0 32,224 0,224"/>
+   <object id="68" x="320" y="32" width="32" height="256">
+    <polygon points="0,-32 384,-32 384,224 352,224 352,0 32,0 32,160 0,160"/>
    </object>
    <object id="71" x="-96" y="-128" width="224" height="96">
-    <polygon points="0,-64 1024,-64 1024,96 928,96 928,0 288,0 288,32 256,32 256,64 224,64 224,96 128,96 128,128 128,320 64,320 64,128 0,128"/>
+    <polygon points="1024,-64 1024,96 928,96 928,0 288,0 288,32 256,32 256,64 224,64 224,96 128,96 128,304 96,304 96,96 96,-64"/>
    </object>
    <object id="78" x="966" y="-2" width="64" height="32">
     <polygon points="-70,162 58,162 58,178 -70,178"/>
@@ -1284,6 +1282,18 @@
    </object>
    <object id="84" x="25" y="-65" width="800" height="32">
     <polygon points="-313,-159 935,-159 935,-127 -313,-127"/>
+   </object>
+   <object id="86" x="-768" y="160" width="32" height="160">
+    <polygon points="32,0 64,0 64,160 32,160"/>
+   </object>
+   <object id="87" x="-736" y="-192" width="128" height="352">
+    <polygon points="0,0 256,0 256,96 224,96 224,160 192,160 192,224 160,224 160,288 128,288 128,352 0,352"/>
+   </object>
+   <object id="90" x="352" y="160" width="96" height="32">
+    <polygon points="0,0 96,0 96,160 64,160 64,64 32,32 0,32"/>
+   </object>
+   <object id="91" x="-96" y="-192" width="96" height="192">
+    <polygon points="0,0 96,0 96,368 128,368 128,384 64,384 64,192 0,192"/>
    </object>
   </objectgroup>
  </group>

@@ -42,6 +42,10 @@ public class CameraController : MonoBehaviour
     {
         gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.95f;
     }
+    public void LookLeft2()
+    {
+        gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 1.25f;
+    }
     public void BackToNormal()
     {
         GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.5f;
