@@ -44,6 +44,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269ca0354f89a6c4c92716d2b32474e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1711086038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711086039}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1711086039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711086038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.075, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3403140545689063963}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &604966532193695087
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505016996047540538}
   - component: {fileID: 1261707083546457985}
+  - component: {fileID: 483374969}
   m_Layer: 0
   m_Name: Flip
   m_TagString: Untagged
@@ -132,7 +164,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa23a17aa94d823468dd659f6bc232b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alert: {fileID: 0}
+--- !u!61 &483374969
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949529337140812161}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2089014514095032386
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6ee8e9ddd31bf48ae3cb1353d48740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstEncounter: 0
   _alert: {fileID: 7103576276263688582, guid: 27a13b3c303d09b4581758a4ab323281, type: 3}
 --- !u!61 &3230661812509728572
 BoxCollider2D:
@@ -375,7 +433,7 @@ GameObject:
   - component: {fileID: 4000663404645725093}
   - component: {fileID: 4000663404645725117}
   - component: {fileID: 3094050611454259399}
-  m_Layer: 7
+  m_Layer: 19
   m_Name: Squire Test
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -559,24 +617,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a010d4f3ddbe9b45bdd8bc1547f87c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 0.15
+  attackDistance: 0.45
   moveSpeed: 0.05
   DONTMOVE: 0
   timer: 1
   target: {fileID: 0}
-  inRange: 0
-  attackPoint: {fileID: 4469642554835342646}
+  attackMode: 0
+  attackPoint: {fileID: 4000663406068633847}
   attackPointFlip: {fileID: 4469642554835342646}
+  timerAttack: 0
+  attackDelay: 3
   animator: {fileID: 4000663404645725093}
   cooling: 0
   idleState: {fileID: 4828433212587717893}
   chaseState: {fileID: 1365107747526672812}
   attackState: {fileID: 3837102228013089908}
   flipState: {fileID: 1261707083546457985}
-  PhasingState: {fileID: 1008720523}
+  phasingState: {fileID: 1008720523}
   state: {fileID: 4828433212587717893}
   grounded: 0
-  SecondPhaseAnimator: {fileID: 9100000, guid: 2b3a1f5360a7422428850a773fab9192, type: 2}
+  SecondPhaseAnimatorRight: {fileID: 9100000, guid: 2b3a1f5360a7422428850a773fab9192, type: 2}
+  SecondPhaseAnimatorLeft: {fileID: 22100000, guid: 4c6e45ce0854cfc4698b72fb6800e585, type: 2}
   Shield: {fileID: 3336299157042619176}
 --- !u!1 &4000663406068633844
 GameObject:
@@ -624,7 +685,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020549536, y: 0.009057522}
+  m_Offset: {x: 0.22, y: -0.1376324}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -635,7 +696,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.075285435, y: 0.26266956}
+  m_Size: {x: 0.2267065, y: 0.300525}
   m_EdgeRadius: 0
 --- !u!114 &4000663406068633846
 MonoBehaviour:
@@ -733,7 +794,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020549536, y: 0.009057522}
+  m_Offset: {x: -0.14506865, y: -0.1376324}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -744,7 +805,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.075285435, y: 0.26266956}
+  m_Size: {x: 0.2267065, y: 0.300525}
   m_EdgeRadius: 0
 --- !u!114 &2723832509750913907
 MonoBehaviour:
@@ -788,7 +849,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1711086039}
   m_Father: {fileID: 2080502760828750367}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -804,3 +866,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c86f808c54a2bb46ad7fad2619521f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSource: {fileID: 1711086039}
+  _bullet: {fileID: 5577261586182523684, guid: 0391421431fe5dd4390ce0779603c387, type: 3}

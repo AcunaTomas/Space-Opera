@@ -70,7 +70,6 @@ public class SquireFlipState : State
             }
             GetComponent<BoxCollider2D>().offset = new Vector2(-GetComponent<BoxCollider2D>().offset.x,
                                                                 GetComponent<BoxCollider2D>().offset.y);
-            Debug.Log("Que mierda pasa?");
             Exit();
         }
         else
