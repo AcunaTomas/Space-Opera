@@ -13,6 +13,8 @@ public class conveyorBeltLogic : MonoBehaviour
     [SerializeField]
     float playerSpeed = -14;
 
+    Animator[] animators;
+
     void OnCollisionStay2D(Collision2D other)
     {
         if (!active)
@@ -29,4 +31,25 @@ public class conveyorBeltLogic : MonoBehaviour
         
     }
 
+    public void Activate()
+    {
+        active = true;
+        GetComponentInChildren<Animator>().SetTrigger("Start");
+        
+        animators = GetComponentsInChildren<Animator>();
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("Start");
+        }
+    }
+
+    public void Deactivate()
+    {
+        active = false;
+        animators = GetComponentsInChildren<Animator>();
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("Stop");
+        }
+    }
 }

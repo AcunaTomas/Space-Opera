@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaveLogic : MonoBehaviour
 {
+    public List<GameObject> enemies;
+    public int enemyCount2 = 0;
+
         [System.Serializable]
     public class Wave
     {
@@ -116,8 +119,9 @@ public class WaveLogic : MonoBehaviour
 
                     GameObject enemyRef = Instantiate(enemyGroup.enemyPrefab, enemyGroup.SpawnPoint.position, Quaternion.identity);
                     enemyRef.GetComponent<Enemy>().IsFromWave();
-                    if(enemyRef.GetComponent<EnemyBehaviour2>()) enemyRef.GetComponent<EnemyBehaviour2>().ChangeState(enemyRef.GetComponent<EnemyBehaviour2>().chaseState);
-                    if(enemyRef.GetComponent<EnemyShooting2>()) enemyRef.GetComponent<EnemyShooting2>().ChangeState(enemyRef.GetComponent<EnemyBehaviour2>().chaseState);
+                    enemies.Add(enemyRef);
+                    //enemyCount2++;
+                    Invoke("WaitFor", 1.5f);
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;
                     enemiesAlive++;
@@ -134,6 +138,15 @@ public class WaveLogic : MonoBehaviour
     public void OnEnemyKilled()
     {
         enemiesAlive--;
+    }
+
+    public void WaitFor()
+    {  
+        foreach (var enemyRef in enemies)
+        {
+            if(enemyRef.GetComponent<EnemyBehaviour2>()) enemyRef.GetComponent<EnemyBehaviour2>().ChangeState(enemyRef.GetComponent<EnemyBehaviour2>().chaseState);
+            if(enemyRef.GetComponent<EnemyShooting2>()) enemyRef.GetComponent<EnemyShooting2>().ChangeState(enemyRef.GetComponent<EnemyShooting2>().chaseState);
+        }
     }
 
 }
