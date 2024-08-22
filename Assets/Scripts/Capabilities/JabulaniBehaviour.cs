@@ -89,7 +89,7 @@ public class JabulaniBehaviour : MonoBehaviour
         }
 
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.name.Contains("Squire Test"))
         {
             canMove = false;
             animator.SetTrigger("Explode");

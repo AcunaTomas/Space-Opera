@@ -38,8 +38,8 @@ public class Enemy : MonoBehaviour
         boss,
         shield,
         gunTower,
-
         clone,
+        squirrel,
     }
 
     [SerializeField]
@@ -101,6 +101,12 @@ public class Enemy : MonoBehaviour
                 GetComponent<EnemyCloneBehaviour>().enabled = false;
             }
 
+            if (_enemyType == EnemyType.squirrel)
+            {
+                GetComponent<SquireBehaviour>().enabled = false;
+            }
+
+
             if (_enemyType == EnemyType.simple)
             {
                 GetComponent<EnemyPatrol>()._waiting = false;
@@ -155,6 +161,10 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.clone)
             {
                 GetComponent<EnemyCloneBehaviour>().enabled = false;
+            }
+            if (_enemyType == EnemyType.squirrel)
+            {
+                GetComponent<SquireBehaviour>().enabled = false;
             }
 
 
@@ -256,6 +266,10 @@ public class Enemy : MonoBehaviour
             GetComponent<EnemyCloneBehaviour>().enabled = false;
             GetComponent<Animator>().SetBool("CantTransition", true);
         }
+        if (_enemyType == EnemyType.squirrel)
+        {
+            GetComponent<SquireBehaviour>().enabled = false;
+        }
 
         animator.SetTrigger("Die");
         
@@ -335,6 +349,10 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.clone)
             {
                 GetComponent<EnemyCloneBehaviour>().enabled = true;
+            }
+            if (_enemyType == EnemyType.squirrel)
+            {
+                GetComponent<SquireBehaviour>().enabled = true;
             }
         }   
     }
