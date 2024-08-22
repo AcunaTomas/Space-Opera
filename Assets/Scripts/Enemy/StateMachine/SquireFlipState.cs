@@ -25,6 +25,7 @@ public class SquireFlipState : State
     {
         if(other.CompareTag("Player"))
         {
+            if(enemyBehaviour.idleState.firstEncounter) enemyBehaviour.idleState.firstEncounter = false;
             enemyBehaviour.ChangeState(enemyBehaviour.flipState);
             StartCoroutine(Flip());
         }
@@ -42,7 +43,7 @@ public class SquireFlipState : State
         playerKilled = true;
     }
 
-    IEnumerator Flip()
+    public IEnumerator Flip()
     {
         if (transform.position.x > enemyBehaviour.target.position.x) 
         {
@@ -69,6 +70,7 @@ public class SquireFlipState : State
             }
             GetComponent<BoxCollider2D>().offset = new Vector2(-GetComponent<BoxCollider2D>().offset.x,
                                                                 GetComponent<BoxCollider2D>().offset.y);
+            Debug.Log("Que mierda pasa?");
             Exit();
         }
         else

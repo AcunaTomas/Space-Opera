@@ -9,7 +9,7 @@ public class SquireAttackState : State
     float distance;
     SquireBehaviour enemyBehaviour;
     private bool attackMode;
-    private float timerAttack, attackDelay = 1f, intTimer;
+    private float attackDelay = 1f, intTimer;
     [SerializeField] Transform _bulletSource;
     [SerializeField] GameObject _bullet;
 
@@ -35,7 +35,6 @@ public class SquireAttackState : State
                 {
                     enemyBehaviour.timer = intTimer;
                     attackMode = true;
-                    animator.SetBool("Run", false);
                     animator.SetBool("Attack", true);
                     enemyBehaviour.timerAttack = 0;
                     Invoke("RangeAttack", 0.5f);
@@ -50,15 +49,14 @@ public class SquireAttackState : State
         }
         else
         {
-            if (distance > enemyBehaviour.attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+            if (distance > enemyBehaviour.attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_preattack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_posattack"))
             {   
                 Exit();
             }
-            else if (enemyBehaviour.attackDistance >= distance && enemyBehaviour.cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+            else if (enemyBehaviour.attackDistance >= distance && enemyBehaviour.cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_preattack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_posattack"))
             {
                 animator.SetBool("Run", false);
-                timerAttack += Time.deltaTime;
-                if (timerAttack > attackDelay)
+                if (enemyBehaviour.timerAttack > attackDelay)
                 {
                     Attack();
                 }
@@ -80,19 +78,20 @@ public class SquireAttackState : State
 
     void Attack()
     {
+        Debug.Log("Attack!");
         enemyBehaviour.timer = intTimer;
-        attackMode = true;
+        enemyBehaviour.attackMode = true;
 
         animator.SetBool("Run", false);
         animator.SetBool("Attack", true);
-        timerAttack = 0;
+        enemyBehaviour.timerAttack = 0;
 
         StartCoroutine(AtaquePosta());
     }
     void StopAttack() 
     {
         enemyBehaviour.cooling = false;
-        attackMode = false;
+        enemyBehaviour.attackMode = false;
         animator.SetBool("Attack", false);
         enemyBehaviour.idleState.PlayerKilled();
         enemyBehaviour.ChangeState(enemyBehaviour.idleState);
@@ -100,7 +99,9 @@ public class SquireAttackState : State
 
     IEnumerator AtaquePosta()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.001f);
+        animator.SetBool("Attack", false);
+        yield return new WaitForSeconds(.8f);
         AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesAttack, this.transform.position);
         if (transform.position.x > enemyBehaviour.target.position.x)
         {
@@ -110,14 +111,12 @@ public class SquireAttackState : State
         {
             enemyBehaviour.attackPoint.gameObject.SetActive(true);
         }
-        yield return new WaitForSeconds(0.001f);
         
-        animator.SetBool("Attack", false);
     }
     public void Cooldown()
     {
         enemyBehaviour.timer -= Time.deltaTime;
-        if (enemyBehaviour.timer <= 0 && enemyBehaviour.cooling && attackMode)
+        if (enemyBehaviour.timer <= 0 && enemyBehaviour.cooling && enemyBehaviour.attackMode)
         {
             enemyBehaviour.cooling = false;
             enemyBehaviour.timer = intTimer;

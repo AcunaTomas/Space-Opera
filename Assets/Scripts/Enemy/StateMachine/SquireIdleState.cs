@@ -4,6 +4,7 @@ public class SquireIdleState : State
 {
     // Start is called before the first frame update
     bool coolingHitRef, playerKilled, exiting;
+    public bool firstEncounter;
     float distance;
     SquireBehaviour enemyBehaviour;
     Enemy enemyRef;
@@ -14,6 +15,7 @@ public class SquireIdleState : State
         enemyBehaviour = enemy.GetComponent<SquireBehaviour>();
         enemyRef = enemy.GetComponent<Enemy>();
         exiting = false;
+        firstEncounter = true;
     }
 
     void Update()
@@ -28,6 +30,7 @@ public class SquireIdleState : State
         {
             playerKilled = false;
             enemyBehaviour.target = other.transform;
+            if(firstEncounter) return;
             if(enemyBehaviour.GetState() == enemyBehaviour.idleState) Exit();
         }
     }
@@ -36,7 +39,7 @@ public class SquireIdleState : State
     {
         if(other.CompareTag("Player"))
         {
-            if(playerKilled) return;
+            if(playerKilled || firstEncounter) return;
             enemyBehaviour.target = other.transform;
             if(enemyBehaviour.GetState() == enemyBehaviour.idleState) Exit();
         }
@@ -44,6 +47,13 @@ public class SquireIdleState : State
 
     public override void Exit()
     {
+        if(firstEncounter)
+        {
+            firstEncounter = false;
+            StartCoroutine(enemyBehaviour.flipState.Flip());
+            enemyBehaviour.ChangeState(enemyBehaviour.flipState);
+            return;
+        }
         if(enemyBehaviour.GetState() == enemyBehaviour.chaseState) return;
         animator.SetBool("Alert", true);
         var _exclamationMark = Instantiate(_alert, enemyBehaviour.gameObject.transform);

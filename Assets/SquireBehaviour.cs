@@ -12,6 +12,7 @@ public class SquireBehaviour : MonoBehaviour
     bool GOLPEADO = false;
     public float timer;
     [HideInInspector] public Transform target;
+    public bool attackMode;
     public Transform attackPoint;
     public Transform attackPointFlip;
     [HideInInspector] public float timerAttack;
@@ -35,7 +36,6 @@ public class SquireBehaviour : MonoBehaviour
     bool SECONDPHASE = false;
     public RuntimeAnimatorController SecondPhaseAnimatorRight;
     public RuntimeAnimatorController SecondPhaseAnimatorLeft;
-
     [SerializeField] GameObject Shield;
 
 void Awake()
@@ -64,6 +64,12 @@ void Update()
         animator.SetTrigger("SecondPhase");
         Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
     }
+    if (attackMode == false)
+    {
+        attackPoint.gameObject.SetActive(false);
+        attackPointFlip.gameObject.SetActive(false);
+    }
+
 
     /* Saltado
     Debug.DrawRay(transform.position, Vector2.down, Color.red);
@@ -81,6 +87,8 @@ void Update()
 public void TriggerCooling()
 {   
     cooling = true;
+    attackPoint.gameObject.SetActive(false);
+    attackPointFlip.gameObject.SetActive(false);
 }
 
 public void StopAlertAnim()
@@ -103,6 +111,8 @@ public void EnterSecondState()
     animator.runtimeAnimatorController = SecondPhaseAnimatorRight;
     ChangeState(chaseState);
     Shield.SetActive(false);
+    gameObject.layer = LayerMask.NameToLayer("Enemy");
+    moveSpeed*=2;
 }
 
 public bool GetPhase()
