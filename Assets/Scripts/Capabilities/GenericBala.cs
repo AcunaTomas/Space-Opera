@@ -13,28 +13,37 @@ public class GenericBala : MonoBehaviour
     private float bulletTimeout = 6f;
 
     [SerializeField]
+    private float _speed = 1f;
+
+    [SerializeField]
     private int damages = 5;
+
+    [SerializeField]
+    GameObject player;
 
     public void SetDirection(float x, float y)
     {
         directionX = x;
         directionY = y;
     }
-    void Start()
-    {
-       GameObject player = GameObject.FindWithTag("Player");
-       Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-       
 
-       if (player.GetComponent<SpriteRenderer>().flipX == true)
-       {
-            GetComponent<SpriteRenderer>().flipX = true;
-       }
+    void Awake()
+    {
+
+    }
+
+    void OnEnable()
+    {
+      body.velocity = new Vector2(0,0);
+      
+      player = GameManager.INSTANCE.GetActivePlayer().gameObject;
+      Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+      Debug.Log("Enal");
 
 
        // Acá empieza el tema disparo, AVISO QUE ESTO ES CLARAMENTE INEFICIENTE, I HATE MY LIFE
       
-       if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
+/*        if (directionX == 10 && player.GetComponent<SpriteRenderer>().flipX == true)
        {
           body.AddForce(new Vector2(directionX * -1.5f ,directionY * 15f));
        }
@@ -73,16 +82,16 @@ public class GenericBala : MonoBehaviour
        else if (directionX < 0 && directionY > 0)
        {
          body.AddForce(new Vector2(-15f, 15f));
-       }
+       } */
 
 
 
       // Código inicial de Acuña que funcionaba pero las balas tienen velocidad variable
 
-      //  else
-      //  {
-      //    body.AddForce(new Vector2(directionX * 150 ,directionY * 150));
-      //  }
+      //So, resulta que la magnitud del vector es igual a √(x² + y²), el cual es el converso del teorema de pitagoras (z² = x² + y²), asi que mi solucion fue clampearla al valor de velocidad de la bala, en fin, la hipotenuza.
+      Vector2 Force_a = new Vector2(directionX * _speed ,directionY * _speed);
+      body.AddForce(Vector2.ClampMagnitude(Force_a, _speed));
+
 
 
 
@@ -127,7 +136,7 @@ public class GenericBala : MonoBehaviour
     private IEnumerator Timeout()
     {
       yield return new WaitForSeconds(bulletTimeout);
-      Destroy(gameObject);
+      gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -140,12 +149,13 @@ public class GenericBala : MonoBehaviour
           }
           catch
           {
-            Destroy(gameObject);
+
+            gameObject.SetActive(false);
             return;
           }
           
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -154,7 +164,7 @@ public class GenericBala : MonoBehaviour
           //other.gameObject.GetComponent<Event>().manualDo();
           other.gameObject.GetComponent<Event>().external = false;
           other.gameObject.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
-          Destroy(gameObject);
+          gameObject.SetActive(false);
         }
     }
 }

@@ -13,25 +13,26 @@ public class GenericObjPool : MonoBehaviour
 
 
 
-    public void AddObject(GameObject Obj2add)
+    public virtual void AddObject(GameObject Obj2add)
     {
         _objectList.Add(Obj2add);
     }
 
-    public void DisableObj(GameObject Obj2Disable)
+    public virtual void DisableObj(GameObject Obj2Disable)
     {
         _objectList.Find(x => x.name == Obj2Disable.name).SetActive(false);
     }
-    public void EnableObj(GameObject Obj2Enable)
+    public virtual void EnableObj(GameObject Obj2Enable)
     {
         _objectList.Find(x => x.name == Obj2Enable.name).SetActive(true);
     }
-    public GameObject GetObj(string name = "")
+    public virtual GameObject GetObj(string name = "")
     {
         if (name != "")
         {
             return _objectList.Find(x => x.name == name);
         }
-        return _objectList.Find(x => x.activeSelf);
+        return _objectList.Find(x => x.activeSelf == false);
     }
+
 }
