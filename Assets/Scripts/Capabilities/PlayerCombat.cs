@@ -118,6 +118,7 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackActive = true;
                 queryStartTime = Time.time;
+                AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
             else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") > 0))
             {
@@ -125,6 +126,7 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackUpActive = true;
                 queryStartTime = Time.time;
+                AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
             else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") < 0) && gameObject.GetComponent<Player>().canIjump == false)
             {
@@ -132,6 +134,7 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackDownActive = true;
                 queryStartTime = Time.time;
+                AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
         }
 

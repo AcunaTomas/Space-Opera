@@ -14,6 +14,13 @@ public class MoveBoxes : MonoBehaviour
     [SerializeField] private LayerMask _layerRef;
     private Player _playerRef;
     SpriteRenderer _spriteRenderer;
+
+    private bool _soundOnce = false;
+    private FMOD.Studio.EventInstance instance;
+
+    public FMODUnity.EventReference fmodEvent;
+
+
     private void OnEnable()
     {
         _isDragging = false;    
@@ -22,6 +29,8 @@ public class MoveBoxes : MonoBehaviour
     {
         _playerRef = GetComponent<Player>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        instance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
     }
     private void FixedUpdate()
     {
@@ -111,6 +120,9 @@ public class MoveBoxes : MonoBehaviour
                 _isDragging = false;
                 box.GetComponent<Animator>().SetBool("inRange", false);
                 ResetAnimMove();
+                //Debug.Log("estoy pegado pero no muevo la caja");
+                _soundOnce = false;
+                instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
             
             
@@ -135,8 +147,16 @@ public class MoveBoxes : MonoBehaviour
                 transform.position = new Vector2(transform.position.x + PushLimit, transform.position.y);
                 BoxRef.position = new Vector2(BoxRef.position.x + PushLimit, BoxRef.position.y);
                 _holdLimit = 0f;
+
             }
         }
+
+        if(!_soundOnce)
+        {
+            instance.start();
+            _soundOnce = true;
+        }
+
     }
     void OnTriggerExit2D(Collider2D box)  //Cuando te alejas a la caja
     {
@@ -149,6 +169,8 @@ public class MoveBoxes : MonoBehaviour
             ResetAnimMove();
             if(GetComponent<Playerererer>().grounded) GetComponent<Animator>().SetTrigger("idle");
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            _soundOnce = false;
+            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }
 

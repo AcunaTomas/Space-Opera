@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FMODUnity;
+using FMOD.Studio;
+
 public class BotonesController : MonoBehaviour
 {
     [SerializeField]
@@ -11,6 +14,14 @@ public class BotonesController : MonoBehaviour
 
     [SerializeField]
     private UnityEvent _callWhat;
+
+    private StudioEventEmitter _soundEmitter;
+
+
+    void Start()
+    {
+        _soundEmitter = GetComponent<StudioEventEmitter>();
+    }
 
 
     public void changeCallback(UnityEvent a)
@@ -27,6 +38,7 @@ public class BotonesController : MonoBehaviour
             _puerta.GetComponent<Animator>().SetTrigger("OpenDoor");
             _callWhat.Invoke();
             this.enabled = false;
+            _soundEmitter.Play();
         }
             
     }
