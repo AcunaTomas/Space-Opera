@@ -127,13 +127,13 @@ public class JabulaniBehaviour : MonoBehaviour
             
         foreach (Collider2D enemyCollider in hitEnemies)
         {
-            enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
+            if(enemyCollider.GetComponent<Enemy>())enemyCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
         }
 
         Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(bombPoint.position, bombRange, enemyGunLayers);
         foreach (Collider2D enemyGunCollider in hitEnemiesGun)
         {
-            enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
+            if(enemyGunCollider.GetComponent<Enemy>())enemyGunCollider.GetComponent<Enemy>().TakeDamage2(bombDamage, transform.position);
         }
         
         Destroy(gameObject, _explosionDuration);
