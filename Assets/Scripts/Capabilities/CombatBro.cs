@@ -11,11 +11,16 @@ public class CombatBro : PlayerCombat
 
     public GameObject _player;
 
+    public BalasPool Balalist;
+
     
     [SerializeField]
     private GameObject balarda;
     [SerializeField]
     private LayerMask discoverable;
+
+    private float attkdirX;
+    private float attkdirY;
 
     public override void Bomb()
     {
@@ -26,22 +31,26 @@ public class CombatBro : PlayerCombat
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.25f, 0);
+            attkdirX = -1;
         }
         else
         {
             attackPoint.localPosition = new Vector2(0.25f, 0);
+            attkdirX = 1;
         }   
 
         _animator.SetTrigger("Attack");
+        SpawnBala(attkdirX,0);
+    }
 
-        var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
-        {
-         return;   
-        }
-        a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
-
+    private void SpawnBala(float X, float Y)
+    {
         
+        var a = Balalist.GetObj();
+        a.transform.position = attackPoint.position;
+        a.transform.rotation = Quaternion.identity;
+        a.GetComponent<GenericBala>().SetDirection(X,Y);
+        a.SetActive(true);
     }
 
     public override void AttackUp()
@@ -59,13 +68,16 @@ public class CombatBro : PlayerCombat
             if (spriteRenderer.flipX)
             {
                 attackPoint.localPosition = new Vector2(-0.13f, 0.1f);
+                attkdirX = -1;
+                attkdirY = 1;
             }
             else
             {
-                attackPoint.localPosition = new Vector2(0.13f, 0.1f); ;
+                attackPoint.localPosition = new Vector2(0.13f, 0.1f);
+                attkdirX = 1;
+                attkdirY = 1;
             }
-            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
-            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            SpawnBala(attkdirX,attkdirY);
         }
         else
         {
@@ -79,8 +91,7 @@ public class CombatBro : PlayerCombat
             {
                 attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
             }
-            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
-            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            SpawnBala(0,1);
         }
     }
 
@@ -98,13 +109,16 @@ public class CombatBro : PlayerCombat
             if (spriteRenderer.flipX)
             {
                 attackPoint.localPosition = new Vector2(-0.1f, -0.1f);
+                attkdirX = -1;
+                attkdirY = -1;
             }
             else
             {
                 attackPoint.localPosition = new Vector2(0.1f, -0.1f);
+                attkdirX = 1;
+                attkdirY = -1;
             }
-            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
-            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            SpawnBala(attkdirX,attkdirY);
         }
         else
         {
@@ -117,8 +131,7 @@ public class CombatBro : PlayerCombat
             {
                 attackPoint.localPosition = new Vector2(0f, -0.17f);
             }
-            var a = Instantiate(balarda, attackPoint.position, Quaternion.identity);
-            a.GetComponent<GenericBala>().SetDirection(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            SpawnBala(0,-1);
         }
 
         _animator.SetBool("IsJumping", false);
