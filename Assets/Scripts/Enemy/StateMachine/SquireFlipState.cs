@@ -5,7 +5,8 @@ using UnityEngine;
 public class SquireFlipState : State
 {
     // Start is called before the first frame update
-    bool coolingHitRef, playerKilled, exiting;
+    bool coolingHitRef, playerKilled;
+    public bool flipping, lookingLeft;
     float distance;
     SquireBehaviour enemyBehaviour;
     Enemy enemyRef;
@@ -14,7 +15,8 @@ public class SquireFlipState : State
     {
         enemyBehaviour = enemy.GetComponent<SquireBehaviour>();
         enemyRef = enemy.GetComponent<Enemy>();
-        exiting = false;
+        flipping = false;
+        lookingLeft = false;
     }
     public override void Do()
     {
@@ -25,7 +27,6 @@ public class SquireFlipState : State
     {
         if(other.CompareTag("Player"))
         {
-            if(enemyBehaviour.idleState.firstEncounter) enemyBehaviour.idleState.firstEncounter = false;
             enemyBehaviour.ChangeState(enemyBehaviour.flipState);
             StartCoroutine(Flip());
         }
@@ -34,6 +35,9 @@ public class SquireFlipState : State
 
     public override void Exit()
     {
+        flipping = false;
+        enemyBehaviour.attackPoint.gameObject.SetActive(false);
+        enemyBehaviour.attackPointFlip.gameObject.SetActive(false);
         if(enemyBehaviour.GetState() == enemyBehaviour.chaseState) return;
         enemyBehaviour.ChangeState(enemyBehaviour.chaseState);
     }
@@ -45,8 +49,10 @@ public class SquireFlipState : State
 
     public IEnumerator Flip()
     {
-        if (transform.position.x > enemyBehaviour.target.position.x) 
+        
+        if (transform.position.x > enemyBehaviour.target.position.x && !flipping) 
         {
+            flipping = true;
             animator.SetTrigger("Flip");
             enemyBehaviour.GetComponent<SpriteRenderer>().flipX = false;
             if(enemyBehaviour.GetPhase())
@@ -64,16 +70,18 @@ public class SquireFlipState : State
             enemyBehaviour.idleState.gameObject.GetComponent<BoxCollider2D>().offset = -enemyBehaviour.idleState.gameObject.GetComponent<BoxCollider2D>().offset;
             if(enemyBehaviour.GetShield())
             {
-                enemyBehaviour.GetShield().GetComponent<BoxCollider2D>().offset = new Vector2(-enemyBehaviour.GetShield().GetComponent<BoxCollider2D>().offset.x,
-                                                                    enemyBehaviour.GetShield().GetComponent<BoxCollider2D>().offset.y);
-                enemyBehaviour.GetShield().GetComponent<SpriteRenderer>().flipX = true;
+                enemyBehaviour.GetShield().transform.localScale = new Vector2(-1,
+                                                                enemyBehaviour.GetShield().transform.localScale.y);
             }
             GetComponent<BoxCollider2D>().offset = new Vector2(-GetComponent<BoxCollider2D>().offset.x,
                                                                 GetComponent<BoxCollider2D>().offset.y);
+            lookingLeft = true;
+            flipping = false;
             Exit();
         }
-        else
+        else if(!flipping)
         {
+            flipping = true;
             animator.SetTrigger("Flip");
             if(enemyBehaviour.GetPhase())
             {
@@ -88,12 +96,13 @@ public class SquireFlipState : State
                                                                                             enemyBehaviour.idleState.gameObject.GetComponent<BoxCollider2D>().offset.y);
             if(enemyBehaviour.GetShield())
             {
-                enemyBehaviour.GetShield().GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(enemyBehaviour.GetShield().GetComponent<BoxCollider2D>().offset.x),
-                                                                        enemyBehaviour.GetShield().GetComponent<BoxCollider2D>().offset.y);
-                enemyBehaviour.GetShield().GetComponent<SpriteRenderer>().flipX = false;
+                enemyBehaviour.GetShield().transform.localScale = new Vector2(1,
+                                                                enemyBehaviour.GetShield().transform.localScale.y);
             }
             GetComponent<BoxCollider2D>().offset = new Vector2(-GetComponent<BoxCollider2D>().offset.x,
                                                     GetComponent<BoxCollider2D>().offset.y);
+            lookingLeft = false;
+            flipping = false;
             Exit();
         }
         

@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
 
             if (_enemyType == EnemyType.squirrel)
             {
-                GetComponent<SquireBehaviour>().enabled = false;
+                if(currentHealth < 200) GetComponent<SquireBehaviour>().enabled = false;
             }
 
 

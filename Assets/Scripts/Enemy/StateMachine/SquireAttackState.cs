@@ -58,7 +58,7 @@ public class SquireAttackState : State
                 animator.SetBool("Run", false);
                 if (enemyBehaviour.timerAttack > attackDelay)
                 {
-                    Attack();
+                    if(!enemyBehaviour.flipState.flipping) Attack();
                 }
             }
 
@@ -118,6 +118,8 @@ public class SquireAttackState : State
         enemyBehaviour.timer -= Time.deltaTime;
         if (enemyBehaviour.timer <= 0 && enemyBehaviour.cooling && enemyBehaviour.attackMode)
         {
+            enemyBehaviour.attackPoint.gameObject.SetActive(true);
+            enemyBehaviour.attackPointFlip.gameObject.SetActive(true);
             enemyBehaviour.cooling = false;
             enemyBehaviour.timer = intTimer;
         }
@@ -157,6 +159,8 @@ public class SquireAttackState : State
         attackMode = false;
         animator.SetBool("Attack", false);
         animator.SetTrigger("Idle");
+        enemyBehaviour.idleState.PlayerKilled();
+        enemyBehaviour.ChangeState(enemyBehaviour.idleState);
     }
 
     public override void Exit()

@@ -20,8 +20,6 @@ public class SquireIdleState : State
 
     void Update()
     {
-        if(enemyBehaviour.GetState() != enemyBehaviour.idleState) return;
-        if((enemyRef._coolingHit || enemyRef._coolingHit2) && !exiting) Exit();
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,13 +45,6 @@ public class SquireIdleState : State
 
     public override void Exit()
     {
-        if(firstEncounter)
-        {
-            firstEncounter = false;
-            StartCoroutine(enemyBehaviour.flipState.Flip());
-            enemyBehaviour.ChangeState(enemyBehaviour.flipState);
-            return;
-        }
         if(enemyBehaviour.GetState() == enemyBehaviour.chaseState) return;
         animator.SetBool("Alert", true);
         var _exclamationMark = Instantiate(_alert, enemyBehaviour.gameObject.transform);

@@ -62,6 +62,7 @@ void Update()
         ChangeState(phasingState);
         SECONDPHASE = true;
         animator.SetTrigger("SecondPhase");
+        animator.SetBool("Phasing", true);
         Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
     }
     if (attackMode == false)
@@ -108,11 +109,7 @@ public State GetState()
 
 public void EnterSecondState()
 {
-    animator.runtimeAnimatorController = SecondPhaseAnimatorRight;
-    ChangeState(chaseState);
-    Shield.SetActive(false);
-    gameObject.layer = LayerMask.NameToLayer("Enemy");
-    moveSpeed*=2;
+    StartCoroutine(SecondState());
 }
 
 public bool GetPhase()
@@ -136,6 +133,18 @@ private void OnDisable() {
     chaseState.gameObject.SetActive(false);
     attackState.gameObject.SetActive(false);
     flipState.gameObject.SetActive(false);
+    if(enemyStats.currentHealth <= 0) animator.SetTrigger("Die");
 }
 
+private IEnumerator SecondState()
+    {
+        yield return new WaitForSeconds(0.0001f);
+        animator.runtimeAnimatorController = SecondPhaseAnimatorRight;
+        ChangeState(chaseState);
+        Shield.SetActive(false);
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+        moveSpeed*=2;
+        flipState.flipping = false;
+        if(!flipState.lookingLeft && transform.position.x > target.position.x || flipState.lookingLeft && transform.position.x < target.position.x) StartCoroutine(flipState.Flip());
+    }
 }
