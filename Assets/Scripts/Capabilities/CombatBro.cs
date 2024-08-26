@@ -21,25 +21,22 @@ public class CombatBro : PlayerCombat
 
     private float attkdirX;
     private float attkdirY;
+    
 
     public override void Bomb()
     {
         _animator.SetTrigger("Bomb");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 30, discoverable);
-        foreach (Collider2D enemyCollider in hitEnemies)
-        {
-            try
-            {
-                enemyCollider.GetComponent<DetectableController>().Detectado();
-            }
-            catch (System.Exception)
-            {
-                enemyCollider.GetComponent<DetectableController2>().Detectado();
-            }
-        }
         //AchievementsManager.INSTANCE.Achievement03();
-        _radar.enabled = true;
 
+        if (_radar.enabled)
+        {
+            _radar.SendMessage("UpdateFlixBus");
+        }
+        else
+        {
+            _radar.enabled = true;
+        }
+        
         _player.GetComponent<Player>().enabled = false;
         _player.GetComponent<CombatBro>().enabled = false;
         _player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y);

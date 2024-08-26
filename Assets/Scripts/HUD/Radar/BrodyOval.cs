@@ -11,7 +11,7 @@ public class BrodyOval : MonoBehaviour
     private GameObject[] _detectables;
     private int _objects = 0;
     [SerializeField]
-    private float _xRadio = 0.2f;
+    private float _xRadio = 0.2f;   
     [SerializeField]
     private float _yRadio = 0.3f;
 
@@ -52,13 +52,8 @@ public class BrodyOval : MonoBehaviour
             _instantiatedObjects[i].SetActive(true);
         }
 
-        for (int i = 0; i < _detectables.Length; i++)
-        {
-            if (!_detectables[i].activeSelf)
-            {
-                _player.transform.GetChild(_player.transform.childCount - 1).GetChild(i).gameObject.SetActive(false);
-            }
-        }
+        UpdateFlixBus();
+
     }
 
     private void Update()
@@ -78,5 +73,23 @@ public class BrodyOval : MonoBehaviour
                 _instantiatedObjects[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, angleToDetectable - 90f));
             }
         }
+    }
+
+    private void UpdateFlixBus()
+    {
+        for (int i = 0; i < _detectables.Length; i++)
+        {
+            if (!_detectables[i].activeSelf)
+            {
+                _player.transform.GetChild(_player.transform.childCount - 1).GetChild(i).gameObject.SetActive(false);
+                print("Hier");
+            }
+            else
+            {
+                _player.transform.GetChild(_player.transform.childCount - 1).GetChild(i).gameObject.SetActive(true);
+                print("Hier2");
+            }
+        }
+        _ovalContainer.gameObject.SetActive(true);
     }
 }

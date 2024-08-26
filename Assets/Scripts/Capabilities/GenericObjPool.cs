@@ -8,10 +8,12 @@ public class GenericObjPool : MonoBehaviour
     private List<GameObject> _objectList;
     void Awake()
     {
+        if (_objectList is null)
+        {
         _objectList = new List<GameObject>();
+        }
+
     }
-
-
 
     public virtual void AddObject(GameObject Obj2add)
     {
