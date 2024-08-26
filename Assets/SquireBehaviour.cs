@@ -134,6 +134,8 @@ private void OnDisable() {
     attackState.gameObject.SetActive(false);
     flipState.gameObject.SetActive(false);
     if(enemyStats.currentHealth <= 0) animator.SetTrigger("Die");
+    if(enemyStats.currentHealth <= 0) animator.SetBool("Dead", true);
+
 }
 
 private IEnumerator SecondState()

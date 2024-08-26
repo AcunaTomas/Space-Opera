@@ -155,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
   m_SortingLayer: 3
-  m_SortingOrder: 45
+  m_SortingOrder: 46
   m_Sprite: {fileID: 598967652, guid: 5ead84d5c414ad04bb4418b921f9064e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -341,6 +341,7 @@ MonoBehaviour:
   chaseState: {fileID: 6866301661036180644}
   attackState: {fileID: 3964179068960573357}
   state: {fileID: 8977874684579104995}
+  grounded: 0
 --- !u!1 &2491901783969367466
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82b74c46b16ee4882ec967ece8f1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alert: {fileID: 0}
 --- !u!1 &7455441613621940961
 GameObject:
   m_ObjectHideFlags: 0

@@ -94,7 +94,14 @@ public class GenericBala : MonoBehaviour
 
 
 
-
+      if (directionX > 0)
+      {
+        GetComponent<SpriteRenderer>().flipX = false;
+      }
+      else
+      {
+        GetComponent<SpriteRenderer>().flipX = true;
+      }
 
        // Rotación no eficiente de la bala
 
@@ -108,8 +115,7 @@ public class GenericBala : MonoBehaviour
        }
        else if (directionY > 0)
        {
-          transform.rotation = Quaternion.Euler(0, 0, 90);
-          GetComponent<SpriteRenderer>().flipX = false;
+          transform.rotation = Quaternion.Euler(0, 0, -90);
         }
 
 
@@ -124,8 +130,8 @@ public class GenericBala : MonoBehaviour
        }
        else if (directionY < 0)
        {
-          transform.rotation = Quaternion.Euler(0, 0, -90);
-          GetComponent<SpriteRenderer>().flipX = false;
+          transform.rotation = Quaternion.Euler(0, 0, 90);
+
        }
 
 
