@@ -63,7 +63,6 @@ void Update()
         SECONDPHASE = true;
         animator.SetTrigger("SecondPhase");
         animator.SetBool("Phasing", true);
-        Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
     }
     if (attackMode == false)
     {
@@ -148,5 +147,11 @@ private IEnumerator SecondState()
         moveSpeed*=2;
         flipState.flipping = false;
         if(!flipState.lookingLeft && transform.position.x > target.position.x || flipState.lookingLeft && transform.position.x < target.position.x) StartCoroutine(flipState.Flip());
+    }
+
+
+public void DropShild()
+    {
+        Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
     }
 }
