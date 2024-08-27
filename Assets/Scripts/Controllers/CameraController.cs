@@ -120,7 +120,10 @@ public class CameraController : MonoBehaviour
         return _confiner.m_BoundingShape2D;
     }
 
-
+    public void TooMuchShake()
+    {
+        Instance.ScreenShake(.5f, .8f);
+    }
 
     public void DeStupidFuction()
     {

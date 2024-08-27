@@ -92,11 +92,21 @@ public class MoveBoxes : MonoBehaviour
                     {
                         GetComponent<Animator>().SetBool("Drag", true);
                         GetComponent<Animator>().SetBool("Push", false);
+                        if(!_soundOnce)
+                        {
+                            instance.start();
+                            _soundOnce = true;
+                        }
                     }
                     else if (Input.GetAxisRaw("Horizontal") < -0.1)
                     {
                         GetComponent<Animator>().SetBool("Push", true);
                         GetComponent<Animator>().SetBool("Drag", false);
+                        if(!_soundOnce)
+                        {
+                            instance.start();
+                            _soundOnce = true;
+                        }
                     }
                     
                 }
@@ -125,7 +135,19 @@ public class MoveBoxes : MonoBehaviour
                 instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
             
-            
+            // if (GetComponent<Rigidbody2D>().velocity.x != 0)
+            // {
+            //     if(!_soundOnce)
+            //     {
+            //         instance.start();
+            //         _soundOnce = true;
+            //     }
+            // }
+            // else
+            // {
+            //     _soundOnce = false;
+            //     instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            // }
         }
     }
 
@@ -151,11 +173,11 @@ public class MoveBoxes : MonoBehaviour
             }
         }
 
-        if(!_soundOnce)
-        {
-            instance.start();
-            _soundOnce = true;
-        }
+        //if(!_soundOnce)
+        //{
+        //    instance.start();
+        //    _soundOnce = true;
+        //}
 
     }
     void OnTriggerExit2D(Collider2D box)  //Cuando te alejas a la caja

@@ -17,6 +17,8 @@ public class BotonesController : MonoBehaviour
 
     private StudioEventEmitter _soundEmitter;
 
+    public bool _playedSound = false;
+
 
     void Start()
     {
@@ -38,7 +40,12 @@ public class BotonesController : MonoBehaviour
             if(_puerta)_puerta.GetComponent<Animator>().SetTrigger("OpenDoor");
             _callWhat.Invoke();
             this.enabled = false;
-            _soundEmitter.Play();
+            if (!_playedSound)
+            {
+                _soundEmitter.Play();
+                _playedSound = true;
+            }
+            
         }
             
     }
