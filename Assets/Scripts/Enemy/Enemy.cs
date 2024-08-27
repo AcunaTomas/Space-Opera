@@ -242,7 +242,6 @@ public class Enemy : MonoBehaviour
         if (_enemyType == EnemyType.simple)
         {
             animator.SetTrigger("Die");
-            GetComponent<EnemyPatrol>().attackSound.SetActive(false);
             GetComponent<EnemyPatrol>().enabled = false;
             GetComponentInChildren<HurtBox>().enabled = false;
             AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);
@@ -272,6 +271,7 @@ public class Enemy : MonoBehaviour
         }
 
         animator.SetTrigger("Die");
+        FindObjectOfType<EnemySoundsController>().UpdateParameter("EnemyMode", 2);
         
         try
         {

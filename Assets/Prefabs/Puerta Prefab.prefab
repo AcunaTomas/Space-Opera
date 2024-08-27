@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3504450079905354021}
   - component: {fileID: 3327576060759488120}
   - component: {fileID: 3053183107605100939}
+  - component: {fileID: 3843409449183163444}
   m_Layer: 0
   m_Name: Puerta Prefab
   m_TagString: NotClimbable
@@ -133,3 +134,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17520198, y: 0.64076555}
   m_EdgeRadius: 0
+--- !u!114 &3843409449183163444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004905828303764261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1962783690
+      Data2: 1229793007
+      Data3: 1139863739
+      Data4: -750461683
+    Path: event:/OBJECTS/Door-open
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
