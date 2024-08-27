@@ -147,7 +147,7 @@ public class GenericBala : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyRumba")
         {
           try
           {
