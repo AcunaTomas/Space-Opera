@@ -37,7 +37,7 @@ public class JabulaniBehaviour : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = GameManager.INSTANCE.GetActivePlayer().gameObject;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = player.GetComponent<SpriteRenderer>();
         _SP = GetComponent<SpriteRenderer>();
@@ -45,6 +45,7 @@ public class JabulaniBehaviour : MonoBehaviour
         thrown = true;
         Throw();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        player.GetComponent<PlayerCombat>().JabulaniStatus();
     }
 
     public void FixedUpdate()

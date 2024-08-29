@@ -105,16 +105,20 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (_jabulaniOn && _jabulaniActive == false && Time.time >= nextBombTime)
                 {
-                    ActiveHUDBulani.SetActive(true);
                     nextBombTime = Time.time + 2f / bombRate;
                     animator.SetTrigger("Bomb2");
-                    _jabulaniActive = true;
                 }
 
                     
 
 
             }
+    }
+
+    public void JabulaniStatus()
+    {
+        ActiveHUDBulani.SetActive(true);
+        _jabulaniActive = true;
     }
 
     void FixedUpdate()
