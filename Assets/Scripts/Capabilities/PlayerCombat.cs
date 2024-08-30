@@ -243,7 +243,9 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyBalaLayers);
                 foreach (Collider2D balaCollider in hitBala)
                 {
-                    balaCollider.gameObject.SetActive(false);
+                    balaCollider.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
+                    Destroy(balaCollider.gameObject, 0.55f);
+                    //balaCollider.gameObject.SetActive(false);
                 }
 
                 Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
@@ -282,7 +284,9 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyBalaLayers);
                 foreach (Collider2D balaCollider in hitBala)
                 {
-                    balaCollider.gameObject.SetActive(false);
+                    balaCollider.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
+                    Destroy(balaCollider.gameObject, 0.55f);
+                    //balaCollider.gameObject.SetActive(false);
                 }
             }
         }
@@ -310,7 +314,9 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyBalaLayers);
                 foreach (Collider2D balaCollider in hitBala)
                 {
-                    balaCollider.gameObject.SetActive(false);
+                    balaCollider.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
+                    Destroy(balaCollider.gameObject, 0.55f);
+                    //balaCollider.gameObject.SetActive(false);
                 }
             }
         }
