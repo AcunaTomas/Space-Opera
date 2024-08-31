@@ -39,6 +39,7 @@ public class MoveBoxes : MonoBehaviour
     {
         if(box.gameObject.CompareTag("Movible"))
         {
+            _playerRef.GetComponent<PlayerCombat>().enabled = false;
             if(box.gameObject.transform.localScale.x >1)
             {
                 box.gameObject.transform.GetComponent<CapsuleCollider2D>().size = new Vector2(.60f - box.gameObject.transform.localScale.x/100, box.gameObject.transform.GetComponent<CapsuleCollider2D>().size.y);
@@ -117,11 +118,21 @@ public class MoveBoxes : MonoBehaviour
                     {
                         GetComponent<Animator>().SetBool("Push", true);
                         GetComponent<Animator>().SetBool("Drag", false);
+                        if(!_soundOnce)
+                        {
+                            instance.start();
+                            _soundOnce = true;
+                        }
                     }
                     else if (Input.GetAxisRaw("Horizontal") < -0.1)
                     {
                         GetComponent<Animator>().SetBool("Drag", true);
                         GetComponent<Animator>().SetBool("Push", false);
+                        if(!_soundOnce)
+                        {
+                            instance.start();
+                            _soundOnce = true;
+                        }
                     }
                 }
             }
@@ -193,6 +204,7 @@ public class MoveBoxes : MonoBehaviour
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             _soundOnce = false;
             instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            _playerRef.GetComponent<PlayerCombat>().enabled = true;
         }
     }
 

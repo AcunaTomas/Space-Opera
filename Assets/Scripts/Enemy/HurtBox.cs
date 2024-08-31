@@ -14,7 +14,7 @@ public class HurtBox : MonoBehaviour
     private Enemy _enemyRef;
     public virtual void Awake()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameManager.INSTANCE.GetActivePlayer().gameObject;
     }
 
     public virtual float setOrientation(float orientationValue)
@@ -27,7 +27,7 @@ public class HurtBox : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player = GameObject.FindWithTag("Player");
+            player = other.gameObject;
             other.GetComponent<Player>().LoseHP(attackDamage, transform.position, KnockbackDaño);
             //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 2), ForceMode2D.Impulse);
                 //other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll; Volver a poner luego?

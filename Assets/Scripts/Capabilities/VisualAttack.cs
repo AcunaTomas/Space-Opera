@@ -33,5 +33,6 @@ public class VisualAttack : MonoBehaviour
             gameObject.transform.localPosition = new Vector2 (-0.15f, 0);
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
+        
     }
 }
