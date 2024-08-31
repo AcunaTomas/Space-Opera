@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PopUpInputs : MonoBehaviour
 {
+    [SerializeField] private GameObject bitoInputs;
+    [SerializeField] private GameObject brodyInputs;
+    [SerializeField] private string _skillID;
+    [SerializeField] private GameObject[] skillCanvas;
     private string _text;
     private bool _canInteract = true;
     private bool _buttonPressed = false;
@@ -15,6 +20,7 @@ public class PopUpInputs : MonoBehaviour
     void Start()
     {
         _movementX = -710f;
+        UpdateLanguage();
     }
 
     public void ChangeObjectiveBool()
@@ -58,7 +64,6 @@ public class PopUpInputs : MonoBehaviour
         transform.localPosition = new Vector2(_finalX, transform.localPosition.y);
 
         yield return new WaitForSeconds(0.1f);
-        
         _canInteract = true;
         _buttonPressed = false;
         _timeAfk = 0f;
@@ -88,6 +93,7 @@ public class PopUpInputs : MonoBehaviour
 
         if (_fold)
         {
+                //GameManager.INSTANCE.ChangeTimeScale(0f);
             _timeAfk += Time.deltaTime;
             if (_timeAfk > 2.5f)
             {
@@ -100,9 +106,23 @@ public class PopUpInputs : MonoBehaviour
 
         if (Input.GetButtonDown("Select") && !_buttonPressed)
         {
+            UpdateLanguage();
+                //GameManager.INSTANCE.ChangeTimeScale(1f);
             _canInteract = false;
             _buttonPressed = true;
             StartCoroutine(FoldUnfold(_fold));
+        }
+
+        if (Input.GetAxis("CharSwitch1") > 0 && !_buttonPressed)
+        {
+            _buttonPressed = true;
+            bitoInputs.SetActive(!bitoInputs.activeInHierarchy);
+            brodyInputs.SetActive(!brodyInputs.activeInHierarchy);
+        }
+
+        if(Input.GetAxis("CharSwitch1") == 0)
+        {
+            _buttonPressed = false;
         }
 
         if (Input.GetButtonUp("Select"))
@@ -110,5 +130,17 @@ public class PopUpInputs : MonoBehaviour
             _buttonPressed = false;
         }
         
+    }
+
+    public void UpdateLanguage()
+    {
+        foreach (GameObject skill in skillCanvas)
+        {
+            _skillID = skill.GetComponent<ButtonMenu>().NAME;
+            _text = UIManager.INSTANCE.DialogueBoxLoadText(_skillID + "name");
+            skill.transform.GetChild(0).GetComponent<TMP_Text>().text = _text;
+            _text = UIManager.INSTANCE.DialogueBoxLoadText(_skillID + "desc");
+            skill.transform.GetChild(3).GetComponent<TMP_Text>().text = _text;
+        }
     }
 }

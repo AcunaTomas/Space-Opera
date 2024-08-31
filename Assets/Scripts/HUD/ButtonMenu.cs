@@ -13,8 +13,8 @@ public class ButtonMenu : MonoBehaviour
     public bool ACTIVE = false;
     private bool _spacebarPressed = false;
     private Button _button;
-    [SerializeField]
-    private Sprite[] _backgrounds;
+    [SerializeField] private Sprite[] _backgrounds;
+    public string NAME;
     
     void Start()
     {
