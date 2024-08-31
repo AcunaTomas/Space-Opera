@@ -9,4 +9,9 @@ public class DetectableController : MonoBehaviour
     {
         _brillo.SetActive(true);
     }
+
+    public void DestroyThisShit()
+    {
+        //do nothing
+    }
 }
