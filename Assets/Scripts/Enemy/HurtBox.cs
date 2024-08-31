@@ -6,6 +6,8 @@ using UnityEngine;
 public class HurtBox : MonoBehaviour
 {
     public bool _persistant = false;
+
+    public float PlayerStunTimer = 0.166f;
     protected int attackDamage = 1;
     protected float orientation = 1f;
     protected GameObject player;
@@ -60,12 +62,14 @@ public class HurtBox : MonoBehaviour
                 }
                 catch
                 {
+                    DelayMoveAgain(PlayerStunTimer);
+                    Debug.Log("hit");
                     return;
                 }
                 
                 
             }
-            DelayMoveAgain(0.166f);
+            DelayMoveAgain(PlayerStunTimer);
             Debug.Log("hit");
         }
     }
