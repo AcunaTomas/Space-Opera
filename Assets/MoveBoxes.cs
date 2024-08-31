@@ -60,7 +60,7 @@ public class MoveBoxes : MonoBehaviour
         
         if(box.gameObject.CompareTag("Movible") && GetComponent<Playerererer>().grounded)
         {
-            if(Input.GetButton("Submit") && !GetComponent<Animator>().GetBool("IsJumping"))
+            if(Input.GetButton("Fire1") && !GetComponent<Animator>().GetBool("IsJumping"))
             {
                 if(GetComponent<Animator>().GetBool("IsJumping")) return;
                 Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
