@@ -25,8 +25,8 @@ public class PopUpInputs : MonoBehaviour
     {
         _movementX = -710f;
         UpdateLanguage();
+        
     }
-
     public void ChangeObjectiveBool()
     {
         _objectiveChanged = true;
@@ -110,6 +110,17 @@ public class PopUpInputs : MonoBehaviour
             }
         }
 
+        if  (GameManager.INSTANCE.GetActivePlayer().gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+        {
+            bitoInputs.SetActive(true);
+            brodyInputs.SetActive(false);
+        }
+        else
+        {
+            bitoInputs.SetActive(false);
+            brodyInputs.SetActive(true);
+        }  
+
         if (Input.GetButtonDown("Select") && !_buttonPressed)
         {
             UpdateLanguage();
@@ -118,18 +129,6 @@ public class PopUpInputs : MonoBehaviour
             _buttonPressed = true;
             StartCoroutine(FoldUnfold(_fold));
             Arrowanimator.runtimeAnimatorController = ArrowPointingLeft;
-        }
-
-        if (Input.GetAxis("CharSwitch1") > 0 && !_buttonPressed)
-        {
-            _buttonPressed = true;
-            bitoInputs.SetActive(!bitoInputs.activeInHierarchy);
-            brodyInputs.SetActive(!brodyInputs.activeInHierarchy);
-        }
-
-        if(Input.GetAxis("CharSwitch1") == 0)
-        {
-            _buttonPressed = false;
         }
 
         if (Input.GetButtonUp("Select"))
