@@ -9,6 +9,7 @@ public class PopUpInputs : MonoBehaviour
     [SerializeField] private GameObject brodyInputs;
     [SerializeField] private string _skillID;
     [SerializeField] private GameObject[] skillCanvas;
+    public Animator Arrowanimator;
     private string _text;
     private bool _canInteract = true;
     private bool _buttonPressed = false;
@@ -16,6 +17,9 @@ public class PopUpInputs : MonoBehaviour
     private bool _objectiveChanged = true;
     private float _timeAfk = 0f;
     private float _movementX;
+
+    [SerializeField] RuntimeAnimatorController ArrowPointingRight;
+    [SerializeField] RuntimeAnimatorController ArrowPointingLeft;
 
     void Start()
     {
@@ -44,6 +48,7 @@ public class PopUpInputs : MonoBehaviour
         {
             _initialX = transform.localPosition.x;
             _finalX = _initialX - _movementX;
+            Arrowanimator.runtimeAnimatorController = ArrowPointingLeft;
         }
         else
         {
@@ -94,6 +99,7 @@ public class PopUpInputs : MonoBehaviour
         if (_fold)
         {
                 //GameManager.INSTANCE.ChangeTimeScale(0f);
+            Arrowanimator.runtimeAnimatorController = ArrowPointingRight;
             _timeAfk += Time.deltaTime;
             if (_timeAfk > 2.5f)
             {
@@ -111,6 +117,7 @@ public class PopUpInputs : MonoBehaviour
             _canInteract = false;
             _buttonPressed = true;
             StartCoroutine(FoldUnfold(_fold));
+            Arrowanimator.runtimeAnimatorController = ArrowPointingLeft;
         }
 
         if (Input.GetAxis("CharSwitch1") > 0 && !_buttonPressed)
