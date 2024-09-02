@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public ButtonDialogueNew DIALOGUE_PANEL;
     public GameObject CANVASWORLDSPACE;
     public ObjectivesManager OBJECTIVES_DISPLAY;
+    public PopUpInputs INPUTS_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
     public GameObject UPGRADE;
     public GameObject PAUSE_MENU;
@@ -78,6 +79,7 @@ public class UIManager : MonoBehaviour
         //DIALOGUE_TUTORIAL.UpdateLanguage();
         DIALOGUE_PANEL.UpdateLanguage();
         OBJECTIVES_DISPLAY.UpdateLanguage();
+        INPUTS_DISPLAY.UpdateLanguage();
         CANVASWORLDSPACE.BroadcastMessage("UpdateLanguage",SendMessageOptions.DontRequireReceiver);
     }
 
