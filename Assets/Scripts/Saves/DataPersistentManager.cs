@@ -15,7 +15,7 @@ public class DataPersistentManager : MonoBehaviour
     private string _fileName;
     [SerializeField]
     private string _achievementName;
-    private string _language;
+    private string _language = "ES";
 
     private GameData _gameData;
     private List<IDataPersistance> _dataPersistanceObjects;

@@ -147,7 +147,6 @@ public class WaveLogic : MonoBehaviour
             if(enemyRef.GetComponent<EnemyBehaviour2>()) enemyRef.GetComponent<EnemyBehaviour2>().ChangeState(enemyRef.GetComponent<EnemyBehaviour2>().chaseState);
             if(enemyRef.GetComponent<EnemyShooting2>()) enemyRef.GetComponent<EnemyShooting2>().ChangeState(enemyRef.GetComponent<EnemyShooting2>().chaseState);
             if(enemyRef.GetComponent<SquireBehaviour>()) enemyRef.GetComponent<SquireBehaviour>().ChangeState(enemyRef.GetComponent<SquireBehaviour>().chaseState);
-            if(enemyRef.GetComponent<EnemyPatrol>()) enemyRef.GetComponent<Animator>().SetTrigger("Hurt");
         }
     }
 

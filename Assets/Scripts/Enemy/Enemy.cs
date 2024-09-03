@@ -197,7 +197,7 @@ public class Enemy : MonoBehaviour
         _callWhat = a;
     }
 
-    void Die()
+    public void Die()
     {
         if (GameManager.INSTANCE.LEVEL == 1)
         {
@@ -242,6 +242,7 @@ public class Enemy : MonoBehaviour
         if (_enemyType == EnemyType.simple)
         {
             animator.SetTrigger("Die");
+            animator.SetBool("Dead", true);
             GetComponent<EnemyPatrol>().enabled = false;
             GetComponentInChildren<HurtBox>().enabled = false;
             AudioController.instance.PlayOneShot(FMODEvents.instance.EnemiesDead, this.transform.position);

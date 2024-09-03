@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour{
 
     public bool ShowHPBarOnSpawn;
 
+    public bool PAUSABLE = true;
+
     //Later is now...
     
     private void Awake()
@@ -128,7 +130,11 @@ public class GameManager : MonoBehaviour{
 
         if (Input.GetButtonDown("Pause") && !_escapePressed)
         {
-            PauseUnPause(PAUSED);
+            if (PAUSABLE)
+            {
+                PauseUnPause(PAUSED);
+            }
+            
         }
 
         if (Input.GetButtonUp("Pause"))
@@ -233,10 +239,12 @@ public class GameManager : MonoBehaviour{
 
     public void AllMovementToggle(bool a)
     {
-
+        _playerScript = GetActivePlayer();
         PLAYER_COMBAT = a;
         _playerScript.GetComponent<PlayerCombat>().enabled = a;
+        _playerScript.GetComponent<Player>().enabled = a;
         _playerScript.MovementEnableToggle(a);
+        
     }
     public void TellThePlayerToMoveSomewhere(Transform a)
     {

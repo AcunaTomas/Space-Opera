@@ -30,6 +30,13 @@ public class Interactable : MonoBehaviour
     public UnityEvent afterafterAction;
     public float _afterwaitTime;
 
+    public bool _used = false;
+    public bool _singleUse = false;
+
+    public bool _hasDoAfter = true;
+
+    private bool _finishedAfterAction = true;
+
 
     void FixedUpdate()
     {
@@ -98,10 +105,31 @@ public class Interactable : MonoBehaviour
         {
             if (Input.GetAxis("Submit") > 0 && _timePressed <= 0)  //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) 
             {
-                interactAction.Invoke();
-                StartCoroutine(DoAfter());
-                _keyHeld = true;
-                disableCheck();
+                if(_finishedAfterAction)
+                {
+                    if (_singleUse)
+                    {
+                        if(!_used)
+                        {
+                            interactAction.Invoke();
+                            if(_hasDoAfter)StartCoroutine(DoAfter());
+                            _used = true;
+                        }
+                        else
+                        {
+                            Debug.Log("Already interacted");
+                        }
+                    }
+                    else
+                    {
+                        interactAction.Invoke();
+                        if(_hasDoAfter)StartCoroutine(DoAfter());
+                    }
+                    
+                    _keyHeld = true;
+                    disableCheck();
+                }
+                
             }
         }
         else
@@ -110,11 +138,30 @@ public class Interactable : MonoBehaviour
             {
                 if (Input.GetAxis("Submit") > 0 && _timePressed <= 0) //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) 
                 {
-                    interactAction.Invoke();
-                    _keyHeld = true;
-
-                    restoreMove();
-                    disableCheck();
+                    if (_finishedAfterAction)
+                    {
+                        if (_singleUse)
+                        {
+                            if(!_used)
+                            {
+                                interactAction.Invoke();
+                                if(_hasDoAfter)StartCoroutine(DoAfter());
+                                _used = true;
+                            }
+                            else
+                            {
+                                Debug.Log("Already interacted");
+                            }
+                        }
+                        else
+                        {
+                            interactAction.Invoke();
+                            if(_hasDoAfter)StartCoroutine(DoAfter());
+                        }
+                        _keyHeld = true;
+                        restoreMove();
+                        disableCheck();
+                    } 
                 }
             }
         }
@@ -155,7 +202,7 @@ public class Interactable : MonoBehaviour
 
     public IEnumerator DoAfter()
     {
-
+        _finishedAfterAction = false;
         yield return new WaitUntil(() => waveMode == false);
 
         yield return new WaitForSeconds(_waitTime);
@@ -163,6 +210,7 @@ public class Interactable : MonoBehaviour
 
         yield return new WaitForSeconds(_afterwaitTime);
         afterafterAction.Invoke();
+        _finishedAfterAction = true;
     }
 
 

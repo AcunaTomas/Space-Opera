@@ -147,7 +147,6 @@ public class Player : MonoBehaviour
     public bool _isBrodyJumping = false;
 
 
-
     public void ChangeSkillStatus(bool a)
     {
         _skillPermitted = a;

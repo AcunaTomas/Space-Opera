@@ -25,7 +25,6 @@ public class MainMenu : MonoBehaviour
             _eventSystem.firstSelectedGameObject = _newGame.gameObject;
             _newGame.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
             _newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = true;
-            ChangeLanguage("ES");
             //_newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = false;
         }
     }

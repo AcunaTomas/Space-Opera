@@ -93,21 +93,11 @@ public class MoveBoxes : MonoBehaviour
                     {
                         GetComponent<Animator>().SetBool("Drag", true);
                         GetComponent<Animator>().SetBool("Push", false);
-                        if(!_soundOnce)
-                        {
-                            instance.start();
-                            _soundOnce = true;
-                        }
                     }
                     else if (Input.GetAxisRaw("Horizontal") < -0.1)
                     {
                         GetComponent<Animator>().SetBool("Push", true);
                         GetComponent<Animator>().SetBool("Drag", false);
-                        if(!_soundOnce)
-                        {
-                            instance.start();
-                            _soundOnce = true;
-                        }
                     }
                     
                 }
@@ -118,21 +108,11 @@ public class MoveBoxes : MonoBehaviour
                     {
                         GetComponent<Animator>().SetBool("Push", true);
                         GetComponent<Animator>().SetBool("Drag", false);
-                        if(!_soundOnce)
-                        {
-                            instance.start();
-                            _soundOnce = true;
-                        }
                     }
                     else if (Input.GetAxisRaw("Horizontal") < -0.1)
                     {
                         GetComponent<Animator>().SetBool("Drag", true);
                         GetComponent<Animator>().SetBool("Push", false);
-                        if(!_soundOnce)
-                        {
-                            instance.start();
-                            _soundOnce = true;
-                        }
                     }
                 }
             }
@@ -142,23 +122,8 @@ public class MoveBoxes : MonoBehaviour
                 box.GetComponent<Animator>().SetBool("inRange", false);
                 ResetAnimMove();
                 //Debug.Log("estoy pegado pero no muevo la caja");
-                _soundOnce = false;
-                instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
             
-            // if (GetComponent<Rigidbody2D>().velocity.x != 0)
-            // {
-            //     if(!_soundOnce)
-            //     {
-            //         instance.start();
-            //         _soundOnce = true;
-            //     }
-            // }
-            // else
-            // {
-            //     _soundOnce = false;
-            //     instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            // }
         }
     }
 
@@ -183,12 +148,6 @@ public class MoveBoxes : MonoBehaviour
 
             }
         }
-
-        //if(!_soundOnce)
-        //{
-        //    instance.start();
-        //    _soundOnce = true;
-        //}
 
     }
     void OnTriggerExit2D(Collider2D box)  //Cuando te alejas a la caja
@@ -236,5 +195,20 @@ public class MoveBoxes : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("Push", false);
         GetComponent<Animator>().SetBool("Drag", false);
+    }
+
+    public void PlaySoundBox()
+    {
+        if(!_soundOnce)
+        {
+            instance.start();
+            _soundOnce = true;
+        }
+    }
+
+    public void StopSoundBox()
+    {
+        _soundOnce = false;
+        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 }

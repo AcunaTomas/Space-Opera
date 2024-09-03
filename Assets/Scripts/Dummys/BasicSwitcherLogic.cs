@@ -20,6 +20,9 @@ public class BasicSwitcherLogic : MonoBehaviour
     private float effectDuration = 0.4f;
 
     public float RespawnCooldown = 2f;
+
+    private bool isHacking = false;
+
     void Start()
     {
         effect = Resources.Load("Prefabs/Sparkle");
@@ -51,6 +54,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 UIManager.INSTANCE.ToggleHPBars();
                                 brodi.SetHP(bi2.GetHP());
                                 brodi._spriteRenderer.flipX = bi2._spriteRenderer.flipX;
+                                GameManager.INSTANCE.AllMovementToggle(true);
                                 break;
                             }
                         case "Brody":
@@ -71,6 +75,7 @@ public class BasicSwitcherLogic : MonoBehaviour
                                 bi2.SetHP(brodi.GetHP());
                                 bi2.gameObject.GetComponent<PlayerCombat>()._jabulaniActive = false;
                                 bi2._spriteRenderer.flipX = brodi._spriteRenderer.flipX;
+                                GameManager.INSTANCE.AllMovementToggle(true);
                                 break;
                             }
                     }
@@ -170,6 +175,11 @@ public class BasicSwitcherLogic : MonoBehaviour
         IsEnabled = a;  
     }
 
+    public void IsHacking(bool a)
+    {
+        isHacking = a;
+    }
+
 
     IEnumerator cooldown2()
     {
@@ -189,6 +199,9 @@ public class BasicSwitcherLogic : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         brodi.ResetVars();
         bi2.ResetVars();
-        ToggleCharSwitching(true);
+        if (!isHacking)
+        {
+            ToggleCharSwitching(true);
+        }
     }
 }

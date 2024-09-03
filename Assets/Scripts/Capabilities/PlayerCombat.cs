@@ -109,9 +109,11 @@ public class PlayerCombat : MonoBehaviour
                     animator.SetTrigger("Bomb2");
                 }
 
-                    
+            }
 
-
+            if (_jabulaniActive == false)
+            {
+                ActiveHUDBulani.SetActive(false);
             }
     }
 
@@ -150,6 +152,7 @@ public class PlayerCombat : MonoBehaviour
                 queryStartTime = Time.time;
                 //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
+
         }
 
 
