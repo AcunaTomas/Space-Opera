@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    public float _speed1;
     public float _speed;
     private float _lastSpeed;
     private Rigidbody2D _rb;
@@ -19,7 +21,9 @@ public class EnemyPatrol : MonoBehaviour
 
     private float _waitTime = 0.3f;
     private float _waitCounter = 0f;
-    public   bool _waiting = false;
+    public bool _waiting = false;
+
+    public bool _broken = false;
 
     int _enemyLayer;
     int _defaultLayer;
@@ -27,6 +31,11 @@ public class EnemyPatrol : MonoBehaviour
     private Enemy _mainScript;
     private EnemySoundsController _sounds;
 
+    private bool _impulsed = false;
+
+    public bool flip = false;
+
+    public bool _bossFight = false;
 
 
     void Awake()
@@ -56,7 +65,7 @@ public class EnemyPatrol : MonoBehaviour
             }
         }
 
-        if (_waiting == false)
+        if (_waiting == false && !_bossFight)
         {
             _rb.velocity = Vector2.right * _speed * Time.deltaTime;
             _isGrounded = Physics2D.OverlapCircle(_groundCheck.transform.position, _circleRadius, _groundLayer);
@@ -82,6 +91,7 @@ public class EnemyPatrol : MonoBehaviour
                 _facingRight = !_facingRight;
                 Flip();
             }
+            
         }
 
         if(_mainScript.currentHealth > 0)
@@ -95,7 +105,17 @@ public class EnemyPatrol : MonoBehaviour
                 _sounds.UpdateParameter("EnemyMode", 1);
             }
         }
-        
+
+        if (_broken)
+        {
+            _isGrounded = Physics2D.OverlapCircle(_groundCheck.transform.position, _circleRadius, _groundLayer);
+            if(_isGrounded)
+            {
+                _speed = 0;
+                Destroy(gameObject, 0.2f);
+            }
+        }
+
     }
 
     void Flip()
@@ -107,14 +127,18 @@ public class EnemyPatrol : MonoBehaviour
 
     public void ChangeSpeed()
     {
-        if (_speed > 0)
+        if (!_broken)
         {
-            _speed = 60;
+            if (_speed > 0)
+            {
+                _speed = 60;
+            }
+            else if (_speed < 0)
+            {
+                _speed = -60;
+            }
         }
-        else if (_speed < 0)
-        {
-            _speed = -60;
-        }
+        
 
 
     }
@@ -123,5 +147,11 @@ public class EnemyPatrol : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(_groundCheck.transform.position,_circleRadius);
+    }
+
+    public void Impulse(float Num1, float Num2)
+    {
+        var direction = transform.right + Vector3.up;
+        GetComponent<Rigidbody2D>().AddForce(direction * Random.Range(Num1, Num2) ,ForceMode2D.Impulse);
     }
 }

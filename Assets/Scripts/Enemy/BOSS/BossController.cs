@@ -14,7 +14,6 @@ public class BossController : MonoBehaviour
     int _lastRand = 0;
 
 
-
     private void Start()
     {
         switch (_rand)
@@ -37,7 +36,7 @@ public class BossController : MonoBehaviour
         if (_player.GetComponent<Playerererer>().GetHP() <= 0)
         {
             PlayerRespawneando();
-            Debug.Log("Se murió el player");
+            Debug.Log("Se muriï¿½ el player");
         }
         else if (_player.GetComponent<Playerererer>().GetHP() > 0)
         {

@@ -40,6 +40,8 @@ public class Enemy : MonoBehaviour
         gunTower,
         clone,
         squirrel,
+
+        newBoss
     }
 
     [SerializeField]

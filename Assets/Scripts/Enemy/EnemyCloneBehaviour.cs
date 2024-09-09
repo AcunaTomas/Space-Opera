@@ -180,5 +180,14 @@ public void StopAlertAnim()
     animator.SetBool("Alert", false);
 }
 
+public void Explosion()
+{
+    transform.GetChild(4).gameObject.SetActive(true);
+}
+
+public void ExplosionOff()
+{
+    transform.GetChild(4).gameObject.SetActive(false);
+}
 
 }
