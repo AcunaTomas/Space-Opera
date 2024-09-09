@@ -50,6 +50,12 @@ public class BossBehaviourNew : MonoBehaviour
     public GameObject bossPosition2;
     public GameObject bossPosition3;
 
+    [Header("Electricity")]
+
+    public GameObject electricidadIZQ;
+    public GameObject electricidadDER;
+    public GameObject electricidadPhase2;
+
     private bool _first = false;
     private bool _second = false;
     private bool _third = false;
@@ -69,6 +75,8 @@ public class BossBehaviourNew : MonoBehaviour
 
     private bool _flipeable = true;
     private int _numMisilesGenerator;
+
+
 
 void Awake()
 {
@@ -232,6 +240,10 @@ private IEnumerator Ataque2()
     _attacking = true;
     Debug.Log("Ataque2");
     _lastRandomNum = 2;
+
+    yield return new WaitForSeconds(0.3f);
+    StartCoroutine(AtaqueElectricidad());
+
     yield return new WaitForSeconds(2);
     GetRandomNum();
     _attacking = false;
@@ -341,13 +353,35 @@ IEnumerator AtaqueMisiles(float _missileSpeed)
     }
 }
 
-
-
 void GetMissileNumbers()
 {
     _numMisilesGenerator = Random.Range(1,5);
 }
 
+IEnumerator AtaqueElectricidad()
+{
+    int newERandomNum = Random.Range(1,3);
+
+    if (_phase2)
+    {
+        electricidadPhase2.SetActive(true);
+    }
+    else if (newERandomNum == 1)
+    {
+        electricidadDER.SetActive(true);
+    }
+    else
+    {
+        electricidadIZQ.SetActive(true);
+    }
+
+
+    yield return new WaitForSeconds(1f);
+
+    electricidadPhase2.SetActive(false);
+    electricidadIZQ.SetActive(false);
+    electricidadDER.SetActive(false);
+}
 
 
 public void TriggerCooling()
