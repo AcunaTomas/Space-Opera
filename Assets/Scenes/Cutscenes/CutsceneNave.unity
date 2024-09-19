@@ -4898,7 +4898,6 @@ GameObject:
   - component: {fileID: 558290266}
   - component: {fileID: 558290265}
   - component: {fileID: 558290264}
-  - component: {fileID: 558290268}
   - component: {fileID: 558290269}
   m_Layer: 5
   m_Name: Canvas
@@ -4990,38 +4989,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &558290268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558290263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1fc63badaa3d3c4f9cd548dbbfdc8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ALTSKIPENABLED: Disabled
-  LEVEL: 1
-  PLAYER: {fileID: 0}
-  CHECKPOINT: {x: 0, y: 0, z: 0}
-  ACTUAL_CHECKPOINT: {fileID: 0}
-  PLAYER_COMBAT: 0
-  PAUSED: 0
-  MUSIC_VOLUME: 0
-  SFX_VOLUME: 0
-  UIManager: {fileID: 0}
-  SoundManager: {fileID: 0}
-  CameraController: {fileID: 0}
-  Boludos: {fileID: 0}
-  dustcap: 0
-  lvlDialog: {fileID: 0}
-  DIALOGUESKIPEND: 0
-  DIALOGUESKIPCOUNT: 0
-  DebugInfo: {fileID: 0}
-  ShowHPBarOnSpawn: 0
-  PAUSABLE: 0
 --- !u!95 &558290269
 Animator:
   serializedVersion: 5
@@ -13291,7 +13258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710934703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 3.64, z: -0.031135973}
+  m_LocalPosition: {x: -7.56, y: 3.64, z: -0.031135973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -150,9 +150,9 @@ public class GameManager : MonoBehaviour{
 
     public void PauseUnPause(bool bl)
     {
-            ActivateCursor(bl);
-            ChangeTimeScale(System.Convert.ToSingle(bl));
-
+        ActivateCursor(bl);
+        ChangeTimeScale(System.Convert.ToSingle(bl));
+        _playerScript.enabled = bl;
         PAUSED = !bl;
         if (PAUSED == true)
         {
