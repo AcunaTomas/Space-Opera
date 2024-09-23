@@ -41,10 +41,18 @@ public class DoorController2 : MonoBehaviour
     {
         float _hitNumber = GetComponent<Animator>().GetFloat("HowManyHits");
         GetComponent<Animator>().SetFloat("HowManyHits", _hitNumber + 1);
-        if (GetComponent<Animator>().GetFloat("HowManyHits") == 2)
+        try
         {
-            _luzVentilacion.SetActive(true);
+            if (GetComponent<Animator>().GetFloat("HowManyHits") == 2)
+            {
+                _luzVentilacion.SetActive(true);
+            }
         }
+        catch 
+        {
+            Debug.Log("Null Reference Exception en DoorController2.cs, Ignorar");
+        }
+
     }
 
     IEnumerator Cooldown()

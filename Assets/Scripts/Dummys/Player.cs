@@ -390,7 +390,7 @@ public class Player : MonoBehaviour
 
                     if ((contacts[i].normal.x) > 0) 
                     {
-                        //_spriteRenderer.flipX = true;
+                        _spriteRenderer.flipX = true;
                         if (_playerType == PlayerType.Brody)
                         {
                             _animator.runtimeAnimatorController = _brodyLeft;
@@ -398,7 +398,7 @@ public class Player : MonoBehaviour
                     } 
                     else
                     {
-                        //_spriteRenderer.flipX = false;
+                        _spriteRenderer.flipX = false;
                         if (_playerType == PlayerType.Brody)
                         {
                             _animator.runtimeAnimatorController = _brodyRight;
