@@ -30,9 +30,9 @@ public class AnimatorControllerBrody : MonoBehaviour
             _lowerBrodySR.flipX = true;
             _upperAnimator.runtimeAnimatorController = _upperBrodyLeft;
             clipInfo = _upperAnimator.GetCurrentAnimatorClipInfo(0);
-            Debug.Log(clipInfo[0].clip.name);
-            if(!clipInfo[0].clip.name.Contains("BrodyRun")) _upperBrodySR.flipX = true;
-            else  _upperBrodySR.flipX = false;
+            //if(!clipInfo[0].clip.name.Contains("BrodyRun")) _upperBrodySR.flipX = true;
+            //else  _upperBrodySR.flipX = false;
+            _upperBrodySR.flipX = false;
         }
         else if (Input.GetAxisRaw("Horizontal") > 0) //Cambiar una vez estén todas las animaciones
         {
@@ -51,7 +51,7 @@ public class AnimatorControllerBrody : MonoBehaviour
     public void SetAnimTrigger(string _animName)
     {
         _upperAnimator.SetTrigger(_animName);
-        _lowerAnimator.SetTrigger(_animName);
+        //_lowerAnimator.SetTrigger(_animName);
     }
 
     public void SetAnimFloat(string _animName, float _float)

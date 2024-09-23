@@ -37,9 +37,9 @@ public class CombatBro : PlayerCombat
             _radar.enabled = true;
         }
         
-        _player.GetComponent<Player>().enabled = false;
+        //_player.GetComponent<Player>().enabled = false;
         _player.GetComponent<CombatBro>().enabled = false;
-        _player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y);
+                    //_player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y); ya no >:)
         //_player.GetComponent<Player>()._animator.SetFloat("fallingTime", 0f);
         //_player.GetComponent<Player>()._animator.SetBool("IsJumping", false);
         //_player.GetComponent<Player>()._animator.Play("Brody_scan2");
@@ -169,7 +169,7 @@ public class CombatBro : PlayerCombat
     {
         yield return new WaitForSeconds(1f);
 
-        _player.GetComponent<Player>().enabled = true;
+        //_player.GetComponent<Player>().enabled = true;
         _player.GetComponent<CombatBro>().enabled = true;
     }
 
