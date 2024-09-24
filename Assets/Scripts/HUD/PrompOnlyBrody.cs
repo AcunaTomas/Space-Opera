@@ -11,7 +11,10 @@ public class PrompOnlyBrody : Promp
         {
             _interactable.transform.parent = transform;
             _interactable.transform.localPosition = _position;
-            _interactable.SetActive(true);
+            if (col.GetComponent<CombatBro>()._canHack == true)
+            {
+                _interactable.SetActive(true);
+            }
         }
 
     }

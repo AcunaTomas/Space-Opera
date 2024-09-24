@@ -153,4 +153,10 @@ public void DropShild()
     {
         Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
     }
+
+public void SetMoveSpeed(float num)
+    {
+        moveSpeed = num;
+    }
+
 }

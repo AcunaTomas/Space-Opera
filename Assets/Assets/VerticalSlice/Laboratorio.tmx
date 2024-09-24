@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="59">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="60">
  <tileset firstgid="1" source="Background/Lab/bg_lab_06.tsx"/>
  <tileset firstgid="193" name="bg_hangar_01" tilewidth="32" tileheight="32" tilecount="342" columns="19">
   <image source="Background/Hangar/bg_hangar_01.png" width="608" height="576"/>
@@ -564,19 +564,16 @@
    <object id="35" x="932" y="-27" width="32" height="145">
     <polygon points="-132,10 -100,10 -100,155 -132,155"/>
    </object>
-   <object id="36" x="132" y="-170" width="64" height="32">
-    <polygon points="-228,-54 28,-54 28,-22 -68,-22 -68,42 -132,42 -132,10 -196,10 -196,-22 -228,-22"/>
-   </object>
   </objectgroup>
   <objectgroup id="14" name="notCimbable">
    <object id="37" x="680" y="-24" width="32" height="128">
     <polygon points="-392,-144 -360,-144 -360,-8 -392,-8"/>
    </object>
    <object id="38" x="616" y="-56" width="96" height="32">
-    <polygon points="-392,-144 -296,-144 -296,-112 -328,-112 -328,-128 -392,-128"/>
+    <polygon points="-392,-143 -296,-143 -296,-112 -328,-112 -328,-128 -392,-128"/>
    </object>
    <object id="39" x="680" y="-152" width="32" height="96">
-    <polygon points="-392,-136 -360,-136 -360,-48 -392,-48"/>
+    <polygon points="-392,-136 -360,-136 -360,-47 -392,-47"/>
    </object>
    <object id="40" x="72.5" y="362.938" width="62.5833" height="9">
     <polygon points="-376.5,-130.938 -344.5,-130.938 -344.5,-121.938 -376.5,-121.938"/>
@@ -634,6 +631,9 @@
    </object>
    <object id="58" x="1064" y="104" width="160" height="32">
     <polygon points="-392,-136 -232,-136 -232,-121 -392,-121"/>
+   </object>
+   <object id="59" x="132" y="-170" width="64" height="32">
+    <polygon points="-228,-54 28,-54 28,-22 -68,-22 -68,42 -132,42 -132,10 -196,10 -196,-22 -228,-22"/>
    </object>
   </objectgroup>
  </group>

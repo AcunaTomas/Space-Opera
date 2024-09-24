@@ -7,6 +7,11 @@ public class Promp : MonoBehaviour
     public Vector3 _position;
     public GameObject _interactable;
 
+    void Start()
+    {
+        
+    }
+
     
     void OnTriggerEnter2D(Collider2D col)
     {

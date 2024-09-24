@@ -14,6 +14,13 @@ public class DoorController2 : MonoBehaviour
     [SerializeField]
     private GameObject _luzVentilacion;
 
+    public GameObject _blackScreen1;
+    public GameObject _blackScreen2;
+    public GameObject _blackScreen3;
+
+    public GameObject _luzExtra;
+
+
     public void changeCallback(UnityEvent a)
     {
         _callSomething = a;
@@ -44,6 +51,10 @@ public class DoorController2 : MonoBehaviour
         if (GetComponent<Animator>().GetFloat("HowManyHits") == 2)
         {
             _luzVentilacion.SetActive(true);
+            _blackScreen1.GetComponent<Animator>().SetTrigger("Fade");
+            _blackScreen2.GetComponent<Animator>().SetTrigger("Fade");
+            _blackScreen3.GetComponent<Animator>().SetTrigger("Fade");
+            _luzExtra.SetActive(false);
         }
     }
 

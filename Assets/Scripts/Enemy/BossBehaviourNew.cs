@@ -299,9 +299,9 @@ IEnumerator AtaqueRumba(float num1, float num2, int speed1, bool flip)
     yield return new WaitForSeconds(0.3f);
 
     var c = Instantiate(_rumba, _bulletSource.position, transform.rotation);
-    c.GetComponent<EnemyPatrol>()._speed = speed1;
+    c.GetComponent<EnemyPatrol>()._speed = 60;
     c.GetComponent<EnemyPatrol>().Impulse(num1, num2);
-    c.GetComponent<SpriteRenderer>().flipX = flip;
+    c.GetComponent<SpriteRenderer>().flipX = false;
 
     yield return new WaitForSeconds(0.2f);
 
