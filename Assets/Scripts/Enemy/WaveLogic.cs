@@ -16,7 +16,7 @@ public class WaveLogic : MonoBehaviour
         public float spawnInterval; //El intervalo al que se spawnean enemigos(tiempo)
         public int spawnCount; //El numero de enemigos que hayan spawneado en la wave
         public bool isOn;
-
+        public bool StopWaveSystemMarker = false;
         public GameObject Interactor;
 
     }
@@ -60,6 +60,7 @@ public class WaveLogic : MonoBehaviour
                 if(waves[currentWaveCount].Interactor)
                 {
                     waves[currentWaveCount].Interactor.SendMessage("EndWaveMode", SendMessageOptions.DontRequireReceiver);
+                    StopWaveControllerCheck();
                 }
             }
             if (waves[currentWaveCount].spawnCount == 0 || enemiesAlive <= 0)
@@ -76,7 +77,16 @@ public class WaveLogic : MonoBehaviour
             }
         }
 
+
         
+    }
+
+    void StopWaveControllerCheck()
+    {
+        if (waves[currentWaveCount].waveName == "The end" || waves[currentWaveCount].StopWaveSystemMarker == true)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     void CalculateWaveQuota()
