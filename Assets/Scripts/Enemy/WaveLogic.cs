@@ -150,4 +150,9 @@ public class WaveLogic : MonoBehaviour
         }
     }
 
+    public void TestDestroy()
+    {
+        Destroy(gameObject);
+    }
+
 }
