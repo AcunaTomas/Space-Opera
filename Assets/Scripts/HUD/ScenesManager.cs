@@ -28,7 +28,8 @@ public class ScenesManager : MonoBehaviour
     
     public void LoadScene(Scene scene)
     {
-        SceneManager.LoadScene(scene.ToString());
+        PersistentGameInfo.Scene2Load = scene.ToString();
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void LoadNewGame()
@@ -59,7 +60,8 @@ public class ScenesManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(SceneName);
+        PersistentGameInfo.Scene2Load = SceneName;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void LoadMainMenu()
@@ -70,6 +72,24 @@ public class ScenesManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadLevelAsync()
+    {
+        StartCoroutine(LLAsync());
+    }
+
+    IEnumerator LLAsync()
+    {
+        transition.SetTrigger("SceneStart");
+        AsyncOperation ass = SceneManager.LoadSceneAsync(PersistentGameInfo.Scene2Load);
+        //ass.allowSceneActivation = false;
+        //yield return new WaitUntil(() => ass.isDone == true);
+        while (!ass.isDone)
+        {
+            yield return null;
+        }
+
     }
 
 }
