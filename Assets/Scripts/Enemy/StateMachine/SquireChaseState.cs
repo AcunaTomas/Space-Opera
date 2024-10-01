@@ -84,4 +84,5 @@ public class SquireChaseState : State
         enemyBehaviour.idleState.PlayerKilled();
         enemyBehaviour.ChangeState(enemyBehaviour.idleState);
     }
+
 }
