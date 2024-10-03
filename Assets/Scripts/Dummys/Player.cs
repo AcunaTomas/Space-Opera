@@ -624,6 +624,7 @@ public class Player : MonoBehaviour
     {
         if (!_coolingHit && HP > 0)
         {
+            UIManager.INSTANCE.SCORE_SYSTEM.Hit();
             transform.parent.GetChild(0).GetComponent<Player>().HP -= damage;
             transform.parent.GetChild(1).GetComponent<Player>().HP -= damage;
             _animator.SetBool("IsJumping", false);
@@ -672,6 +673,7 @@ public class Player : MonoBehaviour
         GetComponent<Player>().enabled = false;
         GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
         GameManager.INSTANCE.Boludos.RespawnBoludos();
+        UIManager.INSTANCE.SCORE_SYSTEM.PlayerDead();
         //transform.parent = null;
     }
 

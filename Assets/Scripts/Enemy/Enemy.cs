@@ -66,8 +66,7 @@ public class Enemy : MonoBehaviour
         
         _ub =  UIManager.INSTANCE.LifeBar;
         _ub2 = UIManager.INSTANCE.LifeBar2;
-
-
+        UIManager.INSTANCE.SCORE_SYSTEM.EnemySpawn();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -208,6 +207,7 @@ public class Enemy : MonoBehaviour
         {
             //AchievementsManager.INSTANCE.YouFuckingKilledAnimals();
         }
+        UIManager.INSTANCE.SCORE_SYSTEM.EnemyKilled();
         isDead = true;
         if(isFromWave) //Logica oleada
         {

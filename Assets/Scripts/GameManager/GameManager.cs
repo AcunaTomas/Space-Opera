@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour{
     public bool PAUSED = false;
     public float MUSIC_VOLUME;
     public float SFX_VOLUME;
-    public  UIManager UIManager;
+    public UIManager UIManager;
     public SoundManager SoundManager;
     public CameraController CameraController;
 

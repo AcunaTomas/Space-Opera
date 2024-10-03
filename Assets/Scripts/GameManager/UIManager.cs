@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public ObjectivesManager OBJECTIVES_DISPLAY;
     public PopUpInputs INPUTS_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
+    public ScoreSystemLogic SCORE_SYSTEM;
     public GameObject UPGRADE;
     public GameObject PAUSE_MENU;
     public GameObject VFX_FADE;
