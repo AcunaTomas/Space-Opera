@@ -19,6 +19,9 @@ public class BrodyOval : MonoBehaviour
     private Transform _ovalContainer;
     private Collider2D[] _detectableColliders;
 
+
+    public GameObject _boss;
+
     private void Start()
     {
         _detectableColliders = new Collider2D[_detectables.Length];
@@ -91,5 +94,7 @@ public class BrodyOval : MonoBehaviour
             }
         }
         _ovalContainer.gameObject.SetActive(true);
+
+        _boss.GetComponent<BossBehaviourNew>().GenerateWeakSpot();
     }
 }

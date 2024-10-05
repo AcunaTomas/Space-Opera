@@ -273,6 +273,11 @@ public class Enemy : MonoBehaviour
             GetComponent<SquireBehaviour>().enabled = false;
         }
 
+        if (_enemyType == EnemyType.newBoss)
+        {
+            GetComponent<BossBehaviourNew>().enabled = false;
+        }
+
         animator.SetTrigger("Die");
         FindObjectOfType<EnemySoundsController>().UpdateParameter("EnemyMode", 2);
         
@@ -403,6 +408,11 @@ public class Enemy : MonoBehaviour
             GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
             GetComponentInChildren<TriggerAreaCheck>().enabled = false;
         }
+    }
+
+    public void DebugTroll(int damage)
+    {
+        Debug.Log("HitWeakSpot" + damage);
     }
 
     public void IsFromWave()

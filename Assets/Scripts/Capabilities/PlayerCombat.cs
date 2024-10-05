@@ -24,6 +24,8 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask doorLayers;
     public LayerMask enemyBalaLayers;
 
+    public LayerMask bossWeakSpot;
+
     public float attackRange = 0.5f;
     public int attackDamage = 40;
 
@@ -258,6 +260,12 @@ public class PlayerCombat : MonoBehaviour
                     {
                         door.GetComponent<DoorController2>().DoSomeShit();
                     }
+                }
+
+                Collider2D[] hitWeakSpot = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, bossWeakSpot);
+                foreach (Collider2D weakSpotCollider in hitWeakSpot)
+                {
+                    weakSpotCollider.gameObject.GetComponent<BossWeakSpot>().Hit();
                 }
             }
         }

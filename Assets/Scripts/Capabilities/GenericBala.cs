@@ -161,6 +161,7 @@ public class GenericBala : MonoBehaviour
           }
           
         }
+
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -172,5 +173,10 @@ public class GenericBala : MonoBehaviour
           other.gameObject.BroadcastMessage("manualDo", SendMessageOptions.DontRequireReceiver);
           gameObject.SetActive(false);
         }
+
+      if (other.gameObject.layer == LayerMask.NameToLayer("BossWeakSpot"))
+      {
+        other.gameObject.GetComponent<BossWeakSpot>().Hit();
+      }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class BossBehaviourNew : MonoBehaviour
 {
@@ -75,6 +76,14 @@ public class BossBehaviourNew : MonoBehaviour
 
     private bool _flipeable = true;
     private int _numMisilesGenerator;
+
+    public GameObject _hackInteractor;
+
+    public bool _hacked = false;
+
+    public GameObject _weakSpot;
+
+    private bool _weakSpotActive;
 
 
 
@@ -240,13 +249,26 @@ private IEnumerator Ataque2()
     _attacking = true;
     Debug.Log("Ataque2");
     _lastRandomNum = 2;
+    _hackInteractor.SetActive(true);
 
-    yield return new WaitForSeconds(0.3f);
+    yield return new WaitForSeconds(1f);
     StartCoroutine(AtaqueElectricidad());
 
+
     yield return new WaitForSeconds(2);
-    GetRandomNum();
-    _attacking = false;
+    if (!_hacked)
+    {
+        GetRandomNum();
+        _attacking = false;
+    }
+    else
+    {
+        yield return new WaitForSeconds(5);
+        GetRandomNum();
+        _attacking = false;
+        _hacked = false;
+    }
+    
 }
 private IEnumerator Ataque3()
 {
@@ -360,27 +382,78 @@ void GetMissileNumbers()
 
 IEnumerator AtaqueElectricidad()
 {
-    int newERandomNum = Random.Range(1,3);
+    if (!_hacked)
+    {
+        int newERandomNum = Random.Range(1,3);
 
-    if (_phase2)
-    {
-        electricidadPhase2.SetActive(true);
-    }
-    else if (newERandomNum == 1)
-    {
-        electricidadDER.SetActive(true);
+        if (_phase2)
+        {
+            electricidadPhase2.SetActive(true);
+            _hackInteractor.SetActive(false);
+        }
+        else if (newERandomNum == 1)
+        {
+            electricidadDER.SetActive(true);
+            _hackInteractor.SetActive(false);
+        }
+        else
+        {
+            electricidadIZQ.SetActive(true);
+            _hackInteractor.SetActive(false);
+        }
+
+
+        yield return new WaitForSeconds(1f);
+
+        electricidadPhase2.SetActive(false);
+        electricidadIZQ.SetActive(false);
+        electricidadDER.SetActive(false);
     }
     else
     {
-        electricidadIZQ.SetActive(true);
+        _hackInteractor.SetActive(false);
+        Debug.Log("THE BOSS WAS STUNNED");
+        yield return new WaitForSeconds(1f);
     }
+    
+}
 
 
-    yield return new WaitForSeconds(1f);
+public void HackBoss()
+{
+    _hacked = true;
+}
 
-    electricidadPhase2.SetActive(false);
-    electricidadIZQ.SetActive(false);
-    electricidadDER.SetActive(false);
+
+public void GenerateWeakSpot()
+{
+    if (!_weakSpotActive)
+    {
+        float[] _valoresX = {-0.04f, -0.03f, -0.02f, -0.01f, 0f, 0.01f, 0.02f, 0.03f, 0.04f, 0.05f};
+        float x = _valoresX[Random.Range(0, _valoresX.Length)];
+        Debug.Log(x);
+    
+        float[] _valoresY = {-0.12f, -0.11f, -0.10f, -0.09f, -0.08f, -0.07f, -0.06f, -0.05f, -0.04f, -0.03f};
+        float y = _valoresY[Random.Range(0, _valoresY.Length)];
+        Debug.Log(y);
+
+        Vector3 WeakSpotPosition = new Vector3 (x, y, 0);
+        var a = Instantiate(_weakSpot, gameObject.transform.position, transform.rotation);
+        a.transform.parent = gameObject.transform;
+        a.transform.localPosition = WeakSpotPosition;
+        a.transform.localScale = new Vector3 (0.14f, 0.14f, 0);
+
+        _weakSpotActive = true;
+
+        StartCoroutine(DestroyWeakSpot(a));
+    }
+}
+
+private IEnumerator DestroyWeakSpot(GameObject a)
+{
+    yield return new WaitForSeconds(4);
+    Destroy(a);
+    _weakSpotActive = false;
 }
 
 
