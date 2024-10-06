@@ -29,7 +29,7 @@ public class EnemyPatrol : MonoBehaviour
     int _defaultLayer;
 
     private Enemy _mainScript;
-    private EnemySoundsController _sounds;
+    [SerializeField] private EnemySoundsController _sounds;
 
     private bool _impulsed = false;
 
@@ -104,6 +104,10 @@ public class EnemyPatrol : MonoBehaviour
             {
                 _sounds.UpdateParameter("EnemyMode", 1);
             }
+        }
+        else if(_mainScript.currentHealth <= 0)
+        {
+            _sounds.UpdateParameter("EnemyMode", 2);
         }
 
         if (_broken)

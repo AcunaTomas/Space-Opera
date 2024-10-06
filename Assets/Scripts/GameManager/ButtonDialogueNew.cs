@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
+using FMODUnity;
 
 public class ButtonDialogueNew : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class ButtonDialogueNew : MonoBehaviour
     private bool _dialogueSkipEnd;
     [SerializeField]
     private Image _skipBar;
+    [SerializeField] private StudioEventEmitter _nextLine;
 
 
     private int _contLinea = 0;
@@ -416,6 +418,7 @@ public class ButtonDialogueNew : MonoBehaviour
             else
             {
                 MoreDialoguePlz();
+                _nextLine.Play();
             }
         }
 
