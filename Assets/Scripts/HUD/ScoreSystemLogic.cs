@@ -51,7 +51,7 @@ public class ScoreSystemLogic : MonoBehaviour
         }
         if(_showNoHit) _scoreContainer.transform.GetChild(12).GetComponent<TextMeshProUGUI>().text = _noHit.ToString();
         _progressTime += Time.deltaTime *2f;
-        //if(Input.GetButton("Submit")) ShowAll();
+        if(Input.GetButton("Submit") && _showKills) ShowAll();
     }
 
     public void ShowScore()

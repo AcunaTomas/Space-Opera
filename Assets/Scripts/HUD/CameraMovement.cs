@@ -49,7 +49,7 @@ public class CameraMovement : MonoBehaviour
             if (!_goDown)
             {
                 _animator.SetBool("Camera", true);
-                _textPressSpace.gameObject.SetActive(false);
+                if(_textPressSpace) _textPressSpace.gameObject.SetActive(false);
                 StartCoroutine(Jump());
             }
             else

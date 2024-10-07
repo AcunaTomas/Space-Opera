@@ -1353,6 +1353,7 @@ GameObject:
   - component: {fileID: 932448677699616204}
   - component: {fileID: 6175623184568850894}
   - component: {fileID: 1140555856915296937}
+  - component: {fileID: 3063880360001618845}
   m_Layer: 5
   m_Name: ScoreScreenCollect
   m_TagString: Untagged
@@ -1477,6 +1478,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3063880360001618845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202761881329447121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: ScoreCollect
 --- !u!1 &1268573269596194872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +2005,7 @@ GameObject:
   - component: {fileID: 4100222671289856596}
   - component: {fileID: 6265986798996813106}
   - component: {fileID: 487205030255118970}
+  - component: {fileID: 8290070013236257853}
   m_Layer: 5
   m_Name: ScoreScreenNoHit
   m_TagString: Untagged
@@ -2115,6 +2130,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8290070013236257853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571104876750801246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: ScoreNoHit
 --- !u!1 &1581970101289564441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,6 +2154,7 @@ GameObject:
   - component: {fileID: 3961196673479320910}
   - component: {fileID: 1709458065792936722}
   - component: {fileID: 3742869344611704627}
+  - component: {fileID: 4533636850388121434}
   m_Layer: 5
   m_Name: ScoreScreenTime
   m_TagString: Untagged
@@ -2250,6 +2279,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4533636850388121434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581970101289564441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: ScoreTime
 --- !u!1 &1615320313411784243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,6 +3079,7 @@ GameObject:
   - component: {fileID: 8224120112888627441}
   - component: {fileID: 3128162892953554165}
   - component: {fileID: 3449497512189302388}
+  - component: {fileID: 4451465234432533880}
   m_Layer: 5
   m_Name: ScoreScreenDeath
   m_TagString: Untagged
@@ -3161,6 +3204,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4451465234432533880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2251043103066400891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: ScoreDeath
 --- !u!1 &2355828604268590190
 GameObject:
   m_ObjectHideFlags: 0
@@ -7268,6 +7324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c14dc3920ab91c42a477bb095058ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collectableCount: 0
 --- !u!95 &4042207816966152962
 Animator:
   serializedVersion: 5
@@ -10724,6 +10781,7 @@ GameObject:
   - component: {fileID: 5960414473269441044}
   - component: {fileID: 9101291948782555787}
   - component: {fileID: 7727521470060803700}
+  - component: {fileID: 6927139394950268844}
   m_Layer: 5
   m_Name: ScoreScreenEnemy
   m_TagString: Untagged
@@ -10848,6 +10906,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6927139394950268844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911927985541429155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: ScoreEnemy
 --- !u!1 &6973443017863849057
 GameObject:
   m_ObjectHideFlags: 0
@@ -13229,6 +13300,7 @@ GameObject:
   - component: {fileID: 7409748346304010080}
   - component: {fileID: 1365769305072080148}
   - component: {fileID: 2473933737720801437}
+  - component: {fileID: 2571845606691785259}
   m_Layer: 5
   m_Name: ScoreScreenHeader
   m_TagString: Untagged
@@ -13353,6 +13425,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2571845606691785259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792164394515354611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: ScoreHeader
 --- !u!1 &8821489189505719629
 GameObject:
   m_ObjectHideFlags: 0
