@@ -11,6 +11,8 @@ public class ScenesManager : MonoBehaviour
 
     public float transitionTime = 1f;
 
+    private bool ready2Activate = false;
+
     private void Awake()
     {
         Instance = this;
@@ -24,6 +26,10 @@ public class ScenesManager : MonoBehaviour
         MainMenuVS,
         VSTest
 
+    }
+    public void SetNextSceneName(string name)
+    {
+        PersistentGameInfo.Scene2Load = name;
     }
     
     public void LoadScene(Scene scene)
@@ -74,22 +80,32 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
-    public void LoadLevelAsync()
+    public void LoadLevelAsync(bool ActivateScene = true)
     {
-        StartCoroutine(LLAsync());
+        StartCoroutine(LLAsync(ActivateScene));
     }
 
-    IEnumerator LLAsync()
+    IEnumerator LLAsync(bool ActivateScene = true)
     {
-        transition.SetTrigger("SceneStart");
+        
         AsyncOperation ass = SceneManager.LoadSceneAsync(PersistentGameInfo.Scene2Load);
-        //ass.allowSceneActivation = false;
+        ass.allowSceneActivation = ActivateScene;
         //yield return new WaitUntil(() => ass.isDone == true);
         while (!ass.isDone)
         {
+            if (!ass.allowSceneActivation)
+            {
+                ass.allowSceneActivation = ready2Activate;
+            }
             yield return null;
         }
 
+    }
+
+    public void ActivateLoadedScene()
+    {
+        transition.SetTrigger("SceneStart");
+        ready2Activate = true;
     }
 
 }
