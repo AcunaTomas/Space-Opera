@@ -25,6 +25,11 @@ public class UpgradeLogic : MonoBehaviour
     private int _connectedControllerCount = 0;
     public bool _control = false; 
 
+    void OnEnable()
+    {
+        GameManager.INSTANCE.PAUSABLE = false;
+    }
+
     void Update()
     {
         if(gameObject.activeSelf && !upgradeW1.activeSelf && !upgradeW2.activeSelf) Reboot();
@@ -75,7 +80,7 @@ public class UpgradeLogic : MonoBehaviour
             //upgradeW2.transform.GetChild(2).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW2.transform.GetChild(3).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
         }
-        if(Input.GetButtonDown("Submit") || Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Submit") || InputManager.INSTANCE.JumpPressed)
         {
             if(upgradeW1.activeSelf)
             {
@@ -96,6 +101,7 @@ public class UpgradeLogic : MonoBehaviour
             {
                 upgradeW2.SetActive(false);
                 GameManager.INSTANCE.ChangeTimeScale(1);
+                GameManager.INSTANCE.PAUSABLE = true;
                 _startCounting = false;
                 //fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0f);
                 gameObject.SetActive(false);

@@ -42,7 +42,7 @@ public class CameraMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Jump") && !_spacebarPressed)
+        if (InputManager.INSTANCE.JumpPressed && !_spacebarPressed)
         {
             _spacebarPressed = true;
 
@@ -64,7 +64,7 @@ public class CameraMovement : MonoBehaviour
             _goDown = !_goDown;
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (InputManager.INSTANCE.JumpReleased)
         {
             _spacebarPressed = false;
         }

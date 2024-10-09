@@ -134,18 +134,18 @@ public class CinematicDialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit"))
+        if (InputManager.INSTANCE.JumpPressed || Input.GetButtonDown("Submit"))
         {
             MoreDialoguePlz();
         }
 
-        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
+        if (InputManager.INSTANCE.JumpReleased || Input.GetButtonUp("Submit"))
         {
             ActualizarSkip(-_holdSkip);
         }
 
         
-        if(Input.GetButton("Jump") || Input.GetButton("Submit"))
+        if(InputManager.INSTANCE.JumpHeld|| Input.GetButton("Submit"))
         {
             if(_dialogueSkipEnd)
             {

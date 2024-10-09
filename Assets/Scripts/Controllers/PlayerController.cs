@@ -7,7 +7,7 @@ namespace Shinjingi
     {
         public override bool RetrieveJumpInput()
         {
-            return Input.GetButtonDown("Jump");
+            return InputManager.INSTANCE.JumpPressed;
         }
 
         public override float RetrieveMoveInput()
@@ -17,7 +17,7 @@ namespace Shinjingi
 
         public override bool RetrieveJumpHoldInput()
         {
-            return Input.GetButton("Jump");
+            return InputManager.INSTANCE.JumpHeld;
         }
     }
 }

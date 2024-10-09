@@ -161,7 +161,6 @@ public class Player : MonoBehaviour
     }
     void OnEnable()
     {
-        Debug.Log(":D");
         canIMove = true;
         _coolingHit = false;
     }
@@ -219,7 +218,7 @@ public class Player : MonoBehaviour
     public void _plaseJump()
     {
         //GetButtonDown solo es true en el frame que se apreta espacio
-        if (Input.GetButtonDown("Jump") && canIjump)
+        if (InputManager.INSTANCE.JumpPressed && canIjump)
         {
             vertspid = _jumpImpulse;
             _animator.SetBool("IsJumping", true);
@@ -227,7 +226,7 @@ public class Player : MonoBehaviour
             canIjump = false;
             return;
         }
-        if (Input.GetButtonDown("Jump") && !canIjump)
+        if (InputManager.INSTANCE.JumpPressed && !canIjump)
         {
             if (wallijumpy && vertspid <= 0) 
             {
@@ -240,12 +239,12 @@ public class Player : MonoBehaviour
             }
             return;
         }
-        if (Input.GetButton("Jump") && !canIjump)
+        if (InputManager.INSTANCE.JumpHeld && !canIjump)
         {
             vertspid += _jumpImpulse * Time.deltaTime;
             return;
         }
-        if (Input.GetButtonUp("Jump"))
+        if (InputManager.INSTANCE.JumpReleased)
         {
             if (_JumpMode)
             {

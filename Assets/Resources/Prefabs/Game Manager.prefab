@@ -3996,6 +3996,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2819203582080392271}
   - component: {fileID: 2819203582080392270}
+  - component: {fileID: 7701649819051154591}
+  - component: {fileID: 4586689795463283930}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: ControllerCheck
@@ -4033,6 +4035,108 @@ MonoBehaviour:
   _keyboard: []
   _controller: []
   _control: 0
+--- !u!114 &7701649819051154591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819203582080392268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7bda641c92247da4abf8aba28eb636cb, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f6617ca4-0949-4a1c-8695-13632cd4ec20
+    m_ActionName: InGame/Jump[/Keyboard/space,/DualSenseGamepadHID/buttonSouth,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8de5c0e8-c06c-4a62-b019-3c5ed6cdece7
+    m_ActionName: InGame/Fire1[/Keyboard/j,/Mouse/leftButton,/DualSenseGamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6f14912a-1214-490b-a136-da4e7d17bb47
+    m_ActionName: InGame/Fire2[/Keyboard/j,/Mouse/rightButton,/DualSenseGamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e65430da-d7c8-4d24-bf70-a72c373a096c
+    m_ActionName: InGame/Fire3[/Keyboard/l,/DualSenseGamepadHID/buttonNorth,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1e8f337-570a-42f8-9a1a-7c93edd56701
+    m_ActionName: InGame/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualSenseGamepadHID/leftStick/up,/XInputControllerWindows/leftStick/up,/DualSenseGamepadHID/leftStick/down,/XInputControllerWindows/leftStick/down,/DualSenseGamepadHID/leftStick/left,/XInputControllerWindows/leftStick/left,/DualSenseGamepadHID/leftStick/right,/XInputControllerWindows/leftStick/right,/DualSenseGamepadHID/dpad/up,/XInputControllerWindows/dpad/up,/DualSenseGamepadHID/dpad/down,/XInputControllerWindows/dpad/down,/DualSenseGamepadHID/dpad/left,/XInputControllerWindows/dpad/left,/DualSenseGamepadHID/dpad/right,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b92624b3-a333-413b-9ec3-3af86efbbf78
+    m_ActionName: InGame/Switch[/Keyboard/i,/DualSenseGamepadHID/leftTrigger,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbafabd5-a0ff-4468-bc0e-9bad7ceac744
+    m_ActionName: InGame/Dash[/Keyboard/shift,/DualSenseGamepadHID/rightTrigger,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb65e933-35c6-4fff-ab32-9e477b3a7ac3
+    m_ActionName: InGame/Select[/Keyboard/q,/DualSenseGamepadHID/select,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d9185910-af29-49b5-8223-25ba5e981b05
+    m_ActionName: InGame/Start[/Keyboard/escape,/DualSenseGamepadHID/start,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 773ff69a-d8cf-46ad-911c-5b8b0106ee57
+    m_ActionName: UI/Submit[/Keyboard/space,/DualSenseGamepadHID/buttonSouth,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7394ad2-d968-4b97-a8c9-3f77c06ca40d
+    m_ActionName: UI/Cancel[/Keyboard/escape,/Mouse/rightButton,/DualSenseGamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f912744a-ccdc-43bf-aa57-5be145a844b0
+    m_ActionName: UI/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualSenseGamepadHID/leftStick/up,/XInputControllerWindows/leftStick/up,/DualSenseGamepadHID/leftStick/down,/XInputControllerWindows/leftStick/down,/DualSenseGamepadHID/leftStick/left,/XInputControllerWindows/leftStick/left,/DualSenseGamepadHID/leftStick/right,/XInputControllerWindows/leftStick/right,/DualSenseGamepadHID/dpad/up,/XInputControllerWindows/dpad/up,/DualSenseGamepadHID/dpad/down,/XInputControllerWindows/dpad/down,/DualSenseGamepadHID/dpad/left,/XInputControllerWindows/dpad/left,/DualSenseGamepadHID/dpad/right,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 952fae3d-439b-4f87-be94-231b0acb411f
+    m_ActionName: UI/Switch[/Keyboard/i,/DualSenseGamepadHID/leftTrigger,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e1b0f76-11b2-4fa3-a7a8-1fb4a3db6b93
+    m_ActionName: UI/Select[/Keyboard/q,/DualSenseGamepadHID/select,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 091001d9-304d-449b-8d11-5c00c84aae8e
+    m_ActionName: UI/Start[/Keyboard/escape,/DualSenseGamepadHID/start,/XInputControllerWindows/start]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: InGame
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &4586689795463283930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819203582080392268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b8cb76e573785409b4cdd93d7f65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2819203582151671794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819203582277508601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.1920385, y: 8.34, z: -10}
+  m_LocalPosition: {x: -9.17, y: 7.5199995, z: -10.088408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

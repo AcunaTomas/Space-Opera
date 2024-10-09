@@ -22,28 +22,6 @@ public class PauseMenu : MonoBehaviour
         else DataPersistentManager.INSTANCE.SetLanguage("ES");
         AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_select, this.transform.position);
         UIManager.INSTANCE.UpdateLanguage();
-        if(DataPersistentManager.INSTANCE.Language() == "ES")
-        {
-            transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continuar";
-            transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controles";
-            transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Idioma";
-            transform.GetChild(0).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Salir";
-            transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continuar";
-            transform.GetChild(2).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controles";
-            transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Idioma";
-            transform.GetChild(2).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Salir";
-        }
-        else
-        {
-            transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continue";
-            transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controller";
-            transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Language";
-            transform.GetChild(0).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Exit";
-            transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continue";
-            transform.GetChild(2).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controller";
-            transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Language";
-            transform.GetChild(2).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Exit";
-        }
     }
 
     public void OpenController()
@@ -59,8 +37,6 @@ public class PauseMenu : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(controllerFirstSelected[1]);
             ControllersMenu[1].SetActive(true);
         }
-        
-
     }
     public void CloseController()
     {
@@ -77,48 +53,11 @@ public class PauseMenu : MonoBehaviour
         ControllersMenu[1].SetActive(false);
     }
 
-    void Start()
+    void OnEnable()
     {
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
         if(UIManager.INSTANCE.CURRENTPLAYER == "Brody")
-        {
-            EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[0]);
-        }
-        else
-        {
-            EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[1]);
-        }
-        if(DataPersistentManager.INSTANCE == null) return;
-        if(DataPersistentManager.INSTANCE.Language() == "ES")
-        {
-            transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continuar";
-            transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controles";
-            transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Idioma";
-            transform.GetChild(0).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Salir";
-            transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continuar";
-            transform.GetChild(2).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controles";
-            transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Idioma";
-            transform.GetChild(2).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Salir";
-        }
-        else
-        {
-            transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continue";
-            transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controller";
-            transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Language";
-            transform.GetChild(0).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Exit";
-            transform.GetChild(2).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continue";
-            transform.GetChild(2).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Controller";
-            transform.GetChild(2).transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Language";
-            transform.GetChild(2).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Exit";
-        }
-    }
-    void Update()
-    {
-        if (Input.GetButton("Pause"))
-        {
-            if(UIManager.INSTANCE.CURRENTPLAYER == "Brody")
             {
                 gameObject.GetComponent<Animator>().SetBool("isBrody", true);
                 gameObject.GetComponent<Animator>().SetBool("isBito", false);
@@ -130,6 +69,20 @@ public class PauseMenu : MonoBehaviour
                 gameObject.GetComponent<Animator>().SetBool("isBrody", false);
                 gameObject.GetComponent<Animator>().Play("OpenBito");       
             }
+        EventSystem.current.SetSelectedGameObject(null);
+        if(UIManager.INSTANCE.CURRENTPLAYER == "Brody")
+        {
+            EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[0]);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[1]);
+        }
+    }
+    void Update()
+    {
+        if (InputManager.INSTANCE.CloseMenuReleased)
+        {
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(2).gameObject.SetActive(false);
@@ -148,7 +101,21 @@ public class PauseMenu : MonoBehaviour
 
     void OnDisable()
     {
+        Debug.Log("Cerrando menú");
         gameObject.GetComponent<Image>().sprite = null;
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        if(UIManager.INSTANCE.CURRENTPLAYER == "Brody")
+        {
+            EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[0]);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[1]);
+        }
         Debug.Log("Me funaron");
     }
 
