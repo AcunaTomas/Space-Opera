@@ -14,7 +14,7 @@ public class UpgradeLogic : MonoBehaviour
     [SerializeField] Animator transition;
     float time;
 
-    bool _startCounting;
+    bool _startCounting, xdlol;
 
     public bool _jabulani;
         [SerializeField]
@@ -30,7 +30,7 @@ public class UpgradeLogic : MonoBehaviour
     {
         GameManager.INSTANCE.PAUSABLE = false;
         colorxd = new Vector3(upgradeW1.transform.GetChild(0).GetComponent<Image>().color.r, upgradeW1.transform.GetChild(0).GetComponent<Image>().color.g, upgradeW1.transform.GetChild(0).GetComponent<Image>().color.b);
-
+        xdlol = true;
     }
 
     void Update()
@@ -105,6 +105,7 @@ public class UpgradeLogic : MonoBehaviour
                 transition.SetTrigger("PopUpEnd");
             }
         }
+        if(upgradeW2.activeSelf && xdlol) StartCoroutine(ItIsWhatItIs());
         _connectedControllerCount = 0;
         foreach (string name in Input.GetJoystickNames())
         {
@@ -157,5 +158,14 @@ public class UpgradeLogic : MonoBehaviour
     void ControlFalse()
     {
         _control = false;
+    }
+
+    IEnumerator ItIsWhatItIs()
+    {
+        yield return new WaitForSeconds(5f);
+        upgradeW2.SetActive(false);
+        _startCounting = false;
+        gameObject.SetActive(false);
+        transition.SetTrigger("PopUpEnd");
     }
 }
