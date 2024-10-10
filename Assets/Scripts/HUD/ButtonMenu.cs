@@ -176,7 +176,7 @@ public class ButtonMenu : MonoBehaviour
             _lastSelected = EventSystem.current.currentSelectedGameObject;
         }
 
-        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit")) && !_spacebarPressed)
+        if (InputManager.INSTANCE.SubmitInput && !_spacebarPressed)
         {
             if (!_button.interactable)
             {
@@ -186,7 +186,7 @@ public class ButtonMenu : MonoBehaviour
             //_button.onClick.Invoke();
         }
 
-        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Submit"))
+        if (InputManager.INSTANCE.SubmitReleased)
         {
             _spacebarPressed = false;
         }

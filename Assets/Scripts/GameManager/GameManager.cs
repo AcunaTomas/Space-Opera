@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour{
     public bool PAUSED = false;
     public float MUSIC_VOLUME;
     public float SFX_VOLUME;
-    public  UIManager UIManager;
+    public UIManager UIManager;
     public SoundManager SoundManager;
     public CameraController CameraController;
 
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour{
             }
         }
 
-        if (Input.GetButtonDown("Pause") && !_escapePressed)
+        if ((InputManager.INSTANCE.OpenMenuInput || InputManager.INSTANCE.CloseMenuInput) && !_escapePressed) //cambiar?
         {
             if (PAUSABLE)
             {
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour{
             
         }
 
-        if (Input.GetButtonUp("Pause"))
+        if (InputManager.INSTANCE.OpenMenuReleased || InputManager.INSTANCE.CloseMenuReleased)
         {
             _escapePressed = false;
         } 
@@ -166,6 +166,8 @@ public class GameManager : MonoBehaviour{
 
     public void ChangeTimeScale(float n)
     {
+        if(n>0) InputManager.INSTANCE.InGameInputs();
+        else InputManager.INSTANCE.UIInputs();
         Time.timeScale = n;
     }
 

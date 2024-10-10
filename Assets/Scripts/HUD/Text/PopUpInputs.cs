@@ -121,7 +121,7 @@ public class PopUpInputs : MonoBehaviour
             brodyInputs.SetActive(true);
         }  
 
-        if (Input.GetButtonDown("Select") && !_buttonPressed)
+        if (InputManager.INSTANCE.SelectInput && !_buttonPressed)
         {
             UpdateLanguage();
                 //GameManager.INSTANCE.ChangeTimeScale(1f);
@@ -131,7 +131,7 @@ public class PopUpInputs : MonoBehaviour
             Arrowanimator.runtimeAnimatorController = ArrowPointingLeft;
         }
 
-        if (Input.GetButtonUp("Select"))
+        if (InputManager.INSTANCE.SelectReleased)
         {
             _buttonPressed = false;
         }

@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public ObjectivesManager OBJECTIVES_DISPLAY;
     public PopUpInputs INPUTS_DISPLAY;
     public AchievementsManager ACHIEVEMENTS_POPUP;
+    public ScoreSystemLogic SCORE_SYSTEM;
     public GameObject UPGRADE;
     public GameObject PAUSE_MENU;
     public GameObject VFX_FADE;
@@ -80,7 +81,9 @@ public class UIManager : MonoBehaviour
         DIALOGUE_PANEL.UpdateLanguage();
         OBJECTIVES_DISPLAY.UpdateLanguage();
         INPUTS_DISPLAY.UpdateLanguage();
-        CANVASWORLDSPACE.BroadcastMessage("UpdateLanguage",SendMessageOptions.DontRequireReceiver);
+        CANVASWORLDSPACE.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
+        SCORE_SYSTEM.gameObject.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
+        PAUSE_MENU.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
     }
 
     public void ToggleHPBars() //HardCoded piece of shit why do i have to do this oh my god

@@ -61,7 +61,7 @@ public class MoveBoxes : MonoBehaviour
         
         if(box.gameObject.CompareTag("Movible") && GetComponent<Playerererer>().grounded)
         {
-            if(Input.GetButton("Fire1") && !GetComponent<Animator>().GetBool("IsJumping"))
+            if(InputManager.INSTANCE.InteractHeld && !GetComponent<Animator>().GetBool("IsJumping"))
             {
                 if(GetComponent<Animator>().GetBool("IsJumping")) return;
                 Physics2D.queriesHitTriggers = false; //No detectes triggers >:(
@@ -89,12 +89,12 @@ public class MoveBoxes : MonoBehaviour
                 if(box.gameObject.transform.position.x < gameObject.transform.position.x) //Si el jugador está a la derecha
                 {
                     MoveBoxDirection(box.gameObject.transform, colliderDER, hitIZQ, -_posOffset, _posOffLimit); //Offset negativo, la caja está a la izquierda y el limite positivo(Está del otro lado)
-                    if (Input.GetAxisRaw("Horizontal") > 0.1)
+                    if (InputManager.INSTANCE.MoveInput.x > 0.1)
                     {
                         GetComponent<Animator>().SetBool("Drag", true);
                         GetComponent<Animator>().SetBool("Push", false);
                     }
-                    else if (Input.GetAxisRaw("Horizontal") < -0.1)
+                    else if (InputManager.INSTANCE.MoveInput.x < -0.1)
                     {
                         GetComponent<Animator>().SetBool("Push", true);
                         GetComponent<Animator>().SetBool("Drag", false);
@@ -104,12 +104,12 @@ public class MoveBoxes : MonoBehaviour
                 else if(box.gameObject.transform.position.x > gameObject.transform.position.x) //Si el jugador está a la izquierda
                 {
                     MoveBoxDirection(box.gameObject.transform, colliderIZQ, hitDER, _posOffset, -_posOffLimit); //Offset positivo, la caja está a la derecha y el limite negativo(Está del otro lado)
-                    if (Input.GetAxisRaw("Horizontal") > 0.1)
+                    if (InputManager.INSTANCE.MoveInput.x > 0.1)
                     {
                         GetComponent<Animator>().SetBool("Push", true);
                         GetComponent<Animator>().SetBool("Drag", false);
                     }
-                    else if (Input.GetAxisRaw("Horizontal") < -0.1)
+                    else if (InputManager.INSTANCE.MoveInput.x < -0.1)
                     {
                         GetComponent<Animator>().SetBool("Drag", true);
                         GetComponent<Animator>().SetBool("Push", false);
@@ -139,9 +139,9 @@ public class MoveBoxes : MonoBehaviour
         }
         else if(HitBuilding(HitDirection))
         {
-            if(((Input.GetAxisRaw("Horizontal")>0.2) && BoxRef.position.x < transform.position.x) || ((Input.GetAxisRaw("Horizontal")<-0.2) && BoxRef.position.x > transform.position.x))
+            if(((InputManager.INSTANCE.MoveInput.x >0.2) && BoxRef.position.x < transform.position.x) || ((InputManager.INSTANCE.MoveInput.x<-0.2) && BoxRef.position.x > transform.position.x))
             {
-                //Debug.Log("GoBack "+ Input.GetAxisRaw("Horizontal"));
+                //Debug.Log("GoBack "+ InputManager.INSTANCE.MoveInput.x);
                 transform.position = new Vector2(transform.position.x + PushLimit, transform.position.y);
                 BoxRef.position = new Vector2(BoxRef.position.x + PushLimit, BoxRef.position.y);
                 _holdLimit = 0f;

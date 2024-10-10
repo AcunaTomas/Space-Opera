@@ -42,14 +42,14 @@ public class CameraMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Jump") && !_spacebarPressed)
+        if (InputManager.INSTANCE.JumpInput && !_spacebarPressed)
         {
             _spacebarPressed = true;
 
             if (!_goDown)
             {
                 _animator.SetBool("Camera", true);
-                _textPressSpace.gameObject.SetActive(false);
+                if(_textPressSpace) _textPressSpace.gameObject.SetActive(false);
                 StartCoroutine(Jump());
             }
             else
@@ -64,7 +64,7 @@ public class CameraMovement : MonoBehaviour
             _goDown = !_goDown;
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (InputManager.INSTANCE.JumpReleased)
         {
             _spacebarPressed = false;
         }

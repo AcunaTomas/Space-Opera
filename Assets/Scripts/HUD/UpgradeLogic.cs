@@ -23,7 +23,15 @@ public class UpgradeLogic : MonoBehaviour
     private GameObject[] _controller;
     private int _previousControllerCount = 0;
     private int _connectedControllerCount = 0;
+    private Vector3 colorxd;
     public bool _control = false; 
+
+    void OnEnable()
+    {
+        GameManager.INSTANCE.PAUSABLE = false;
+        colorxd = new Vector3(upgradeW1.transform.GetChild(0).GetComponent<Image>().color.r, upgradeW1.transform.GetChild(0).GetComponent<Image>().color.g, upgradeW1.transform.GetChild(0).GetComponent<Image>().color.b);
+
+    }
 
     void Update()
     {
@@ -36,14 +44,7 @@ public class UpgradeLogic : MonoBehaviour
             {
                 transition.SetTrigger("PopUpStart");
             }
-            if (_jabulani)
-            {
-                upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(0, 0.9254902f, 1, time / _fadeDelay);
-            }
-            else
-            {
-                upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, time / _fadeDelay);
-            }
+            upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(colorxd.x, colorxd.y, colorxd.z , time / _fadeDelay);
             upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW1.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 255, 255, time/ _fadeDelay);
             
@@ -75,7 +76,7 @@ public class UpgradeLogic : MonoBehaviour
             //upgradeW2.transform.GetChild(2).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW2.transform.GetChild(3).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
         }
-        if(Input.GetButtonDown("Submit") || Input.GetButtonDown("Jump"))
+        if(InputManager.INSTANCE.SubmitInput)// || InputManager.INSTANCE.SubmitHeld
         {
             if(upgradeW1.activeSelf)
             {
@@ -96,6 +97,7 @@ public class UpgradeLogic : MonoBehaviour
             {
                 upgradeW2.SetActive(false);
                 GameManager.INSTANCE.ChangeTimeScale(1);
+                GameManager.INSTANCE.PAUSABLE = true;
                 _startCounting = false;
                 //fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0f);
                 gameObject.SetActive(false);

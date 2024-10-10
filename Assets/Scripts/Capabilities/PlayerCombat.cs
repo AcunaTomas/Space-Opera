@@ -95,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-            if (Input.GetButtonDown("Fire3"))
+            if (InputManager.INSTANCE.Skill2Input) //ButtonDown("Fire3");
             {
                 var a =  GameObject.FindWithTag("Bomb");
                 if (a)
@@ -130,7 +130,7 @@ public class PlayerCombat : MonoBehaviour
         //Debug.Log($"Update: isAttackActive={isAttackActive}, _attackCount={_attackCount}, hitSomething={hitsomething}");
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") == 0) && (Input.GetAxis("Vertical") == 0))
+            if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y == 0))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -138,7 +138,7 @@ public class PlayerCombat : MonoBehaviour
                 queryStartTime = Time.time;
                 //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
-            else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") > 0))
+            else if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y > 0))
             {
                 AttackUp();
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -146,7 +146,7 @@ public class PlayerCombat : MonoBehaviour
                 queryStartTime = Time.time;
                 //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
-            else if (Input.GetAxis("Fire1") > 0 && (Input.GetAxis("Vertical") < 0) && gameObject.GetComponent<Player>().canIjump == false)
+            else if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y < 0) && gameObject.GetComponent<Player>().canIjump == false)
             {
                 AttackDown();
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -161,7 +161,7 @@ public class PlayerCombat : MonoBehaviour
         if (Time.time >= nextBombTime)
         {
 
-            if (Input.GetAxis("Fire2") > 0)
+            if (InputManager.INSTANCE.Skill1Held)
             {
                 Bomb();
                 nextBombTime = Time.time + 2f / bombRate;

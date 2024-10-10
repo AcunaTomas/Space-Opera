@@ -161,7 +161,6 @@ public class Player : MonoBehaviour
     }
     void OnEnable()
     {
-        Debug.Log(":D");
         canIMove = true;
         _coolingHit = false;
     }
@@ -194,7 +193,7 @@ public class Player : MonoBehaviour
         
         if (canIMove)
         {
-            HorizontalInputValue = Input.GetAxis("Horizontal");
+            HorizontalInputValue = InputManager.INSTANCE.MoveInput.x;
             
             if(!wallijumpy)
             {
@@ -219,7 +218,7 @@ public class Player : MonoBehaviour
     public void _plaseJump()
     {
         //GetButtonDown solo es true en el frame que se apreta espacio
-        if (Input.GetButtonDown("Jump") && canIjump)
+        if (InputManager.INSTANCE.JumpInput && canIjump)
         {
             vertspid = _jumpImpulse;
             _animator.SetBool("IsJumping", true);
@@ -227,7 +226,7 @@ public class Player : MonoBehaviour
             canIjump = false;
             return;
         }
-        if (Input.GetButtonDown("Jump") && !canIjump)
+        if (InputManager.INSTANCE.JumpInput && !canIjump)
         {
             if (wallijumpy && vertspid <= 0) 
             {
@@ -240,12 +239,12 @@ public class Player : MonoBehaviour
             }
             return;
         }
-        if (Input.GetButton("Jump") && !canIjump)
+        if (InputManager.INSTANCE.JumpHeld && !canIjump)
         {
             vertspid += _jumpImpulse * Time.deltaTime;
             return;
         }
-        if (Input.GetButtonUp("Jump"))
+        if (InputManager.INSTANCE.JumpReleased)
         {
             if (_JumpMode)
             {
@@ -529,7 +528,7 @@ public class Player : MonoBehaviour
 
         if (_wallJumpXHandicap == false)
         {
-            Xspeed = (Input.GetAxis("Horizontal") * 13.8f) * _xSpeedNullifier;
+            Xspeed = (InputManager.INSTANCE.MoveInput.x * 13.8f) * _xSpeedNullifier;
         }
         else
         {
@@ -553,15 +552,15 @@ public class Player : MonoBehaviour
 
     private void CameraUpDown()
     {
-        if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") == 0)
+        if (InputManager.INSTANCE.MoveInput.y > 0 && InputManager.INSTANCE.MoveInput.x == 0)
         {
             _cameraTimer += Time.deltaTime;
         }
-        else if (Input.GetAxis("Vertical") < 0 && Input.GetAxis("Horizontal") == 0)
+        else if (InputManager.INSTANCE.MoveInput.y < 0 && InputManager.INSTANCE.MoveInput.x == 0)
         {
             _cameraTimer += Time.deltaTime;
         }
-        else if (Input.GetAxis("Horizontal") == 0)
+        else if (InputManager.INSTANCE.MoveInput.x == 0)
         {
             _cameraTimer = 0;
         }
@@ -571,13 +570,13 @@ public class Player : MonoBehaviour
         }
 
         //Camara
-        if (Input.GetAxis("Vertical") > 0 && _cameraTimer >= 1.5f)
+        if (InputManager.INSTANCE.MoveInput.y > 0 && _cameraTimer >= 1.5f)
         {
             _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = _cameraUp.transform;
             _animator.SetBool("LookUp", true);
             _animator.SetBool("LookDown", false);
         }
-        else if (Input.GetAxis("Vertical") < 0 && _cameraTimer >= 1.5f)
+        else if (InputManager.INSTANCE.MoveInput.y < 0 && _cameraTimer >= 1.5f)
         {
             _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = _cameraDown.transform;
             _animator.SetBool("LookUp", false);
@@ -596,7 +595,7 @@ public class Player : MonoBehaviour
 
     private void Flip() //I don't want to make Marian draw a new batch of redundant sprites, so mirroring it is! || In fact, Marian DID draw a batch of redundant sprites, so no mirroring for Brody, kinda... || Fuck.
         {
-            if (Input.GetAxisRaw("Horizontal") < 0)
+            if (InputManager.INSTANCE.MoveInput.x < 0)
             {
                 _spriteRenderer.flipX = true;
                 if (_playerType == PlayerType.Brody)
@@ -604,7 +603,7 @@ public class Player : MonoBehaviour
                     _animator.runtimeAnimatorController = _brodyLeft;
                 }
             }
-            else if (Input.GetAxisRaw("Horizontal") > 0)
+            else if (InputManager.INSTANCE.MoveInput.x > 0)
             {
                 _spriteRenderer.flipX = false;
                 if (_playerType == PlayerType.Brody)
@@ -624,6 +623,7 @@ public class Player : MonoBehaviour
     {
         if (!_coolingHit && HP > 0)
         {
+            UIManager.INSTANCE.SCORE_SYSTEM.Hit();
             transform.parent.GetChild(0).GetComponent<Player>().HP -= damage;
             transform.parent.GetChild(1).GetComponent<Player>().HP -= damage;
             _animator.SetBool("IsJumping", false);
@@ -672,6 +672,7 @@ public class Player : MonoBehaviour
         GetComponent<Player>().enabled = false;
         GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
         GameManager.INSTANCE.Boludos.RespawnBoludos();
+        UIManager.INSTANCE.SCORE_SYSTEM.PlayerDead();
         //transform.parent = null;
     }
 
@@ -822,7 +823,7 @@ public class Player : MonoBehaviour
 
     private void Effects()
     {
-         if (Input.GetAxis("Horizontal") > 0 && _spriteRenderer.flipX == true && canIjump) //Spawns dust
+         if (InputManager.INSTANCE.MoveInput.x > 0 && _spriteRenderer.flipX == true && canIjump) //Spawns dust
         {
 
             if (GameManager.INSTANCE.dustcap > 0 || body.velocity.x == 0)
@@ -836,7 +837,7 @@ public class Player : MonoBehaviour
             GameManager.INSTANCE.dustcap = 1;
             
         }
-        if (Input.GetAxis("Horizontal") < 0 && _spriteRenderer.flipX == false && canIjump)
+        if (InputManager.INSTANCE.MoveInput.x < 0 && _spriteRenderer.flipX == false && canIjump)
         {
 
             if (GameManager.INSTANCE.dustcap > 0 || body.velocity.x == 0)
@@ -924,7 +925,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0)
+        if (Mathf.Abs(InputManager.INSTANCE.MoveInput.x) == 0)
         {
             if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
             {
@@ -1019,7 +1020,7 @@ public class Player : MonoBehaviour
             _airborneTime = 0;
         }
         
-        if (Input.GetAxis("Whoosh") > 0 && _skillHold <= 0.17f)
+        if (InputManager.INSTANCE.DashHeld && _skillHold <= 0.17f)
         {
             TheTheSkill();
             //ChangeSkillStatus(false);
@@ -1036,7 +1037,7 @@ public class Player : MonoBehaviour
         {
             dustSpawnCooldown = 0f;
         }
-        if (Input.GetAxis("Jump") > 0)
+        if (InputManager.INSTANCE.JumpHeld) //Input.GetAxis("Jump")
         {
             _lastJumpPress += 0.17f;
         }
@@ -1044,7 +1045,7 @@ public class Player : MonoBehaviour
         {
             _lastJumpPress = 0f;
         }
-        if (Input.GetButton("Whoosh"))
+        if (InputManager.INSTANCE.DashHeld)
         {
             _skillHold += 0.17f;
         }

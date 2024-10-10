@@ -44,11 +44,11 @@ namespace Shinjingi
 
         private void Flip()
         {
-            if (Input.GetAxisRaw("Horizontal") < 0)
+            if (InputManager.INSTANCE.MoveInput.x < 0)
             {
                 spriteRenderer.flipX = true;
             }
-            else if (Input.GetAxisRaw("Horizontal") > 0)
+            else if (InputManager.INSTANCE.MoveInput.x > 0)
             {
                 spriteRenderer.flipX = false;
             }

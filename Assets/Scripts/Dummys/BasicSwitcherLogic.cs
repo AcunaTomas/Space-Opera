@@ -31,7 +31,7 @@ public class BasicSwitcherLogic : MonoBehaviour
     {
         if (IsEnabled)
         {
-            if (Input.GetAxis("CharSwitch1") > 0 && cooldown == false)
+            if (InputManager.INSTANCE.SwitchInput && cooldown == false) //ver con un HELD
                 {
                     _change = false;
 

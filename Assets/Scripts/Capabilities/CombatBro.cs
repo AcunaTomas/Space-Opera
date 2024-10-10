@@ -75,13 +75,13 @@ public class CombatBro : PlayerCombat
     public override void AttackUp()
     {
         
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        if (InputManager.INSTANCE.MoveInput.x == 0 && InputManager.INSTANCE.MoveInput.y == 0)
         {
          return;   
         }
         
 
-        if (Input.GetAxis("Horizontal") != 0)
+        if (InputManager.INSTANCE.MoveInput.x != 0)
         {
             _animator.SetTrigger("AttackDiagUp");
             if (spriteRenderer.flipX)
@@ -116,13 +116,13 @@ public class CombatBro : PlayerCombat
 
     public override void AttackDown()
     {
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        if (InputManager.INSTANCE.MoveInput.x == 0 && InputManager.INSTANCE.MoveInput.y == 0)
         {
          return;   
         }
 
         
-        if (Input.GetAxis("Horizontal") != 0)
+        if (InputManager.INSTANCE.MoveInput.x != 0)
         {
             _animator.SetTrigger("AttackDiagDown");
             if (spriteRenderer.flipX)

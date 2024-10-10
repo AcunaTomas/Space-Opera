@@ -16,7 +16,7 @@ public class InteractableOnlyBito : Interactable
             _timePressed = 0;
         }
 
-        if (Input.GetAxis("Submit") > 0 && _keyHeld == true)
+        if (InputManager.INSTANCE.InteractHeld && _keyHeld == true)
         {
 
         }
@@ -29,7 +29,7 @@ public class InteractableOnlyBito : Interactable
 
         if ((Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance) && !moved)
         {
-            if (Input.GetAxis("Submit") > 0 && _timePressed <= 0 && playerInstance.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+            if (InputManager.INSTANCE.InteractHeld && _timePressed <= 0 && playerInstance.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
             {
                 interactAction.Invoke();
                 StartCoroutine(DoAfter());
@@ -41,7 +41,7 @@ public class InteractableOnlyBito : Interactable
         {
             if (moved)
             {
-                if (Input.GetAxis("Submit") > 0 && _timePressed <= 0 && playerInstance.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+                if (InputManager.INSTANCE.InteractHeld && _timePressed <= 0 && playerInstance.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
                 {
                     interactAction.Invoke();
                     _keyHeld = true;

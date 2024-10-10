@@ -123,14 +123,14 @@ public class ObjectivesManager : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Select") && !_buttonPressed)
+        if (InputManager.INSTANCE.SelectInput && !_buttonPressed)
         {
             _canInteract = false;
             _buttonPressed = true;
             StartCoroutine(FoldUnfold(_fold));
         }
 
-        if (Input.GetButtonUp("Select"))
+        if (InputManager.INSTANCE.SelectReleased)
         {
             _buttonPressed = false;
         }
