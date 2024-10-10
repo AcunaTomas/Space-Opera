@@ -18,7 +18,7 @@ public class ScrollViewSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetAxis("Vertical") > 0)
+        if (InputManager.INSTANCE.MoveInput.y > 0)
         {
             if (_scrollRect.verticalNormalizedPosition <= 1f)
             {
@@ -26,7 +26,7 @@ public class ScrollViewSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetAxis("Vertical") < 0)
+        if (InputManager.INSTANCE.MoveInput.y < 0)
         {
             if (_scrollRect.verticalNormalizedPosition >= 0f)
             {

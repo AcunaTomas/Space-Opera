@@ -6,7 +6,7 @@ public class WorkInProgress : MonoBehaviour
 {
     void Update()
     {
-        if(Input.GetButtonDown("Submit"))
+        if(InputManager.INSTANCE.SubmitInput)
         {
             this.gameObject.SetActive(false);
         }

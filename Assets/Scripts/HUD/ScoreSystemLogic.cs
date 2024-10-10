@@ -12,13 +12,14 @@ public class ScoreSystemLogic : MonoBehaviour
     private Animator _scoreAnimator;
     private int _enemyCount, _enemyKill, _collectableFound, _deathCount;
     private bool _noHit;
-    private bool _showKills, _showCollectables, _showDeaths, _showTime, _showNoHit;
+    private bool _showKills, _showCollectables, _showDeaths, _showTime, _showNoHit, _readytoclose;
     [SerializeField] int _collectableCount;
 
 
     void Start()
     {
         _showing = false;
+        _readytoclose = false;
         _noHit = true;
         _scoreContainer = transform.GetChild(0).gameObject;
         _scoreAnimator = GetComponent<Animator>();
@@ -51,7 +52,8 @@ public class ScoreSystemLogic : MonoBehaviour
         }
         if(_showNoHit) _scoreContainer.transform.GetChild(12).GetComponent<TextMeshProUGUI>().text = _noHit.ToString();
         _progressTime += Time.deltaTime *2f;
-        if(Input.GetButton("Submit") && _showKills) ShowAll();
+        if(_readytoclose && InputManager.INSTANCE.SubmitInput) StartCoroutine(Credits());
+        if(InputManager.INSTANCE.SubmitHeld && _showKills) ShowAll();
     }
 
     public void ShowScore()
@@ -78,6 +80,7 @@ public class ScoreSystemLogic : MonoBehaviour
 
     public void ShowAll()
     {
+        _readytoclose = true;
         _showKills = true;
         ShowCollectables();
         ShowDeaths();
@@ -89,6 +92,13 @@ public class ScoreSystemLogic : MonoBehaviour
     void Reset()
     {
         _progressTime = 0f;
+    }
+
+    IEnumerator Credits()
+    {
+        _readytoclose = false;
+        yield return new WaitForSeconds(3f);
+        ScenesManager.Instance.LoadNextScene("Credits");
     }
 
 }

@@ -7,12 +7,12 @@ namespace Shinjingi
     {
         public override bool RetrieveJumpInput()
         {
-            return InputManager.INSTANCE.JumpPressed;
+            return InputManager.INSTANCE.JumpInput;
         }
 
         public override float RetrieveMoveInput()
         {
-            return Input.GetAxisRaw("Horizontal");
+            return InputManager.INSTANCE.MoveInput.x;
         }
 
         public override bool RetrieveJumpHoldInput()

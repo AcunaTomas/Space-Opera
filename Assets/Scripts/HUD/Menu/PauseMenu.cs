@@ -97,6 +97,10 @@ public class PauseMenu : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(unpauseFirstSelected[1]);
             }
         }
+        if(InputManager.INSTANCE.SubmitInput)
+        {
+            Debug.Log("Estoy cómo loquita");
+        }
     }
 
     void OnDisable()

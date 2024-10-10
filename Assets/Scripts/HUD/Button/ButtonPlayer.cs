@@ -27,7 +27,7 @@ public class ButtonPlayer : MonoBehaviour
 
         _time += Time.deltaTime;
 
-        if (Input.GetButton("Fire2"))
+        if (InputManager.INSTANCE.Skill1Held)
         {
             _time = 0f;
             if (_player.GetChild(_player.childCount - 1).name == "Oval")

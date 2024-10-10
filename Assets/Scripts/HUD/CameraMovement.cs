@@ -42,7 +42,7 @@ public class CameraMovement : MonoBehaviour
             return;
         }
 
-        if (InputManager.INSTANCE.JumpPressed && !_spacebarPressed)
+        if (InputManager.INSTANCE.JumpInput && !_spacebarPressed)
         {
             _spacebarPressed = true;
 

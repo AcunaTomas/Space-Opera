@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour{
             
         }
 
-        if (Input.GetButtonUp("Pause"))
+        if (InputManager.INSTANCE.OpenMenuReleased || InputManager.INSTANCE.CloseMenuReleased)
         {
             _escapePressed = false;
         } 

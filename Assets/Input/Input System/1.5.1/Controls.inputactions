@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "Move",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "a1e8f337-570a-42f8-9a1a-7c93edd56701",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Switch",
@@ -81,6 +81,15 @@
                     "name": "OpenMenu",
                     "type": "Button",
                     "id": "d9185910-af29-49b5-8223-25ba5e981b05",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "182a44a6-856d-4eee-a1b8-66ab03df8ac6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -505,6 +514,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "57bb944a-b4e8-4227-b71b-0b1c69a71077",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad92cee5-7979-4407-895c-730f980d5bab",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -571,7 +602,7 @@
                 {
                     "name": "",
                     "id": "2683bac5-dc24-4fa0-a97d-25d2e6f4b300",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

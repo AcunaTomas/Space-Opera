@@ -202,13 +202,13 @@ public class CollisionDialogue : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Submit") && !_buttonPressed)
+        if (InputManager.INSTANCE.SubmitInput && !_buttonPressed)
         {
             _buttonPressed = true;
             StartDialogue();
         }
 
-        if (Input.GetButtonUp("Submit"))
+        if (InputManager.INSTANCE.SubmitReleased)
         {
             _buttonPressed = false;
         }

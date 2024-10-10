@@ -90,7 +90,7 @@ public class Interactable : MonoBehaviour
             _timePressed = 0;
         }
 
-        if (Input.GetAxis("Submit") > 0 && _keyHeld == true) //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) 
+        if (InputManager.INSTANCE.InteractHeld && _keyHeld == true) //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) VER PARA METER LÓGICA UI
         {
 
         }
@@ -103,7 +103,7 @@ public class Interactable : MonoBehaviour
 
         if ((Mathf.Abs(playerInstance.gameObject.transform.position.x -transform.position.x)  <= _XDistance &&  Mathf.Abs(playerInstance.gameObject.transform.position.y - transform.position.y)  <= _YDistance) && !moved)
         {
-            if (Input.GetAxis("Submit") > 0 && _timePressed <= 0)  //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) 
+            if (InputManager.INSTANCE.InteractHeld && _timePressed <= 0)  //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) VER PARA METER LÓGICA UI
             {
                 if(_finishedAfterAction)
                 {
@@ -136,7 +136,7 @@ public class Interactable : MonoBehaviour
         {
             if (moved)
             {
-                if (Input.GetAxis("Submit") > 0 && _timePressed <= 0) //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) 
+                if (InputManager.INSTANCE.InteractHeld && _timePressed <= 0) //|| Input.GetAxis(GameManager.INSTANCE.ALTSKIPENABLED) > 0) 
                 {
                     if (_finishedAfterAction)
                     {

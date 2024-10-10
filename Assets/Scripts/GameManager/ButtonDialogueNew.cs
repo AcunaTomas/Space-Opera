@@ -408,7 +408,7 @@ public class ButtonDialogueNew : MonoBehaviour
             return;
         }
 
-        if((InputManager.INSTANCE.JumpPressed || Input.GetButtonDown("Submit")) && !_buttonPressed)
+        if(InputManager.INSTANCE.SubmitInput && !_buttonPressed)
         {
             _buttonPressed = true;
             if(!_endLine)
@@ -421,13 +421,13 @@ public class ButtonDialogueNew : MonoBehaviour
             }
         }
 
-        if (InputManager.INSTANCE.JumpReleased || Input.GetButtonUp("Submit"))
+        if (InputManager.INSTANCE.SubmitReleased)
         {
             ActualizarSkip(-_holdSkip);
             _buttonPressed = false;
         }
 
-        if((InputManager.INSTANCE.JumpHeld || Input.GetButton("Submit")) && LoadJson.DEBUG_MODE)
+        if(InputManager.INSTANCE.SubmitHeld && LoadJson.DEBUG_MODE)
         {
             if(_dialogueSkipEnd)
             {
