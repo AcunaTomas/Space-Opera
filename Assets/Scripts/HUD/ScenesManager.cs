@@ -11,6 +11,8 @@ public class ScenesManager : MonoBehaviour
 
     public float transitionTime = 1f;
 
+    private bool ready2Activate = false;
+
     private void Awake()
     {
         Instance = this;
@@ -25,10 +27,15 @@ public class ScenesManager : MonoBehaviour
         VSTest
 
     }
+    public void SetNextSceneName(string name)
+    {
+        PersistentGameInfo.Scene2Load = name;
+    }
     
     public void LoadScene(Scene scene)
     {
-        SceneManager.LoadScene(scene.ToString());
+        PersistentGameInfo.Scene2Load = scene.ToString();
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void LoadNewGame()
@@ -59,7 +66,8 @@ public class ScenesManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(SceneName);
+        PersistentGameInfo.Scene2Load = SceneName;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void LoadMainMenu()
@@ -70,6 +78,34 @@ public class ScenesManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadLevelAsync(bool ActivateScene = true)
+    {
+        StartCoroutine(LLAsync(ActivateScene));
+    }
+
+    IEnumerator LLAsync(bool ActivateScene = true)
+    {
+        
+        AsyncOperation ass = SceneManager.LoadSceneAsync(PersistentGameInfo.Scene2Load);
+        ass.allowSceneActivation = ActivateScene;
+        //yield return new WaitUntil(() => ass.isDone == true);
+        while (!ass.isDone)
+        {
+            if (!ass.allowSceneActivation)
+            {
+                ass.allowSceneActivation = ready2Activate;
+            }
+            yield return null;
+        }
+
+    }
+
+    public void ActivateLoadedScene()
+    {
+        transition.SetTrigger("SceneStart");
+        ready2Activate = true;
     }
 
 }

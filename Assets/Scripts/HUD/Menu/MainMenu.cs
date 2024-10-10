@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        if (!DataPersistentManager.INSTANCE.HasGameData())
+/*         if (!DataPersistentManager.INSTANCE.HasGameData())
         {
             _continue.interactable = false;
         }
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
             _newGame.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
             _newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = true;
             //_newGame.gameObject.GetComponent<ButtonMenu>().ACTIVE = false;
-        }
+        } */
     }
 
     public void NewGameClicked()

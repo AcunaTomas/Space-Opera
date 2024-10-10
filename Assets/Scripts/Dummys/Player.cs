@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     float vertspid = -0.3f;
     [SerializeField]
     public float _gravity = -0.1f;
-
+    [SerializeField]
+    private float stunTime = 0f;
 
     [Header("Jump Values")]
     [SerializeField]
@@ -388,7 +389,7 @@ public class Player : MonoBehaviour
 
                     if ((contacts[i].normal.x) > 0) 
                     {
-                        //_spriteRenderer.flipX = true;
+                        _spriteRenderer.flipX = true;
                         if (_playerType == PlayerType.Brody)
                         {
                             _animator.runtimeAnimatorController = _brodyLeft;
@@ -396,7 +397,7 @@ public class Player : MonoBehaviour
                     } 
                     else
                     {
-                        //_spriteRenderer.flipX = false;
+                        _spriteRenderer.flipX = false;
                         if (_playerType == PlayerType.Brody)
                         {
                             _animator.runtimeAnimatorController = _brodyRight;
@@ -443,19 +444,6 @@ public class Player : MonoBehaviour
         collision.GetContacts(contacts);
         //extrajumpcount = 1;
 
-        if (_fallingTime > 6.1)
-        {   
-            _animator.SetTrigger("land");
-
-            var _landing1 = Instantiate(_landingEffect1, this.transform);
-            var _landing2 = Instantiate(_landingEffect2, this.transform);
-
-            _landing1.GetComponent<Animator>().SetTrigger("Effect");
-            _landing2.GetComponent<Animator>().SetTrigger("Effect");
-            Destroy(_landing1, 0.7f);
-            Destroy(_landing2, 0.7f);
-        }
-        
         if (collision.gameObject.CompareTag("Ascensor"))
         {
             transform.parent = collision.gameObject.transform;
@@ -479,6 +467,21 @@ public class Player : MonoBehaviour
                     grounded = true;
                     _animator.SetBool("IsJumping", false);
                     _animator.SetBool("wall", false);
+
+                    if (_fallingTime > 6.1)
+                    {   
+                        _animator.SetTrigger("land");
+
+                        var _landing1 = Instantiate(_landingEffect1, this.transform);
+                        var _landing2 = Instantiate(_landingEffect2, this.transform);
+
+                        _landing1.GetComponent<Animator>().SetTrigger("Effect");
+                        _landing2.GetComponent<Animator>().SetTrigger("Effect");
+                        Destroy(_landing1, 0.7f);
+                        Destroy(_landing2, 0.7f);
+                        StunToggle(0.5f);
+                    }
+                    
                 }
 
             }
@@ -1053,5 +1056,27 @@ public class Player : MonoBehaviour
         {
             _skillHold = 0f;
         }
+
+        stunTime -= Time.deltaTime;
+        if (stunTime < 0f)
+        {
+            stunTime = 0f;
+            StunToggle();
+        }
     }
+
+    private void StunToggle(float Time = 0f)
+    {
+        if (Time > 0f)
+        {
+            //canIjump = false;
+            canIMove = false;
+            stunTime = Time;
+            return;
+        }
+        //canIjump = true;
+        canIMove = true;
+        
+    }
+    
 }
