@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class conveyorBeltLogic : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class conveyorBeltLogic : MonoBehaviour
     float playerSpeed = -14;
 
     Animator[] animators;
+
+    [SerializeField] private StudioEventEmitter _soundEmitter;
 
     void OnCollisionStay2D(Collision2D other)
     {
@@ -46,6 +50,7 @@ public class conveyorBeltLogic : MonoBehaviour
     public void Deactivate()
     {
         active = false;
+        _soundEmitter.Stop();
         animators = GetComponentsInChildren<Animator>();
         foreach (Animator animator in animators)
         {
