@@ -59,6 +59,7 @@ public class SquireIdleState : State
 
     void Alert()
     {
+        if(enemyBehaviour.GetState() == enemyBehaviour.flipState) return;
         enemyBehaviour.ChangeState(enemyBehaviour.chaseState);
     }
 }

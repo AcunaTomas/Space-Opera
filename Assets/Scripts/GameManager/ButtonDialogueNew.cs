@@ -243,6 +243,7 @@ public class ButtonDialogueNew : MonoBehaviour
                 }
             }
             GameManager.INSTANCE.PAUSABLE = false;
+            InputManager.INSTANCE.UIInputs();
             _contLinea = _index;
             DifferentDialogues();
             _notFirstDialogue = true;
@@ -285,6 +286,7 @@ public class ButtonDialogueNew : MonoBehaviour
             //     _player.GetComponent<PlayerCombat>().enabled = false;
             // }
             GameManager.INSTANCE.PAUSABLE = true;
+            InputManager.INSTANCE.InGameInputs();
             _player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         catch (System.Exception e)
@@ -408,7 +410,7 @@ public class ButtonDialogueNew : MonoBehaviour
             return;
         }
 
-        if(InputManager.INSTANCE.SubmitInput || Input.GetButtonDown("Submit") && !_buttonPressed)
+        if(InputManager.INSTANCE.SubmitInput && !_buttonPressed)
         {
             _buttonPressed = true;
             if(!_endLine)
@@ -421,13 +423,13 @@ public class ButtonDialogueNew : MonoBehaviour
             }
         }
 
-        if (InputManager.INSTANCE.SubmitReleased || Input.GetButtonUp("Submit"))
+        if (InputManager.INSTANCE.SubmitReleased)
         {
             ActualizarSkip(-_holdSkip);
             _buttonPressed = false;
         }
 
-        if((InputManager.INSTANCE.SubmitHeld || Input.GetButton("Submit")) && LoadJson.DEBUG_MODE)
+        if(InputManager.INSTANCE.SubmitHeld && LoadJson.DEBUG_MODE)
         {
             if(_dialogueSkipEnd)
             {

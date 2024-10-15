@@ -124,6 +124,11 @@ private void OnEnable() {
     chaseState.gameObject.SetActive(true);
     attackState.gameObject.SetActive(true);
     flipState.gameObject.SetActive(true);
+    if(enemyStats.currentHealth <= 0)
+    {
+        animator.SetTrigger("Die");
+        animator.SetBool("Dead", true);
+    }
 }
 
 private void OnDisable() {
@@ -131,8 +136,11 @@ private void OnDisable() {
     chaseState.gameObject.SetActive(false);
     attackState.gameObject.SetActive(false);
     flipState.gameObject.SetActive(false);
-    if(enemyStats.currentHealth <= 0) animator.SetTrigger("Die");
-    if(enemyStats.currentHealth <= 0) animator.SetBool("Dead", true);
+    if(enemyStats.currentHealth <= 0)
+    {
+        animator.SetTrigger("Die");
+        animator.SetBool("Dead", true);
+    }
 
 }
 
@@ -149,7 +157,7 @@ private IEnumerator SecondState()
     }
 
 
-public void DropShild()
+public void DropShield()
     {
         Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
     }
@@ -159,4 +167,37 @@ public void SetMoveSpeed(float num)
         moveSpeed = num;
     }
 
+    public void AnimatorFPFlip()
+    {
+        if(transform.position.x > target.position.x)
+        {
+            Debug.Log("IZQUIERDA");
+            GetComponent<SpriteRenderer>().flipX = true;
+            flipState.FlippingToTheLeftFinished();
+        }
+        else
+        {
+            Debug.Log("DERECHA");
+            GetComponent<SpriteRenderer>().flipX = false;
+            flipState.FlippingToTheRightFinished();
+        }
+        
+    }
+    public void AnimatorSPFlip()
+    {
+        if(transform.position.x > target.position.x) //Para la izquierda
+        {
+            Debug.Log("IZQUIERDA SEGUNDO");
+            animator.runtimeAnimatorController = SecondPhaseAnimatorLeft;
+            flipState.FlippingToTheLeftFinished();
+        }
+        else //Para la derecha
+        {
+            Debug.Log("DERECHA SEGUNDO");
+            animator.runtimeAnimatorController = SecondPhaseAnimatorRight;
+            GetComponent<SpriteRenderer>().flipX = false;
+            flipState.FlippingToTheRightFinished();
+        }
+        
+    }
 }
