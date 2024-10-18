@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
 
 public class UpgradeLogic : MonoBehaviour
 {
@@ -25,12 +27,22 @@ public class UpgradeLogic : MonoBehaviour
     private int _connectedControllerCount = 0;
     public bool _control = false; 
 
+
+    [SerializeField] private StudioEventEmitter _soundEmitter;
+
+
+    private void Awake()
+    {
+        _soundEmitter = GetComponent<StudioEventEmitter>();
+    }
+
     void Update()
     {
         if(gameObject.activeSelf && !upgradeW1.activeSelf && !upgradeW2.activeSelf) Reboot();
         if(_startCounting) time += Time.unscaledDeltaTime;
         if(upgradeW1.activeSelf)
         {
+            _soundEmitter.Play();
             //if(fade.color.a < .4f) fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fade.color.a +.1f);
             if (!transition.GetCurrentAnimatorStateInfo(0).IsName("PopUp_star2"))
             {
@@ -101,6 +113,7 @@ public class UpgradeLogic : MonoBehaviour
                 gameObject.SetActive(false);
                 //transition.enabled = !transition.enabled;
                 transition.SetTrigger("PopUpEnd");
+                //_soundEmitter.Stop();
             }
         }
         _connectedControllerCount = 0;

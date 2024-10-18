@@ -94,16 +94,9 @@ public class EnemyPatrol : MonoBehaviour
             
         }
 
-        if(_mainScript.currentHealth > 0)
-        {
-            if(_speed == 40 || _speed == -40)
-            {
-                _sounds.UpdateParameter("EnemyMode", 0);
-            }
-            else if(_speed == 60 || _speed == -60)
-            {
-                _sounds.UpdateParameter("EnemyMode", 1);
-            }
+        if(_mainScript.currentHealth > 0 && _speed == 40 || _speed == -40)
+        {  
+            _sounds.UpdateParameter("EnemyMode", 0);
         }
         else if(_mainScript.currentHealth <= 0)
         {

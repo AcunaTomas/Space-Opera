@@ -36,6 +36,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("General")]
     [field: SerializeField] public EventReference GameOverMelody { get; private set; }
+    [field: SerializeField] public EventReference SaveLevel { get; private set; }
     
     public static FMODEvents instance { get; private set; }
 
