@@ -68,6 +68,8 @@ public class BossBehaviourNew : MonoBehaviour
 
     public float meleeDistance = 0;
 
+    private bool _meleeCooling = false;
+
     public GameObject meleeHurtBox;
 
     private int _randomAttackNum;
@@ -84,6 +86,9 @@ public class BossBehaviourNew : MonoBehaviour
     public GameObject _weakSpot;
 
     private bool _weakSpotActive;
+
+    public GameObject _platform1;
+    public GameObject _platform2;
 
 
 
@@ -111,9 +116,10 @@ void FixedUpdate()
     if (_first)
     {
         transform.position = Vector2.MoveTowards(transform.position, bossPosition1.transform.position, _speed * Time.deltaTime);
-        
+        animator.SetBool("Run", true);
         if (transform.position.x == bossPosition1.transform.position.x)
         {
+            animator.SetBool("Run", false);
             if(!_attacking)
             {
                 StartCoroutine(Ataque1());
@@ -123,8 +129,10 @@ void FixedUpdate()
     if (_second)
     {
         transform.position = Vector2.MoveTowards(transform.position, bossPosition2.transform.position, _speed * Time.deltaTime);
+        animator.SetBool("Run", true);
         if (transform.position.x == bossPosition2.transform.position.x)
         {
+            animator.SetBool("Run", false);
             if (!_attacking)
             {
                 StartCoroutine(Ataque2());
@@ -134,8 +142,10 @@ void FixedUpdate()
     if (_third)
     {
         transform.position = Vector2.MoveTowards(transform.position, bossPosition3.transform.position, _speed * Time.deltaTime);
+        animator.SetBool("Run", true);
         if (transform.position.x == bossPosition3.transform.position.x)
         {
+            animator.SetBool("Run", false);
             if(!_attacking)
             {
                 StartCoroutine(Ataque3());
@@ -145,7 +155,10 @@ void FixedUpdate()
 
     if (!_attacking && Vector2.Distance(transform.position, player.transform.position) < meleeDistance)
     {
+        if (!_meleeCooling)
+        _meleeCooling = true;
         StartCoroutine(MeleeAttack());
+        Debug.Log(Vector2.Distance(transform.position, player.transform.position));
     }
 
 
@@ -206,12 +219,17 @@ void GetRandomNum()
  private IEnumerator MeleeAttack()
  {
      _attacking = true;
+     animator.SetTrigger("melee");
+     yield return new WaitForSeconds(0.6f);
+
      meleeHurtBox.SetActive(true);
-     Debug.Log("Melee");
-     yield return new WaitForSeconds(1);
+
+     yield return new WaitForSeconds(0.3f);
      _attacking = false;
      meleeHurtBox.SetActive(false);
-     _speed = 0.5f;
+
+     yield return new WaitForSeconds(5f);
+    _meleeCooling = false;
  }
 
 private IEnumerator Ataque1()
@@ -227,20 +245,27 @@ private IEnumerator Ataque1()
         _randomAttackNum = Random.Range(1,3);
         if (_randomAttackNum == 1)
         {
+            animator.SetTrigger("missile");
             StartCoroutine(AtaqueMisiles(1.0f));
         }
         else
         {
+            animator.SetBool("Roomba", true);
             StartCoroutine(AtaqueRumba(1.0f, 3.0f, 60, false));
         }
     }
     else
     {
+        animator.SetTrigger("missile");
         StartCoroutine(AtaqueMisiles(1.0f));
     }
 
     
-    yield return new WaitForSeconds(2);
+    yield return new WaitForSeconds(2.5f);
+    animator.SetBool("missileIdle", false);
+    animator.SetBool("Roomba", false);
+
+    yield return new WaitForSeconds(0.5f);
     GetRandomNum();
     _attacking = false;
 }
@@ -250,20 +275,27 @@ private IEnumerator Ataque2()
     Debug.Log("Ataque2");
     _lastRandomNum = 2;
     _hackInteractor.SetActive(true);
+    _hackInteractor.GetComponent<Animator>().SetTrigger("show");
 
     yield return new WaitForSeconds(1f);
     StartCoroutine(AtaqueElectricidad());
 
 
-    yield return new WaitForSeconds(2);
+    yield return new WaitForSeconds(2f);
     if (!_hacked)
     {
+        animator.SetBool("Electricity", false);
         GetRandomNum();
         _attacking = false;
     }
     else
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
+
+        animator.SetTrigger("restore");
+        animator.SetBool("Electricity", false);
+
+        yield return new WaitForSeconds(1);
         GetRandomNum();
         _attacking = false;
         _hacked = false;
@@ -285,19 +317,26 @@ private IEnumerator Ataque3()
         _randomAttackNum = Random.Range(1,3);
         if (_randomAttackNum == 1)
         {
+            animator.SetTrigger("missile");
             StartCoroutine(AtaqueMisiles(1.0f));
         }
         else
         {
-            StartCoroutine(AtaqueRumba(-3.0f, -1.0f, -60, true));
+            animator.SetBool("Roomba", true);
+            StartCoroutine(AtaqueRumba(-3.0f, 3.0f, -60, true));
         }
     }
     else
     {
+        animator.SetTrigger("missile");
         StartCoroutine(AtaqueMisiles(1.0f));
     }
 
-    yield return new WaitForSeconds(2);
+    yield return new WaitForSeconds(2.5f);
+    animator.SetBool("missileIdle", false);
+    animator.SetBool("Roomba", false);
+
+    yield return new WaitForSeconds(0.5f);
     GetRandomNum();
     _attacking = false;
     _flipeable = true;
@@ -306,30 +345,33 @@ private IEnumerator Ataque3()
 
 IEnumerator AtaqueRumba(float num1, float num2, int speed1, bool flip)
 {
+    yield return new WaitForSeconds(1.7f);
     var a = Instantiate(_rumbaRota, _bulletSource.position, transform.rotation);
     a.GetComponent<EnemyPatrol>()._speed = speed1;
     a.GetComponent<EnemyPatrol>().Impulse(num1, num2);
     a.GetComponent<SpriteRenderer>().flipX = flip;
 
-    yield return new WaitForSeconds(0.3f);
-    
+
     var b = Instantiate(_rumbaRota, _bulletSource.position, transform.rotation);
     b.GetComponent<EnemyPatrol>()._speed = speed1;
     b.GetComponent<EnemyPatrol>().Impulse(num1, num2);
     b.GetComponent<SpriteRenderer>().flipX = flip;
 
-    yield return new WaitForSeconds(0.3f);
 
     var c = Instantiate(_rumba, _bulletSource.position, transform.rotation);
     c.GetComponent<EnemyPatrol>()._speed = 60;
     c.GetComponent<EnemyPatrol>().Impulse(num1, num2);
     c.GetComponent<SpriteRenderer>().flipX = false;
 
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(0.7f);
 
     c.GetComponent<EnemyPatrol>()._bossFight = false;
 }
 
+public void MissileIdleBool()
+{
+    animator.SetBool("missileIdle", true);
+}
 IEnumerator AtaqueMisiles(float _missileSpeed)
 {
     
@@ -338,18 +380,22 @@ IEnumerator AtaqueMisiles(float _missileSpeed)
     if(_lastNumMisiles == 1)
     {
         Debug.Log("misiles1");
+        animator.SetTrigger("m1");
     }
     else if(_lastNumMisiles == 2)
     {
         Debug.Log("misiles2");
+        animator.SetTrigger("m2");
     }
     else if(_lastNumMisiles == 3)
     {
         Debug.Log("misiles3");
+        animator.SetTrigger("m3");
     }
     else if(_lastNumMisiles == 4)
     {
         Debug.Log("misiles4");
+        animator.SetTrigger("m4");
     }
     yield return new WaitForSeconds(0.5f);
 
@@ -360,18 +406,22 @@ IEnumerator AtaqueMisiles(float _missileSpeed)
     if(_lastNumMisiles == 1)
     {
         Debug.Log("misiles1");
+        animator.SetTrigger("m1");
     }
     else if(_lastNumMisiles == 2)
     {
-        Debug.Log("misiles2");   
+        Debug.Log("misiles2"); 
+        animator.SetTrigger("m2");  
     }
     else if(_lastNumMisiles == 3)
     {
         Debug.Log("misiles3");    
+        animator.SetTrigger("m3");
     }
     else if(_lastNumMisiles == 4)
     {
         Debug.Log("misiles4");   
+        animator.SetTrigger("m4");
     }
 }
 
@@ -382,6 +432,8 @@ void GetMissileNumbers()
 
 IEnumerator AtaqueElectricidad()
 {
+    animator.SetBool("Electricity", true);
+    yield return new WaitForSeconds(1.4f);
     if (!_hacked)
     {
         int newERandomNum = Random.Range(1,3);
@@ -389,21 +441,27 @@ IEnumerator AtaqueElectricidad()
         if (_phase2)
         {
             electricidadPhase2.SetActive(true);
+            _hackInteractor.GetComponent<Animator>().SetTrigger("hide");
+            yield return new WaitForSeconds(0.1f);
             _hackInteractor.SetActive(false);
         }
         else if (newERandomNum == 1)
         {
             electricidadDER.SetActive(true);
+            _hackInteractor.GetComponent<Animator>().SetTrigger("hide");
+            yield return new WaitForSeconds(0.1f);
             _hackInteractor.SetActive(false);
         }
         else
         {
             electricidadIZQ.SetActive(true);
+            _hackInteractor.GetComponent<Animator>().SetTrigger("hide");
+            yield return new WaitForSeconds(0.1f);
             _hackInteractor.SetActive(false);
         }
 
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         electricidadPhase2.SetActive(false);
         electricidadIZQ.SetActive(false);
@@ -422,6 +480,7 @@ IEnumerator AtaqueElectricidad()
 public void HackBoss()
 {
     _hacked = true;
+    animator.SetTrigger("hacked");
 }
 
 
@@ -458,24 +517,26 @@ private IEnumerator DestroyWeakSpot(GameObject a)
 
 
 public void TriggerCooling()
-{   
+{
     cooling = true;
 }
 
 public void Flip()
 {
     Vector3 rotation = transform.eulerAngles;
-    if (transform.position.x > target.position.x) 
+    if (transform.position.x > target.position.x)
     {
         GetComponent<SpriteRenderer>().flipX = true;
-        _bulletSource.localPosition = new Vector2(-0.1f,0f);
+        _platform1.GetComponent<Transform>().localPosition = new Vector2(0.73f,0.175f);
+        _platform2.GetComponent<Transform>().localPosition = new Vector2(0.027f,0.175f);
         // idleState.gameObject.GetComponent<BoxCollider2D>().offset = -idleState.gameObject.GetComponent<BoxCollider2D>().offset;
         // chaseState.gameObject.GetComponent<BoxCollider2D>().offset = -chaseState.gameObject.GetComponent<BoxCollider2D>().offset;
     }
     else
     {
         GetComponent<SpriteRenderer>().flipX = false;
-        _bulletSource.localPosition = new Vector2(0.1f,0f);
+        _platform1.GetComponent<Transform>().localPosition = new Vector2(0f,0.175f);
+        _platform2.GetComponent<Transform>().localPosition = new Vector2(0.39f,0.175f);
         // idleState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(idleState.gameObject.GetComponent<BoxCollider2D>().offset.x),
         //                                                                                 idleState.gameObject.GetComponent<BoxCollider2D>().offset.y);
         // chaseState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(chaseState.gameObject.GetComponent<BoxCollider2D>().offset.x),

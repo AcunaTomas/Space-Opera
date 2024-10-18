@@ -276,6 +276,7 @@ public class Enemy : MonoBehaviour
         if (_enemyType == EnemyType.newBoss)
         {
             GetComponent<BossBehaviourNew>().enabled = false;
+            animator.SetBool("Died", true);
         }
 
         animator.SetTrigger("Die");
