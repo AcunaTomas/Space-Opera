@@ -346,6 +346,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
+--- !u!1 &8763492673287344359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1430123722234393770, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
+  m_PrefabInstance: {fileID: 7658089506811421773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3111720015318345461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763492673287344359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -675998872
+      Data2: 1236267689
+      Data3: 48057219
+      Data4: -551725581
+    Path: event:/ENEMIES/Clones/CLONE_Death
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &5286886176625890104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763492673287344359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 3111720015318345461}
 --- !u!4 &8763492673287344364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}

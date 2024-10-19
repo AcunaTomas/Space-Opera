@@ -34,6 +34,7 @@ public class UpgradeLogic : MonoBehaviour
     private void Awake()
     {
         _soundEmitter = GetComponent<StudioEventEmitter>();
+        _soundEmitter.Play();
     }
 
     void Update()
@@ -42,7 +43,6 @@ public class UpgradeLogic : MonoBehaviour
         if(_startCounting) time += Time.unscaledDeltaTime;
         if(upgradeW1.activeSelf)
         {
-            _soundEmitter.Play();
             //if(fade.color.a < .4f) fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fade.color.a +.1f);
             if (!transition.GetCurrentAnimatorStateInfo(0).IsName("PopUp_star2"))
             {
