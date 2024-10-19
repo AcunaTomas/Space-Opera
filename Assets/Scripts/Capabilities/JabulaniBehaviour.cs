@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class JabulaniBehaviour : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class JabulaniBehaviour : MonoBehaviour
 
     private Vector2 _direction;
 
+    public StudioEventEmitter explosionAudio;
+    public StudioEventEmitter walkingAudio;
+
     private void Start()
     {
         GameObject player = GameManager.INSTANCE.GetActivePlayer().gameObject;
@@ -54,6 +58,7 @@ public class JabulaniBehaviour : MonoBehaviour
         if (canMove)
         {
             rb.AddForce(_direction * speed, ForceMode2D.Force);
+            walkingAudio.Play();
             
         }
         rb.velocity = new Vector2(Mathf.Clamp( rb.velocity.x,-speed,speed), rb.velocity.y);
@@ -171,7 +176,7 @@ public class JabulaniBehaviour : MonoBehaviour
 
     public void ExplosionAudio()
     {
-        GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        explosionAudio.Play();
     }
 }
 

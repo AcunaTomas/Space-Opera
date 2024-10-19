@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 547076544165052639}
   - component: {fileID: 1513756975230739785}
   - component: {fileID: 998921076176159913}
+  - component: {fileID: 7682107628527243429}
   m_Layer: 20
   m_Name: Jabulani
   m_TagString: Bomb
@@ -104,6 +105,8 @@ MonoBehaviour:
   animator: {fileID: 1513756975230739785}
   _lifetime: 15
   _explosionDuration: 0.5
+  explosionAudio: {fileID: 998921076176159913}
+  walkingAudio: {fileID: 7682107628527243429}
 --- !u!212 &547076544165052639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,7 +146,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1430987733
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1377259313, guid: e874d1f816209fa4a89e753b958de183, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -197,6 +200,37 @@ MonoBehaviour:
       Data3: 435254166
       Data4: 1714594533
     Path: event:/BITO_SFX/BITO_Bomb
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7682107628527243429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681821287026531398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2128604672
+      Data2: 1277074905
+      Data3: -34496843
+      Data4: 422909463
+    Path: event:/BITO_SFX/Bito_Walking-bomb
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -311,7 +345,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1430987733
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6728ecce2cfaf374980ec7743f0fdd50, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

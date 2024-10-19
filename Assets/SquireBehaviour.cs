@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class SquireBehaviour : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class SquireBehaviour : MonoBehaviour
 
     private GameObject player;
     private Enemy enemyStats;
+    private StudioEventEmitter walkingAudio;
 
     //EnemyState
     [Header("Estados")]
@@ -41,6 +43,7 @@ void Awake()
 {
     animator = GetComponent<Animator>();
     player = GameObject.FindWithTag("Player");
+    walkingAudio = GetComponent<StudioEventEmitter>();
     target = player.transform;
     animator.SetBool("Dead", false);
     enemyStats = GetComponent<Enemy>();
@@ -67,6 +70,11 @@ void Update()
     {
         attackPoint.gameObject.SetActive(false);
         attackPointFlip.gameObject.SetActive(false);
+    }
+
+    if(enemyStats.currentHealth <= 0)
+    {
+        walkingAudio.Stop();
     }
 
 
