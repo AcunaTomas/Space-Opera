@@ -20,6 +20,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference DashSound { get; private set; }
     [field: SerializeField] public EventReference GetDamageBito { get; private set; }
     [field: SerializeField] public EventReference MoveBox { get; private set; }
+    [field: SerializeField] public EventReference ThrowBomb { get; private set; }
 
     [field: Header("UI")]
     [field: SerializeField] public EventReference sfx_ui_navigate { get; private set; }
