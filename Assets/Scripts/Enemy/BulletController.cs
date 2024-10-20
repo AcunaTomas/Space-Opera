@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
     private Rigidbody2D _bulletRig;
 
 
-    void Start()
+    public virtual void Start()
     {
         _bulletRig = GetComponent<Rigidbody2D>();
         _target = GameObject.FindWithTag("Player");
@@ -35,7 +35,7 @@ public class BulletController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    public virtual void OnCollisionEnter2D(Collision2D col)
     {
         Destroy(gameObject);
     }

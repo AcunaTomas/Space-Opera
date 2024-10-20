@@ -24,7 +24,7 @@ public class BossChaseState : State
     public override void Do()
     {
         coolingHitRef = enemy.GetComponent<Enemy>()._coolingHit;
-        enemyBehaviour.Flip();
+        //enemyBehaviour.Flip();
 
             _randomNum = Random.Range(1,3);
             animator.SetBool("Run", true);

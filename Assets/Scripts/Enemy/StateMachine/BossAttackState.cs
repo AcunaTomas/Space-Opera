@@ -20,7 +20,7 @@ public class BossAttackState : State
     public override void Do()
     {
         coolingHitRef = enemy.GetComponent<Enemy>()._coolingHit;
-        enemyBehaviour.Flip();
+        //enemyBehaviour.Flip();
         if (enemyBehaviour.cooling == false && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Scientist_turn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_idle"))
         {
             if (enemyBehaviour.timerAttack > enemyBehaviour.attackDelay)

@@ -75,8 +75,6 @@ public class BossBehaviourNew : MonoBehaviour
     private int _randomAttackNum;
 
     public bool _phase2 = false;
-
-    private bool _flipeable = true;
     private int _numMisilesGenerator;
 
     public GameObject _hackInteractor;
@@ -90,6 +88,23 @@ public class BossBehaviourNew : MonoBehaviour
     public GameObject _platform1;
     public GameObject _platform2;
 
+
+    public Material _normalMaterial;
+    public Material _hitMaterial;
+
+    public bool _flipping = false;
+
+    [Header("Missile Source")]
+
+    public Transform _m1Source;
+    public Transform _m2Source;
+    public Transform _m3Source;
+    public Transform _m4Source;
+
+
+    public GameObject _missile;
+
+    public GameObject _missileEffect;
 
 
 void Awake()
@@ -107,7 +122,6 @@ void Awake()
 
 void FixedUpdate()
 {
-    if(_flipeable)Flip();
 
     //state.Do();
     
@@ -115,16 +129,29 @@ void FixedUpdate()
 
     if (_first)
     {
-        transform.position = Vector2.MoveTowards(transform.position, bossPosition1.transform.position, _speed * Time.deltaTime);
-        animator.SetBool("Run", true);
-        if (transform.position.x == bossPosition1.transform.position.x)
+        if (GetComponent<SpriteRenderer>().flipX == false)
         {
-            animator.SetBool("Run", false);
-            if(!_attacking)
+            if (!_flipping)
             {
-                StartCoroutine(Ataque1());
+                Flip(true);
             }
         }
+
+        if (!_flipping)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, bossPosition1.transform.position, _speed * Time.deltaTime);
+            animator.SetBool("Run", true);
+            if (transform.position.x == bossPosition1.transform.position.x)
+            {
+                animator.SetBool("Run", false);
+                if(!_attacking)
+                {
+                    StartCoroutine(Ataque1());
+                }
+            }
+
+        }
+        
     }
     if (_second)
     {
@@ -141,16 +168,27 @@ void FixedUpdate()
     }
     if (_third)
     {
-        transform.position = Vector2.MoveTowards(transform.position, bossPosition3.transform.position, _speed * Time.deltaTime);
-        animator.SetBool("Run", true);
-        if (transform.position.x == bossPosition3.transform.position.x)
+        if (GetComponent<SpriteRenderer>().flipX == true)
         {
-            animator.SetBool("Run", false);
-            if(!_attacking)
+            if (!_flipping)
             {
-                StartCoroutine(Ataque3());
-            }  
+                Flip(false);
+            }
         }
+        if (!_flipping)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, bossPosition3.transform.position, _speed * Time.deltaTime);
+            animator.SetBool("Run", true);
+            if (transform.position.x == bossPosition3.transform.position.x)
+            {
+                animator.SetBool("Run", false);
+                if(!_attacking)
+                {
+                    StartCoroutine(Ataque3());
+                }  
+            }
+        }
+        
     }
 
     if (!_attacking && Vector2.Distance(transform.position, player.transform.position) < meleeDistance)
@@ -164,6 +202,20 @@ void FixedUpdate()
 
     GetMissileNumbers();
 
+}
+
+public void GetHit()
+{
+    StartCoroutine(GotHit());
+}
+
+IEnumerator GotHit()
+{
+    gameObject.GetComponent<SpriteRenderer>().material = _hitMaterial;
+
+    yield return new WaitForSeconds(0.3f);
+
+    gameObject.GetComponent<SpriteRenderer>().material = _normalMaterial;
 }
 
 
@@ -220,24 +272,34 @@ void GetRandomNum()
  {
      _attacking = true;
      animator.SetTrigger("melee");
+
      yield return new WaitForSeconds(0.6f);
 
      meleeHurtBox.SetActive(true);
 
      yield return new WaitForSeconds(0.3f);
+
      _attacking = false;
      meleeHurtBox.SetActive(false);
 
      yield return new WaitForSeconds(5f);
+     
     _meleeCooling = false;
  }
 
 private IEnumerator Ataque1()
 {
-    _attacking = true;
     _bulletSource.localPosition = new Vector2(0.1f,0f);
     _lastRandomNum = 1;
+
+    Flip(false);
+
+    yield return new WaitUntil(() => !_flipping);
+
+    _attacking = true;
     
+    Debug.Log("Flip ended");
+
     yield return new WaitForSeconds(0.3f);
 
     if (_phase2)
@@ -268,6 +330,7 @@ private IEnumerator Ataque1()
     yield return new WaitForSeconds(0.5f);
     GetRandomNum();
     _attacking = false;
+    _flipping = false;
 }
 private IEnumerator Ataque2()
 {
@@ -282,6 +345,7 @@ private IEnumerator Ataque2()
 
 
     yield return new WaitForSeconds(2f);
+    
     if (!_hacked)
     {
         animator.SetBool("Electricity", false);
@@ -300,15 +364,22 @@ private IEnumerator Ataque2()
         _attacking = false;
         _hacked = false;
     }
+
+    _flipping = false;
     
 }
 private IEnumerator Ataque3()
 {
-    _flipeable = false;
-    GetComponent<SpriteRenderer>().flipX = true;
     _bulletSource.localPosition = new Vector2(-0.1f,0f);
-    _attacking = true;
     _lastRandomNum = 3;
+
+    Flip(true);
+    
+    yield return new WaitUntil(() => !_flipping);
+
+    _attacking = true;
+
+    Debug.Log("Flip ended");
 
     yield return new WaitForSeconds(0.3f);
     
@@ -339,7 +410,7 @@ private IEnumerator Ataque3()
     yield return new WaitForSeconds(0.5f);
     GetRandomNum();
     _attacking = false;
-    _flipeable = true;
+    _flipping = false;
 }
 
 
@@ -379,23 +450,81 @@ IEnumerator AtaqueMisiles(float _missileSpeed)
 
     if(_lastNumMisiles == 1)
     {
-        Debug.Log("misiles1");
-        animator.SetTrigger("m1");
+        animator.SetTrigger("m"+ _lastNumMisiles);
+        yield return new WaitForSeconds(1.2f);
+        var a = Instantiate(_missile, _m1Source);
+        var b = Instantiate(_missileEffect, _m1Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.2f, 0);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.2f, 0);
+        }
+
+        
     }
     else if(_lastNumMisiles == 2)
     {
-        Debug.Log("misiles2");
-        animator.SetTrigger("m2");
+        animator.SetTrigger("m" + _lastNumMisiles);
+        yield return new WaitForSeconds(1.2f);
+        var a = Instantiate(_missile, _m2Source);
+        var b = Instantiate(_missileEffect, _m2Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.1f, 0);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.1f, 0);
+        }
     }
     else if(_lastNumMisiles == 3)
     {
-        Debug.Log("misiles3");
-        animator.SetTrigger("m3");
+        animator.SetTrigger("m" + _lastNumMisiles);
+        yield return new WaitForSeconds(1.2f);
+        var a = Instantiate(_missile, _m3Source);
+        var b = Instantiate(_missileEffect, _m3Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.066f, 0);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.066f, 0);
+        }
     }
     else if(_lastNumMisiles == 4)
     {
-        Debug.Log("misiles4");
-        animator.SetTrigger("m4");
+        animator.SetTrigger("m" + _lastNumMisiles);
+        yield return new WaitForSeconds(1.2f);
+        var a = Instantiate(_missile, _m4Source);
+        var b = Instantiate(_missileEffect, _m4Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.085f, -0.02f);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.085f, -0.02f);
+        }
     }
     yield return new WaitForSeconds(0.5f);
 
@@ -405,23 +534,79 @@ IEnumerator AtaqueMisiles(float _missileSpeed)
     _lastNumMisiles = _numMisilesGenerator;
     if(_lastNumMisiles == 1)
     {
-        Debug.Log("misiles1");
-        animator.SetTrigger("m1");
+        animator.SetTrigger("m" + _lastNumMisiles);
+        yield return new WaitForSeconds(0.8f);
+        var a = Instantiate(_missile, _m1Source);
+        var b = Instantiate(_missileEffect, _m1Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.2f, 0);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.2f, 0);
+        }
     }
     else if(_lastNumMisiles == 2)
     {
-        Debug.Log("misiles2"); 
-        animator.SetTrigger("m2");  
+        animator.SetTrigger("m" + _lastNumMisiles);  
+        yield return new WaitForSeconds(0.8f);
+        var a = Instantiate(_missile, _m2Source);
+        var b = Instantiate(_missileEffect, _m2Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.1f, 0);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.1f, 0);
+        }
     }
     else if(_lastNumMisiles == 3)
-    {
-        Debug.Log("misiles3");    
-        animator.SetTrigger("m3");
+    {  
+        animator.SetTrigger("m" + _lastNumMisiles);
+        yield return new WaitForSeconds(0.8f);
+        var a = Instantiate(_missile, _m3Source);
+        var b = Instantiate(_missileEffect, _m3Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.066f, 0);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.066f, 0);
+        }
     }
     else if(_lastNumMisiles == 4)
-    {
-        Debug.Log("misiles4");   
-        animator.SetTrigger("m4");
+    {   
+        animator.SetTrigger("m" + _lastNumMisiles);
+        yield return new WaitForSeconds(0.8f);
+        var a = Instantiate(_missile, _m4Source);
+        var b = Instantiate(_missileEffect, _m4Source);
+        if (GetComponent<SpriteRenderer>().flipX == false)
+        {
+            a.GetComponent<MissileController2>()._flip = false;
+            b.GetComponent<SpriteRenderer>().flipX = false;
+            b.GetComponent<Transform>().localPosition = new Vector2(0.085f, -0.02f);
+        }
+        else
+        {
+            a.GetComponent<MissileController2>()._flip = true;
+            b.GetComponent<SpriteRenderer>().flipX = true;
+            b.GetComponent<Transform>().localPosition = new Vector2(-0.085f, -0.02f);
+        }
     }
 }
 
@@ -488,11 +673,11 @@ public void GenerateWeakSpot()
 {
     if (!_weakSpotActive)
     {
-        float[] _valoresX = {-0.04f, -0.03f, -0.02f, -0.01f, 0f, 0.01f, 0.02f, 0.03f, 0.04f, 0.05f};
+        float[] _valoresX = {-0.38f, -0.18f, 0.05f, 0.2f, 0.34f, 0.47f};
         float x = _valoresX[Random.Range(0, _valoresX.Length)];
         Debug.Log(x);
     
-        float[] _valoresY = {-0.12f, -0.11f, -0.10f, -0.09f, -0.08f, -0.07f, -0.06f, -0.05f, -0.04f, -0.03f};
+        float[] _valoresY = {-0.44f, -0.28f, -0.16f, -0.02f, 0.1f};
         float y = _valoresY[Random.Range(0, _valoresY.Length)];
         Debug.Log(y);
 
@@ -500,7 +685,7 @@ public void GenerateWeakSpot()
         var a = Instantiate(_weakSpot, gameObject.transform.position, transform.rotation);
         a.transform.parent = gameObject.transform;
         a.transform.localPosition = WeakSpotPosition;
-        a.transform.localScale = new Vector3 (0.14f, 0.14f, 0);
+        a.transform.localScale = new Vector3 (1f, 1f, 0);
 
         _weakSpotActive = true;
 
@@ -521,14 +706,39 @@ public void TriggerCooling()
     cooling = true;
 }
 
-public void Flip()
+public void Flip(bool left)
+{
+    if (!_attacking)
+    {
+        if (!left)
+        {
+            _flipping = true;
+            animator.SetTrigger("flip");
+        }
+        else
+        {
+            _flipping = true;
+            animator.SetTrigger("flip");
+        }
+    }
+    
+}
+public void Flip2LaSecuela()
 {
     Vector3 rotation = transform.eulerAngles;
-    if (transform.position.x > target.position.x)
+    if (GetComponent<SpriteRenderer>().flipX == false)
     {
         GetComponent<SpriteRenderer>().flipX = true;
         _platform1.GetComponent<Transform>().localPosition = new Vector2(0.73f,0.175f);
         _platform2.GetComponent<Transform>().localPosition = new Vector2(0.027f,0.175f);
+        _hackInteractor.GetComponent<Transform>().localPosition = new Vector2(-0.11f, 0.41f);
+        _hackInteractor.GetComponent<SpriteRenderer>().flipX = true;
+
+        _m1Source.localPosition = new Vector2(0.3f,0.165f);
+        _m2Source.localPosition = new Vector2(0.2f,-0.78f);
+        _m3Source.localPosition = new Vector2(-1.22f,-0.06f);
+        _m4Source.localPosition = new Vector2(-1.21f,-0.47f);
+
         // idleState.gameObject.GetComponent<BoxCollider2D>().offset = -idleState.gameObject.GetComponent<BoxCollider2D>().offset;
         // chaseState.gameObject.GetComponent<BoxCollider2D>().offset = -chaseState.gameObject.GetComponent<BoxCollider2D>().offset;
     }
@@ -537,6 +747,14 @@ public void Flip()
         GetComponent<SpriteRenderer>().flipX = false;
         _platform1.GetComponent<Transform>().localPosition = new Vector2(0f,0.175f);
         _platform2.GetComponent<Transform>().localPosition = new Vector2(0.39f,0.175f);
+        _hackInteractor.GetComponent<Transform>().localPosition = new Vector2(0.11f, 0.41f);
+        _hackInteractor.GetComponent<SpriteRenderer>().flipX = false;
+
+        _m1Source.localPosition = new Vector2(-0.3f,0.165f);
+        _m2Source.localPosition = new Vector2(-0.2f,-0.78f);
+        _m3Source.localPosition = new Vector2(1.22f,-0.06f);
+        _m4Source.localPosition = new Vector2(1.21f,-0.47f);
+
         // idleState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(idleState.gameObject.GetComponent<BoxCollider2D>().offset.x),
         //                                                                                 idleState.gameObject.GetComponent<BoxCollider2D>().offset.y);
         // chaseState.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(Math.Abs(chaseState.gameObject.GetComponent<BoxCollider2D>().offset.x),
@@ -545,6 +763,11 @@ public void Flip()
     
 
     transform.eulerAngles = rotation;
+}
+
+public void FlipFalse()
+{
+    _flipping = false;
 }
 //public void ChangeState(State newState)
 //{

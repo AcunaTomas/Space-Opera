@@ -107,6 +107,14 @@ public class Enemy : MonoBehaviour
                 if(currentHealth < 200) GetComponent<SquireBehaviour>().enabled = false;
             }
 
+            if (_enemyType == EnemyType.newBoss)
+            {
+                GetComponent<BossBehaviourNew>().GetHit();
+                if (currentHealth <= 500)
+                {
+                    GetComponent<BossBehaviourNew>()._phase2 = true;
+                }
+            }
 
             if (_enemyType == EnemyType.simple)
             {
@@ -166,6 +174,14 @@ public class Enemy : MonoBehaviour
             if (_enemyType == EnemyType.squirrel)
             {
                 GetComponent<SquireBehaviour>().enabled = false;
+            }
+            if (_enemyType == EnemyType.newBoss)
+            {
+                GetComponent<BossBehaviourNew>().GetHit();
+                if (currentHealth <= 500)
+                {
+                    GetComponent<BossBehaviourNew>()._phase2 = true;
+                }
             }
 
 
@@ -277,6 +293,12 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<BossBehaviourNew>().enabled = false;
             animator.SetBool("Died", true);
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            Destroy(GetComponent<Rigidbody2D>());
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BossBehaviourNew>()._platform1.SetActive(false);
+            GetComponent<BossBehaviourNew>()._platform2.SetActive(false);
+            
         }
 
         animator.SetTrigger("Die");

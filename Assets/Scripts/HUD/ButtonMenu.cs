@@ -15,6 +15,8 @@ public class ButtonMenu : MonoBehaviour
     private Button _button;
     [SerializeField] private Sprite[] _backgrounds;
     public string NAME;
+
+    [SerializeField] private GameObject _flecha;
     
     void Start()
     {
@@ -101,6 +103,7 @@ public class ButtonMenu : MonoBehaviour
                 child.GetComponent<ButtonMenu>().ACTIVE = false;
                 child.GetComponent<Image>().enabled = true;
                 child.GetComponent<Image>().sprite = _backgrounds[0];
+                if(_flecha) _flecha.SetActive(false);
                 if (!EventSystem.current.alreadySelecting)
                 {
                     EventSystem.current.SetSelectedGameObject(null);
@@ -111,6 +114,7 @@ public class ButtonMenu : MonoBehaviour
 
         ACTIVE = true;
         _activeImage.sprite = _backgrounds[1];
+        if(_flecha) _flecha.SetActive(true);
         if (!EventSystem.current.alreadySelecting)
         {
             EventSystem.current.SetSelectedGameObject(gameObject);

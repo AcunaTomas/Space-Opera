@@ -112,7 +112,8 @@ public class EnemyPatrol : MonoBehaviour
             if(_isGrounded)
             {
                 _speed = 0;
-                Destroy(gameObject, 0.2f);
+                _animator.SetTrigger("Explode");
+                Destroy(gameObject, 0.6f);
             }
         }
 
