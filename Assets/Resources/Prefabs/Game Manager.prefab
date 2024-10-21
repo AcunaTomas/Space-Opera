@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 484663518689252858}
   - component: {fileID: 2513431966677777620}
   - component: {fileID: 6698548416525903786}
+  - component: {fileID: 8268940760838261996}
   m_Layer: 5
   m_Name: UpgradeW2TxtHeader
   m_TagString: Untagged
@@ -211,6 +212,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8268940760838261996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393102422481264152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: UP1W1Name
 --- !u!1 &439181896693905829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,6 +4151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b8cb76e573785409b4cdd93d7f65cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 0}
 --- !u!1 &2819203582151671794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,7 +4506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819203582277508601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.17, y: 7.5199995, z: -10.088408}
+  m_LocalPosition: {x: -8.17, y: 8.34, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6076,6 +6091,7 @@ GameObject:
   - component: {fileID: 8869433125878188964}
   - component: {fileID: 2947387085963278616}
   - component: {fileID: 2107861427886856363}
+  - component: {fileID: 8512437023564535387}
   m_Layer: 5
   m_Name: UpgradeW2TxtDesc
   m_TagString: Untagged
@@ -6201,6 +6217,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8512437023564535387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283646525303933703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: UP1W2Desc
 --- !u!1 &3297941135510902273
 GameObject:
   m_ObjectHideFlags: 0
@@ -11432,6 +11461,7 @@ GameObject:
   - component: {fileID: 8803590457156664208}
   - component: {fileID: 5813507326609440094}
   - component: {fileID: 2489140022203242387}
+  - component: {fileID: 6440773214946003246}
   m_Layer: 5
   m_Name: UpgradeW1TxtDesc
   m_TagString: Untagged
@@ -11487,10 +11517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'bla bla bla bla <color=#FF00DC>Hackeo</color>
-
-    bla bla bla... bla
-    bla.'
+  m_text: "Con el <color=#FFFC00>hackeo</color> Brody \npuede abrir puertas bloqueadas."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40b95ef28546ef64a947e0cb8acf163c, type: 2}
   m_sharedMaterial: {fileID: 2394825785785672819, guid: 40b95ef28546ef64a947e0cb8acf163c, type: 2}
@@ -11559,6 +11586,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6440773214946003246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252416854369127093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: UP1W1Desc
 --- !u!1 &7381552230243723656
 GameObject:
   m_ObjectHideFlags: 0
@@ -11570,6 +11610,7 @@ GameObject:
   - component: {fileID: 4061659547363247027}
   - component: {fileID: 6192056244199251524}
   - component: {fileID: 3996954413644357915}
+  - component: {fileID: 8055798323513835241}
   m_Layer: 5
   m_Name: UpgradeW1TxtHeader
   m_TagString: Untagged
@@ -11694,6 +11735,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8055798323513835241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381552230243723656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: UPW1Header
 --- !u!1 &7615268179893482240
 GameObject:
   m_ObjectHideFlags: 0
@@ -12648,6 +12702,7 @@ GameObject:
   - component: {fileID: 1054024905056134424}
   - component: {fileID: 1795770671205337769}
   - component: {fileID: 3520112857824063768}
+  - component: {fileID: 7377216079022963563}
   m_Layer: 5
   m_Name: UpgradeW2TxtName
   m_TagString: Untagged
@@ -12772,6 +12827,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7377216079022963563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8290903628874002501}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: 
 --- !u!1 &8297962556807574204
 GameObject:
   m_ObjectHideFlags: 0
@@ -14146,6 +14214,7 @@ GameObject:
   - component: {fileID: 6835808310496401078}
   - component: {fileID: 3882721838475933893}
   - component: {fileID: 8914818967461432824}
+  - component: {fileID: 4687712295014805786}
   m_Layer: 5
   m_Name: UpgradeW1TxtName
   m_TagString: Untagged
@@ -14270,6 +14339,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4687712295014805786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219773647782641992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce43cd3ba064341a8d1dc1aa2938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneName: UP1W1Name
 --- !u!1001 &2819203581820965894
 PrefabInstance:
   m_ObjectHideFlags: 0

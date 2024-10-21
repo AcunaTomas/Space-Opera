@@ -47,22 +47,7 @@ public class UpgradeLogic : MonoBehaviour
             upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(colorxd.x, colorxd.y, colorxd.z , time / _fadeDelay);
             upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
             upgradeW1.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 255, 255, time/ _fadeDelay);
-            
-            //idioma xd
-            if(DataPersistentManager.INSTANCE != null)
-            {
-                switch (DataPersistentManager.INSTANCE.Language())
-                {
-                    case "ES":
-                    upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "NUEVA HABILIDAD DESBLOQUEADA";
-                    break;
-                    case "EN":
-                    upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "NEW SKILL UNLOCKED";
-                    break;
-                    default:
-                    break;
-                }
-            }
+
             if(time > _showDelay)
             {
                 upgradeW1.transform.GetChild(3).GetComponent<TextMeshProUGUI>().alpha += Time.unscaledDeltaTime / _fadeDelay;
@@ -142,7 +127,7 @@ public class UpgradeLogic : MonoBehaviour
 
     void SetW1(float value)
     {
-        upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, value);
+        upgradeW1.transform.GetChild(0).GetComponent<Image>().color = new Color(colorxd.x, colorxd.y, colorxd.z);
         upgradeW1.transform.GetChild(1).GetComponent<TextMeshProUGUI>().alpha = value;
         upgradeW1.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 255, 255, value);
         upgradeW1.transform.GetChild(3).GetComponent<TextMeshProUGUI>().alpha = value;
