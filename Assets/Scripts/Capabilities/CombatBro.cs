@@ -104,8 +104,10 @@ public class CombatBro : PlayerCombat
         {
             _animator.SetTrigger("AttackUp");
             _brodyAnimControl.SetAnimTrigger("AttackUp");
+            attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
 
-            if (spriteRenderer.flipX)
+        /*
+            if (spriteRenderer.flipX && Input.GetAxisRaw("Vertical")<0 && Input.GetAxisRaw("Horizontal") < 100) //|| InputManager.INSTANCE.))
             {
                 attackPoint.localPosition = new Vector2(0.04f, 0.17f);
             }
@@ -113,6 +115,7 @@ public class CombatBro : PlayerCombat
             {
                 attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
             }
+            */
             SpawnBala(0,1);
         }
     }

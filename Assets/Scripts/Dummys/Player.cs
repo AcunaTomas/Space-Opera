@@ -41,8 +41,7 @@ public class Player : MonoBehaviour
 
     [Header("Everything else")]
     public bool canIjump = true;
-    [SerializeField]
-    bool wallijumpy = false;
+    public bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
     public float jumpLimit = 0f;

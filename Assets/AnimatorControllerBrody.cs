@@ -12,6 +12,8 @@ public class AnimatorControllerBrody : MonoBehaviour
     [Header("Controllers")]
     [SerializeField] private RuntimeAnimatorController _upperBrodyRight;
     [SerializeField] private RuntimeAnimatorController _upperBrodyLeft;
+    [SerializeField] private RuntimeAnimatorController _lowerBrodyRight;
+    [SerializeField] private RuntimeAnimatorController _lowerBrodyLeft;
     private AnimatorClipInfo[] clipInfo;
     void Start()
     {
@@ -20,15 +22,16 @@ public class AnimatorControllerBrody : MonoBehaviour
 
     void Update()
     {
-        Flip();
+        if(!gameObject.GetComponentInParent<Player>().wallijumpy) Flip();
     }
 
     private void Flip()
     {
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            _lowerBrodySR.flipX = true;
+            //_lowerBrodySR.flipX = true;
             _upperAnimator.runtimeAnimatorController = _upperBrodyLeft;
+            _lowerAnimator.runtimeAnimatorController = _lowerBrodyLeft;
             clipInfo = _upperAnimator.GetCurrentAnimatorClipInfo(0);
             //if(!clipInfo[0].clip.name.Contains("BrodyRun")) _upperBrodySR.flipX = true;
             //else  _upperBrodySR.flipX = false;
@@ -36,9 +39,11 @@ public class AnimatorControllerBrody : MonoBehaviour
         }
         else if (Input.GetAxisRaw("Horizontal") > 0) //Cambiar una vez estén todas las animaciones
         {
-            _lowerBrodySR.flipX = false;
-            _upperBrodySR.flipX = false;
+            //_lowerBrodySR.flipX = false;
+            //_upperBrodySR.flipX = false;
             _upperAnimator.runtimeAnimatorController =_upperBrodyRight;
+            _lowerAnimator.runtimeAnimatorController = _lowerBrodyRight; 
+
         }
     }
 
@@ -51,12 +56,13 @@ public class AnimatorControllerBrody : MonoBehaviour
     public void SetAnimTrigger(string _animName)
     {
         _upperAnimator.SetTrigger(_animName);
-        //_lowerAnimator.SetTrigger(_animName);
+        if(!_animName.Contains("Attack"))_lowerAnimator.SetTrigger(_animName);
     }
 
     public void SetAnimFloat(string _animName, float _float)
     {
         _upperAnimator.SetFloat(_animName, _float);
+        //if(_animName == "fallingTime") return;
         _lowerAnimator.SetFloat(_animName, _float);
     }
 
