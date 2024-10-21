@@ -196,7 +196,6 @@ void FixedUpdate()
         if (!_meleeCooling)
         _meleeCooling = true;
         StartCoroutine(MeleeAttack());
-        Debug.Log(Vector2.Distance(transform.position, player.transform.position));
     }
 
 
@@ -675,11 +674,9 @@ public void GenerateWeakSpot()
     {
         float[] _valoresX = {-0.38f, -0.18f, 0.05f, 0.2f, 0.34f, 0.47f};
         float x = _valoresX[Random.Range(0, _valoresX.Length)];
-        Debug.Log(x);
-    
+
         float[] _valoresY = {-0.44f, -0.28f, -0.16f, -0.02f, 0.1f};
         float y = _valoresY[Random.Range(0, _valoresY.Length)];
-        Debug.Log(y);
 
         Vector3 WeakSpotPosition = new Vector3 (x, y, 0);
         var a = Instantiate(_weakSpot, gameObject.transform.position, transform.rotation);

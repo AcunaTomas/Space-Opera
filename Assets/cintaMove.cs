@@ -13,7 +13,7 @@ public class cintaMove : MonoBehaviour
 
     private void FixedUpdate ()
     {
-        rb.velocity = new Vector2 (-0.6f, 0f);
+        rb.velocity = new Vector2 (-1.2f, 0f);
     }
     
 }
