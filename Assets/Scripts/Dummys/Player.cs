@@ -42,8 +42,7 @@ public class Player : MonoBehaviour
 
     [Header("Everything else")]
     public bool canIjump = true;
-    [SerializeField]
-    bool wallijumpy = false;
+    public bool wallijumpy = false;
     public Rigidbody2D body;
     [SerializeField]
     public float jumpLimit = 0f;
@@ -119,8 +118,9 @@ public class Player : MonoBehaviour
     private float dustSpawnCooldown = 0f;
     [SerializeField]
     private RuntimeAnimatorController _brodyRight;
-    [SerializeField]
-    private RuntimeAnimatorController _brodyLeft;
+
+    [SerializeField] private RuntimeAnimatorController _brodyLeft;
+    [SerializeField] private AnimatorControllerBrody _brodyAnimControl;
 
     private float _cameraTimer = 0f;
 
@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
         {
             vertspid = _jumpImpulse;
             _animator.SetBool("IsJumping", true);
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimBool("IsJumping", true);
             AudioController.instance.PlayOneShot(FMODEvents.instance.JumpBrody, this.transform.position);
             canIjump = false;
             return;
@@ -266,6 +267,11 @@ public class Player : MonoBehaviour
         extrajumpcount -= 1;
         _animator.SetBool("IsJumping", false);
         _animator.SetTrigger("DoubleJump");
+        if(_brodyAnimControl)
+        {
+            _brodyAnimControl.SetAnimBool("IsJumping", false);
+            _brodyAnimControl.SetAnimTrigger("DoubleJump");
+        }
         AudioController.instance.PlayOneShot(FMODEvents.instance.DoubleJump, this.transform.position);
 
         //acá hay que hacer el instantiate de Brody double jump
@@ -287,6 +293,7 @@ public class Player : MonoBehaviour
             body.AddForce(new Vector2(WallJumpXDirection * 2f, 0), ForceMode2D.Impulse);
             vertspid = 0.9f;
             _animator.SetBool("wall", false);
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimBool("wall", false);
             Debug.Log("WallE");
             _spriteRenderer.flipX = !_spriteRenderer.flipX;
             //Wall-e
@@ -414,7 +421,12 @@ public class Player : MonoBehaviour
                     _maxVerticalSpeed = speedCaps.x;
                     _animator.SetBool("Dash", false);
                     _animator.SetBool("wall", true);
-                    _animator.SetBool("IsJumping", false);  
+                    _animator.SetBool("IsJumping", false);
+                    if(_brodyAnimControl)
+                    {
+                        _brodyAnimControl.SetAnimBool("wall", true);
+                        _brodyAnimControl.SetAnimBool("IsJumping", false);
+                    }
                 }
             }
         }
@@ -444,6 +456,20 @@ public class Player : MonoBehaviour
         collision.GetContacts(contacts);
         //extrajumpcount = 1;
 
+        if (_fallingTime > 6.1)
+        {   
+            _animator.SetTrigger("land");
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimTrigger("land");
+
+            var _landing1 = Instantiate(_landingEffect1, this.transform);
+            var _landing2 = Instantiate(_landingEffect2, this.transform);
+
+            _landing1.GetComponent<Animator>().SetTrigger("Effect");
+            _landing2.GetComponent<Animator>().SetTrigger("Effect");
+            Destroy(_landing1, 0.7f);
+            Destroy(_landing2, 0.7f);
+        }
+        
         if (collision.gameObject.CompareTag("Ascensor"))
         {
             transform.parent = collision.gameObject.transform;
@@ -482,6 +508,12 @@ public class Player : MonoBehaviour
                         StunToggle(0.5f);
                     }
                     
+                    if(_brodyAnimControl)
+                    {
+                        _brodyAnimControl.SetAnimBool("IsJumping", false);
+                        _brodyAnimControl.SetAnimBool("wall", false);
+                    }
+                    
                 }
 
             }
@@ -512,6 +544,7 @@ public class Player : MonoBehaviour
         }
         
         _animator.SetBool("wall", false);
+        if(_brodyAnimControl) _brodyAnimControl.SetAnimBool("wall", false);
         
     }
 
@@ -538,6 +571,8 @@ public class Player : MonoBehaviour
             Xspeed = body.velocity.x;
         }
         _animator.SetFloat("Speed", Mathf.Abs(Xspeed));
+
+        if(_brodyAnimControl) _brodyAnimControl.SetAnimFloat("Speed", Mathf.Abs(Xspeed));
         
         vertspid += _gravity;
 
@@ -584,12 +619,22 @@ public class Player : MonoBehaviour
             _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = _cameraDown.transform;
             _animator.SetBool("LookUp", false);
             _animator.SetBool("LookDown", true);
+            if(_brodyAnimControl)
+            {
+                _brodyAnimControl.SetAnimBool("LookUp", false);
+                _brodyAnimControl.SetAnimBool("LookDown", true);
+            }
         }
         else
         {
             _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = this.gameObject.transform;
             _animator.SetBool("LookUp", false);
             _animator.SetBool("LookDown", false);
+            if(_brodyAnimControl)
+            {
+                _brodyAnimControl.SetAnimBool("LookUp", false);
+                _brodyAnimControl.SetAnimBool("LookDown", false);
+            }
         }
 
     }
@@ -631,6 +676,11 @@ public class Player : MonoBehaviour
             transform.parent.GetChild(1).GetComponent<Player>().HP -= damage;
             _animator.SetBool("IsJumping", false);
             _animator.SetTrigger("Hurt");
+            if(_brodyAnimControl)
+            {
+                _brodyAnimControl.SetAnimBool("IsJumping", false);
+                _brodyAnimControl.SetAnimTrigger("Hurt");
+            }
             
             if (HP <= 0)
             {
@@ -649,6 +699,7 @@ public class Player : MonoBehaviour
             StartCoroutine(StartCooldown());
 
             _animator.SetBool("HurtBool", true);
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimBool("HurtBool", true);
             StartCoroutine(StartCooldownHurtAnim());
 
 
@@ -670,6 +721,7 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Die");
         _animator.SetBool("isDead", true);
+        if(_brodyAnimControl)_brodyAnimControl.Die();
         AudioController.instance.PlayOneShot(FMODEvents.instance.GameOverMelody, this.transform.position);
         GetComponent<PlayerCombat>().enabled = false;
         GetComponent<Player>().enabled = false;
@@ -701,6 +753,7 @@ public class Player : MonoBehaviour
         transform.position = GameManager.INSTANCE.ACTUAL_CHECKPOINT.transform.position;
         _animator.SetTrigger("idle");
         _animator.SetBool("isDead", false);
+        if(_brodyAnimControl)_brodyAnimControl.ResetVars();
         GetComponent<PlayerCombat>().enabled = true;
         GetComponent<Player>().enabled = true;
         HP = MaxHP;
@@ -772,6 +825,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.166f);
 
         _animator.SetBool("HurtBool", false);
+        if(_brodyAnimControl) _brodyAnimControl.SetAnimBool("HurtBool", false);
     }
     
 
@@ -866,6 +920,7 @@ public class Player : MonoBehaviour
         if (a == false)
         {
            _animator.SetFloat("Speed", 0);
+           if(_brodyAnimControl) _brodyAnimControl.SetAnimFloat("Speed", 0);
             Xspeed = 0;
             _xSpeedNullifier = 0;
             body.velocity = new Vector2(0,0);
@@ -997,21 +1052,25 @@ public class Player : MonoBehaviour
             { 
                 _fallingTime += 0.16f;
                 _animator.SetFloat("fallingTime", _fallingTime);
+                if(_brodyAnimControl) _brodyAnimControl.SetAnimFloat("fallingTime", _fallingTime);
             }
         }
         else
         {
             _fallingTime = 0;
             _animator.SetFloat("fallingTime", _fallingTime);
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimFloat("fallingTime", _fallingTime);
         }
 
         if (body.velocity.y < 0 && canIjump == false) 
         {
             _animator.SetFloat("speedY", body.velocity.y);
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimFloat("speedY", body.velocity.y);
         }
         else
         {
             _animator.SetFloat("speedY", 1);
+            if(_brodyAnimControl) _brodyAnimControl.SetAnimFloat("speedY", 1);
         }
 
         if (!canIjump && !wallijumpy)
