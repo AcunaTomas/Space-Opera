@@ -32,6 +32,7 @@ public class ScoreSystemLogic : MonoBehaviour
         if(!_showing) _totalTime += Time.deltaTime;
         if(_showKills)
         {
+            GameManager.INSTANCE.PAUSABLE = false;
             if(_progressTime<1f) _scoreContainer.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = Mathf.Lerp(0f, _enemyKill, _progressTime) + "/" + _enemyCount;
             else _scoreContainer.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = _enemyKill + "/" + _enemyCount;
         }
@@ -97,7 +98,7 @@ public class ScoreSystemLogic : MonoBehaviour
     IEnumerator Credits()
     {
         _readytoclose = false;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         ScenesManager.Instance.LoadNextScene("Credits");
     }
 
