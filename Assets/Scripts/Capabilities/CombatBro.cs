@@ -13,7 +13,6 @@ public class CombatBro : PlayerCombat
 
     public BalasPool Balalist;
 
-    
     [SerializeField]
     private GameObject balarda;
     [SerializeField]
@@ -21,11 +20,12 @@ public class CombatBro : PlayerCombat
 
     private float attkdirX;
     private float attkdirY;
-    
+    [SerializeField] private AnimatorControllerBrody _brodyAnimControl;
 
     public override void Bomb()
     {
         _animator.SetTrigger("Bomb");
+        _brodyAnimControl.SetAnimTrigger("Bomb");
         //AchievementsManager.INSTANCE.Achievement03();
 
         if (_radar.enabled)
@@ -37,9 +37,9 @@ public class CombatBro : PlayerCombat
             _radar.enabled = true;
         }
         
-        _player.GetComponent<Player>().enabled = false;
+        //_player.GetComponent<Player>().enabled = false;
         _player.GetComponent<CombatBro>().enabled = false;
-        _player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y);
+                    //_player.GetComponent<Player>().body.velocity = new Vector2(0f, _player.GetComponent<Player>().body.velocity.y); ya no >:)
         //_player.GetComponent<Player>()._animator.SetFloat("fallingTime", 0f);
         //_player.GetComponent<Player>()._animator.SetBool("IsJumping", false);
         //_player.GetComponent<Player>()._animator.Play("Brody_scan2");
@@ -59,6 +59,7 @@ public class CombatBro : PlayerCombat
         }   
 
         _animator.SetTrigger("Attack");
+        _brodyAnimControl.SetAnimTrigger("Attack");
         SpawnBala(attkdirX,0);
     }
 
@@ -84,6 +85,7 @@ public class CombatBro : PlayerCombat
         if (InputManager.INSTANCE.MoveInput.x != 0)
         {
             _animator.SetTrigger("AttackDiagUp");
+            _brodyAnimControl.SetAnimTrigger("AttackDiagUp");
             if (spriteRenderer.flipX)
             {
                 attackPoint.localPosition = new Vector2(-0.13f, 0.1f);
@@ -101,8 +103,11 @@ public class CombatBro : PlayerCombat
         else
         {
             _animator.SetTrigger("AttackUp");
+            _brodyAnimControl.SetAnimTrigger("AttackUp");
+            attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
 
-            if (spriteRenderer.flipX)
+        /*
+            if (spriteRenderer.flipX && Input.GetAxisRaw("Vertical")<0 && Input.GetAxisRaw("Horizontal") < 100) //|| InputManager.INSTANCE.))
             {
                 attackPoint.localPosition = new Vector2(0.04f, 0.17f);
             }
@@ -110,6 +115,7 @@ public class CombatBro : PlayerCombat
             {
                 attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
             }
+            */
             SpawnBala(0,1);
         }
     }
@@ -125,6 +131,7 @@ public class CombatBro : PlayerCombat
         if (InputManager.INSTANCE.MoveInput.x != 0)
         {
             _animator.SetTrigger("AttackDiagDown");
+            _brodyAnimControl.SetAnimTrigger("AttackDiagDown");
             if (spriteRenderer.flipX)
             {
                 attackPoint.localPosition = new Vector2(-0.1f, -0.1f);
@@ -142,6 +149,7 @@ public class CombatBro : PlayerCombat
         else
         {
             _animator.SetTrigger("AttackDown");
+            _brodyAnimControl.SetAnimTrigger("AttackDown");
             if (spriteRenderer.flipX)
             {
                 attackPoint.localPosition = new Vector2(0f, -0.17f);
@@ -154,6 +162,7 @@ public class CombatBro : PlayerCombat
         }
 
         _animator.SetBool("IsJumping", false);
+        _brodyAnimControl.SetAnimBool("IsJumping", false);
         _player.GetComponent<Player>()._fallingTime = 0f;
         _player.GetComponent<Player>()._coolingShootDown = true;
         _player.GetComponent<Player>().StartCooldownShoot();
@@ -163,7 +172,7 @@ public class CombatBro : PlayerCombat
     {
         yield return new WaitForSeconds(1f);
 
-        _player.GetComponent<Player>().enabled = true;
+        //_player.GetComponent<Player>().enabled = true;
         _player.GetComponent<CombatBro>().enabled = true;
     }
 

@@ -6,8 +6,10 @@ public class WorkInProgress : MonoBehaviour
 {
     void Update()
     {
+        InputManager.INSTANCE.UIInputs();
         if(InputManager.INSTANCE.SubmitInput)
         {
+            InputManager.INSTANCE.InGameInputs();
             this.gameObject.SetActive(false);
         }
         

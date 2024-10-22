@@ -77,13 +77,14 @@ public class UIManager : MonoBehaviour
     
     public void UpdateLanguage()
     {
-        //DIALOGUE_TUTORIAL.UpdateLanguage();
-        DIALOGUE_PANEL.UpdateLanguage();
-        OBJECTIVES_DISPLAY.UpdateLanguage();
-        INPUTS_DISPLAY.UpdateLanguage();
+            //DIALOGUE_TUTORIAL.UpdateLanguage(); idk
+        //DIALOGUE_PANEL.UpdateLanguage(); de acá para abajo lo comentado está dentro de UIManager
+        //OBJECTIVES_DISPLAY.UpdateLanguage();
+        //INPUTS_DISPLAY.UpdateLanguage();
         CANVASWORLDSPACE.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
-        SCORE_SYSTEM.gameObject.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
-        PAUSE_MENU.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
+        //SCORE_SYSTEM.gameObject.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
+        //PAUSE_MENU.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
+        gameObject.BroadcastMessage("UpdateLanguage", SendMessageOptions.DontRequireReceiver);
     }
 
     public void ToggleHPBars() //HardCoded piece of shit why do i have to do this oh my god
