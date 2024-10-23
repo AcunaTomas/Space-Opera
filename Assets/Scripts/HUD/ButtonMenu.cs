@@ -39,6 +39,7 @@ public class ButtonMenu : MonoBehaviour
         if (ACTIVE)
         {
             _activeImage.enabled = true;
+            if(_flecha)_flecha.SetActive(true);
             AudioController.instance.PlayOneShot(FMODEvents.instance.sfx_ui_navigate, this.transform.position);
             try
             {
@@ -165,7 +166,12 @@ public class ButtonMenu : MonoBehaviour
     {
         if (!ACTIVE)
         {
+            if(_flecha)_flecha.SetActive(false);
             return;
+        }
+        else
+        {
+            if(_flecha)_flecha.SetActive(true);
         }
 
         if (EventSystem.current.currentSelectedGameObject == null)

@@ -27,7 +27,7 @@ public class AnimatorControllerBrody : MonoBehaviour
 
     private void Flip()
     {
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (InputManager.INSTANCE.MoveInput.x < 0)
         {
             //_lowerBrodySR.flipX = true;
             _upperAnimator.runtimeAnimatorController = _upperBrodyLeft;
@@ -37,7 +37,7 @@ public class AnimatorControllerBrody : MonoBehaviour
             //else  _upperBrodySR.flipX = false;
             _upperBrodySR.flipX = false;
         }
-        else if (Input.GetAxisRaw("Horizontal") > 0) //Cambiar una vez estén todas las animaciones
+        else if (InputManager.INSTANCE.MoveInput.x > 0) //Cambiar una vez estén todas las animaciones
         {
             //_lowerBrodySR.flipX = false;
             //_upperBrodySR.flipX = false;
@@ -47,6 +47,16 @@ public class AnimatorControllerBrody : MonoBehaviour
         }
     }
 
+    public void AnimatorLeft()
+    {
+        _upperAnimator.runtimeAnimatorController = _upperBrodyLeft;
+        _lowerAnimator.runtimeAnimatorController = _lowerBrodyLeft;
+    }
+    public void AnimatorRight()
+    {
+        _upperAnimator.runtimeAnimatorController =_upperBrodyRight;
+        _lowerAnimator.runtimeAnimatorController = _lowerBrodyRight; 
+    }
     public void SetAnimBool(string _animName, bool _bool)
     {
         _upperAnimator.SetBool(_animName, _bool);

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class ScoreSystemLogic : MonoBehaviour
 {
-    private float _totalTime, _progressTime;
+    private float _totalTime;
     private bool _showing;
     private GameObject _scoreContainer;
     private Animator _scoreAnimator;
     private int _enemyCount, _enemyKill, _collectableFound, _deathCount;
-    private bool _noHit;
+    private bool _noHit = true;
     private bool _showKills, _showCollectables, _showDeaths, _showTime, _showNoHit, _readytoclose;
     [SerializeField] int _collectableCount;
 
@@ -20,16 +20,19 @@ public class ScoreSystemLogic : MonoBehaviour
     {
         _showing = false;
         _readytoclose = false;
-        _noHit = true;
         _scoreContainer = transform.GetChild(0).gameObject;
         _scoreAnimator = GetComponent<Animator>();
         _scoreContainer.SetActive(false);
+        GetPersistedValues();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!_showing) _totalTime += Time.deltaTime;
+        if(!_showing && GameManager.INSTANCE.PAUSABLE)
+        {
+            _totalTime += Time.deltaTime;
+        }
         if(_showKills)
         {
             GameManager.INSTANCE.PAUSABLE = false;
@@ -45,7 +48,7 @@ public class ScoreSystemLogic : MonoBehaviour
         }
         if(_showTime)
         {
-            _scoreContainer.transform.GetChild(11).GetComponent<TextMeshProUGUI>().text = Mathf.Round(_totalTime).ToString() + "''";
+            _scoreContainer.transform.GetChild(11).GetComponent<TextMeshProUGUI>().text = Mathf.Round(_totalTime/60).ToString() + "'";
         }
         if(_showNoHit) _scoreContainer.transform.GetChild(12).GetComponent<TextMeshProUGUI>().text = _noHit.ToString();
         if(_readytoclose && InputManager.INSTANCE.SubmitInput) StartCoroutine(Credits());
@@ -68,7 +71,7 @@ public class ScoreSystemLogic : MonoBehaviour
     public void Hit() {_noHit = false;}
 
     //Bools
-    public void ShowKills() {Reset();_showKills = true;}
+    public void ShowKills() {_showKills = true;}
     public void ShowCollectables() {_showCollectables = true;}
     public void ShowDeaths() {_showDeaths = true;}
     public void ShowTime() {_showTime = true;}
@@ -87,7 +90,7 @@ public class ScoreSystemLogic : MonoBehaviour
 
     void Reset()
     {
-        _progressTime = 0f;
+        
     }
 
     IEnumerator Credits()
@@ -100,11 +103,22 @@ public class ScoreSystemLogic : MonoBehaviour
     public void PersistValues()
     {
         PersistentGameInfo._collectableFound = _collectableFound;
+        PersistentGameInfo._collectableCount = _collectableCount;
         PersistentGameInfo._deathCount = _deathCount;
         PersistentGameInfo._enemyKill = _enemyKill;
         PersistentGameInfo._enemyCount = _enemyCount;
         PersistentGameInfo._noHit = _noHit;
-        PersistentGameInfo._progressTime = _progressTime;
         PersistentGameInfo._totalTime = _totalTime;
+    }
+
+    public void GetPersistedValues()
+    {
+        _collectableFound = PersistentGameInfo._collectableFound;
+        _collectableCount = PersistentGameInfo._collectableCount;
+        _deathCount = PersistentGameInfo._deathCount ;
+        _enemyKill = PersistentGameInfo._enemyKill;
+        _enemyCount = PersistentGameInfo._enemyCount;
+        _noHit = PersistentGameInfo._noHit;
+        _totalTime = PersistentGameInfo._totalTime;
     }
 }
