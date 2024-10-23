@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2122726531954352178}
   - component: {fileID: 2122726531954352180}
   - component: {fileID: 2122726531954352179}
+  - component: {fileID: 2197749971983086389}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -72,7 +73,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistant: 0
+  PlayerStunTimer: 0.166
   "KnockbackDa\xF1o": 0.5
+--- !u!114 &2197749971983086389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122726531954352177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 599108427
+      Data2: 1144900369
+      Data3: -1998437239
+      Data4: 453640545
+    Path: event:/ENEMIES/Clones/CLONE_GetDamage
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2122726532402086765
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +123,8 @@ GameObject:
   - component: {fileID: 2122726532402086752}
   - component: {fileID: 2122726532402086776}
   - component: {fileID: 2122726532402086778}
+  - component: {fileID: 5615492800642286652}
+  - component: {fileID: 4247965047693063141}
   m_Layer: 7
   m_Name: Enemy1 Oleada
   m_TagString: Enemy
@@ -154,7 +189,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: 598967652, guid: 5ead84d5c414ad04bb4418b921f9064e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -342,6 +377,52 @@ MonoBehaviour:
   attackState: {fileID: 3964179068960573357}
   state: {fileID: 8977874684579104995}
   grounded: 0
+--- !u!114 &5615492800642286652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122726532402086765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1833525572
+      Data2: 1230938317
+      Data3: 2031919023
+      Data4: -1241587356
+    Path: event:/ENEMIES/Clones/CLONE_state
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: EnemyMode
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 6
+--- !u!114 &4247965047693063141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122726532402086765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 5615492800642286652}
 --- !u!1 &2491901783969367466
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +594,7 @@ GameObject:
   - component: {fileID: 1510705455933007347}
   - component: {fileID: 8245113274227707040}
   - component: {fileID: 1097956502520634294}
+  - component: {fileID: 8554560468804165846}
   m_Layer: 0
   m_Name: HitBoxFlip
   m_TagString: Untagged
@@ -574,7 +656,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistant: 0
+  PlayerStunTimer: 0.166
   "KnockbackDa\xF1o": 0.5
+--- !u!114 &8554560468804165846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455441613621940961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 599108427
+      Data2: 1144900369
+      Data3: -1998437239
+      Data4: 453640545
+    Path: event:/ENEMIES/Clones/CLONE_GetDamage
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7809551016355307419
 GameObject:
   m_ObjectHideFlags: 0

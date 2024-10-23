@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public bool _coolingHit2 = false;
 
     private SpriteRenderer _spriteRenderer;
+    private EnemySoundsController _sounds;
 
     public EnemyType _enemyType;
     public enum EnemyType
@@ -70,11 +71,13 @@ public class Enemy : MonoBehaviour
         _ub2 = UIManager.INSTANCE.LifeBar2;
         UIManager.INSTANCE.SCORE_SYSTEM.EnemySpawn();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _sounds = GetComponent<EnemySoundsController>();
     }
 
     public void TakeDamage(int damage, Vector2 sourcePosition)
     {
         DoKnockback(sourcePosition);
+        _sounds.UpdateParameter("EnemyMode", 1);
         if (!_coolingHit && !isDead)
         {
             currentHealth -= damage;
@@ -302,7 +305,7 @@ public class Enemy : MonoBehaviour
         }
 
         animator.SetTrigger("Die");
-        FindObjectOfType<EnemySoundsController>().UpdateParameter("EnemyMode", 2);
+        _sounds.UpdateParameter("EnemyMode", 2);
         
         try
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
 
 public class UpgradeLogic : MonoBehaviour
 {
@@ -32,6 +34,17 @@ public class UpgradeLogic : MonoBehaviour
         colorxd = new Vector3(upgradeW1.transform.GetChild(0).GetComponent<Image>().color.r, upgradeW1.transform.GetChild(0).GetComponent<Image>().color.g, upgradeW1.transform.GetChild(0).GetComponent<Image>().color.b);
         xdlol = true;
     }
+
+
+    [SerializeField] private StudioEventEmitter _soundEmitter;
+
+
+    private void Awake()
+    {
+        _soundEmitter = GetComponent<StudioEventEmitter>();
+        _soundEmitter.Play();
+    }
+
 
     void Update()
     {
@@ -88,6 +101,7 @@ public class UpgradeLogic : MonoBehaviour
                 gameObject.SetActive(false);
                 //transition.enabled = !transition.enabled;
                 transition.SetTrigger("PopUpEnd");
+                //_soundEmitter.Stop();
             }
         }
         if(upgradeW2.activeSelf && xdlol) StartCoroutine(ItIsWhatItIs());

@@ -7,6 +7,7 @@ using FMOD.Studio;
 public class EnemySoundsController : MonoBehaviour
 {
     [SerializeField] private StudioEventEmitter _soundEmitter;
+    private Enemy _enemy;
 
     void Start()
     {
@@ -17,7 +18,6 @@ public class EnemySoundsController : MonoBehaviour
     {
         if (_soundEmitter != null && _soundEmitter.EventInstance.isValid())
         {
-            // cambia el valor del parametro usando el nombre del mismo
             _soundEmitter.EventInstance.setParameterByName(parameterName, value);
         }
         else

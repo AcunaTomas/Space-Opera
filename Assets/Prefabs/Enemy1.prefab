@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistant: 0
+  PlayerStunTimer: 0.166
   "KnockbackDa\xF1o": 0.5
 --- !u!1 &2122726532402086765
 GameObject:
@@ -233,6 +234,7 @@ GameObject:
   - component: {fileID: 2122726532402086752}
   - component: {fileID: 2122726532402086776}
   - component: {fileID: 2122726532402086778}
+  - component: {fileID: 5536131396325190199}
   m_Layer: 7
   m_Name: Enemy1
   m_TagString: Enemy
@@ -298,7 +300,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -340220743
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 45
   m_Sprite: {fileID: 598967652, guid: 5ead84d5c414ad04bb4418b921f9064e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -477,11 +479,48 @@ MonoBehaviour:
   timer: 1
   target: {fileID: 0}
   inRange: 0
-  hotZone: {fileID: 2122726531226174359}
-  triggerArea: {fileID: 2122726531657727345}
   attackPoint: {fileID: 2122726531954352178}
   attackPointFlip: {fileID: 1510705455933007347}
   animator: {fileID: 0}
+  cooling: 0
+  idleState: {fileID: 0}
+  chaseState: {fileID: 0}
+  attackState: {fileID: 0}
+  state: {fileID: 0}
+  grounded: 0
+--- !u!114 &5536131396325190199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122726532402086765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1833525572
+      Data2: 1230938317
+      Data3: 2031919023
+      Data4: -1241587356
+    Path: event:/ENEMIES/Clones/CLONE_state
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: EnemyMode
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 6
 --- !u!1 &7455441613621940961
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,4 +593,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistant: 0
+  PlayerStunTimer: 0.166
   "KnockbackDa\xF1o": 0.5

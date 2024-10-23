@@ -510,6 +510,8 @@ GameObject:
   - component: {fileID: 4000663404645725093}
   - component: {fileID: 4000663404645725117}
   - component: {fileID: 3094050611454259399}
+  - component: {fileID: 6377684999123004679}
+  - component: {fileID: 2925564226412992187}
   m_Layer: 19
   m_Name: Squire Test
   m_TagString: Enemy
@@ -716,6 +718,50 @@ MonoBehaviour:
   SecondPhaseAnimatorRight: {fileID: 9100000, guid: 2b3a1f5360a7422428850a773fab9192, type: 2}
   SecondPhaseAnimatorLeft: {fileID: 22100000, guid: 4c6e45ce0854cfc4698b72fb6800e585, type: 2}
   Shield: {fileID: 3336299157042619176}
+--- !u!114 &6377684999123004679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000663404645725096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 603485802
+      Data2: 1230265987
+      Data3: 434235554
+      Data4: -567753368
+    Path: event:/OBJECTS/Fire
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2925564226412992187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000663404645725096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 6377684999123004679}
 --- !u!1 &4000663406068633844
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,4 +18,19 @@ public class PlayBitoAnimationSounds : MonoBehaviour
     {
         AudioController.instance.PlayOneShot(FMODEvents.instance.GetDamageBito, this.transform.position);
     }
+
+    public void PlayLandingSound()
+    {
+        AudioController.instance.PlayOneShot(FMODEvents.instance.FallSound, this.transform.position);
+    }
+
+    public void PlaySavingGame()
+    {
+        AudioController.instance.PlayOneShot(FMODEvents.instance.SaveLevel, this.transform.position);
+    }
+
+    public void PlayThrowSound()
+    {
+        AudioController.instance.PlayOneShot(FMODEvents.instance.ThrowBomb, this.transform.position);
+    }
 }

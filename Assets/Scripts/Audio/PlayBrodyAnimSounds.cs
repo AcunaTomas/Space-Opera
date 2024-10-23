@@ -23,4 +23,9 @@ public class PlayBrodyAnimSounds : MonoBehaviour
     {
         AudioController.instance.PlayOneShot(FMODEvents.instance.GetDamageBrody, this.transform.position);
     }
+    
+    public void PlaySavingGame()
+    {
+        AudioController.instance.PlayOneShot(FMODEvents.instance.SaveLevel, this.transform.position);
+    }
 }

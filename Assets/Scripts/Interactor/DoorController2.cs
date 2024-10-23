@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FMODUnity;
 
 public class DoorController2 : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class DoorController2 : MonoBehaviour
     public GameObject _blackScreen3;
 
     public GameObject _luzExtra;
+
+    [field: Header("Sounds")]
+    [field: SerializeField] public EventReference DoorGetHit { get; private set; }
+    [field: SerializeField] public EventReference DoorIsBreaking { get; private set; }
+
 
 
     public void changeCallback(UnityEvent a)
@@ -47,9 +53,11 @@ public class DoorController2 : MonoBehaviour
     public void IncreaseHits()
     {
         float _hitNumber = GetComponent<Animator>().GetFloat("HowManyHits");
+        AudioController.instance.PlayOneShot(DoorGetHit, this.transform.position);
         GetComponent<Animator>().SetFloat("HowManyHits", _hitNumber + 1);
         if (GetComponent<Animator>().GetFloat("HowManyHits") == 2)
         {
+            AudioController.instance.PlayOneShot(DoorIsBreaking, this.transform.position);
             _luzVentilacion.SetActive(true);
             _blackScreen1.GetComponent<Animator>().SetTrigger("Fade");
             _blackScreen2.GetComponent<Animator>().SetTrigger("Fade");

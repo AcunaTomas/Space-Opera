@@ -121,6 +121,7 @@ public class MoveBoxes : MonoBehaviour
                 _isDragging = false;
                 box.GetComponent<Animator>().SetBool("inRange", false);
                 ResetAnimMove();
+                instance.setParameterByName("LoopObjects", 0f);
                 //Debug.Log("estoy pegado pero no muevo la caja");
             }
             
@@ -162,7 +163,6 @@ public class MoveBoxes : MonoBehaviour
             if(GetComponent<Playerererer>().grounded) GetComponent<Animator>().SetTrigger("idle");
             //box.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             _soundOnce = false;
-            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             _playerRef.GetComponent<PlayerCombat>().enabled = true;
         }
     }
@@ -202,6 +202,7 @@ public class MoveBoxes : MonoBehaviour
         if(!_soundOnce)
         {
             instance.start();
+            instance.setParameterByName("LoopObjects", 1.0f);
             _soundOnce = true;
         }
     }
@@ -209,6 +210,6 @@ public class MoveBoxes : MonoBehaviour
     public void StopSoundBox()
     {
         _soundOnce = false;
-        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        instance.setParameterByName("LoopObjects", 0f);
     }
 }
