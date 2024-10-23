@@ -613,6 +613,11 @@ public class Player : MonoBehaviour
             _activeCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = _cameraUp.transform;
             _animator.SetBool("LookUp", true);
             _animator.SetBool("LookDown", false);
+            if(_brodyAnimControl)
+            {
+                _brodyAnimControl.SetAnimBool("LookUp", true);
+                _brodyAnimControl.SetAnimBool("LookDown", false);
+            }
         }
         else if (InputManager.INSTANCE.MoveInput.y < 0 && _cameraTimer >= 1.5f)
         {

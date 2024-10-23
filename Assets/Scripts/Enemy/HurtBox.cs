@@ -80,9 +80,9 @@ public class HurtBox : MonoBehaviour
     }
     public virtual void MoveAgain()
     {
-        if(transform.parent != null)
+        if(transform.parent != null && transform.parent.gameObject.GetComponent<Enemy>())
             {
-                switch (transform.parent.gameObject.GetComponent<Enemy>().GetEnemyType())
+            switch (transform.parent.gameObject.GetComponent<Enemy>().GetEnemyType())
             {
                 case Enemy.EnemyType.melee:
                     transform.parent.gameObject.GetComponent<EnemyBehaviour2>().DONTMOVE = false;

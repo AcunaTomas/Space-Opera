@@ -9,6 +9,7 @@ public class HurtBoxPinchos : HurtBox
     public float destX;
     public float destY;
 
+    public float RespawnTimer = 0.3f;
 
 
 
@@ -17,15 +18,17 @@ public class HurtBoxPinchos : HurtBox
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
+            if (other.GetComponent<Player>().GetHP() <= 1) {RespawnTimer = 1.7f;}
             other.GetComponent<Player>().LoseHP(attackDamage, transform.position, KnockbackDaño);
             other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             other.GetComponent<PlayerCombat>().enabled = false;
             Debug.Log(orientation);
             player = other.gameObject;
-            Invoke(nameof(MoveAgain), 0.5f);
+
+            Invoke(nameof(MoveAgain), RespawnTimer);
             Debug.Log("hit");
 
-            
+            RespawnTimer = 0.3f;
         }
     }
 

@@ -91,13 +91,13 @@ public class UIManager : MonoBehaviour
     {
         if(GameManager.INSTANCE.GetActivePlayer()._playerType == Player.PlayerType.Bito)
         {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(true);
+            LifeBar.transform.parent.gameObject.SetActive(false);
+            LifeBar2.transform.parent.gameObject.SetActive(true);
             LifeBar2._energy = LifeBar._energy;
             return;
         }
-        transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(1).gameObject.SetActive(false);
+        LifeBar.transform.parent.gameObject.SetActive(true);
+        LifeBar2.transform.parent.gameObject.SetActive(false);
         LifeBar._energy = LifeBar2._energy;
     }
 }

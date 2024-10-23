@@ -16,6 +16,6 @@ public class CreditsEnd : MonoBehaviour
     IEnumerator EndMySuffering()
     {
         yield return new WaitForSeconds(40f);
-        ScenesManager.Instance.LoadNextScene("SceneMainMenu");
+        ScenesManager.Instance.LoadNextScene("MainMenuVS");
     }
 }

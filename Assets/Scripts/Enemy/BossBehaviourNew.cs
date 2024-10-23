@@ -117,6 +117,7 @@ void Awake()
     //chaseState.Setup(player, gameObject, animator);
     //attackState.Setup(player, gameObject, animator);
     //if(!state) state = idleState;
+    PersistentGameInfo.skipTutorial = true;
     GetRandomNum();
 }
 
@@ -765,6 +766,11 @@ public void Flip2LaSecuela()
 public void FlipFalse()
 {
     _flipping = false;
+}
+
+public void BossDeath()
+{
+    PersistentGameInfo.skipTutorial = false;
 }
 //public void ChangeState(State newState)
 //{

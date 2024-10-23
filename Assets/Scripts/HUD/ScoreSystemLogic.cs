@@ -33,26 +33,21 @@ public class ScoreSystemLogic : MonoBehaviour
         if(_showKills)
         {
             GameManager.INSTANCE.PAUSABLE = false;
-            if(_progressTime<1f) _scoreContainer.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = Mathf.Lerp(0f, _enemyKill, _progressTime) + "/" + _enemyCount;
-            else _scoreContainer.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = _enemyKill + "/" + _enemyCount;
+            _scoreContainer.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = _enemyKill + "/" + (_enemyCount - 1);
         }
         if(_showCollectables)
         {
-            if(_progressTime<2f) _scoreContainer.transform.GetChild(9).GetComponent<TextMeshProUGUI>().text = Mathf.Lerp(0f, _collectableFound, _progressTime/2) + "/" + _collectableCount;
-            else _scoreContainer.transform.GetChild(9).GetComponent<TextMeshProUGUI>().text = _collectableFound + "/" + _collectableCount;
+            _scoreContainer.transform.GetChild(9).GetComponent<TextMeshProUGUI>().text = _collectableFound + "/" + _collectableCount;
         }
         if(_showDeaths)
         {
-           if(_progressTime<3f) _scoreContainer.transform.GetChild(10).GetComponent<TextMeshProUGUI>().text = Mathf.Lerp(0f, _deathCount, _progressTime/3).ToString();
-           else _scoreContainer.transform.GetChild(10).GetComponent<TextMeshProUGUI>().text = _deathCount.ToString();
+            _scoreContainer.transform.GetChild(10).GetComponent<TextMeshProUGUI>().text = _deathCount.ToString();
         }
         if(_showTime)
         {
-            if(_progressTime<4f) _scoreContainer.transform.GetChild(11).GetComponent<TextMeshProUGUI>().text = Mathf.Lerp(0f, Mathf.Round(_totalTime), _progressTime/4).ToString() + "''";
-            else _scoreContainer.transform.GetChild(11).GetComponent<TextMeshProUGUI>().text = Mathf.Round(_totalTime).ToString() + "''";
+            _scoreContainer.transform.GetChild(11).GetComponent<TextMeshProUGUI>().text = Mathf.Round(_totalTime).ToString() + "''";
         }
         if(_showNoHit) _scoreContainer.transform.GetChild(12).GetComponent<TextMeshProUGUI>().text = _noHit.ToString();
-        _progressTime += Time.deltaTime *2f;
         if(_readytoclose && InputManager.INSTANCE.SubmitInput) StartCoroutine(Credits());
         if(InputManager.INSTANCE.SubmitHeld && _showKills) ShowAll();
     }
@@ -102,4 +97,14 @@ public class ScoreSystemLogic : MonoBehaviour
         ScenesManager.Instance.LoadNextScene("Credits");
     }
 
+    public void PersistValues()
+    {
+        PersistentGameInfo._collectableFound = _collectableFound;
+        PersistentGameInfo._deathCount = _deathCount;
+        PersistentGameInfo._enemyKill = _enemyKill;
+        PersistentGameInfo._enemyCount = _enemyCount;
+        PersistentGameInfo._noHit = _noHit;
+        PersistentGameInfo._progressTime = _progressTime;
+        PersistentGameInfo._totalTime = _totalTime;
+    }
 }

@@ -84,7 +84,7 @@ public class UpdateBars : MonoBehaviour
 
     public void SetHP()
     {
-        _playerHP = _player.GetHP();
+        _playerHP = _player.GetMaxHP();
         for (int i = 0; i < _playerHP; i++)
         {
             GameObject go;
