@@ -22,7 +22,8 @@ public class SquireBehaviour : MonoBehaviour
 
     private GameObject player;
     private Enemy enemyStats;
-    private StudioEventEmitter walkingAudio;
+    [SerializeField] private EnemySoundsController _sounds;
+    public StudioEventEmitter _soundExplosion;
 
     //EnemyState
     [Header("Estados")]
@@ -38,12 +39,13 @@ public class SquireBehaviour : MonoBehaviour
     public RuntimeAnimatorController SecondPhaseAnimatorRight;
     public RuntimeAnimatorController SecondPhaseAnimatorLeft;
     [SerializeField] GameObject Shield;
+    
 
 void Awake()
 {
     animator = GetComponent<Animator>();
     player = GameObject.FindWithTag("Player");
-    walkingAudio = GetComponent<StudioEventEmitter>();
+    _sounds = GetComponent<EnemySoundsController>();
     target = player.transform;
     animator.SetBool("Dead", false);
     enemyStats = GetComponent<Enemy>();
@@ -65,6 +67,7 @@ void Update()
         SECONDPHASE = true;
         animator.SetTrigger("SecondPhase");
         animator.SetBool("Phasing", true);
+        _sounds.UpdateParameter("EnemyMode", 1);
     }
     if (attackMode == false)
     {
@@ -74,8 +77,10 @@ void Update()
 
     if(enemyStats.currentHealth <= 0)
     {
-        walkingAudio.Stop();
+        _sounds.UpdateParameter("EnemyMode", 2);
     }
+
+
 
 
     /* Saltado
@@ -168,6 +173,7 @@ private IEnumerator SecondState()
 public void DropShield()
     {
         Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
+        _soundExplosion.Play();
     }
 
 public void SetMoveSpeed(float num)
