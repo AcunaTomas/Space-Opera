@@ -26,11 +26,14 @@ public class EnemyCloneBehaviour : MonoBehaviour
     private float timerAttack;
     private float attackDelay = 0f;
 
+    [SerializeField] private EnemySoundsController _sounds;
+
 
 void Awake()
 {
     intTimer = timer;
     animator = GetComponent<Animator>();
+    _sounds = GetComponent<EnemySoundsController>();
     player = GameObject.FindWithTag("Player");
     animator.SetBool("Dead", false);
 }
@@ -55,6 +58,7 @@ void EnemyLogic()
     if(!DONTMOVE || !GOLPEADO)
     {
         distance = Vector2.Distance(transform.position, target.position);
+        _sounds.UpdateParameter("EnemyMode", 1);
     }
     if (distance > attackDistance && !animator.GetCurrentAnimatorStateInfo(0).IsName("Clone_attack"))
     {   
@@ -183,6 +187,7 @@ public void StopAlertAnim()
 public void Explosion()
 {
     transform.GetChild(4).gameObject.SetActive(true);
+    _sounds.UpdateParameter("EnemyMode", 2);
 }
 
 public void ExplosionOff()

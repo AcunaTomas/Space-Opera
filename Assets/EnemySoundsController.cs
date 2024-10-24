@@ -6,13 +6,8 @@ using FMOD.Studio;
 
 public class EnemySoundsController : MonoBehaviour
 {
-    [SerializeField] private StudioEventEmitter _soundEmitter;
+    public StudioEventEmitter _soundEmitter;
     private Enemy _enemy;
-
-    void Start()
-    {
-        _soundEmitter = GetComponent<StudioEventEmitter>();
-    }
 
     public void UpdateParameter(string parameterName, int value)
     {
