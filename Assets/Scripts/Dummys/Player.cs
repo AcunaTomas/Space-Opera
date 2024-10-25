@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
     public float _gravity = -0.1f;
     [SerializeField]
     private float stunTime = 0f;
+    public bool Invincible = false;
 
-    [Header("Jump Values")]
+
+    [Header("Jump Values")] 
     [SerializeField]
     float _jumpImpulse = 0.95f;
 
@@ -674,6 +676,7 @@ public class Player : MonoBehaviour
     
     public void LoseHP(int damage, Vector2 sourcePosition, float KnockbackDaño)
     {
+        if (Invincible) return;
         if (!_coolingHit && HP > 0)
         {
             UIManager.INSTANCE.SCORE_SYSTEM.Hit();

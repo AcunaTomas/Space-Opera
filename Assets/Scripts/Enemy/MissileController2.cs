@@ -29,6 +29,8 @@ public class MissileController2 : BulletController
         if (_destroy)
         {
             _animator.SetTrigger("Explode");
+            if(GetComponent<BoxCollider2D>()) GetComponent<BoxCollider2D>().enabled = false;
+            _bg.velocity = Vector3.zero;
             Destroy(gameObject, 0.6f);
         }
         

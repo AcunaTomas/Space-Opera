@@ -242,6 +242,17 @@ PrefabInstance:
     - {fileID: 2122726531657727348, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
     - {fileID: 2122726531226174442, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+--- !u!114 &3161132048901593442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+  m_PrefabInstance: {fileID: 7424978888691315541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826952452728680504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8358056859987990182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1510705455933007347, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
@@ -280,6 +291,20 @@ MonoBehaviour:
   attackPoint: {fileID: 8826952454459872103}
   attackPointFlip: {fileID: 8358056859987990182}
   animator: {fileID: 0}
+  _sounds: {fileID: 7262967149157579599}
+--- !u!114 &7262967149157579599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826952452728680504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 3161132048901593442}
 --- !u!1 &8826952453836566722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2122726531226174359, guid: 012287764bec8414f8c5e14f9a792829, type: 3}

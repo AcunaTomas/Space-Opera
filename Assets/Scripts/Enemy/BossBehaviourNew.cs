@@ -1,7 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class BossBehaviourNew : MonoBehaviour
 {
@@ -106,6 +106,8 @@ public class BossBehaviourNew : MonoBehaviour
 
     public GameObject _missileEffect;
 
+    private List<GameObject> killAll;
+
 
 void Awake()
 {
@@ -118,6 +120,7 @@ void Awake()
     //attackState.Setup(player, gameObject, animator);
     //if(!state) state = idleState;
     PersistentGameInfo.skipTutorial = true;
+    killAll = new List <GameObject>();
     GetRandomNum();
 }
 
@@ -125,12 +128,13 @@ void FixedUpdate()
 {
 
     //state.Do();
+    Debug.Log("1" + _first + "\n" + "3" + _third);
     
     timerAttack += Time.deltaTime;
 
     if (_first)
     {
-        if (GetComponent<SpriteRenderer>().flipX == false)
+        if (GetComponent<SpriteRenderer>().flipX == false && !_attacking)
         {
             if (!_flipping)
             {
@@ -169,7 +173,7 @@ void FixedUpdate()
     }
     if (_third)
     {
-        if (GetComponent<SpriteRenderer>().flipX == true)
+        if (GetComponent<SpriteRenderer>().flipX == true && !_attacking)
         {
             if (!_flipping)
             {
@@ -293,10 +297,10 @@ private IEnumerator Ataque1()
     _lastRandomNum = 1;
 
     Flip(false);
-
+    _attacking = true;
     yield return new WaitUntil(() => !_flipping);
 
-    _attacking = true;
+    
     
     Debug.Log("Flip ended");
 
@@ -374,10 +378,10 @@ private IEnumerator Ataque3()
     _lastRandomNum = 3;
 
     Flip(true);
-    
-    yield return new WaitUntil(() => !_flipping);
 
     _attacking = true;
+
+    yield return new WaitUntil(() => !_flipping);
 
     Debug.Log("Flip ended");
 
@@ -433,6 +437,7 @@ IEnumerator AtaqueRumba(float num1, float num2, int speed1, bool flip)
     c.GetComponent<EnemyPatrol>()._speed = 60;
     c.GetComponent<EnemyPatrol>().Impulse(num1, num2);
     c.GetComponent<SpriteRenderer>().flipX = false;
+    killAll.Add(c);
 
     yield return new WaitForSeconds(0.7f);
 
@@ -608,6 +613,7 @@ IEnumerator AtaqueMisiles(float _missileSpeed)
             b.GetComponent<Transform>().localPosition = new Vector2(-0.085f, -0.02f);
         }
     }
+
 }
 
 void GetMissileNumbers()
@@ -770,6 +776,10 @@ public void FlipFalse()
 
 public void BossDeath()
 {
+    foreach(var romba in killAll)
+    {
+        romba.SetActive(false);
+    }
     PersistentGameInfo.skipTutorial = false;
 }
 //public void ChangeState(State newState)

@@ -40,8 +40,12 @@ public class BossSceneChimi : MonoBehaviour
 
     IEnumerator EndGame()
     {
+        Body.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("Brody_idle");
+        Body.gameObject.transform.GetChild(1).GetComponent<Animator>().Play("Brody_idle");
+        BITO.GetComponent<Animator>().Play("Player_idle");
         yield return new WaitForSeconds(1f);
-        Body.SetAnimTrigger("Laugh");
+        Body.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("Brody_laugh");
+        Body.gameObject.transform.GetChild(1).GetComponent<Animator>().Play("Brody_laugh");
         BITO.GetComponent<Animator>().Play("Bito_laugh");
         yield return new WaitForSeconds(3f);
         _scoreRef.ShowScore();
@@ -94,17 +98,22 @@ public class BossSceneChimi : MonoBehaviour
             BITO.GetComponent<SpriteRenderer>().flipX = false;
             Body.AnimatorRight();
         }
+        BRODY.GetComponent<Player>().Invincible = true;
+        BRODY.GetComponent<Player>().Invincible = true;
         BRODY.GetComponent<Player>().enabled = false;
         BRODY.GetComponent<PlayerCombat>().enabled = false;
         BITO.GetComponent<Player>().enabled = false;
         BITO.GetComponent<PlayerCombat>().enabled = false;
+        Body.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("Brody_idle");
+        Body.gameObject.transform.GetChild(1).GetComponent<Animator>().Play("Brody_idle");
+        BITO.GetComponent<Animator>().Play("Player_idle");
     }
 
     void IDK()
     {
         SPARKLE.transform.position = spawned.transform.position;
-        BITO.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,BITO.GetComponent<Rigidbody2D>().velocity.y);
-        BRODY.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,BRODY.GetComponent<Rigidbody2D>().velocity.y);
+        BITO.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,-1.5f);
+        BRODY.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,-1.5f);
         if(BRODY.transform.position.x >= bossRef.position.x || BITO.transform.position.x >= bossRef.position.x)
         {
             spawned.transform.position = new Vector2(oficial.transform.position.x+.2f, oficial.transform.position.y);

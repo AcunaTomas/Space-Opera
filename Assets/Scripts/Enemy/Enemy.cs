@@ -219,6 +219,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("Muerto");
         if (GameManager.INSTANCE.LEVEL == 1)
         {
             //AchievementsManager.INSTANCE.Achievement01();
@@ -296,7 +297,7 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<BossBehaviourNew>().enabled = false;
             animator.SetBool("Died", true);
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
             Destroy(GetComponent<Rigidbody2D>());
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<BossBehaviourNew>()._platform1.SetActive(false);
@@ -316,9 +317,9 @@ public class Enemy : MonoBehaviour
         {
             
         }
-
-        Destroy(GetComponent<Rigidbody2D>());
-        GetComponent<BoxCollider2D>().enabled = false;
+        if(GetComponent<Rigidbody2D>())GetComponent<Rigidbody2D>().constraints |= RigidbodyConstraints2D.FreezePositionX;
+        //Destroy(GetComponent<Rigidbody2D>());
+        //GetComponent<BoxCollider2D>().enabled = false;
 
         if (_enemyType == EnemyType.melee)
         {
@@ -337,7 +338,7 @@ public class Enemy : MonoBehaviour
             //GetComponentInChildren<TriggerAreaCheck>().gameObject.SetActive(false);
             GetComponent<Animator>().SetBool("CantTransition", true);
 
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
         }
 
         if (_enemyType == EnemyType.gun)

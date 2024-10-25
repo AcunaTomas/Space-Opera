@@ -18,7 +18,12 @@ public class BossSceneBehaviour : MonoBehaviour
         if(GameManager.INSTANCE.GetActivePlayer().GetHP() <= 0 && !listo)
         {
             listo = true;
-            ScenesManager.Instance.ReloadScene();
+            Invoke("WeWoadCene",GameManager.INSTANCE.Boludos.RespawnCooldown-.3f);
         }
+    }
+
+    void WeWoadCene()
+    {
+            ScenesManager.Instance.ReloadScene();
     }
 }
