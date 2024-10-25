@@ -278,15 +278,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.599001
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.1609988
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.19993839
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -294,15 +294,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -366,11 +366,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -675998872
-      Data2: 1236267689
-      Data3: 48057219
-      Data4: -551725581
-    Path: event:/ENEMIES/Clones/CLONE_Death
+      Data1: -1532106779
+      Data2: 1276311041
+      Data3: -1083359823
+      Data4: -239517345
+    Path: event:/ENEMIES/Clones/CLONE_State
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -380,8 +380,8 @@ MonoBehaviour:
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 6
 --- !u!114 &6644013703811154052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +395,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundEmitter: {fileID: 1315315661871852994}
+--- !u!114 &582553534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763492673287344359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11fd05bc982952498bccdc98dd472f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GetDamage>k__BackingField:
+    Guid:
+      Data1: 599108427
+      Data2: 1144900369
+      Data3: -1998437239
+      Data4: 453640545
+    Path: event:/ENEMIES/Clones/CLONE_GetDamage
+  <Death>k__BackingField:
+    Guid:
+      Data1: -675998872
+      Data2: 1236267689
+      Data3: 48057219
+      Data4: -551725581
+    Path: event:/ENEMIES/Clones/CLONE_Death
 --- !u!4 &8763492673287344364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1430123722234393761, guid: 8a6423a468aca4946a103233c9ecf7c9, type: 3}

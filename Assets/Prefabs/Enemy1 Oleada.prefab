@@ -123,8 +123,9 @@ GameObject:
   - component: {fileID: 2122726532402086752}
   - component: {fileID: 2122726532402086776}
   - component: {fileID: 2122726532402086778}
-  - component: {fileID: 5615492800642286652}
-  - component: {fileID: 4247965047693063141}
+  - component: {fileID: 2057059263182732238}
+  - component: {fileID: 8814484358491261524}
+  - component: {fileID: 1523426044}
   m_Layer: 7
   m_Name: Enemy1 Oleada
   m_TagString: Enemy
@@ -340,10 +341,22 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   _Inmortal: 0
-  _MakeFunctionCallOnDie: 0
+  _MakeFunctionCallOnDie: 1
   _callWhat:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DoorController2, Assembly-CSharp
+        m_MethodName: EnemiesCounter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _coolingHit: 0
   _coolingHit2: 0
   _enemyType: 0
@@ -377,7 +390,20 @@ MonoBehaviour:
   attackState: {fileID: 3964179068960573357}
   state: {fileID: 8977874684579104995}
   grounded: 0
---- !u!114 &5615492800642286652
+--- !u!114 &2057059263182732238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122726532402086765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 8814484358491261524}
+--- !u!114 &8814484358491261524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -392,11 +418,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1833525572
-      Data2: 1230938317
-      Data3: 2031919023
-      Data4: -1241587356
-    Path: event:/ENEMIES/Clones/CLONE_state
+      Data1: -1532106779
+      Data2: 1276311041
+      Data3: -1083359823
+      Data4: -239517345
+    Path: event:/ENEMIES/Clones/CLONE_State
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -410,7 +436,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 6
---- !u!114 &4247965047693063141
+--- !u!114 &1523426044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,10 +445,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2122726532402086765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Script: {fileID: 11500000, guid: e11fd05bc982952498bccdc98dd472f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEmitter: {fileID: 5615492800642286652}
+  <GetDamage>k__BackingField:
+    Guid:
+      Data1: 599108427
+      Data2: 1144900369
+      Data3: -1998437239
+      Data4: 453640545
+    Path: event:/ENEMIES/Clones/CLONE_GetDamage
+  <Death>k__BackingField:
+    Guid:
+      Data1: -675998872
+      Data2: 1236267689
+      Data3: 48057219
+      Data4: -551725581
+    Path: event:/ENEMIES/Clones/CLONE_Death
 --- !u!1 &2491901783969367466
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +622,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc82b74c46b16ee4882ec967ece8f1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <sound>k__BackingField:
+    Guid:
+      Data1: -728148197
+      Data2: 1149753081
+      Data3: -436198266
+      Data4: 1150929300
+    Path: event:/ENEMIES/Clones/CLONE_Attacks
 --- !u!1 &7455441613621940961
 GameObject:
   m_ObjectHideFlags: 0

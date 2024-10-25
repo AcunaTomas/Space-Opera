@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 2122726532402086776}
   - component: {fileID: 2122726532402086778}
   - component: {fileID: 5536131396325190199}
+  - component: {fileID: -2446435339106020316}
   m_Layer: 7
   m_Name: Enemy1
   m_TagString: Enemy
@@ -503,10 +504,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1833525572
-      Data2: 1230938317
-      Data3: 2031919023
-      Data4: -1241587356
+      Data1: -1532106779
+      Data2: 1276311041
+      Data3: -1083359823
+      Data4: -239517345
     Path: event:/ENEMIES/Clones/CLONE_state
   Event: 
   PlayEvent: 0
@@ -521,6 +522,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 6
+--- !u!114 &-2446435339106020316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122726532402086765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 5536131396325190199}
 --- !u!1 &7455441613621940961
 GameObject:
   m_ObjectHideFlags: 0
