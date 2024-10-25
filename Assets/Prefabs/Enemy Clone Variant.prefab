@@ -163,15 +163,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.031
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.19993839
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalRotation.w
@@ -179,15 +179,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086758, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -203,11 +203,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086765, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_Name
-      value: Enemy Clone Variant
+      value: Enemy Clone Variant (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: _Inmortal
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: _enemyType
@@ -217,6 +217,34 @@ PrefabInstance:
       propertyPath: knockbackRecibido
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _MakeFunctionCallOnDie
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _callWhat.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _callWhat.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _callWhat.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _callWhat.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnemiesCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _callWhat.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DoorController2, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122726532402086776, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: _callWhat.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2122726532402086778, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: moveSpeed
       value: 1
@@ -224,6 +252,38 @@ PrefabInstance:
     - target: {fileID: 2122726532402086778, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: attackDistance
       value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/ENEMIES/Catto/Moan_alert
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: -876491944
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1170896606
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -2072757617
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 834513206
       objectReference: {fileID: 0}
     - target: {fileID: 7455441613621940961, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
       propertyPath: m_IsActive
@@ -242,6 +302,17 @@ PrefabInstance:
     - {fileID: 2122726531657727348, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
     - {fileID: 2122726531226174442, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+--- !u!114 &3161132048901593442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5536131396325190199, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
+  m_PrefabInstance: {fileID: 7424978888691315541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826952452728680504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8358056859987990182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1510705455933007347, guid: 012287764bec8414f8c5e14f9a792829, type: 3}
@@ -280,6 +351,20 @@ MonoBehaviour:
   attackPoint: {fileID: 8826952454459872103}
   attackPointFlip: {fileID: 8358056859987990182}
   animator: {fileID: 0}
+  _sounds: {fileID: 5812394131254261506}
+--- !u!114 &5812394131254261506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826952452728680504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundEmitter: {fileID: 3161132048901593442}
 --- !u!1 &8826952453836566722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2122726531226174359, guid: 012287764bec8414f8c5e14f9a792829, type: 3}

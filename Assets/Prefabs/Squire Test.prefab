@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 5462673397061089588}
   - component: {fileID: 1686848969}
   - component: {fileID: 1686848970}
+  - component: {fileID: 3176018322411693560}
   m_Layer: 19
   m_Name: Shield
   m_TagString: NotClimbable
@@ -495,6 +496,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3176018322411693560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336299157042619176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2033705467
+      Data2: 1170469873
+      Data3: -1467982943
+      Data4: 815900079
+    Path: event:/ENEMIES/Squire/Squire_shield_falling
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4000663404645725096
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +544,7 @@ GameObject:
   - component: {fileID: 3094050611454259399}
   - component: {fileID: 6377684999123004679}
   - component: {fileID: 2925564226412992187}
+  - component: {fileID: 8693517048886062461}
   m_Layer: 19
   m_Name: Squire Test
   m_TagString: Enemy
@@ -708,6 +741,8 @@ MonoBehaviour:
   attackDelay: 3
   animator: {fileID: 4000663404645725093}
   cooling: 0
+  _sounds: {fileID: 2925564226412992187}
+  _soundExplosion: {fileID: 8693517048886062461}
   idleState: {fileID: 4828433212587717893}
   chaseState: {fileID: 1365107747526672812}
   attackState: {fileID: 3837102228013089908}
@@ -733,22 +768,24 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 603485802
-      Data2: 1230265987
-      Data3: 434235554
-      Data4: -567753368
-    Path: event:/OBJECTS/Fire
+      Data1: 1897655006
+      Data2: 1194579696
+      Data3: -305913923
+      Data4: -1685512199
+    Path: event:/ENEMIES/Squire/Squire_state
   Event: 
-  PlayEvent: 0
+  PlayEvent: 11
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
-  Params: []
+  Params:
+  - Name: EnemyMode
+    Value: 0
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 6
 --- !u!114 &2925564226412992187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,6 +799,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundEmitter: {fileID: 6377684999123004679}
+--- !u!114 &8693517048886062461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000663404645725096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -887347323
+      Data2: 1104187702
+      Data3: -77328471
+      Data4: 520741529
+    Path: event:/ENEMIES/Squire/Squire_explosion
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4000663406068633844
 GameObject:
   m_ObjectHideFlags: 0

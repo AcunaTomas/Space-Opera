@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+
 
 public class MeleeAttackState : State
 {
@@ -10,6 +12,8 @@ public class MeleeAttackState : State
     EnemyBehaviour2 enemyBehaviour;
     private bool attackMode;
     private float timerAttack, attackDelay = 1f, intTimer;
+
+    [field: SerializeField] public EventReference sound { get; private set; }
 
     void Start()
     {
@@ -60,6 +64,7 @@ public class MeleeAttackState : State
 
         animator.SetBool("Run", false);
         animator.SetBool("Attack", true);
+        AudioController.instance.PlayOneShot(sound, this.transform.position);
         timerAttack = 0;
 
         StartCoroutine(AtaquePosta());

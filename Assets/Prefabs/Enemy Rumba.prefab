@@ -319,6 +319,7 @@ MonoBehaviour:
   _changeSide: 0
   _waiting: 0
   _broken: 0
+  _sounds: {fileID: 8434172932876334354}
   flip: 0
   _bossFight: 1
 --- !u!114 &-4573945936053922832
@@ -348,7 +349,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
-  Params: []
+  Params:
+  - Name: EnemyMode
+    Value: 0
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 6
@@ -364,4 +367,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f391a18a1d4ec449f331b2c04de197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEmitter: {fileID: 0}
+  _soundEmitter: {fileID: -4573945936053922832}

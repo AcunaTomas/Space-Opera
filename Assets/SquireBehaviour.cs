@@ -173,7 +173,6 @@ private IEnumerator SecondState()
 public void DropShield()
     {
         Shield.GetComponent<Animator>().SetTrigger("SecondPhase");
-        _soundExplosion.Play();
     }
 
 public void SetMoveSpeed(float num)
@@ -213,5 +212,10 @@ public void SetMoveSpeed(float num)
             flipState.FlippingToTheRightFinished();
         }
         
+    }
+
+    public void PlaySecondPhaseSound()
+    {
+        _soundExplosion.Play();
     }
 }
