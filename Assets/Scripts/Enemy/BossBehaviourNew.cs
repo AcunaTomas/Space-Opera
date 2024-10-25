@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
+
 
 public class BossBehaviourNew : MonoBehaviour
 {
@@ -109,11 +112,18 @@ public class BossBehaviourNew : MonoBehaviour
     private List<GameObject> killAll;
 
 
+    [Header("Sounds")]
+    public EnemySoundsController soundsController;
+    private BossSoundsController playSounds;
+
+
 void Awake()
 {
     intTimer = timer;
     animator = GetComponent<Animator>();
     player = GameObject.FindWithTag("Player");
+    soundsController = GetComponent<EnemySoundsController>();
+    playSounds = GetComponent<BossSoundsController>();
     _playerPos = player.transform;
     //idleState.Setup(player, gameObject, animator);
     //chaseState.Setup(player, gameObject, animator);
@@ -122,6 +132,14 @@ void Awake()
     PersistentGameInfo.skipTutorial = true;
     killAll = new List <GameObject>();
     GetRandomNum();
+}
+
+/// <summary>
+/// This function is called when the object becomes enabled and active.
+/// </summary>
+private void OnEnable()
+{
+    soundsController.UpdateParameter("EnemyMode", 0);
 }
 
 void FixedUpdate()
@@ -293,6 +311,7 @@ void GetRandomNum()
 
 private IEnumerator Ataque1()
 {
+    soundsController.UpdateParameter("EnemyMode", 1);
     _bulletSource.localPosition = new Vector2(0.1f,0f);
     _lastRandomNum = 1;
 
@@ -361,6 +380,7 @@ private IEnumerator Ataque2()
         yield return new WaitForSeconds(4);
 
         animator.SetTrigger("restore");
+        playSounds.PlayRechargeSound();
         animator.SetBool("Electricity", false);
 
         yield return new WaitForSeconds(1);
@@ -672,6 +692,7 @@ public void HackBoss()
 {
     _hacked = true;
     animator.SetTrigger("hacked");
+    playSounds.PlayHackingSound();
 }
 
 
@@ -781,6 +802,7 @@ public void BossDeath()
         romba.SetActive(false);
     }
     PersistentGameInfo.skipTutorial = false;
+    soundsController.UpdateParameter("EnemyMode", 2);
 }
 //public void ChangeState(State newState)
 //{

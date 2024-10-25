@@ -1,4 +1,6 @@
 using UnityEngine;
+using FMOD;
+using FMODUnity;
 
 public class BossIdleState : State
 {
