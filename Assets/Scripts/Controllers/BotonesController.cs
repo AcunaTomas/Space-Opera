@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using FMODUnity;
 using FMOD.Studio;
 
-public class BotonesController : MonoBehaviour
+public class BotonesController : BasicHittableEntity
 {
     [SerializeField]
     private Animator _animator;
@@ -34,7 +34,7 @@ public class BotonesController : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("BalaPlayer"))
+        if (LayersCheckAllowed(1 << other.gameObject.layer))
         {
             _animator.SetTrigger("ButtonPress");
             if(_puerta)_puerta.GetComponent<Animator>().SetTrigger("OpenDoor");

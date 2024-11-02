@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using FMODUnity;
 
-public class DoorController2 : MonoBehaviour
+public class DoorController2 : BasicHittableEntity
 {
     [SerializeField]
     private UnityEvent _callSomething;
@@ -48,6 +48,15 @@ public class DoorController2 : MonoBehaviour
             _callSomething.Invoke();
         }
         
+    }
+
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (LayersCheckAllowed(1 << other.gameObject.layer))
+        {
+            DoSomeShit();
+        }
     }
 
     public void IncreaseHits()

@@ -18,6 +18,9 @@ public class CameraController : MonoBehaviour
     
     [SerializeField]
     private float _target_Size;
+
+    [SerializeField]
+    private float dampingAmount = 0.5f;
     
     private void Awake()
     {
@@ -77,7 +80,7 @@ public class CameraController : MonoBehaviour
     {
         if (Shape.gameObject.name != _confiner.m_BoundingShape2D.gameObject.name)
         {
-            _confiner.m_Damping = 0.5f;
+            _confiner.m_Damping = dampingAmount;
             _confiner.m_BoundingShape2D = Shape.BoundingShape;
             _confiner.InvalidatePathCache();
             _target_Size = Shape.OrtoSize;
@@ -92,7 +95,11 @@ public class CameraController : MonoBehaviour
         }
         if (_confiner.m_Damping > 0)
         {
-            _confiner.m_Damping -= 0.01f;
+            _confiner.m_Damping -= 0.05f;
+        }
+        else
+        {
+            _confiner.m_Damping = 0;
         }
 
         if (shakeTimer > 0f)
