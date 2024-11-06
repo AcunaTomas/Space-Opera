@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     private Vector2 speedCaps = new Vector2(1.2f, 4f); //x: usado para el movimiento horizontal y valor temporal para el "arrastre" cuando se cae de una pared.
                                                      //y: usado para el movimiento vertical.
     private Vector2 speedCapsStatic = new Vector2(1.2f, 4f);
+    [SerializeField]
     bool speedChanged = false; 
     [SerializeField]
     private float _maxVerticalSpeed = 5f; //El limite de velocidad en y actual
@@ -202,7 +203,7 @@ public class Player : MonoBehaviour
             {
                 Flip();
             }
-            Movement();
+            
             Effects();
             
         }
@@ -213,9 +214,11 @@ public class Player : MonoBehaviour
             MoveToPoint();
         }
         WallJumpDelay();
+        Movement();
         speedCapping();
         UpdateTimers();
         CameraUpDown();
+
     }
 
     public void _plaseJump()
@@ -566,7 +569,7 @@ public class Player : MonoBehaviour
 
         if (_wallJumpXHandicap == false)
         {
-            Xspeed = (InputManager.INSTANCE.MoveInput.x * 13.8f) * _xSpeedNullifier;
+            Xspeed = (HorizontalInputValue * 13.8f) * _xSpeedNullifier;
         }
         else
         {
@@ -991,7 +994,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Mathf.Abs(InputManager.INSTANCE.MoveInput.x) == 0)
+        if (Mathf.Abs(HorizontalInputValue) == 0)
         {
             if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
             {
@@ -1139,6 +1142,8 @@ public class Player : MonoBehaviour
             //canIjump = false;
             canIMove = false;
             stunTime = Time;
+            HorizontalInputValue = 0f;
+            Xspeed = 0f;
             return;
         }
         //canIjump = true;

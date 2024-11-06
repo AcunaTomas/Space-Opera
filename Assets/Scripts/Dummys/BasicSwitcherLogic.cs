@@ -83,15 +83,10 @@ public class BasicSwitcherLogic : MonoBehaviour
                 if (who == "Brody")
                 {
                     bi2.gameObject.transform.position = brodi.gameObject.transform.position;
-
                 }
                 else
                 {
                     brodi.gameObject.transform.position = bi2.gameObject.transform.position;
-                    if (bi2.GetOrientation() != brodi.GetOrientation())
-                    {
-                        brodi.SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
-                    }
                 }
 
             

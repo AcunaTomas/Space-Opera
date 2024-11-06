@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    private Player player;
     private GameObject HUDBulani;
     private GameObject ActiveHUDBulani;
     [SerializeField]
@@ -81,6 +82,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Start()
     {
+        player = GetComponent<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         GameObject attackVisual = GameObject.FindWithTag("AttackVisual");
         GameObject attackVisualUp = GameObject.FindWithTag("AttackVisualUp");
@@ -133,6 +135,7 @@ public class PlayerCombat : MonoBehaviour
             if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y == 0))
             {
                 Attack();
+                
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackActive = true;
                 queryStartTime = Time.time;
@@ -141,6 +144,7 @@ public class PlayerCombat : MonoBehaviour
             else if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y > 0))
             {
                 AttackUp();
+                
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackUpActive = true;
                 queryStartTime = Time.time;
@@ -149,6 +153,7 @@ public class PlayerCombat : MonoBehaviour
             else if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y < 0) && gameObject.GetComponent<Player>().canIjump == false)
             {
                 AttackDown();
+
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackDownActive = true;
                 queryStartTime = Time.time;
@@ -350,6 +355,7 @@ public class PlayerCombat : MonoBehaviour
     
     public virtual void Attack()
     {
+        player.SendMessage("StunToggle", 0.5f);
         if (spriteRenderer.flipX)
         {
             attackPoint.localPosition = new Vector2(-0.15f, 0);
@@ -388,7 +394,7 @@ public class PlayerCombat : MonoBehaviour
 
     public virtual void AttackUp()
     {
-
+        player.SendMessage("StunToggle", 0.5f);
         animator.SetTrigger("AttackUp");
         animator.SetBool("IsJumping", false);
         Instantiate(attackPointUpVisual, attackPointUp);
@@ -408,7 +414,7 @@ public class PlayerCombat : MonoBehaviour
 
     public virtual void AttackDown()
     {
-
+        player.SendMessage("StunToggle", 0.5f);
         animator.SetTrigger("AttackDown");
         animator.SetBool("IsJumping", false);
         Instantiate(attackPointDownVisual, attackPointDown);

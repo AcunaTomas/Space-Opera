@@ -42,7 +42,9 @@ public class Enemy : MonoBehaviour
         clone,
         squirrel,
 
-        newBoss
+        newBoss,
+
+        RGB
     }
 
     [SerializeField]
@@ -72,6 +74,15 @@ public class Enemy : MonoBehaviour
         UIManager.INSTANCE.SCORE_SYSTEM.EnemySpawn();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _sounds = GetComponent<EnemySoundsController>();
+    }
+
+    void FixedUpdate()
+    {
+
+        if (_enemyType == EnemyType.RGB)
+        {
+            _spriteRenderer.color += new Color(0.01f,0,0);
+        }
     }
 
     public void TakeDamage(int damage, Vector2 sourcePosition)
