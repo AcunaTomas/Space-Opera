@@ -6,7 +6,7 @@ public class SImpleFadeController : MonoBehaviour
 {
     SpriteRenderer _sp;
 
-    public bool fademode ;
+    public bool fademode = false ;
 
     public float fadetime ;
 
@@ -18,10 +18,7 @@ public class SImpleFadeController : MonoBehaviour
         {
             fadetime = 0.05f;
         }
-        if (fademode == null)
-        {
-            fademode = false;
-        }
+
 
         _sp = GetComponent<SpriteRenderer>();
     }

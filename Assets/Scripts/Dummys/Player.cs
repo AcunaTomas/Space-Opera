@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private float _decelerationValue = 0.5f;
     [SerializeField]
     bool _isOnPlatform = false;
+    [SerializeField]
     private Vector2 _platformVelocity;
     private Vector2 _externalForce;
 
@@ -541,6 +542,7 @@ public class Player : MonoBehaviour
         _wallJumpFreezeTimer = 0.5f;
         _xSpeedNullifier = 1f;         
         _externalForce = new Vector2(0,0);
+        _platformVelocity = new Vector2(0,0);
         grounded = false;
         canIjump = false;    
         if (collision.gameObject.CompareTag("Ascensor"))
@@ -975,20 +977,20 @@ public class Player : MonoBehaviour
         {
             if (gameObject.GetComponent<Playerererer>()._isDashing == false)
             {
-                if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+                if (Mathf.Abs(body.velocity.x) > speedCaps.x + Mathf.Abs(_platformVelocity.x))
                 {
-                    body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
+                    body.velocity = new Vector2((speedCaps.x  + Mathf.Abs(_platformVelocity.x)) * Clamp(body.velocity.x,-1,1), body.velocity.y);
                 }
             }
         }
         else
         {
-            if (Mathf.Abs(body.velocity.x) > speedCaps.x)
+            if (Mathf.Abs(body.velocity.x) >  speedCaps.x + Mathf.Abs(_platformVelocity.x))
             {
-                body.velocity = new Vector2(speedCaps.x * Clamp(body.velocity.x,-1,1), body.velocity.y);
+                body.velocity = new Vector2((speedCaps.x  + Mathf.Abs(_platformVelocity.x)) * Clamp(body.velocity.x,-1,1), body.velocity.y);
             }
         }
-
+        body.AddForce(_externalForce, ForceMode2D.Force);
         if(doIhaveToGoSomewhere == true)
         {
             return;
@@ -998,21 +1000,29 @@ public class Player : MonoBehaviour
         {
             if (canIjump && (!_coolingHit || !_knockbacked)) //airborne checko
             {
-                if (_playerType == PlayerType.Bito)
+                if (Mathf.Abs(_platformVelocity.x - body.velocity.x) <= (0.3f + Mathf.Abs(_platformVelocity.x)))
                 {
-                    if (gameObject.GetComponent<Playerererer>()._isDashing == false)
-                    {
-                        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
-                    }
-                    
+                    body.velocity = new Vector2(0,body.velocity.y);
                 }
                 else
                 {
-                    body.velocity = new Vector2(Mathf.Clamp(body.velocity.x - _decelerationValue,0,15), body.velocity.y);
+                    if (_playerType == PlayerType.Bito)
+                    {
+                        if (gameObject.GetComponent<Playerererer>()._isDashing == false)
+                        {
+                            body.velocity = new Vector2((Mathf.Abs(body.velocity.x) - _decelerationValue) * GetOrientation(), body.velocity.y);
+                        }
+                        
+                    }
+                    else
+                    {
+                        body.velocity = new Vector2((Mathf.Abs(body.velocity.x) - _decelerationValue) * GetOrientation(), body.velocity.y);
+                    }
+
                 }
                 if (_isOnPlatform)
                 {
-                    body.velocity += _platformVelocity;
+                    body.velocity += new Vector2( _platformVelocity.x, _platformVelocity.y);
                 }
                 
             }
@@ -1031,9 +1041,11 @@ public class Player : MonoBehaviour
                 }
                 
             }
-            body.AddForce(_externalForce, ForceMode2D.Force);
-        }
+            
 
+
+        }
+        
     
     }
 

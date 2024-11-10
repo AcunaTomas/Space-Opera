@@ -11,7 +11,7 @@ public class ConfinerController : MonoBehaviour
     public float OrtoSize = 1.3f;
     void Awake()
     {
-        if (OrtoSize == null || OrtoSize == 0)
+        if (OrtoSize == 0)
         {
             OrtoSize = 1.3f;
         }

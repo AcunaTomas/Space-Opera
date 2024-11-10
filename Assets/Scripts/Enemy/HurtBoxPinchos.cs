@@ -11,11 +11,11 @@ public class HurtBoxPinchos : HurtBox
 
     public float RespawnTimer = 0.3f;
 
-
+    
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (Coll.IsTouchingLayers(targetLayer))
         {
             GameManager.INSTANCE.Boludos.ToggleCharSwitching(false);
             if (other.GetComponent<Player>().GetHP() <= 1) {RespawnTimer = 1.7f;}

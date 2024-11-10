@@ -35,7 +35,7 @@ void Awake()
     animator = GetComponent<Animator>();
     _sounds = GetComponent<EnemySoundsController>();
     player = GameObject.FindWithTag("Player");
-    animator.SetBool("Dead", false);
+    animator.SetBool("Die", false);
 }
 
 void Update() 

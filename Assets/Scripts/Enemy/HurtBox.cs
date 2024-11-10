@@ -13,9 +13,14 @@ public class HurtBox : MonoBehaviour
     protected GameObject player;
     [SerializeField]protected float KnockbackDaño = .5f;
 
+    public Collider2D Coll {get;set;}
+    public LayerMask targetLayer = 1 << 9; //Layer 9 is Player.
+
+
     private Enemy _enemyRef;
     public virtual void Awake()
     {
+        Coll = GetComponent<Collider2D>();
         player = GameManager.INSTANCE.GetActivePlayer().gameObject;
     }
 
@@ -27,7 +32,7 @@ public class HurtBox : MonoBehaviour
 
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (Coll.IsTouchingLayers(targetLayer))
         {
             player = other.gameObject;
             other.GetComponent<Player>().LoseHP(attackDamage, transform.position, KnockbackDaño);

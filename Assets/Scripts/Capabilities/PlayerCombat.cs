@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -132,30 +131,11 @@ public class PlayerCombat : MonoBehaviour
         //Debug.Log($"Update: isAttackActive={isAttackActive}, _attackCount={_attackCount}, hitSomething={hitsomething}");
         if (Time.time >= nextAttackTime)
         {
-            if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y == 0))
+            if (InputManager.INSTANCE.AttackHeld)
             {
                 Attack();
-                
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackActive = true;
-                queryStartTime = Time.time;
-                //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
-            }
-            else if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y > 0))
-            {
-                AttackUp();
-                
-                nextAttackTime = Time.time + 1f / attackRate;
-                isAttackUpActive = true;
-                queryStartTime = Time.time;
-                //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
-            }
-            else if (InputManager.INSTANCE.AttackHeld && (InputManager.INSTANCE.MoveInput.y < 0) && gameObject.GetComponent<Player>().canIjump == false)
-            {
-                AttackDown();
-
-                nextAttackTime = Time.time + 1f / attackRate;
-                isAttackDownActive = true;
                 queryStartTime = Time.time;
                 //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
@@ -208,71 +188,8 @@ public class PlayerCombat : MonoBehaviour
             }
             else
             {
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-                foreach (Collider2D enemyCollider in hitEnemies)
-                {
-                    if (Time.time - lastHitTime >= hitCooldown)
-                    {
-                        if (_attackCount >= 3)
-                        {
-                            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo, transform.position);
-                            KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
-                            CameraController.Instance.ScreenShake(.3f, .1f);
-                        }
-                        else
-                        {
-                            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage, transform.position);
-                            KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
-                            hitsomething = true;
-                        }
-                        hitsomething = true;
-                        lastHitTime = Time.time;
-                    }
-                    
-                }
-
-                Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyGunLayers);
-                foreach (Collider2D enemyGunCollider in hitEnemiesGun)
-                {
-                    if (_attackCount >= 3)
-                    {
-                        enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamageCombo, transform.position);
-                        KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
-                        CameraController.Instance.ScreenShake(.3f, .1f);
-                    }
-                    else
-                    {
-                        enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage, transform.position);
-                    KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
-
-                        
-                    }
-                    hitsomething = true;
-                }
-
-                Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyBalaLayers);
-                foreach (Collider2D balaCollider in hitBala)
-                {
-                    balaCollider.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
-                    Destroy(balaCollider.gameObject, 0.55f);
-                    //balaCollider.gameObject.SetActive(false);
-                }
-
-                Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
-                foreach (Collider2D door in hitDoor)
-                {
-                    if(gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
-                    {
-                        door.GetComponent<DoorController2>().DoSomeShit();
-                    }
-                }
-
-                Collider2D[] hitWeakSpot = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, bossWeakSpot);
-                foreach (Collider2D weakSpotCollider in hitWeakSpot)
-                {
-                    weakSpotCollider.gameObject.GetComponent<BossWeakSpot>().Hit();
-                }
-            }
+                attackPoint.gameObject.SetActive(true);
+            } 
         }
         
         if (isAttackUpActive)
@@ -394,41 +311,13 @@ public class PlayerCombat : MonoBehaviour
 
     public virtual void AttackUp()
     {
-        player.SendMessage("StunToggle", 0.5f);
-        animator.SetTrigger("AttackUp");
-        animator.SetBool("IsJumping", false);
-        Instantiate(attackPointUpVisual, attackPointUp);
-
-        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, doorLayers);
-
-        foreach (Collider2D door in hitDoor)
-        {
-            if (gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
-            {
-                door.GetComponent<DoorController2>().DoSomeShit();
-            }
-            
-        }
 
     }
+    
 
     public virtual void AttackDown()
     {
-        player.SendMessage("StunToggle", 0.5f);
-        animator.SetTrigger("AttackDown");
-        animator.SetBool("IsJumping", false);
-        Instantiate(attackPointDownVisual, attackPointDown);
 
-
-        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, doorLayers);
-
-        foreach (Collider2D door in hitDoor)
-        {
-            if (gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
-            {
-                door.GetComponent<DoorController2>().DoSomeShit();
-            }
-        }
 
     }
 
@@ -495,3 +384,104 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
     }
 }
+
+   /*  Gonna leave the old things here for now
+   
+   Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+                foreach (Collider2D enemyCollider in hitEnemies)
+                {
+                    if (Time.time - lastHitTime >= hitCooldown)
+                    {
+                        if (_attackCount >= 3)
+                        {
+                            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamageCombo, transform.position);
+                            KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
+                            CameraController.Instance.ScreenShake(.3f, .1f);
+                        }
+                        else
+                        {
+                            enemyCollider.GetComponent<Enemy>().TakeDamage(attackDamage, transform.position);
+                            KnockbackHitting(enemyCollider.transform, enemyCollider.GetComponent<Enemy>().GetKnockback());
+                            hitsomething = true;
+                        }
+                        hitsomething = true;
+                        lastHitTime = Time.time;
+                    }
+                    
+                }
+
+                Collider2D[] hitEnemiesGun = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyGunLayers);
+                foreach (Collider2D enemyGunCollider in hitEnemiesGun)
+                {
+                    if (_attackCount >= 3)
+                    {
+                        enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamageCombo, transform.position);
+                        KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
+                        CameraController.Instance.ScreenShake(.3f, .1f);
+                    }
+                    else
+                    {
+                        enemyGunCollider.GetComponent<Enemy>().TakeDamage2(attackDamage, transform.position);
+                    KnockbackHitting(enemyGunCollider.transform, enemyGunCollider.GetComponent<Enemy>().GetKnockback());
+
+                        
+                    }
+                    hitsomething = true;
+                }
+
+                Collider2D[] hitBala = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyBalaLayers);
+                foreach (Collider2D balaCollider in hitBala)
+                {
+                    balaCollider.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
+                    Destroy(balaCollider.gameObject, 0.55f);
+                    //balaCollider.gameObject.SetActive(false);
+                }
+
+                Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, doorLayers);
+                foreach (Collider2D door in hitDoor)
+                {
+                    if(gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+                    {
+                        door.GetComponent<DoorController2>().DoSomeShit();
+                    }
+                }
+
+                Collider2D[] hitWeakSpot = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, bossWeakSpot);
+                foreach (Collider2D weakSpotCollider in hitWeakSpot)
+                {
+                    weakSpotCollider.gameObject.GetComponent<BossWeakSpot>().Hit();
+                }*/
+
+                /*     player.SendMessage("StunToggle", 0.5f);
+        animator.SetTrigger("AttackUp");
+        animator.SetBool("IsJumping", false);
+        Instantiate(attackPointUpVisual, attackPointUp);
+
+        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, doorLayers);
+
+        foreach (Collider2D door in hitDoor)
+        {
+            if (gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+            {
+                door.GetComponent<DoorController2>().DoSomeShit();
+            }
+            
+        }
+
+    } */
+
+            /* player.SendMessage("StunToggle", 0.5f);
+        animator.SetTrigger("AttackDown");
+        animator.SetBool("IsJumping", false);
+        Instantiate(attackPointDownVisual, attackPointDown);
+
+
+        Collider2D[] hitDoor = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, doorLayers);
+
+        foreach (Collider2D door in hitDoor)
+        {
+            if (gameObject.GetComponent<Player>()._playerType == Player.PlayerType.Bito)
+            {
+                door.GetComponent<DoorController2>().DoSomeShit();
+            }
+        } */
