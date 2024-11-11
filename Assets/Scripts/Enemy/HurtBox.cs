@@ -6,7 +6,7 @@ using UnityEngine;
 public class HurtBox : MonoBehaviour
 {
     public bool _persistant = false;
-
+    public float DURATION;
     public float PlayerStunTimer = 0.166f;
     protected int attackDamage = 1;
     protected float orientation = 1f;
@@ -40,10 +40,7 @@ public class HurtBox : MonoBehaviour
                 //other.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll; Volver a poner luego?
             other.GetComponent<PlayerCombat>().enabled = false;
             //other.GetComponent<Rigidbody2D>().AddForce(new Vector2(orientation * 5, 0), ForceMode2D.Impulse);
-            if (!_persistant)
-            {
-                gameObject.SetActive(false);
-            }
+
             
             if(transform.parent != null)
             {
@@ -76,6 +73,11 @@ public class HurtBox : MonoBehaviour
             }
             DelayMoveAgain(PlayerStunTimer);
             Debug.Log("hit");
+
+            if (!_persistant)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     protected void DelayMoveAgain(float cd)

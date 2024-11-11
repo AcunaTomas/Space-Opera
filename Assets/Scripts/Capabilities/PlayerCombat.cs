@@ -12,7 +12,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     private Animator animator;
     public GameObject attackPointVisual;
-    public Transform attackPoint;
+    public PlayerHurtBox attackPoint;
     [SerializeField]
     public GameObject attackPointUpVisual;
     public Transform attackPointUp;
@@ -137,6 +137,9 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
                 isAttackActive = true;
                 queryStartTime = Time.time;
+                attackPoint.gameObject.SetActive(true);
+                attackPoint.transform.localPosition = new Vector2(0.15f * player.GetOrientation(),0);
+                
                 //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);
             }
 
@@ -185,10 +188,11 @@ public class PlayerCombat : MonoBehaviour
                     _attackCount = 1;
                     hitsomething = false;
                 }
+
             }
             else
             {
-                attackPoint.gameObject.SetActive(true);
+
             } 
         }
         
@@ -275,12 +279,12 @@ public class PlayerCombat : MonoBehaviour
         player.SendMessage("StunToggle", 0.5f);
         if (spriteRenderer.flipX)
         {
-            attackPoint.localPosition = new Vector2(-0.15f, 0);
+            attackPoint.transform.localPosition = new Vector2(-0.15f, 0);
             //attackPointVisual.localPosition = new Vector2(0.15f, 0);
         }
         else
         {
-            attackPoint.localPosition = new Vector2(0.15f, 0);
+            attackPoint.transform.localPosition = new Vector2(0.15f, 0);
             //attackPointVisual.localPosition = new Vector2(-0.15f, 0);
         }
         
@@ -291,19 +295,19 @@ public class PlayerCombat : MonoBehaviour
         if (_attackCount == 1)
         {
             animator.SetTrigger("Attack1");
-            Instantiate(attackPointVisual, attackPoint);
+            Instantiate(attackPointVisual, attackPoint.transform);
             return;
         }
         if (_attackCount == 2)
         {
             animator.SetTrigger("Attack2");
-            Instantiate(attackPointVisual, attackPoint);
+            Instantiate(attackPointVisual, attackPoint.transform);
             return;
         }
         if (_attackCount == 3)
         {
             animator.SetTrigger("Attack3");
-            Instantiate(attackPointVisual, attackPoint);
+            Instantiate(attackPointVisual, attackPoint.transform);
             return;
         }
 
@@ -379,7 +383,7 @@ public class PlayerCombat : MonoBehaviour
         if (attackPointUp == null){
             return;
         }
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.transform.position, attackRange);
         Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
         Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
     }

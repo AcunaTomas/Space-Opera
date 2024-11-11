@@ -23,12 +23,12 @@ public class VisualAttack : MonoBehaviour
             gameObject.GetComponent<Animator>().SetTrigger("Golpe3");
         }
 
-        if (_player.GetComponent<PlayerCombat>().attackPoint.localPosition.x == -0.15f)
+        if (_player.GetComponent<PlayerCombat>().attackPoint.transform.localPosition.x == -0.15f)
         {
             gameObject.transform.localPosition = new Vector2 (0.15f, 0);
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
-        else if (_player.GetComponent<PlayerCombat>().attackPoint.localPosition.x == 0.15f)
+        else if (_player.GetComponent<PlayerCombat>().attackPoint.transform.localPosition.x == 0.15f)
         {
             gameObject.transform.localPosition = new Vector2 (-0.15f, 0);
             gameObject.GetComponent<SpriteRenderer>().flipX = false;

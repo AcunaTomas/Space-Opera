@@ -49,12 +49,12 @@ public class CombatBro : PlayerCombat
     {
         if (spriteRenderer.flipX)
         {
-            attackPoint.localPosition = new Vector2(-0.25f, 0);
+            attackPoint.transform.localPosition = new Vector2(-0.25f, 0);
             attkdirX = -1;
         }
         else
         {
-            attackPoint.localPosition = new Vector2(0.25f, 0);
+            attackPoint.transform.localPosition = new Vector2(0.25f, 0);
             attkdirX = 1;
         }   
 
@@ -67,7 +67,7 @@ public class CombatBro : PlayerCombat
     {
         
         var a = Balalist.GetObj();
-        a.transform.position = attackPoint.position;
+        a.transform.position = attackPoint.transform.position;
         a.transform.rotation = Quaternion.identity;
         a.GetComponent<GenericBala>().SetDirection(X,Y);
         a.SetActive(true);
@@ -88,13 +88,13 @@ public class CombatBro : PlayerCombat
             _brodyAnimControl.SetAnimTrigger("AttackDiagUp");
             if (spriteRenderer.flipX)
             {
-                attackPoint.localPosition = new Vector2(-0.13f, 0.1f);
+                attackPoint.transform.localPosition = new Vector2(-0.13f, 0.1f);
                 attkdirX = -1;
                 attkdirY = 1;
             }
             else
             {
-                attackPoint.localPosition = new Vector2(0.13f, 0.1f);
+                attackPoint.transform.localPosition = new Vector2(0.13f, 0.1f);
                 attkdirX = 1;
                 attkdirY = 1;
             }
@@ -104,7 +104,7 @@ public class CombatBro : PlayerCombat
         {
             _animator.SetTrigger("AttackUp");
             _brodyAnimControl.SetAnimTrigger("AttackUp");
-            attackPoint.localPosition = new Vector2(-0.04f, 0.17f);
+            attackPoint.transform.localPosition = new Vector2(-0.04f, 0.17f);
 
         /*
             if (spriteRenderer.flipX && Input.GetAxisRaw("Vertical")<0 && Input.GetAxisRaw("Horizontal") < 100) //|| InputManager.INSTANCE.))
@@ -134,13 +134,13 @@ public class CombatBro : PlayerCombat
             _brodyAnimControl.SetAnimTrigger("AttackDiagDown");
             if (spriteRenderer.flipX)
             {
-                attackPoint.localPosition = new Vector2(-0.1f, -0.1f);
+                attackPoint.transform.localPosition = new Vector2(-0.1f, -0.1f);
                 attkdirX = -1;
                 attkdirY = -1;
             }
             else
             {
-                attackPoint.localPosition = new Vector2(0.1f, -0.1f);
+                attackPoint.transform.localPosition = new Vector2(0.1f, -0.1f);
                 attkdirX = 1;
                 attkdirY = -1;
             }
@@ -152,11 +152,11 @@ public class CombatBro : PlayerCombat
             _brodyAnimControl.SetAnimTrigger("AttackDown");
             if (spriteRenderer.flipX)
             {
-                attackPoint.localPosition = new Vector2(0f, -0.17f);
+                attackPoint.transform.localPosition = new Vector2(0f, -0.17f);
             }
             else
             {
-                attackPoint.localPosition = new Vector2(0f, -0.17f);
+                attackPoint.transform.localPosition = new Vector2(0f, -0.17f);
             }
             SpawnBala(0,-1);
         }
@@ -179,7 +179,7 @@ public class CombatBro : PlayerCombat
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.transform.position, attackRange);
     }
 
 
