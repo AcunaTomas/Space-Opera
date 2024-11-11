@@ -138,6 +138,7 @@ public class PlayerCombat : MonoBehaviour
                 isAttackActive = true;
                 queryStartTime = Time.time;
                 attackPoint.gameObject.SetActive(true);
+                attackPoint.SendMessage("ChangeAttackDMG", attackDamage * _attackCount); //Se que es publica, pero necesito hacer esto porque el valor attackDamage de la hurtbox esta protected
                 attackPoint.transform.localPosition = new Vector2(0.15f * player.GetOrientation(),0);
                 
                 //AudioController.instance.PlayOneShot(FMODEvents.instance.LaserAttack, this.transform.position);

@@ -25,11 +25,18 @@ public class PlayerHurtBox : HurtBox
         if (Coll.IsTouchingLayers(targetLayer))
         {
             var Ref = other.GetComponent<Enemy>();
+            var BreakableRef = other.GetComponent<BasicHittableEntity>();
             if (Ref)
             {
                 Ref.TakeDamage(attackDamage,transform.position);
                 return;
             }
+            if (BreakableRef)
+            {
+                BreakableRef.HitAction();
+                return;
+            }
+
         }
     }
 

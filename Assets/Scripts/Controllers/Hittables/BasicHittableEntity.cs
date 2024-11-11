@@ -28,7 +28,7 @@ public class BasicHittableEntity : MonoBehaviour
         }
         for (int i = 0; i < layernums.Length; i++)
         {
-            print("dosomethinh");
+        
             AllowedLayers.Add(1 << layernums[i]);
         }
 
@@ -43,5 +43,9 @@ public class BasicHittableEntity : MonoBehaviour
         return false;
     }
 
+    public virtual void HitAction()
+    {
+
+    }
 
 }

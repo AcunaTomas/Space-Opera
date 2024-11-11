@@ -36,7 +36,15 @@ public class BotonesController : BasicHittableEntity
     {
         if (LayersCheckAllowed(1 << other.gameObject.layer))
         {
-            _animator.SetTrigger("ButtonPress");
+           HitAction();
+            
+        }
+            
+    }
+
+    public override void HitAction()
+    {
+         _animator.SetTrigger("ButtonPress");
             if(_puerta)_puerta.GetComponent<Animator>().SetTrigger("OpenDoor");
             _callWhat.Invoke();
             this.enabled = false;
@@ -45,8 +53,5 @@ public class BotonesController : BasicHittableEntity
                 _soundEmitter.Play();
                 _playedSound = true;
             }
-            
-        }
-            
     }
 }

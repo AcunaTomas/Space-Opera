@@ -32,7 +32,7 @@ public class DoorController2 : BasicHittableEntity
         _callSomething = a;
     }
 
-    public void DoSomeShit()
+    public override void HitAction()
     {
         if (_hasCooldown)
         {
@@ -55,7 +55,7 @@ public class DoorController2 : BasicHittableEntity
     {
         if (LayersCheckAllowed(1 << other.gameObject.layer))
         {
-            DoSomeShit();
+            HitAction();
         }
     }
 
